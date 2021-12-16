@@ -80,21 +80,81 @@ df.head()
 # & = \mathbf{R}_\mathbf{x} - \mathbf{m}\mathbf{m}^\mathsf{T},
 # \end{align}
 # 
-# where $\mathbf{R}_\mathbf{x}$ and $\mathbf{m}$ are the correlation matrix and the mean vector of $\mathbf{x}$.
+# where $\mathbf{R}_\mathbf{x}$ and $\mathbf{m}$ are the correlation matrix and the mean vector of $\mathbf{x}$, respectively.
 # 
 # Using a set of $N$ realizations, $\left\{\mathbf{x}(1), \mathbf{x}(2), \cdots, \mathbf{x}(N)\right\}$, the estimator of $\mathbf{R}_\mathbf{x}$ is given by
 # \begin{align}
-# \hat{R}_\mathbf{x} = \frac{1}{N} \sum_{n=1}^N \mathbf{x}(n)\mathbf{x}^\mathsf{T}(n)
+# \mathbf{\hat{R}}_\mathbf{x} = \frac{1}{N} \sum_{n=1}^N \mathbf{x}(n)\mathbf{x}^\mathsf{T}(n)
 # \end{align}
 
 # %%
-X = df.to_numpy()
-R_hat =0
+X = df.iloc[:,:-1].to_numpy() # matrix of the vector x realizations (discart the last column)
+R_hat101 = 0
+N = X.shape[1] # number of realizations
 
-# for n in range(X.shape[1]):
-#     R_hat = 
+for n in range(N):
+    R_hat101 = R_hat101 + np.outer(X[:,n],X[:,n])
+
+R_hat101 /= N
 
 # %% [markdown]
-# 
+# The autocorrelation computation can be computed faster using the matrix notation of all realization of the vector $\mathbf{x}$:
+#
+# \begin{align}
+# \mathbf{X} = \left\{\mathbf{x}(1)\mid \mathbf{x}(2)\mid \cdots\mid \mathbf{x}(N) \right\}
+# \end{align}
+# The estimation of the correlation matrix is simply given by
+# \begin{align}
+# \mathbf{\hat{R}}_\mathbf{x} = \frac{1}{N}\mathbf{X}\mathbf{X}^\mathsf{T}
+# \end{align}
 
+# %%
+R_hat102 = np.matmul(X, X.transpose())/N
 
+# %% [markdown]
+# Instead of using a batch approach to compute the correlation matrix, it is possible to make it recursively. For the $n$-th realization of the vector $\mathbf{x}$, the matrix $\mathbf{\hat{R}}_\mathbf{x}(n)$ is updated to:
+# \begin{align}
+# \mathbf{\hat{R}}_\mathbf{x}(n) = \left(\frac{n-1}{n}\right)\mathbf{\hat{R}}_\mathbf{x}(n-1) + \frac{1}{n}\mathbf{x}(n)\mathbf{x}^\mathsf{T}(n)
+# \end{align}
+# where $\mathbf{\hat{R}}_\mathbf{x}(1) = \mathbf{I}_N$.
+# %%
+
+# create a tuple with the first dimension of X, then repeat it twice to make a square matrix
+R_hat104 = np.identity(X.shape[0])
+
+for n in range(N): # go from 0 up to N-1
+    R_hat104 = R_hat104*n/(n+1) + np.outer(X[:,n], X[:,n])/(n+1)
+# %% [markdown]
+# The estimation of the mean vector is given by
+# $$\mathbf{\hat{m}} = \frac{1}{N} \sum_{n=1}^{N} \mathbf{x}(n)$$
+
+# %%
+m_hat = np.sum(X,1)/N
+
+# %% [markdown]
+# For each of the correlation matrices estimated in this work, we compute a covariance matrix using the following formula
+# $$\mathbf{\hat{C}}_\mathbf{x} = \mathbf{\hat{R}}_\mathbf{x} - \mathbf{\hat{m}}\mathbf{\hat{m}}^\mathsf{T}$$
+
+# %%
+C_hat101 = R_hat101 - np.outer(m_hat,m_hat) # Eq.(101)
+C_hat102 = R_hat102 - np.outer(m_hat,m_hat) # Eq.(102)
+C_hat104 = R_hat104 - np.outer(m_hat,m_hat) # Eq.(104)
+
+# %% [markdown]
+# ### Performance comparasions
+# The following code compares these covariance matrices computed in `Python` with the built-in covariance estimation from `Matlab` (using the `cov` command). The performance is assessed in terms of the difference between the estimated matrix in `Python` and the output matrix from the built-in command in `Matlab`. Then, it is computed the Frobenius norm of each error matrix
+
+# %%
+
+import matlab.engine
+eng = matlab.engine.start_matlab("-desktop")
+
+X_matlab = matlab.double(X.tolist())
+C_matlab = np.array(eng.cov(eng.ctranspose(X_matlab),1))
+# %%
+E101 = C_hat101 - C_matlab # Eq.(101)
+E102 = C_hat102 - C_matlab # Eq.(102)
+E104 = C_hat104 - C_matlab # Eq.(104)
+
+# Frobenius norm
+list(map(np.linalg.norm, (E101, E102, E104)))
