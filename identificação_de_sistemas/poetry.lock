@@ -462,6 +462,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "matlab"
+version = "0.1"
+description = "Matlab for python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "matplotlib"
 version = "3.5.1"
 description = "Python plotting package"
@@ -1135,7 +1143,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "3e83fa4c14523d625d9d15bb81e82b77e779b716c5c36cead8516764fae1fe3f"
+content-hash = "6d534ce55eb6f353d30ad3e9f015a6b7a732d2866bee326f76ca8054de4d9c64"
 
 [metadata.files]
 appnope = [
@@ -1494,6 +1502,9 @@ markupsafe = [
     {file = "MarkupSafe-2.0.1-cp39-cp39-win32.whl", hash = "sha256:10f82115e21dc0dfec9ab5c0223652f7197feb168c940f3ef61563fc2d6beb74"},
     {file = "MarkupSafe-2.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:693ce3f9e70a6cf7d2fb9e6c9d8b204b6b39897a2c4a1aa65728d5ac97dcc1d8"},
     {file = "MarkupSafe-2.0.1.tar.gz", hash = "sha256:594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a"},
+]
+matlab = [
+    {file = "matlab-0.1.tar.gz", hash = "sha256:8b13f7f121fcfb138203e35fa931e5f434abeefccfc583f8b3b4e2c0d0e7bcae"},
 ]
 matplotlib = [
     {file = "matplotlib-3.5.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:456cc8334f6d1124e8ff856b42d2cc1c84335375a16448189999496549f7182b"},
