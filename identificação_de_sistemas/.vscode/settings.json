@@ -1,4 +1,7 @@
 {
 	"editor.stickyTabStops": true,
-	"editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "cSpell.words": [
+        "constrainments"
+    ]
 }
