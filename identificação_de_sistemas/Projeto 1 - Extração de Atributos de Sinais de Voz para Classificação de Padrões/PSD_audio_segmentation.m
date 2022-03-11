@@ -70,5 +70,7 @@ for i=1:Ncom  % Indice para os comandos
     end
 end
 
-save -ascii comandos_input.txt X
-save -ascii comandos_output.txt Y
+save spd.mat X Y
+
+% save -ascii comandos_input.txt X
+% save -ascii comandos_output.txt Y
