@@ -15,5 +15,3 @@ for tau=0:TAU
      end
      fac(tau+1)=soma/(N-tau);
 end
-
-
