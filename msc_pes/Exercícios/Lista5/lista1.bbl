@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{SimonHaykin}
+S.~Haykin, {\em Adaptive Filter Theory}.
+\newblock Pearson, 5nd~ed., 2014.
+
+\bibitem{MouradBarkat}
+M.~Barkat, {\em Signal Detection And Estimation (Artech House Radar Library)}.
+\newblock Artech House Publishers, 2nd~ed., 2005.
+
+\bibitem{Proakis}
+J.~G. P.~M. Salehi, {\em Digital communications}.
+\newblock McGraw-Hill higher education, McGraw-Hill, 5th ed~ed., 2008.
+
+\bibitem{SilvioAbrantes}
+S.~abrantes, {\em Processamento Adaptativo de Sinais}.
+\newblock Fundação Calouste Gulbekian, 2000.
+
+\bibitem{LeonGarcia}
+A.~Leon-Garcia, {\em Probability, Statistics, and Random Processes For
+  Electrical Engineering, 3rd Edition}.
+\newblock Prentice Hall, the 3rd edition~ed., 2008.
+
+\end{thebibliography}
