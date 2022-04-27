@@ -1,7 +1,0 @@
-|pratica1
-p => s2.IN0
-c => f.IN1
-h => s2.IN1
-f << f.DB_MAX_OUTPUT_PORT_TYPE
-
-
