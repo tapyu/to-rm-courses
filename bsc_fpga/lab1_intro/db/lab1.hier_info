@@ -1,6 +1,0 @@
-|lab1
-a => y.IN0
-b => y.IN1
-y <= y.DB_MAX_OUTPUT_PORT_TYPE
-
-
