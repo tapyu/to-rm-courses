@@ -20,7 +20,7 @@ function simple_LS_algorithm(𝐱,𝐲)
 end
 
 ## begin LS by parts
-𝐑² = Matrix{Float64}(undef, 0,maximum(keys(all_delimiters))+2) # variable that gather all values the coefficient of determination for each part (plus their statistics)
+𝐑 = Matrix{Float64}(undef, 0,maximum(keys(all_delimiters))+1+2) # variable that gather all values the coefficient of determination for each part (plus their statistics)
 for (I, delimiters) ∈ all_delimiters
     𝐫 = rand(I+1) # vector of the coefficient of determination (R²) for each part
     p = scatter(𝐱, 𝐲,
@@ -51,7 +51,7 @@ for (I, delimiters) ∈ all_delimiters
             𝐫̄ = Σ(𝐫)/length(𝐫) # mean
             𝔼𝐫² = Σ(𝐫.^2)/length(𝐫) # second moment
             σ²ᵣ = 𝔼𝐫² - 𝐫̄^2 # variance
-            global 𝐑² = [𝐑²; [𝐫̄ 𝔼𝐫² σ²ᵣ]]
+            global 𝐑 = [𝐑; [𝐫' zeros(1, maximum(keys(all_delimiters))+1-length(𝐫)) 𝐫̄ σ²ᵣ]]
         end
 
         # residues statistics
@@ -61,10 +61,10 @@ for (I, delimiters) ∈ all_delimiters
 
         # plot of the curve of the linear regressors
         if i == length(delimiters)
-            p = plot!([delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="Linear Curves", color=:red, linewidth = 3)
-            savefig(p, "figs/LS_by_$(I)parts.eps")
+            plot!(p, [delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="Linear Curves", color=:red, linewidth = 3)
+            savefig(p, "figs/LS_by_$(I)parts.png")
         else
-            p = plot!([delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="", color=:red, linewidth = 3)
+            plot!(p, [delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="", color=:red, linewidth = 3)
         end
 
         # histogram of the residues along with the Gaussian distribution
@@ -72,7 +72,9 @@ for (I, delimiters) ∈ all_delimiters
         h = histogram(𝐝ᵢ, label="Distribution of the residues", normalize= :pdf, bins=range(-3, stop = 3, length = 8))
         x = range(-3,3,length=50)
         gaussian = exp.(-(x.^2)./(2*1))./√(2*π*1) # Gaussian Probability Density Function (PDF)
-        h = plot!(x, gaussian, label="~N(0, 1)")
-        savefig(h, "figs/residues_PDF_I$(I)i$i.eps")
+        plot!(h, x, gaussian, label="~N(0, 1)", linewidth=2)
+        savefig(h, "figs/residues_PDF_I$(I)i$(i-1).png")
     end
 end
+
+FileIO.save("R2_LS_by_parts.jld2", "Table of coefficient of determination", 𝐑)
