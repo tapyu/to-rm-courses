@@ -8,6 +8,14 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{kay1993fundamentals}
+S.~M. Kay, {\em Fundamentals of statistical signal processing: estimation
+  theory\/}, Prentice-Hall, Inc., 1993.
+
+\bibitem{diniz1997adaptive}
+P.~S. Diniz, {\em et~al.\/}, {\em Adaptive filtering\/}, vol.~4, Springer,
+  1997.
+
 \bibitem{strang1993introduction}
 G.~Strang, G.~Strang, G.~Strang, G.~Strang, {\em Introduction to linear
   algebra\/}, vol.~3, Wellesley-Cambridge Press Wellesley, MA, 1993.

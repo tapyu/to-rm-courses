@@ -61,9 +61,9 @@
 
 \section{Least-Squares by parts}
 
-The Lest-Squares (LS) method is an approximation technique for overdetermined systems that aims to minimize the squared value of the residuals. Such systems are characterized by having more equations than variables and are easily found in practice.
+The Lest-Squares (LS) method is an approximation technique for overdetermined systems that aims to minimize the squared value of the residuals. Such systems are characterized by having more equations than variables and are easily found in practice \cite{kay1993fundamentals}.
 
-Consider the example of a discrete-time SISO system, where $x_n, y_n \in \mathbb{R}$ are, respectively, its input and output values at the instant $n \in \left\{1,2,...,N\right\}$. At each instant, one has an equation where the input and output are related through a set of \(k\) parameters, $\boldsymbol{\thetaup} \in \mathbb{R}^k$. Mathematically, one can define the output variable as
+Consider the example of a discrete-time SISO system, where $x_n, y_n \in \mathbb{R}$ are, respectively, their input and output values at the instant $n \in \left\{1,2,...,N\right\}$. At each instant, one has an equation where the input and output are related through a set of \(K+1\) parameters, $\boldsymbol{\thetaup} \in \mathbb{R}^{K+1}$. Mathematically, one can define the output variable as
 \begin{align}
     y_n = f(x_n;\boldsymbol{\thetaup})
 \end{align}
@@ -72,9 +72,9 @@ When $f(\cdot)$ is a linear function, the LS problem is commonly called Ordinary
 \begin{align}
     J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} e_n^2,
 \end{align}
-where \(\hat{y}_n\) and \(\hat{\boldsymbol{\thetaup}}\) are the estimates of \(y_n\) and \(\boldsymbol{\thetaup}\), respectively, and \(e_n = y_n - \hat{y}_n\). Although the OLS method has no optimality associated with it, various practical problems, such as regression analysis, can be solved via OLS since no probabilistic assumptions need to be made about the data.
+where \(\hat{y}_n\) and \(\hat{\boldsymbol{\thetaup}}\) are the estimates of \(y_n\) and \(\boldsymbol{\thetaup}\), respectively, and \(e_n = y_n - \hat{y}_n\) is the residual signal. Although the OLS method has no optimality associated with it, various practical problems, such as regression analysis, can be solved via OLS since no probabilistic assumptions need to be made about the data \cite{kay1993fundamentals}.
 
-The linear regressor of the SISO system can be expressed as
+The linear regressor output of the SISO system can be expressed as
 \begin{align}
     \label{eq:y_n}
     \hat{y}_n = f(x_n;\hat{\boldsymbol{\thetaup}}) = \hat{a}x_n + \hat{b},
@@ -85,7 +85,7 @@ where \(\hat{\boldsymbol{\thetaup}} = \begin{bmatrix} \hat{a} & \hat{b} \end{bma
     \label{eq:J}
     J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} \left( y_n - \hat{a}x - \hat{b} \right)^2.
 \end{align}
-The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought. By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
+The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought \cite{diniz1997adaptive}. By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
 \begin{align}
     \frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{a}} = -2 \sum_{n=1}^{N} x_n\left( \hat{y}_n - \hat{a}x_n - \hat{b} \right) = 0
 \end{align}
@@ -101,9 +101,9 @@ and
 \begin{align}
 \hat{b} = \hat{\mu}_y - \hat{a}\hat{\mu}_x,
 \end{align}
-where \(\mu_{\cdot}\) and \(\hat{\sigma}_{\cdot}^2\) are the sample mean and sample variance with respect to its subscript, respectively, and \(\hat{\sigma}_{xy}\) is the estimate of the covariance of \(x_n\) and \(y_n\).
+where \(\hat{\mu}_{\cdot}\) and \(\hat{\sigma}_{\cdot}^2\) are the sample mean and sample variance with respect to its subscript, respectively, and \(\hat{\sigma}_{xy}\) is the estimate of the covariance of \(x_n\) and \(y_n\).
 
-Although the solution of the SISO OLS method is rather straightforward, many input-output relationships found in practice have nonlinearities. In these cases, one can resort to applying a transformation to the data in order to linearize the problem. Another approach is to utilize the OLS method in intervals where the scatter plot behaves approximately linear, yielding a set of linear curves with their respective parameters for each path of the curve. It is also possible to exploit other nonlinear regression methods, such as polynomial regression. The scatter plot of the dataset, shown in Figure \ref{fig:scatterplot}, suggests that the input-output relationship is severely nonlinear. Nonetheless, there are intervals where the function can be approximated to a linear curve. A natural hyperparameter arises in this approach: the number of intervals considered. The main trade-off is that the more intervals considered, the better the performance of the coefficient of determination tends to be. However, more parameters are needed to characterize the curve. The best solution is to solve the nonlinear problem with as few parameters as possible.
+Although the solution of the SISO OLS method is rather straightforward, many input-output relationships found in practice have nonlinearities. In these cases, one can resort to applying a transformation to the data in order to linearize the problem. Another approach is to utilize the OLS method in intervals where the scatter plot behaves approximately linear, yielding a set of linear curves with their respective parameters for each path. It is also possible to exploit other nonlinear regression methods, such as polynomial regression. The scatter plot of the dataset, shown in Figure \ref{fig:scatterplot}, suggests that the input-output relationship is severely nonlinear. Nonetheless, there are intervals where the function can be approximated to a linear curve. A natural hyperparameter arises in this approach: the number of intervals considered. The main trade-off is that the more intervals considered, the better the performance of the coefficient of determination tends to be. However, more parameters are needed to characterize the curve. The best solution is to solve the nonlinear problem with as few parameters as possible.
 
 \begin{figure}[H]
 	\includegraphics[scale=.37]{../figs/scatterplot.png}
@@ -112,7 +112,7 @@ Although the solution of the SISO OLS method is rather straightforward, many inp
 	\label{fig:scatterplot}
 \end{figure}
 
-In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained the coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each configuration. The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
+In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each configuration. The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
 
 \begin{figure}[htp]
 
@@ -122,10 +122,12 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
     
     \subfloat[\centering\(I=5\)]{%
     \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_5parts.png}%
+    \label{fig:OLS-by-parts-I5}
     }
 
     \subfloat[\centering\(I=6\)]{%
     \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_6parts.png}%
+    \label{fig:OLS-by-parts-I6}
     }
     
     \caption{The position of the delimiters considered in this article.}
@@ -135,7 +137,7 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
       
-      \KwInput{\(\left\{ x_n \right\}_{n=1}^N\)}
+      \KwInput{\(\left\{ (x_n, y_n) \right\}_{n=1}^N\)}
     %   \KwOutput{\(\left\{ \left( \hat{a},\hat{b} \right), R^2 \right\}_{i=1}^I\)}
     %   \KwData{Testing set $x$}
     %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
@@ -145,6 +147,8 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
             % Do something    \tcp*{this is another comment}
             \For{\(i \in \left\{ 1,2, ... I \right\}\)}{
                 \For{\((x_n, y_n) \in R_i\)}{
+                    \(N_i \leftarrow\) number of samples that belongs to \(R_i\)
+
                     \(\hat{\mu}_x \leftarrow \frac{1}{N_{i}}\sum x_n\)
 
                     \(\hat{\mu}_y \leftarrow \frac{1}{N_{i}}\sum y_n\)
@@ -185,9 +189,9 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
 	\end{tabular} \label{tab:OLS-performance}
 \end{table}
 
-The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as it is increased the number of intervals, there are few data in the new interval when \(I=6\) since it is too short, which decreases \(R^2\), making it worse when compared with the case where \(I=5\).
+The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as it is increased the number of intervals, it is possible to notice by the Figure \ref{fig:OLS-by-parts-I6} that the placement of the delimiters does not contribute for a good linear approximation (there are outliers for \(i=4\)). This fact decreases \(R^2\) and makes it worse when compared with the case where \(I=5\).
 
-In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution of the residuals along with the Gaussian distribution.
+In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution (for \(i=1\)) of the residuals along with the Gaussian distribution.
 
 \begin{figure}
     \centering
@@ -198,7 +202,7 @@ In addition to the regressor performance, one can analyze the distribution of th
 
 \section{Polynomial Regression}
 
-The Polynomial regression is a nonlinear method which extends the concept of the SISO OLS algorithm. At the moment \(n\), the input \(x_n\) is utilized to generate the tuple \(\left( h_{n,1}, h_{n,2}, ..., h_{n,K} \right)\), where \(h_{n,k}=x_n^k,\;\forall\; k \in \left\{ 1, 2, ..., K \right\}\). Therefore, the SISO model is transformed into a MISO (Multiple Input, Single Output) model, where the \(k\)th input \(x_n\) to the power \(k\). Note that, albeit this model is not linear with relation to \(x_n\), it is with relation to \(h_{n,k}\), i.e.,
+The Polynomial regression is a nonlinear method which extends the concept of the SISO OLS algorithm. At the instant \(n\), the input \(x_n\) is utilized to generate the tuple \(\left( h_{n,1}, h_{n,2}, ..., h_{n,K} \right)\), where \(h_{n,k}=x_n^k,\;\forall\; k \in \left\{ 1, 2, ..., K \right\}\). Therefore, the SISO model is transformed into a MISO (Multiple Input, Single Output) model, where the \(k\)th input of the \(n\)th instant is \(x_n\) to the power \(k\). Note that, albeit this model is not linear with relation to \(x_n\), it is with relation to \(h_{n,k}\), that is,
 \begin{align}
     y_n & = f(x_n;\hat{\boldsymbol{\thetaup}}) = \mathbf{h}_n^\trans \hat{\boldsymbol{\thetaup}} \nonumber \\
     & = \hat{\theta}_0 + \hat{\theta}_1 h_{n,1} + \hat{\theta}_2 h_{n,2}  + \cdots + \hat{\theta}_K h_{n,K},
@@ -220,7 +224,7 @@ where \(\mathbf{y} = \begin{bmatrix}
         1 & h_{2,1} & h_{2,2} & \cdots & h_{2,K} \\
         \vdots & & & \ddots & \vdots \\
         1 & h_{N,1} & h_{N,2} & \cdots & h_{N,K}
-    \end{bmatrix} \in \mathbb{R}^{N\times K}
+    \end{bmatrix} \in \mathbb{R}^{N\times (K+1)}
 \end{align}
 
 The cost function is given by
@@ -236,7 +240,30 @@ By differentiating the Equation \eqref{eq:J_MISO} with respect to \(\hat{\boldsy
     &\frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{\boldsymbol{\thetaup}}} = - 2\mathbf{H}^\trans \mathbf{y} + 2 \mathbf{H}^\trans \mathbf{H} \hat{\boldsymbol{\thetaup}} = 0 \nonumber \\
     &\therefore \hat{\boldsymbol{\thetaup}} = \mathbf{H}^\dagger \mathbf{y},
 \end{align}
-where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H}\) is the pseudoinverse of \(\mathbf{H}\), also called left inverse since \(\mathbf{H}\) is a tall matrix (\(N>K\)). The fact that \(\mathbf{H}\) is full rank (\(rank(\mathbf{H})=K\)) guarantees the invertibility of \(\mathbf{H}^T\mathbf{H}\) \cite{strang1993introduction}.
+where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H}\) is the pseudoinverse of \(\mathbf{H}\), also called left inverse since \(\mathbf{H}\) is a tall matrix (\(N>K\)). The fact that \(\mathbf{H}\) is full rank (\(rank(\mathbf{H})=K\)) guarantees the invertibility of \(\mathbf{H}^T\mathbf{H}\) \cite{strang1993introduction}. The procedure of the \(k\)th order polynomial regression is summarized in the Algorithm \ref{alg:kth-order-reg}, where the hyperparameter \(K\) is analyzed for the set \(\left\{ 2,3,4 \right\}\).
+
+\begin{algorithm}[!ht]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\left\{ (x_n, y_n) \right\}_{n=1}^N\)}
+    %   \KwOutput{\(\left\{ \left( \hat{a},\hat{b} \right), R^2 \right\}_{i=1}^I\)}
+    %   \KwData{Testing set $x$}
+    %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
+    %   \tcc{Now this is an if...else conditional loop}
+      \For{\(K\in \left\{ 2,3,4 \right\}\)}
+        {
+            \(\mathbf{y} \leftarrow\) generated from \(\left\{ y_n \right\}_{n=1}^N\)
+
+            \(\mathbf{H} \leftarrow\) generated from \(\left\{ x_n \right\}_{n=1}^N\)
+
+            \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H}\) \tcc{The pseudoinverse}
+
+            \(\hat{\boldsymbol{\thetaup}} = \mathbf{H}^\dagger \mathbf{y}\)
+        }
+    
+    \caption{\(k\)th order polynomial regressor}
+    \label{alg:kth-order-reg}
+\end{algorithm}
 
 \section{ORGANIZATION OF THE PAPER}
 

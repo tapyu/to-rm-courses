@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  13 JUL 2022 01:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.13)  13 JUL 2022 16:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -745,61 +745,74 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.2> not available
 <../figs/OLS_by_5parts.png, id=21, 602.25pt x 401.5pt>
 File: ../figs/OLS_by_5parts.png Graphic file (type png)
 <use ../figs/OLS_by_5parts.png>
-Package pdftex.def Info: ../figs/OLS_by_5parts.png  used on input line 125.
+Package pdftex.def Info: ../figs/OLS_by_5parts.png  used on input line 126.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
+
+Overfull \hbox (2.5pt too wide) in paragraph at lines 126--127
+[][] 
+ []
+
 <../figs/OLS_by_6parts.png, id=23, 602.25pt x 401.5pt>
 File: ../figs/OLS_by_6parts.png Graphic file (type png)
 <use ../figs/OLS_by_6parts.png>
-Package pdftex.def Info: ../figs/OLS_by_6parts.png  used on input line 129.
+Package pdftex.def Info: ../figs/OLS_by_6parts.png  used on input line 131.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
- [2 <../figs/OLS_by_4parts.png> <../figs/OLS_by_5parts.png> <../figs/OLS_by_6parts.png> <../figs/scatterplot.png>]
+
+Overfull \hbox (2.5pt too wide) in paragraph at lines 131--132
+[][] 
+ []
+
+[2 <../figs/OLS_by_4parts.png> <../figs/OLS_by_5parts.png> <../figs/OLS_by_6parts.png> <../figs/scatterplot.png>]
 <../figs/residues_PDF_I5i1.png, id=32, 602.25pt x 401.5pt>
 File: ../figs/residues_PDF_I5i1.png Graphic file (type png)
 <use ../figs/residues_PDF_I5i1.png>
-Package pdftex.def Info: ../figs/residues_PDF_I5i1.png  used on input line 194.
+Package pdftex.def Info: ../figs/residues_PDF_I5i1.png  used on input line 198.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [3 <../figs/residues_PDF_I5i1.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 263.
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [3 <../figs/residues_PDF_I5i1.png>]
 
-LaTeX Warning: Citation `refbib1' on page 4 undefined on input line 290.
-
-
-LaTeX Warning: Citation `refbib2' on page 4 undefined on input line 290.
-
-
-LaTeX Warning: Citation `refbib3' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib1' on page 4 undefined on input line 317.
 
 
-LaTeX Warning: Citation `refbib4' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib2' on page 4 undefined on input line 317.
 
 
-LaTeX Warning: Citation `refbib5' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib3' on page 4 undefined on input line 317.
 
 
-LaTeX Warning: Citation `refbib6' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib4' on page 4 undefined on input line 317.
 
 
-LaTeX Warning: Citation `refbib7' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib5' on page 4 undefined on input line 317.
 
 
-LaTeX Warning: Citation `refbib8' on page 4 undefined on input line 290.
+LaTeX Warning: Citation `refbib6' on page 4 undefined on input line 317.
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 307.
+
+LaTeX Warning: Citation `refbib7' on page 4 undefined on input line 317.
+
+
+LaTeX Warning: Citation `refbib8' on page 4 undefined on input line 317.
+
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 334.
 (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [4]
 Package epstopdf Info: Source file: <figura.eps>
-(epstopdf)                    date: 2022-07-11 23:00:37
+(epstopdf)                    date: 2022-07-12 00:05:08
 (epstopdf)                    size: 185513 bytes
 (epstopdf)             Output file: <figura-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-11 23:00:37
+(epstopdf)                    date: 2022-07-13 16:03:53
 (epstopdf)                    size: 26580 bytes
 (epstopdf)             Command: <repstopdf --outfile=figura-eps-converted-to.pdf figura.eps>
-(epstopdf)             \includegraphics on input line 353.
+(epstopdf)             \includegraphics on input line 380.
 Package epstopdf Info: Output file is already uptodate.
-<figura-eps-converted-to.pdf, id=42, 247.92625pt x 206.7725pt>
+<figura-eps-converted-to.pdf, id=43, 247.92625pt x 206.7725pt>
 File: figura-eps-converted-to.pdf Graphic file (type pdf)
 <use figura-eps-converted-to.pdf>
-Package pdftex.def Info: figura-eps-converted-to.pdf  used on input line 353.
+Package pdftex.def Info: figura-eps-converted-to.pdf  used on input line 380.
 (pdftex.def)             Requested size: 247.92564pt x 206.77199pt.
  (./main.bbl) 
 AED: lastpage setting LastPage
@@ -817,18 +830,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 11986 strings out of 478238
- 183341 string characters out of 5850456
- 501894 words of memory out of 5000000
- 29939 multiletter control sequences out of 15000+600000
- 573010 words of font info for 211 fonts, out of 8000000 for 9000
+ 12012 strings out of 478238
+ 184085 string characters out of 5850456
+ 503946 words of memory out of 5000000
+ 29961 multiletter control sequences out of 15000+600000
+ 573323 words of font info for 212 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,19n,77p,1281b,576s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (5 pages, 438478 bytes).
+ 70i,19n,77p,1268b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (5 pages, 468224 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 122 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
