@@ -9,7 +9,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx}
 \RequirePackage{float}
-\RequirePackage{subfigure}
+\RequirePackage[caption=false]{subfig}
 \RequirePackage{geometry}
 \RequirePackage{indentfirst}
 \RequirePackage{caption}
@@ -156,7 +156,6 @@
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{acknowledgement}[theorem]{Acknowledgement}
-\newtheorem{algorithm}[theorem]{Algorithm}
 \newtheorem{axiom}[theorem]{Axiom}
 \newtheorem{case}[theorem]{Case}
 \newtheorem{claim}[theorem]{Claim}

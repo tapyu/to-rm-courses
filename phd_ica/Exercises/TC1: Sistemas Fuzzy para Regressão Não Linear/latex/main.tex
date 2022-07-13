@@ -1,7 +1,31 @@
 \documentclass[english]{sobraep}
 
+\usepackage{newtxmath}
+\usepackage{graphicx}
 
-\title{DIFFERENT PARADIGMS FOR SOLVING NONLINEAR LEAST-SQUARES REGRESSION PROBLEM}
+% algorithm
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{xcolor}
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output
+%%% Coloring the comment as blue
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\hermit}{\mathsf{H}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Irrational}{\mathbb{I}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+
+
+
+\title{SOLVING NONLINEAR LEAST-SQUARES REGRESSION PROBLEM THROUGH DIFFERENT PARADIGMS}
 
 
 \author{Rubem Vasconcelos Pacelli$^{1}$\\
@@ -14,20 +38,20 @@
 \maketitle
 
 \begin{abstract}
-	This paper shows different methods for solving a nonlinear regression problem. It is used a dataset with 250 observations of a nonlinear system with one input and one output variable. For the correct characterization of the processes, it is used the least-squares regressor by parts, a $k$th order polynomial regressor, a Mamdani fuzzy infer system and a 0-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ considering various structures (polynomial order, number of intervals, etc...), and the residues and the scatter plots of the best solutions are analyzed and discussed.
+	This paper shows different methods for solving a nonlinear regression problem. The same dataset with 250 observations of a nonlinear SISO (single input, single output) system is used for the following methods: least-squares regressor by parts, $k$th order polynomial regressor, Mamdani fuzzy system, and 0-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ for different hyperparameters (polynomial order, number of intervals, etc...). The best solutions' residues and scatter plots are analyzed and discussed.
 \end{abstract}
 
 \begin{keywords}
 	Nonlinear regression problem, Mamdani fuzzy system, Takagi-Sugeno fuzzy system, polynomial regressor, regression by parts. 
 \end{keywords}
 
-\let\thefootnote\relax\footnotetext{\hspace*{-5mm}This footnote will be used only by the Editor and Associate Editors.~The edition in this area is not permitted to the authors. This footnote must not be removed while editing the manuscript.}
+% \let\thefootnote\relax\footnotetext{\hspace*{-5mm}This footnote will be used only by the Editor and Associate Editors.~The edition in this area is not permitted to the authors. This footnote must not be removed while editing the manuscript.}
 
-\section*{NOMENCLATURE}
+% \section*{NOMENCLATURE}
 
-\symbolnomenclature{$P$}{Number of poles.}
-\symbolnomenclature{$V_{qd}$}{Stator voltage \textit{dq} components.}
-\symbolnomenclature{$I_{qd}$}{Stator current \textit{dq} components.}	
+% \symbolnomenclature{$P$}{Number of poles.}
+% \symbolnomenclature{$V_{qd}$}{Stator voltage \textit{dq} components.}
+% \symbolnomenclature{$I_{qd}$}{Stator current \textit{dq} components.}	
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %Sections
@@ -35,21 +59,144 @@
 
 %Introduction
 
-\section{INTRODUCTION}
+\section{Least-Squares by parts}
 
-The Brazilian Power Electronics Journal (Revista Eletrônica de Potência) is an appropriate media through which the SOBRAEP (Brazilian Power Electronics Society) members and experts in the field of Power Electronics may present and discuss their scientific and academic activities. Therefore, the Editorial Staff invites you to submit a full format paper in the field of Power Electronics, including advances in the state of the art, through theoretical and experimental results, as well as tutorial information on subjects of interest to the Society. In case the paper, or part of it, has been presented or published in any national or international journal or conference, it must be declared by the authors in the body of the paper (when and where).
+The Lest-Squares (LS) method is an approximation technique for overdetermined systems that aims to minimize the squared value of the residuals. Such systems are characterized by having more equations than variables and are easily found in practice.
 
-Papers in Portuguese and English will be accepted. The texts submitted in Portuguese must include the title, the abstract and the keywords in English as well.
+Consider the example of a discrete-time SISO system, where $x_n, y_n \in \mathbb{R}$ are, respectively, its input and output values at the instant $n \in \left\{1,2,...,N\right\}$. At each instant, one has an equation where the input and output are related through a set of \(k\) parameters, $\boldsymbol{\thetaup} \in \mathbb{R}^k$. Mathematically, one can define the output variable as
+\begin{align}
+    y_n = f(x_n;\boldsymbol{\thetaup})
+\end{align}
 
-Authors must submit their manuscript electronically and follow the revision process through the https://mc04.manuscriptcentral.com/revistaep.~From this entry page, access can be obtained to all information required for the submission of a manuscript.
+When $f(\cdot)$ is a linear function, the LS problem is commonly called Ordinary Least-Square (OLS). The least-squares method aims to minimize the following cost function
+\begin{align}
+    J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} e_n^2,
+\end{align}
+where \(\hat{y}_n\) and \(\hat{\boldsymbol{\thetaup}}\) are the estimates of \(y_n\) and \(\boldsymbol{\thetaup}\), respectively, and \(e_n = y_n - \hat{y}_n\). Although the OLS method has no optimality associated with it, various practical problems, such as regression analysis, can be solved via OLS since no probabilistic assumptions need to be made about the data.
 
-It should be noted that manuscripts must be submitted as an editable PDF document. Therefore, after editing your manuscript in agreement with these guidelines, a high-quality PDF file must be generated so it can be submitted through the https://mc04.manuscriptcentral.com/revistaep. Upon Final Acceptance of the manuscript, the strong requirement for publication is a final electronic version of the paper prepared in agreement with these guidelines. In addition, papers will only be published if the Copyright form available at the https://mc04.manuscriptcentral.com/revistaep is completed.
+The linear regressor of the SISO system can be expressed as
+\begin{align}
+    \label{eq:y_n}
+    \hat{y}_n = f(x_n;\hat{\boldsymbol{\thetaup}}) = \hat{a}x_n + \hat{b},
+\end{align}
 
-The main objective of the Introduction section is presenting the nature of the problem that is discussed in the paper, through an adequate literature review, and the contribution of the submitted manuscript.
+where \(\hat{\boldsymbol{\thetaup}} = \begin{bmatrix} \hat{a} & \hat{b} \end{bmatrix}^\trans\). By using the Equation \eqref{eq:y_n}, we can rewrite te cost function as
+\begin{align}
+    \label{eq:J}
+    J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} \left( y_n - \hat{a}x - \hat{b} \right)^2.
+\end{align}
+The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought. By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
+\begin{align}
+    \frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{a}} = -2 \sum_{n=1}^{N} x_n\left( \hat{y}_n - \hat{a}x_n - \hat{b} \right) = 0
+\end{align}
+and
+\begin{align}
+    \frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{b}} = -2 \sum_{n=1}^{N} \left( \hat{y}_n - \hat{a}x_n - \hat{b} \right) = 0,
+\end{align}
+respectively. The solution of this system of equations is given by
+\begin{align}
+    \hat{a} = \frac{\hat{\sigma}_{xy}}{\hat{\sigma}^2_x}
+\end{align}
+and
+\begin{align}
+\hat{b} = \hat{\mu}_y - \hat{a}\hat{\mu}_x,
+\end{align}
+where \(\mu_{\cdot}\) and \(\hat{\sigma}_{\cdot}^2\) are the sample mean and sample variance with respect to its subscript, respectively, and \(\hat{\sigma}_{xy}\) is the estimate of the covariance of \(x_n\) and \(y_n\).
 
-If relevant, a Nomenclature section may be included immediately before the Introduction, with a list of variables used in the text. This item should not contain reference numeration, as well as items Acknowledgements, References and Biographies.
+Although the solution of the SISO OLS method is rather straightforward, many input-output relationships found in practice have nonlinearities. In these cases, one can resort to applying a transformation to the data in order to linearize the problem. Another approach is to utilize the OLS method in intervals where the scatter plot behaves approximately linear, yielding a set of linear curves with their respective parameters for each path of the curve. It is also possible to exploit other nonlinear regression methods, such as polynomial regression. The scatter plot of the dataset, shown in Figure \ref{fig:scatterplot}, suggests that the input-output relationship is severely nonlinear. Nonetheless, there are intervals where the function can be approximated to a linear curve. A natural hyperparameter arises in this approach: the number of intervals considered. The main trade-off is that the more intervals considered, the better the performance of the coefficient of determination tends to be. However, more parameters are needed to characterize the curve. The best solution is to solve the nonlinear problem with the
 
-\subsection{Presentation of the Text}
+\begin{figure}[H]
+	\includegraphics[scale=.37]{../figs/scatterplot.png}
+	\centering
+	\caption{Scatter plot of the dataset.}
+	\label{fig:scatterplot}
+\end{figure}
+
+In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained the coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each configuration. The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
+
+\begin{figure}[htp]
+
+    \subfloat[\centering\(I=4\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_4parts.png}%
+    }
+    
+    \subfloat[\centering\(I=5\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_5parts.png}%
+    }
+
+    \subfloat[\centering\(I=6\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_6parts.png}%
+    }
+    
+    \caption{The position of the delimiters considered in this article.}
+    \label{fig:OLS-by-parts}
+\end{figure}
+
+\begin{algorithm}[!ht]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\left\{ x_n \right\}_{n=1}^N\)}
+    %   \KwOutput{\(\left\{ \left( \hat{a},\hat{b} \right), R^2 \right\}_{i=1}^I\)}
+    %   \KwData{Testing set $x$}
+    %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
+    %   \tcc{Now this is an if...else conditional loop}
+      \For{\(I\in \left\{ 4,5,6 \right\}\)}
+        {
+            % Do something    \tcp*{this is another comment}
+            \For{\(i \in \left\{ 1,2, ... I \right\}\)}{
+                \For{\((x_n, y_n) \in R_i\)}{
+                    \(\hat{\mu}_x \leftarrow \frac{1}{N_{i}}\sum x_n\)
+
+                    \(\hat{\mu}_y \leftarrow \frac{1}{N_{i}}\sum y_n\)
+                    
+                    \(\hat{\sigma}_{xy} \leftarrow \frac{1}{N_{i}}\sum x_ny_n - \hat{\mu}_x\hat{\mu}_y\)
+                    
+                    \(\hat{\sigma}_{x}^2 \leftarrow \frac{1}{N_{i}}\sum x_n^2 - \hat{\mu}_x^2\)
+                    
+                    \(\hat{a} \leftarrow \frac{\hat{\sigma}_{xy}}{\hat{\sigma}_{x}^2} \)
+
+                    \(\hat{b} \leftarrow \hat{\mu}_y - \hat{a}\hat{\mu}_x\)
+                }
+            }
+        }
+    
+    \caption{OLS algorithm by parts}
+    \label{alg:OLS-by-parts}
+\end{algorithm}
+
+\begin{table}[H]
+	\centering
+	\caption{OLS by parts performance - \(R^2\)}
+	\footnotesize
+	\setlength{\tabcolsep}{5pt}
+	\begin{tabular}{ccccccccc}
+		% \toprule [1.3pt]	
+		% \multicolumn{4}{c}{ \textbf{Style} } \\
+		\hline
+		\multirow{2}{*}{\(I\)} & \multirow{2}{*}{\(i=1\)} & \multirow{2}{*}{\(i=2\)} & \multirow{2}{*}{\(i=3\)} & \multirow{2}{*}{\(i=4\)} & \multirow{2}{*}{\(i=5\)} & \multirow{2}{*}{\(i=6\)} & \multirow{2}{*}{\(\mu_{R^2}\)} & \multirow{2}{*}{\(\sigma_{R^2}^2\)} \\
+		&  &  & \\		
+		\hline
+		4 & 0.962 & 0.952 & 0.911 & 0.627 & NaN & NaN & 0.863 & 0.018 \\
+        \hline
+		\textbf{5} &  \textbf{0.962}  & \textbf{0.952} & \textbf{0.895} & \textbf{0.985} & \textbf{0.627} & \textbf{NaN} & \textbf{0.884} & \textbf{0.017} \\
+		\hline
+		6 & 0.962 & 0.952 & 0.876 & 0.314 & 0.985 & 0.627 & 0.786 & 0.059 \\
+		\hline
+	\end{tabular} \label{tab:OLS-performance}
+\end{table}
+
+The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as it is increased the number of intervals, there are few data in the new interval when \(I=6\) since it is too short, which decreases \(R^2\), making it worse when compared with the case where \(I=5\).
+
+In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e^2\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution of the residuals along with the Gaussian distribution.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{../figs/residues_PDF_I5i1.png}
+    \caption{Distribution of the residuals.}
+    \label{fig:distribution}
+\end{figure}
+
+\section{Polynomial Regression}
 
 Papers submitted for publication to the Brazilian Power Electronics Journal should have, preferably, eight pages or less. Papers with a higher number of pages must pay an overlength page charge (R\$ 150 per extra page for SOBRAEP Member corresponding author or R\$ 200 per extra page for SOBRAEP Non-Member corresponding author) before its publication, until the limit of four extra pages. Consequently, the maximum page limit is 12 pages.
 The Brazilian Power Electronics Journal is an open access journal, having the following publication fees: SOBRAEP Professional Member corresponding author – free; SOBRAEP Student Member corresponding author – R\$ 50 per paper; SOBRAEP Non-Member corresponding author – R\$ 200 per paper.
@@ -66,38 +213,6 @@ The recommended word processor is Word for Windows.
 \subsubsection{Type sizes} The type sizes specified in these guidelines are according to the word processor Word for Windows and the typeface must be Times New Roman. Table I shows the standard sizes of the characters that should be used in the different sections of the manuscript.
 
 \subsubsection{Page Format} Set top and bottom margins to 25 mm, left margin to 18 mm and right margin to 12 mm.~The column is \linebreak 87 mm. The space between the two columns is 6 mm. Paragraph indentation is 4mm.
-
-%Body Text
-\begin{table}[H]
-	\centering
-	\caption{\textbf{Type Sizes}}
-	\footnotesize
-	\setlength{\tabcolsep}{5pt}
-	\begin{tabular}{cccc}
-		\toprule [1.3pt]	
-		\multicolumn{4}{c}{ \textbf{Style} } \\
-		\hline
-		\multirow{2}{1.1cm}{\centering \textbf{Size (Points)}} & \multirow{2}{*}{\textbf{Normal}} &
-		\multirow{2}{*}{\textbf{Bold}} & \multirow{2}{*}{\textbf{Italic}} \\
-		&  &  & \\		
-		\hline
-		8 & Table texts &  &  \\
-		\hline
-		9 &  Figure captions  &  &  \\
-		\hline
-		\multirow{3}{*}{10} &
-		\multirow{3}{2cm}{\centering Authors' affiliations; main text; references}  &
-		\multirow{3}{2cm}{\centering Abstract text; keywords, table captions} &
-		\multirow{3}{2.1cm}{\centering Abstract title and keywords title} \\
-		& &  &  \\
-		& &  &  \\
-		\hline
-		12 & Authors' names & &  \\
-		\hline
-		14 &  & Paper title & \vspace*{-0.8mm}\\
-		\bottomrule[1.3pt]
-	\end{tabular} \label{table:TableI}
-\end{table}
 
 \section{ORGANIZATION OF THE PAPER}
 

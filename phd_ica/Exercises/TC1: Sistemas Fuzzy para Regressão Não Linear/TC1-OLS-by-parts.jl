@@ -7,8 +7,8 @@ using FileIO, Plots
 
 all_delimiters = Dict(3=>[1, 68, 110, 180, 250], 4=>[1, 68, 110, 145, 180, 250], 5=>[1, 68, 110, 130, 145, 180, 250])
 
-## simple (scalar input and scalar output) Least-Squares (LS)
-function simple_LS_algorithm(𝐱,𝐲)
+## SISO (single input, single output) Ordinary Least-Squares (OLS)
+function siso_ols_algorithm(𝐱,𝐲)
     # 𝐲̂ = â𝐱+b̂
     x̄, ȳ = Σ(𝐱)/length(𝐱), Σ(𝐲)/length(𝐲)
     𝔼𝐱𝐲, 𝔼𝐱² = Σ(𝐱.*𝐲)/length(𝐱), Σ(𝐱.^2)/length(𝐱)
@@ -34,12 +34,13 @@ for (I, delimiters) ∈ all_delimiters
         xlabel = "Inputs",
         ylabel = "Outputs",
         label = "Data")
-    plot!(delimiters[2:end-1], linewidth = 2, seriestype = :vline, label = "Delimiters", color= :blue)
+        plot!(delimiters[2:end-1], linewidth = 2, seriestype = :vline, label = "Delimiters", color= :blue)
+        savefig(p, "figs/scatterplot_with_delimiter_$(I)I.png")
 
     for i ∈ 2:length(delimiters)
         𝐱ᵢ, 𝐲ᵢ = 𝐱[delimiters[i-1]:delimiters[i]], 𝐲[delimiters[i-1]:delimiters[i]]
 
-        â, b̂ = simple_LS_algorithm(𝐱ᵢ, 𝐲ᵢ) # get the coefficients
+        â, b̂ = siso_ols_algorithm(𝐱ᵢ, 𝐲ᵢ) # get the coefficients
         𝐲̂ᵢ = â*𝐱ᵢ .+ b̂
         𝛜ᵢ = 𝐲ᵢ - 𝐲̂ᵢ # residues
 
@@ -62,7 +63,7 @@ for (I, delimiters) ∈ all_delimiters
         # plot of the curve of the linear regressors
         if i == length(delimiters)
             plot!(p, [delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="Linear Curves", color=:red, linewidth = 3)
-            savefig(p, "figs/LS_by_$(I)parts.png")
+            savefig(p, "figs/OLS_by_$(I+1)parts.png")
         else
             plot!(p, [delimiters[i-1], delimiters[i]], [â*delimiters[i-1]+b̂, â*delimiters[i] + b̂], label="", color=:red, linewidth = 3)
         end
@@ -77,4 +78,4 @@ for (I, delimiters) ∈ all_delimiters
     end
 end
 
-FileIO.save("R2_LS_by_parts.jld2", "Table of coefficient of determination", 𝐑)
+FileIO.save("R2_LS_by_parts.jld2", "R", 𝐑)
