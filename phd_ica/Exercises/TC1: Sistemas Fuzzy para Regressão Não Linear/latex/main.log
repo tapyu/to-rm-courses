@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  13 JUL 2022 01:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  13 JUL 2022 01:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -724,15 +724,15 @@ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <5.5> not available
 (Font)              size <5> substituted on input line 83.
 
-<../figs/scatterplot.png, id=1, 602.25pt x 401.5pt>
-File: ../figs/scatterplot.png Graphic file (type png)
-<use ../figs/scatterplot.png>
-Package pdftex.def Info: ../figs/scatterplot.png  used on input line 109.
-(pdftex.def)             Requested size: 222.82901pt x 148.55266pt.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
+<../figs/scatterplot.png, id=18, 602.25pt x 401.5pt>
+File: ../figs/scatterplot.png Graphic file (type png)
+<use ../figs/scatterplot.png>
+Package pdftex.def Info: ../figs/scatterplot.png  used on input line 109.
+(pdftex.def)             Requested size: 222.82901pt x 148.55266pt.
 <../figs/OLS_by_4parts.png, id=19, 602.25pt x 401.5pt>
 File: ../figs/OLS_by_4parts.png Graphic file (type png)
 <use ../figs/OLS_by_4parts.png>
@@ -760,30 +760,30 @@ Package pdftex.def Info: ../figs/residues_PDF_I5i1.png  used on input line 194.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [3 <../figs/residues_PDF_I5i1.png>]
 
-LaTeX Warning: Citation `refbib1' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib1' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib2' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib2' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib3' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib3' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib4' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib4' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib5' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib5' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib6' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib6' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib7' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib7' on page 4 undefined on input line 290.
 
 
-LaTeX Warning: Citation `refbib8' on page 4 undefined on input line 289.
+LaTeX Warning: Citation `refbib8' on page 4 undefined on input line 290.
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 306.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 307.
 (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [4]
@@ -794,12 +794,12 @@ Package epstopdf Info: Source file: <figura.eps>
 (epstopdf)                    date: 2022-07-11 23:00:37
 (epstopdf)                    size: 26580 bytes
 (epstopdf)             Command: <repstopdf --outfile=figura-eps-converted-to.pdf figura.eps>
-(epstopdf)             \includegraphics on input line 352.
+(epstopdf)             \includegraphics on input line 353.
 Package epstopdf Info: Output file is already uptodate.
-<figura-eps-converted-to.pdf, id=41, 247.92625pt x 206.7725pt>
+<figura-eps-converted-to.pdf, id=42, 247.92625pt x 206.7725pt>
 File: figura-eps-converted-to.pdf Graphic file (type pdf)
 <use figura-eps-converted-to.pdf>
-Package pdftex.def Info: figura-eps-converted-to.pdf  used on input line 352.
+Package pdftex.def Info: figura-eps-converted-to.pdf  used on input line 353.
 (pdftex.def)             Requested size: 247.92564pt x 206.77199pt.
  (./main.bbl) 
 AED: lastpage setting LastPage
@@ -819,16 +819,16 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  11986 strings out of 478238
  183341 string characters out of 5850456
- 500894 words of memory out of 5000000
+ 501894 words of memory out of 5000000
  29939 multiletter control sequences out of 15000+600000
  573010 words of font info for 211 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,19n,77p,1254b,576s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (5 pages, 435976 bytes).
+ 70i,19n,77p,1281b,576s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (5 pages, 438478 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

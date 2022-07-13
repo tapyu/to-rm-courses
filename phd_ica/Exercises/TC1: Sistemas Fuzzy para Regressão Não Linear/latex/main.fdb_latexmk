@@ -1,18 +1,18 @@
 # Fdb version 3
-["bibtex main"] 1657685009 "main.aux" "main.bbl" "main" 1657685129
+["bibtex main"] 1657685301 "main.aux" "main.bbl" "main" 1657685548
   "./bib_sobraep.bst" 1657591237 26077 f5bf4eee36291635a15c39bdfe9fd954 ""
-  "main.aux" 1657685129 4742 6ee2c2f58f013effb04d71ed9a661c9f "pdflatex"
+  "main.aux" 1657685548 4742 fd1cc51c8d130f444302b9c57ed1d0df "pdflatex"
   "refs.bib" 1657684908 244 1b6ad540cc373925c694631ec67a5159 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1657685128 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657685129
+["pdflatex"] 1657685547 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657685548
   "../figs/OLS_by_4parts.png" 1657671553 53328 06cd184d305675b3653e4faafccfb894 ""
   "../figs/OLS_by_5parts.png" 1657671553 54466 27bfef982b060d6da4e4d86183e4e327 ""
   "../figs/OLS_by_6parts.png" 1657671553 54526 e25b35c5e29c6b0e7c300131a7c13a69 ""
   "../figs/residues_PDF_I5i1.png" 1657671553 21869 fea26c25e4fde4ec847a7523aba011fd ""
   "../figs/scatterplot.png" 1657652050 49917 6af31b305b3d28b3ceb9041aa36d96b8 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657685127 25104 72460be649c72421fbf134455b07df18 ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657685546 25147 0bdd448516b2860361d57fb1f132e7c7 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1650179560 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -85,6 +85,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb" 1650179560 40320 53cb337366eff502cad8f44871c88e39 ""
   "/usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb" 1650179560 239149 b459cdf3364a26072e94167b64f425b2 ""
   "/usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb" 1650179560 269694 aaa4ec66041f739d25146321feddb50c ""
+  "/usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb" 1650183167 18865 ebb26de41fddbc82c044d680eec38cec ""
   "/usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb" 1650183167 24244 ffc0312cbd155e940e16287bb7cbb16c ""
   "/usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1650183167 44729 811d6c62865936705a31c797a1d5dada ""
   "/usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb" 1650183167 44656 0cbca70e0534538582128f6b54593cca ""
@@ -189,9 +190,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1652498721 4408072 42ceaa83bae76aebad711d3f3dd7f55f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1652498697 2927659 d913d73d55ae51f2e147a5c35e6f9dde ""
   "figura.eps" 1657591237 185513 4d29d5dd7d4be31c6d1d6ea6006f9e10 ""
-  "main.aux" 1657685129 4742 6ee2c2f58f013effb04d71ed9a661c9f "pdflatex"
-  "main.bbl" 1657685009 561 5d2869bc992886565a3e03b55bde44aa "bibtex main"
-  "main.tex" 1657685127 25104 72460be649c72421fbf134455b07df18 ""
+  "main.aux" 1657685548 4742 fd1cc51c8d130f444302b9c57ed1d0df "pdflatex"
+  "main.bbl" 1657685301 561 5d2869bc992886565a3e03b55bde44aa "bibtex main"
+  "main.tex" 1657685546 25147 0bdd448516b2860361d57fb1f132e7c7 ""
   "sobraep.cls" 1657666881 5542 7bff468020cfdcced00821df18ab1ff0 ""
   (generated)
   "main.aux"
