@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\url}[1]{{\tt #1}}
+\providecommand{\urlprefix}{URL: }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{strang1993introduction}
+G.~Strang, G.~Strang, G.~Strang, G.~Strang, {\em Introduction to linear
+  algebra\/}, vol.~3, Wellesley-Cambridge Press Wellesley, MA, 1993.
+
+\end{thebibliography}
