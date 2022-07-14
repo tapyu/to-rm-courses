@@ -1,4 +1,4 @@
-using FileIO, Plots, LinearAlgebra
+using FileIO, Plots, LinearAlgebra, Statistics
 Σ=sum
 
 ## Input analisys and delimiters
@@ -7,6 +7,7 @@ using FileIO, Plots, LinearAlgebra
 
 all_K = 5:7 # range of K values
 𝐫 = rand(length(all_K)) # vector with all coefficient of determination
+𝛒 = rand(length(all_K)) # vector with all Pearson correlation
 
 for (i,K) ∈ enumerate(all_K)
     # the kth order plynomial regressors
@@ -26,6 +27,9 @@ for (i,K) ∈ enumerate(all_K)
     R² = 1 - (Σ(𝛜.^2)/Σ((𝐲.-𝐲̄).^2))
     𝐫[i] = R²
 
+    # Pearson correlation between 𝐲 and 𝐲̂
+    𝛒[i] = cor(𝐲, 𝐲̂)
+
     # plot the results
     p = scatter(𝐱, 𝐲,
         markershape = :hexagon,
@@ -38,8 +42,9 @@ for (i,K) ∈ enumerate(all_K)
         xlabel = "Inputs",
         ylabel = "Outputs",
         label = "Data")
-    plot!(𝐱, 𝐲̂, linewidth = 2, color = :red, label="$(K)th order polynomial regressor")
+    plot!(𝐱, 𝐲̂, linewidth=2, color=:red, label="$(K)th order polynomial regressor")
     savefig(p, "figs/kth-poly-reg/$(K)th-order.png")
 end
 
 println(𝐫)
+println(𝛒)

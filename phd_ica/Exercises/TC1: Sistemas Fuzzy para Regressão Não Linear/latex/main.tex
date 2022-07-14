@@ -25,7 +25,7 @@
 
 
 
-\title{SOLVING NONLINEAR LEAST-SQUARES REGRESSION PROBLEM THROUGH DIFFERENT PARADIGMS}
+\title{SOLUTION OF NONLINEAR SISO SYSTEM THROUGH DIFFERENT PARADIGMS}
 
 
 \author{Rubem Vasconcelos Pacelli$^{1}$\\
@@ -106,7 +106,7 @@ where \(\hat{\mu}_{\cdot}\) and \(\hat{\sigma}_{\cdot}^2\) are the sample mean a
 Although the solution of the SISO OLS method is rather straightforward, many input-output relationships found in practice have nonlinearities. In these cases, one can resort to applying a transformation to the data in order to linearize the problem. Another approach is to utilize the OLS method in intervals where the scatter plot behaves approximately linear, yielding a set of linear curves with their respective parameters for each path. It is also possible to exploit other nonlinear regression methods, such as polynomial regression. The scatter plot of the dataset, shown in Figure \ref{fig:scatterplot}, suggests that the input-output relationship is severely nonlinear. Nonetheless, there are intervals where the function can be approximated to a linear curve. A natural hyperparameter arises in this approach: the number of intervals considered. The main trade-off is that the more intervals considered, the better the performance of the coefficient of determination tends to be. However, more parameters are needed to characterize the curve. The best solution is to solve the nonlinear problem with as few parameters as possible.
 
 \begin{figure}[H]
-	\includegraphics[scale=.37]{../figs/scatterplot.png}
+	\includegraphics[scale=.37]{../figs/OLS-by-parts/scatterplot.png}
 	\centering
 	\caption{Scatter plot of the dataset.}
 	\label{fig:scatterplot}
@@ -115,22 +115,21 @@ Although the solution of the SISO OLS method is rather straightforward, many inp
 In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each configuration. The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
 
 \begin{figure}[htp]
-
     \subfloat[\centering\(I=4\)]{%
-    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_4parts.png}%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS-by-parts/OLS_by_4parts.png}%
     }
     
     \subfloat[\centering\(I=5\)]{%
-    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_5parts.png}%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS-by-parts/OLS_by_5parts.png}%
     \label{fig:OLS-by-parts-I5}
     }
 
     \subfloat[\centering\(I=6\)]{%
-    \includegraphics[clip,width=\columnwidth]{../figs/OLS_by_6parts.png}%
+    \includegraphics[clip,width=\columnwidth]{../figs/OLS-by-parts/OLS_by_6parts.png}%
     \label{fig:OLS-by-parts-I6}
     }
     
-    \caption{The position of the delimiters considered in this article.}
+    \caption{The OLS method by parts.}
     \label{fig:OLS-by-parts}
 \end{figure}
 
@@ -195,7 +194,7 @@ In addition to the regressor performance, one can analyze the distribution of th
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.35]{../figs/residues_PDF_I5i1.png}
+    \includegraphics[scale=0.35]{../figs/OLS-by-parts/residues_PDF_I5i1.png}
     \caption{Distribution of the residuals.}
     \label{fig:distribution}
 \end{figure}
@@ -240,7 +239,7 @@ By differentiating the Equation \eqref{eq:J_MISO} with respect to \(\hat{\boldsy
     &\frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{\boldsymbol{\thetaup}}} = - 2\mathbf{H}^\trans \mathbf{y} + 2 \mathbf{H}^\trans \mathbf{H} \hat{\boldsymbol{\thetaup}} = 0 \nonumber \\
     &\therefore \hat{\boldsymbol{\thetaup}} = \mathbf{H}^\dagger \mathbf{y},
 \end{align}
-where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H}\) is the pseudoinverse of \(\mathbf{H}\), also called left inverse since \(\mathbf{H}\) is a tall matrix (\(N>K\)). The fact that \(\mathbf{H}\) is full rank (\(rank(\mathbf{H})=K\)) guarantees the invertibility of \(\mathbf{H}^T\mathbf{H}\) \cite{strang1993introduction}. The procedure of the \(k\)th order polynomial regression is summarized in the Algorithm \ref{alg:kth-order-reg}, where the hyperparameter \(K\) is analyzed for the set \(\left\{ 2,3,4 \right\}\).
+where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H}\) is the pseudoinverse of \(\mathbf{H}\), also called left inverse since \(\mathbf{H}\) is a tall matrix (\(N>K\)). The fact that \(\mathbf{H}\) is full rank (\(rank(\mathbf{H})=K+1\)) guarantees the invertibility of \(\mathbf{H}^T\mathbf{H}\) \cite{strang1993introduction}. The procedure of the \(K\)th-order polynomial regression is summarized in the Algorithm \ref{alg:kth-order-reg}, where the hyperparameter \(K\) is analyzed for the set \(\left\{ 5,6,7 \right\}\).
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -250,7 +249,7 @@ where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H
     %   \KwData{Testing set $x$}
     %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
     %   \tcc{Now this is an if...else conditional loop}
-      \For{\(K\in \left\{ 2,3,4 \right\}\)}
+      \For{\(K\in \left\{ 5,6,7 \right\}\)}
         {
             \(\mathbf{y} \leftarrow\) generated from \(\left\{ y_n \right\}_{n=1}^N\)
 
@@ -261,9 +260,46 @@ where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H
             \(\hat{\boldsymbol{\thetaup}} = \mathbf{H}^\dagger \mathbf{y}\)
         }
     
-    \caption{\(k\)th order polynomial regressor}
+    \caption{\(K\)th-order polynomial regressor.}
     \label{alg:kth-order-reg}
 \end{algorithm}
+
+The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-order polynomial regressor. As shown in the Table \ref{tab:kth-order-poly-performance}, the 6th-oder polynomial curve reached the best result. For this case, the model achieved the Pearson correlation coefficient between \(\mathbf{y}\) and \(\hat{\mathbf{y}}\) of \(97.84\%\).
+
+\begin{table}[H]
+	\centering
+	\caption{OLS by parts performance - \(R^2\)}
+	\footnotesize
+	\setlength{\tabcolsep}{5pt}
+	\begin{tabular}{ccc}
+		% \toprule [1.3pt]	
+		% \multicolumn{4}{c}{ \textbf{Style} } \\
+		\hline
+		\(K = 5\) & \(K = 6\) & \(K = 7\) \\
+        \hline
+		0.85 & 0.957 & 0.566 \\
+		\hline
+	\end{tabular} \label{tab:kth-order-poly-performance}
+\end{table}
+
+\begin{figure}[htp]
+    \subfloat[\centering\(K=5\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/kth-poly-reg/5th-order.png}%
+    }
+    
+    \subfloat[\centering\(K=6\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/kth-poly-reg/6th-order.png}%
+    \label{fig:kth-order-poly-k6}
+    }
+
+    \subfloat[\centering\(K=7\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/kth-poly-reg/7th-order.png}%
+    \label{fig:kth-order-poly-k7}
+    }
+    
+    \caption{The \(K\)th-order polynomial regressor.}
+    \label{fig:kth-order-poly}
+\end{figure}
 
 \section{ORGANIZATION OF THE PAPER}
 
