@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1657773114 "main.aux" "main.bbl" "main" 1657774877
+["bibtex main"] 1657781888 "main.aux" "main.bbl" "main" 1657781890
   "./bib_sobraep.bst" 1657591237 26077 f5bf4eee36291635a15c39bdfe9fd954 ""
-  "main.aux" 1657774877 6156 43a820835af830b6ea46d4f4aa8d8eb3 "pdflatex"
+  "main.aux" 1657781889 3567 939fb5e544cefef75fec22d4eec8fe30 "pdflatex"
   "refs.bib" 1657771977 574 8941a04b5ca381e4c8395790c210765c ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1657774876 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657774877
+["pdflatex"] 1657781889 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657781890
   "../figs/OLS-by-parts/OLS_by_4parts.png" 1657771977 53328 06cd184d305675b3653e4faafccfb894 ""
   "../figs/OLS-by-parts/OLS_by_5parts.png" 1657771977 54466 27bfef982b060d6da4e4d86183e4e327 ""
   "../figs/OLS-by-parts/OLS_by_6parts.png" 1657771977 54526 e25b35c5e29c6b0e7c300131a7c13a69 ""
@@ -15,7 +15,7 @@
   "../figs/kth-poly-reg/5th-order.png" 1657774400 60681 aca9e718ff4500485f9edb384037d8fe ""
   "../figs/kth-poly-reg/6th-order.png" 1657774400 57448 1be595c5ae134105b5f8ac66a9826055 ""
   "../figs/kth-poly-reg/7th-order.png" 1657774400 55677 0c6358959365c7b70adb714914916d96 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657774875 27956 c28fad3430a8f84815cf38c715b84a24 ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657781887 18342 5bde956a15c831d6224ff7d6ebe706a1 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1650179560 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -25,7 +25,6 @@
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm" 1650183167 6880 f19b8995b61c334d78fc734065f6b4d4 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmbi8r.tfm" 1650183167 4480 10409ed8bab5aea9ec9a78028b763919 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmbi8t.tfm" 1650183167 6784 37b32cc10800b5afa030d935c393695a ""
-  "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm" 1650183167 1352 fa28a7e6d323c65ce7d13d5342ff6be2 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm" 1650183167 4408 25b74d011a4c66b7f212c0cc3c90061b ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm" 1650183167 6672 e3ab9e37e925f3045c9005e6d1473d56 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm" 1650183167 2288 f478fc8fed18759effb59f3dad7f3084 ""
@@ -99,7 +98,6 @@
   "/usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb" 1650183167 45458 a3faba884469519614ca56ba5f6b1de1 ""
   "/usr/share/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf" 1650183167 2340 df9c920cc5688ebbf16a93f45ce7bdd3 ""
   "/usr/share/texmf-dist/fonts/vf/adobe/times/ptmbi8t.vf" 1650183167 2324 51908dae6e03953a90119973962f0e4d ""
-  "/usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf" 1650183167 3556 8a9a6dcbcd146ef985683f677f4758a6 ""
   "/usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf" 1650183167 2348 91706c542228501c410c266421fbe30c ""
   "/usr/share/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf" 1650183167 2328 6cd7df782b09b29cfc4d93e55b6b9a59 ""
   "/usr/share/texmf-dist/fonts/vf/public/newtx/ntx-Bold-tlf-ot1.vf" 1650179560 956 0cf724d01d1d2d4ced0eca019099663a ""
@@ -184,7 +182,6 @@
   "/usr/share/texmf-dist/tex/latex/psnfss/mathptmx.sty" 1650183167 4631 6e41de2b7a83dfa5d2c4b0a2fe01f046 ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd" 1650183167 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "/usr/share/texmf-dist/tex/latex/psnfss/t1ptm.fd" 1650183167 774 61d7da1e9f9e74989b196d147e623736 ""
-  "/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd" 1650183167 619 96f56dc5d1ef1fe1121f1cfeec70ee0c ""
   "/usr/share/texmf-dist/tex/latex/relsize/relsize.sty" 1650181202 15542 c4cc3164fe24f2f2fbb06eb71b1da4c4 ""
   "/usr/share/texmf-dist/tex/latex/setspace/setspace.sty" 1650183167 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/share/texmf-dist/tex/latex/subfig/subfig.sty" 1650183167 21369 9ef165ca6df8815c92e693146a376c92 ""
@@ -196,10 +193,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1650183167 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1652498721 4408072 42ceaa83bae76aebad711d3f3dd7f55f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1652498697 2927659 d913d73d55ae51f2e147a5c35e6f9dde ""
-  "figura.eps" 1657591237 185513 4d29d5dd7d4be31c6d1d6ea6006f9e10 ""
-  "main.aux" 1657774877 6156 43a820835af830b6ea46d4f4aa8d8eb3 "pdflatex"
-  "main.bbl" 1657773114 818 8bb3cb45c8af445d06527dbcd5bd06b5 "bibtex main"
-  "main.tex" 1657774875 27956 c28fad3430a8f84815cf38c715b84a24 ""
+  "main.aux" 1657781889 3567 939fb5e544cefef75fec22d4eec8fe30 "pdflatex"
+  "main.bbl" 1657781889 818 8bb3cb45c8af445d06527dbcd5bd06b5 "bibtex main"
+  "main.tex" 1657781887 18342 5bde956a15c831d6224ff7d6ebe706a1 ""
   "sobraep.cls" 1657666881 5542 7bff468020cfdcced00821df18ab1ff0 ""
   (generated)
   "main.aux"

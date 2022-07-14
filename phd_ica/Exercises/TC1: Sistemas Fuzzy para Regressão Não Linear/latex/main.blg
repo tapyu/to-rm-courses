@@ -3,17 +3,9 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: bib_sobraep.bst
 Database file #1: refs.bib
-Warning--I didn't find a database entry for "refbib1"
-Warning--I didn't find a database entry for "refbib2"
-Warning--I didn't find a database entry for "refbib3"
-Warning--I didn't find a database entry for "refbib4"
-Warning--I didn't find a database entry for "refbib5"
-Warning--I didn't find a database entry for "refbib6"
-Warning--I didn't find a database entry for "refbib7"
-Warning--I didn't find a database entry for "refbib8"
 You've used 3 entries,
             2417 wiz_defined-function locations,
-            558 strings with 4844 characters,
+            550 strings with 4788 characters,
 and the built_in function-call counts, 858 in all, are:
 = -- 30
 > -- 24
@@ -52,4 +44,3 @@ warning$ -- 0
 while$ -- 3
 width$ -- 4
 write$ -- 35
-(There were 8 warnings)
