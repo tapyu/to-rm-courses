@@ -22,8 +22,7 @@
 \newcommand{\Rational}{\mathbb{Q}}
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Complex}{\mathbb{C}}
-
-
+\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}}
 
 \title{SOLUTION OF NONLINEAR SISO SYSTEM THROUGH DIFFERENT PARADIGMS}
 
@@ -85,7 +84,12 @@ where \(\hat{\boldsymbol{\thetaup}} = \begin{bmatrix} \hat{a} & \hat{b} \end{bma
     \label{eq:J}
     J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} \left( y_n - \hat{a}x - \hat{b} \right)^2.
 \end{align}
-The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought \cite{diniz1997adaptive}. By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
+The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought \cite{diniz1997adaptive}. In other words, we can state that
+\begin{align}
+    \exists \;\; \hat{\boldsymbol{\thetaup}}^{\star} \in \mathbb{R}^{K+1} \mid J\left(\hat{\boldsymbol{\thetaup}}^{\star}\right) < J\left(\hat{\boldsymbol{\thetaup}}\right) \;\; \forall \;\; \hat{\boldsymbol{\thetaup}} \neq \hat{\boldsymbol{\thetaup}}^{\star}
+\end{align}
+
+By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
 \begin{align}
     \frac{\partial J\left( \hat{\boldsymbol{\thetaup}} \right)}{\partial \hat{a}} = -2 \sum_{n=1}^{N} x_n\left( \hat{y}_n - \hat{a}x_n - \hat{b} \right) = 0
 \end{align}
@@ -190,7 +194,7 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
 
 The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as it is increased the number of intervals, it is possible to notice by the Figure \ref{fig:OLS-by-parts-I6} that the placement of the delimiters does not contribute for a good linear approximation (there are outliers for \(i=4\)). This fact decreases \(R^2\) and makes it worse when compared with the case where \(I=5\).
 
-In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution (for \(i=1\)) of the residuals along with the Gaussian distribution.
+In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution (for \(i=1\)) of the residuals along with the Gaussian distribution \cite{leon1994probability}.
 
 \begin{figure}
     \centering
@@ -277,7 +281,7 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 		\hline
 		\(K = 5\) & \(K = 6\) & \(K = 7\) \\
         \hline
-		0.85 & 0.957 & 0.566 \\
+		0.85 & \textbf{0.957} & 0.566 \\
 		\hline
 	\end{tabular} \label{tab:kth-order-poly-performance}
 \end{table}
@@ -303,20 +307,63 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 
 \section{Mamdani fuzzy system}
 
-The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two characteristic functions (0 or 1). This approach enables to model the vagueness or uncertainty encountered in many real problems.
+The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two truth values: 0 and 1. This approach enables to model the vagueness or uncertainty encountered in many real problems.
 
-The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) counter-domain through a membership function, This process is commonly referred as fuzzyfication. Based on a set of rules, the fuzzy system uses the truth values of the fuzzyfied input to infer how much the antecedents impact the consequent.
+The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) counter-domain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, the fuzzy system uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent.
 
-There are many different possibilities to define a fuzzy rule. A well-established fuzzy system model the is Mamdani type, which can be generically written as
+There are many different possibilities to define a fuzzy rule. A well-established fuzzy system model the is the Mamdani type, which can be generically written as
 \begin{align}
     &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_I \nonumber \\
     &\text{ THEN } y_n \text{ IS } B_1, \nonumber
 \end{align}
-where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_I \right\}\) are the output and input fuzzy sets, respectively, and ``AND'' is a fuzzy operator. Among the different infer methods, the Modus Ponens, defined by,
+where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_I \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. Among the different inference methods, the Modus Ponens, defined by
+\begin{align}
+    \mu_{A\rightarrow B}^{(i)} (x_n;y_n) = \min\left\{  \mu_A^{(i)}(x_n), \mu_B^{(i)} (y_n) \right\},
+\end{align}
+is widely adopted. In this equation, \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n)\) is the output of the \(i\)th rule and \(\mu_\cdot\) is the membership function with respect to its subscript.
 
-is widely used.
+The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) and the resulting fuzzy set is ``defuzzified'' to a crisp value using one of several methods described in the literature. A very popular method is the ``centroid'', which utilizes the center of mass of the output fuzzy set. The Algorithm \ref{alg:mamdani-fuzzy} summarizes the procedure of the Mamdani fuzzy system. For this problem, we consider triangular membership function and a number of input and output sets that varies between 2 and 3.
 
-The results are then ``defuzzyfied'' to a crisp value by one of several methods. A very popular method is the ``centroid'', which decides by the center of mass of the output fuzzy set.
+\begin{algorithm}[!ht]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\left\{ (x_n, y_n) \right\}_{n=1}^N\)}
+    %   \KwOutput{\(\left\{ \left( \hat{a},\hat{b} \right), R^2 \right\}_{i=1}^I\)}
+    %   \KwData{Testing set $x$}
+    %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
+    %   \tcc{Now this is an if...else conditional loop}
+    \ForAll{Rules}{
+            \(\mu_{B}^{(i)}(y_n) \leftarrow \) fuzzify the domain of \(y_n\)
+        }
+
+    \For{\(I \in \left\{ 2,3 \right\}\)}{
+        \For{\(\left\{ x_n \right\}_{n=1}^N\)}{
+            \ForAll{Rules}{
+                \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n) \leftarrow \left(\mu_{A_1}^{(i)}(x_n)\right. \vee \mu_{A_2}^{(i)}\left.(x_n) \vee \cdots \vee \mu_{A_I}^{(i)}(x_n) \right) \wedge \mu_{B}^{(i)}(y_n)\) \tcc{The output fuzzy set of the \(i\)th rule.}
+            }
+
+            \(\hat{y} \leftarrow \text{centroid}\left(\mu_{A\rightarrow B}^{(1)} (x_n;y_n)\right. \vee \mu_{A\rightarrow B}^{(2)} (x_n;y_n) \left. \sizecorr{\mu_{A\rightarrow B}^{(1)}} \vee \cdots \right)\) \tcc{aggregation method and defuzzification}
+        }
+    }
+    
+    \caption{Mamdani fuzzy model}
+    \label{alg:mamdani-fuzzy}
+\end{algorithm}
+
+The Figure \ref{fig:input-output-fuzzy-sets} shows the input and the output fuzzy sets for the input and output for when \(I=3\). Since it is a SISO model, we need to fuzzify and defuzzify only one variable.
+
+\begin{figure}[htp]
+    \subfloat[\centering Input fuzzification]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/input_fuzzysets.png}%
+    }
+    
+    \subfloat[\centering Output fuzzification]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/output_fuzzysets.png}%
+    }
+    
+    \caption{Input and output fuzzification when \(I=3\).}
+    \label{fig:input-output-fuzzy-sets}
+\end{figure}
 
 \bibliographystyle{bib_sobraep}
 \bibliography{refs.bib}
