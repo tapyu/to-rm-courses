@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1657854799 "main.aux" "main.bbl" "main" 1657854801
+["bibtex main"] 1657880128 "main.aux" "main.bbl" "main" 1657889046
   "./bib_sobraep.bst" 1657591237 26077 f5bf4eee36291635a15c39bdfe9fd954 ""
-  "main.aux" 1657854801 4277 52cbc8ac9ae5477d528c165f26203319 "pdflatex"
+  "main.aux" 1657889046 4277 52cbc8ac9ae5477d528c165f26203319 "pdflatex"
   "refs.bib" 1657828674 761 a8b9cf0ab0a915f18159b4ce76d37f29 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1657854799 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657854801
+["pdflatex"] 1657889045 "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1657889046
   "../figs/OLS-by-parts/OLS_by_4parts.png" 1657771977 53328 06cd184d305675b3653e4faafccfb894 ""
   "../figs/OLS-by-parts/OLS_by_5parts.png" 1657771977 54466 27bfef982b060d6da4e4d86183e4e327 ""
   "../figs/OLS-by-parts/OLS_by_6parts.png" 1657771977 54526 e25b35c5e29c6b0e7c300131a7c13a69 ""
@@ -15,9 +15,9 @@
   "../figs/kth-poly-reg/5th-order.png" 1657774400 60681 aca9e718ff4500485f9edb384037d8fe ""
   "../figs/kth-poly-reg/6th-order.png" 1657774400 57448 1be595c5ae134105b5f8ac66a9826055 ""
   "../figs/kth-poly-reg/7th-order.png" 1657774400 55677 0c6358959365c7b70adb714914916d96 ""
-  "../figs/mamdani_fuzzy/input_fuzzysets.png" 1657852665 36254 0673ef0eb24db5cd1cbbbf38f423eb59 ""
-  "../figs/mamdani_fuzzy/output_fuzzysets.png" 1657852666 36942 fd7de07a033e4f2f228bcad0917db372 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657854798 21255 be95044f978a04d63f5d9705bee2060a ""
+  "../figs/mamdani_fuzzy/input_fuzzysets.png" 1657888348 32438 739ed06cdcccc6dc56644f46990ddf14 ""
+  "../figs/mamdani_fuzzy/output_fuzzysets.png" 1657888348 32351 c70670fc8a45f05d156720bc2cf45739 ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1657889044 21312 b9f60cf1b4e80e06b43bd1de40f7ea52 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1650179560 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -195,9 +195,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1650183167 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1652498721 4408072 42ceaa83bae76aebad711d3f3dd7f55f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1652498697 2927659 d913d73d55ae51f2e147a5c35e6f9dde ""
-  "main.aux" 1657854801 4277 52cbc8ac9ae5477d528c165f26203319 "pdflatex"
-  "main.bbl" 1657854799 967 3d364bdaa0268485c0f6133abd81baae "bibtex main"
-  "main.tex" 1657854798 21255 be95044f978a04d63f5d9705bee2060a ""
+  "main.aux" 1657889046 4277 52cbc8ac9ae5477d528c165f26203319 "pdflatex"
+  "main.bbl" 1657880128 967 3d364bdaa0268485c0f6133abd81baae "bibtex main"
+  "main.tex" 1657889044 21312 b9f60cf1b4e80e06b43bd1de40f7ea52 ""
   "sobraep.cls" 1657666881 5542 7bff468020cfdcced00821df18ab1ff0 ""
   (generated)
   "main.aux"

@@ -1,4 +1,4 @@
-function inference(μx_A, all_μy_B, I, 𝐲_range)
+function inference(μx_A, all_μy_B, I, 𝐲_range, xₙ)
     if I == 2 # for 2 set
         # 1th rule
         # IF (xₙ IS HIGH) OR (xₙ IS LOW)
@@ -12,7 +12,7 @@ function inference(μx_A, all_μy_B, I, 𝐲_range)
         # 2th rule
         # IF NOT((xₙ IS HIGH) OR (xₙ IS LOW))
         # THEN yₙ IS HIGH
-        μx_Ā = 0.017 - μx_A # apply the 1th rule -> A = ¬(A₁ ∨ A₂)
+        μx_Ā = 1 - μx_A # apply the 2th rule -> A = ¬(A₁ ∨ A₂)
         all_μy_B₂ = all_μy_B[:,2] # the output fuzzy set HIGH
         μAtoB⁽²⁾ = map(min, fill(μx_Ā, length(all_μy_B₁)), all_μy_B₂) # Modus Ponens
 
@@ -27,22 +27,22 @@ function inference(μx_A, all_μy_B, I, 𝐲_range)
         # IF xₙ IS MEDIUM
         # THEN yₙ IS HIGH
         μx_A₂ = μx_A[2] # the input fuzzy set MEDIUM
-        all_μy_B₃ = all_μy_B[:,3] # the output fuzzy set HIGH
-        μAtoB⁽¹⁾ = map(min, fill(μx_A₂, length(all_μy_B₃)), all_μy_B₃) # Modus Ponens 
+        μy_B₃ = all_μy_B[:,3] # the output fuzzy set HIGH
+        μAtoB⁽¹⁾ = map(min, fill(μx_A₂, length(μy_B₃)), μy_B₃) # Modus Ponens 
         
         # 2th rule
         # IF xₙ IS LOW
         # THEN yₙ IS MEDIUM
         μx_A₁ = μx_A[1] # the input fuzzy set LOW
-        all_μy_B₂ = all_μy_B[:,2] # the output fuzzy set MEDIUM
-        μAtoB⁽²⁾ = map(min, fill(μx_A₁, length(all_μy_B₂)), all_μy_B₂) # Modus Ponens
+        μy_B₂ = all_μy_B[:,2] # the output fuzzy set MEDIUM
+        μAtoB⁽²⁾ = map(min, fill(μx_A₁, length(μy_B₂)), μy_B₂) # Modus Ponens
 
         # 3th rule
         # IF xₙ IS HIGH
         # THEN yₙ IS LOW
         μx_A₃ = μx_A[3] # the input fuzzy set LOW
-        all_μy_B₁ = all_μy_B[:,1] # the output fuzzy set MEDIUM
-        μAtoB⁽³⁾ = map(min, fill(μx_A₃, length(all_μy_B₁)), all_μy_B₁) # Modus Ponens
+        μy_B₁ = all_μy_B[:,1] # the output fuzzy set MEDIUM
+        μAtoB⁽³⁾ = map(min, fill(μx_A₃, length(μy_B₁)), μy_B₁) # Modus Ponens
 
         # resulting output fuzzy set (aggregation)
         μAtoB = map(max, μAtoB⁽¹⁾, μAtoB⁽²⁾, μAtoB⁽³⁾)

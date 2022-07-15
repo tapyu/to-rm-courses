@@ -313,10 +313,10 @@ The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) cou
 
 There are many different possibilities to define a fuzzy rule. A well-established fuzzy system model the is the Mamdani type, which can be generically written as
 \begin{align}
-    &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_I \nonumber \\
+    &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_K \nonumber \\
     &\text{ THEN } y_n \text{ IS } B_1, \nonumber
 \end{align}
-where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_I \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. Among the different inference methods, the Modus Ponens, defined by
+where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_K \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. Among the different inference methods, the Modus Ponens, defined by
 \begin{align}
     \mu_{A\rightarrow B}^{(i)} (x_n;y_n) = \min\left\{  \mu_A^{(i)}(x_n), \mu_B^{(i)} (y_n) \right\},
 \end{align}
@@ -332,17 +332,15 @@ The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) a
     %   \KwData{Testing set $x$}
     %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
     %   \tcc{Now this is an if...else conditional loop}
-    \ForAll{Rules}{
-            \(\mu_{B}^{(i)}(y_n) \leftarrow \) fuzzify the domain of \(y_n\)
-        }
+    \For{\(K \in \left\{ 2,3 \right\}\)}{
+        \For{\(n \in \left\{ 1, 2, \cdots, N \right\}\)}{
+            \For(\tcc*[h]{for each rule}){\(i \in \left\{ 1, 2, \cdots, I \right\}\)}{
+                \(\mu_{A}^{(i)}(x_n) \leftarrow\) Apply the \(i\)th rule for the set \(\left\{ \mu_{A_1}^{(i)}(x_n), \mu_{A_2}^{(i)}(x_n), \cdots, \mu_{A_K}^{(i)}(x_n) \right\}\)
 
-    \For{\(I \in \left\{ 2,3 \right\}\)}{
-        \For{\(\left\{ x_n \right\}_{n=1}^N\)}{
-            \ForAll{Rules}{
-                \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n) \leftarrow \left(\mu_{A_1}^{(i)}(x_n)\right. \vee \mu_{A_2}^{(i)}\left.(x_n) \vee \cdots \vee \mu_{A_I}^{(i)}(x_n) \right) \wedge \mu_{B}^{(i)}(y_n)\) \tcc{The output fuzzy set of the \(i\)th rule.}
+                \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n) \leftarrow \mu_{A}^{(i)}(x_n) \wedge \mu_{B}^{(i)}(y_n)\) \tcc{The output fuzzy set of the \(i\)th rule (Modus Ponens).}
             }
 
-            \(\hat{y} \leftarrow \text{centroid}\left(\mu_{A\rightarrow B}^{(1)} (x_n;y_n)\right. \vee \mu_{A\rightarrow B}^{(2)} (x_n;y_n) \left. \sizecorr{\mu_{A\rightarrow B}^{(1)}} \vee \cdots \right)\) \tcc{aggregation method and defuzzification}
+            \(\hat{y} \leftarrow \text{centroid}\left(\mu_{A\rightarrow B}^{(1)} (x_n;y_n)\right. \vee \mu_{A\rightarrow B}^{(2)} (x_n;y_n) \left. \vee \cdots \vee \mu_{A\rightarrow B}^{(I)} \right)\) \tcc{aggregation method and defuzzification}
         }
     }
     
