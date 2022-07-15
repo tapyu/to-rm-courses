@@ -1,95 +1,52 @@
-function input_fuzzyfication(xₙ, I)
+function input_fuzzification(xₙ, I)
     sets = rand(I)
     if I == 2
-        # SMALL fuzzy set, centered at 75 (1th set)
-        if xₙ < 75
-            sets[1] =  xₙ/75
-        elseif xₙ < 150
-            sets[1] =  -(xₙ - 150)/75
-        else
-            sets[1] = 0
-        end
-        # LARGE fuzzy set, centered at 175 (2th set)
-        if xₙ < 100
-            sets[2] = 0
-        elseif xₙ < 175
-            sets[2] = (xₙ - 100)/75
-        else
-            sets[2] = -(xₙ - 250)/75
-        end
+        # SMALL fuzzy set (1th set) → ~N(75, 2000)
+        x̄ₙ, σ²ₓ = 75, 2000
+        sets[1] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
+
+        # LARGE fuzzy set (2th set) → ~N(175, 2000)
+        x̄ₙ, σ²ₓ = 175, 2000
+        sets[2] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
+
     elseif I == 3
-        # SMALL fuzzy set, centered at 50 (1th set)
-        if xₙ < 50
-            sets[1] = xₙ/50
-        elseif xₙ < 100
-            sets[1] = -(xₙ-100)/50
-        else
-            sets[1] = 0
-        end
-        # MEDIUM fuzzy set, centered at 125 (2th set)
-        if xₙ < 75 || xₙ > 175
-            sets[2] = 0
-        elseif xₙ < 125
-            sets[2] = (xₙ-75)/50
-        else
-            sets[2] = -(xₙ-175)/50
-        end
-        # LARGE fuzzy set, centered at 200 (3th set)
-        if xₙ < 150
-            sets[3] = 0
-        elseif xₙ < 200
-            sets[3] = (xₙ-150)/50
-        else
-            sets[3] = -(xₙ-250)/50
-        end
+        # SMALL fuzzy set (1th set) → ~N(50, 1200)
+        x̄ₙ, σ²ₓ = 50, 1200
+        sets[1] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
+
+        # MEDIUM fuzzy set (2th set) → ~N(125, 1200)
+        x̄ₙ, σ²ₓ = 125, 1200
+        sets[2] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
+
+        # LARGE fuzzy set (3th set) → ~N(200, 1200)
+        x̄ₙ, σ²ₓ = 200, 1200
+        sets[3] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
     end
     return sets
 end
 
-function output_fuzzyfication(yₙ, I)
+function output_fuzzification(yₙ, I)
     sets = rand(I)
     if I == 2
-        # SMALL fuzzy set, centered at 40 (1th set)
-        if yₙ < 40
-            sets[1] = yₙ/40
-        elseif yₙ < 80
-            sets[1] =  -(yₙ - 80)/40
-        else
-            sets[1] = 0
-        end
-        # LARGE fuzzy set, centered at 100 (2th set)
-        if yₙ < 60
-            sets[2] = 0
-        elseif yₙ < 100
-            sets[2] = (yₙ - 60)/40
-        else
-            sets[2] = -(yₙ - 140)/40
-        end
+        # SMALL fuzzy set (1th set) → ~N(40, 600)
+        ȳₙ, σ²y = 40, 600
+        sets[1] = ℯ^(-((yₙ-ȳₙ)^2)/(2*σ²y))/√(2*π*σ²y)
+        
+        # LARGE fuzzy set (2th set) → ~N(100, 600)
+        ȳₙ, σ²y = 100, 600
+        sets[2] = ℯ^(-((yₙ-ȳₙ)^2)/(2*σ²y))/√(2*π*σ²y)
     elseif I == 3
-        # SMALL fuzzy set, centered at 30 (1th set)
-        if yₙ < 30
-            sets[1] = yₙ/30
-        elseif yₙ < 60
-            sets[1] = -(yₙ-60)/30
-        else
-            sets[1] = 0
-        end
-        # MEDIUM fuzzy set, centered at 70 (2th set)
-        if yₙ < 40 || yₙ > 100
-            sets[2] = 0
-        elseif yₙ < 70
-            sets[2] = (yₙ-40)/30
-        else
-            sets[2] = -(yₙ-100)/30
-        end
-        # LARGE fuzzy set, centered at 110 (3th set)
-        if yₙ < 80
-            sets[3] = 0
-        elseif yₙ < 110
-            sets[3] = (yₙ-80)/30
-        else
-            sets[3] = -(yₙ-140)/30
-        end
+        # SMALL fuzzy set (1th set) → ~N(30, 400)
+        ȳₙ, σ²y = 30, 400
+        sets[1] = ℯ^(-((yₙ-ȳₙ)^2)/(2*σ²y))/√(2*π*σ²y)
+
+        # MEDIUM fuzzy set (2th set) → ~N(70, 400)
+        ȳₙ, σ²y = 70, 400
+        sets[2] = ℯ^(-((yₙ-ȳₙ)^2)/(2*σ²y))/√(2*π*σ²y)
+        
+        # LARGE fuzzy set (3th set) → ~N(110, 400)
+        ȳₙ, σ²y = 110, 400
+        sets[3] = ℯ^(-((yₙ-ȳₙ)^2)/(2*σ²y))/√(2*π*σ²y)
     end
     return sets
 end

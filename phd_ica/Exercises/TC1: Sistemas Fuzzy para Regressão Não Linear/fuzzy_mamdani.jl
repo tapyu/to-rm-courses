@@ -1,5 +1,5 @@
 using FileIO, Plots, LinearAlgebra, Statistics, LaTeXStrings
-include("fuzzyfication_mamdani.jl")
+include("fuzzification_mamdani.jl")
 include("inference_mamdani.jl")
 Σ=sum
 
@@ -7,13 +7,13 @@ include("inference_mamdani.jl")
 𝐱, 𝐲 = FileIO.load("TC1data.jld2", "x", "y") # 𝐱 -> Inputs; 𝐲 -> Outputs
 𝐲_range = range(minimum(𝐲), maximum(𝐲), length(𝐲)) # Universo de discurso (?) da variavel de saida
 
-all_μy_B = hcat(map(output_fuzzyfication, range(minimum(𝐲), maximum(𝐲), length(𝐲)), fill(3, length(𝐲)))...)' # input fuzzification (all domain, all fuzzy set)
+all_μy_B = hcat(map(output_fuzzification, range(minimum(𝐲), maximum(𝐲), length(𝐲)), fill(3, length(𝐲)))...)' # input fuzzification (all domain, all fuzzy set)
 
 # Mamdani fuzzy infer system
 𝐲̂ = rand(length(𝐲))
-for I ∈ (3,)
+for I ∈ (2,3)
     for (n, xₙ) ∈ enumerate(𝐱)
-        μx_A = input_fuzzyfication(xₙ, I) # input fuzzification
+        μx_A = input_fuzzification(xₙ, I) # input fuzzification
         𝐲̂[n] = inference(μx_A, all_μy_B, I, 𝐲_range) # compute ŷₙ
     end
 end
@@ -30,4 +30,4 @@ p = scatter(𝐱, 𝐲,
         xlabel = "Inputs",
         ylabel = "Outputs",
         label = "Data")
-plot!(𝐱, 𝐲̂, linewidth=2)
+plot!(𝐱, 𝐲̂, linewidth=2, label=L"\hat{y}_n")
