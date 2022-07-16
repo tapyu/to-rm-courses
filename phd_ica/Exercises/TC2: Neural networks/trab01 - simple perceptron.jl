@@ -1,4 +1,4 @@
-using FileIO, JLD2, Random, LinearAlgebra, Plots
+using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 Σ=sum
 
 ## load the data
@@ -29,7 +29,7 @@ function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
     return 𝐰, ϵₜᵣₙ
 end
 
-function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
+function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰, is_confusion_matrix=false)
     φ = uₙ -> uₙ>0 ? 1 : 0 # activation function of the simple Perceptron
     𝐞ₜₛₜ = rand(length(𝐝ₜₛₜ)) # vector of errors
     for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
@@ -37,8 +37,12 @@ function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
         yₙ = φ(μₙ) # for the simple Perceptron, yₙ ∈ {0,1}. Therefore, it is not necessary to pass yₙ to a harder decisor since φ(⋅) already does this job
         𝐞ₜₛₜ[n] = dₙ - yₙ
     end
-    ϵₜₛₜ = sum(𝐞ₜₛₜ)/length(𝐞ₜₛₜ) # the accuracy for this realization
-    return ϵₜₛₜ
+    if !is_confusion_matrix # return the accuracy for this realization
+        ϵₜₛₜ = sum(𝐞ₜₛₜ)/length(𝐞ₜₛₜ)
+        return ϵₜₛₜ
+    else
+        return Int.(𝐞ₜₛₜ) # return the errors over the instances to plot the confusion matrix
+    end
 end
 
 ## algorithm hyperparameters
@@ -62,8 +66,8 @@ for (i, desired_set) ∈ enumerate(("setosa", "virginica", "versicolor"))
 
         𝐗, 𝐝 = shuffle_dataset(𝐗, 𝐝)
         # hould-out
-        𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
-        𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100]
+        global 𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
+        global 𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100]
         global 𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1:end]
         global 𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
         for nₑ ∈ 1:Nₑ # for each epoch
@@ -71,10 +75,24 @@ for (i, desired_set) ∈ enumerate(("setosa", "virginica", "versicolor"))
             𝐗ₜᵣₙ, 𝐝ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐝ₜᵣₙ)
         end
         𝛜ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
+
+        # make plots!
         if nᵣ == 1
             all_𝐰ₒₚₜ[:,i] = 𝐰 # save the optimum value reached during the 1th realization for setosa, versicolor, and virginica
-            local p = plot(𝛜ₜᵣₙ)
+            local p = plot(𝛜ₜᵣₙ, label="", xlabel=L"Epochs", ylabel=L"\epsilon_n", linewidth=2)
             display(p)
+            savefig(p, "figs/trab1/epsilon_n-by-epochs-for$(desired_set).png")
+            if i == 1 # heat map for setosa class (best accuracy since it is linearly separable)
+                𝐂 = zeros(2,2) # confusion matrix
+                𝐞ₜₛₜ = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰, true)
+                for n ∈ 1:length(𝐞ₜₛₜ)
+                    # predicted x true label
+                    𝐂[𝐝ₜₛₜ[n]-𝐞ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
+                end
+                h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
+                savefig(h, "figs/trab1/setosa-heatmap.png")
+                display(h) # TODO: put the number onto each heatmap square
+            end
         end
     end
     𝛜̄ₜₛₜ = sum(𝛜ₜₛₜ)/length(𝛜ₜₛₜ) # mean of the accuracy of all realizations
@@ -87,9 +105,7 @@ for (i, desired_set) ∈ enumerate(("setosa", "virginica", "versicolor"))
 
 end
 
-## plot setosa set decision surface
-𝐝 = labels.=="setosa" # dₙ ∈ {0,1}
-𝐗, labels = FileIO.load("Dataset/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+## plot decision surface
 𝐗_setosa = 𝐗[:, 𝐝.==1]
 𝐗_not_setosa = 𝐗[:, 𝐝.!=1]
 
@@ -112,7 +128,7 @@ if length(𝐰ₒₚₜ⁽ˢ⁾) == 3 # plot the surface only if the learning pr
             markerstrokewidth = 3,
             markerstrokealpha = 0.2,
             markerstrokecolor = :black,
-            xlabel = "petal length",
+            xlabel = "petal\nlength",
             ylabel = "petal width",
             camera = (60,40,0),
             label = "setosa set")
@@ -125,9 +141,9 @@ if length(𝐰ₒₚₜ⁽ˢ⁾) == 3 # plot the surface only if the learning pr
             markerstrokewidth = 3,
             markerstrokealpha = 0.2,
             markerstrokecolor = :black,
-            xlabel = "petal length",
+            xlabel = "petal\nlength",
             ylabel = "petal width",
             label = "not setosa set")
-            
     display(p)
+    savefig(p,"figs/trab1/decision-surface-for-setosa.png")
 end
