@@ -5,9 +5,9 @@ using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 𝐗, labels = FileIO.load("Dataset/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 # PS choose only one!!!
 # uncomment ↓ if you want to train for all attributes
-# 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 # uncomment ↓ if you want to train for petal length and width (to plot the decision surface)
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗[3:4,:]] # add the -1 input (bias)
+# 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗[3:4,:]] # add the -1 input (bias)
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐝)
@@ -56,42 +56,120 @@ Nₑ = 100 # number of epochs
 
 ## init
 all_𝛜̄ₜₛₜ, all_σ²ₑ, all_𝐰ₒₚₜ = rand(3), rand(3), rand(Nₐ,3)
-for (i, desired_set) ∈ enumerate(("setosa", "virginica", "versicolor"))
-    local 𝐝 = labels.==desired_set # dₙ ∈ {0,1}
+for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
+    local 𝐝 = labels.==desired_label # dₙ ∈ {0,1}
     𝛜ₜₛₜ = rand(Nᵣ) # vector that stores the error test dataset for each realization (to compute the final statistics)
     for nᵣ ∈ 1:Nᵣ # for each realization
+        # initializing!
         𝛜ₜᵣₙ = rand(Nₑ) # vector that stores the error train dataset for each epoch (to see its evolution)
         global 𝐰 = ones(Nₐ) # initialize a new McCulloch-Pitts neuron (a new set of parameters)
         global 𝐗 # ?
 
+        # prepare the data!
         𝐗, 𝐝 = shuffle_dataset(𝐗, 𝐝)
         # hould-out
         global 𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
         global 𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100]
         global 𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1:end]
         global 𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
+
+        # train and test!
         for nₑ ∈ 1:Nₑ # for each epoch
             𝐰, 𝛜ₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
             𝐗ₜᵣₙ, 𝐝ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐝ₜᵣₙ)
         end
         𝛜ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
+        all_𝐰ₒₚₜ[:,i] = 𝐰 # save the optimum value reached during the 1th realization for setosa, versicolor, and virginica
 
         # make plots!
         if nᵣ == 1
-            all_𝐰ₒₚₜ[:,i] = 𝐰 # save the optimum value reached during the 1th realization for setosa, versicolor, and virginica
-            local p = plot(𝛜ₜᵣₙ, label="", xlabel=L"Epochs", ylabel=L"\epsilon_n", linewidth=2)
-            display(p)
-            savefig(p, "figs/trab1/epsilon_n-by-epochs-for$(desired_set).png")
-            if i == 1 # heat map for setosa class (best accuracy since it is linearly separable)
-                𝐂 = zeros(2,2) # confusion matrix
-                𝐞ₜₛₜ = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰, true)
-                for n ∈ 1:length(𝐞ₜₛₜ)
-                    # predicted x true label
-                    𝐂[𝐝ₜₛₜ[n]-𝐞ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
+            # if all attributes was taken into account, compute the accuracyxepochs for all classes
+            if length(𝐰) != 3
+                local p = plot(𝛜ₜᵣₙ, label="", xlabel=L"Epochs", ylabel=L"\epsilon_n", linewidth=2, title="Training accuracy for $(desired_label) class by epochs")
+                display(p)
+                savefig(p, "figs/trab1/epsilon_n-by-epochs-for$(desired_label).png")
+                # for the setosa class, compute the confusion matrix
+                if desired_label == "setosa"
+                    𝐂 = zeros(2,2) # confusion matrix
+                    𝐞ₜₛₜ = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰, true)
+                    for n ∈ 1:length(𝐞ₜₛₜ)
+                        # predicted x true label
+                        𝐂[𝐝ₜₛₜ[n]-𝐞ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
+                    end
+                    h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
+                    savefig(h, "figs/trab1/setosa-heatmap.png")
+                    display(h) # TODO: put the number onto each heatmap square
                 end
-                h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
-                savefig(h, "figs/trab1/setosa-heatmap.png")
-                display(h) # TODO: put the number onto each heatmap square
+            end
+            # decision surface
+            if length(𝐰) == 3 # plot the surface only if the learning procedure was taken with only two attributes, the petal length and petal width (equals to 3 because the bias)
+                φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
+                x₃_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
+                x₄_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
+                y(x₃, x₄) = φ(dot([-1, x₃, x₄], 𝐰))
+                p = surface(x₃_range, x₄_range, y, camera=(60,40,0), xlabel = "petal length", ylabel = "petal width", zlabel="decision surface")
+
+
+                # scatter plot for the petal length and petal length width for the setosa class
+                # train and desired label 
+                scatter!(𝐗ₜᵣₙ[2,𝐝ₜᵣₙ.==1], 𝐗ₜᵣₙ[3,𝐝ₜᵣₙ.==1], ones(length(filter(x->x==1, 𝐝ₜᵣₙ))),
+                        markershape = :hexagon,
+                        markersize = 4,
+                        markeralpha = 0.6,
+                        markercolor = :green,
+                        markerstrokewidth = 3,
+                        markerstrokealpha = 0.2,
+                        markerstrokecolor = :black,
+                        xlabel = "petal\nlength",
+                        ylabel = "petal width",
+                        camera = (60,40,0),
+                        label = "$(desired_label) train set")
+                
+                # test and desired label 
+                scatter!(𝐗ₜₛₜ[2,𝐝ₜₛₜ.==1], 𝐗ₜₛₜ[3,𝐝ₜₛₜ.==1], ones(length(filter(x->x==1, 𝐝ₜₛₜ))),
+                        markershape = :cross,
+                        markersize = 4,
+                        markeralpha = 0.6,
+                        markercolor = :green,
+                        markerstrokewidth = 3,
+                        markerstrokealpha = 0.2,
+                        markerstrokecolor = :black,
+                        xlabel = "petal\nlength",
+                        ylabel = "petal width",
+                        camera = (60,40,0),
+                        label = "$(desired_label) test set")
+
+                # train and not desired label 
+                scatter!(𝐗ₜᵣₙ[2,𝐝ₜᵣₙ.==0], 𝐗ₜᵣₙ[3,𝐝ₜᵣₙ.==0], zeros(length(filter(x->x==0, 𝐝ₜᵣₙ))),
+                        markershape = :hexagon,
+                        markersize = 4,
+                        markeralpha = 0.6,
+                        markercolor = :red,
+                        markerstrokewidth = 3,
+                        markerstrokealpha = 0.2,
+                        markerstrokecolor = :black,
+                        xlabel = "petal\nlength",
+                        ylabel = "petal width",
+                        camera = (60,40,0),
+                        label = "not $(desired_label) train set")
+
+                # test and not desired label 
+                scatter!(𝐗ₜₛₜ[2,𝐝ₜₛₜ.==0], 𝐗ₜₛₜ[3,𝐝ₜₛₜ.==0], zeros(length(filter(x->x==0, 𝐝ₜₛₜ))),
+                        markershape = :cross,
+                        markersize = 4,
+                        markeralpha = 0.6,
+                        markercolor = :red,
+                        markerstrokewidth = 3,
+                        markerstrokealpha = 0.2,
+                        markerstrokecolor = :black,
+                        xlabel = "petal\nlength",
+                        ylabel = "petal width",
+                        camera = (60,40,0),
+                        label = "not $(desired_label) test set")
+                
+                title!("Decision surface for the class $(desired_label)")
+                display(p)
+                savefig(p,"figs/trab1/decision-surface-for-$(desired_label).png")
             end
         end
     end
@@ -103,47 +181,4 @@ for (i, desired_set) ∈ enumerate(("setosa", "virginica", "versicolor"))
     all_𝛜̄ₜₛₜ[i] = 𝛜̄ₜₛₜ
     all_σ²ₑ[i] = σ²ₑ
 
-end
-
-## plot decision surface
-𝐗_setosa = 𝐗[:, 𝐝.==1]
-𝐗_not_setosa = 𝐗[:, 𝐝.!=1]
-
-# surface decision
-𝐰ₒₚₜ⁽ˢ⁾ = all_𝐰ₒₚₜ[:, 1] # optimum weights for the setosa dataset (only for the third and fourth attributes, that is, for petal length and petal width)
-if length(𝐰ₒₚₜ⁽ˢ⁾) == 3 # plot the surface only if the learning procedure was taken with only two attributes, the petal length and petal width (equals to 3 because the bias)
-    φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
-    x₃_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
-    x₄_range = floor(minimum(𝐗[4,:])):.1:ceil(maximum(𝐗[4,:]))
-    y(x₃, x₄) = φ(dot([-1, x₃, x₄], 𝐰ₒₚₜ⁽ˢ⁾))
-    p = surface(x₃_range, x₄_range, y, camera=(60,40,0), xlabel = "petal length", ylabel = "petal width", zlabel="decision surface")
-
-
-    # scatter plot for the petal length and petal length width for the setosa class
-    scatter!(𝐗_setosa[3,:], 𝐗_setosa[4,:], ones(length(𝐗_setosa[4,:])),
-            markershape = :hexagon,
-            markersize = 4,
-            markeralpha = 0.6,
-            markercolor = :green,
-            markerstrokewidth = 3,
-            markerstrokealpha = 0.2,
-            markerstrokecolor = :black,
-            xlabel = "petal\nlength",
-            ylabel = "petal width",
-            camera = (60,40,0),
-            label = "setosa set")
-
-    scatter!(𝐗_not_setosa[3,:], 𝐗_not_setosa[4,:], zeros(length(𝐗_not_setosa[4,:])),
-            markershape = :hexagon,
-            markersize = 4,
-            markeralpha = 0.6,
-            markercolor = :red,
-            markerstrokewidth = 3,
-            markerstrokealpha = 0.2,
-            markerstrokecolor = :black,
-            xlabel = "petal\nlength",
-            ylabel = "petal width",
-            label = "not setosa set")
-    display(p)
-    savefig(p,"figs/trab1/decision-surface-for-setosa.png")
 end
