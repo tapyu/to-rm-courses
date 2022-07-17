@@ -20,7 +20,7 @@ function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
     φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
     for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), 𝐝ₜᵣₙ))
         μₙ = dot(𝐱ₙ,𝐰) # inner product
-        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰
+        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (???)
         eₙ = dₙ - yₙ
         𝐰 += α*eₙ*𝐱ₙ
         𝐞ₜᵣₙ[n] = eₙ
@@ -79,15 +79,15 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
             𝐗ₜᵣₙ, 𝐝ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐝ₜᵣₙ)
         end
         𝛜ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
-        all_𝐰ₒₚₜ[:,i] = 𝐰 # save the optimum value reached during the 1th realization for setosa, versicolor, and virginica
-
+        
         # make plots!
         if nᵣ == 1
+            all_𝐰ₒₚₜ[:,i] = 𝐰 # save the optimum value reached during the 1th realization for setosa, versicolor, and virginica
             # if all attributes was taken into account, compute the accuracyxepochs for all classes
             if length(𝐰) != 3
                 local p = plot(𝛜ₜᵣₙ, label="", xlabel=L"Epochs", ylabel=L"\epsilon_n", linewidth=2, title="Training accuracy for $(desired_label) class by epochs")
                 display(p)
-                savefig(p, "figs/trab1/epsilon_n-by-epochs-for$(desired_label).png")
+                savefig(p, "figs/trab1 (simple perceptron)/epsilon_n-by-epochs-for$(desired_label).png")
                 # for the setosa class, compute the confusion matrix
                 if desired_label == "setosa"
                     𝐂 = zeros(2,2) # confusion matrix
@@ -97,7 +97,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                         𝐂[𝐝ₜₛₜ[n]-𝐞ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
                     end
                     h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
-                    savefig(h, "figs/trab1/setosa-heatmap.png")
+                    savefig(h, "figs/trab1 (simple perceptron)/setosa-heatmap.png")
                     display(h) # TODO: put the number onto each heatmap square
                 end
             end
@@ -169,12 +169,12 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                 
                 title!("Decision surface for the class $(desired_label)")
                 display(p)
-                savefig(p,"figs/trab1/decision-surface-for-$(desired_label).png")
+                savefig(p,"figs/trab1 (simple perceptron)/decision-surface-for-$(desired_label).png")
             end
         end
     end
     𝛜̄ₜₛₜ = sum(𝛜ₜₛₜ)/length(𝛜ₜₛₜ) # mean of the accuracy of all realizations
-    𝔼𝛜² = Σ(𝛜ₜₛₜ.^2)/length(𝛜ₜₛₜ) # second moment of all realization accuracies
+    𝔼𝛜² = Σ(𝛜ₜₛₜ.^2)/length(𝛜ₜₛₜ) # MSE (Mean squared erro), that is, the second moment of realization accuracies
     σ²ₑ = 𝔼𝛜² - 𝛜̄ₜₛₜ^2 # variance of all realization accuracies
     
     # save the performance
