@@ -22,27 +22,31 @@ function shuffle_dataset(𝐗, 𝐃)
     return 𝐗[:, shuffle_indices], 𝐃[:, shuffle_indices]
 end
 
-function train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖)
+function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
     φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗ₜₛₜ), eachcol(𝐃ₜₛₜ))
+    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍ₙ = 𝐖*𝐱ₙ
         𝐲ₙ = map(φ, 𝛍ₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) (??? TODO)
         𝐞ₙ = 𝐝ₙ - 𝐲ₙ
         𝐖 += α*𝐞ₙ*𝐱ₙ'
 
-        # this part is optional: only if it is interested in seeing the dataset evolution
+        # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
         i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ)
         Nₑ = 𝐝ₙ[i]==1 ? Nₑ : Nₑ+1
     end
-    accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
-    return 𝐖, accuracy
+    if is_training_accuracy
+        accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
+        return 𝐖, accuracy
+    else
+        return 𝐖
+    end
 end
 
-function test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖)
+function test(𝐗, 𝐃, 𝐖)
     φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗ₜₛₜ), eachcol(𝐃ₜₛₜ))
+    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍ₙ = 𝐖*𝐱ₙ
         # yₙ = map(φ, 𝛍ₙ) # theoretically, you need to pass 𝛍ₙ through the activation function, but, in order to solve ambiguous instances (see Ajalmar's handwritings), we pick the class with the highest activation function input
         i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ) # predicted value → choose the highest activation function input as the selected class
@@ -63,11 +67,11 @@ for label ∈ labels
 end
 
 ## init
-accₜₛₜ = rand(Nᵣ) # vector of accuracies for test dataset
+accₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset (to compute the final statistics)
 for nᵣ ∈ 1:Nᵣ
     # initialize!
     𝐖 = rand(c, Nₐ+1) # [𝐰₁ᵀ; 𝐰₂ᵀ; ...; 𝐰ᵀ_c]
-    accₜᵣₙ = rand(Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
+    accₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
 
     # prepare the data!
     global 𝐗, 𝐃 = shuffle_dataset(𝐗, 𝐃)
@@ -83,20 +87,19 @@ for nᵣ ∈ 1:Nᵣ
         𝐗ₜᵣₙ, 𝐃ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐃ₜᵣₙ)
     end
     # test!
-    global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # taxa de acerto TODO: ver como é isso em inglês
+    global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # accuracy for this realization
 
     # plot training dataset accuracy evolution
-    local fig = plot(accₜᵣₙ, ylims=(0,2), label=["Disk Hernia" "Spondylolisthesis" "Normal"], xlabel="Epochs", ylabel="Hit rate", linewidth=2)
-    println("\n\n$(accₜᵣₙ)\n\n")
-    display(fig)
-    savefig(fig, "figs/trab3 (single layer perceptron)/column - training dataset evolution for realization $(nᵣ).png")
+    local fig = plot(accₜᵣₙ, ylims=(0,1), label=["Disk Hernia" "Spondylolisthesis" "Normal"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
+    savefig(fig, "figs/trab3 (single layer perceptron)/column - training dataset accuracy evolution for realization $(nᵣ).png")
 end
 
-display(plot(accₜₛₜ))
+# display(plot(accₜₛₜ))
 
-āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # accuracy
+# analyze the accuracy statistics of each independent realization
+āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # Mean
 𝔼acc² = Σ(accₜₛₜ.^2)/Nᵣ
 σacc = sqrt.(𝔼acc² .- āc̄c̄.^2) # standard deviation
 
-println("Accuracy: $(āc̄c̄)")
+println("Mean: $(āc̄c̄)")
 println("Standard deviation: $(σacc)")

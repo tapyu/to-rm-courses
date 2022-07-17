@@ -17,34 +17,38 @@ function shuffle_dataset(𝐗, 𝐃)
     return 𝐗[:, shuffle_indices], 𝐃[:, shuffle_indices]
 end
 
-function train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖)
+function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
     φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
-    𝐄ₜᵣₙ = rand(size(𝐃ₜᵣₙ,1),size(𝐃ₜᵣₙ,2)) # matrix with all errors (TODO, do it better)
-    for (n, (𝐱ₙ, 𝐝ₙ)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), eachcol(𝐃ₜᵣₙ)))
+    Nₑ = 0 # number of errors - misclassification
+    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍ₙ = 𝐖*𝐱ₙ
         𝐲ₙ = map(φ, 𝛍ₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) (??? TODO)
-        𝐲ₙ = 𝛍ₙ
         𝐞ₙ = 𝐝ₙ - 𝐲ₙ
         𝐖 += α*𝐞ₙ*𝐱ₙ'
-        𝐄ₜᵣₙ[:,n] = 𝐞ₙ
+
+        # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
+        i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ)
+        Nₑ = 𝐝ₙ[i]==1 ? Nₑ : Nₑ+1
     end
-    𝐞²ₜᵣₙ = Σ(eachcol(𝐄ₜᵣₙ.^2))/size(𝐄ₜᵣₙ,2)  # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
-    return 𝐖, 𝐞²ₜᵣₙ
+    if is_training_accuracy
+        accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
+        return 𝐖, accuracy
+    else
+        return  𝐖
+    end
 end
 
-function test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖)
+function test(𝐗, 𝐃, 𝐖)
     φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
-    𝐄ₜₛₜ = rand(size(𝐃ₜᵣₙ,1),size(𝐃ₜᵣₙ,2)) # vector of errors
-    for (n, (𝐱ₙ, 𝐝ₙ)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), eachcol(𝐃ₜₛₜ)))
+    Nₑ = 0 # number of errors - misclassification
+    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍ₙ = 𝐖*𝐱ₙ
         # yₙ = map(φ, 𝛍ₙ) # theoretically, you need to pass 𝛍ₙ through the activation function, but, in order to solve ambiguous instances (see Ajalmar's handwritings), we pick the class with the highest activation function input
-        𝐲ₙ = 𝛍ₙ.==maximum(𝛍ₙ) # choose the highest activation function input as the selected class
-        𝐞ₙ = 𝐝ₙ - 𝐲ₙ
-        𝐖 += α*𝐞ₙ*𝐱ₙ'
-        𝐄ₜₛₜ[:,n] = 𝐞ₙ
+        i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ) # predicted value → choose the highest activation function input as the selected class
+        Nₑ = 𝐝ₙ[i]==1 ? Nₑ : Nₑ+1
     end
-    𝐞²ₜₛₜ = Σ(eachcol(𝐄ₜₛₜ.^2))/size(𝐄ₜₛₜ,2) # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
-    return 𝐞²ₜₛₜ # MSE
+    accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
+    return accuracy
 end
 
 function one_hot_encoding(label)
@@ -60,34 +64,37 @@ for label ∈ labels
 end
 
 ## init
-global MSEₜₛₜ = rand(c,0)
+accₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
     # initialize!
     𝐖 = rand(c, Nₐ+1) # [𝐰₁ᵀ; 𝐰₂ᵀ; ...; 𝐰ᵀ_c]
-    MSEₜᵣₙ = rand(c,0)
+    accₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
 
     # prepare the data!
     global 𝐗, 𝐃 = shuffle_dataset(𝐗, 𝐃)
     # hould-out
     global 𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
     global 𝐃ₜᵣₙ = 𝐃[:,1:(N*Nₜᵣₙ)÷100]
-    global 𝐗ₜₛₜ = 𝐗[:,size(𝐃ₜᵣₙ,2)+1:end]
-    global 𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ,2)+1:end]
+    global 𝐗ₜₛₜ = 𝐗[:,size(𝐃ₜᵣₙ, 2)+1:end]
+    global 𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1:end]
 
-    # train and test!
+    # train!
     for nₑ ∈ 1:Nₑ # for each epoch
-        𝐖, MSEₜᵣₙne = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖)
-        MSEₜᵣₙ = [MSEₜᵣₙ MSEₜᵣₙne]
+        𝐖, accₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖)
         𝐗ₜᵣₙ, 𝐃ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐃ₜᵣₙ)
     end
-    local fig = plot(MSEₜᵣₙ', ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="MSE", linewidth=2)
-    savefig(fig, "figs/trab3 (single layer perceptron)/iris - training dataset evolution for realization $(nᵣ).png")
-    global MSEₜₛₜ = [MSEₜₛₜ test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖)]
+    # test!
+    global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # accuracy for this realization
+    
+    # plot training dataset accuracy evolution
+    local fig = plot(accₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
+    savefig(fig, "figs/trab3 (single layer perceptron)/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 end
 
-M̄S̄Ē = Σ(eachcol(MSEₜₛₜ))/size(MSEₜₛₜ,2) # accuracy
-𝔼MSE² = Σ(eachcol(MSEₜₛₜ.^2))/size(MSEₜₛₜ,2)
-σₘₛₑ = sqrt.(𝔼MSE² .- M̄S̄Ē.^2) # standard deviation
+# analyze the accuracy statistics of each independent realization
+āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # mean
+𝔼acc² = Σ(accₜₛₜ.^2)/Nᵣ
+σacc = sqrt.(𝔼acc² .- āc̄c̄.^2) # standard deviation
 
-println("\n\nAccuracy for setosa = $(M̄S̄Ē[1])\nAccuracy for virginica =$(M̄S̄Ē[2])\nAccuracy for versicolor = $(M̄S̄Ē[3])")
-println("Standard deviation for setosa = $(σₘₛₑ[1])\nStandard deviation for virginica =$(σₘₛₑ[2])\nStandard deviation for versicolor = $(σₘₛₑ[3])")
+println("Mean: $(āc̄c̄)")
+println("Standard deviation: $(σacc)")
