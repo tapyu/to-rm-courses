@@ -43,7 +43,7 @@ function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
     return 𝔼𝐞̄ₜₛₜ² # MSE
 end
 
-## generating dummy data
+## generate dummy data
 f₁(x) = 5x .+ 8 # two attributes (Nₐ = 2), they are a = 5, b = 8
 f₂(x) = 2x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3, c = 6
 
@@ -59,7 +59,7 @@ f₂(x) = 2x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3,
 MSE₁ₜₛₜ = rand(Nᵣ)
 MSE₂ₜₛₜ = rand(Nᵣ)
 for nᵣ ∈ 1:Nᵣ
-    # initializing
+    # initialize
     𝐰₁, 𝐰₂ = rand(2), rand(2) # two attributes bias + xₙ
     MSE₁ₜᵣₙ = zeros(Nₑ) # vector that stores the error train dataset for each epoch (to see its evolution)
     MES₂ₜᵣₙ = zeros(Nₑ)
