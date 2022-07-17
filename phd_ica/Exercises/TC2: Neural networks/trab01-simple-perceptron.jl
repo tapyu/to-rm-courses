@@ -17,10 +17,10 @@ end
 
 function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
     𝐞ₜᵣₙ = rand(length(𝐝ₜᵣₙ)) # vector of errors
-    φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
+    φ = uₙ -> uₙ≥0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), 𝐝ₜᵣₙ))
         μₙ = dot(𝐱ₙ,𝐰) # inner product
-        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (???)
+        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (??? TODO)
         eₙ = dₙ - yₙ
         𝐰 += α*eₙ*𝐱ₙ
         𝐞ₜᵣₙ[n] = eₙ
@@ -30,7 +30,7 @@ function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
 end
 
 function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰, is_confusion_matrix=false)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # activation function of the simple Perceptron
+    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     𝐞ₜₛₜ = rand(length(𝐝ₜₛₜ)) # vector of errors
     for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
         μₙ = 𝐱ₙ⋅𝐰 # inner product

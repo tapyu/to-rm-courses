@@ -26,21 +26,19 @@ function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
         𝐰 += α*eₙ*𝐱ₙ
         𝐞ₜᵣₙ[n] = eₙ
     end
-    𝔼𝐞̄ₜᵣₙ² = Σ(𝐞ₜᵣₙ.^2)/length(𝐞ₜᵣₙ)  # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
-    return 𝐰, 𝔼𝐞̄ₜᵣₙ²
+    𝔼𝐞ₜᵣₙ² = Σ(𝐞ₜᵣₙ.^2)/length(𝐞ₜᵣₙ)  # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
+    return 𝐰, 𝔼𝐞ₜᵣₙ²
 end
 
 function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # activation function of the simple Perceptron
     𝐞ₜₛₜ = rand(length(𝐝ₜₛₜ)) # vector of errors
     for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
         μₙ = 𝐱ₙ⋅𝐰 # inner product
         yₙ = μₙ # ADALINE's activation function
         𝐞ₜₛₜ[n] = dₙ - yₙ
     end
-    𝐞̄ₜₛₜ = sum(𝐞ₜₛₜ)/length(𝐞ₜₛₜ) # mean of the errors for this epoch
-    𝔼𝐞̄ₜₛₜ² = Σ(𝐞̄ₜₛₜ.^2)/length(𝐞̄ₜₛₜ) # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
-    return 𝔼𝐞̄ₜₛₜ² # MSE
+    𝔼𝐞ₜₛₜ² = Σ(𝐞ₜₛₜ.^2)/length(𝐞ₜₛₜ) # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
+    return 𝔼𝐞ₜₛₜ² # MSE
 end
 
 ## generate dummy data
@@ -59,7 +57,7 @@ f₂(x) = 2x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3,
 MSE₁ₜₛₜ = rand(Nᵣ)
 MSE₂ₜₛₜ = rand(Nᵣ)
 for nᵣ ∈ 1:Nᵣ
-    # initialize
+    # initialize!
     𝐰₁, 𝐰₂ = rand(2), rand(2) # two attributes bias + xₙ
     MSE₁ₜᵣₙ = zeros(Nₑ) # vector that stores the error train dataset for each epoch (to see its evolution)
     MES₂ₜᵣₙ = zeros(Nₑ)
@@ -108,14 +106,14 @@ for nᵣ ∈ 1:Nᵣ
 end
 
 RMSE₁ₜₛₜ = sqrt.(MSE₁ₜₛₜ)
-M̄S̄Ē₁, R̄M̄S̄Ē₁ = sum(MSE₁ₜₛₜ)/length(MSE₁ₜₛₜ), sum(RMSE₁ₜₛₜ)/length(RMSE₁ₜₛₜ) # mean of the accuracy of the MSE and RMSE of the all realizations
-𝔼M̄S̄Ē₁², 𝔼R̄M̄S̄Ē₁² = Σ(MSE₁ₜₛₜ.^2)/length(MSE₁ₜₛₜ), Σ(RMSE₁ₜₛₜ.^2)/length(RMSE₁ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
-σ₁ₘₛₑ, σ₁ᵣₘₛₑ = √(𝔼M̄S̄Ē₁² - M̄S̄Ē₁^2), √(𝔼R̄M̄S̄Ē₁² - R̄M̄S̄Ē₁^2) # standard deviation of the MSE of the all realizations
+M̄S̄Ē₁, R̄M̄S̄Ē₁ = Σ(MSE₁ₜₛₜ)/length(MSE₁ₜₛₜ), Σ(RMSE₁ₜₛₜ)/length(RMSE₁ₜₛₜ) # mean of the MSE and RMSE of the all realizations
+𝔼MSE₁², 𝔼RMSE₁² = Σ(MSE₁ₜₛₜ.^2)/length(MSE₁ₜₛₜ), Σ(RMSE₁ₜₛₜ.^2)/length(RMSE₁ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
+σ₁ₘₛₑ, σ₁ᵣₘₛₑ = √(𝔼MSE₁² - M̄S̄Ē₁^2), √(𝔼RMSE₁² - R̄M̄S̄Ē₁^2) # standard deviation of the MSE of the all realizations
 
 RMSE₂ₜₛₜ = sqrt.(MSE₂ₜₛₜ)
-M̄S̄Ē₂, R̄M̄S̄Ē₂ = sum(MSE₂ₜₛₜ)/length(MSE₂ₜₛₜ), sum(RMSE₂ₜₛₜ)/length(RMSE₂ₜₛₜ) # mean of the accuracy of the MSE and RMSE of the all realizations
-𝔼M̄S̄Ē₂², 𝔼R̄M̄S̄Ē₂² = Σ(MSE₂ₜₛₜ.^2)/length(MSE₂ₜₛₜ), Σ(RMSE₂ₜₛₜ.^2)/length(RMSE₂ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
-σ₂ₘₛₑ, σ₂ᵣₘₛₑ = √(𝔼M̄S̄Ē₂² - M̄S̄Ē₂^2), √(𝔼R̄M̄S̄Ē₂² - R̄M̄S̄Ē₂^2) # standard deviation of the MSE of the all realizations
+M̄S̄Ē₂, R̄M̄S̄Ē₂ = Σ(MSE₂ₜₛₜ)/length(MSE₂ₜₛₜ), Σ(RMSE₂ₜₛₜ)/length(RMSE₂ₜₛₜ) # mean of the MSE and RMSE of the all realizations
+𝔼MSE₂², 𝔼RMSE₂² = Σ(MSE₂ₜₛₜ.^2)/length(MSE₂ₜₛₜ), Σ(RMSE₂ₜₛₜ.^2)/length(RMSE₂ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
+σ₂ₘₛₑ, σ₂ᵣₘₛₑ = √(𝔼MSE₂² - M̄S̄Ē₂^2), √(𝔼RMSE₂² - R̄M̄S̄Ē₂^2) # standard deviation of the MSE of the all realizations
 
 println("MSE and RMSE for f₁(⋅): $(σ₁ₘₛₑ), $(σ₁ᵣₘₛₑ)")
 println("MSE and RMSE for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
