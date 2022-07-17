@@ -236,7 +236,6 @@ for nᵣ ∈ 1:Nᵣ
     x₂_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
     y(x₁, x₂) = φ(dot([-1, x₁, x₂], 𝐰))
     fig = surface(x₁_range, x₂_range, y, camera=(60,40,0), xlabel = L"x_1", ylabel = L"x_2", zlabel="decision surface")
-    # global figs_surface = [figs_surface fig]
     push!(figs_surface, [fig])
 
     # train and desired label 
