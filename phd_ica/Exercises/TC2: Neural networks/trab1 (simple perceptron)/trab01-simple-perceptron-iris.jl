@@ -54,7 +54,7 @@ function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
     end
 end
 
-## algorithm hyperparameters
+## algorithm parameters hyperparameters
 Nᵣ = 20 # number of realizations
 Nₐ = size(𝐗, 1) # =5 (including bias) number of Attributes, that is, input vector size at each intance. They mean: sepal length, sepal width, petal length, petal width
 N = size(𝐗, 2) # =150 number of instances(samples)

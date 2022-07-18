@@ -1,9 +1,62 @@
+using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
+Σ=sum
+
 ### dataset 02 - artificial dataset ###
 
-## hyperparameters
+## algorithm parameters hyperparameters
 σₓ = .1 # signal standard deviation
 N = 40 # number of instances
 Nₐ = 2 # number of attributes (not includes the bias)
+Nᵣ = 20 # number of realizations
+Nₑ = 100 # number of epochs
+Nₜᵣₙ = 80 # % percentage of instances for the train dataset
+Nₜₛₜ = 20 # % percentage of instances for the test dataset
+α = 0.01 # learning step
+
+## useful functions
+function shuffle_dataset(𝐗, 𝐝)
+    shuffle_indices = Random.shuffle(1:size(𝐗,2))
+    return 𝐗[:, shuffle_indices], 𝐝[shuffle_indices]
+end
+
+function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
+    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    Nₑ = 0 # number of errors - misclassification
+    for (𝐱ₙ, dₙ) ∈ zip(eachcol(𝐗), 𝐝)
+        μₙ = dot(𝐱ₙ,𝐰) # inner product
+        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (??? TODO)
+        eₙ = dₙ - yₙ
+        𝐰 += α*eₙ*𝐱ₙ
+
+        # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
+        Nₑ = eₙ==0 ? Nₑ : Nₑ+1
+    end
+    if is_training_accuracy
+        accuracy = (length(𝐝)-Nₑ)/length(𝐝) # accuracy for this epoch
+        return 𝐰, accuracy
+    else
+        return 𝐰
+    end
+end
+
+function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
+    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    𝐲 = rand(length(𝐝)) # vector of predictions for confusion matrix
+    Nₑ = 0
+    for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
+        μₙ = 𝐱ₙ⋅𝐰 # inner product
+        yₙ = φ(μₙ) # for the simple Perceptron, yₙ ∈ {0,1}. Therefore, it is not necessary to pass yₙ to a harder decisor since φ(⋅) already does this job
+        𝐲[n] = yₙ
+
+        Nₑ = yₙ==dₙ ? Nₑ : Nₑ+1
+    end
+    if !is_confusion_matrix
+        accuracy = (length(𝐝)-Nₑ)/length(𝐝)
+        return accuracy # return the accuracy for this realization
+    else
+        return Int.(𝐲) # return the errors over the instances to plot the confusion matrix
+    end
+end
 
 ## generate dummy data
 𝐗₁ = [σₓ*randn(10)'; σₓ*randn(10)']
@@ -42,7 +95,7 @@ for nᵣ ∈ 1:Nᵣ
 
     # make plots!
     # accuracy training dataset x Epochs
-    local fig = plot(MSEₜᵣₙ, label="", xlabel=L"Epochs", ylabel="Accuracy", linewidth=2)
+    local fig = plot(accₜᵣₙ, label="", xlabel=L"Epochs", ylabel="Accuracy", linewidth=2)
     push!(figs_training_accuracy, [fig])
 
     # decision surface
@@ -71,7 +124,7 @@ end
 āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # Mean
 # find closest surface
 i = 1
-accₜₛₜ_closest_to_accuracy = MSEₜₛₜ[1]
+accₜₛₜ_closest_to_accuracy = accₜₛₜ[1]
 for nᵣ ∈ 2:Nᵣ
     if accₜₛₜ[nᵣ] < accₜₛₜ_closest_to_accuracy
         global accₜₛₜ_closest_to_accuracy = accₜₛₜ[nᵣ]
@@ -79,9 +132,9 @@ for nᵣ ∈ 2:Nᵣ
     end
 end
 
-# plot training set MSE for the realization MSE test closest to accuracy
+# plot the training set accuracy by epoch for the realization whose test dataset accuracy is closest to the mean accuracy
 display(figs_training_accuracy[i][1])
-savefig(figs_training_accuracy[i][1], "figs/trab1 (simple perceptron)/training dataset accuracy for realization $(i) (closest to the mean acc).png")
-# plot surface decision for the realization MSE test closest to accuracy
+savefig(figs_training_accuracy[i][1], "trab1 (simple perceptron)/figs/training dataset accuracy for realization $(i) (closest to the mean acc).png")
+# plot surface decision for  the realization whose test dataset accuracy is closest to the mean accuracy
 display(figs_surface[i][1])
-savefig(figs_training_accuracy[i][1], "figs/trab1 (simple perceptron)/decision-surface-for-dummy-data.png")
+savefig(figs_surface[i][1], "trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png")
