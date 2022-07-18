@@ -55,7 +55,7 @@ function test(𝐗, 𝐃, 𝐖, get_predictions=false)
     for (n, (𝐱₍ₙ₎, 𝐝₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), eachcol(𝐃)))
         𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
         𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # perceptron output (a vector) at instant n
-        𝐲[n] = Int(findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎)) # predicted value → choose the highest activation function output as the selected class
+        𝐲[n] = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[𝐲[n]]==1 ? Nₑ : Nₑ+1
     end
     accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)

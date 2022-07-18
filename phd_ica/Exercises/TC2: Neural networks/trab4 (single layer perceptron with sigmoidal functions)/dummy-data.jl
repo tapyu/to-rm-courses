@@ -2,14 +2,23 @@ using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 Σ=sum
 
 ## algorithm parameters and hyperparameters
-N = 150 # number of instances
-Nₜᵣₙ = 80 # % percentage of instances for the train dataset
-Nₜₛₜ = 20 # % percentage of instances for the test dataset
-Nₐ = 4 # number of number of attributes, that is, input vector size at each intance n. They are: sepal length, sepal width, petal length, petal width
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 c = 3 # number of perceptrons (neurons) of the single layer
 α = 0.1 # learning step
+σₓ = .1 # signal standard deviation
+N = 150 # number of instances
+Nₐ = 2 # number of attributes
+Nₜᵣₙ = 80 # % percentage of instances for the train dataset
+Nₜₛₜ = 20 # % percentage of instances for the test dataset
+
+## generate dummy data
+𝐗⚫ = [σₓ*randn(50)'.+1.5; σₓ*randn(50)'.+1]
+𝐗△ = [σₓ*randn(50)'.+1; σₓ*randn(50)'.+2]
+𝐗⭐ = [σₓ*randn(50)'.+2; σₓ*randn(50)'.+2]
+
+𝐗 = [fill(-1,N)'; [𝐗⚫ 𝐗△ 𝐗⭐]]
+𝐃 = [repeat([1,0,0],1,50) repeat([0,1,0],1,50) repeat([0,0,1],1,50)]
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐃)
@@ -58,18 +67,6 @@ function test(𝐗, 𝐃, 𝐖, get_predictions=false)
     end
 end
 
-function one_hot_encoding(label)
-    return ["setosa", "virginica", "versicolor"].==label
-end
-
-## load dataset
-𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
-𝐃 = rand(c,0)
-for label ∈ labels
-    global 𝐃 = [𝐃 one_hot_encoding(label)]
-end
-
 ## init
 accₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
@@ -93,13 +90,51 @@ for nᵣ ∈ 1:Nᵣ
     # test!
     global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # accuracy for this realization
     
-    # plot training dataset accuracy evolution
-    local fig = plot(accₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab4 (single layer perceptron with sigmoidals functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    # make plots!
+    if nᵣ==1
+        # training dataset accuracy evolution by epochs for the 1th realization
+        local fig = plot(accₜᵣₙ, ylims=(0,1), xlabel="Epochs", ylabel="Accuracy", linewidth=2)
+        savefig(fig, "trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - training dataset accuracy evolution.png")
+
+        ## predictors of the class (basically it is what is done on test(), but only with the attributes as inputs)
+        y = function predict_circle(x₃, x₄)
+            φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+            𝐱₍ₙ₎ = [-1, x₃, x₄]
+            𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+            𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # perceptron output (a vector) at instant n
+            return findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎)
+        end
+
+        # plot heatmap for the 1th realization
+        local x₁_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
+        local x₂_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
+
+        fig = contour(x₁_range, x₂_range, y, xlabel = L"x_1", ylabel = L"x_2", fill=true, levels=2)
+        # train circe label
+        scatter!(𝐗ₜᵣₙ[2,𝐃ₜᵣₙ[1,:].==1], 𝐗ₜᵣₙ[3,𝐃ₜᵣₙ[1,:].==1], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "circe class [train]")
+            
+        # test circle label
+        scatter!(𝐗ₜₛₜ[2,𝐃ₜₛₜ[1,:].==1], 𝐗ₜₛₜ[3,𝐃ₜₛₜ[1,:].==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "circle class [test]")
+
+        # train triangle label
+        scatter!(𝐗ₜᵣₙ[2,𝐃ₜᵣₙ[2,:].==1], 𝐗ₜᵣₙ[3,𝐃ₜᵣₙ[2,:].==1], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :cyan, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "triangle class [train]")
+
+        # test triangle label
+        scatter!(𝐗ₜₛₜ[2,𝐃ₜₛₜ[2,:].==1], 𝐗ₜₛₜ[3,𝐃ₜₛₜ[2,:].==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :cyan, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "triangle class [test]")
+
+        # train star label
+        scatter!(𝐗ₜᵣₙ[2,𝐃ₜᵣₙ[3,:].==1], 𝐗ₜᵣₙ[3,𝐃ₜᵣₙ[3,:].==1], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "star class [train]")
+
+        # test star label
+        scatter!(𝐗ₜₛₜ[2,𝐃ₜₛₜ[3,:].==1], 𝐗ₜₛₜ[3,𝐃ₜₛₜ[3,:].==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "star class [test]")
+
+        title!("Heatmap")
+        savefig(fig, "trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png")
+    end
 end
 
 # analyze the accuracy statistics of each independent realization
-āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # mean
+āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # Mean
 𝔼acc² = Σ(accₜₛₜ.^2)/Nᵣ
 σacc = sqrt.(𝔼acc² .- āc̄c̄.^2) # standard deviation
 
