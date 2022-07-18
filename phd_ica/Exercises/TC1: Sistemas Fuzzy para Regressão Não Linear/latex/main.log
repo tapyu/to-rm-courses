@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  15 JUL 2022 09:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  18 JUL 2022 06:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,47 +800,46 @@ Overfull \hbox (2.5pt too wide) in paragraph at lines 302--303
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 304.
 [3 <../figs/OLS-by-parts/residues_PDF_I5i1.png>]
-<../figs/mamdani_fuzzy/input_fuzzysets.png, id=45, 602.25pt x 401.5pt>
-File: ../figs/mamdani_fuzzy/input_fuzzysets.png Graphic file (type png)
-<use ../figs/mamdani_fuzzy/input_fuzzysets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/input_fuzzysets.png  used on input line 356.
+<../figs/mamdani_fuzzy/fuzzification-for-2sets.png, id=45, 602.25pt x 401.5pt>
+File: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png Graphic file (type png)
+<use ../figs/mamdani_fuzzy/fuzzification-for-2sets.png>
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png  used on input line 346.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
-<../figs/mamdani_fuzzy/output_fuzzysets.png, id=47, 602.25pt x 401.5pt>
-File: ../figs/mamdani_fuzzy/output_fuzzysets.png Graphic file (type png)
-<use ../figs/mamdani_fuzzy/output_fuzzysets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/output_fuzzysets.png  used on input line 360.
+<../figs/mamdani_fuzzy/fuzzification-for-3sets.png, id=47, 602.25pt x 401.5pt>
+File: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png Graphic file (type png)
+<use ../figs/mamdani_fuzzy/fuzzification-for-3sets.png>
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png  used on input line 350.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
- (./main.bbl) 
+<../figs/mamdani_fuzzy/fuzzy_prediction.png, id=49, 602.25pt x 401.5pt>
+File: ../figs/mamdani_fuzzy/fuzzy_prediction.png Graphic file (type png)
+<use ../figs/mamdani_fuzzy/fuzzy_prediction.png>
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzy_prediction.png  used on input line 392.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ (./main.bbl [4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]) 
 AED: lastpage setting LastPage
 
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
-[4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]
-Overfull \vbox (193.43651pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (193.43651pt too high) has occurred while \output is active []
-
- [5 <../figs/mamdani_fuzzy/input_fuzzysets.png> <../figs/mamdani_fuzzy/output_fuzzysets.png>] (./main.aux)
+[5 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png> <../figs/mamdani_fuzzy/fuzzification-for-3sets.png> <../figs/mamdani_fuzzy/fuzzy_prediction.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 12042 strings out of 478238
- 185803 string characters out of 5850456
- 509013 words of memory out of 5000000
- 29984 multiletter control sequences out of 15000+600000
- 586845 words of font info for 234 fonts, out of 8000000 for 9000
+ 12047 strings out of 478238
+ 186199 string characters out of 5850456
+ 509021 words of memory out of 5000000
+ 29991 multiletter control sequences out of 15000+600000
+ 585503 words of font info for 231 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,19n,77p,1268b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (5 pages, 654514 bytes).
+Output written on main.pdf (5 pages, 693409 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
+ 135 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 99 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -309,20 +309,57 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 
 The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two truth values: 0 and 1. This approach enables to model the vagueness or uncertainty encountered in many real problems.
 
-The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) counter-domain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, the fuzzy system uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent.
+The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) codomain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, the fuzzy system uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent. The fuzzy set obtained by the inference is then converted to a crisp value that outputs the system.
 
-There are many different possibilities to define a fuzzy rule. A well-established fuzzy system model the is the Mamdani type, which can be generically written as
+There are many different possibilities to define a fuzzy rule. A well-established fuzzy model the is the Mamdani system, which can be generically written as
 \begin{align}
     &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_K \nonumber \\
     &\text{ THEN } y_n \text{ IS } B_1, \nonumber
 \end{align}
-where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_K \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. Among the different inference methods, the Modus Ponens, defined by
+where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_K \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. For this problem, we consider \(K \in \left\{ 2,3 \right\}\). The set of rules applied for \(K=2\) is given by
+\begin{align}
+    &\text{IF } x_n \text{ IS LOW OR } x_n \text{ IS HIGH} \nonumber \\
+    &\text{ THEN } y_n \text{ IS LOW}, \nonumber
+\end{align}
+\begin{align}
+    &\text{IF } x_n \text{ IS NOT LOW AND } x_n \text{ IS NOT HIGH} \nonumber \\
+    &\text{ THEN } y_n \text{ IS HIGH}, \nonumber
+\end{align}
+and the set of rules applied for \(K=3\) is
+\begin{align}
+    &\text{IF } x_n \text{ IS MEDIUM} \nonumber \\
+    &\text{ THEN } y_n \text{ IS HIGH}, \nonumber
+\end{align}
+\begin{align}
+    &\text{IF } x_n \text{ IS LOW} \nonumber \\
+    &\text{ THEN } y_n \text{ IS MEDIUM}, \nonumber
+\end{align}
+\begin{align}
+    &\text{IF } x_n \text{ IS HIGH} \nonumber \\
+    &\text{ THEN } y_n \text{ IS LOW}. \nonumber
+\end{align}
+
+The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, and HIGH for \(K=3\)) are depicted in the Figure \ref{fig:input-fuzzy-sets}. The Gaussian shape of the fuzzy sets and their parameters (mean and variance) were defined experimentally in an attempt to obtain the best performance. Once the Gaussian function reaches its peak, this value it is held to maintain the true value at the extremes.
+\begin{figure}[htp]
+    \subfloat[\centering \(K=2\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/fuzzification-for-2sets.png}%
+    }
+    
+    \subfloat[\centering \(K=3\)]{%
+    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/fuzzification-for-3sets.png}%
+    }
+    
+    \caption{Input fizzy sets. The output fuzzy set follows the same parameters, but with different means.}
+    \label{fig:input-fuzzy-sets}
+\end{figure}
+
+After the input and output fuzzification and the rule definitions, it is necessary to define an inference method. Among the different inference methods, the Modus Ponens, defined by
 \begin{align}
     \mu_{A\rightarrow B}^{(i)} (x_n;y_n) = \min\left\{  \mu_A^{(i)}(x_n), \mu_B^{(i)} (y_n) \right\},
 \end{align}
-is widely adopted. In this equation, \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n)\) is the output of the \(i\)th rule and \(\mu_\cdot\) is the membership function with respect to its subscript.
+is widely adopted. In this equation, \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n)\) is the output fuzzy set of the \(i\)th rule and \(\mu_\cdot\) is the membership function with respect to its subscript.
 
-The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) and the resulting fuzzy set is ``defuzzified'' to a crisp value using one of several methods described in the literature. A very popular method is the ``centroid'', which utilizes the center of mass of the output fuzzy set. The Algorithm \ref{alg:mamdani-fuzzy} summarizes the procedure of the Mamdani fuzzy system. For this problem, we consider triangular membership function and a number of input and output sets that varies between 2 and 3.
+The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) and the resulting fuzzy set is ``defuzzified'' to a crisp value using one of several methods described in the literature. A very popular method is the ``centroid'', which utilizes the center of mass of the output fuzzy set. The Algorithm \ref{alg:mamdani-fuzzy} summarizes the procedure of the Mamdani fuzzy system.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -348,19 +385,13 @@ The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) a
     \label{alg:mamdani-fuzzy}
 \end{algorithm}
 
-The Figure \ref{fig:input-output-fuzzy-sets} shows the input and the output fuzzy sets for the input and output for when \(I=3\).
+The regression problem through Mamdani fuzzy system for \(K=3\) is shown in Figure \ref{fig:mamdani-fuzzy-regression}. The final model achieved a coefficient of determination of \(0.91\), and the Pearson correlation between the input and predicted value was \(0.96\).
 
-\begin{figure}[htp]
-    \subfloat[\centering Input fuzzification]{%
-    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/input_fuzzysets.png}%
-    }
-    
-    \subfloat[\centering Output fuzzification]{%
-    \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/output_fuzzysets.png}%
-    }
-    
-    \caption{Input and output fuzzification when \(I=3\).}
-    \label{fig:input-output-fuzzy-sets}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{../figs/mamdani_fuzzy/fuzzy_prediction.png}
+    \caption{The curve fit for the Mamdani fuzzy system.}
+    \label{fig:mamdani-fuzzy-regression}
 \end{figure}
 
 \bibliographystyle{bib_sobraep}
