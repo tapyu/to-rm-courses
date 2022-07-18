@@ -1,15 +1,18 @@
 using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 Σ=sum
 
-## algorithm parameters and hyperparameters
-N = 150 # number of instances
+## algorithm parameters hyperparameters
+Nᵣ = 20 # number of realizations
+Nₐ = 2 # number of Attributes, that is, input vector size at each instance. They are petal length, petal width
+N = 150 # number of instances(samples)
 Nₜᵣₙ = 80 # % percentage of instances for the train dataset
 Nₜₛₜ = 20 # % percentage of instances for the test dataset
-Nₐ = 4 # number of number of attributes, that is, input vector size at each intance n. They are: sepal length, sepal width, petal length, petal width
-Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
-c = 3 # number of perceptrons (neurons) of the single layer
-α = 0.001 # learning step
+α = 0.01 # learning step
+
+## load the data
+𝐗, labels = FileIO.load("Dataset/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗[3:4,:]] # add the -1 input (bias)
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐃)
@@ -18,16 +21,18 @@ function shuffle_dataset(𝐗, 𝐃)
 end
 
 function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
-    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+    φʼ = y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎) # where y₍ₙ₎=φ(u₍ₙ₎)
     Nₑ = 0 # number of errors - misclassification
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
-        𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # for the training phase, you do not pass y₍ₙ₎ to a harder decisor (the McCulloch and Pitts's activation function) (??? TODO)
+        𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎)
         𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝐲₍ₙ₎
-        𝐖 += α*𝐞₍ₙ₎*𝐱₍ₙ₎'
-
+        𝐲ʼ₍ₙ₎ = map(φʼ, 𝐲₍ₙ₎)
+        𝛅₍ₙ₎ = 𝐞₍ₙ₎ .* 𝐲ʼ₍ₙ₎ # vector of local gradients
+        𝐖 += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
-        i = findfirst(x->x==maximum(𝛍₍ₙ₎), 𝛍₍ₙ₎)
+        i = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1
     end
     if is_training_accuracy
@@ -39,12 +44,17 @@ function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
 end
 
 function test(𝐗, 𝐃, 𝐖)
-    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+    φʼ = y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎) # where y₍ₙ₎=φ(u₍ₙ₎)
     Nₑ = 0 # number of errors - misclassification
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
-        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎# induced local field
-        # y₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # theoretically, you need to pass 𝛍₍ₙ₎ through the activation function, but, in order to solve ambiguous instances (see Ajalmar's handwritings), we pick the class with the highest activation function input
-        i = findfirst(x->x==maximum(𝛍₍ₙ₎), 𝛍₍ₙ₎) # predicted value → choose the highest activation function input as the selected class
+        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+        𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎)
+        𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝐲₍ₙ₎
+        𝐲ʼ₍ₙ₎ = map(φʼ, 𝐲₍ₙ₎)
+        𝛅₍ₙ₎ = 𝐞₍ₙ₎ .* 𝐲ʼ₍ₙ₎ # vector of local gradients
+        𝐖 += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
+        i = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1
     end
     accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
@@ -53,14 +63,6 @@ end
 
 function one_hot_encoding(label)
     return ["setosa", "virginica", "versicolor"].==label
-end
-
-## load dataset
-𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
-𝐃 = rand(c,0)
-for label ∈ labels
-    global 𝐃 = [𝐃 one_hot_encoding(label)]
 end
 
 ## init
@@ -85,10 +87,15 @@ for nᵣ ∈ 1:Nᵣ
     end
     # test!
     global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # accuracy for this realization
+
+    # decision surface (for the 1th realization only)
+    if nᵣ == 1
+    end
+
     
     # plot training dataset accuracy evolution
     local fig = plot(accₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab3 (single layer perceptron)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "trab4 (single layer perceptron with sigmoidals functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 end
 
 # analyze the accuracy statistics of each independent realization

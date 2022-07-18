@@ -9,7 +9,7 @@ Nₐ = 2 # number of number of attributes (including bias), that is, input vecto
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 α = 0.0001 # learning step
-μₙ, σ²ₙ = 0, 1 # Gaussian parameters
+μ₍ₙ₎, σ²₍ₙ₎ = 0, 1 # Gaussian parameters
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐝)
@@ -19,12 +19,12 @@ end
 
 function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
     𝐞ₜᵣₙ = rand(length(𝐝ₜᵣₙ)) # vector of errors
-    for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), 𝐝ₜᵣₙ))
-        μₙ = dot(𝐱ₙ,𝐰) # inner product
-        yₙ = μₙ # ADALINE's activation function
-        eₙ = dₙ - yₙ
-        𝐰 += α*eₙ*𝐱ₙ
-        𝐞ₜᵣₙ[n] = eₙ
+    for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), 𝐝ₜᵣₙ))
+        μ₍ₙ₎ = dot(𝐱₍ₙ₎,𝐰) # inner product
+        y₍ₙ₎ = μ₍ₙ₎ # ADALINE's activation function
+        e₍ₙ₎ = d₍ₙ₎ - y₍ₙ₎
+        𝐰 += α*e₍ₙ₎*𝐱₍ₙ₎
+        𝐞ₜᵣₙ[n] = e₍ₙ₎
     end
     𝔼𝐞ₜᵣₙ² = Σ(𝐞ₜᵣₙ.^2)/length(𝐞ₜᵣₙ)  # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
     return 𝐰, 𝔼𝐞ₜᵣₙ²
@@ -32,10 +32,10 @@ end
 
 function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
     𝐞ₜₛₜ = rand(length(𝐝ₜₛₜ)) # vector of errors
-    for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
-        μₙ = 𝐱ₙ⋅𝐰 # inner product
-        yₙ = μₙ # ADALINE's activation function
-        𝐞ₜₛₜ[n] = dₙ - yₙ
+    for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
+        μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
+        y₍ₙ₎ = μ₍ₙ₎ # ADALINE's activation function
+        𝐞ₜₛₜ[n] = d₍ₙ₎ - y₍ₙ₎
     end
     𝔼𝐞ₜₛₜ² = Σ(𝐞ₜₛₜ.^2)/length(𝐞ₜₛₜ) # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
     return 𝔼𝐞ₜₛₜ² # MSE
@@ -47,18 +47,18 @@ f₂(x) = 2x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3,
 
 𝐝₁ = f₁(range(-10,10,N)) # dummy desired dataset for function 1
 𝐝₂ = f₂(range(-10,10,N)) # dummy desired dataset for function 2
-𝐧 = √σ²ₙ*randn(N) .+ μₙ # ~ N(μₙ, σ²ₙ)
+𝐧 = √σ²₍ₙ₎*randn(N) .+ μ₍ₙ₎ # ~ N(μ₍ₙ₎, σ²₍ₙ₎)
 𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
 𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
 
 ## init
-𝐰₁ₒₚₜ, 𝐰₂ₒₚₜ = rand(Nₐ), rand(Nₐ) # two attributes: bias + xₙ
+𝐰₁ₒₚₜ, 𝐰₂ₒₚₜ = rand(Nₐ), rand(Nₐ) # two attributes: bias + x₍ₙ₎
 
 MSE₁ₜₛₜ = rand(Nᵣ)
 MSE₂ₜₛₜ = rand(Nᵣ)
 for nᵣ ∈ 1:Nᵣ
     # initialize!
-    𝐰₁, 𝐰₂ = rand(2), rand(2) # two attributes bias + xₙ
+    𝐰₁, 𝐰₂ = rand(2), rand(2) # two attributes bias + x₍ₙ₎
     MSE₁ₜᵣₙ = zeros(Nₑ) # vector that stores the error train dataset for each epoch (to see its evolution)
     MES₂ₜᵣₙ = zeros(Nₑ)
 
@@ -121,7 +121,7 @@ println("MSE and RMSE for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
 ## predict!
 𝐝₁ = f₁(range(-10,10,N)) # dummy desired dataset for function 1
 𝐝₂ = f₂(range(-10,10,N)) # dummy desired dataset for function 2
-𝐧 = √σ²ₙ*randn(N) .+ μₙ # ~ N(μₙ, σ²ₙ)
+𝐧 = √σ²₍ₙ₎*randn(N) .+ μ₍ₙ₎ # ~ N(μ₍ₙ₎, σ²₍ₙ₎)
 𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
 𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
 

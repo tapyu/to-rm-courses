@@ -20,16 +20,16 @@ function shuffle_dataset(𝐗, 𝐝)
 end
 
 function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, dₙ) ∈ zip(eachcol(𝐗), 𝐝)
-        μₙ = dot(𝐱ₙ,𝐰) # inner product
-        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (??? TODO)
-        eₙ = dₙ - yₙ
-        𝐰 += α*eₙ*𝐱ₙ
+    for (𝐱₍ₙ₎, d₍ₙ₎) ∈ zip(eachcol(𝐗), 𝐝)
+        μ₍ₙ₎ = dot(𝐱₍ₙ₎,𝐰) # inner product
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the training phase, you do not pass y₍ₙ₎ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify y₍ₙ₎. Rather, you are interested in updating 𝐰 (??? TODO)
+        e₍ₙ₎ = d₍ₙ₎ - y₍ₙ₎
+        𝐰 += α*e₍ₙ₎*𝐱₍ₙ₎
 
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
-        Nₑ = eₙ==0 ? Nₑ : Nₑ+1
+        Nₑ = e₍ₙ₎==0 ? Nₑ : Nₑ+1
     end
     if is_training_accuracy
         accuracy = (length(𝐝)-Nₑ)/length(𝐝) # accuracy for this epoch
@@ -40,15 +40,15 @@ function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
 end
 
 function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     𝐲 = rand(length(𝐝)) # vector of predictions for confusion matrix
     Nₑ = 0
-    for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
-        μₙ = 𝐱ₙ⋅𝐰 # inner product
-        yₙ = φ(μₙ) # for the simple Perceptron, yₙ ∈ {0,1}. Therefore, it is not necessary to pass yₙ to a harder decisor since φ(⋅) already does this job
-        𝐲[n] = yₙ
+    for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
+        μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the simple Perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
+        𝐲[n] = y₍ₙ₎
 
-        Nₑ = yₙ==dₙ ? Nₑ : Nₑ+1
+        Nₑ = y₍ₙ₎==d₍ₙ₎ ? Nₑ : Nₑ+1
     end
     if !is_confusion_matrix
         accuracy = (length(𝐝)-Nₑ)/length(𝐝)
@@ -99,7 +99,7 @@ for nᵣ ∈ 1:Nᵣ
     push!(figs_training_accuracy, [fig])
 
     # decision surface
-    φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
+    φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the simple Perceptron
     x₁_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
     x₂_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
     y(x₁, x₂) = φ(dot([-1, x₁, x₂], 𝐰))

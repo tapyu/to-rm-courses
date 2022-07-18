@@ -2,7 +2,7 @@ using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 Σ=sum
 
 ## load the data
-𝐗, labels = FileIO.load("Dataset/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 # PS choose only one!!!
 # uncomment ↓ if you want to train for all attributes
 # 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
@@ -16,16 +16,16 @@ function shuffle_dataset(𝐗, 𝐝)
 end
 
 function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, dₙ) ∈ zip(eachcol(𝐗), 𝐝)
-        μₙ = dot(𝐱ₙ,𝐰) # inner product
-        yₙ = φ(μₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify yₙ. Rather, you are interested in updating 𝐰 (??? TODO)
-        eₙ = dₙ - yₙ
-        𝐰 += α*eₙ*𝐱ₙ
+    for (𝐱₍ₙ₎, d₍ₙ₎) ∈ zip(eachcol(𝐗), 𝐝)
+        μ₍ₙ₎ = dot(𝐱₍ₙ₎,𝐰) # inner product
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the training phase, you do not pass y₍ₙ₎ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify y₍ₙ₎. Rather, you are interested in updating 𝐰 (??? TODO)
+        e₍ₙ₎ = d₍ₙ₎ - y₍ₙ₎
+        𝐰 += α*e₍ₙ₎*𝐱₍ₙ₎
 
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
-        Nₑ = eₙ==0 ? Nₑ : Nₑ+1
+        Nₑ = e₍ₙ₎==0 ? Nₑ : Nₑ+1
     end
     if is_training_accuracy
         accuracy = (length(𝐝)-Nₑ)/length(𝐝) # accuracy for this epoch
@@ -36,15 +36,15 @@ function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
 end
 
 function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     𝐲 = rand(length(𝐝)) # vector of predictions for confusion matrix
     Nₑ = 0
-    for (n, (𝐱ₙ, dₙ)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
-        μₙ = 𝐱ₙ⋅𝐰 # inner product
-        yₙ = φ(μₙ) # for the simple Perceptron, yₙ ∈ {0,1}. Therefore, it is not necessary to pass yₙ to a harder decisor since φ(⋅) already does this job
-        𝐲[n] = yₙ
+    for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
+        μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the simple Perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
+        𝐲[n] = y₍ₙ₎
 
-        Nₑ = yₙ==dₙ ? Nₑ : Nₑ+1
+        Nₑ = y₍ₙ₎==d₍ₙ₎ ? Nₑ : Nₑ+1
     end
     if !is_confusion_matrix
         accuracy = (length(𝐝)-Nₑ)/length(𝐝)
@@ -66,7 +66,7 @@ Nₑ = 100 # number of epochs
 ## init
 all_āc̄c̄, all_σacc, all_𝐰ₒₚₜ = rand(3), rand(3), rand(Nₐ,3)
 for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
-    local 𝐝 = labels.==desired_label # dₙ ∈ {0,1}
+    local 𝐝 = labels.==desired_label # d₍ₙ₎ ∈ {0,1}
     local accₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset (to compute the final statistics)
     for nᵣ ∈ 1:Nᵣ # for each realization
         # initializing!
@@ -97,7 +97,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
             if length(𝐰) != 3
                 local p = plot(accₜᵣₙ, label="", xlabel=L"Epochs", ylabel="Accuracy", linewidth=2, title="Training accuracy for $(desired_label) class by epochs")
                 display(p)
-                savefig(p, "figs/trab1 (simple perceptron)/epsilon_n-by-epochs-for$(desired_label).png")
+                savefig(p, "trab1 (simple perceptron)/figs/epsilon_n-by-epochs-for$(desired_label).png")
                 # for the setosa class, compute the confusion matrix
                 if desired_label == "setosa"
                     𝐂 = zeros(2,2) # confusion matrix
@@ -107,13 +107,13 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                         𝐂[𝐲ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
                     end
                     h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
-                    savefig(h, "figs/trab1 (simple perceptron)/setosa-heatmap.png")
+                    savefig(h, "trab1 (simple perceptron)/figs/setosa-heatmap.png")
                     display(h) # TODO: put the number onto each heatmap square
                 end
             end
             # decision surface
             if length(𝐰) == 3 # plot the surface only if the learning procedure was taken with only two attributes, the petal length and petal width (equals to 3 because the bias)
-                φ = uₙ -> uₙ≥0 ? 1 : 0 # activation function of the simple Perceptron
+                φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the simple Perceptron
                 x₃_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
                 x₄_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
                 y(x₃, x₄) = φ(dot([-1, x₃, x₄], 𝐰))
@@ -178,7 +178,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                 
                 title!("Decision surface for the class $(desired_label)")
                 display(p)
-                savefig(p,"figs/trab1 (simple perceptron)/decision-surface-for-$(desired_label).png")
+                savefig(p,"trab1 (simple perceptron)/figs/decision-surface-for-$(desired_label).png")
             end
         end
     end

@@ -9,7 +9,7 @@ Nₐ = 4 # number of number of attributes, that is, input vector size at each in
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 c = 3 # number of perceptrons (neurons) of the single layer
-α = 0.001 # learning step
+α = 0.1 # learning step
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐃)
@@ -18,17 +18,19 @@ function shuffle_dataset(𝐗, 𝐃)
 end
 
 function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+    φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+    φʼ = y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎) # where y₍ₙ₎=φ(u₍ₙ₎)
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
-        𝛍ₙ = 𝐖*𝐱ₙ
-        𝐲ₙ = map(φ, 𝛍ₙ) # for the training phase, you do not pass yₙ to a harder decisor (the McCulloch and Pitts's activation function) (??? TODO)
-        𝐞ₙ = 𝐝ₙ - 𝐲ₙ
-        𝐖 += α*𝐞ₙ*𝐱ₙ'
-
+    for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
+        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+        𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎)
+        𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝐲₍ₙ₎
+        𝐲ʼ₍ₙ₎ = map(φʼ, 𝐲₍ₙ₎)
+        𝛅₍ₙ₎ = 𝐞₍ₙ₎ .* 𝐲ʼ₍ₙ₎ # vector of local gradients
+        𝐖 += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
-        i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ)
-        Nₑ = 𝐝ₙ[i]==1 ? Nₑ : Nₑ+1
+        i = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
+        Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1
     end
     if is_training_accuracy
         accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
@@ -38,17 +40,22 @@ function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
     end
 end
 
-function test(𝐗, 𝐃, 𝐖)
-    φ = uₙ -> uₙ>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
+function test(𝐗, 𝐃, 𝐖, get_predictions=false)
+    φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
     Nₑ = 0 # number of errors - misclassification
-    for (𝐱ₙ, 𝐝ₙ) ∈ zip(eachcol(𝐗), eachcol(𝐃))
-        𝛍ₙ = 𝐖*𝐱ₙ
-        # yₙ = map(φ, 𝛍ₙ) # theoretically, you need to pass 𝛍ₙ through the activation function, but, in order to solve ambiguous instances (see Ajalmar's handwritings), we pick the class with the highest activation function input
-        i = findfirst(x->x==maximum(𝛍ₙ), 𝛍ₙ) # predicted value → choose the highest activation function input as the selected class
-        Nₑ = 𝐝ₙ[i]==1 ? Nₑ : Nₑ+1
+    𝐲 = Vector{Int64}(undef, size(𝐗, 2)) # vector of all predictions
+    for (n, (𝐱₍ₙ₎, 𝐝₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), eachcol(𝐃)))
+        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+        𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # perceptron output (a vector) at instant n
+        𝐲[n] = Int(findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎)) # predicted value → choose the highest activation function output as the selected class
+        Nₑ = 𝐝₍ₙ₎[𝐲[n]]==1 ? Nₑ : Nₑ+1
     end
     accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
-    return accuracy
+    if get_predictions
+        return accuracy, 𝐲
+    else
+        return accuracy
+    end
 end
 
 function one_hot_encoding(label)
@@ -56,7 +63,7 @@ function one_hot_encoding(label)
 end
 
 ## load dataset
-𝐗, labels = FileIO.load("Dataset/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 𝐃 = rand(c,0)
 for label ∈ labels
@@ -88,7 +95,7 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(accₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "figs/trab3 (single layer perceptron)/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "trab4 (single layer perceptron with sigmoidals functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 end
 
 # analyze the accuracy statistics of each independent realization
