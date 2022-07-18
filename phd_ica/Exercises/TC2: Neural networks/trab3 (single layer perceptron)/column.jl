@@ -14,7 +14,7 @@ Nₜₛₜ = 20 # % percentage of instances for the test dataset
 α = 0.001 # learning step
 
 ## load the data
-𝐗, labels = FileIO.load("Dataset/Vertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
+𝐗, labels = FileIO.load("DatasetsVertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐃)
