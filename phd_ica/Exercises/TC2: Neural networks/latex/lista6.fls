@@ -165,6 +165,105 @@ INPUT /usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT /usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT /usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT /usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+INPUT /usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
+INPUT /usr/share/texmf-dist/tex/generic/kastrup/binhex.tex
 INPUT /usr/share/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/inputenc.sty
@@ -244,16 +343,6 @@ INPUT /usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
@@ -265,6 +354,31 @@ INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 INPUT /usr/share/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
 INPUT /usr/share/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
 INPUT /usr/share/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
@@ -302,16 +416,6 @@ INPUT /usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 INPUT /usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 INPUT /usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 INPUT /usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 INPUT /usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
@@ -361,6 +465,22 @@ INPUT ./lista6.aux
 INPUT lista6.aux
 INPUT lista6.aux
 OUTPUT lista6.aux
+INPUT /usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 INPUT /usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -380,17 +500,16 @@ INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -411,7 +530,31 @@ INPUT /usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 INPUT /usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
+INPUT /usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT ./figs/logo_cabecalho.png
 INPUT ./figs/logo_cabecalho.png
 INPUT figs/logo_cabecalho.png
@@ -420,19 +563,24 @@ OUTPUT lista6.pdf
 INPUT ./figs/logo_cabecalho.png
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
@@ -441,12 +589,48 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsym.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/txfonts/txsya.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti9.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
@@ -468,22 +652,87 @@ INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsy7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxbmia.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaSTbb.tfm
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
 INPUT lista6.aux
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb

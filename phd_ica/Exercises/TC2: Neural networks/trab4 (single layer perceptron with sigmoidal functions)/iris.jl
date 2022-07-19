@@ -17,35 +17,35 @@ function shuffle_dataset(𝐗, 𝐃)
     return 𝐗[:, shuffle_indices], 𝐃[:, shuffle_indices]
 end
 
-function train(𝐗, 𝐃, 𝐖, is_training_accuracy=true)
+function train(𝐗, 𝐃, 𝐖₍ₙ₎, is_training_accuracy=true)
     φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
     φʼ = y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎) # where y₍ₙ₎=φ(u₍ₙ₎)
     Nₑ = 0 # number of errors - misclassification
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
-        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+        𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎ # induced local field
         𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎)
         𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝐲₍ₙ₎
         𝐲ʼ₍ₙ₎ = map(φʼ, 𝐲₍ₙ₎)
         𝛅₍ₙ₎ = 𝐞₍ₙ₎ .* 𝐲ʼ₍ₙ₎ # vector of local gradients
-        𝐖 += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
+        𝐖₍ₙ₎ += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
         i = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1
     end
     if is_training_accuracy
         accuracy = (size(𝐃,2)-Nₑ)/size(𝐃,2)
-        return 𝐖, accuracy
+        return 𝐖₍ₙ₎, accuracy
     else
-        return  𝐖
+        return  𝐖₍ₙ₎
     end
 end
 
-function test(𝐗, 𝐃, 𝐖, get_predictions=false)
+function test(𝐗, 𝐃, 𝐖₍ₙ₎, get_predictions=false)
     φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
     Nₑ = 0 # number of errors - misclassification
     𝐲 = Vector{Int64}(undef, size(𝐗, 2)) # vector of all predictions
     for (n, (𝐱₍ₙ₎, 𝐝₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), eachcol(𝐃)))
-        𝛍₍ₙ₎ = 𝐖*𝐱₍ₙ₎ # induced local field
+        𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎ # induced local field
         𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # perceptron output (a vector) at instant n
         𝐲[n] = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[𝐲[n]]==1 ? Nₑ : Nₑ+1
@@ -74,7 +74,7 @@ end
 accₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
     # initialize!
-    𝐖 = rand(c, Nₐ+1) # [𝐰₁ᵀ; 𝐰₂ᵀ; ...; 𝐰ᵀ_c]
+    𝐖₍ₙ₎ = rand(c, Nₐ+1) # [𝐰₁ᵀ; 𝐰₂ᵀ; ...; 𝐰ᵀ_c]
     accₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
 
     # prepare the data!
@@ -87,15 +87,15 @@ for nᵣ ∈ 1:Nᵣ
 
     # train!
     for nₑ ∈ 1:Nₑ # for each epoch
-        𝐖, accₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖)
+        𝐖₍ₙ₎, accₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝐖₍ₙ₎)
         𝐗ₜᵣₙ, 𝐃ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐃ₜᵣₙ)
     end
     # test!
-    global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖) # accuracy for this realization
+    global accₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖₍ₙ₎) # accuracy for this realization
     
     # plot training dataset accuracy evolution
     local fig = plot(accₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab4 (single layer perceptron with sigmoidals functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "trab4 (single layer perceptron with sigmoidal functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 end
 
 # analyze the accuracy statistics of each independent realization

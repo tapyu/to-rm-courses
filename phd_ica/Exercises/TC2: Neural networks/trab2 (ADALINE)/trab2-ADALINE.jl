@@ -8,7 +8,7 @@ Nₜₛₜ = 20 # % percentage of instances for the test dataset
 Nₐ = 2 # number of number of attributes (including bias), that is, input vector size at each intance n.
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
-α₁ = 0.002 # learning step
+α = 0.002 # learning step
 μₙ, σ²ₙ = 0, 10 # Gaussian parameters
 
 ## useful functions
@@ -115,23 +115,22 @@ M̄S̄Ē₂, R̄M̄S̄Ē₂ = Σ(MSE₂ₜₛₜ)/length(MSE₂ₜₛₜ), Σ(
 𝔼MSE₂², 𝔼RMSE₂² = Σ(MSE₂ₜₛₜ.^2)/length(MSE₂ₜₛₜ), Σ(RMSE₂ₜₛₜ.^2)/length(RMSE₂ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
 σ₂ₘₛₑ, σ₂ᵣₘₛₑ = √(𝔼MSE₂² - M̄S̄Ē₂^2), √(𝔼RMSE₂² - R̄M̄S̄Ē₂^2) # standard deviation of the MSE of the all realizations
 
-println("MSE, RMSE, and standard deviation for f₁(⋅): $(σ₁ₘₛₑ), $(σ₁ᵣₘₛₑ)")
-println("MSE, RMSE, and standard deviation for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
+println("MSE, RMSE mean for f₁(⋅): $(M̄S̄Ē₁), $(R̄M̄S̄Ē₁)")
+println("MSE, RMSE standard deviation for f₁(⋅): $(σ₁ₘₛₑ), $(σ₁ᵣₘₛₑ)")
+println("MSE, RMSE mean for f₂(⋅): $(M̄S̄Ē₂), $(R̄M̄S̄Ē₂)")
+println("MSE, RMSE standard deviation for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
 
 ## predict!
 𝐝₁ = f₁(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 1
 𝐝₂ = f₂(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 2
-# 𝐧 = √σ²ₙ*randn(N) .+ μₙ # ~ N(μₙ, σ²ₙ)
-# 𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
-# 𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
 
 𝐲₁ = [fill(-1, N) range(-10,10,N)]*𝐰₁ₒₚₜ
 𝐲₂ = [fill(-1, N) range(-10,10,N)]*𝐰₂ₒₚₜ
 
-fig = plot(range(-10,10,N), [𝐝₁ 𝐲₁], label=["Input signal" "Predicted signal"], ylabel=L"f_1(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_1(x_n)")
+fig = plot(range(-10,10,N), [𝐝₁ 𝐲₁], label=["Input signal" "Predicted signal"], ylabel=L"f_1(x)", xlabel=L"x", linewidth=2, title="Predicted signal for"*L"f_1(x)")
 display(fig)
 savefig(fig, "trab2 (ADALINE)/figs/predict-f1.png")
 
-fig = plot(range(-10,10,N), [𝐝₂ 𝐲₂], label=["Input signal" "Predicted signal"], ylabel=L"f_2(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_2(x_n)")
+fig = plot(range(-10,10,N), [𝐝₂ 𝐲₂], label=["Input signal" "Predicted signal"], ylabel=L"f_2(x)", xlabel=L"x", linewidth=2, title="Predicted signal for"*L"f_2(x)")
 display(fig)
 savefig(fig, "trab2 (ADALINE)/figs/predict-f2.png")
