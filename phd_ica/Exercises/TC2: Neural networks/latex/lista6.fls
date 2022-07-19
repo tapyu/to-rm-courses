@@ -630,8 +630,6 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti9.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png

@@ -96,15 +96,16 @@ The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized 
 
         \( \left( \mathbf{X}_{trn}, \mathbf{d}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{d}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
 
-        \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\} \text{in the training dataset}\)}{
-            \(v(n) \leftarrow \mathbf{w}^\trans\left(n\right) \mathbf{x}\left(n\right)\)
+        \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
+            \ForAll{Instancies in the training dataset}{
+                \(v(n) \leftarrow \mathbf{w}^\trans\left(n\right) \mathbf{x}\left(n\right)\)
 
             \(y\left( n \right) \leftarrow \varphi(v\left( n \right))\)
 
             \(e(n) \leftarrow d\left( n \right) - y\left( n \right)\)
 
             \(\mathbf{w}(n+1) \leftarrow \mathbf{w}(n) + \eta \mathbf{x}(n) e(n)\)
-
+            }
             \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
         }
         
