@@ -122,6 +122,12 @@ end
 
 # analyze the accuracy statistics of each independent realization
 āc̄c̄ = Σ(accₜₛₜ)/Nᵣ # Mean
+𝔼acc² = Σ(accₜₛₜ.^2)/Nᵣ
+σacc = sqrt.(𝔼acc² .- āc̄c̄.^2) # standard deviation
+
+println("Mean accuracy: $(āc̄c̄)")
+println("Standard deviation: $(σacc)")
+
 # find closest surface
 i = 1
 accₜₛₜ_closest_to_accuracy = accₜₛₜ[1]

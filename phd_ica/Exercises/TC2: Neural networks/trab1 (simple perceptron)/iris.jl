@@ -5,9 +5,9 @@ using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings
 𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 # PS choose only one!!!
 # uncomment ↓ if you want to train for all attributes
-# 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 # uncomment ↓ if you want to train for petal length and width (to plot the decision surface)
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗[3:4,:]] # add the -1 input (bias)
+# 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗[3:4,:]] # add the -1 input (bias)
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐝)
@@ -97,7 +97,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
             if length(𝐰) != 3
                 local p = plot(accₜᵣₙ, label="", xlabel=L"Epochs", ylabel="Accuracy", linewidth=2, title="Training accuracy for $(desired_label) class by epochs")
                 display(p)
-                savefig(p, "trab1 (simple perceptron)/figs/epsilon_n-by-epochs-for$(desired_label).png")
+                savefig(p, "trab1 (simple perceptron)/figs/accuracy-by-epochs-for-$(desired_label).png")
                 # for the setosa class, compute the confusion matrix
                 if desired_label == "setosa"
                     𝐂 = zeros(2,2) # confusion matrix
@@ -107,8 +107,8 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                         𝐂[𝐲ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
                     end
                     h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
-                    savefig(h, "trab1 (simple perceptron)/figs/setosa-heatmap.png")
-                    display(h) # TODO: put the number onto each heatmap square
+                    savefig(h, "trab1 (simple perceptron)/figs/setosa-confusion-matrix.png")
+                    display(h) # TODO: put the number onto each confusion square
                 end
             end
             # decision surface
@@ -191,5 +191,5 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
     all_āc̄c̄[i] = āc̄c̄
     all_σacc[i] = σacc
     println("Mean accuracy for $(desired_label): $(āc̄c̄)")
-    println("Mean accuracy for $(desired_label): $(σacc)")
+    println("Standard deviation for $(desired_label): $(σacc)")
 end

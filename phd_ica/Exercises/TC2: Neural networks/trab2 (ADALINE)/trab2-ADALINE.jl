@@ -8,8 +8,8 @@ Nₜₛₜ = 20 # % percentage of instances for the test dataset
 Nₐ = 2 # number of number of attributes (including bias), that is, input vector size at each intance n.
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
-α = 0.0001 # learning step
-μ₍ₙ₎, σ²₍ₙ₎ = 0, 1 # Gaussian parameters
+α₁ = 0.002 # learning step
+μₙ, σ²ₙ = 0, 10 # Gaussian parameters
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐝)
@@ -20,8 +20,8 @@ end
 function train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝐰)
     𝐞ₜᵣₙ = rand(length(𝐝ₜᵣₙ)) # vector of errors
     for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗ₜᵣₙ), 𝐝ₜᵣₙ))
-        μ₍ₙ₎ = dot(𝐱₍ₙ₎,𝐰) # inner product
-        y₍ₙ₎ = μ₍ₙ₎ # ADALINE's activation function
+        μₙ = dot(𝐱₍ₙ₎,𝐰) # inner product
+        y₍ₙ₎ = μₙ # ADALINE's activation function
         e₍ₙ₎ = d₍ₙ₎ - y₍ₙ₎
         𝐰 += α*e₍ₙ₎*𝐱₍ₙ₎
         𝐞ₜᵣₙ[n] = e₍ₙ₎
@@ -33,8 +33,8 @@ end
 function test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝐰)
     𝐞ₜₛₜ = rand(length(𝐝ₜₛₜ)) # vector of errors
     for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗ₜₛₜ), 𝐝ₜₛₜ))
-        μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
-        y₍ₙ₎ = μ₍ₙ₎ # ADALINE's activation function
+        μₙ = 𝐱₍ₙ₎⋅𝐰 # inner product
+        y₍ₙ₎ = μₙ # ADALINE's activation function
         𝐞ₜₛₜ[n] = d₍ₙ₎ - y₍ₙ₎
     end
     𝔼𝐞ₜₛₜ² = Σ(𝐞ₜₛₜ.^2)/length(𝐞ₜₛₜ) # MSE (Mean squared error), that is, the the estimative of second moment of the error signal for this epoch
@@ -43,13 +43,13 @@ end
 
 ## generate dummy data
 f₁(x) = 5x .+ 8 # two attributes (Nₐ = 2), they are a = 5, b = 8
-f₂(x) = 2x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3, c = 6
+f₂(x) = .5x.^2 .+ 3x .+ 6 # three attributes (Nₐ = 3), they are a = 2, b = 3, c = 6
 
-𝐝₁ = f₁(range(-10,10,N)) # dummy desired dataset for function 1
-𝐝₂ = f₂(range(-10,10,N)) # dummy desired dataset for function 2
-𝐧 = √σ²₍ₙ₎*randn(N) .+ μ₍ₙ₎ # ~ N(μ₍ₙ₎, σ²₍ₙ₎)
-𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
-𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
+𝐧 = √σ²ₙ*randn(N) .+ μₙ # ~ N(μₙ, σ²ₙ)
+𝐝₁ = f₁(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 1
+𝐝₂ = f₂(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 2
+𝐗₁ = [fill(-1,N)'; (range(-10,10,N))'] # dummy input dataset
+𝐗₂ = [fill(-1,N)'; (range(-10,10,N))'] # dummy input dataset
 
 ## init
 𝐰₁ₒₚₜ, 𝐰₂ₒₚₜ = rand(Nₐ), rand(Nₐ) # two attributes: bias + x₍ₙ₎
@@ -98,9 +98,9 @@ for nᵣ ∈ 1:Nᵣ
 
         local fig = plot(MSE₁ₜᵣₙ, label="", xlabel=L"Epochs", ylabel=L"MSE_{1}", linewidth=2, title="Training MSE for"*L"f_1(x_n)=ax+b"*" class by epochs\n(1th realization)", ylims=(0, 5))
         display(fig)
-        savefig(fig, "figs/trab2 (ADALINE)/MES-by-epochs-for-f1.png")
+        savefig(fig, "trab2 (ADALINE)/figs/MES-by-epochs-for-f1.png")
         fig = plot(10*log10.(MES₂ₜᵣₙ), label="", xlabel=L"Epochs", ylabel=L"MSE_{2}"*" in (dB)", linewidth=2, title="Training MSE for"*L"f_2(x_n)=ax^2+bx+c"*" class by epochs\n(1th realization)", ylims=(0, 40))
-        savefig(fig, "figs/trab2 (ADALINE)/MES-by-epochs-for-f2.png")
+        savefig(fig, "trab2 (ADALINE)/figs/MES-by-epochs-for-f2.png")
         display(fig)
     end
 end
@@ -115,23 +115,23 @@ M̄S̄Ē₂, R̄M̄S̄Ē₂ = Σ(MSE₂ₜₛₜ)/length(MSE₂ₜₛₜ), Σ(
 𝔼MSE₂², 𝔼RMSE₂² = Σ(MSE₂ₜₛₜ.^2)/length(MSE₂ₜₛₜ), Σ(RMSE₂ₜₛₜ.^2)/length(RMSE₂ₜₛₜ) # second moment of the MSE and RMSE of the all realizations
 σ₂ₘₛₑ, σ₂ᵣₘₛₑ = √(𝔼MSE₂² - M̄S̄Ē₂^2), √(𝔼RMSE₂² - R̄M̄S̄Ē₂^2) # standard deviation of the MSE of the all realizations
 
-println("MSE and RMSE for f₁(⋅): $(σ₁ₘₛₑ), $(σ₁ᵣₘₛₑ)")
-println("MSE and RMSE for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
+println("MSE, RMSE, and standard deviation for f₁(⋅): $(σ₁ₘₛₑ), $(σ₁ᵣₘₛₑ)")
+println("MSE, RMSE, and standard deviation for f₂(⋅): $(σ₂ₘₛₑ), $(σ₂ᵣₘₛₑ)")
 
 ## predict!
-𝐝₁ = f₁(range(-10,10,N)) # dummy desired dataset for function 1
-𝐝₂ = f₂(range(-10,10,N)) # dummy desired dataset for function 2
-𝐧 = √σ²₍ₙ₎*randn(N) .+ μ₍ₙ₎ # ~ N(μ₍ₙ₎, σ²₍ₙ₎)
-𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
-𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
+𝐝₁ = f₁(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 1
+𝐝₂ = f₂(range(-10,10,N)) + 𝐧 # dummy desired dataset for function 2
+# 𝐧 = √σ²ₙ*randn(N) .+ μₙ # ~ N(μₙ, σ²ₙ)
+# 𝐗₁ = [fill(-1,N)'; (𝐝₁ + 𝐧)'] # dummy input dataset
+# 𝐗₂ = [fill(-1,N)'; (𝐝₂ + 𝐧)'] # dummy input dataset
 
-𝐲₁ = 𝐗₁'*𝐰₁ₒₚₜ
-𝐲₂ = 𝐗₂'*𝐰₂ₒₚₜ
+𝐲₁ = [fill(-1, N) range(-10,10,N)]*𝐰₁ₒₚₜ
+𝐲₂ = [fill(-1, N) range(-10,10,N)]*𝐰₂ₒₚₜ
 
-fig = plot([𝐝₁+𝐧 𝐲₁], label=["Input signal" "Predicted signal"], ylabel=L"f_1(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_1(x_n)")
+fig = plot(range(-10,10,N), [𝐝₁ 𝐲₁], label=["Input signal" "Predicted signal"], ylabel=L"f_1(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_1(x_n)")
 display(fig)
-savefig(fig, "figs/trab2 (ADALINE)/predict-f1.png")
+savefig(fig, "trab2 (ADALINE)/figs/predict-f1.png")
 
-fig = plot([𝐝₂+𝐧 𝐲₂], label=["Input signal" "Predicted signal"], ylabel=L"f_2(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_2(x_n)")
+fig = plot(range(-10,10,N), [𝐝₂ 𝐲₂], label=["Input signal" "Predicted signal"], ylabel=L"f_2(x_n)", xlabel=L"n", linewidth=2, title="Predicted signal for"*L"f_2(x_n)")
 display(fig)
-savefig(fig, "figs/trab2 (ADALINE)/predict-f2.png")
+savefig(fig, "trab2 (ADALINE)/figs/predict-f2.png")
