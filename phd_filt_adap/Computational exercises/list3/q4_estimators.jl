@@ -8,9 +8,6 @@ N = 200 # number of samples
 𝐡 = [1, 1.6] # filter coefficients
 μ = .1
 
-# filter output (desired signal) - both are equivalent
-# H = PolynomialRatio(𝐰ₒ, [1])
-# 𝐝 = filt(H, 𝐱)
 𝐝 = rand(N)
 for n ∈ 2:N
     𝐱₍ₙ₎ = [𝐱[n], 𝐱[n-1]] # input vector at the instant n

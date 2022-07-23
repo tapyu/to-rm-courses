@@ -16,5 +16,4 @@ for n ∈ 2:N
 end
 
 plot([𝐱 𝐲], label=["Input" "Output"])
-
-plot(PolynomialRatio(𝐰ₒ, [1]))
+# plot(PolynomialRatio(𝐰ₒ, [1]))
