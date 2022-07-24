@@ -10,7 +10,7 @@ Nₜᵣₙ = 500 # number of samples for the training phase
 M = 16
 
 ### TRAIN ###
-𝐬 = rand([1+im, 1-im, -1+im, -1-im], Nₜᵣₙ+Nₒ+δ) # constellation for 4QAM
+𝐬 = rand([1+im, 1-im, -1+im, -1-im], Nₜᵣₙ+Nₒ+δ) # constellation for 4-QAM
 σₛ² = Σ((abs.(𝐬)).^2)/Nₜᵣₙ # signal power -> 𝔼[‖𝐬‖²]
 
 # channel
@@ -40,8 +40,9 @@ for n ∈ 1+δ:Nₜᵣₙ+δ
 end
 
 # DECISION-DIRECTED MODE ###
-𝐬 = rand([1+im, 1-im, -1+im, -1-im], Nₜᵣₙ+Nₒ+δ) # constellation for 4QAM
+𝐬 = rand([i[1]+i[2]*im for i in Iterators.product(-3:2:3, -3:2:3)], Nₜᵣₙ+Nₒ+δ) # constellation for 16-QAM
 σₛ² = Σ((abs.(𝐬)).^2)/Nₜᵣₙ # signal power -> 𝔼[‖𝐬‖²]
+N = 5e3 # number of samples for the decision-directed mode
 
 # channel
 𝐱 = Vector{ComplexF64}(undef, Nₜᵣₙ+Nₒ+δ)
@@ -57,22 +58,25 @@ end
 # 𝐱 += 𝐯
 
 # equalizer in decision-directed mode
+function hard_decisor(x)
+    if x > 2
+        return 3
+    elseif x > 0
+        return 1
+    elseif x > -2
+        return -1
+    else
+        return -3
+    end
+end
+
 𝐲 = Vector{ComplexF64}(undef, Nₜᵣₙ+δ) # output signal
 for n ∈ 1+δ:Nₜᵣₙ+δ
     𝐱₍ₙ₎ = 𝐱[n:-1:n-δ] # input vector at the instant n -> [x[n], x[n-1], x[n-2], ..., x[n-15]]
     y₍ₙ₎ = 𝐰₍ₙ₎ ⋅ 𝐱₍ₙ₎ # y(n)
     # decisor
-    if real(y₍ₙ₎) > 0
-        if imag(y₍ₙ₎) > 0
-            𝐲[n] = 1+im
-        else
-            𝐲[n] = 1-im
-        end
-    elseif imag(y₍ₙ₎) > 0
-        𝐲[n] = -1+im
-    else
-        𝐲[n] = -1-im
-    end
+    𝐲[n] = hard_decisor(real(y₍ₙ₎)) + hard_decisor(imag(y₍ₙ₎))*im
+    
 end
 
 # ignoring the noncomputed part
