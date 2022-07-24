@@ -38,20 +38,20 @@ for (j, i) ∈ enumerate((1, 2, 10, 50))
 
     𝔼e²ₑₓc = 𝔼e²[end] - 𝔼e²ₘᵢₙ
 
-    println("Excess MSE = $(𝔼e²ₑₓc) for μ = μₘₐₓ/$(i) (practical result)")
-    println("Excess MSE = $(μ*σₙ²*tr(𝐑)/(1 - μ*tr(𝐑))) for μ = μₘₐₓ/$(i) (theoretical result)")
+    # println("Excess MSE = $(𝔼e²ₑₓc) for μ = μₘₐₓ/$(i) (practical result)")
+    # println("Excess MSE = $(μ*σₙ²*tr(𝐑)/(1 - μ*tr(𝐑))) for μ = μₘₐₓ/$(i) (theoretical result)")
 
-    # println("Misadjustment M = $(𝔼e²ₑₓc/𝔼e²ₘᵢₙ) for μ = μₘₐₓ/$(i) (practical result)")
-    # println("Misadjustment M = $(μ*tr(𝐑)/(1 - μ*tr(𝐑))) for μ = μₘₐₓ/$(i) (theoretical result)")
+    println("Misadjustment M = $(𝔼e²ₑₓc/𝔼e²ₘᵢₙ) for μ = μₘₐₓ/$(i) (practical result)")
+    println("Misadjustment M = $(μ*tr(𝐑)/(1 - μ*tr(𝐑))) for μ = μₘₐₓ/$(i) (theoretical result)")
 end
 
 # save LMS fig convergence
-fig = plot(plots_lms..., layout=(4,1), size=(1200,800)) # plots_lms... -> dereferencing
-savefig(fig, "figs/q5_lms_algorithm.png")
+fig = plot(plots_lms..., layout=(4,1), size=(1200,800), title=["System identification output for differents learning steps" "" "" ""]) # plots_lms... -> dereferencing
+savefig(fig, "list3/figs/q5_lms_algorithm.png")
 
 # save MSE
 fig = plot(plots_mse..., layout=(4,1), size=(1200,800)) # plots_ems... -> dereferencing
-savefig(fig, "figs/q5_mse_algorithm.png")
+savefig(fig, "list3/figs/q5_mse_algorithm.png")
 
 H = DSP.PolynomialRatio([1; fill(0,11); -1], [1, -1]) # transfer function of H(ℯ^(jω)) vs. Ĥ(ℯ^(jω))
 H₍w₎, w = DSP.freqresp(H)
@@ -59,4 +59,4 @@ fig = plot(w, abs.(H₍w₎), label=L"\mid H(e^{jw})\mid", linewidth=2)
 Ĥ = DSP.PolynomialRatio(𝐰₍ₙ₎, [1])
 Ĥ₍w₎, w = DSP.freqresp(Ĥ)
 plot!(w, abs.(Ĥ₍w₎), xlabel="Digital frequency "*L"w"*" (radians/sample)", label=L"\mid\hat{H}(e^{jw})\mid", xticks = ([0, π/2, π], ["0", "π/2", "π"]), linewidth=2)
-savefig(fig, "figs/transfer_function.png")
+savefig(fig, "list3/figs/transfer_function.png")
