@@ -16,6 +16,8 @@ end
 
 # steepest descent
 𝐰₍ₙ₎ = rand(2) # initial guess of the coefficient vector
+𝐖 = rand(2, N) # save the coefficient vector evolution
+𝐖[:,1] = 𝐰₍ₙ₎ # save initial position
 𝐲 = rand(N) # output signal
 𝔼e² = zeros(N) # error signal
 for n ∈ 2:N
@@ -24,6 +26,7 @@ for n ∈ 2:N
     𝔼e²[n] = ((n-2)*𝔼e²[n-1] + (𝐝[n] - 𝐲[n])^2)/(n-1)
     𝐠₍ₙ₎ = -2𝐩 + 2𝐑*𝐰₍ₙ₎ # deterministic gradient
     global 𝐰₍ₙ₎ -= μ*𝐠₍ₙ₎
+    𝐖[:,n] = 𝐰₍ₙ₎
 end
 p1 = plot([𝐲 𝐝], title="Steepest descent", label=[L"\mathbf{w}(n) = \mathbf{w}(n) - \mu \mathbf{g}(n)" L"d(n)"])
 e1 = plot(𝔼e², title="MSE of the Steepest descent", label=L"\mathbb{E}[e^2(n)]")
