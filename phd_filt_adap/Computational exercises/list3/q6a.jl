@@ -5,7 +5,7 @@ using LinearAlgebra, DSP, Plots
 Nₒ = 3 # channel order
 δ = 15 # desired signal delay
 Nₜᵣₙ = 500 # number of samples for the training phase
-μ = 0.4
+μ = 0.001
 γ = 10 # Normalized LMS hyperparameter
 M = 16
 
@@ -36,7 +36,7 @@ for n ∈ 1+δ:Nₜᵣₙ+δ
     e₍ₙ₎ = d₍ₙ₎ - y₍ₙ₎
     𝐞1[n-δ] = e₍ₙ₎
     𝐠̂₍ₙ₎ = -2e₍ₙ₎'*𝐱₍ₙ₎ # stochastic gradient
-    global 𝐰₍ₙ₎ -= μ*𝐠̂₍ₙ₎/(𝐱₍ₙ₎⋅𝐱₍ₙ₎ + γ)
+    global 𝐰₍ₙ₎ -= μ*𝐠̂₍ₙ₎#/(𝐱₍ₙ₎⋅𝐱₍ₙ₎ + γ)
 end
 
 ## DECISION-DIRECTED MODE ###
@@ -77,10 +77,10 @@ end
 
 # ignoring the noncomputed part
 𝐲 = 𝐲[1+δ:end]
-𝐬 = 𝐬[1+δ:end]
+𝐬 = 𝐬[1:end-δ]
 
 # plot([real(𝐲) real(𝐬); imag(𝐲) imag(𝐬)], layout=(2,1), size=(1200,800))
 
-plot([real(𝐲[end-50:end]) real(𝐬[end-50:end])], size=(1200,800), line=:stem, marker=:xcross)
+plot([real(𝐲[end-150:end]) real(𝐬[end-150:end])], size=(1200,800), line=:stem, marker=:xcross)
 
-plot(abs.(𝐞1))
+# plot(abs.(𝐞1))
