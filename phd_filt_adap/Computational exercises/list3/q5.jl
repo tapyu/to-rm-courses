@@ -9,7 +9,7 @@ N = 13 # 13 tapped delay plus the bias
 𝔼e²ₘᵢₙ = σₙ² # minimum MSE (only achievable by the steepest descent method, using the deterministic gradient)
 
 # system output
-𝐝ʼ = rand(Nₛ)
+𝐝ʼ = [0; rand(Nₛ-1)] # initial stage
 for n ∈ N:Nₛ
     𝐝ʼ[n] = 𝐝ʼ[n-1] + 𝐱[n] - 𝐱[n-12]
 end
