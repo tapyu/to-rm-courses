@@ -35,7 +35,7 @@ for n ∈ 2:N
     global 𝐖[:,n] = 𝐰₍ₙ₎
     global 𝔼e²[n] = ((n-2)*𝔼e²[n-1] + (𝐝[n] - 𝐲[n])^2)/(n-1)
 end
-p1 = plot([𝐲 𝐝], title="Steepest descent", label=[L"\mathbf{w}(n) = \mathbf{w}(n) - \mu \mathbf{g}(n)" L"d(n)"])
+p1 = plot([𝐲 𝐝], title="Steepest descent "*L"(\mathbf{w}(n) = \mathbf{w}(n) - \mu \mathbf{g}(n))", label=[L"y(n)" L"d(n)"], legend=:bottomleft)
 e1 = plot(𝔼e², title="MSE of the Steepest descent", label=L"\mathbb{E}[e^2(n)]")
 fig = contour(-.5:.05:1.5, -1.5:.05:1.5, J) # add the cost function contour to the last plot
 scatter!([𝐰ₒ[1]], [𝐰ₒ[2]], markershape= :circle, color= :red, markersize = 6, label = "Wiener solution", title="Steepest descent coefficients over the contours") # ! make plots the scatter on the same axis
@@ -58,7 +58,7 @@ for n ∈ 2:N
     global 𝐖[:,n] = 𝐰₍ₙ₎
     global 𝔼e²[n] = ((n-2)*𝔼e²[n-1] + (𝐝[n] - 𝐲[n])^2)/(n-1)
 end
-p2 = plot([𝐲 𝐝], title="Newton's algorithm" , label=[L"\mathbf{w}(n) = \mathbf{w}(n) + \mu \mathbf{H}^{-1}\mathbf{g}(n)" L"d(n)"])
+p2 = plot([𝐲 𝐝], title="Newton's algorithm "*L"(\mathbf{w}(n) = \mathbf{w}(n) - \mu \mathbf{H}^{-1}\mathbf{g}(n))" , label=[L"y(n)" L"d(n)"], legend=:bottomleft)
 e2 = plot(𝔼e², title="MSE of the Newton's algorithm", label=L"\mathbb{E}[e^2(n)]")
 fig = contour(-.5:.05:1.5, -1.5:.05:1.5, J) # add the cost function contour to the last plot
 scatter!([𝐰ₒ[1]], [𝐰ₒ[2]], markershape= :circle, color= :red, markersize = 6, label = "Wiener solution", title="Newton's algorithm coefficients over the contours") # ! make plots the scatter on the same axis
@@ -81,7 +81,7 @@ for n ∈ 2:N
     global 𝐖[:,n] = 𝐰₍ₙ₎
     global 𝔼e²[n] = ((n-2)*𝔼e²[n-1] + e₍ₙ₎^2)/(n-1)
 end
-p3 = plot([𝐲 𝐝], title="LMS algorithm", label=[L"\mathbf{w}(n) = \mathbf{w}(n) + 2\mu e(n)\mathbf{x}(n)" L"d(n)"])
+p3 = plot([𝐲 𝐝], title="LMS algorithm "*L"(\mathbf{w}(n) = \mathbf{w}(n) + 2\mu e(n)\mathbf{x}(n))", label=[L"y(n)" L"d(n)"], legend=:bottomleft)
 e3 = plot(𝔼e², title="MSE of the LMS algorithm", label=L"\mathbb{E}[e^2(n)]")
 fig = contour(-.5:.05:1, -1.5:.05:1, J) # add the cost function contour to the last plot
 scatter!([𝐰ₒ[1]], [𝐰ₒ[2]], markershape= :circle, color= :red, markersize = 6, label = "Wiener solution", title="LMS algorithm coefficients over the contours") # ! make plots the scatter on the same axis
@@ -105,7 +105,7 @@ for n ∈ 2:N
     global 𝐖[:,n] = 𝐰₍ₙ₎
     global 𝔼e²[n] = ((n-2)*𝔼e²[n-1] + e₍ₙ₎^2)/(n-1)
 end
-p4 = plot([𝐲 𝐝], title="Normalized LMS algorithm", label=[L"\mathbf{w}(n) = \mathbf{w}(n) + \frac{2\mu e(n)\mathbf{x}(n)}{\mathbf{x}^\mathrm{T}(n)\mathbf{x}(n) + \gamma}" L"d(n)"])
+p4 = plot([𝐲 𝐝], title="Normalized LMS algorithm "*L"\left(\mathbf{w}(n) = \mathbf{w}(n) + \frac{2\mu e(n)\mathbf{x}(n)}{\mathbf{x}^\mathrm{T}(n)\mathbf{x}(n) + \gamma}\right)", label=[L"y(n)" L"d(n)"], legend=:bottomleft)
 e4 = plot(𝔼e², title="MSE of the normalized LMS algorithm", label=L"\mathbb{E}[e^2(n)]")
 fig = contour(-.5:.05:1.5, -1.5:.05:1.5, J) # add the cost function contour to the last plot
 scatter!([𝐰ₒ[1]], [𝐰ₒ[2]], markershape= :circle, color= :red, markersize = 6, label = "Wiener solution", title="Normalized LMS algorithm coefficients over the contours") # ! make plots the scatter on the same axis
@@ -114,7 +114,7 @@ savefig(fig, "list3/figs/q4c_normalized_lms_algorithm.png")
 
 # final plots
 fig = plot(p1, p2, p3, p4, layout=(4,1), size=(1200,800))
-savefig(fig, "list3/figs/q4.png")
+savefig(fig, "list3/figs/q4_all_filter_output.png")
 
 fig = plot(e1, e2, e3, e4, layout=(4,1), size=(1200,800))
 savefig(fig, "list3/figs/q4-error-evolution.png")
