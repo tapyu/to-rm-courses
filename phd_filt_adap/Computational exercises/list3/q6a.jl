@@ -60,7 +60,7 @@ end
 𝐱 += 𝐯
 
 # equalizer in decision-directed mode
-function hard_decisor(x)
+function hard_decisor16qam(x)
     if x > 2
         return 3
     elseif x > 0
@@ -77,7 +77,7 @@ for n ∈ 1+δ:N+δ
     𝐱₍ₙ₎ = 𝐱[n:-1:n-δ] # input vector at the instant n -> [x[n], x[n-1], x[n-2], ..., x[n-15]]
     y₍ₙ₎ = 𝐰₍ₙ₎ ⋅ 𝐱₍ₙ₎ # y(n)
     # decisor
-    𝐲[n] = hard_decisor(real(y₍ₙ₎)) + hard_decisor(imag(y₍ₙ₎))*im
+    𝐲[n] = hard_decisor16qam(real(y₍ₙ₎)) + hard_decisor16qam(imag(y₍ₙ₎))*im
 end
 
 # ignoring the noncomputed part

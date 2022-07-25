@@ -60,7 +60,7 @@ end
 𝐱 += 𝐯
 
 # equalizer in decision-directed mode
-function hard_decisor(x) # for 256-QAM
+function hard_decisor256qam(x) # for 256-QAM
     if abs(x) > 8
         if abs(x) > 12
             if abs(x) > 14
@@ -91,7 +91,7 @@ for n ∈ 1+δ:N+δ
     𝐱₍ₙ₎ = 𝐱[n:-1:n-δ] # input vector at the instant n -> [x[n], x[n-1], x[n-2], ..., x[n-15]]
     y₍ₙ₎ = 𝐰₍ₙ₎ ⋅ 𝐱₍ₙ₎ # y(n)
     # decisor
-    𝐲[n] = hard_decisor(real(y₍ₙ₎)) + hard_decisor(imag(y₍ₙ₎))*im
+    𝐲[n] = hard_decisor256qam(real(y₍ₙ₎)) + hard_decisor256qam(imag(y₍ₙ₎))*im
 end
 
 # ignoring the noncomputed part
@@ -107,3 +107,6 @@ savefig(fig, "list3/figs/q6c_output.png")
 # save error output
 fig = plot(abs2.(𝐞), title="Signal error in training phase for $(Nₜᵣₙ) samples", label=L"\mid e(n)\mid^2", xlabel="n")
 savefig(fig, "list3/figs/q6c_error.png")
+
+# compute the SER (Symbol Error Rate)
+all_SER = Σ(𝐲 .!= 𝐬)/length(𝐲)
