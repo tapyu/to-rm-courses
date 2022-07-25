@@ -41,8 +41,8 @@ for n ∈ 1+δ:Nₜᵣₙ+δ
 end
 
 ## DECISION-DIRECTED MODE ###
-N = 5_000 # number of samples for the decision-directed mode
-𝐬 = rand([i[1]+i[2]*im for i in Iterators.product(-3:2:3, -3:2:3)], N+Nₒ+δ) # constellation for 16-QAM
+N = 500 # number of samples for the decision-directed mode
+𝐬 = rand([i[1]+i[2]*im for i in Iterators.product(-15:2:15, -15:2:15)], N+Nₒ+δ) # constellation for 256-QAM
 Pₛ = Σ(abs2.(𝐬))/N # signal power -> 𝔼[‖𝐬‖²]
 
 # channel
@@ -60,15 +60,29 @@ end
 𝐱 += 𝐯
 
 # equalizer in decision-directed mode
-function hard_decisor(x)
-    if x > 2
-        return 3
-    elseif x > 0
-        return 1
-    elseif x > -2
-        return -1
+function hard_decisor(x) # for 256-QAM
+    if abs(x) > 8
+        if abs(x) > 12
+            if abs(x) > 14
+                return x>0 ? 15 : -15
+            else
+                return x>0 ? 13 : -13
+            end
+        elseif abs(x) > 10
+            return x>0 ? 11 : -11
+        else
+            return x>0 ? 9 : -9
+        end
+    elseif abs(x) > 4
+        if abs(x) > 6
+            return x>0 ? 7 : -7
+        else
+            return x>0 ? 5 : -5
+        end
+    elseif abs(x) > 2
+        return x>0 ? 3 : -3
     else
-        return -3
+        return x>0 ? 1 : -1
     end
 end
 
@@ -86,10 +100,10 @@ end
 𝐬 = 𝐬[1:end-δ]
 
 # save signal output
-p = [plot([real(𝐲[end-50:end]) real(𝐬[end-50:end]) real(𝐱[end-50:end])], line=:stem, markershape=[:star5 :utriangle :circle], title="Real part", label=[L"\hat{s}(n)" L"s(n)" L"x(n)"], ylims=(-1.5,1.5)) plot([imag(𝐲[end-50:end]) imag(𝐬[end-50:end]) imag(𝐱[end-50:end])], line=:stem, title="Imaginary part", markershape=[:star5 :utriangle :circle], label=[L"\hat{s}(n)" L"s(n)" L"x(n)"], ylims=(-1.5,1.5))]
+p = [plot([real(𝐲[end-50:end]) real(𝐬[end-50:end]) real(𝐱[end-50:end])], line=:stem, markershape=[:star5 :utriangle :circle], title="Real part", label=[L"\hat{s}(n)" L"s(n)" L"x(n)"], ylims=(-15.5,15.5)) plot([imag(𝐲[end-50:end]) imag(𝐬[end-50:end]) imag(𝐱[end-50:end])], line=:stem, title="Imaginary part", markershape=[:star5 :utriangle :circle], label=[L"\hat{s}(n)" L"s(n)" L"x(n)"], ylims=(-15.5,15.5))]
 fig = plot(p..., size=(900,600), layout=(2,1))
-savefig(fig, "list3/figs/q6a_output.png")
+savefig(fig, "list3/figs/q6c_output.png")
 
 # save error output
 fig = plot(abs2.(𝐞), title="Signal error in training phase for $(Nₜᵣₙ) samples", label=L"\mid e(n)\mid^2", xlabel="n")
-savefig(fig, "list3/figs/q6a_error.png")
+savefig(fig, "list3/figs/q6c_error.png")
