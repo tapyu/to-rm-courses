@@ -12,7 +12,7 @@ plots_errors = Vector{Plots.Plot{Plots.GRBackend}}(undef,3) # a list of error pl
 for (i, Nₜᵣₙ) ∈ enumerate((150, 300, 500)) # number of samples for the training phase
     ### TRAIN ###
     𝐬 = rand([1+im, 1-im, -1+im, -1-im], Nₜᵣₙ+Nₒ+δ) # constellation for 4-QAM
-    Pₛ = Σ(abs2.(𝐬))/Nₜᵣₙ # signal power -> estimate of 𝔼[‖𝐬‖²]
+    Eₐᵥg = Σ(abs2.(𝐬))/Nₜᵣₙ # average symbol energy -> estimate of 𝔼[‖𝐬‖²]
 
     # channel
     𝐱 = Vector{ComplexF64}(undef, Nₜᵣₙ+Nₒ+δ)
@@ -24,8 +24,8 @@ for (i, Nₜᵣₙ) ∈ enumerate((150, 300, 500)) # number of samples for the t
     𝐬 = 𝐬[1+Nₒ:end]
 
     # noise
-    σ²ₙ = Pₛ*1e-3 # SNR = 30 dB = 10 log(Pₛ/σ²ₙ)
-    𝐯 = √(σ²ₙ)*randn(Nₜᵣₙ+δ)
+    σ²ₙ = Eₐᵥg*1e-3 # SNR = 30 dB = 10 log(Eₐᵥg/σ²ₙ)
+    𝐯 = √(σ²ₙ)*randn(ComplexF64, Nₜᵣₙ+δ)
     𝐱 += 𝐯
 
     # equalizer (LMS)
@@ -44,7 +44,7 @@ for (i, Nₜᵣₙ) ∈ enumerate((150, 300, 500)) # number of samples for the t
     ### DECISION-DIRECTED MODE ###
     N = 5_000 # number of samples for the decision-directed mode
     𝐬 = rand([i[1]+i[2]*im for i in Iterators.product(-3:2:3, -3:2:3)], N+Nₒ+δ) # constellation for 16-QAM
-    Pₛ = Σ(abs2.(𝐬))/N # signal power -> 𝔼[‖𝐬‖²]
+    Eₐᵥg = Σ(abs2.(𝐬))/N # average symbol energy -> 𝔼[‖𝐬‖²]
 
     # channel
     𝐱 = Vector{ComplexF64}(undef, N+Nₒ+δ)
@@ -56,7 +56,7 @@ for (i, Nₜᵣₙ) ∈ enumerate((150, 300, 500)) # number of samples for the t
     𝐬 = 𝐬[1+Nₒ:end]
 
     # noise
-    σ²ₙ = Pₛ*1e-3 # SNR = 30 dB = 10 log(Pₛ/σ²ₙ)
+    σ²ₙ = Eₐᵥg*1e-3 # SNR = 30 dB = 10 log(Eₐᵥg/σ²ₙ)
     𝐯 = √(σ²ₙ)*randn(N+δ)
     𝐱 += 𝐯
 

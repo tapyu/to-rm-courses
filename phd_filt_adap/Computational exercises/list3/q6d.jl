@@ -12,7 +12,7 @@ M = 16
 
 ### TRAIN ###
 𝐬 = rand([1+im, 1-im, -1+im, -1-im], Nₜᵣₙ+Nₒ+δ) # constellation for 4-QAM
-Pₛ = Σ(abs2.(𝐬))/Nₜᵣₙ # signal power -> 𝔼[‖𝐬‖²]
+Eₐᵥg = Σ(abs2.(𝐬))/Nₜᵣₙ # average symbol energy -> 𝔼[‖𝐬‖²]
 
 # channel
 𝐱 = Vector{ComplexF64}(undef, Nₜᵣₙ+Nₒ+δ)
@@ -24,7 +24,7 @@ end
 𝐬 = 𝐬[1+Nₒ:end]
 
 # noise
-# σ²ₙ = Pₛ*1e-3 # SNR = 30 dB = 10 log(Pₛ/σ²ₙ)
+# σ²ₙ = Eₐᵥg*1e-3 # SNR = 30 dB = 10 log(Eₐᵥg/σ²ₙ)
 # 𝐯 = √(σ²ₙ)*randn(Nₜᵣₙ+δ)
 # 𝐱 += 𝐯
 
@@ -42,7 +42,7 @@ for n ∈ 1+δ:Nₜᵣₙ+δ
 end
 
 ## DECISION-DIRECTED MODE ###
-N = 5_000 # number of symbols for the decision-directed mode
+N = 100_000 # number of symbols for the decision-directed mode
 SNR_min, SNR_max = 0, 30
 # plots_SER = Vector{Plots.Plot{Plots.GRBackend}}(undef,4) # a list of output plots
 figs = plot() # an empty plot
@@ -51,7 +51,7 @@ for (j, (M, hard_decisor)) ∈ enumerate(zip((4, 16, 64, 256), (hard_decisor_4qa
     all_SER = Vector{Float64}(undef, SNR_max-SNR_min+1)
     for (i, SNR_dB) ∈ enumerate(SNR_min:SNR_max)
         local 𝐬 = rand([i[1]+i[2]*im for i ∈ Iterators.product(-(√(M)-1):2:√(M)-1, -(√(M)-1):2:√(M)-1)], N+Nₒ+δ) # symbol sequence for M-QAM constellation
-        local Pₛ = Σ(abs2.(𝐬))/N # signal power -> 𝔼[‖𝐬‖²]
+        local Eₐᵥg = Σ(abs2.(𝐬))/N # average symbol energy -> 𝔼[‖𝐬‖²]
 
         # channel
         local 𝐱 = Vector{ComplexF64}(undef, N+Nₒ+δ)
@@ -63,8 +63,8 @@ for (j, (M, hard_decisor)) ∈ enumerate(zip((4, 16, 64, 256), (hard_decisor_4qa
         𝐬 = 𝐬[1+Nₒ:end]
 
         # noise
-        local σ²ₙ = (10^(-SNR_dB/10))*Pₛ # SNR = SNR_dB dB = 10 log(Pₛ/σ²ₙ) -> σ²ₙ = (10^(-SNR_dB/10))/ Pₛ
-        local 𝐯 = √(σ²ₙ)*randn(N+δ) # ~ N(0, σ²ₙ)
+        local σ²ₙ = (10^(-SNR_dB/10))*Eₐᵥg # SNR = SNR_dB dB = 10 log(Eₐᵥg/σ²ₙ) -> σ²ₙ = (10^(-SNR_dB/10))/ Eₐᵥg
+        local 𝐯 = √(σ²ₙ)*randn(ComplexF64, N+δ) # ~ N(0, σ²ₙ)
         𝐱 += 𝐯
 
         𝐲 = Vector{ComplexF64}(undef, N+δ) # output signal
@@ -84,10 +84,10 @@ for (j, (M, hard_decisor)) ∈ enumerate(zip((4, 16, 64, 256), (hard_decisor_4qa
         # compute the SER (Symbol Error Rate)
         all_SER[i] = Σ(𝐲 .!= 𝐬)/length(𝐲)
     end
-    global fig = plot!(SNR_min:SNR_max, 10log10.(all_SER), label="$(M)-QAM", linewidth=2, linestyle=:dashdot, markershape=:xcross)
+    global fig = plot!(SNR_min:SNR_max, 10log10.(all_SER), label="$(M)-QAM", linewidth=2, linestyle=:dashdot, markershape=:xcross, legend=:bottomleft)
 end
 
 title!("Symbol Error Rate")
-ylabel!("SER")
+ylabel!("SER (dB)")
 xlabel!("SNR (dB)")
 savefig(fig, "list3/figs/q6d_ser_by_snr.png")
