@@ -20,7 +20,7 @@ fig = plot(all_μx_A, label=["VERY LOW "*L"\left(\mu_{A_1}^{(i)}(x_n)\right)" "L
 
 savefig(fig, "figs/takagi_sugeno/fuzzyset_takagi_sugeno.png")
 
-all_f = [100, 40, 130, 10] # [f₁(xₙ) f₂(xₙ) ... f₄(xₙ)]
+all_f = [100, 40, 150, 8] # [f₁(xₙ) f₂(xₙ) ... f₄(xₙ)]
 
 for (n, μx_A) ∈ enumerate(eachrow(all_μx_A))
     𝐲̂[n] = inference(μx_A, all_f)
@@ -39,6 +39,24 @@ fig = scatter(𝐱, 𝐲,
         xlabel = "Inputs",
         ylabel = "Outputs",
         label = "Data")
-plot!(𝐱, 𝐲̂, linewidth=2, label=L"\hat{y}_n")
+plot!(𝐱, 𝐲̂, linewidth=3, label=L"\hat{y}_n")
 savefig(fig, "figs/takagi_sugeno/fuzzy_prediction.png")
 display(fig)
+
+𝛜 = 𝐲 - 𝐲̂ # residues
+
+# residues statistics
+𝛜̄ = Σ(𝛜)/length(𝛜) # must be approximately zero
+𝔼𝛜² = Σ(𝛜.^2)/length(𝛜) # second moment (mean squared error, MSE)
+σ̂²ₑ = 𝔼𝛜² - 𝛜̄^2 # σ̂²ₑ≈𝔼𝛜² (variance≈power)
+
+# coefficient of determination
+𝐲̄ = Σ(𝐲)/length(𝐲)
+R² = 1 - (Σ(𝛜.^2)/Σ((𝐲.-𝐲̄).^2))
+
+# Pearson correlation between 𝐲 and 𝐲̂
+ρ = cor(𝐲, 𝐲̂)
+
+println("mean squared error, MSE: $(𝔼𝛜²)")
+println("Coefficient of determination: $(R²)")
+println("Pearson correlation: $(ρ)")

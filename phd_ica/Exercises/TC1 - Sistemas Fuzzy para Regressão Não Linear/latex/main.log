@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  1 AUG 2022 03:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  1 AUG 2022 16:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -716,132 +716,142 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.3> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 82.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 75.
  (/usr/share/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 82.
+(Font)              size <5> substituted on input line 75.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<../figs/OLS-by-parts/scatterplot.png, id=18, 602.25pt x 401.5pt>
+<../figs/OLS-by-parts/scatterplot.png, id=20, 602.25pt x 401.5pt>
 File: ../figs/OLS-by-parts/scatterplot.png Graphic file (type png)
 <use ../figs/OLS-by-parts/scatterplot.png>
-Package pdftex.def Info: ../figs/OLS-by-parts/scatterplot.png  used on input line 113.
+Package pdftex.def Info: ../figs/OLS-by-parts/scatterplot.png  used on input line 115.
 (pdftex.def)             Requested size: 222.82901pt x 148.55266pt.
-<../figs/OLS-by-parts/OLS_by_4parts.png, id=19, 602.25pt x 401.5pt>
+<../figs/OLS-by-parts/OLS_by_4parts.png, id=21, 602.25pt x 401.5pt>
 File: ../figs/OLS-by-parts/OLS_by_4parts.png Graphic file (type png)
 <use ../figs/OLS-by-parts/OLS_by_4parts.png>
-Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_4parts.png  used on input line 124.
+Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_4parts.png  used on input line 126.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 124.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 126.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.2> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 124.
-<../figs/OLS-by-parts/OLS_by_5parts.png, id=21, 602.25pt x 401.5pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 126.
+<../figs/OLS-by-parts/OLS_by_5parts.png, id=23, 602.25pt x 401.5pt>
 File: ../figs/OLS-by-parts/OLS_by_5parts.png Graphic file (type png)
 <use ../figs/OLS-by-parts/OLS_by_5parts.png>
-Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_5parts.png  used on input line 129.
+Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_5parts.png  used on input line 131.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 129--130
+Overfull \hbox (2.5pt too wide) in paragraph at lines 131--132
 [][] 
  []
 
-<../figs/OLS-by-parts/OLS_by_6parts.png, id=23, 602.25pt x 401.5pt>
+<../figs/OLS-by-parts/OLS_by_6parts.png, id=25, 602.25pt x 401.5pt>
 File: ../figs/OLS-by-parts/OLS_by_6parts.png Graphic file (type png)
 <use ../figs/OLS-by-parts/OLS_by_6parts.png>
-Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_6parts.png  used on input line 134.
+Package pdftex.def Info: ../figs/OLS-by-parts/OLS_by_6parts.png  used on input line 136.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 134--135
+Overfull \hbox (2.5pt too wide) in paragraph at lines 136--137
 [][] 
  []
 
 [2 <../figs/OLS-by-parts/OLS_by_4parts.png> <../figs/OLS-by-parts/OLS_by_5parts.png> <../figs/OLS-by-parts/OLS_by_6parts.png> <../figs/OLS-by-parts/scatterplot.png>]
-<../figs/OLS-by-parts/residues_PDF_I5i1.png, id=32, 602.25pt x 401.5pt>
+<../figs/OLS-by-parts/residues_PDF_I5i1.png, id=34, 602.25pt x 401.5pt>
 File: ../figs/OLS-by-parts/residues_PDF_I5i1.png Graphic file (type png)
 <use ../figs/OLS-by-parts/residues_PDF_I5i1.png>
-Package pdftex.def Info: ../figs/OLS-by-parts/residues_PDF_I5i1.png  used on input line 201.
+Package pdftex.def Info: ../figs/OLS-by-parts/residues_PDF_I5i1.png  used on input line 203.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 266.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 268.
  (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-<../figs/kth-poly-reg/5th-order.png, id=33, 602.25pt x 401.5pt>
+<../figs/kth-poly-reg/5th-order.png, id=35, 602.25pt x 401.5pt>
 File: ../figs/kth-poly-reg/5th-order.png Graphic file (type png)
 <use ../figs/kth-poly-reg/5th-order.png>
-Package pdftex.def Info: ../figs/kth-poly-reg/5th-order.png  used on input line 292.
+Package pdftex.def Info: ../figs/kth-poly-reg/5th-order.png  used on input line 294.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
-<../figs/kth-poly-reg/6th-order.png, id=35, 602.25pt x 401.5pt>
+<../figs/kth-poly-reg/6th-order.png, id=37, 602.25pt x 401.5pt>
 File: ../figs/kth-poly-reg/6th-order.png Graphic file (type png)
 <use ../figs/kth-poly-reg/6th-order.png>
-Package pdftex.def Info: ../figs/kth-poly-reg/6th-order.png  used on input line 297.
+Package pdftex.def Info: ../figs/kth-poly-reg/6th-order.png  used on input line 299.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 297--298
+Overfull \hbox (2.5pt too wide) in paragraph at lines 299--300
 [][] 
  []
 
-<../figs/kth-poly-reg/7th-order.png, id=37, 602.25pt x 401.5pt>
+<../figs/kth-poly-reg/7th-order.png, id=39, 602.25pt x 401.5pt>
 File: ../figs/kth-poly-reg/7th-order.png Graphic file (type png)
 <use ../figs/kth-poly-reg/7th-order.png>
-Package pdftex.def Info: ../figs/kth-poly-reg/7th-order.png  used on input line 302.
+Package pdftex.def Info: ../figs/kth-poly-reg/7th-order.png  used on input line 304.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 302--303
+Overfull \hbox (2.5pt too wide) in paragraph at lines 304--305
 [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 304.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 306.
 [3 <../figs/OLS-by-parts/residues_PDF_I5i1.png>]
-<../figs/mamdani_fuzzy/fuzzification-for-2sets.png, id=45, 602.25pt x 401.5pt>
+<../figs/mamdani_fuzzy/fuzzification-for-2sets.png, id=46, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzification-for-2sets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png  used on input line 347.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png  used on input line 349.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
-<../figs/mamdani_fuzzy/fuzzification-for-3sets.png, id=47, 602.25pt x 401.5pt>
+<../figs/mamdani_fuzzy/fuzzification-for-3sets.png, id=48, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzification-for-3sets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png  used on input line 351.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png  used on input line 353.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
-<../figs/mamdani_fuzzy/fuzzy_prediction.png, id=49, 602.25pt x 401.5pt>
+ [4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]
+<../figs/mamdani_fuzzy/fuzzy_prediction.png, id=56, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzy_prediction.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzy_prediction.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzy_prediction.png  used on input line 393.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzy_prediction.png  used on input line 396.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]
-<../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png, id=56, 602.25pt x 401.5pt>
+ [5 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png> <../figs/mamdani_fuzzy/fuzzification-for-3sets.png> <../figs/mamdani_fuzzy/fuzzy_prediction.png>]
+<../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png, id=62, 602.25pt x 401.5pt>
 File: ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png Graphic file (type png)
 <use ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png>
-Package pdftex.def Info: ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png  used on input line 429.
+Package pdftex.def Info: ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png  used on input line 453.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [5 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png> <../figs/mamdani_fuzzy/fuzzification-for-3sets.png> <../figs/mamdani_fuzzy/fuzzy_prediction.png>] (./main.bbl) 
+<../figs/takagi_sugeno/fuzzy_prediction.png, id=63, 602.25pt x 401.5pt>
+File: ../figs/takagi_sugeno/fuzzy_prediction.png Graphic file (type png)
+<use ../figs/takagi_sugeno/fuzzy_prediction.png>
+Package pdftex.def Info: ../figs/takagi_sugeno/fuzzy_prediction.png  used on input line 471.
+(pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
+ (./main.bbl) 
 AED: lastpage setting LastPage
-[6 <../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png>] (./main.aux)
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[6 <../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png> <../figs/takagi_sugeno/fuzzy_prediction.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 12062 strings out of 478238
- 186668 string characters out of 5850456
- 508059 words of memory out of 5000000
- 30002 multiletter control sequences out of 15000+600000
- 589303 words of font info for 234 fonts, out of 8000000 for 9000
+ 12072 strings out of 478238
+ 187024 string characters out of 5850456
+ 510075 words of memory out of 5000000
+ 30010 multiletter control sequences out of 15000+600000
+ 589877 words of font info for 236 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,19n,77p,1269b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (6 pages, 731415 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (6 pages, 785897 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 145 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

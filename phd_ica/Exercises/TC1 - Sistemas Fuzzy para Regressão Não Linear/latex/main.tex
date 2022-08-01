@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-	This paper shows different methods for solving a nonlinear regression problem. The same dataset with 250 observations of a nonlinear SISO (single input, single output) system is used for the following methods: least-squares regressor by parts, $k$th order polynomial regressor, Mamdani fuzzy system, and 0-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ for different hyperparameters (polynomial order, number of intervals, etc...). The best solutions' residues and scatter plots are analyzed and discussed.
+	This paper shows different methods for solving a nonlinear regression problem. The same dataset with 250 observations of a nonlinear SISO (single input, single output) system is used for the following methods: least-squares regressor by parts, $k$th order polynomial regressor, Mamdani fuzzy system, and zero-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ for different hyperparameters (polynomial order, number of intervals, etc...). The best solutions' residues and scatter plots are analyzed and discussed.
 \end{abstract}
 
 \begin{keywords}
@@ -64,14 +64,16 @@ The Lest-Squares (LS) method is an approximation technique for overdetermined sy
 
 Consider the example of a discrete-time SISO system, where $x_n, y_n \in \mathbb{R}$ are, respectively, their input and output values at the instant $n \in \left\{1,2,...,N\right\}$. At each instant, one has an equation where the input and output are related through a set of \(K+1\) parameters, $\boldsymbol{\thetaup} \in \mathbb{R}^{K+1}$. Mathematically, one can define the output variable as
 \begin{align}
-    y_n = f(x_n;\boldsymbol{\thetaup})
+    y_n = f(x_n;\boldsymbol{\thetaup}).
 \end{align}
 
 When $f(\cdot)$ is a linear function, the LS problem is commonly called Ordinary Least-Square (OLS). The least-squares method aims to minimize the following cost function
 \begin{align}
-    J\left( \hat{\boldsymbol{\thetaup}} \right) = \sum_{n=1}^{N} e_n^2,
+    J\left( \hat{\boldsymbol{\thetaup}} \right) & = \sum_{n=1}^{N} e_n^2 \nonumber \\
+    & = \sum_{n=1}^{N} (y_n - \hat{y}_n)^2 \nonumber \\
+    & = \sum_{n=1}^{N} (y_n - \hat{\boldsymbol{\thetaup}}^{\trans} \mathbf{x}_n )^2,
 \end{align}
-where \(\hat{y}_n\) and \(\hat{\boldsymbol{\thetaup}}\) are the estimates of \(y_n\) and \(\boldsymbol{\thetaup}\), respectively, and \(e_n = y_n - \hat{y}_n\) is the residual signal. Although the OLS method has no optimality associated with it, various practical problems, such as regression analysis, can be solved via OLS since no probabilistic assumptions need to be made about the data \cite{kay1993fundamentals}.
+where \(\hat{y}_n\) and \(\hat{\boldsymbol{\thetaup}}\) are the estimates of \(y_n\) and \(\boldsymbol{\thetaup}\), respectively, \(\trans\) is the transpose operator, \(\mathbf{x}_n \in \mathbb{R}^{K+1}\) is the input vector at the instant \(n\), and \(e_n = y_n - \hat{y}_n\) is the residual signal. Although the OLS method has no optimality associated with it, various practical problems, such as regression analysis, can be solved via OLS since no probabilistic assumptions need to be made about the data \cite{kay1993fundamentals}.
 
 The linear regressor output of the SISO system can be expressed as
 \begin{align}
@@ -86,7 +88,7 @@ where \(\hat{\boldsymbol{\thetaup}} = \begin{bmatrix} \hat{a} & \hat{b} \end{bma
 \end{align}
 The Equation \eqref{eq:J} describes a convex function whose surface is a hyperparaboloid. The minimum value of the cost function corresponds to the set of coefficients sought \cite{diniz1997adaptive}. In other words, we can state that
 \begin{align}
-    \exists \;\; \hat{\boldsymbol{\thetaup}}^{\star} \in \mathbb{R}^{K+1} \mid J\left(\hat{\boldsymbol{\thetaup}}^{\star}\right) < J\left(\hat{\boldsymbol{\thetaup}}\right) \;\; \forall \;\; \hat{\boldsymbol{\thetaup}} \neq \hat{\boldsymbol{\thetaup}}^{\star}
+    \exists \;\; \hat{\boldsymbol{\thetaup}}^{\star} \in \mathbb{R}^{K+1} \mid J\left(\hat{\boldsymbol{\thetaup}}^{\star}\right) < J\left(\hat{\boldsymbol{\thetaup}}\right) \;\; \forall \;\; \hat{\boldsymbol{\thetaup}} \neq \hat{\boldsymbol{\thetaup}}^{\star}.
 \end{align}
 
 By calculating the derivative of \(J\left( \hat{\boldsymbol{\thetaup}} \right)\) with respect to \(\hat{a}\) and \(\hat{b}\), we get
@@ -116,7 +118,7 @@ Although the solution of the SISO OLS method is rather straightforward, many inp
 	\label{fig:scatterplot}
 \end{figure}
 
-In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each configuration. The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
+In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each choice of \(I\). The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
 
 \begin{figure}[htp]
     \subfloat[\centering\(I=4\)]{%
@@ -192,11 +194,11 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
 	\end{tabular} \label{tab:OLS-performance}
 \end{table}
 
-The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as it is increased the number of intervals, it is possible to notice by the Figure \ref{fig:OLS-by-parts-I6} that the placement of the delimiters does not contribute for a good linear approximation (there are outliers for \(i=4\)). This fact decreases \(R^2\) and makes it worse when compared with the case where \(I=5\).
+The best solution is found for \(I=5\), highlighted in the Table \ref{tab:OLS-performance}. Although it is expected to achieve better performance as the number of intervals is increased, it is possible to notice in the Figure \ref{fig:OLS-by-parts-I6} that the placement of the delimiters does not contribute to a good linear approximation (there are outliers for \(i=4\)). This fact decreases \(R^2\) and makes it worse when compared with the case where \(I=5\).
 
-In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution approximates to a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution (for \(i=1\)) of the residuals along with the Gaussian distribution \cite{leon1994probability}.
+In addition to the regressor performance, one can analyze the distribution of the residuals. Let \(\xi_n\) be the normalized residual value, that is, \(\xi_n = e_n/\sigma_e\). For a good placement of the intervals, the normalized residual distribution shall approximate a zero-mean Gaussian distribution with unitary variance, i.e., \(\xi_n \sim N(0, 1)\). The Figure \ref{fig:distribution} shows the distribution (for \(i=1\)) of the residuals along with the Gaussian distribution \cite{leon1994probability}.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.35]{../figs/OLS-by-parts/residues_PDF_I5i1.png}
     \caption{Distribution of the residuals.}
@@ -205,7 +207,7 @@ In addition to the regressor performance, one can analyze the distribution of th
 
 \section{Polynomial Regression}
 
-The Polynomial regression is a nonlinear method which extends the concept of the SISO OLS algorithm. At the instant \(n\), the input \(x_n\) is utilized to generate the tuple \(\left( h_{n,1}, h_{n,2}, ..., h_{n,K} \right)\), where \(h_{n,k}=x_n^k,\;\forall\; k \in \left\{ 1, 2, ..., K \right\}\). Therefore, the SISO model is transformed into a MISO (Multiple Input, Single Output) model, where the \(k\)th input of the \(n\)th instant is \(x_n\) to the power \(k\). Note that, albeit this model is not linear with relation to \(x_n\), it is with relation to \(h_{n,k}\), that is,
+Polynomial regression is a nonlinear method that extends the concept of the SISO OLS algorithm. At the instant \(n\), the input \(x_n\) is used to generate the tuple \(\left( h_{n,1}, h_{n,2}, ..., h_{n,K} \right)\), where \(h_{n,k}=x_n^k,\;\forall\; k \in \left\{ 1, 2, ..., K \right\}\). Therefore, the SISO model is transformed into a MISO (Multiple Input, Single Output) model, where the \(k\)th input of the \(n\)th instant is \(x_n\) to the power \(k\). Note that, albeit this model is not linear with relation to \(x_n\), it is with relation to \(h_{n,k}\), that is,
 \begin{align}
     y_n & = f(x_n;\hat{\boldsymbol{\thetaup}}) = \mathbf{h}_n^\trans \hat{\boldsymbol{\thetaup}} \nonumber \\
     & = \hat{\theta}_0 + \hat{\theta}_1 h_{n,1} + \hat{\theta}_2 h_{n,2}  + \cdots + \hat{\theta}_K h_{n,K},
@@ -268,7 +270,7 @@ where \(\mathbf{H}^\dagger = \left( \mathbf{H}^T\mathbf{H} \right)^{-1}\mathbf{H
     \label{alg:kth-order-reg}
 \end{algorithm}
 
-The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-order polynomial regressor. As shown in the Table \ref{tab:kth-order-poly-performance}, the 6th-oder polynomial curve reached the best result. For this case, the model achieved the Pearson correlation coefficient between \(\mathbf{y}\) and \(\hat{\mathbf{y}}\) of \(97.84\%\).
+The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-order polynomial regressor. As shown in the Table \ref{tab:kth-order-poly-performance}, the 6th-oder polynomial curve reached the best result. For this case, the model achieved a Pearson correlation coefficient between \(\mathbf{y}\) and \(\hat{\mathbf{y}}\) of \(97.84\%\).
 
 \begin{table}[H]
 	\centering
@@ -286,7 +288,7 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 	\end{tabular} \label{tab:kth-order-poly-performance}
 \end{table}
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \subfloat[\centering\(K=5\)]{%
     \includegraphics[clip,width=\columnwidth]{../figs/kth-poly-reg/5th-order.png}%
     }
@@ -308,11 +310,11 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 \section{Mamdani fuzzy system}
 \label{sec:mamdani}
 
-The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two truth values: 0 and 1. This approach enables to model the vagueness or uncertainty encountered in many real problems.
+The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two truth values: 0 and 1. This approach enables to model vagueness or uncertainty encountered in many real problems.
 
-The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) codomain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, a fuzzy inference system (FIS) uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent. The fuzzy set obtained by the inference is then converted to a crisp value that outputs the system. This process of obtaining a crisp value from the output fuzzy set is commonly referred as defuzzification.
+The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) codomain through a membership function. This process is commonly referred to as fuzzification. Based on a set of rules, a fuzzy inference system (FIS) uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent. The resulting fuzzy set obtained by inference is then converted to a crisp value that outputs the system. This process of obtaining a crisp value from the output fuzzy set is commonly referred to as defuzzification.
 
-There are different possibilities to create a fuzzy system. A well-established fuzzy model the is the Mamdani system, whose set of rules can be generically written as
+There are different possibilities to create a fuzzy system. A well-established fuzzy model is the Mamdani system, whose set of rules can be generically written as
 \begin{align}
     &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_K \nonumber \\
     &\text{ THEN } y_n \text{ IS } B_i, \nonumber
@@ -340,7 +342,7 @@ and the set of rules applied for \(K=3\) is
     &\text{ THEN } y_n \text{ IS LOW}. \nonumber
 \end{align}
 
-The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, and HIGH for \(K=3\)) are depicted in the Figure \ref{fig:input-fuzzy-sets}. The Gaussian shape of the fuzzy sets and their parameters (mean and variance) were defined experimentally in an attempt to obtain the best performance. Once the Gaussian function reaches its peak, its value it is held to maintain the true value at the extremes.
+The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, and HIGH for \(K=3\)) are depicted in the Figure \ref{fig:input-fuzzy-sets}. The Gaussian shape of the fuzzy sets and their parameters (mean and variance) were defined experimentally in an attempt to obtain the best performance. Once the Gaussian function reaches its peak, its value is held to maintain the true value at the extremes.
 \begin{figure}[htp]
     \subfloat[\centering \(K=2\)]{%
     \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/fuzzification-for-2sets.png}%
@@ -354,7 +356,7 @@ The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, 
     \label{fig:input-fuzzy-sets}
 \end{figure}
 
-After the input and output fuzzification and the rule definitions, it is necessary to define an inference method. Among the different inference methods, the Modus Ponens, defined by
+After the input and output fuzzification and defining the set of rules, it is necessary to define an inference method. Among the different inference methods, the Modus Ponens, defined by
 \begin{align}
     \mu_{A\rightarrow B}^{(i)} (x_n;y_n) = \min\left\{  \mu_A^{(i)}(x_n), \mu_B^{(i)} (y_n) \right\},
 \end{align}
@@ -371,6 +373,7 @@ The output fuzzy sets of all rules are aggregated (with the \(\vee\) operator) a
     %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
     %   \tcc{Now this is an if...else conditional loop}
     \For{\(K \in \left\{ 2,3 \right\}\)}{
+        % \(\left\{ \mu_{A_k}^{(i)}(x_n) \right\}_{k=1}^K \leftarrow\) Fuzzyfy the input set
         \For{\(n \in \left\{ 1, 2, \cdots, N \right\}\)}{
             \For(\tcc*[h]{for each rule}){\(i \in \left\{ 1, 2, \cdots, I \right\}\)}{
                 \(\mu_{A}^{(i)}(x_n) \leftarrow\) Apply the \(i\)th rule for the set \(\left\{ \mu_{A_1}^{(i)}(x_n), \mu_{A_2}^{(i)}(x_n), \cdots, \mu_{A_K}^{(i)}(x_n) \right\}\)
@@ -386,9 +389,9 @@ The output fuzzy sets of all rules are aggregated (with the \(\vee\) operator) a
     \label{alg:mamdani-fuzzy}
 \end{algorithm}
 
-The solution of the regression problem using Mamdani fuzzy system for \(K=3\) is shown in Figure \ref{fig:mamdani-fuzzy-regression}. The final model achieved a coefficient of determination of \(0.91\), and the Pearson correlation between the input and predicted value was \(0.96\).
+The solution to the regression problem using Mamdani fuzzy system for \(K=3\) is shown in Figure \ref{fig:mamdani-fuzzy-regression}. The final model achieved a coefficient of determination of \(0.91\), and the Pearson correlation between the input and predicted value was \(0.96\).
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{../figs/mamdani_fuzzy/fuzzy_prediction.png}
     \caption{The curve fit for the Mamdani fuzzy system.}
@@ -399,7 +402,7 @@ The solution of the regression problem using Mamdani fuzzy system for \(K=3\) is
 
 In 1985, Takagi and Sugeno introduced a fuzzy model where its consequence is a linear input-output relation \cite{takagi1985fuzzy}. The method is known as ``\(n\)th-order Takagi-Sugeno model'', where the linear function initially proposed in \cite{takagi1985fuzzy} is generalized to an \(n\)th-order polynomial function.
 
-The Takagi-Sugeno model basically follows the same approach described in the Section \ref{sec:mamdani}\;\;\;, that is, it uses a dictionary\footnote{Also called database.} (a collection of fuzzy sets), a set of rules, and a inference method. However, instead of defining an output fuzzy set and defuzzifying it to obtain the crisp value, the output of the \(n\)th-order Takagi-Sugeno model is given by
+The Takagi-Sugeno model basically follows the same approach described in the Section \ref{sec:mamdani}\;\;\;, that is, it uses a dictionary\footnote{Also called database.} (a collection of fuzzy sets), a set of rules, and an inference method. However, instead of defining an output fuzzy set and defuzzifying it to obtain the crisp value, the output of the \(n\)th-order Takagi-Sugeno model is given by
 \begin{align}
     y_n = \frac{\sum_{i=1}^{K} w_if_i(x_n)}{\sum_{i=1}^{K} w_i},
 \end{align}
@@ -408,7 +411,28 @@ where
     w_i = \mu_{A_1}^{(i)} (x_n) \wedge \mu_{A_2}^{(i)} (x_n) \wedge \dots \wedge \mu_{A_K}^{(i)} (x_n)
     \label{eq:w_i}
 \end{align}
-is the result of the \(i\)th rule and \(f_i(x_n)\) is the \(n\)th-order polynomial function. For this problem, the following set ot rules are defined:
+is the result of the \(i\)th rule and \(f_i(x_n)\) is the \(n\)th-order polynomial function. The Algorithm \ref{alg:takagi-sugeno-fuzzy} summarizes the procedure for the \(n\)th-order Takagi-Sugeno fuzzy model.
+
+\begin{algorithm}[!ht]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\left\{ (x_n, y_n) \right\}_{n=1}^N\), \(\left\{ f_i(x_n) \right\}_{i=1}^I\)}
+    %   \KwOutput{\(\left\{ \left( \hat{a},\hat{b} \right), R^2 \right\}_{i=1}^I\)}
+    %   \KwData{Testing set $x$}
+    %   $\sum_{i=1}^{\infty} := 0$ \tcp*{this is a comment}
+    %   \tcc{Now this is an if...else conditional loop}
+    \For{\(n \in \left\{ 1, 2, \cdots, N \right\}\)}{
+        \For(\tcc*[h]{for each rule}){\(i \in \left\{ 1, 2, \cdots, I \right\}\)}{
+            \(w_i \leftarrow\) \(\mu_{A_1}^{(i)}(x_n) \wedge \mu_{A_2}^{(i)}(x_n) \wedge \cdots \wedge \mu_{A_K}^{(i)}(x_n)\)}
+
+        \(y_n \leftarrow \frac{\sum_{i=1}^{K} w_if_i(x_n)}{\sum_{i=1}^{K} w_i}\)% \tcc{aggregation method and defuzzification}
+    }
+    
+    \caption{Takagi-Sugeno fuzzy model}
+    \label{alg:takagi-sugeno-fuzzy}
+\end{algorithm}
+
+For this problem, we define the number of fuzzy sets to \(K=4\), with the following rules:
 \begin{align}
     \text{IF } x_n \text{ IS VERY LOW, THEN } y_n \text{ IS HIGH} \nonumber
 \end{align}
@@ -431,15 +455,25 @@ Based on this set of rules and observing the Equation \eqref{eq:w_i}, it is easy
     \label{fig:input-fuzzy-set-takagi-sugeno}
 \end{figure}
 
-For a zero-order Takagi-Sugeno FIS, \(f_i(x_n)\) is simply a constant. These values are given by
+For a zero-order Takagi-Sugeno model, \(f_i(x_n)\) is simply a constant. These values are given by
 \begin{align}
     f_i(x_n) = \left\{\begin{array}{c}
-         1, \text{ if } i=1 \\
-         1, \text{ if } i=2 \\
-         1, \text{ if } i=3 \\
-         1, \text{ if } i=4 \\
+         100, \text{ if } i=1 \\
+         40, \text{ if } i=2 \\
+         150, \text{ if } i=3 \\
+         5, \text{ if } i=4 \\
     \end{array} \right.
 \end{align}
+
+The values of \(f_i(x_n)\) were obtained experimentally aiming at the best curve fitting. The result for the zero-order Takagi-Sugeno model is shown in Figure \ref{fig:takagi-sugeno-regression}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.35]{../figs/takagi_sugeno/fuzzy_prediction.png}
+    \caption{Regression problem for the zero-order Takagi-Sugeno model.}
+    \label{fig:takagi-sugeno-regression}
+\end{figure}
+
+The final model achieved a Pearson correlation of \(99.09\%\), and a coefficient of determination of \(R^2 = 0.97\).
 
 \bibliographystyle{bib_sobraep}
 \bibliography{refs.bib}
