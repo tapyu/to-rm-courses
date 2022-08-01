@@ -1,7 +1,7 @@
-PWD /home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex
+PWD /home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex
+INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex
 OUTPUT main.log
 INPUT ./sobraep.cls
 INPUT ./sobraep.cls
@@ -1031,13 +1031,23 @@ INPUT ../figs/mamdani_fuzzy/fuzzy_prediction.png
 INPUT ../figs/mamdani_fuzzy/fuzzy_prediction.png
 INPUT ../figs/mamdani_fuzzy/fuzzy_prediction.png
 INPUT ../figs/mamdani_fuzzy/fuzzy_prediction.png
-INPUT ./main.bbl
-INPUT main.bbl
-INPUT ./main.bbl
-INPUT main.bbl
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png
+INPUT ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png
+INPUT ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png
+INPUT ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png
+INPUT ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png
+INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT ./main.bbl
+INPUT main.bbl
+INPUT ./main.bbl
+INPUT main.bbl
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT main.aux

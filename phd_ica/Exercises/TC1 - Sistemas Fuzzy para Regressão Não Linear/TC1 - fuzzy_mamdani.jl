@@ -20,8 +20,8 @@ for (K, 𝐲_range_max, labels) ∈ zip((2,3), (190,150), (["LOW fuzzy set "*L"(
     all_μy_B = hcat(map(output_fuzzification, 𝐲_range, fill(K, length(𝐲)))...)' # output fuzzification (all domain, all fuzzy set)
     all_μy_B/=maximum(all_μy_B) # normalize it to unity
 
-    for (n, (μx_A, xₙ)) ∈ enumerate(zip(eachrow(all_μx_A), 𝐱)) # for each input sample (already fuzzified)
-        𝐲̂[n] = inference(μx_A, all_μy_B, K, 𝐲_range, xₙ) # compute ŷₙ
+    for (n, μx_A) ∈ enumerate(eachrow(all_μx_A)) # for each input sample (already fuzzified)
+        𝐲̂[n] = inference(μx_A, all_μy_B, K, 𝐲_range) # compute ŷₙ
     end
 end
 
@@ -43,7 +43,7 @@ savefig(fig, "figs/mamdani_fuzzy/fuzzy_prediction.png")
 𝛜 = 𝐲 - 𝐲̂ # residues
 
 # residues statistics
-𝛜̄ = Σ(𝛜)/length(𝛜) # must be approximetly zero
+𝛜̄ = Σ(𝛜)/length(𝛜) # must be approximately zero
 𝔼𝛜² = Σ(𝛜.^2)/length(𝛜) # second moment (mean squared error, MSE)
 σ̂²ₑ = 𝔼𝛜² - 𝛜̄^2 # σ̂²ₑ≈𝔼𝛜² (variance≈power)
 

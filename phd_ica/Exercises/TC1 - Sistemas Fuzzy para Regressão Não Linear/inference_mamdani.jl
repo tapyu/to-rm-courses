@@ -1,4 +1,4 @@
-function inference(μx_A, all_μy_B, I, 𝐲_range, xₙ)
+function inference(μx_A, all_μy_B, I, 𝐲_range)
     if I == 2 # for 2 set
         # 1th rule
         # IF (xₙ IS HIGH) OR (xₙ IS LOW)

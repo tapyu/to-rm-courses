@@ -306,17 +306,18 @@ The Figure \ref{fig:kth-order-poly} shows the curve fitting for the \(K\)th-orde
 \end{figure}
 
 \section{Mamdani fuzzy system}
+\label{sec:mamdani}
 
 The fuzzy system consists of a continuum-valued logic in which the truth value may be in the interval between 0 and 1. This contrasts with the so-called ordinary sets, that has only two truth values: 0 and 1. This approach enables to model the vagueness or uncertainty encountered in many real problems.
 
-The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) codomain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, the fuzzy system uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent. The fuzzy set obtained by the inference is then converted to a crisp value that outputs the system.
+The fuzzy model maps the input variable domain to the \(\left[ 0,1 \right]\) codomain through a membership function, This process is commonly referred as fuzzification. Based on a set of rules, a fuzzy inference system (FIS) uses the truth values of the fuzzified input to infer how much the antecedents impact the consequent. The fuzzy set obtained by the inference is then converted to a crisp value that outputs the system. This process of obtaining a crisp value from the output fuzzy set is commonly referred as defuzzification.
 
-There are many different possibilities to define a fuzzy rule. A well-established fuzzy model the is the Mamdani system, which can be generically written as
+There are different possibilities to create a fuzzy system. A well-established fuzzy model the is the Mamdani system, whose set of rules can be generically written as
 \begin{align}
     &\text{IF } x_n \text{ IS } A_1 \text{ AND } x_n \text{ IS } A_2 ... \text{ AND } x_n \text{ IS } A_K \nonumber \\
-    &\text{ THEN } y_n \text{ IS } B_1, \nonumber
+    &\text{ THEN } y_n \text{ IS } B_i, \nonumber
 \end{align}
-where \(B_1\) and \(\left\{ A_1, A_2, \cdots, A_K \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. For this problem, we consider \(K \in \left\{ 2,3 \right\}\). The set of rules applied for \(K=2\) is given by
+where \(B_i\) and \(\left\{ A_1, A_2, \cdots, A_K \right\}\) are the output and input fuzzy sets for the \(i\)th rule, respectively, and ``AND'' is a fuzzy operator. For this problem, we consider \(K \in \left\{ 2,3 \right\}\). The set of rules applied for \(K=2\) is given by
 \begin{align}
     &\text{IF } x_n \text{ IS LOW OR } x_n \text{ IS HIGH} \nonumber \\
     &\text{ THEN } y_n \text{ IS LOW}, \nonumber
@@ -339,7 +340,7 @@ and the set of rules applied for \(K=3\) is
     &\text{ THEN } y_n \text{ IS LOW}. \nonumber
 \end{align}
 
-The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, and HIGH for \(K=3\)) are depicted in the Figure \ref{fig:input-fuzzy-sets}. The Gaussian shape of the fuzzy sets and their parameters (mean and variance) were defined experimentally in an attempt to obtain the best performance. Once the Gaussian function reaches its peak, this value it is held to maintain the true value at the extremes.
+The fuzzy sets cited in these rules (LOW and HIGH for \(K=2\), and LOW, MEDIUM, and HIGH for \(K=3\)) are depicted in the Figure \ref{fig:input-fuzzy-sets}. The Gaussian shape of the fuzzy sets and their parameters (mean and variance) were defined experimentally in an attempt to obtain the best performance. Once the Gaussian function reaches its peak, its value it is held to maintain the true value at the extremes.
 \begin{figure}[htp]
     \subfloat[\centering \(K=2\)]{%
     \includegraphics[clip,width=\columnwidth]{../figs/mamdani_fuzzy/fuzzification-for-2sets.png}%
@@ -357,9 +358,9 @@ After the input and output fuzzification and the rule definitions, it is necessa
 \begin{align}
     \mu_{A\rightarrow B}^{(i)} (x_n;y_n) = \min\left\{  \mu_A^{(i)}(x_n), \mu_B^{(i)} (y_n) \right\},
 \end{align}
-is widely adopted. In this equation, \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n)\) is the output fuzzy set of the \(i\)th rule and \(\mu_\cdot\) is the membership function with respect to its subscript.
+is widely adopted. In this equation, \(\mu_{A\rightarrow B}^{(i)} (x_n;y_n)\) is the output fuzzy set of the \(i\)th rule and \(\mu_\cdot^{(i)}\) is the membership function with respect to its subscript.
 
-The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) and the resulting fuzzy set is ``defuzzified'' to a crisp value using one of several methods described in the literature. A very popular method is the ``centroid'', which utilizes the center of mass of the output fuzzy set. The Algorithm \ref{alg:mamdani-fuzzy} summarizes the procedure of the Mamdani fuzzy system.
+The output fuzzy sets of all rules are aggregated (with the \(\vee\) operator) and the resulting fuzzy set is defuzzified to a crisp value using one of several methods described in the literature. A very popular method is the ``centroid'', which utilizes the center of mass of the output fuzzy set. The Algorithm \ref{alg:mamdani-fuzzy} summarizes the procedure of the Mamdani fuzzy system.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -385,7 +386,7 @@ The output fuzzy sets of all rules and aggregated (with the \(\vee\) operator) a
     \label{alg:mamdani-fuzzy}
 \end{algorithm}
 
-The regression problem through Mamdani fuzzy system for \(K=3\) is shown in Figure \ref{fig:mamdani-fuzzy-regression}. The final model achieved a coefficient of determination of \(0.91\), and the Pearson correlation between the input and predicted value was \(0.96\).
+The solution of the regression problem using Mamdani fuzzy system for \(K=3\) is shown in Figure \ref{fig:mamdani-fuzzy-regression}. The final model achieved a coefficient of determination of \(0.91\), and the Pearson correlation between the input and predicted value was \(0.96\).
 
 \begin{figure}
     \centering
@@ -393,6 +394,52 @@ The regression problem through Mamdani fuzzy system for \(K=3\) is shown in Figu
     \caption{The curve fit for the Mamdani fuzzy system.}
     \label{fig:mamdani-fuzzy-regression}
 \end{figure}
+
+\section*{Zero-order Takagi-Sugeno Fuzzy system}
+
+In 1985, Takagi and Sugeno introduced a fuzzy model where its consequence is a linear input-output relation \cite{takagi1985fuzzy}. The method is known as ``\(n\)th-order Takagi-Sugeno model'', where the linear function initially proposed in \cite{takagi1985fuzzy} is generalized to an \(n\)th-order polynomial function.
+
+The Takagi-Sugeno model basically follows the same approach described in the Section \ref{sec:mamdani}\;\;\;, that is, it uses a dictionary\footnote{Also called database.} (a collection of fuzzy sets), a set of rules, and a inference method. However, instead of defining an output fuzzy set and defuzzifying it to obtain the crisp value, the output of the \(n\)th-order Takagi-Sugeno model is given by
+\begin{align}
+    y_n = \frac{\sum_{i=1}^{K} w_if_i(x_n)}{\sum_{i=1}^{K} w_i},
+\end{align}
+where
+\begin{align}
+    w_i = \mu_{A_1}^{(i)} (x_n) \wedge \mu_{A_2}^{(i)} (x_n) \wedge \dots \wedge \mu_{A_K}^{(i)} (x_n)
+    \label{eq:w_i}
+\end{align}
+is the result of the \(i\)th rule and \(f_i(x_n)\) is the \(n\)th-order polynomial function. For this problem, the following set ot rules are defined:
+\begin{align}
+    \text{IF } x_n \text{ IS VERY LOW, THEN } y_n \text{ IS HIGH} \nonumber
+\end{align}
+\begin{align}
+    \text{IF } x_n \text{ IS LOW, THEN } y_n \text{ IS MEDIUM} \nonumber
+\end{align}
+\begin{align}
+    \text{IF } x_n \text{ IS MEDIUM, THEN } y_n \text{ IS VERY HIGH} \nonumber
+\end{align}
+\begin{align}
+    \text{IF } x_n \text{ IS HIGH, THEN } y_n \text{ IS LOW}. \nonumber
+\end{align}
+
+Based on this set of rules and observing the Equation \eqref{eq:w_i}, it is easy to see that \(w_i\) is equal to the output of the membership function since there is only one input fuzzy set per rule. These input fuzzy sets (VERY LOW, LOW, MEDIUM, and HIGH) are shown in the Figure \ref{fig:input-fuzzy-set-takagi-sugeno}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.35]{../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png}
+    \caption{Input fuzzy set of the Takagi-Sugeno model.}
+    \label{fig:input-fuzzy-set-takagi-sugeno}
+\end{figure}
+
+For a zero-order Takagi-Sugeno FIS, \(f_i(x_n)\) is simply a constant. These values are given by
+\begin{align}
+    f_i(x_n) = \left\{\begin{array}{c}
+         1, \text{ if } i=1 \\
+         1, \text{ if } i=2 \\
+         1, \text{ if } i=3 \\
+         1, \text{ if } i=4 \\
+    \end{array} \right.
+\end{align}
 
 \bibliographystyle{bib_sobraep}
 \bibliography{refs.bib}

@@ -3,44 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: bib_sobraep.bst
 Database file #1: refs.bib
-You've used 4 entries,
+Warning--there's a number but no volume in takagi1985fuzzy
+You've used 5 entries,
             2417 wiz_defined-function locations,
-            555 strings with 4913 characters,
-and the built_in function-call counts, 1078 in all, are:
-= -- 38
-> -- 28
-< -- 2
-+ -- 12
-- -- 8
-* -- 48
-:= -- 112
-add.period$ -- 4
-call.type$ -- 4
+            562 strings with 5105 characters,
+and the built_in function-call counts, 2246 in all, are:
+= -- 174
+> -- 35
+< -- 4
++ -- 15
+- -- 10
+* -- 126
+:= -- 207
+add.period$ -- 5
+call.type$ -- 5
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 135
-empty$ -- 148
-format.name$ -- 10
-if$ -- 240
+cite$ -- 6
+duplicate$ -- 284
+empty$ -- 246
+format.name$ -- 13
+if$ -- 498
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 36
-newline$ -- 22
-num.names$ -- 4
-pop$ -- 79
+int.to.str$ -- 5
+missing$ -- 45
+newline$ -- 25
+num.names$ -- 5
+pop$ -- 146
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 20
+skip$ -- 37
 stack$ -- 0
-substring$ -- 0
-swap$ -- 65
-text.length$ -- 2
+substring$ -- 182
+swap$ -- 100
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 4
-width$ -- 5
-write$ -- 43
+warning$ -- 1
+while$ -- 9
+width$ -- 6
+write$ -- 52
+(There was 1 warning)

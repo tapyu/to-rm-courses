@@ -24,4 +24,9 @@ A.~Leon-Garcia, {\em Probability and random processes for electrical
 G.~Strang, G.~Strang, G.~Strang, G.~Strang, {\em Introduction to linear
   algebra\/}, vol.~3, Wellesley-Cambridge Press Wellesley, MA, 1993.
 
+\bibitem{takagi1985fuzzy}
+T.~Takagi, M.~Sugeno, \enquote{Fuzzy identification of systems and its
+  applications to modeling and control}, {\em IEEE transactions on systems,
+  man, and cybernetics\/}, , no.~1, pp. 116--132, 1985.
+
 \end{thebibliography}

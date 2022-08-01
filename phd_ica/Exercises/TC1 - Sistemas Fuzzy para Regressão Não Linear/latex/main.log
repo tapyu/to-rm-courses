@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.14)  18 JUL 2022 06:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  1 AUG 2022 03:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex"
-(/home/tapyu/git/courses/phd_ica/Exercises/TC1: Sistemas Fuzzy para Regressão Não Linear/latex/main.tex
+**"/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex"
+(/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-04-10> (./sobraep.cls
 Document Class: sobraep 2015/05/12 V1.0
@@ -803,43 +803,45 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png, id=45, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzification-for-2sets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png  used on input line 346.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-2sets.png  used on input line 347.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 <../figs/mamdani_fuzzy/fuzzification-for-3sets.png, id=47, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzification-for-3sets.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png  used on input line 350.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzification-for-3sets.png  used on input line 351.
 (pdftex.def)             Requested size: 247.53899pt x 165.02652pt.
 <../figs/mamdani_fuzzy/fuzzy_prediction.png, id=49, 602.25pt x 401.5pt>
 File: ../figs/mamdani_fuzzy/fuzzy_prediction.png Graphic file (type png)
 <use ../figs/mamdani_fuzzy/fuzzy_prediction.png>
-Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzy_prediction.png  used on input line 392.
+Package pdftex.def Info: ../figs/mamdani_fuzzy/fuzzy_prediction.png  used on input line 393.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- (./main.bbl [4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]) 
+ [4 <../figs/kth-poly-reg/5th-order.png> <../figs/kth-poly-reg/6th-order.png> <../figs/kth-poly-reg/7th-order.png>]
+<../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png, id=56, 602.25pt x 401.5pt>
+File: ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png Graphic file (type png)
+<use ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png>
+Package pdftex.def Info: ../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png  used on input line 429.
+(pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
+ [5 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png> <../figs/mamdani_fuzzy/fuzzification-for-3sets.png> <../figs/mamdani_fuzzy/fuzzy_prediction.png>] (./main.bbl) 
 AED: lastpage setting LastPage
-
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-[5 <../figs/mamdani_fuzzy/fuzzification-for-2sets.png> <../figs/mamdani_fuzzy/fuzzification-for-3sets.png> <../figs/mamdani_fuzzy/fuzzy_prediction.png>] (./main.aux)
+[6 <../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 12047 strings out of 478238
- 186199 string characters out of 5850456
- 509021 words of memory out of 5000000
- 29991 multiletter control sequences out of 15000+600000
- 585503 words of font info for 231 fonts, out of 8000000 for 9000
+ 12062 strings out of 478238
+ 186668 string characters out of 5850456
+ 508059 words of memory out of 5000000
+ 30002 multiletter control sequences out of 15000+600000
+ 589303 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,19n,77p,1268b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,19n,77p,1269b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (5 pages, 693409 bytes).
+Output written on main.pdf (6 pages, 731154 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 139 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 104 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
