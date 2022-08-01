@@ -45,9 +45,9 @@
 
 \section{Work 01 - Rosenblatt's perceptron}
 
-This work considers a classification problem for a multivariate dataset. The Rosenblatt's perceptron is utilized to classify the iris flower dataset. The problem consist in classifying one class among four subspecies (Setosa, Virginica, and Versicolor).
+This work considers a classification problem for a multivariate dataset. The Rosenblatt's perceptron is utilized to classify the iris flower dataset. The problem consists in classifying one class among four subspecies (Setosa, Virginica, and Versicolor).
 
-The Rosenblatt's perceptron comprises a neuron mathematical model, introduced by McCulloch and Pitts in 1943, with a learning algorithm that adjusts the synaptic weights in a supervised fashion. The McCulloch and Pitts' activation function is a step function that triggers the output from 0 to 1 when the induced local field overpass the threshold. This method is effective for binary classification of linearly separable problems, where one can sketch a straight line that divides the classes without overlapping.
+The Rosenblatt's perceptron comprises a neuron mathematical model, introduced by McCulloch and Pitts in 1943, with a learning algorithm that adjusts the synaptic weights in a supervised fashion. The McCulloch and Pitts' activation function is a step function that triggers the output from 0 to 1 when the induced local field overpasses the threshold. This method is effective for binary classification of linearly separable problems, where one can sketch a straight line that divides the classes without overlapping.
 
 At the instant \(n\), the induced local field is given by
 \begin{align}
@@ -55,24 +55,34 @@ At the instant \(n\), the induced local field is given by
     \label{eq:induced-local-field}
 \end{align}
 
-where \(\mathbf{w}^\trans\left(n\right) = \begin{bmatrix}
-    w_0(n) & w_1(n) & \cdots & w_{N_a}(n)
-\end{bmatrix}^\trans\) and \(\mathbf{x}^\trans\left(n\right) = \begin{bmatrix}
-    x_0(n) & x_1(n) & \cdots & x_{N_a}(n)
-\end{bmatrix}^\trans\) are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and \(x_0(n) \triangleq +1\)\footnote{Depending on the author, it can the defined as \(-1\).} are, respectively, the bias and its input.
-
-The machine learning algorithms settles on the well-established theory of adaptive filters. Particularly for the Rosenblatt's perceptron, it is utilized the Least-Mean-Square (LMS) algorithm, that aims to make a instantaneous approximation of the gradient vector. The optimization algorithm is given by
+where
 \begin{align}
-    \mathbf{w}(n+1) = \mathbf{w}(n) - \eta \mathbf{g}(n),
+    \mathbf{w}^\trans\left(n\right) = \begin{bmatrix}
+        w_0(n) & w_1(n) & \cdots & w_{N_a}(n)
+    \end{bmatrix}^\trans
+\end{align}
+and
+\begin{align}
+    \mathbf{x}^\trans\left(n\right) = \begin{bmatrix}
+        x_0(n) & x_1(n) & \cdots & x_{N_a}(n)
+    \end{bmatrix}^\trans
+\end{align}
+are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and \(x_0(n) \triangleq +1\)\footnote{Depending on the author, it can the defined as \(-1\).} are, respectively, the bias and its input.
+
+The machine learning algorithms settle on the well-established theory of adaptive filters. Particularly for the Rosenblatt's perceptron, it is utilized the Least-Mean-Square (LMS) algorithm, which aims to make an instantaneous approximation of the gradient vector. The optimization algorithm is given by
+\begin{align}
+    \mathbf{w}(n+1) = \mathbf{w}(n) - \eta \hat{\mathbf{g}}(n),
     \label{eq:w_n+1}
 \end{align}
-where \(\eta\) is the step-learning hyperparameter and \(\mathbf{g}(n) \triangleq \nabla \mathscr{E} (\mathbf{w})\) is the stochastic approximation of the gradient vector, being \(\mathscr{E} (\mathbf{w})\) the cost function. The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \) and produces the error signal \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not. The LMS algorithm uses the instantaneous value of the MSE (Mean-Squared Error) cost function, that is,
+where \(\eta\) is the step-learning hyperparameter and \(\hat{\mathbf{g}}(n) \triangleq \nabla \mathscr{E} (\mathbf{w})\) is the stochastic approximation of the gradient vector, being \(\mathscr{E} (\mathbf{w})\) the cost function and \(\nabla\) the vector differential operator. The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \), and produces the error signal, \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not.
+
+The LMS algorithm uses the instantaneous value of the MSE (Mean-Squared Error) cost function, that is,
 \begin{align}
     \mathscr{E} (\mathbf{w}) = \frac{1}{2}e^2(n).
 \end{align}
 Differentiating this equation with respect to the synaptic weights, we get
 \begin{align}
-    \mathbf{g}(n) = \frac{\partial\mathscr{E} (\mathbf{w})}{\partial \mathbf{w}(n)} = - \mathbf{x}(n) e(n).
+    \hat{\mathbf{g}}(n) = \frac{\partial\mathscr{E} (\mathbf{w})}{\partial \mathbf{w}(n)} = - \mathbf{x}(n) e(n).
     \label{eq:g_n}
 \end{align}
 Substituting \eqref{eq:g_n} into \eqref{eq:w_n+1}, it yields the learning equation, given by
@@ -81,7 +91,7 @@ Substituting \eqref{eq:g_n} into \eqref{eq:w_n+1}, it yields the learning equati
     \label{eq:g_n}
 \end{align}
 
-The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and shuffling the dataset. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and testing dataset, respectively.
+The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and data shuffling. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and testing datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -116,7 +126,7 @@ The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized 
     \label{alg:rosenblatt-perceptron}
 \end{algorithm}
 
-The process described in Algorithm \ref{alg:rosenblatt-perceptron} was repeated for each class and results are shown in Table \ref{tab:rosenblatt-results}. The setosa class clearly outperforms other classes since it is linearly separable for some attributes, as shown in the decision surface in Figure \ref{fig:rosenblatt-decision-surface}\footnote{Since the problem has four attributes, this plot would be impossible as the would get 2 degree of freedom. Therefore, for this result, we considered only the two attributes showed in the figure.}.
+The process described in Algorithm \ref{alg:rosenblatt-perceptron} was repeated for each class and results are shown in Table \ref{tab:rosenblatt-results}. The setosa class clearly outperforms other classes since it is linearly separable for some attributes, as shown in the decision surface in Figure \ref{fig:rosenblatt-decision-surface}\footnote{Since the problem has four attributes, this plot would be impossible as we would get 2 degrees of freedom. Therefore, for this result, we considered only the two attributes shown in this figure.}.
 
 \begin{figure}[H]
     \centering
@@ -174,7 +184,7 @@ For a dummy dataset with \(K=4\) classes, the Rosenblatt's perceptron achieved a
 
 \section{ADALINE}
 
-The Adaptive Linear Element (or ADALINE) is a variation of the Rosenblatt's perceptron, where the step function is replaced by a linear function, that is, \(y(n) = \varphi(u(n)) = u(u)\). One can combine a tapped delay line with an ADALINE, thus creating an adaptive filter, widely used in statistical signal processing.
+The Adaptive Linear Element (or ADALINE) is a variation of the Rosenblatt's perceptron, where the step function is replaced by a linear function, that is, \(y(n) = \varphi(u(n)) = u(n)\). One can combine a tapped delay line with an ADALINE, thus creating an adaptive filter, widely used in statistical signal processing.
 
 Consider a regression problem where the desired signal comes from a function \(f(x)\) corrupted with a Gaussian noise. The ADALINE model tries to retrieved the original data using the same process described in Algorithm \ref{alg:rosenblatt-perceptron}. However, the performance analysis is around the MSE error instead the accuracy since it is now a regression problem.
 

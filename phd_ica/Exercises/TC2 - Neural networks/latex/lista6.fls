@@ -1,7 +1,7 @@
-PWD /home/tapyu/git/courses/phd_ica/Exercises/TC2: Neural networks/latex
+PWD /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC2: Neural networks/latex/lista6.tex
+INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/lista6.tex
 OUTPUT lista6.log
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
@@ -635,37 +635,37 @@ INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab2 (ADALINE)/figs/predict-f1.png
-INPUT ../trab2 (ADALINE)/figs/predict-f1.png
-INPUT ../trab2 (ADALINE)/figs/predict-f1.png
-INPUT ../trab2 (ADALINE)/figs/predict-f1.png
-INPUT ../trab2 (ADALINE)/figs/predict-f1.png
-INPUT ../trab2 (ADALINE)/figs/predict-f2.png
-INPUT ../trab2 (ADALINE)/figs/predict-f2.png
-INPUT ../trab2 (ADALINE)/figs/predict-f2.png
-INPUT ../trab2 (ADALINE)/figs/predict-f2.png
-INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm
@@ -687,17 +687,20 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsyc.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
-INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
-INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
-INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
-INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
-INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxbmia.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaSTbb.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
+INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png
