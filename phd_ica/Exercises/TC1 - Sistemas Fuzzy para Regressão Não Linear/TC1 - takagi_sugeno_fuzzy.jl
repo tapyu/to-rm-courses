@@ -20,7 +20,7 @@ fig = plot(all_μx_A, label=["VERY LOW "*L"\left(\mu_{A_1}^{(i)}(x_n)\right)" "L
 
 savefig(fig, "figs/takagi_sugeno/fuzzyset_takagi_sugeno.png")
 
-all_f = [100, 40, 130, 15] # [f₁(xₙ) f₂(xₙ) ... f₄(xₙ)]
+all_f = [100, 40, 130, 10] # [f₁(xₙ) f₂(xₙ) ... f₄(xₙ)]
 
 for (n, μx_A) ∈ enumerate(eachrow(all_μx_A))
     𝐲̂[n] = inference(μx_A, all_f)

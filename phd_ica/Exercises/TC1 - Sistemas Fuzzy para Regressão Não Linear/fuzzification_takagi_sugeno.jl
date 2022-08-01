@@ -13,7 +13,7 @@ function input_fuzzification(xₙ)
     sets[3] = ℯ^(-((xₙ-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
 
     # HIGH fuzzy set (4th set) → ~N(202, 600)
-    x̄ₙ, σ²ₓ = 202, 600
+    x̄ₙ, σ²ₓ = 190, 600
     sets[4] = ℯ^(-((min(xₙ, x̄ₙ)-x̄ₙ)^2)/(2*σ²ₓ))/√(2*π*σ²ₓ)
 return sets
 end
