@@ -155,7 +155,7 @@ The process described in Algorithm \ref{alg:rosenblatt-perceptron} was repeated 
 	\end{tabular} \label{tab:rosenblatt-results}
 \end{table}
 
-The confusion matrix of the setosa class is shown in Figure \ref{fig:confusion-matrix-setosa} for the first realization. The main diagonal indicates that there were neither false negative nor false positive.
+The confusion matrix of the setosa class is shown in Figure \ref{fig:confusion-matrix-setosa} for the first realization. The main diagonal indicates that there were neither false negatives nor false positives.
 
 \begin{figure}[H]
     \centering
@@ -164,7 +164,7 @@ The confusion matrix of the setosa class is shown in Figure \ref{fig:confusion-m
     \label{fig:confusion-matrix-setosa}
 \end{figure}
 
-The Figure \ref{fig:setosa-training-evolution} shows the evolution of the training dataset accuracy throughout the epochs. One can notice the fast convergence to accuracy of 100\%.
+The Figure \ref{fig:setosa-training-evolution} shows the evolution of the training dataset accuracy throughout the epochs. One can notice the fast convergence to the accuracy of 100\%.
 
 \begin{figure}[H]
     \centering
@@ -173,7 +173,7 @@ The Figure \ref{fig:setosa-training-evolution} shows the evolution of the traini
     \label{fig:setosa-training-evolution}
 \end{figure}
 
-For a dummy dataset with \(K=4\) classes, the Rosenblatt's perceptron achieved a mean accuracy of 97.5\% and a standard deviation of 0.05. The Figure \ref{fig:decision-surface-dummy-data} shows the decision surface of the desired class for the realization whose accuracy the closest to the mean accuracy. All instances of all classes are samples drawn from a Gaussian distribution with a given mean and variance.
+For a dummy dataset with \(K=4\) classes, the Rosenblatt's perceptron achieved a mean accuracy of 97.5\% and a standard deviation of 0.05. The Figure \ref{fig:decision-surface-dummy-data} shows the decision surface of the desired class for the realization whose accuracy is the closest to the mean accuracy. All instances of all classes are samples drawn from a Gaussian distribution with a given mean and variance.
 
 \begin{figure}[H]
     \centering
@@ -186,9 +186,21 @@ For a dummy dataset with \(K=4\) classes, the Rosenblatt's perceptron achieved a
 
 The Adaptive Linear Element (or ADALINE) is a variation of the Rosenblatt's perceptron, where the step function is replaced by a linear function, that is, \(y(n) = \varphi(u(n)) = u(n)\). One can combine a tapped delay line with an ADALINE, thus creating an adaptive filter, widely used in statistical signal processing.
 
-Consider a regression problem where the desired signal comes from a function \(f(x)\) corrupted with a Gaussian noise. The ADALINE model tries to retrieved the original data using the same process described in Algorithm \ref{alg:rosenblatt-perceptron}. However, the performance analysis is around the MSE error instead the accuracy since it is now a regression problem.
+Consider a regression problem where the desired signal comes from a function \(f(x)\) corrupted with Gaussian noise. The ADALINE model tries to retrieve the original data using the same process described in Algorithm \ref{alg:rosenblatt-perceptron}. However, the performance analysis is toward the MSE error instead the accuracy since it is now a regression problem.
 
-The Table \ref{tab:adaline-results} shows the performance of the mean MSE and its standard obtained over the independent realizations, in addition the root mean squared error (RMSE). We considers two scenarios for the \(f (x)\): linear and quadratic function.
+The Table \ref{tab:adaline-results} shows the performance of the mean MSE and its standard deviation obtained over independent realizations, in addition to the root mean squared error (RMSE). We consider scenarios where \(f(\cdot)\) is a function of one or two variables. In other words, for the first scenario, the input is the vector
+\begin{align}
+    \begin{bmatrix}
+        1 & x(n)
+    \end{bmatrix} \in \Real^2
+\end{align}
+and \(f_1(x) = ax(n)+b\), while the input vector for the second scenario is given by
+\begin{align}
+    \begin{bmatrix}
+        1 & x_1(n) & x_2(n)
+    \end{bmatrix} \in \Real^3
+\end{align}
+and \(f_2(x_1, x_2) = ax_1(n)+bx_2(n)+c\).
 
 \begin{table}[H]
 	\centering
@@ -199,9 +211,9 @@ The Table \ref{tab:adaline-results} shows the performance of the mean MSE and it
 		% \toprule [1.3pt]	
 		% \multicolumn{4}{c}{ \textbf{Style} } \\
 		\hline
-		\(d(n)\) & MSE mean & MSE standard deviation & RMSE mean & RMSE standard deviation \\
+		\(f(\cdot)\) & MSE mean & MSE standard deviation & RMSE mean & RMSE standard deviation \\
 		\hline
-		\(5x+8\) & 13.17 & 4.69 & 3.57 & 0.65  \\
+		\(5x+7\) & 13.17 & 4.69 & 3.57 & 0.65  \\
         \hline
 		\(0.5x^2+3x+6\) & 281.85 & 131.4 & 16.41 & 3.5 \\
 		\hline
@@ -212,10 +224,10 @@ Naturally, the linear function achieved the best result since ADALINE can effect
     -6.8 & 4.977
 \end{bmatrix}\)\footnote{The negative value it is because it was chosen an input bias of \(x_0(n)=-1\).}. The Figure \ref{fig:ADALINE-regression} shows the regression for the ADALINE model.
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
 
-\subfloat[\centering ADALINE regression for \(5x+8\)]{%
+\subfloat[\centering ADALINE regression for \(5x+7\)]{%
   \includegraphics[clip,scale=0.4]{../trab2 (ADALINE)/figs/predict-f1.png}%
   \label{fig:itema}
 }
@@ -232,23 +244,23 @@ Naturally, the linear function achieved the best result since ADALINE can effect
 
 \section{Single Layer Perceptron}
 
-Although Rosenblatt's perceptron can solve linear problems, it has only one output variable. A more reasonable model for a multivariate class problem is a single-layer perceptron consisting of \(K\) neurons, where each neuron receives the same input signal, \(\mathbf{x}(n)\).
+Although Rosenblatt's perceptron can solve linear problems, it has only one output variable. A more reasonable model for a multivariate class problem is a single-layer perceptron (SLP) consisting of \(K\) neurons, where each neuron receives the same input signal, \(\mathbf{x}(n)\).
 
 The matrix of all coefficients is given by
 \begin{align}
     \mathbf{W}(n) = \begin{bmatrix}
-        \mathbf{w}_1 (n) & \mathbf{w}_2 (n) & \cdots & \mathbf{w}_K (n)
-    \end{bmatrix} \in \Real^{K \times N_a+1},
+        \mathbf{w}_1 (n)^\trans & \mathbf{w}_2 (n)^\trans & \cdots & \mathbf{w}_K (n)^\trans
+    \end{bmatrix}^\trans \in \Real^{K \times \left(N_a+1\right)},
 \end{align}
-where \(K\) is the number of classes (a neuron for each class) and \(N_a\) is the number of attributes. The learning algorithm is given by
+where \(K\) is the number of classes (one neuron for each class) and \(N_a\) is the number of attributes. The learning algorithm is given by
 \begin{align}
     \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans,
 \end{align}
 where \(\boldsymbol{\deltaup}(n) = \begin{bmatrix}
     \delta_1(n) & \delta_2(n) & \delta_K(n)
-\end{bmatrix}^\trans\) is the vector of the local gradients, being \(\delta_k(n) = e_k (n) \varphi'(v_k (n))\) the local gradient of the \(k\)th perceptron, and \(\varphi'(v_k (n))\) is the derivative of output activation function, \(\varphi(v_k (n))\), with respect to \(v_k (n)\). For the step function (MacCulloch and Pitts' activation function), its derivative does not exist, and the local gradient of the \(k\)th neuron is simply \(\delta_k(n) = e_k (n)\). For this classification problem, the labels was encoded using the one-hot method.
+\end{bmatrix}^\trans\) is the vector of the local gradients, being \(\delta_k(n) = e_k (n) \varphi'(v_k (n))\) the local gradient of the \(k\)th perceptron, and \(\varphi'(v_k (n))\) is the derivative of output activation function, \(\varphi(v_k (n))\), with respect to \(v_k (n)\). For the step function (MacCulloch and Pitts' activation function), its derivative does not exist, and the local gradient of the \(k\)th neuron is simply \(\delta_k(n) = e_k (n)\). For this classification problem, the labels were encoded using the one-hot method.
 
-The Figure \ref{fig:heatmap-dummy-dataset} shows the heatmap for a dummy dataset consisting of \(K=3\) classes, \(N_a=2\) attributes, and \(N=150\) instances. The classifier used the MacCulloch and Pitts' activation function and achieved a mean accuracy of 99.49\% and a standard deviation of 0.0218. The same classifier was used for the iris dataset (\(K=3\) classe, \(N_a=4\) attributes, and \(N=150\) attributes) and the column dataset (\(K=3\) classes, \(N_a=6\) attributes, and \(N=310\) instances). For the iris dataset, the classifier achieved a mean accuracy of 88\% with a standard deviation of \(0.14\), while for the column dataset the model achieved mean accuracy of 77.66\% with a standard deviation of \(0.06\).
+The Figure \ref{fig:heatmap-dummy-dataset} shows the heatmap for a dummy dataset consisting of \(K=3\) classes, \(N_a=2\) attributes, and \(N=150\) instances. The classifier used the MacCulloch and Pitts' activation function and achieved a mean accuracy of 99.49\% and a standard deviation of 0.0218. The same classifier was used for the iris dataset (\(K=3\) classe, \(N_a=4\) attributes, and \(N=150\) attributes) and the column dataset (\(K=3\) classes, \(N_a=6\) attributes, and \(N=310\) instances). For the iris dataset, the classifier achieved a mean accuracy of 88\% with a standard deviation of \(0.14\), while for the column dataset the model achieved a mean accuracy of 77.66\% with a standard deviation of \(0.06\).
 
 \begin{figure}[H]
     \centering
@@ -257,9 +269,9 @@ The Figure \ref{fig:heatmap-dummy-dataset} shows the heatmap for a dummy dataset
     \label{fig:heatmap-dummy-dataset}
 \end{figure}
 
-Using the signal function, the model achieved a mean accuracy of 100\% for the dummy data. The surface of decision for each class of iris data is shown in Figure \ref{fig:iris-decision-surface}. It is possible to notice that the classifier can successively solve the problem for the setosa class as it is linearly separable from the other classes for the attributes considered (petal length and petal width).
+Using the sigmoidal function, the model achieved a mean accuracy of 100\% for the dummy data. The surface of decision for each class of iris data is shown in Figure \ref{fig:iris-decision-surface}. It is possible to notice that the classifier can successively solve the problem for the setosa class as it is linearly separable from the other classes for the attributes considered (petal length and petal width).
 
-\begin{figure}[tp]
+\begin{figure}[H]
     \centering
     \subfloat[\centering Setosa class]{%
       \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png}%
@@ -273,9 +285,21 @@ Using the signal function, the model achieved a mean accuracy of 100\% for the d
       \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png}%
     }
     
-    \caption{main caption}
+    \caption{The iris dataset for the SLP with sigmoidal activation function.}
     \label{fig:iris-decision-surface}
     
-    \end{figure}
+\end{figure}
+
+For the dummy dataset, the SLP with sigmoidal activation function also achieved an accuracy of 100\%. The heatmap for this dataset is shown in Figure \ref{fig:dummy-data-heatmap}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png}%
+    
+    \caption{The dummy dataset for the SLP with sigmoidal activation function.}
+    \label{fig:dummy-data-heatmap}
+\end{figure}
+
+
 
 \end{document}

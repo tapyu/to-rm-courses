@@ -666,6 +666,9 @@ INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm
@@ -693,9 +696,6 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxbmia.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaSTbb.tfm
-INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
 INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
 INPUT ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png
@@ -716,6 +716,11 @@ INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
 INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png
+INPUT ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png
 INPUT lista6.aux
 INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
