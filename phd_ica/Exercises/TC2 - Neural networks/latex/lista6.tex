@@ -110,11 +110,11 @@ The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized 
             \ForAll{Instancies in the training dataset}{
                 \(v(n) \leftarrow \mathbf{w}^\trans\left(n\right) \mathbf{x}\left(n\right)\)
 
-            \(y\left( n \right) \leftarrow \varphi(v\left( n \right))\)
+                \(y\left( n \right) \leftarrow \varphi(v\left( n \right))\)
 
-            \(e(n) \leftarrow d\left( n \right) - y\left( n \right)\)
+                \(e(n) \leftarrow d\left( n \right) - y\left( n \right)\)
 
-            \(\mathbf{w}(n+1) \leftarrow \mathbf{w}(n) + \eta \mathbf{x}(n) e(n)\)
+                \(\mathbf{w}(n+1) \leftarrow \mathbf{w}(n) + \eta \mathbf{x}(n) e(n)\)
             }
             \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
         }
@@ -242,21 +242,129 @@ Naturally, both curves could be properly estimated since they are linear functio
 
 \section{Single Layer Perceptron}
 
-Although Rosenblatt's perceptron can solve linear problems, it has only one output variable. A more reasonable model for a multivariate class problem is a single-layer perceptron (SLP) consisting of \(K\) neurons, where each neuron receives the same input signal, \(\mathbf{x}(n)\).
+Although Rosenblatt's perceptron can solve linear problems, it has only one output variable. A more reasonable model for a multivariate class problem is a single-layer perceptron (SLP) consisting of \(J\) neurons, where each neuron receives the same input signal, \(\mathbf{x}(n)\).
 
 The matrix of all coefficients is given by
 \begin{align}
     \mathbf{W}(n) = \begin{bmatrix}
-        \mathbf{w}_1 (n)^\trans & \mathbf{w}_2 (n)^\trans & \cdots & \mathbf{w}_K (n)^\trans
-    \end{bmatrix}^\trans \in \Real^{K \times \left(N_a+1\right)},
+        \mathbf{w}_1 (n)^\trans & \mathbf{w}_2 (n)^\trans & \cdots & \mathbf{w}_J (n)^\trans
+    \end{bmatrix}^\trans \in \Real^{J \times \left(N_a+1\right)},
 \end{align}
-where \(K\) is the number of classes (one neuron for each class) and \(N_a\) is the number of attributes. The learning algorithm is given by
+where \(J\) is the number of classes (one neuron for each class) and \(N_a\) is the number of attributes. The learning algorithm is given by
 \begin{align}
     \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans,
 \end{align}
 where \(\boldsymbol{\deltaup}(n) = \begin{bmatrix}
-    \delta_1(n) & \delta_2(n) & \delta_K(n)
-\end{bmatrix}^\trans\) is the vector of the local gradients, being \(\delta_k(n) = e_k (n) \varphi'(v_k (n))\) the local gradient of the \(k\)th perceptron, and \(\varphi'(v_k (n))\) is the derivative of output activation function, \(\varphi(v_k (n))\), with respect to \(v_k (n)\). For the step function (MacCulloch and Pitts' activation function), its derivative does not exist, and the local gradient of the \(k\)th neuron is simply \(\delta_k(n) = e_k (n)\). For this classification problem, the labels were encoded using the one-hot method.
+    \delta_1(n) & \delta_2(n) & \delta_J(n)
+\end{bmatrix}^\trans\) is the vector of the local gradients, being \(\delta_j(n)\) the local gradient of the \(j\)th perceptron. Let us define the vector of all induced local fields at the instant \(n\) as
+\begin{align}
+    \mathbf{v}(n) = \begin{bmatrix}
+        v_1(n) & v_2(n) & v_J(n)
+    \end{bmatrix}^\trans = \mathbf{W}(n) \mathbf{x}(n).
+\end{align}
+
+Notice that
+\begin{align}
+    \frac{\partial \mathscr{E}(n)}{\partial w_{ji}(n)} & = \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)} \frac{\partial v_j(n)}{\partial w_{ji}(n)} \nonumber \\
+    & = - \delta_j (n) x_i(n),
+    \label{eq:cost-function}
+\end{align}
+where
+\begin{align}
+    \frac{\partial v_j(n)}{\partial w_{ji}(n)} = x_i(n)
+    \label{eq:chain4}
+\end{align}
+is the \(i\)th input at the instant \(n\), and
+\begin{align}
+    \delta_j (n) = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)} = - \frac{\partial \mathscr{E}(n)}{\partial e_{j}(n)} \frac{\partial e_j(n)}{\partial x_i(n)} \frac{\partial x_i(n)}{\partial v_{j}(n)}
+    \label{eq:local-gradient}
+\end{align}
+is the local gradient of the \(j\)th neuron. In this equation, \(e_{j}(n)\) and \(v_{j}(n)\) are the error and the induced local field of the neuron \(j\), respectively, and \(w_{ji}(n)\) is the \(i\)th synaptic weight for the \(j\)th neuron at the instant \(n\).
+
+Note also that
+\begin{align}
+    \frac{\partial \mathscr{E}(n)}{\partial e_{j}(n)} = e_{j}(n),
+    \label{eq:chain1}
+\end{align}
+
+\begin{align}
+    \frac{\partial e_j(n)}{\partial x_i(n)} = -1,
+    \label{eq:chain2}
+\end{align}
+and
+\begin{align}
+    \frac{\partial x_i(n)}{\partial v_{j}(n)} \triangleq \varphi'(v_{j}(n)).
+    \label{eq:chain3}
+\end{align}
+By substituting the equations \eqref{eq:chain1}, \eqref{eq:chain2}, and \eqref{eq:chain3} into \eqref{eq:local-gradient}, we get
+\begin{align}
+    \delta_j (n) = e_{j}(n) \varphi'(v_{j}(n)),
+\end{align}
+or in matricial notation,
+\begin{align}
+    \boldsymbol{\deltaup}(n) = \mathbf{e}(n) \odot \boldsymbol{\varphi}'(\mathbf{v}(n)),
+\end{align}
+where \(\odot\) is the Hadamard product and \(\boldsymbol{\varphi}'(\mathbf{v}(n)) = \begin{bmatrix}
+    \varphi'(v_1(n)) & \varphi'(v_2(n)) & \cdots & \varphi'(v_K(n))
+\end{bmatrix}^\trans\).
+
+The synaptic weights update is given by
+\begin{align}
+    \Delta w_{ji}(n) = - \eta \frac{\partial \mathscr{E}(n)}{\partial w_{ji}(n)}.
+    \label{eq:Delta_w_ji}
+\end{align}
+Substituting the Equation \eqref{eq:cost-function} into \eqref{eq:Delta_w_ji}, we have that
+\begin{align}
+    \Delta w_{ji}(n) = \eta \delta_j (n) x_i(n),
+\end{align}
+or in matricial notation
+\begin{align}
+    \Delta \mathbf{W}(n) = \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans.
+\end{align}
+Finally, the update function is given by
+\begin{align}
+    \mathbf{W}(n+1) & = \mathbf{W}(n) + \Delta \mathbf{W}(n) \nonumber \\
+    & = \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans.
+\end{align}
+
+The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the SLP algorithm.
+
+\begin{algorithm}[!ht]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcc*{attributes and labels dataset}}
+      
+    %   \KwData{Testing set $x$}
+      \ForAll{\(\left\{ 1, 2, \cdots, N_r \right\}\)}{
+        \(\mathbf{W}(n) \leftarrow \text{initialize}\)
+
+        \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
+
+        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
+
+        \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
+            \ForAll{Instancies in the training dataset}{
+                \(\mathbf{v}(n) \leftarrow \mathbf{W}(n) \mathbf{x}(n)\)
+
+                \(\mathbf{y}(n) \leftarrow \boldsymbol{\varphi}(\mathbf{v}(n))\)
+
+                \(\mathbf{e}(n) \leftarrow \mathbf{d}(n) - \mathbf{y}(n)\)
+            
+                \(\boldsymbol{\deltaup}(n) \leftarrow \mathbf{e}(n) \odot \boldsymbol{\varphi}'(\mathbf{v}(n))\)
+
+                \(\mathbf{W}(n+1) \leftarrow \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans\)
+            }
+            \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
+        }
+        
+        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{d}_{tst})\)
+      }
+    
+    \caption{Single-layer perceptron}
+    \label{alg:single-layer-perceptron}
+\end{algorithm}
+
+For the step function (MacCulloch and Pitts' activation function), its derivative does not exist, and the local gradient of the \(j\)th neuron is simply \(\delta_j(n) = e_j (n)\). For this classification problem, the labels were encoded using the one-hot method.
 
 The Figure \ref{fig:heatmap-dummy-dataset} shows the heatmap for a dummy dataset consisting of \(K=3\) classes, \(N_a=2\) attributes, and \(N=150\) instances. The classifier used the MacCulloch and Pitts' activation function and achieved a mean accuracy of 99.49\% and a standard deviation of 0.0218. The same classifier was used for the iris dataset (\(K=3\) classe, \(N_a=4\) attributes, and \(N=150\) attributes) and the column dataset (\(K=3\) classes, \(N_a=6\) attributes, and \(N=310\) instances). For the iris dataset, the classifier achieved a mean accuracy of 88\% with a standard deviation of \(0.14\), while for the column dataset the model achieved a mean accuracy of 77.66\% with a standard deviation of \(0.06\).
 
@@ -267,7 +375,18 @@ The Figure \ref{fig:heatmap-dummy-dataset} shows the heatmap for a dummy dataset
     \label{fig:heatmap-dummy-dataset}
 \end{figure}
 
-Using the sigmoidal function, the model achieved a mean accuracy of 100\% for the dummy data. The surface of decision for each class of iris data is shown in Figure \ref{fig:iris-decision-surface}. It is possible to notice that the classifier can successively solve the problem for the setosa class as it is linearly separable from the other classes for the attributes considered (petal length and petal width).
+Using the logistic function, the model achieved a mean accuracy of 100\% for the dummy data. The heatmap for this dataset is shown in Figure \ref{fig:dummy-data-heatmap}.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png}%
+    
+    \caption{The dummy dataset for the SLP with logistic activation function.}
+    \label{fig:dummy-data-heatmap}
+\end{figure}
+
+For the iris dataset, SLP with logistic function reached a mean and a standard deviation of 87\% and 0.16, respectively.  The surface of decision for each class of iris data is shown in Figure \ref{fig:iris-decision-surface}. It is possible to notice that the classifier can solve the problem for the setosa class as it is linearly separable from the other classes for the attributes considered (petal length and petal width).
 
 \begin{figure}[H]
     \centering
@@ -283,21 +402,137 @@ Using the sigmoidal function, the model achieved a mean accuracy of 100\% for th
       \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png}%
     }
     
-    \caption{The iris dataset for the SLP with sigmoidal activation function.}
+    \caption{The iris dataset for the SLP with logistic activation function.}
     \label{fig:iris-decision-surface}
     
 \end{figure}
 
-For the dummy dataset, the SLP with sigmoidal activation function also achieved an accuracy of 100\%. The heatmap for this dataset is shown in Figure \ref{fig:dummy-data-heatmap}.
+\section{Multilayer Perceptron}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.4]{../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png}%
+Rosenblatt's perceptron and the single-layer perceptron use the LMS algorithm in the learning phase and are capable of estimating the gradient vector, which yields reasonable results for many problems. However, both architectures are restricted to the classification of linearly separable patterns.
+
+To overcome the limitations of the aforementioned solutions, we introduce a new neural network structure, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear activation function that is differentiable, and the final output can successfully solve nonlinear problems.
+
+The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error should propagate toward the first layer. A popular learning algorithm used for MLP is the backpropagation algorithm, which in turn is rooted in the LMS algorithm.
+
+The backpropagation algorithm entails two phases:
+\begin{itemize}
+    \item The \emph{forward phase}: at the instant \(n\), the synaptic weights of the network are fixed and the input signal, \(\mathbf{x}(n)\), is propagated from the input to the output layer. At each neuron, the induced local field is computed and the output of the activation function is delivered to each neuron located on the layer at its right.
+    \item the \emph{backward phase}: signal error is produced at the output layer, where their weights are readily updated with the same procedure used in the SLP. Then, the synaptic weights of the hidden layers are updated, from the outmost hidden layer to the input layer, using the local gradients and the synaptic weights of the neurons on the layer at its right, in addition to the derivative of the activation function of the own neuron.
+\end{itemize}
+
+Since the update equation for the output layer was already derived in the SLP algorithm\footnote{The unique difference is that the input signal is \(\mathbf{y}^{(L-1)}(n)\) instead of \(\mathbf{x}(n)\)}, we will focus on finding the update equation of the \(l\)th hidden layer. Beginning with the outmost hidden layer and recalling that the local gradient of the \(j\)th neuron on this layer is given by
+\begin{align}
+    \delta_j^{(L-1)} (n) & = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \\
+    & = - \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \nonumber \\
+    & = - \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} \varphi'(v_j^{(L-1)}(n)),
+    \label{eq:local-gradient}
+\end{align}
+where the third equation follows that
+\begin{align}
+    \varphi'(v_j^{(L-1)}(n)) = \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)}.
+\end{align}
+
+We can derive the learning equation for this layer and generalize it to all hidden layers. In this section, a superscript was added to indicate which layer the signals refer to.
+
+Remember that \(y_{j}^{(L-1)}(n)\) is the \(j\)th input signal on the output layer (\(L\)th layer), and that
+\begin{align}
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k^{(L)}(n) \frac{\partial e_k^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
+\end{align}
+where \(m_L\) is the number of neurons on the \(L\)th layer. By using the chain rule, we have that
+\begin{align}
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k^{(L)}(n) \frac{\partial e_k^{(L)}(n)}{\partial v_{k}^{(L)}(n)} \frac{\partial v_{k}^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
+    \label{eq:partial-mlp}
+\end{align}
+but since \(e_k^{(L)}(n) = d_k^{(L)}(n) - \varphi(v_k^{(L)}(n))\), it follows that
+\begin{align}
+    \frac{\partial e_k^{(L)}(n)}{\partial v_{k}^{(L)}(n)} = - \varphi(v_k^{(L)}(n)).
+    \label{eq:chain12}
+\end{align}
+Note that
+\begin{align}
+    v_{k}^{(L)} = \sum_{j=0}^{m_L} w_{kj}^{(L)}(n) y_{j}^{(L-1)}(n).
+\end{align}
+Therefore,
+\begin{align}
+    \frac{\partial v_{k}^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)} = w_{kj}^{(L)}(n)
+    \label{eq:chain22}
+\end{align}
+Substituting the Equations \eqref{eq:chain12} and \eqref{eq:chain22} into \ref{eq:partial-mlp}, we get
+\begin{align}
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)}  & = - \sum_{k=1}^{m_L} e_k^{(L)}(n) \varphi(v_k^{(L)}(n)) w_{kj}^{(L)}(n) \nonumber \\
+    & = - \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
+    \label{eq:mlp-partial-final}
+\end{align}
+where the second equation follows that \(\delta_k^{(L)} = e_k^{(L)}(n) \varphi(v_k^{(L)}(n))\). Finally, substituting Equation \eqref{eq:mlp-partial-final} into \eqref{eq:local-gradient}, the local gradient of the \(j\)th neuron on the \((L-1)\)th hidden layer is given by
+\begin{align}
+    \delta_j^{(L-1)} (n) = \varphi'(v_j^{(L-1)}(n)) \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
+\end{align}
+or in matricial notation
+\begin{align}
+    \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \mathbf{W}^{(L)}(n) \boldsymbol{\deltaup}^{(L)} (n),
+    \label{eq:uptade-layer-L-1}
+\end{align}
+The Equation \eqref{eq:uptade-layer-L-1} can be generalized to the \(l\)th layer:
+\begin{align}
+    \boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \mathbf{W}^{(l+1)}(n) \boldsymbol{\deltaup}^{(l+1)} (n),
+    \label{eq:uptade-layer-l}
+\end{align}
+where \(1\leq l < L\). The synaptic weights update is given by
+\begin{align}
+    \Delta \mathbf{W}^{(l)}(n) = \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans,
+\end{align}
+where \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
+\begin{align}
+    \mathbf{W}^{(l)}(n+1) & = \mathbf{W}^{(l)}(n) + \Delta \mathbf{W}^{(l)}(n) \nonumber \\
+    & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.
+\end{align}
+
+
+The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpropagation algorithm.
+
+\begin{algorithm}[H]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcc*{attributes and labels dataset}}
+      
+    %   \KwData{Testing set $x$}
+      \ForAll{\(\left\{ 1, 2, \cdots, N_r \right\}\)}{
+        \(\mathbf{W}(n) \leftarrow \text{initialize}\)
+
+        \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
+
+        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
+
+        \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
+            \ForAll{Instancies in the training dataset}{
+                \tcc{forward phase}
+                \For{\(l \in \left\{ 1, 2, ..., L \right\}\)}{
+                    \(\mathbf{v}^{(l)}(n) \leftarrow \mathbf{W}^{(l)}(n) \mathbf{y}^{(l-1)}(n)\)
+
+                    \(\mathbf{y}^{(l)}(n) \leftarrow \boldsymbol{\varphi}(\mathbf{v}^{(l)}(n))\)
+                }
+                
+                \tcc{backward phase}
+                
+                \(\mathbf{e}(n) \leftarrow \mathbf{d}(n) - \mathbf{y}^{(L)}(n)\) \tcc*{output layer}
+            
+                \(\boldsymbol{\deltaup}^{(L)}(n) \leftarrow \mathbf{e}(n) \boldsymbol{\varphi}'(\mathbf{v}^{(L)}(n))\)
+
+                \(\mathbf{W}^{(L)}(n+1) \leftarrow \mathbf{W}^{(L)}(n) + \eta\boldsymbol{\deltaup}^{(L)}(n) \mathbf{y}^{(L-1)}(n)^\trans\)
+
+                \For{\(l \in \left\{ L-1, L-2, ..., 1 \right\}\)}{
+                    \(\boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \mathbf{W}^{(l+1)}(n) \boldsymbol{\deltaup}^{(l+1)} (n)\)
+                }
+            }
+            \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
+        }
+        
+        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{d}_{tst})\)
+      }
     
-    \caption{The dummy dataset for the SLP with sigmoidal activation function.}
-    \label{fig:dummy-data-heatmap}
-\end{figure}
-
-
+    \caption{Multilayer perceptron}
+    \label{alg:multilayer-perceptron}
+\end{algorithm}
 
 \end{document}
