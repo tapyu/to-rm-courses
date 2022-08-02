@@ -666,9 +666,6 @@ INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
-INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm

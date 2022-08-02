@@ -5,8 +5,8 @@ using Random, Plots, LaTeXStrings, LinearAlgebra
 N = 50
 Nₜᵣₙ = 80 # % percentage of instances for the train dataset
 Nₜₛₜ = 20 # % percentage of instances for the test dataset
-Nₐ₁ = 1 # number of number of attributes for the first function
-Nₐ₂ = 2 # number of number of attributes for the first function
+Nₐ₁ = 1 # number of number of attributes for the first function (without bias)
+Nₐ₂ = 2 # number of number of attributes for the first function (without bias)
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 α = 0.002 # learning step
@@ -132,7 +132,7 @@ fig = plot(range(-10,10,N), [𝐝₁ 𝐲₁], label=["Input signal" "Predicted 
 display(fig)
 savefig(fig, "trab2 (ADALINE)/figs/predict-f1.png")
 
-fig = plot3d(range(-10,10,N), range(-10,10,N), 𝐝₂, label="Input signal", linewidth=2, title="Predicted signal for "*L"f_2(x)")
-plot3d!(range(-10,10,N), range(-10,10,N), 𝐲₂, label="Input signal", linewidth=2)
+fig = plot3d(range(-10,10,N), range(-10,10,N), 𝐝₂, label="Input signal", linewidth=2, title="Predicted signal for "*L"f_2(x)", xlabel=L"x_1", ylabel=L"x_2", zlabel=L"f_2(x_1,x_2)")
+plot3d!(range(-10,10,N), range(-10,10,N), 𝐲₂, label="Predicted signal", linewidth=2)
 display(fig)
 savefig(fig, "trab2 (ADALINE)/figs/predict-f2.png")

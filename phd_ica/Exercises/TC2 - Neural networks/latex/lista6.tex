@@ -213,16 +213,14 @@ and \(f_2(x_1, x_2) = ax_1(n)+bx_2(n)+c\).
 		\hline
 		\(f(\cdot)\) & MSE mean & MSE standard deviation & RMSE mean & RMSE standard deviation \\
 		\hline
-		\(5x+7\) & 13.17 & 4.69 & 3.57 & 0.65  \\
+		\(5x(n)+8\) & 9.69 & 2.84 & 3.07 & 0.47 \\
         \hline
-		\(0.5x^2+3x+6\) & 281.85 & 131.4 & 16.41 & 3.5 \\
+		\(5x_1(n)+3x_2(n)+6\) & 9.93 & 4.27 & 3.08 & 0.66 \\
 		\hline
 	\end{tabular} \label{tab:adaline-results}
 \end{table}
 
-Naturally, the linear function achieved the best result since ADALINE can effectively solve a linear problem. Indeed, the synaptic weights of the ADALINE model is close to the coefficients of the linear function, \(\mathbf{w} = \begin{bmatrix}
-    -6.8 & 4.977
-\end{bmatrix}\)\footnote{The negative value it is because it was chosen an input bias of \(x_0(n)=-1\).}. The Figure \ref{fig:ADALINE-regression} shows the regression for the ADALINE model.
+Naturally, both curves could be properly estimated since they are linear functions. The Figure \ref{fig:ADALINE-regression} shows the regression for the ADALINE model.
 
 \begin{figure}[H]
     \centering
@@ -232,8 +230,8 @@ Naturally, the linear function achieved the best result since ADALINE can effect
   \label{fig:itema}
 }
 
-\subfloat[\centering ADALINE regression for \(0.5x^2+3x+6\)]{%
-  \includegraphics[clip,scale=0.4]{../trab2 (ADALINE)/figs/predict-f2.png}%
+\subfloat[\centering ADALINE regression for \(5x_1(n)+3x_2(n)+6\)]{%
+  \includegraphics[clip,scale=0.5]{../trab2 (ADALINE)/figs/predict-f2.png}%
   \label{fig:itemb}
 }
 
