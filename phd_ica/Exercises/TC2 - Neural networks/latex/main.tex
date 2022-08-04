@@ -433,7 +433,7 @@ Rosenblatt's perceptron and the single-layer perceptron use the LMS algorithm in
 
 To overcome the limitations of the aforementioned solutions, we introduce a new neural network architecture, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear activation function that is differentiable, and the final output is able to solve nonlinear problems.
 
-The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error at the output layer should propagate toward the input layer. A popular learning algorithm used for MLP is the backpropagation algorithm, which in turn, is rooted in the LMS algorithm.
+The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error at the output layer should propagate toward the input layer. A popular learning method used for MLP is the backpropagation algorithm, which in turn, is rooted in the LMS algorithm.
 
 The backpropagation algorithm entails two phases:
 \begin{itemize}
@@ -441,7 +441,7 @@ The backpropagation algorithm entails two phases:
     \item the \emph{backward phase}: signal error is produced at the output layer, where their weights are readily updated with the same procedure used in the SLP. Then, the synaptic weights of the hidden layers are updated, from the outmost hidden layer to the input layer, using the local gradients and the synaptic weights of the neurons on the layer at its right, in addition to the activation function derivative of the own neuron. 
 \end{itemize}
 
-Since the update equation for the output layer was already derived in the SLP algorithm\footnote{The unique difference is that the input signal is \(\mathbf{y}^{(L-1)}(n)\) instead of \(\mathbf{x}(n)\)}, we will focus on finding the update equation of the \(l\)th hidden layer. Furthermore, we will considerate a dense neural network structure, that is, all neurons on the layer \(l+1\) are connected through synaptic weights with all neurons on the layer \(l\), for \(1\leq l < L\).
+Since the update equation for the output layer was already derived in the SLP\footnote{In the MLP, the unique difference is that the input signal is \(\mathbf{y}^{(L-1)}(n)\) instead of \(\mathbf{x}(n)\)}, we will focus on finding the update equation of the \(l\)th hidden layer. Furthermore, we will considerate a dense neural network structure, that is, all neurons on the layer \(l+1\) are connected through synaptic weights with all neurons on the layer \(l\), for \(1\leq l < L\).
 
 Beginning with the outmost hidden layer and recalling that the local gradient of the \(j\)th neuron on this layer is given by
 \begin{align}
@@ -577,9 +577,9 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
     \label{alg:multilayer-perceptron}
 \end{algorithm}
 
-For this homework, it is used an\ref{alg:grid-search-k-fold-cross-validation} MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to the number of outputs.
+For this homework, it is used an MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to 1 for regression problems or to the number of classes for classification problems\footnote{When the number of classes is equal to 2 (as in the XOR problem), it is used only one neuron instead since it is sufficient to classify}.
 
-At each realization, before starting the training phase, the training dataset is utilized for grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs, the \(k\) fold is reserved for validation dataset. The accuracy obtained in the validation dataset is stored and the process repeats for a different training and validation split. At the end of all combinations of validation and training splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
+At each realization, before starting the training phase, the training dataset is utilized in the grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs for training, while the \(k\)th fold is reserved for validation dataset. The accuracy obtained in the validation dataset is stored and the process repeats for a different training and validation split. At the end of all combinations of validation and training splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
 
 \begin{algorithm}[H]
     \DontPrintSemicolon
