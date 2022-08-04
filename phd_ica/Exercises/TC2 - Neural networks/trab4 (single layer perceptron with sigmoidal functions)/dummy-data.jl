@@ -29,14 +29,14 @@ end
 function train(𝐗, 𝐃, 𝐖₍ₙ₎, is_training_accuracy=true)
     φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
     φʼ = y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎) # where y₍ₙ₎=φ(u₍ₙ₎)
-    Nₑ = 0 # number of errors - misclassification
+    Nₑ = 0 # number of errors ➡ misclassifications
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎ # induced local field
         𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎)
         𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝐲₍ₙ₎
         𝐲ʼ₍ₙ₎ = map(φʼ, 𝐲₍ₙ₎)
         𝛅₍ₙ₎ = 𝐞₍ₙ₎ .* 𝐲ʼ₍ₙ₎ # vector of local gradients
-        𝐖₍ₙ₎ += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # apply the local gradients of the ith perceptron to its weights (Julia performs broadcasting here)
+        𝐖₍ₙ₎ += α*𝛅₍ₙ₎*𝐱₍ₙ₎' # learning equation (Julia performs broadcasting here)
         # this part is optional: only if it is interested in seeing the accuracy evolution of the training dataset throughout the epochs
         i = findfirst(x->x==maximum(𝐲₍ₙ₎), 𝐲₍ₙ₎) # predicted value → choose the highest activation function output as the selected class
         Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1
@@ -51,7 +51,7 @@ end
 
 function test(𝐗, 𝐃, 𝐖₍ₙ₎, get_predictions=false)
     φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
-    Nₑ = 0 # number of errors - misclassification
+    Nₑ = 0 # number of errors ➡ misclassifications
     𝐲 = Vector{Int64}(undef, size(𝐗, 2)) # vector of all predictions
     for (n, (𝐱₍ₙ₎, 𝐝₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), eachcol(𝐃)))
         𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎ # induced local field

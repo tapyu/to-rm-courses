@@ -72,7 +72,7 @@ are the synaptic weights of the perceptron and the input signal, respectively, a
 The machine learning algorithms settle on the well-established theory of adaptive filters. Particularly for the Rosenblatt's perceptron, it is utilized the Least-Mean-Square (LMS) algorithm, which aims to make an instantaneous approximation of the gradient vector. The optimization algorithm is given by
 \begin{align}
     \mathbf{w}(n+1) = \mathbf{w}(n) - \eta \hat{\mathbf{g}}(n),
-    \label{eq:w_n+1}
+    \label{eq:w_n_plus1}
 \end{align}
 where \(\eta\) is the step-learning hyperparameter and \(\hat{\mathbf{g}}(n) \triangleq \nabla \mathscr{E} (\mathbf{w})\) is the stochastic approximation of the gradient vector, being \(\mathscr{E} (\mathbf{w})\) the cost function and \(\nabla\) the vector differential operator. The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \), and produces the error signal, \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not.
 
@@ -85,10 +85,9 @@ Differentiating this equation with respect to the synaptic weights, we get
     \hat{\mathbf{g}}(n) = \frac{\partial\mathscr{E} (\mathbf{w})}{\partial \mathbf{w}(n)} = - \mathbf{x}(n) e(n).
     \label{eq:g_n}
 \end{align}
-Substituting \eqref{eq:g_n} into \eqref{eq:w_n+1}, it yields the learning equation, given by
+Substituting \eqref{eq:g_n} into \eqref{eq:w_n_plus1}, it yields the learning equation, given by
 \begin{align}
     \mathbf{w}(n+1) = \mathbf{w}(n) + \eta \mathbf{x}(n) e(n).
-    \label{eq:g_n}
 \end{align}
 
 The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and data shuffling. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and testing datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
@@ -354,10 +353,10 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
 
                 \(\mathbf{W}(n+1) \leftarrow \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans\)
             }
-            \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
+            \(\mathbf{X}_{trn}, \mathbf{D}_{trn} \leftarrow \text{shuffle}\)
         }
         
-        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{d}_{tst})\)
+        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{D}_{tst})\)
       }
     
     \caption{Single-layer perceptron}
@@ -426,16 +425,16 @@ Since the update equation for the output layer was already derived in the SLP al
     \delta_j^{(L-1)} (n) & = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \\
     & = - \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \nonumber \\
     & = - \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} \varphi'(v_j^{(L-1)}(n)),
-    \label{eq:local-gradient}
+    \label{eq:local-gradient2}
 \end{align}
 where the third equation follows that
 \begin{align}
     \varphi'(v_j^{(L-1)}(n)) = \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)}.
 \end{align}
 
-We can derive the learning equation for this layer and generalize it to all hidden layers. In this section, a superscript was added to indicate which layer the signals refer to.
+In these equations, \(v_{j}^{(l)}(n)\) and \(y_{j}^{(l)} (n)\) are the induced local field and the output signal of \(j\)th neuron on the \(l\)th layer, being \(y_{0}^{(l)} (n) \triangleq -1\) the input bias for the neurons on the layer \(l+1\).
 
-Remember that \(y_{j}^{(L-1)}(n)\) is the \(j\)th input signal on the output layer (\(L\)th layer), and that
+We can derive the learning equation for the layer \(L-1\) and generalize it to all hidden layers. Remember that \(y_{j}^{(L-1)}(n)\) is the \(j\)th input signal on the output layer (\(L\)th layer), and that
 \begin{align}
     \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k^{(L)}(n) \frac{\partial e_k^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
 \end{align}
@@ -458,7 +457,7 @@ Therefore,
     \frac{\partial v_{k}^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)} = w_{kj}^{(L)}(n)
     \label{eq:chain22}
 \end{align}
-Substituting the Equations \eqref{eq:chain12} and \eqref{eq:chain22} into \ref{eq:partial-mlp}, we get
+Substituting the Equations \eqref{eq:chain12} and \eqref{eq:chain22} into \eqref{eq:partial-mlp}, we get
 \begin{align}
     \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)}  & = - \sum_{k=1}^{m_L} e_k^{(L)}(n) \varphi(v_k^{(L)}(n)) w_{kj}^{(L)}(n) \nonumber \\
     & = - \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
@@ -517,22 +516,77 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
                 
                 \(\mathbf{e}(n) \leftarrow \mathbf{d}(n) - \mathbf{y}^{(L)}(n)\) \tcc*{output layer}
             
-                \(\boldsymbol{\deltaup}^{(L)}(n) \leftarrow \mathbf{e}(n) \boldsymbol{\varphi}'(\mathbf{v}^{(L)}(n))\)
+                \(\boldsymbol{\deltaup}^{(L)}(n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(L)}(n)) \odot \mathbf{e}(n)\)
 
                 \(\mathbf{W}^{(L)}(n+1) \leftarrow \mathbf{W}^{(L)}(n) + \eta\boldsymbol{\deltaup}^{(L)}(n) \mathbf{y}^{(L-1)}(n)^\trans\)
 
                 \For{\(l \in \left\{ L-1, L-2, ..., 1 \right\}\)}{
                     \(\boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \mathbf{W}^{(l+1)}(n) \boldsymbol{\deltaup}^{(l+1)} (n)\)
+
+                    \(\mathbf{W}^{(l)}(n+1) = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.\)
                 }
             }
-            \(\mathbf{X}_{trn}, \mathbf{d}_{trn} \leftarrow \text{shuffle}\)
+            \(\mathbf{X}_{trn}, \mathbf{D}_{trn} \leftarrow \text{shuffle}\)
         }
         
-        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{d}_{tst})\)
+        \(accuracy \leftarrow \text{test}(\mathbf{X}_{tst}, \mathbf{D}_{tst})\)
       }
     
     \caption{Multilayer perceptron}
     \label{alg:multilayer-perceptron}
 \end{algorithm}
+
+For this homework, it is used an\ref{alg:grid-search-k-fold-cross-validation} MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to the number of outputs.
+
+At each realization, before starting the training phase, the training dataset is utilized for grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs, the \(k\) fold is reserved for validation dataset. The accuracy obtained in the validation dataset is stored and the process repeats for a different training and validation split. At the end of all combinations of validation and training splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
+
+\begin{algorithm}[H]
+    \DontPrintSemicolon
+      
+      \KwInput{\(\mathbf{X}, K\) \tcc*{\(\mathbf{X}\) does not have the test instances}}
+      
+    %   \KwData{Testing set $x$}
+    \(\mathbf{X} \leftarrow\) shuffle
+    
+      \ForAll{Set of hyperparameters}{
+
+
+        \For{\(k \in \left\{ 1, 2, ..., K \right\}\)}{
+            \(\mathbf{W}(n) \leftarrow \text{initialize}\)
+
+            \(\mathbf{X}_{trn}, \mathbf{X}_{val} \leftarrow\) select the \(k\)th division of training and validation dataset.
+            
+
+            \ForAll(\tcc*[h]{for each epoch}){\(\left\{ 1, 2, ..., N_e \right\}\)}{
+                \(\mathbf{X}_{trn} \leftarrow\) shuffle
+
+                \(\mathbf{W}(n) \leftarrow \) train with a given set of hyperparameters
+            }
+
+            Save the accuracy for the trained \(\mathbf{W}(n)\) for the dataset \(\mathbf{X}_{val}\)
+
+
+        }
+        
+        Save the mean accuracy for this set of hyperparameters
+      }
+    \Return{The set of hyperparameters with the highest mean accuracy}
+
+    \caption{Grid search with \(k\)-fold cross validation}
+    \label{alg:grid-search-k-fold-cross-validation}
+\end{algorithm}
+
+\subsection{Classification problem}
+
+For the MLP described in the Algorithm \ref{alg:multilayer-perceptron}, the following datasets are analyzed for the classification problem:
+\begin{itemize}
+    \item Iris: \(N_a = 4\) attributes, \(N = 150\) instances, \(K =3\) classes.
+    \item Vertebral column: \(N_a = 6\) attributes, \(N = 310\) instances, \(K =3\) classes.
+    \item Dermatology: \(N_a = 33\) attributes, \(N = 366\) instances, \(K = ?\) classes.
+    \item Breast Cancer Wisconsin: \(N_a = 10\) attributes, \(N = 699\) instances, \(K = 2\) classes.
+    \item XOR problem: \(N_a = 2\) attributes, \(N = 200\) instances, \(K = 2\) classes.
+\end{itemize}
+
+\subsubsection{Iris dataset}
 
 \end{document}

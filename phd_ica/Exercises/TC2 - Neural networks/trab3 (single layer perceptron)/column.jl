@@ -24,7 +24,7 @@ end
 
 function train(𝐗, 𝐃, 𝐖₍ₙ₎, is_training_accuracy=true)
     φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
-    Nₑ = 0 # number of errors - misclassification
+    Nₑ = 0 # number of errors ➡ misclassifications
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎# induced local field
         𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # for the training phase, you do not pass y₍ₙ₎ to a harder decisor (the McCulloch and Pitts's activation function) (??? TODO)
@@ -45,7 +45,7 @@ end
 
 function test(𝐗, 𝐃, 𝐖₍ₙ₎)
     φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
-    Nₑ = 0 # number of errors - misclassification
+    Nₑ = 0 # number of errors ➡ misclassifications
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎# induced local field
         # 𝐲₍ₙ₎ = map(φ, 𝛍₍ₙ₎) # theoretically, you need to pass 𝛍₍ₙ₎ through the activation function, but, in order to solve ambiguous instances (see Ajalmar's handwritings), we pick the class with the highest activation function input

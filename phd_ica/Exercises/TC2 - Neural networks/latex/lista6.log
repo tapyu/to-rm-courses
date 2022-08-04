@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  2 AUG 2022 06:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  4 AUG 2022 01:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -395,14 +395,7 @@ Package: relsize 2013/03/29 ver 4.1
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count300
 \l__pdf_internal_box=\box62
-) (./lista6.aux
-
-LaTeX Warning: Label `eq:g_n' multiply defined.
-
-
-LaTeX Warning: Label `eq:local-gradient' multiply defined.
-
-)
+) (./lista6.aux)
 \openout1 = `lista6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 43.
@@ -544,41 +537,54 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/logo_cabecalho.png>]
+
+LaTeX Warning: Reference `eq:induced-local-field' on page 2 undefined on input line 77.
+
+
+LaTeX Warning: Reference `eq:g_n' on page 2 undefined on input line 88.
+
+
+LaTeX Warning: Reference `eq:w_n_plus1' on page 2 undefined on input line 88.
+
+
+LaTeX Warning: Reference `alg:rosenblatt-perceptron' on page 2 undefined on input line 93.
+
+
+LaTeX Warning: Reference `alg:rosenblatt-perceptron' on page 2 undefined on input line 128.
+
+
+LaTeX Warning: Reference `tab:rosenblatt-results' on page 2 undefined on input line 128.
+
+
+LaTeX Warning: Reference `fig:rosenblatt-decision-surface' on page 2 undefined on input line 128.
+
 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png, id=23, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png Graphic file (type png)
-<use ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png  used on input line 133.
-(pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [2]
-<../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png, id=28, 602.25pt x 401.5pt>
-File: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png Graphic file (type png)
-<use ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png  used on input line 162.
-(pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
+<use .ex.def)             Requested size: 210.79065pt x 140.5271pt.
  [3 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>]
 <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png, id=35, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 171.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 170.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
 <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png, id=36, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 180.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 179.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [4 <../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png> <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png> <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>]
 <../trab2 (ADALINE)/figs/predict-f1.png, id=40, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f1.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f1.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 231.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 230.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab2 (ADALINE)/figs/predict-f2.png, id=42, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f2.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f2.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 236.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 235.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
  [5] [6 <../trab2 (ADALINE)/figs/predict-f1.png> <../trab2 (ADALINE)/figs/predict-f2.png>] [7]
-Overfull \hbox (5.55591pt too wide) in paragraph at lines 306--310
+Overfull \hbox (5.55591pt too wide) in paragraph at lines 305--309
 \OT1/cmr/m/n/12 where $\LMS/ntxsy/m/n/12 ^^L$ \OT1/cmr/m/n/12 is the Hadamard prod-uct and $[][]\LMS/ntxsy/m/n/12 น\OT1/cmr/b/n/12 v\LMS/ntxsy/m/n/12 น\OML/ntxmi/m/it/12 n\LMS/ntxsy/m/n/12 บบ \U/ntxmia/m/it/12 = [][]$\OT1/cmr/m/n/12 . 
  []
 
@@ -586,51 +592,102 @@ Overfull \hbox (5.55591pt too wide) in paragraph at lines 306--310
 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png, id=62, 602.25pt x 401.5pt>
 File: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 373.
+Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 372.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png, id=63, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 383.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 382.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [9 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>]
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png, id=67, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 395.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 394.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png, id=68, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 399.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 398.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png, id=69, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 403.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 402.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [10 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>] [11] [12] [13] [14] (./lista6.aux)
+ [10 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>] [11] [12] [13] [14] [15] (./lista6.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 9199 strings out of 478238
+ 142539 string characters out of 5850456
+ 441355 words of memory out of 5000000
+ 27243 multiletter control sequences out of 15000+600000
+ 517060 words of font info for 157 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 69i,24n,117p,1097b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on lista6.pdf (15 pages, 893554 bytes).
+PDF statistics:
+ 183 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+
+age 12 undefined on input line 460.
+
+[12]
+
+LaTeX Warning: Reference `eq:mlp-partial-final' on page 13 undefined on input line 466.
+
+
+LaTeX Warning: Reference `eq:local-gradient' on page 13 undefined on input line 466.
+
+
+LaTeX Warning: Reference `eq:uptade-layer-L-1' on page 13 undefined on input line 475.
+
+
+LaTeX Warning: Reference `alg:multilayer-perceptron' on page 13 undefined on input line 491.
+
+[13]
+
+LaTeX Warning: Reference `alg:grid-search-k-fold-cross-validation' on page 14 undefined on input line 539.
+
+
+LaTeX Warning: Reference `alg:grid-search-k-fold-cross-validation' on page 14 undefined on input line 541.
+
+[14]
+
+LaTeX Warning: Reference `alg:multilayer-perceptron' on page 15 undefined on input line 581.
+
+[15] (./lista6.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9195 strings out of 478238
- 142441 string characters out of 5850456
- 439376 words of memory out of 5000000
- 27239 multiletter control sequences out of 15000+600000
- 516455 words of font info for 155 fonts, out of 8000000 for 9000
+ 9199 strings out of 478238
+ 142539 string characters out of 5850456
+ 441052 words of memory out of 5000000
+ 27243 multiletter control sequences out of 15000+600000
+ 517060 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,24n,117p,1097b,577s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,24n,117p,1097b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on lista6.pdf (14 pages, 887939 bytes).
+Output written on lista6.pdf (15 pages, 894174 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
+ 183 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

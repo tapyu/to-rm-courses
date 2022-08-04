@@ -21,7 +21,7 @@ end
 
 function train(𝐗, 𝐝, 𝐰, is_training_accuracy=true)
     φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
-    Nₑ = 0 # number of errors - misclassification
+    Nₑ = 0 # number of errors ➡ misclassifications
     for (𝐱₍ₙ₎, d₍ₙ₎) ∈ zip(eachcol(𝐗), 𝐝)
         μ₍ₙ₎ = dot(𝐱₍ₙ₎,𝐰) # inner product
         y₍ₙ₎ = φ(μ₍ₙ₎) # for the training phase, you do not pass y₍ₙ₎ to a harder decisor (the McCulloch and Pitts's activation function) since you are in intended to classify y₍ₙ₎. Rather, you are interested in updating 𝐰 (??? TODO)
