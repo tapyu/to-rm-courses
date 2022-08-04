@@ -90,12 +90,12 @@ Substituting \eqref{eq:g_n} into \eqref{eq:w_n_plus1}, it yields the learning eq
     \mathbf{w}(n+1) = \mathbf{w}(n) + \eta \mathbf{x}(n) e(n).
 \end{align}
 
-The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and data shuffling. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and testing datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
+The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and data shuffling. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
       
-      \KwInput{\(\mathbf{X}, \mathbf{d}\) \tcc*{attributes and labels dataset}}
+      \KwInput{\(\mathbf{X}, \mathbf{d}\) \tcp*{attributes and labels dataset}}
       
     %   \KwData{Testing set $x$}
       \ForAll{\(\left\{ 1, 2, \cdots, N_r \right\}\)}{
@@ -103,7 +103,7 @@ The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized 
 
         \(\mathbf{X}, \mathbf{d} \leftarrow \text{shuffle}\)
 
-        \( \left( \mathbf{X}_{trn}, \mathbf{d}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{d}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
+        \( \left( \mathbf{X}_{trn}, \mathbf{d}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{d}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*[r]{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
             \ForAll{Instancies in the training dataset}{
@@ -249,13 +249,31 @@ The matrix of all coefficients is given by
         \mathbf{w}_1 (n)^\trans & \mathbf{w}_2 (n)^\trans & \cdots & \mathbf{w}_J (n)^\trans
     \end{bmatrix}^\trans \in \Real^{J \times \left(N_a+1\right)},
 \end{align}
-where \(J\) is the number of classes (one neuron for each class) and \(N_a\) is the number of attributes. The learning algorithm is given by
+where \(J\) is the number of classes (one neuron for each class), \(N_a\) is the number of attributes, and
+\begin{align}
+    \mathbf{w}_j (n) = \begin{bmatrix}
+        w_{j0} (n) & w_{j1} (n) & \cdots & w_{j N_a} (n)
+    \end{bmatrix}^\trans \in \Real^{N_a+1}
+\end{align}
+is the synaptic weight vector of the \(j\)th neuron, being \(w_{jk} (n)\) its \(k\)th weight.
+
+The learning algorithm is given by
 \begin{align}
     \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans,
 \end{align}
-where \(\boldsymbol{\deltaup}(n) = \begin{bmatrix}
-    \delta_1(n) & \delta_2(n) & \delta_J(n)
-\end{bmatrix}^\trans\) is the vector of the local gradients, being \(\delta_j(n)\) the local gradient of the \(j\)th perceptron. Let us define the vector of all induced local fields at the instant \(n\) as
+where
+\begin{align}
+    \mathbf{x}(n) = \begin{bmatrix}
+        -1 & x_1(n) & x_2(n) & x_{N_a}(n)
+    \end{bmatrix}^\trans \in \Real^{N_a+1}
+\end{align}
+is the input vector (including the bias), and
+\begin{align}
+    \boldsymbol{\deltaup}(n) = \begin{bmatrix}
+        \delta_1(n) & \delta_2(n) & \delta_J(n)
+    \end{bmatrix}^\trans \in \Real^{J}
+\end{align}
+is the vector of the local gradients, being \(\delta_j(n)\) the local gradient of the \(j\)th perceptron. Let us define the vector of all induced local fields at the instant \(n\) as
 \begin{align}
     \mathbf{v}(n) = \begin{bmatrix}
         v_1(n) & v_2(n) & v_J(n)
@@ -303,9 +321,12 @@ or in matricial notation,
 \begin{align}
     \boldsymbol{\deltaup}(n) = \mathbf{e}(n) \odot \boldsymbol{\varphi}'(\mathbf{v}(n)),
 \end{align}
-where \(\odot\) is the Hadamard product and \(\boldsymbol{\varphi}'(\mathbf{v}(n)) = \begin{bmatrix}
-    \varphi'(v_1(n)) & \varphi'(v_2(n)) & \cdots & \varphi'(v_K(n))
-\end{bmatrix}^\trans\).
+where \(\odot\) is the Hadamard product and
+\begin{align}
+    \boldsymbol{\varphi}'(\mathbf{v}(n)) = \begin{bmatrix}
+        \varphi'(v_1(n)) & \varphi'(v_2(n)) & \cdots & \varphi'(v_J(n))
+    \end{bmatrix}^\trans \in \Real^{J}.
+\end{align}
 
 The synaptic weights update is given by
 \begin{align}
@@ -331,7 +352,7 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
       
-      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcc*{attributes and labels dataset}}
+      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcp*{attributes and labels dataset}}
       
     %   \KwData{Testing set $x$}
       \ForAll{\(\left\{ 1, 2, \cdots, N_r \right\}\)}{
@@ -339,7 +360,7 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
 
         \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
 
-        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
+        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
             \ForAll{Instancies in the training dataset}{
@@ -410,17 +431,19 @@ For the iris dataset, SLP with logistic function reached a mean and a standard d
 
 Rosenblatt's perceptron and the single-layer perceptron use the LMS algorithm in the learning phase and are capable of estimating the gradient vector, which yields reasonable results for many problems. However, both architectures are restricted to the classification of linearly separable patterns.
 
-To overcome the limitations of the aforementioned solutions, we introduce a new neural network structure, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear activation function that is differentiable, and the final output can successfully solve nonlinear problems.
+To overcome the limitations of the aforementioned solutions, we introduce a new neural network architecture, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear activation function that is differentiable, and the final output is able to solve nonlinear problems.
 
-The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error should propagate toward the first layer. A popular learning algorithm used for MLP is the backpropagation algorithm, which in turn is rooted in the LMS algorithm.
+The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error at the output layer should propagate toward the input layer. A popular learning algorithm used for MLP is the backpropagation algorithm, which in turn, is rooted in the LMS algorithm.
 
 The backpropagation algorithm entails two phases:
 \begin{itemize}
     \item The \emph{forward phase}: at the instant \(n\), the synaptic weights of the network are fixed and the input signal, \(\mathbf{x}(n)\), is propagated from the input to the output layer. At each neuron, the induced local field is computed and the output of the activation function is delivered to each neuron located on the layer at its right.
-    \item the \emph{backward phase}: signal error is produced at the output layer, where their weights are readily updated with the same procedure used in the SLP. Then, the synaptic weights of the hidden layers are updated, from the outmost hidden layer to the input layer, using the local gradients and the synaptic weights of the neurons on the layer at its right, in addition to the derivative of the activation function of the own neuron.
+    \item the \emph{backward phase}: signal error is produced at the output layer, where their weights are readily updated with the same procedure used in the SLP. Then, the synaptic weights of the hidden layers are updated, from the outmost hidden layer to the input layer, using the local gradients and the synaptic weights of the neurons on the layer at its right, in addition to the activation function derivative of the own neuron. 
 \end{itemize}
 
-Since the update equation for the output layer was already derived in the SLP algorithm\footnote{The unique difference is that the input signal is \(\mathbf{y}^{(L-1)}(n)\) instead of \(\mathbf{x}(n)\)}, we will focus on finding the update equation of the \(l\)th hidden layer. Beginning with the outmost hidden layer and recalling that the local gradient of the \(j\)th neuron on this layer is given by
+Since the update equation for the output layer was already derived in the SLP algorithm\footnote{The unique difference is that the input signal is \(\mathbf{y}^{(L-1)}(n)\) instead of \(\mathbf{x}(n)\)}, we will focus on finding the update equation of the \(l\)th hidden layer. Furthermore, we will considerate a dense neural network structure, that is, all neurons on the layer \(l+1\) are connected through synaptic weights with all neurons on the layer \(l\), for \(1\leq l < L\).
+
+Beginning with the outmost hidden layer and recalling that the local gradient of the \(j\)th neuron on this layer is given by
 \begin{align}
     \delta_j^{(L-1)} (n) & = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \\
     & = - \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)} \nonumber \nonumber \\
@@ -432,25 +455,25 @@ where the third equation follows that
     \varphi'(v_j^{(L-1)}(n)) = \frac{\partial y_{j}^{(L-1)}(n)}{\partial v_{j}^{(L-1)}(n)}.
 \end{align}
 
-In these equations, \(v_{j}^{(l)}(n)\) and \(y_{j}^{(l)} (n)\) are the induced local field and the output signal of \(j\)th neuron on the \(l\)th layer, being \(y_{0}^{(l)} (n) \triangleq -1\) the input bias for the neurons on the layer \(l+1\).
+In these equations, \(v_{j}^{(l)}(n)\), \(y_{j}^{(l)} (n)\), and \(\delta_j^{(l)} (n)\) are the induced local field, the output signal, and the local gradient of \(j\)th neuron on the \(l\)th layer, being \(y_{0}^{(l)} (n) \triangleq -1\) the input bias for the neurons on the layer \(l+1\).
 
 We can derive the learning equation for the layer \(L-1\) and generalize it to all hidden layers. Remember that \(y_{j}^{(L-1)}(n)\) is the \(j\)th input signal on the output layer (\(L\)th layer), and that
 \begin{align}
-    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k^{(L)}(n) \frac{\partial e_k^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k(n) \frac{\partial e_k(n)}{\partial y_{j}^{(L-1)}(n)},
 \end{align}
 where \(m_L\) is the number of neurons on the \(L\)th layer. By using the chain rule, we have that
 \begin{align}
-    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k^{(L)}(n) \frac{\partial e_k^{(L)}(n)}{\partial v_{k}^{(L)}(n)} \frac{\partial v_{k}^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)} = \sum_{k=1}^{m_L} e_k(n) \frac{\partial e_k(n)}{\partial v_{k}^{(L)}(n)} \frac{\partial v_{k}^{(L)}(n)}{\partial y_{j}^{(L-1)}(n)},
     \label{eq:partial-mlp}
 \end{align}
-but since \(e_k^{(L)}(n) = d_k^{(L)}(n) - \varphi(v_k^{(L)}(n))\), it follows that
+but since \(e_k(n) = d_k(n) - \varphi(v_k^{(L)}(n))\), it follows that
 \begin{align}
-    \frac{\partial e_k^{(L)}(n)}{\partial v_{k}^{(L)}(n)} = - \varphi(v_k^{(L)}(n)).
+    \frac{\partial e_k(n)}{\partial v_{k}^{(L)}(n)} = - \varphi(v_k^{(L)}(n)).
     \label{eq:chain12}
 \end{align}
 Note that
 \begin{align}
-    v_{k}^{(L)} = \sum_{j=0}^{m_L} w_{kj}^{(L)}(n) y_{j}^{(L-1)}(n).
+    v_{k}^{(L)}(n) = \sum_{j=0}^{m_L} w_{kj}^{(L)}(n) y_{j}^{(L-1)}(n).
 \end{align}
 Therefore,
 \begin{align}
@@ -459,32 +482,50 @@ Therefore,
 \end{align}
 Substituting the Equations \eqref{eq:chain12} and \eqref{eq:chain22} into \eqref{eq:partial-mlp}, we get
 \begin{align}
-    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)}  & = - \sum_{k=1}^{m_L} e_k^{(L)}(n) \varphi(v_k^{(L)}(n)) w_{kj}^{(L)}(n) \nonumber \\
+    \frac{\partial \mathscr{E}(n)}{\partial y_{j}^{(L-1)}(n)}  & = - \sum_{k=1}^{m_L} e_k(n) \varphi(v_k^{(L)}(n)) w_{kj}^{(L)}(n) \nonumber \\
     & = - \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
     \label{eq:mlp-partial-final}
 \end{align}
-where the second equation follows that \(\delta_k^{(L)} = e_k^{(L)}(n) \varphi(v_k^{(L)}(n))\). Finally, substituting Equation \eqref{eq:mlp-partial-final} into \eqref{eq:local-gradient}, the local gradient of the \(j\)th neuron on the \((L-1)\)th hidden layer is given by
+where the second equation follows that \(\delta_k^{(L)} = e_k(n) \varphi(v_k^{(L)}(n))\). Finally, substituting Equation \eqref{eq:mlp-partial-final} into \eqref{eq:local-gradient2}, the local gradient of the \(j\)th neuron on the \((L-1)\)th hidden layer is given by
 \begin{align}
     \delta_j^{(L-1)} (n) = \varphi'(v_j^{(L-1)}(n)) \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
 \end{align}
 or in matricial notation
 \begin{align}
-    \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \mathbf{W}^{(L)}(n) \boldsymbol{\deltaup}^{(L)} (n),
+    \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \tilde{\mathbf{W}}^{(L)}(n)^\trans \boldsymbol{\deltaup}^{(L)} (n),
     \label{eq:uptade-layer-L-1}
 \end{align}
+where
+\begin{align}
+    \tilde{\mathbf{W}}^{(L)}(n) = \begin{bmatrix}
+        w_{11} (n) & w_{12} (n) & \cdots & w_{1 m_{L-1}} (n) \\
+        w_{21} (n) & \ddots & \cdots & \vdots \\
+        \vdots & \ddots & & \vdots \\
+        w_{m_L1} (n) & w_{m_L2} (n) & \cdots & w_{m_Lm_{L-1}} (n)
+    \end{bmatrix} \in \Real^{m_L \times m_{L-1}}
+\end{align}
+is the synaptic weight matrix for the layer \(L\), but without the weights of the bias.
+
 The Equation \eqref{eq:uptade-layer-L-1} can be generalized to the \(l\)th layer:
 \begin{align}
-    \boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \mathbf{W}^{(l+1)}(n) \boldsymbol{\deltaup}^{(l+1)} (n),
+    \boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \tilde{\mathbf{W}}^{(l+1)}(n)^\trans \boldsymbol{\deltaup}^{(l+1)} (n)\text{ for } 1\leq l < L.
     \label{eq:uptade-layer-l}
 \end{align}
-where \(1\leq l < L\). The synaptic weights update is given by
+
+Following the same procedure for the SLP, we can derive the synaptic weights update, which is given by
 \begin{align}
-    \Delta \mathbf{W}^{(l)}(n) = \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans,
+    \Delta \mathbf{W}^{(l)}(n) = \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans \in \Real^{m_l \times (m_{l-1}+1)},
 \end{align}
-where \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
+where
+\begin{align}
+    \mathbf{y}^{(l)}(n) = \begin{bmatrix}
+        -1 & y_1^{(l)}(n) & y_2^{(l)}(n) & \cdots & y_{m_{l}}^{(l)}(n)
+    \end{bmatrix}^\trans \in \Real^{m_{l}+1}
+\end{align}
+and \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
 \begin{align}
     \mathbf{W}^{(l)}(n+1) & = \mathbf{W}^{(l)}(n) + \Delta \mathbf{W}^{(l)}(n) \nonumber \\
-    & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.
+    & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans \in \Real^{m_l \times (m_{l-1}+1)}.
 \end{align}
 
 
@@ -493,7 +534,7 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
 \begin{algorithm}[H]
     \DontPrintSemicolon
       
-      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcc*{attributes and labels dataset}}
+      \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcp*{attributes and labels dataset}}
       
     %   \KwData{Testing set $x$}
       \ForAll{\(\left\{ 1, 2, \cdots, N_r \right\}\)}{
@@ -501,29 +542,29 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
 
         \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
 
-        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcc{training and testing dataset}
+        \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*[f]{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
             \ForAll{Instancies in the training dataset}{
-                \tcc{forward phase}
+                \tcp*[l]{forward phase}
                 \For{\(l \in \left\{ 1, 2, ..., L \right\}\)}{
                     \(\mathbf{v}^{(l)}(n) \leftarrow \mathbf{W}^{(l)}(n) \mathbf{y}^{(l-1)}(n)\)
 
                     \(\mathbf{y}^{(l)}(n) \leftarrow \boldsymbol{\varphi}(\mathbf{v}^{(l)}(n))\)
                 }
                 
-                \tcc{backward phase}
+                \tcp{backward phase}
                 
-                \(\mathbf{e}(n) \leftarrow \mathbf{d}(n) - \mathbf{y}^{(L)}(n)\) \tcc*{output layer}
+                \(\mathbf{e}(n) \leftarrow \mathbf{d}(n) - \mathbf{y}^{(L)}(n)\) \tcp*{output layer}
             
                 \(\boldsymbol{\deltaup}^{(L)}(n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(L)}(n)) \odot \mathbf{e}(n)\)
 
                 \(\mathbf{W}^{(L)}(n+1) \leftarrow \mathbf{W}^{(L)}(n) + \eta\boldsymbol{\deltaup}^{(L)}(n) \mathbf{y}^{(L-1)}(n)^\trans\)
 
-                \For{\(l \in \left\{ L-1, L-2, ..., 1 \right\}\)}{
-                    \(\boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \mathbf{W}^{(l+1)}(n) \boldsymbol{\deltaup}^{(l+1)} (n)\)
+                \For(\tcp*[f]{hidden layers}){\(l \in \left\{ L-1, L-2, ..., 1 \right\}\)}{
+                    \(\boldsymbol{\deltaup}^{(l)} (n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \tilde{\mathbf{W}}^{(l+1)}(n)^\trans \boldsymbol{\deltaup}^{(l+1)} (n)\)
 
-                    \(\mathbf{W}^{(l)}(n+1) = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.\)
+                    \(\mathbf{W}^{(l)}(n+1) \leftarrow \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.\)
                 }
             }
             \(\mathbf{X}_{trn}, \mathbf{D}_{trn} \leftarrow \text{shuffle}\)
@@ -543,7 +584,7 @@ At each realization, before starting the training phase, the training dataset is
 \begin{algorithm}[H]
     \DontPrintSemicolon
       
-      \KwInput{\(\mathbf{X}, K\) \tcc*{\(\mathbf{X}\) does not have the test instances}}
+      \KwInput{\(\mathbf{X}, K\) \tcp*{\(\mathbf{X}\) does not have the test instances}}
       
     %   \KwData{Testing set $x$}
     \(\mathbf{X} \leftarrow\) shuffle
@@ -557,7 +598,7 @@ At each realization, before starting the training phase, the training dataset is
             \(\mathbf{X}_{trn}, \mathbf{X}_{val} \leftarrow\) select the \(k\)th division of training and validation dataset.
             
 
-            \ForAll(\tcc*[h]{for each epoch}){\(\left\{ 1, 2, ..., N_e \right\}\)}{
+            \ForAll(\tcp*[f]{for each epoch}){\(\left\{ 1, 2, ..., N_e \right\}\)}{
                 \(\mathbf{X}_{trn} \leftarrow\) shuffle
 
                 \(\mathbf{W}(n) \leftarrow \) train with a given set of hyperparameters

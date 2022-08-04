@@ -1,7 +1,7 @@
-PWD /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex2
+PWD /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex2/main.tex
+INPUT /home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex
 OUTPUT main.log
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
@@ -666,6 +666,9 @@ INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm
@@ -687,9 +690,6 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbsyc.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxbexa.tfm
-INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxbmia.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txbmiaSTbb.tfm
@@ -727,6 +727,9 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT main.aux

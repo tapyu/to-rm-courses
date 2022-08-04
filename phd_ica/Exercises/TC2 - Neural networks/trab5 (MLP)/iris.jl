@@ -19,13 +19,13 @@ function train(𝐗, 𝐃, 𝔚, φ, φʼ)
         𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])  # output of the l-th layer at the instant n
         𝔶ʼ₍ₙ₎ = OrderedDict(𝔶₍ₙ₎) # diff of the output of the l-th layer at the instant n
         𝔡₍ₙ₎ = OrderedDict(𝔶₍ₙ₎) # all local gradients of all layers
-        # forward phase
+        # forward phase!
         for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚 # l-th layer
             𝐯⁽ˡ⁾₍ₙ₎ = l==1 ? 𝐖⁽ˡ⁾₍ₙ₎*𝐱₍ₙ₎ : 𝐖⁽ˡ⁾₍ₙ₎*[-1; 𝔶₍ₙ₎[l-1]] # induced local field
             𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
             𝔶ʼ₍ₙ₎[l] = map(φʼ, 𝔶₍ₙ₎[l])
         end
-        # backward phase
+        # backward phase!
         for l ∈ L:-1:1
             if l==L # output layer
                 𝐞₍ₙ₎ = 𝐝₍ₙ₎ - 𝔶₍ₙ₎[L]
@@ -33,12 +33,31 @@ function train(𝐗, 𝐃, 𝔚, φ, φʼ)
                 Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1 # count error if it occurs
                 𝔡₍ₙ₎[L] = 𝔶ʼ₍ₙ₎[L] ⊙ 𝐞₍ₙ₎
             else # hidden layers
-                𝔡₍ₙ₎[l] = 𝔶ʼ₍ₙ₎[l] ⊙ 𝔚[l+1]*𝔡₍ₙ₎[l+1] # vector of local gradients of the l-th layer
+                𝔡₍ₙ₎[l] = 𝔶ʼ₍ₙ₎[l] ⊙ 𝔚[l+1][:,2:end]'*𝔡₍ₙ₎[l+1] # vector of local gradients of the l-th layer
             end
             𝔚[l] = l==1 ? 𝔚[l]+η*𝔡₍ₙ₎[l]*𝐱₍ₙ₎' : 𝔚[l]+η*𝔡₍ₙ₎[l]*[-1; 𝔶₍ₙ₎[l-1]]' # learning equation
         end
     end
     return 𝔚, (size(𝐃,2)-Nₑ)/size(𝐃,2) # trained neural network synaptic weights and its accuracy
+end
+
+function test(𝐗, 𝐃, 𝔚, φ)
+    L = length(𝔚) # number of layers
+    Nₑ = 0 # number of errors ➡ misclassification
+    for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃)) # n-th instance
+        # initialize the output and the vetor of gradients of each layer!
+        𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])  # output of the l-th layer at the instant n
+        # forward phase!
+        for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚 # l-th layer
+            𝐯⁽ˡ⁾₍ₙ₎ = l==1 ? 𝐖⁽ˡ⁾₍ₙ₎*𝐱₍ₙ₎ : 𝐖⁽ˡ⁾₍ₙ₎*[-1; 𝔶₍ₙ₎[l-1]] # induced local field
+            𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
+            if l==L # output layer
+                i = findfirst(x->x==maximum(𝔶₍ₙ₎[L]), 𝔶₍ₙ₎[L]) # predicted value → choose the highest activation function output as the selected class
+                Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1 # count error if it occurs
+            end
+        end
+    end
+    return (size(𝐃,2)-Nₑ)/size(𝐃,2)
 end
 
 ## algorithm parameters and hyperparameters
@@ -82,9 +101,17 @@ for nᵣ ∈ 1:Nᵣ
         𝐗ₜᵣₙ, 𝐃ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐃ₜᵣₙ)
     end
     # test!
-    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝐖₍ₙ₎) # accuracy for this realization
+    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎))) # accuracy for this realization
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab4 (single layer perceptron with sigmoidal functions)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "trab5 (MLP)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 end
+
+# analyze the accuracy statistics of each independent realization
+μ̄ₜₛₜ = Σ(𝛍ₜₛₜ)/Nᵣ # mean
+𝔼μ² = Σ(𝛍ₜₛₜ.^2)/Nᵣ
+σμ = sqrt(𝔼μ² - μ̄ₜₛₜ^2) # standard deviation
+
+println("Mean: $(μ̄ₜₛₜ)")
+println("Standard deviation: $(σμ)")
