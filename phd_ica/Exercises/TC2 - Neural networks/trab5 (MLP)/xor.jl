@@ -1,4 +1,5 @@
 using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings, DataStructures
+include("grid_search_cross_validation.jl")
 Σ=sum
 ⊙ = .* # Hadamard product
 
@@ -29,8 +30,8 @@ function train(𝐗, 𝐝, 𝔚, φ, φʼ)
         for l ∈ L:-1:1
             if l==L # output layer
                 e₍ₙ₎ = [d₍ₙ₎] - 𝔶₍ₙ₎[L]
-                d̂₍ₙ₎ = 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0 # predicted value → get the result of the step function
-                Nₑ = d₍ₙ₎==d̂₍ₙ₎ ? Nₑ : Nₑ+1 # count error if it occurs
+                y₍ₙ₎ = 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0 # predicted value → get the result of the step function
+                Nₑ = d₍ₙ₎==y₍ₙ₎ ? Nₑ : Nₑ+1 # count error if it occurs
                 𝔡₍ₙ₎[L] = 𝔶ʼ₍ₙ₎[L] ⊙ e₍ₙ₎
             else # hidden layers
                 𝔡₍ₙ₎[l] = 𝔶ʼ₍ₙ₎[l] ⊙ 𝔚[l+1][:,2:end]'*𝔡₍ₙ₎[l+1] # vector of local gradients of the l-th layer
@@ -41,9 +42,10 @@ function train(𝐗, 𝐝, 𝔚, φ, φʼ)
     return 𝔚, (length(𝐝)-Nₑ)/length(𝐝) # trained neural network synaptic weights and its accuracy
 end
 
-function test(𝐗, 𝐝, 𝔚, φ)
+function test(𝐗, 𝐝, 𝔚, φ, is_confusion_matrix=false)
     L = length(𝔚) # number of layers
     Nₑ = 0 # number of errors ➡ misclassification
+    𝐲 = rand(length(𝐝))
     for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝)) # n-th instance
         # initialize the output and the vetor of gradients of each layer!
         𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])  # output of the l-th layer at the instant n
@@ -52,12 +54,17 @@ function test(𝐗, 𝐝, 𝔚, φ)
             𝐯⁽ˡ⁾₍ₙ₎ = l==1 ? 𝐖⁽ˡ⁾₍ₙ₎*𝐱₍ₙ₎ : 𝐖⁽ˡ⁾₍ₙ₎*[-1; 𝔶₍ₙ₎[l-1]] # induced local field
             𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
             if l==L # output layer
-                d̂₍ₙ₎ = 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0 # predicted value → get the result of the step function
-                Nₑ = d₍ₙ₎==d̂₍ₙ₎ ? Nₑ : Nₑ+1 # count error if it occurs
+                𝐲[n] = 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0 # predicted value → get the result of the step function
+                Nₑ = d₍ₙ₎==𝐲[n] ? Nₑ : Nₑ+1 # count error if it occurs
             end
         end
     end
-    return (length(𝐝)-Nₑ)/length(𝐝)
+    
+    if is_confusion_matrix
+        return Int.(𝐲)
+    else
+        return (length(𝐝)-Nₑ)/length(𝐝)
+    end
 end
 
 ## algorithm parameters and hyperparameters
@@ -69,7 +76,6 @@ Nₐ = 2 # number of number of attributes (x₁ and x₂)
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 m₂ = 1 # number of perceptrons (neurons) of the output layer (only one since it is enough to classify 0 or 1)
-m₁ = 2 # number of perceptrons on the hidden layer (a hyperparameter that will the replaced by the kfcv)
 η = 2 # learning step
 
 𝐗 = [fill(-1, N)'; fill(0, 100)' fill(1, 100)'; fill(1, 50)' fill(0, 100)' fill(1, 50)']
@@ -78,10 +84,6 @@ m₁ = 2 # number of perceptrons on the hidden layer (a hyperparameter that will
 ## init
 𝛍ₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
-    # initialize!
-    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
-    𝛍ₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
-
     # prepare the data!
     global 𝐗, 𝐝 = shuffle_dataset(𝐗, 𝐝)
     # hould-out
@@ -90,17 +92,25 @@ for nᵣ ∈ 1:Nᵣ
     𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1:end]
     𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
 
+    # grid search with k-fold cross validation!
+    (m₁, (φ, φʼ)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 10, (1:3, ((u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎)), (u₍ₙ₎ -> (1-ℯ^(-u₍ₙ₎))/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2)))))
+    println("best m₁: $(m₁)")
+    
+    # initialize!
+    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
+    𝛍ₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
+
     # train!
     for nₑ ∈ 1:Nₑ # for each epoch
-        𝔚, 𝛍ₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝔚, u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎))
+        𝔚, 𝛍ₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 𝔚, φ, φʼ)
         𝐗ₜᵣₙ, 𝐝ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐝ₜᵣₙ)
     end
     # test!
-    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝔚, u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎))) # accuracy for this realization
+    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝔚, φ) # accuracy for this realization
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab5 (MLP)/figs/xor - training dataset accuracy evolution for realization $(nᵣ)- μ$(𝛍ₜₛₜ[nᵣ]).png")
+    # savefig(fig, "trab5 (MLP)/figs/xor - training dataset accuracy evolution for realization $(nᵣ)- μ$(𝛍ₜₛₜ[nᵣ]).png")
     
     ## predictor of the class (basically it is what is done on test(), but only with the attributes as inputs)
     y = function predict(x₁, x₂)
@@ -156,19 +166,31 @@ for nᵣ ∈ 1:Nᵣ
     scatter!(𝐗ₜₛₜ[2, 𝐝ₜₛₜ.==1], 𝐗ₜₛₜ[3, 𝐝ₜₛₜ.==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "1 label [test]")
     
     title!("Heatmap")
-    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - nr$(nᵣ).png") #  - μ$(𝛍ₜₛₜ[nᵣ])
     
     # heatmap for the hidden neuron 1!
     fig = contour(x₁_range, x₂_range, y1, xlabel=L"x_1", ylabel=L"x_2", fill=true, levels=1, title="Heatmap of the first hidden neuron")
     scatter!([1 1 0 0], [1 0 1 0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black)
-    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 1 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+    # savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 1 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
 
     # heatmap for the hidden neuron 2!
-    fig = contour(x₁_range, x₂_range, y2, xlabel=L"x_1", ylabel=L"x_2", fill=true, levels=1, title="Heatmap of the second hidden neuron")
+    # fig = contour(x₁_range, x₂_range, y2, xlabel=L"x_1", ylabel=L"x_2", fill=true, levels=1, title="Heatmap of the second hidden neuron")
     scatter!([1 1 0 0], [1 0 1 0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black)
-    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 2 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+    # savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 2 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
     # if 𝛍ₜₛₜ[nᵣ] != 1 # make heatmap plot!
     # end
+    
+    # confusion matrix
+    if 𝛍ₜₛₜ[nᵣ] == 1 && !isfile("trab5 (MLP)/figs/xor-confusion-matrix.png")
+        𝐂 = zeros(2,2)
+        𝐲ₜₛₜ = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝔚, φ, true)
+        for n ∈ 1:length(𝐲ₜₛₜ)
+            # predicted x true label
+            𝐂[𝐲ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
+        end
+        h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix")
+        savefig(h, "trab5 (MLP)/figs/xor-confusion-matrix.png") # TODO: put the number onto each confusion square
+    end
 end
 
 # analyze the accuracy statistics of each independent realization

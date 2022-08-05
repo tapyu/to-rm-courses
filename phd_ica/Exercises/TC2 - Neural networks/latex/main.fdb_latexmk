@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1659670881 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1659670882
+["pdflatex"] 1659692938 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1659692939
   "../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png" 1659305814 19327 c0170d57932d33cc0b9178673bb9edb4 ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png" 1659395333 58837 296aa05df53e0681d21204d5a9ac0a0d ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png" 1659305814 83192 25a0417ca5be09b78dcd419b1ed1853d ""
@@ -11,7 +11,9 @@
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png" 1659305814 56088 1774c4875044903fbfc0d4bcc596e958 ""
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png" 1659305814 68518 3a0f4e6166a9d76a418cb2b8cfb0d95c ""
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png" 1659396605 49861 72cd97ef38197d45c6bec338cac2468d ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1659670881 34954 33f0e5407491c9d10d49240020c9aa7e ""
+  "../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png" 1659692684 28170 5c4cd065156fa82aff13cc805ff492df ""
+  "../trab5 (MLP)/figs/xor-confusion-matrix.png" 1659692686 16530 0dc91929b49346c9cbd8d055cbbb1aac ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1659692937 35680 9cb0b87e117d89b6005b8844e5f61628 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650183167 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650183167 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -24,8 +26,10 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm" 1650183167 1336 fb32298c2d61d0c4b59f3065fdd6def9 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1650183167 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1650183167 1332 1fde11373e221473104d6cc5993f046e ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1650183167 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1650183167 1288 655e228510b4c2a1abe905c368440826 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm" 1650183167 1292 296a67155bdbfc32aa9c636f21e91433 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1650183167 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr9.tfm" 1650183167 1292 6b21b9c2c7bebb38aa2273f7ca0fb3af ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmss10.tfm" 1650183167 1316 b636689f1933f24d1294acdf6041daaa ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm" 1650183167 1324 37b971caf729d7edd9cbb9f9b0ea76eb ""
@@ -162,8 +166,8 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659310315 2927664 8a466914be073631d0aa9de154f8e01b ""
   "cabecalho.sty" 1659597454 508 c3f49f95f55eb95acf52853931e91918 ""
   "figs/logo_cabecalho.png" 1659597454 213280 87c4b5e45e8800dd08c28d374a9695b6 ""
-  "main.aux" 1659670882 4826 9e6fce7404e3a9b2a029786dd6f565d1 "pdflatex"
-  "main.tex" 1659670881 34954 33f0e5407491c9d10d49240020c9aa7e ""
+  "main.aux" 1659692939 5447 aab65b6910033f4a3868a3c536fff0d7 "pdflatex"
+  "main.tex" 1659692937 35680 9cb0b87e117d89b6005b8844e5f61628 ""
   (generated)
   "main.aux"
   "main.log"

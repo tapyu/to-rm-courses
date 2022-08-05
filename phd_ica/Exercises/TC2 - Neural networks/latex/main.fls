@@ -732,6 +732,57 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
+INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
 INPUT main.aux
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb

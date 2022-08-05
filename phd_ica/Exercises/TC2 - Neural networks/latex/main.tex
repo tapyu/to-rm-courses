@@ -577,9 +577,11 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
     \label{alg:multilayer-perceptron}
 \end{algorithm}
 
+\subsection{Grid search with \(k\)-fold cross validation}
+
 For this homework, it is used an MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to 1 for regression problems or to the number of classes for classification problems\footnote{When the number of classes is equal to 2 (as in the XOR problem), it is used only one neuron instead since it is sufficient to classify the problem.}.
 
-At each realization, before starting the training phase, the training dataset is utilized in the grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs for training, while the \(k\)th fold is reserved for validation dataset. The accuracy obtained in the validation dataset is stored and the process repeats for a different training and validation split. At the end of all combinations of validation and training splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
+At each realization, before starting the training phase, the training dataset is utilized in the grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs for validating, while the \(k\)th fold is reserved for test dataset. The accuracy obtained in the test dataset is stored and the process repeats for a different validation and test split. At the end of all combinations of test and validation splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. Note that the hyperparameters of the select model might vary per realization. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
 
 \begin{algorithm}[H]
     \DontPrintSemicolon
@@ -593,18 +595,18 @@ At each realization, before starting the training phase, the training dataset is
 
 
         \For{\(k \in \left\{ 1, 2, ..., K \right\}\)}{
-            \(\mathbf{W}(n) \leftarrow \text{initialize}\)
+            \(\mathbf{W}^{(l)}(n) \leftarrow \text{initialize}\)
 
-            \(\mathbf{X}_{trn}, \mathbf{X}_{val} \leftarrow\) select the \(k\)th division of training and validation dataset.
+            \(\mathbf{X}_{val}, \mathbf{X}_{tst} \leftarrow\) select the \(k\)th division of validation and test dataset.
             
 
             \ForAll(\tcp*[f]{for each epoch}){\(\left\{ 1, 2, ..., N_e \right\}\)}{
-                \(\mathbf{X}_{trn} \leftarrow\) shuffle
+                \(\mathbf{X}_{val} \leftarrow\) shuffle
 
-                \(\mathbf{W}(n) \leftarrow \) train with a given set of hyperparameters
+                \(\mathbf{W}^{(l)}(n) \leftarrow \) validate using \(\mathbf{X}_{val}\) for a given set of hyperparameters
             }
 
-            Save the accuracy for the trained \(\mathbf{W}(n)\) for the dataset \(\mathbf{X}_{val}\)
+            Save the accuracy for the trained \(\mathbf{W}^{(l)}(n)\) for the dataset \(\mathbf{X}_{tst}\)
 
 
         }
@@ -636,8 +638,25 @@ For this classification problem, it is generated a dataset with \(200\) instance
 \begin{align}
     y(n) = x_1 (n) \oplus x_2 (n),
 \end{align}
-where the symbol \(\oplus\) indicates the exclusive-OR Boolean operator, generates a nonseparable surface problem that Rosenblatt's Perceptron and the single-layer Perceptron cannot solve. This problem is a specific case for a broad category of classification pattern called \emph{unit hypercube}. This is a well-known nonlinear classification
+where the symbol \(\oplus\) indicates the exclusive-OR Boolean operator, generates a nonseparable surface problem that Rosenblatt's Perceptron and the single-layer Perceptron cannot solve. This problem is a specific case for a broad category of classification pattern called \emph{unit hypercube}.
 
-Since this problem has only two classes (\(0\) or \(1\)), it is used only one neuron at the output layer. With the trained MLP, the problem could be solved with \(100\%\) of mean accuracy. The Figure
+Since this problem has only two classes (\(0\) or \(1\)), it is used only one neuron at the output layer. With the trained MLP, the problem could be solved with \(100\%\) of mean accuracy. The Figure \ref{fig:heatmap-mlp-xor} show the heatmap of for the XOR problem.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png}
+    \caption{Decision surface for the desired class.}
+    \label{fig:heatmap-mlp-xor}
+\end{figure}
+
+The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{../trab5 (MLP)/figs/xor-confusion-matrix.png}
+    \caption{Decision surface for the desired class.}
+    \label{fig:confusion-matrix-mlp-xor}
+\end{figure}
+
+\subsection{Iris dataset}
 
 \end{document}
