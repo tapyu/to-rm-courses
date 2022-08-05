@@ -234,7 +234,7 @@ Naturally, both curves could be properly estimated since they are linear functio
   \label{fig:itemb}
 }
 
-\caption{ADALINE regression}
+\caption{ADALINE regression.}
 \label{fig:ADALINE-regression}
 
 \end{figure}
@@ -644,9 +644,18 @@ Since this problem has only two classes (\(0\) or \(1\)), it is used only one ne
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png}
+    \includegraphics[scale=0.35]{../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png}
     \caption{Decision surface for the desired class.}
     \label{fig:heatmap-mlp-xor}
+\end{figure}
+
+The Figure \ref{fig:heatmap-mlp-xor2} shows the heatmap (or decision surface in a 3-D perspective) for another realization. It is interesting to note that the MLP can generalize differently and still correctly for the same dataset.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png}
+    \caption{Decision surface for the desired class.}
+    \label{fig:heatmap-mlp-xor2}
 \end{figure}
 
 The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
@@ -659,6 +668,28 @@ The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
 
 \subsection{Iris dataset}
 
-The iris dataset is used for a MLP with the same parameters of the XOR problem.
+The iris dataset is used for an MLP with the same parameters as the XOR problem. However, the output layer now has 3 neurons since we have \(K=3\) classes: setosa, virginica, and versicolor.
+
+The number of neurons on the hidden layer varies around \(m_1=5\) and the activation function tends to the hyberbolic function for most realizations. The Mean accuracy reached a value of \(95.83\%\) and a standard deviation of \(0.031\). These values overtake the performance achieved by the SLP architecture. The Figure \ref{fig:iris-mlp-confusion-matrix} shows the confusion matrix for the realization with highest accuracy. One can observe that the MLP could recognize all patterns from the test dataset.
+
+\begin{figure}[H]
+    \centering
+
+\subfloat[\centering Setosa.]{
+  \includegraphics[clip,scale=0.4]{../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png}
+}
+
+\subfloat[\centering Virginica]{
+  \includegraphics[clip,scale=0.4]{../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png}
+}
+
+\subfloat[\centering Versicolor]{
+  \includegraphics[clip,scale=0.4]{../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png}
+}
+
+\caption{Confusion matrix for all classes of the Iris dataset.}
+\label{fig:iris-mlp-confusion-matrix}
+
+\end{figure}
 
 \end{document}

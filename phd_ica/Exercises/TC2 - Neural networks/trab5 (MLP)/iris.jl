@@ -1,4 +1,5 @@
 using FileIO, JLD2, Random, LinearAlgebra, Plots, LaTeXStrings, DataStructures
+include("grid_search_cross_validation.jl")
 Σ=sum
 ⊙ = .* # Hadamard product
 
@@ -41,10 +42,11 @@ function train(𝐗, 𝐃, 𝔚, φ, φʼ)
     return 𝔚, (size(𝐃,2)-Nₑ)/size(𝐃,2) # trained neural network synaptic weights and its accuracy
 end
 
-function test(𝐗, 𝐃, 𝔚, φ)
+function test(𝐗, 𝐃, 𝔚, φ, is_confusion_matrix=false)
     L = length(𝔚) # number of layers
     Nₑ = 0 # number of errors ➡ misclassification
-    for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃)) # n-th instance
+    𝐘 = rand(size(𝐃)...)
+    for (n, (𝐱₍ₙ₎, 𝐝₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), eachcol(𝐃))) # n-th instance
         # initialize the output and the vetor of gradients of each layer!
         𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])  # output of the l-th layer at the instant n
         # forward phase!
@@ -53,11 +55,16 @@ function test(𝐗, 𝐃, 𝔚, φ)
             𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
             if l==L # output layer
                 i = findfirst(x->x==maximum(𝔶₍ₙ₎[L]), 𝔶₍ₙ₎[L]) # predicted value → choose the highest activation function output as the selected class
+                𝐘[:,n] = 1:length(𝐝₍ₙ₎).==i
                 Nₑ = 𝐝₍ₙ₎[i]==1 ? Nₑ : Nₑ+1 # count error if it occurs
             end
         end
     end
-    return (size(𝐃,2)-Nₑ)/size(𝐃,2)
+    if is_confusion_matrix
+        return Int.(𝐘)
+    else
+        return (size(𝐃,2)-Nₑ)/size(𝐃,2)
+    end
 end
 
 ## algorithm parameters and hyperparameters
@@ -69,8 +76,7 @@ Nₐ = 4 # number of number of attributes (sepal length, sepal width, petal leng
 Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 m₂ = K # number of perceptrons (neurons) of the output layer = number of outputs = number of classes
-m₁ = 3 # number of perceptrons on the hidden layer (a hyperparameter that will the replaced by the kfcv)
-η = 0.1 # learning step
+η = 0.4 # learning step
 
 ## load dataset
 𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
@@ -83,10 +89,6 @@ end
 ## init
 𝛍ₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
-    # initialize!
-    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
-    𝛍ₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
-
     # prepare the data!
     global 𝐗, 𝐃 = shuffle_dataset(𝐗, 𝐃)
     # hould-out
@@ -94,18 +96,42 @@ for nᵣ ∈ 1:Nᵣ
     𝐃ₜᵣₙ = 𝐃[:,1:(N*Nₜᵣₙ)÷100]
     𝐗ₜₛₜ = 𝐗[:,size(𝐃ₜᵣₙ, 2)+1:end]
     𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1:end]
-
+    
+    # grid search with k-fold cross validation!
+    (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 10, (3:6, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
+    println("For the realization $(nᵣ)")
+    println("best m₁: $(m₁)")
+    println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
+    
+    # initialize!
+    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
+    𝛍ₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
+    
     # train!
     for nₑ ∈ 1:Nₑ # for each epoch
-        𝔚, 𝛍ₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝔚, u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎))
+        𝔚, 𝛍ₜᵣₙ[nₑ] = train(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 𝔚, φ, φʼ)
         𝐗ₜᵣₙ, 𝐃ₜᵣₙ = shuffle_dataset(𝐗ₜᵣₙ, 𝐃ₜᵣₙ)
     end
     # test!
-    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎))) # accuracy for this realization
+    global 𝛍ₜₛₜ[nᵣ] = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, φ) # accuracy for this realization
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, ylims=(0,2), label=["setosa" "virginica" "versicolor"], xlabel="Epochs", ylabel="Accuracy", linewidth=2)
     savefig(fig, "trab5 (MLP)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+
+    # confusion matrix
+    𝐂 = zeros(2,2)
+        𝐘ₜₛₜ = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, φ, true)
+        for (l, label) ∈ enumerate(("setosa", "virginica", "versicolor"))
+            if !isfile("trab5 (MLP)/figs/iris-$(label)-confusion-matrix.png")
+                for n ∈ 1:size(𝐘ₜₛₜ, 2)
+                    # predicted x true label
+                    𝐂[𝐘ₜₛₜ[l, n]+1, Int(𝐃ₜₛₜ[l, n])+1] += 1
+                end
+                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix for the label $(label)")
+                savefig(fig, "trab5 (MLP)/figs/iris-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
+            end
+        end
 end
 
 # analyze the accuracy statistics of each independent realization

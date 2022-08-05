@@ -7,7 +7,7 @@ function grid_search_cross_validation(𝐗, 𝐃, K, hyperparameters)
     𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 
     𝓧 = reshape(𝐗, size(𝐗,1), K, :) # split the dataset into K folds
-    𝓓 = reshape(𝐃, 1, K, :)
+    𝓓 = reshape(𝐃, ndims(𝐃)==1 ? 1 : size(𝐃,1), K, :)
 
     μ_best = 0 # mean accuracy of the best set of hyperparameters (begin as Inf)
     best_set_of_hyperparameter=[hyperparameter[1] for hyperparameter in hyperparameters]

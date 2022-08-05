@@ -773,6 +773,11 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png
+INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png
 INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
 INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
 INPUT ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png
@@ -783,6 +788,21 @@ INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/xor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png
 INPUT main.aux
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb
