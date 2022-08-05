@@ -520,9 +520,9 @@ where
 \begin{align}
     \mathbf{y}^{(l)}(n) = \begin{bmatrix}
         -1 & y_1^{(l)}(n) & y_2^{(l)}(n) & \cdots & y_{m_{l}}^{(l)}(n)
-    \end{bmatrix}^\trans \in \Real^{m_{l}+1}
+    \end{bmatrix}^\trans \in \Real^{m_{l}+1},
 \end{align}
-and \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
+\(m_0\) is the length of the input vector without bias, and \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
 \begin{align}
     \mathbf{W}^{(l)}(n+1) & = \mathbf{W}^{(l)}(n) + \Delta \mathbf{W}^{(l)}(n) \nonumber \\
     & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans \in \Real^{m_l \times (m_{l-1}+1)}.
@@ -577,7 +577,7 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
     \label{alg:multilayer-perceptron}
 \end{algorithm}
 
-For this homework, it is used an MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to 1 for regression problems or to the number of classes for classification problems\footnote{When the number of classes is equal to 2 (as in the XOR problem), it is used only one neuron instead since it is sufficient to classify}.
+For this homework, it is used an MLP with 2 layers, where the number of neurons in the hidden layers and the activation function (logistic function or hyperbolic tangent) are used in the grid search with \(k\)-fold cross-validation. The value of \(k\) varies with the size of the dataset, while the number of neurons on the output layer is always equal to 1 for regression problems or to the number of classes for classification problems\footnote{When the number of classes is equal to 2 (as in the XOR problem), it is used only one neuron instead since it is sufficient to classify the problem.}.
 
 At each realization, before starting the training phase, the training dataset is utilized in the grid search with \(k\)-fold cross-validation. For each split, \(k-1\) folds are used iteratively for \(N_e\) epochs for training, while the \(k\)th fold is reserved for validation dataset. The accuracy obtained in the validation dataset is stored and the process repeats for a different training and validation split. At the end of all combinations of validation and training splits, the mean accuracy is computed for that set of hyperparameters. The best set, that is, the one that obtains the higher mean accuracy, is used as the selected model. The Algorithm \ref{alg:grid-search-k-fold-cross-validation} shows how the method of model selection works.
 
@@ -628,6 +628,16 @@ For the MLP described in the Algorithm \ref{alg:multilayer-perceptron}, the foll
     \item XOR problem: \(N_a = 2\) attributes, \(N = 200\) instances, \(K = 2\) classes.
 \end{itemize}
 
-\subsubsection{Iris dataset}
+The datasets with \(K=2\) classes use only one neuron at its output, with the datasets with \(K>2\) use \(K\) neurons at the output layer.
+
+\subsubsection{XOR dataset}
+
+For this classification problem, it is generated a dataset with \(200\) instances of the XOR problem. The equation
+\begin{align}
+    y(n) = x_1 (n) \oplus x_2 (n),
+\end{align}
+where the symbol \(\oplus\) indicates the exclusive-OR Boolean operator, generates a nonseparable surface problem that Rosenblatt's Perceptron and the single-layer Perceptron cannot solve. This problem is a specific case for a broad category of classification pattern called \emph{unit hypercube}. This is a well-known nonlinear classification
+
+Since this problem has only two classes (\(0\) or \(1\)), it is used only one neuron at the output layer. With the trained MLP, the problem could be solved with \(100\%\) of mean accuracy. The Figure
 
 \end{document}

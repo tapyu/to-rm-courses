@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1659603380 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1659603381
+["pdflatex"] 1659670881 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1659670882
   "../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png" 1659305814 19327 c0170d57932d33cc0b9178673bb9edb4 ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png" 1659395333 58837 296aa05df53e0681d21204d5a9ac0a0d ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png" 1659305814 83192 25a0417ca5be09b78dcd419b1ed1853d ""
@@ -11,7 +11,7 @@
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png" 1659305814 56088 1774c4875044903fbfc0d4bcc596e958 ""
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png" 1659305814 68518 3a0f4e6166a9d76a418cb2b8cfb0d95c ""
   "../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png" 1659396605 49861 72cd97ef38197d45c6bec338cac2468d ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1659603379 34023 f6e1d65ea1d243dc85ab492e49b8218b ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1659670881 34954 33f0e5407491c9d10d49240020c9aa7e ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650183167 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650183167 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -162,8 +162,8 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659310315 2927664 8a466914be073631d0aa9de154f8e01b ""
   "cabecalho.sty" 1659597454 508 c3f49f95f55eb95acf52853931e91918 ""
   "figs/logo_cabecalho.png" 1659597454 213280 87c4b5e45e8800dd08c28d374a9695b6 ""
-  "main.aux" 1659603381 4827 550326dceee19936418e7eb02779fed9 "pdflatex"
-  "main.tex" 1659603379 34023 f6e1d65ea1d243dc85ab492e49b8218b ""
+  "main.aux" 1659670882 4826 9e6fce7404e3a9b2a029786dd6f565d1 "pdflatex"
+  "main.tex" 1659670881 34954 33f0e5407491c9d10d49240020c9aa7e ""
   (generated)
   "main.aux"
   "main.log"

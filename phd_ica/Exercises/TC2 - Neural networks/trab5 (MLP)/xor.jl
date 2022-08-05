@@ -38,13 +38,13 @@ function train(𝐗, 𝐝, 𝔚, φ, φʼ)
             𝔚[l] = l==1 ? 𝔚[l]+η*𝔡₍ₙ₎[l]*𝐱₍ₙ₎' : 𝔚[l]+η*𝔡₍ₙ₎[l]*[-1; 𝔶₍ₙ₎[l-1]]' # learning equation
         end
     end
-    return 𝔚, (size(𝐝,2)-Nₑ)/size(𝐝,2) # trained neural network synaptic weights and its accuracy
+    return 𝔚, (length(𝐝)-Nₑ)/length(𝐝) # trained neural network synaptic weights and its accuracy
 end
 
 function test(𝐗, 𝐝, 𝔚, φ)
     L = length(𝔚) # number of layers
     Nₑ = 0 # number of errors ➡ misclassification
-    for (𝐱₍ₙ₎, d₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐝)) # n-th instance
+    for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝)) # n-th instance
         # initialize the output and the vetor of gradients of each layer!
         𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])  # output of the l-th layer at the instant n
         # forward phase!
@@ -70,7 +70,7 @@ Nᵣ = 20 # number of realizations
 Nₑ = 100 # number of epochs
 m₂ = 1 # number of perceptrons (neurons) of the output layer (only one since it is enough to classify 0 or 1)
 m₁ = 2 # number of perceptrons on the hidden layer (a hyperparameter that will the replaced by the kfcv)
-η = 0.1 # learning step
+η = 2 # learning step
 
 𝐗 = [fill(-1, N)'; fill(0, 100)' fill(1, 100)'; fill(1, 50)' fill(0, 100)' fill(1, 50)']
 𝐝 = map(x -> x[2] ⊻ x[3], eachcol(𝐗))
@@ -87,8 +87,8 @@ for nᵣ ∈ 1:Nᵣ
     # hould-out
     𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
     𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100]
-    𝐗ₜₛₜ = 𝐗[:,size(𝐝ₜᵣₙ, 2)+1:end]
-    𝐝ₜₛₜ = 𝐝[size(𝐝ₜᵣₙ, 2)+1:end]
+    𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1:end]
+    𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
 
     # train!
     for nₑ ∈ 1:Nₑ # for each epoch
@@ -100,45 +100,75 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab5 (MLP)/figs/xor - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "trab5 (MLP)/figs/xor - training dataset accuracy evolution for realization $(nᵣ)- μ$(𝛍ₜₛₜ[nᵣ]).png")
     
-    if nᵣ == 1 # make heatmap plot!
-        ## predictor of the class (basically it is what is done on test(), but only with the attributes as inputs)
-        y = function predict(x₁, x₂)
-            φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
-            𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])
-            L = length(𝔚)
-            𝐱₍ₙ₎ = [-1, x₁, x₂]
-            for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚 # l-th layer
-                𝐯⁽ˡ⁾₍ₙ₎ = l==1 ? 𝐖⁽ˡ⁾₍ₙ₎*𝐱₍ₙ₎ : 𝐖⁽ˡ⁾₍ₙ₎*[-1; 𝔶₍ₙ₎[l-1]] # induced local field
-                𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
-                if l==L # output layer
-                    return 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0
-                end
+    ## predictor of the class (basically it is what is done on test(), but only with the attributes as inputs)
+    y = function predict(x₁, x₂)
+        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+        𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])
+        L = length(𝔚)
+        𝐱₍ₙ₎ = [-1, x₁, x₂]
+        for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚 # l-th layer
+            𝐯⁽ˡ⁾₍ₙ₎ = l==1 ? 𝐖⁽ˡ⁾₍ₙ₎*𝐱₍ₙ₎ : 𝐖⁽ˡ⁾₍ₙ₎*[-1; 𝔶₍ₙ₎[l-1]] # induced local field
+            𝔶₍ₙ₎[l] = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
+            if l==L # output layer
+                return 𝔶₍ₙ₎[L][1]>.5 ? 1 : 0
             end
         end
-        
-        # plot heatmap for the 1th realization
-        x₁_range = -1:.1:2
-        x₂_range = -1:.1:2
-        
-        fig = contour(x₁_range, x₂_range, y, xlabel = L"x_1", ylabel = L"x_2", fill=true, levels=1)
-        
-        # train 0 label
-        scatter!(𝐗ₜᵣₙ[2, 𝐝ₜᵣₙ.==0], 𝐗ₜᵣₙ[3, 𝐝ₜᵣₙ.==0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "0 label [train]")
-        
-        # test 0 label
-        scatter!(𝐗ₜₛₜ[2, 𝐝ₜₛₜ.==0], 𝐗ₜₛₜ[3, 𝐝ₜₛₜ.==0], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "0 label [test]")
-        
-        # train 1 label
-        scatter!(𝐗ₜᵣₙ[2, 𝐝ₜᵣₙ.==1], 𝐗ₜᵣₙ[3, 𝐝ₜᵣₙ.==1], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "1 label [train]")
-            
-        # test 1 label
-        scatter!(𝐗ₜₛₜ[2, 𝐝ₜₛₜ.==1], 𝐗ₜₛₜ[3, 𝐝ₜₛₜ.==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "1 label [test]")
-        
-        title!("Heatmap")
-        savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap.png")
     end
+
+    y1 = function predict_hidden1(x₁, x₂) # the heatmap of the first hidden layer
+        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+        y⁽¹⁾₁₍ₙ₎ = rand(size(𝔚[1], 1))
+        𝐱₍ₙ₎ = [-1, x₁, x₂]
+
+        𝐯⁽ˡ⁾₍ₙ₎ = 𝔚[1]*𝐱₍ₙ₎# induced local field
+        y⁽¹⁾₁₍ₙ₎ = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
+        return y⁽¹⁾₁₍ₙ₎[1]>.5 ? 1 : 0
+    end
+
+    y2 = function predict_hidden2(x₁, x₂) # the heatmap of the first hidden layer
+        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
+        y⁽¹⁾₁₍ₙ₎ = rand(size(𝔚[1], 1))
+        𝐱₍ₙ₎ = [-1, x₁, x₂]
+
+        𝐯⁽ˡ⁾₍ₙ₎ = 𝔚[1]*𝐱₍ₙ₎# induced local field
+        y⁽¹⁾₁₍ₙ₎ = map(φ, 𝐯⁽ˡ⁾₍ₙ₎)
+        return y⁽¹⁾₁₍ₙ₎[2]>.5 ? 1 : 0
+    end
+    
+    # plot heatmap for the 1th realization
+    x₁_range = -1:.1:2
+    x₂_range = -1:.1:2
+    
+    fig = contour(x₁_range, x₂_range, y, xlabel = L"x_1", ylabel = L"x_2", fill=true, levels=1)
+    
+    # train 0 label
+    scatter!(𝐗ₜᵣₙ[2, 𝐝ₜᵣₙ.==0], 𝐗ₜᵣₙ[3, 𝐝ₜᵣₙ.==0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "0 label [train]")
+    
+    # test 0 label
+    scatter!(𝐗ₜₛₜ[2, 𝐝ₜₛₜ.==0], 𝐗ₜₛₜ[3, 𝐝ₜₛₜ.==0], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :green, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "0 label [test]")
+    
+    # train 1 label
+    scatter!(𝐗ₜᵣₙ[2, 𝐝ₜᵣₙ.==1], 𝐗ₜᵣₙ[3, 𝐝ₜᵣₙ.==1], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "1 label [train]")
+        
+    # test 1 label
+    scatter!(𝐗ₜₛₜ[2, 𝐝ₜₛₜ.==1], 𝐗ₜₛₜ[3, 𝐝ₜₛₜ.==1], markershape = :dtriangle, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black, label = "1 label [test]")
+    
+    title!("Heatmap")
+    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+    
+    # heatmap for the hidden neuron 1!
+    fig = contour(x₁_range, x₂_range, y1, xlabel=L"x_1", ylabel=L"x_2", fill=true, levels=1, title="Heatmap of the first hidden neuron")
+    scatter!([1 1 0 0], [1 0 1 0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black)
+    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 1 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+
+    # heatmap for the hidden neuron 2!
+    fig = contour(x₁_range, x₂_range, y2, xlabel=L"x_1", ylabel=L"x_2", fill=true, levels=1, title="Heatmap of the second hidden neuron")
+    scatter!([1 1 0 0], [1 0 1 0], markershape = :hexagon, markersize = 8, markeralpha = 0.6, markercolor = :white, markerstrokewidth = 3, markerstrokealpha = 0.2, markerstrokecolor = :black)
+    savefig(fig, "trab5 (MLP)/figs/XOR problem - heatmap - hidden neuron 2 - nr$(nᵣ) - μ$(𝛍ₜₛₜ[nᵣ]).png")
+    # if 𝛍ₜₛₜ[nᵣ] != 1 # make heatmap plot!
+    # end
 end
 
 # analyze the accuracy statistics of each independent realization
@@ -148,3 +178,5 @@ end
 
 println("Mean: $(μ̄ₜₛₜ)")
 println("Standard deviation: $(σμ)")
+
+# plot(𝛍ₜₛₜ)
