@@ -640,7 +640,7 @@ For this classification problem, it is generated a dataset with \(200\) instance
 \end{align}
 where the symbol \(\oplus\) indicates the exclusive-OR Boolean operator, generates a nonseparable surface problem that Rosenblatt's Perceptron and the single-layer Perceptron cannot solve. This problem is a specific case for a broad category of classification pattern called \emph{unit hypercube}.
 
-Since this problem has only two classes (\(0\) or \(1\)), it is used only one neuron at the output layer. With the trained MLP, the problem could be solved with \(100\%\) of mean accuracy. The Figure \ref{fig:heatmap-mlp-xor} show the heatmap of for the XOR problem.
+Since this problem has only two classes (\(0\) or \(1\)), it is used only one neuron at the output layer. With the trained MLP, the problem could be solved with \(100\%\) of mean accuracy. The select models use a hidden layer with 2 or 3 neurons and the select activation function was the logistic function. The Figure \ref{fig:heatmap-mlp-xor} shows the heatmap for the XOR problem.
 
 \begin{figure}[H]
     \centering
@@ -658,5 +658,7 @@ The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
 \end{figure}
 
 \subsection{Iris dataset}
+
+The iris dataset is used for a MLP with the same parameters of the XOR problem.
 
 \end{document}

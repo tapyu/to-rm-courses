@@ -93,8 +93,10 @@ for nᵣ ∈ 1:Nᵣ
     𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
 
     # grid search with k-fold cross validation!
-    (m₁, (φ, φʼ)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 10, (1:3, ((u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎)), (u₍ₙ₎ -> (1-ℯ^(-u₍ₙ₎))/(1+ℯ^(-u₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2)))))
+    (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 10, (1:3, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2), (v₍ₙ₎ -> v₍ₙ₎>0 ? 1 : 0, y₍ₙ₎ -> 1, 3))))
+    println("For the realization $(nᵣ)")
     println("best m₁: $(m₁)")
+    println("best φ: $(a==1 ? "logistic" : (a==2 ? "Hyperbolic" : "Mcculloch and pitts"))")
     
     # initialize!
     𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
@@ -114,7 +116,6 @@ for nᵣ ∈ 1:Nᵣ
     
     ## predictor of the class (basically it is what is done on test(), but only with the attributes as inputs)
     y = function predict(x₁, x₂)
-        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
         𝔶₍ₙ₎ = OrderedDict([(l, rand(size(𝐖⁽ˡ⁾₍ₙ₎, 1))) for (l, 𝐖⁽ˡ⁾₍ₙ₎) ∈ 𝔚])
         L = length(𝔚)
         𝐱₍ₙ₎ = [-1, x₁, x₂]
@@ -128,7 +129,6 @@ for nᵣ ∈ 1:Nᵣ
     end
 
     y1 = function predict_hidden1(x₁, x₂) # the heatmap of the first hidden layer
-        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
         y⁽¹⁾₁₍ₙ₎ = rand(size(𝔚[1], 1))
         𝐱₍ₙ₎ = [-1, x₁, x₂]
 
@@ -138,7 +138,6 @@ for nᵣ ∈ 1:Nᵣ
     end
 
     y2 = function predict_hidden2(x₁, x₂) # the heatmap of the first hidden layer
-        φ = u₍ₙ₎ -> 1/(1+ℯ^(-u₍ₙ₎)) # logistic function
         y⁽¹⁾₁₍ₙ₎ = rand(size(𝔚[1], 1))
         𝐱₍ₙ₎ = [-1, x₁, x₂]
 
