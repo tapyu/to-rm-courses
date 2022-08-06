@@ -15,6 +15,11 @@ Nₜₛₜ = 20 # % percentage of instances for the test dataset
 
 ## load the data
 𝐗, labels = FileIO.load("Datasets/Vertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
+## Standardize dataset (Preprocessing)
+𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
+𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
+σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
+𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero mean and unit variance
 
 ## useful functions
 function shuffle_dataset(𝐗, 𝐃)

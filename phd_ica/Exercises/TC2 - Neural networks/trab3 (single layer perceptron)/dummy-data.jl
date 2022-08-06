@@ -48,7 +48,6 @@ function train(𝐗, 𝐃, 𝐖₍ₙ₎, is_training_accuracy=true)
 end
 
 function test(𝐗, 𝐃, 𝐖₍ₙ₎)
-    φ = u₍ₙ₎ -> u₍ₙ₎>0 ? 1 : 0 # McCulloch and Pitts's activation function (step function)
     Nₑ = 0 # number of errors ➡ misclassifications
     for (𝐱₍ₙ₎, 𝐝₍ₙ₎) ∈ zip(eachcol(𝐗), eachcol(𝐃))
         𝛍₍ₙ₎ = 𝐖₍ₙ₎*𝐱₍ₙ₎# induced local field

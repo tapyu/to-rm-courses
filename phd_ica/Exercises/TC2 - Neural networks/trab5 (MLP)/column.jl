@@ -104,14 +104,13 @@ for nᵣ ∈ 1:Nᵣ
     global 𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1-8:end]
     
     # grid search with k-fold cross validation!
-    # (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 5, (6:7, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
-    # println("For the realization $(nᵣ)")
-    # println("best m₁: $(m₁)")
-    # println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
-    (m₁, (φ, φʼ)) = (6, (v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎)))
+    (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 5, (6:7, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
+    println("For the realization $(nᵣ)")
+    println("best m₁: $(m₁)")
+    println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
     
     # initialize!
-    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer 
+    𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer
     𝛍ₜᵣₙ = fill(NaN, Nₑ) # vector of accuracies for train dataset (to see its evolution during training phase)
     
     # train!
@@ -148,5 +147,3 @@ end
 
 println("Mean: $(μ̄ₜₛₜ)")
 println("Standard deviation: $(σμ)")
-
-# plot(𝛍ₜₛₜ)

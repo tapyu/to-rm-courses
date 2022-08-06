@@ -78,8 +78,14 @@ Nₑ = 100 # number of epochs
 m₂ = 1 # number of perceptrons (neurons) of the output layer (only one since it is enough to classify 0 or 1)
 η = 2 # learning step
 
-𝐗 = [fill(-1, N)'; fill(0, 100)' fill(1, 100)'; fill(1, 50)' fill(0, 100)' fill(1, 50)']
-𝐝 = map(x -> x[2] ⊻ x[3], eachcol(𝐗))
+𝐗 = [fill(0, 100)' fill(1, 100)'; fill(1, 50)' fill(0, 100)' fill(1, 50)']
+𝐝 = map(x -> x[1] ⊻ x[2], eachcol(𝐗))
+## Standardize dataset (Preprocessing)
+𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
+𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
+σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
+𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero mean and unit variance
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 
 ## init
 𝛍ₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset

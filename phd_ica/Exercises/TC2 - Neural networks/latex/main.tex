@@ -90,7 +90,7 @@ Substituting \eqref{eq:g_n} into \eqref{eq:w_n_plus1}, it yields the learning eq
     \mathbf{w}(n+1) = \mathbf{w}(n) + \eta \mathbf{x}(n) e(n).
 \end{align}
 
-The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out and data shuffling. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
+The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron, including data preparation techniques, such as hand-out, data shuffling, and data standardization. The method utilizes \(N_r=20\) independent realizations, and passes through the training set \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions} reached by the test data, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio is maintained throughout this homework.}.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -102,6 +102,8 @@ The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized 
         \(\mathbf{w}(n) \leftarrow \text{initialize}\)
 
         \(\mathbf{X}, \mathbf{d} \leftarrow \text{shuffle}\)
+
+        \(\mathbf{X}, \mathbf{d} \leftarrow \text{standardize}\)
 
         \( \left( \mathbf{X}_{trn}, \mathbf{d}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{d}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*[r]{training and test dataset}
 
@@ -360,6 +362,8 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
 
         \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
 
+        \(\mathbf{X}, \mathbf{D} \leftarrow \text{standardize}\)
+
         \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
@@ -542,6 +546,8 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
 
         \(\mathbf{X}, \mathbf{D} \leftarrow \text{shuffle}\)
 
+        \(\mathbf{X}, \mathbf{D} \leftarrow \text{standardize}\)
+
         \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*[f]{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
@@ -670,7 +676,7 @@ The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
 
 The iris dataset is used for an MLP with the same parameters as the XOR problem. However, the output layer now has 3 neurons since we have \(K=3\) classes: setosa, virginica, and versicolor.
 
-The number of neurons on the hidden layer varies around \(m_1=5\) and the activation function tends to the hyberbolic function for most realizations. The Mean accuracy reached a value of \(95.83\%\) and a standard deviation of \(0.031\). These values overtake the performance achieved by the SLP architecture. The Figure \ref{fig:iris-mlp-confusion-matrix} shows the confusion matrix for the realization with highest accuracy. One can observe that the MLP could recognize all patterns from the test dataset.
+The number of neurons on the hidden layer varies around \(m_1=5\) and the activation function tends to the hyberbolic function for most realizations. The mean accuracy reached a value of \(95.83\%\) and a standard deviation of \(0.031\). These values overtake the performance achieved by the SLP architecture. The Figure \ref{fig:iris-mlp-confusion-matrix} shows the confusion matrix for the realization with highest accuracy. One can observe that the MLP could recognize all patterns from the test dataset.
 
 \begin{figure}[H]
     \centering
@@ -691,5 +697,9 @@ The number of neurons on the hidden layer varies around \(m_1=5\) and the activa
 \label{fig:iris-mlp-confusion-matrix}
 
 \end{figure}
+
+\subsection*{Cancer mama}
+
+The cancer dataset was
 
 \end{document}

@@ -133,7 +133,7 @@ end
 𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
 𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
 σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
-𝐗 = (𝐗 .- 𝛍ₓ)./σμ
+𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero mean and unit variance
 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 
 ## init
