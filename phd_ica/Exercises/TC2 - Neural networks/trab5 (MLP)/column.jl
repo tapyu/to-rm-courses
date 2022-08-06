@@ -79,7 +79,7 @@ m₂ = K # number of perceptrons (neurons) of the output layer = number of outpu
 η = 0.1 # learning step
 
 ## load dataset
-𝐗, labels = FileIO.load("Datasets/Vertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
+𝐗, labels = FileIO.load("../Datasets/Vertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
 𝐃 = rand(K,0)
 for label ∈ labels
     global 𝐃 = [𝐃 one_hot_encoding(label)]
@@ -104,10 +104,11 @@ for nᵣ ∈ 1:Nᵣ
     global 𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1-8:end]
     
     # grid search with k-fold cross validation!
-    (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 5, (6:7, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
-    println("For the realization $(nᵣ)")
-    println("best m₁: $(m₁)")
-    println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
+    # (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 5, (6:7, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
+    # println("For the realization $(nᵣ)")
+    # println("best m₁: $(m₁)")
+    # println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
+    (m₁, (φ, φʼ)) = (6, (v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎)))
     
     # initialize!
     𝔚 = OrderedDict(1 => rand(m₁, Nₐ+1), 2 => rand(m₂, m₁+1)) # 1 => first layer (hidden layer) 2 => second layer
@@ -123,21 +124,23 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, ylims=(0,2), xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab5 (MLP)/figs/column - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "figs/column - training dataset accuracy evolution for realization $(nᵣ).png")
 
     # confusion matrix
-    𝐂 = zeros(2,2)
+    if nᵣ==1
+        𝐂 = zeros(2,2)
         𝐘ₜₛₜ = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, φ, true)
         for (l, label) ∈ enumerate(("Disk Hernia", "Spondylolisthesis", "Normal"))
-            if !isfile("trab5 (MLP)/figs/column-$(label)-confusion-matrix.png")
+            if !isfile("figs/column-$(label)-confusion-matrix.png")
                 for n ∈ 1:size(𝐘ₜₛₜ, 2)
                     # predicted x true label
                     𝐂[𝐘ₜₛₜ[l, n]+1, Int(𝐃ₜₛₜ[l, n])+1] += 1
                 end
-                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix for the label $(label)")
-                savefig(fig, "trab5 (MLP)/figs/column-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
+                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("not $(label)", "$(label)")), yticks=(1:2, ("not $(label)", "$(label)")), title="Confusion matrix for the label $(label)")
+                savefig(fig, "figs/column-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
             end
         end
+    end
 end
 
 # analyze the accuracy statistics of each independent realization

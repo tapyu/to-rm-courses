@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  6 AUG 2022 15:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  6 AUG 2022 17:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -646,25 +646,41 @@ File: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png Graphic file (typ
 <use ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>
 Package pdftex.def Info: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png  used on input line 694.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [18 <../trab5 (MLP)/figs/xor-confusion-matrix.png>] [19 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png> <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png> <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>] (./main.aux)
+ [18 <../trab5 (MLP)/figs/xor-confusion-matrix.png>]
+<../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png, id=108, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png  used on input line 710.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/column-Normal-confusion-matrix.png, id=110, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png  used on input line 714.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png, id=112, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png  used on input line 718.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ [19 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png> <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png> <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>] [20 <../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png> <../trab5 (MLP)/figs/column-Normal-confusion-matrix.png> <../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 9297 strings out of 478238
- 145655 string characters out of 5850456
- 445392 words of memory out of 5000000
- 27329 multiletter control sequences out of 15000+600000
+ 9319 strings out of 478238
+ 146969 string characters out of 5850456
+ 445402 words of memory out of 5000000
+ 27348 multiletter control sequences out of 15000+600000
  532269 words of font info for 199 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,24n,117p,1115b,589s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (19 pages, 1012673 bytes).
+Output written on main.pdf (20 pages, 1080816 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
+ 220 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 154 words of extra memory for PDF output out of 10000 (max. 10000000)
 

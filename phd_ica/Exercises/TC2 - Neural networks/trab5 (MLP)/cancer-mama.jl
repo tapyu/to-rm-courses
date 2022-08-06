@@ -63,15 +63,9 @@ function test(𝐗, 𝐝, 𝔚, φ, is_confusion_matrix=false)
     end
 end
 
-## load data
-𝐗, 𝐝 = FileIO.load("Datasets/Mama cancer [uci]/mama-cancer.jld2", "𝐗", "𝐝")
-𝐝 = 𝐝.==4 # map malignant to true (1)
-## Standardize dataset (Preprocessing)
-𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
-𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
-σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
-𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero mean and unit variance
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
+# load data
+𝐗, 𝐝 = FileIO.load("../Datasets/Mama cancer [uci]/mama-cancer.jld2", "𝐗", "𝐝")
+𝐝 = 𝐝.==4 # map malignant to true(=1)
 
 ## algorithm parameters and hyperparameters
 K = 2 # number of classes (benign and malignant)
@@ -84,22 +78,29 @@ Nₑ = 100 # number of epochs
 m₂ = 1 # number of perceptrons (neurons) of the output layer (only one since it is enough to classify)
 η = 0.1 # learning step
 
+# Standardize dataset (Preprocessing)
+𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
+𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
+σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
+𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero mean and unit variance
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
+
 ## init
 𝛍ₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
 for nᵣ ∈ 1:Nᵣ
     # prepare the data!
     global 𝐗, 𝐝 = shuffle_dataset(𝐗, 𝐝)
     # hould-out
-    𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
-    𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100]
-    𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1:end]
-    𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1:end]
+    𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100-6]
+    𝐝ₜᵣₙ = 𝐝[1:(N*Nₜᵣₙ)÷100-6]
+    𝐗ₜₛₜ = 𝐗[:,length(𝐝ₜᵣₙ)+1-6:end]
+    𝐝ₜₛₜ = 𝐝[length(𝐝ₜᵣₙ)+1-6:end]
 
     # grid search with k-fold cross validation!
-    # (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 10, (1:3, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2), (v₍ₙ₎ -> v₍ₙ₎>0 ? 1 : 0, y₍ₙ₎ -> 1, 3))))
+    # (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐝ₜᵣₙ, 5, (5:15, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
     # println("For the realization $(nᵣ)")
     # println("best m₁: $(m₁)")
-    # println("best φ: $(a==1 ? "logistic" : (a==2 ? "Hyperbolic" : "Mcculloch and pitts"))")
+    # println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
     (m₁, (φ, φʼ)) = (6, (v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎)))
     
     # initialize!
@@ -116,18 +117,18 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    # savefig(fig, "trab5 (MLP)/figs/xor - training dataset accuracy evolution for realization $(nᵣ)- μ$(𝛍ₜₛₜ[nᵣ]).png")
+    # savefig(fig, "figs/xor - training dataset accuracy evolution for realization $(nᵣ)- μ$(𝛍ₜₛₜ[nᵣ]).png")
     
     # confusion matrix
-    if 𝛍ₜₛₜ[nᵣ] == 1 && !isfile("trab5 (MLP)/figs/mama-cancer-confusion-matrix.png")
+    if !isfile("figs/mama-cancer-confusion-matrix.png")
         𝐂 = zeros(2,2)
         𝐲ₜₛₜ = test(𝐗ₜₛₜ, 𝐝ₜₛₜ, 𝔚, φ, true)
         for n ∈ 1:length(𝐲ₜₛₜ)
             # predicted x true label
             𝐂[𝐲ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
         end
-        h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix")
-        savefig(h, "trab5 (MLP)/figs/mama-cancer-confusion-matrix.png") # TODO: put the number onto each confusion square
+        h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("benign", "malignant")), yticks=(1:2, ("benign", "malignant")), title="Confusion matrix")
+        savefig(h, "figs/mama-cancer-confusion-matrix.png") # TODO: put the number onto each confusion square
     end
 end
 

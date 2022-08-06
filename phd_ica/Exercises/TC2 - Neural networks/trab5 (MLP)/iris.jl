@@ -79,7 +79,7 @@ m₂ = K # number of perceptrons (neurons) of the output layer = number of outpu
 η = 0.4 # learning step
 
 ## load dataset
-𝐗, labels = FileIO.load("Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+𝐗, labels = FileIO.load("../Datasets/Iris [uci]/iris.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 𝐃 = rand(K,0)
 for label ∈ labels
@@ -117,19 +117,19 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, ylims=(0,2), xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab5 (MLP)/figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "figs/iris - training dataset accuracy evolution for realization $(nᵣ).png")
 
     # confusion matrix
     𝐂 = zeros(2,2)
         𝐘ₜₛₜ = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, φ, true)
         for (l, label) ∈ enumerate(("setosa", "virginica", "versicolor"))
-            if !isfile("trab5 (MLP)/figs/iris-$(label)-confusion-matrix.png")
+            if !isfile("figs/iris-$(label)-confusion-matrix.png")
                 for n ∈ 1:size(𝐘ₜₛₜ, 2)
                     # predicted x true label
                     𝐂[𝐘ₜₛₜ[l, n]+1, Int(𝐃ₜₛₜ[l, n])+1] += 1
                 end
-                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix for the label $(label)")
-                savefig(fig, "trab5 (MLP)/figs/iris-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
+                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("not $(label)", "$(label)")), yticks=(1:2, ("not $(label)", "$(label)")), title="Confusion matrix for the label $(label)")
+                savefig(fig, "figs/iris-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
             end
         end
 end
