@@ -80,11 +80,17 @@ m₂ = K # number of perceptrons (neurons) of the output layer = number of outpu
 
 ## load dataset
 𝐗, labels = FileIO.load("Datasets/Vertebral column [uci]/dataset_3classes.jld2", "𝐗", "𝐝")
-𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 𝐃 = rand(K,0)
 for label ∈ labels
     global 𝐃 = [𝐃 one_hot_encoding(label)]
 end
+
+## Standardize dataset (Preprocessing)
+𝛍ₓ = Σ(𝐗, dims=2)/N # mean vector
+𝔼μ² = Σ(𝐗.^2, dims=2)/N # vector of the second moment of 𝐗
+σμ = sqrt.(𝔼μ² - 𝛍ₓ.^2) # vector of the standard deviation
+𝐗 = (𝐗 .- 𝛍ₓ)./σμ # zero-mean and unit variance dataset
+𝐗 = [fill(-1, size(𝐗,2))'; 𝐗] # add the -1 input (bias)
 
 ## init
 𝛍ₜₛₜ = fill(NaN, Nᵣ) # vector of accuracies for test dataset
@@ -143,4 +149,4 @@ end
 println("Mean: $(μ̄ₜₛₜ)")
 println("Standard deviation: $(σμ)")
 
-plot(𝛍ₜₛₜ)
+# plot(𝛍ₜₛₜ)
