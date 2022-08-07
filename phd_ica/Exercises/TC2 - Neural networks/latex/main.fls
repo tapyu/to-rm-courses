@@ -355,18 +355,28 @@ INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
+INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
@@ -661,11 +671,56 @@ INPUT ../trab2 (ADALINE)/figs/predict-f1.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsy5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT ../trab2 (ADALINE)/figs/predict-f2.png
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
@@ -732,8 +787,6 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
@@ -744,19 +797,13 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmb10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
@@ -818,6 +865,41 @@ INPUT ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png
 INPUT ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png
+INPUT ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png
 INPUT main.aux
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb
@@ -830,6 +912,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  6 AUG 2022 17:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  7 AUG 2022 09:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -272,8 +272,10 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@dimlist=\toks31
 ) (/usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-) (/usr/share/texmf-dist/tex/latex/subfig/subfig.sty
-Package: subfig 2005/06/28 ver: 1.3 subfig package
+) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
+ (/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2022/03/01 v3.6b Customizing captions (AR)
  (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
 \caption@tempdima=\dimen159
@@ -286,49 +288,42 @@ Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
 \caption@hangindent=\dimen166
 Package caption Info: Standard document class detected.
 )
-\c@KVtest=\count281
-\sf@farskip=\skip54
-\sf@captopadj=\dimen167
-\sf@capskip=\skip55
-\sf@nearskip=\skip56
-\c@subfigure=\count282
-\c@subfigure@save=\count283
-\c@lofdepth=\count284
-\c@subtable=\count285
-\c@subtable@save=\count286
-\c@lotdepth=\count287
-\sf@top=\skip57
-\sf@bottom=\skip58
+\c@caption@flags=\count281
+\c@continuedfloat=\count282
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count283
+\c@subtable=\count284
 ) (/usr/share/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
 Package: IEEEtrantools 2015/08/26 V1.5 by Michael Shell
 
 -- See the "IEEEtrantools_doc.txt" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/tools/
-\@IEEEtrantmpdimenA=\dimen168
-\@IEEEtrantmpdimenB=\dimen169
-\@IEEEtrantmpdimenC=\dimen170
-\@IEEEtrantmpcountA=\count288
-\@IEEEtrantmpcountB=\count289
-\@IEEEtrantmpcountC=\count290
+\@IEEEtrantmpdimenA=\dimen167
+\@IEEEtrantmpdimenB=\dimen168
+\@IEEEtrantmpdimenC=\dimen169
+\@IEEEtrantmpcountA=\count285
+\@IEEEtrantmpcountB=\count286
+\@IEEEtrantmpcountC=\count287
 \@IEEEtrantmptoksA=\toks32
-\IEEEnormaljot=\dimen171
-\IEEEquantizedlength=\dimen172
-\IEEEquantizedlengthdiff=\dimen173
-\IEEEquantizedtextheightdiff=\dimen174
-\IEEEilabelindentA=\dimen175
-\IEEEilabelindentB=\dimen176
-\IEEEilabelindent=\dimen177
-\IEEEelabelindent=\dimen178
-\IEEEdlabelindent=\dimen179
-\IEEElabelindent=\dimen180
-\IEEEiednormlabelsep=\dimen181
-\IEEEiedmathlabelsep=\dimen182
-\IEEEiedtopsep=\skip59
-\c@IEEEsubequation=\count291
-\@IEEEeqnnumcols=\count292
-\@IEEEeqncolcnt=\count293
-\@IEEEsubeqnnumrollback=\count294
-\IEEEPARstartletwidth=\dimen183
+\IEEEnormaljot=\dimen170
+\IEEEquantizedlength=\dimen171
+\IEEEquantizedlengthdiff=\dimen172
+\IEEEquantizedtextheightdiff=\dimen173
+\IEEEilabelindentA=\dimen174
+\IEEEilabelindentB=\dimen175
+\IEEEilabelindent=\dimen176
+\IEEEelabelindent=\dimen177
+\IEEEdlabelindent=\dimen178
+\IEEElabelindent=\dimen179
+\IEEEiednormlabelsep=\dimen180
+\IEEEiedmathlabelsep=\dimen181
+\IEEEiedtopsep=\skip54
+\c@IEEEsubequation=\count288
+\@IEEEeqnnumcols=\count289
+\@IEEEeqncolcnt=\count290
+\@IEEEsubeqnnumrollback=\count291
+\IEEEPARstartletwidth=\dimen182
 ) (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
  (/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -346,104 +341,104 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 ) (/usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count295
-\algocf@hangindent=\skip60
+\c@AlgoLine=\count292
+\algocf@hangindent=\skip55
  (/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count296
+\c@checkoddpage=\count293
 ) (/usr/share/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/share/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\skiptotal=\skip61
-\skiplinenumber=\skip62
-\skiprule=\skip63
-\skiphlne=\skip64
-\skiptext=\skip65
-\skiplength=\skip66
-\algomargin=\skip67
-\skipalgocfslide=\skip68
-\algowidth=\dimen184
-\inoutsize=\dimen185
-\inoutindent=\dimen186
-\interspacetitleruled=\dimen187
-\interspacealgoruled=\dimen188
-\interspacetitleboxruled=\dimen189
-\algocf@ruledwidth=\skip69
+\skiptotal=\skip56
+\skiplinenumber=\skip57
+\skiprule=\skip58
+\skiphlne=\skip59
+\skiptext=\skip60
+\skiplength=\skip61
+\algomargin=\skip62
+\skipalgocfslide=\skip63
+\algowidth=\dimen183
+\inoutsize=\dimen184
+\inoutindent=\dimen185
+\interspacetitleruled=\dimen186
+\interspacealgoruled=\dimen187
+\interspacetitleboxruled=\dimen188
+\algocf@ruledwidth=\skip64
 \algocf@inoutbox=\box54
 \algocf@inputbox=\box55
-\AlCapSkip=\skip70
-\AlCapHSkip=\skip71
-\algoskipindent=\skip72
+\AlCapSkip=\skip65
+\AlCapHSkip=\skip66
+\algoskipindent=\skip67
 \algocf@nlbox=\box56
 \algocf@hangingbox=\box57
 \algocf@untilbox=\box58
-\algocf@skipuntil=\skip73
+\algocf@skipuntil=\skip68
 \algocf@capbox=\box59
-\algocf@lcaptionbox=\skip74
-\algoheightruledefault=\skip75
-\algoheightrule=\skip76
-\algotitleheightruledefault=\skip77
-\algotitleheightrule=\skip78
-\c@algocfline=\count297
-\c@algocfproc=\count298
-\c@algocf=\count299
+\algocf@lcaptionbox=\skip69
+\algoheightruledefault=\skip70
+\algoheightrule=\skip71
+\algotitleheightruledefault=\skip72
+\algotitleheightrule=\skip73
+\c@algocfline=\count294
+\c@algocfproc=\count295
+\c@algocf=\count296
 \algocf@algoframe=\box60
 \algocf@algobox=\box61
 ) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count300
+\l__color_backend_stack_int=\count297
 \l__pdf_internal_box=\box62
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 43.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 43.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 44.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 44.
  (/usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 43.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 43.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 44.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 44.
  (/usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 43.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 43.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 44.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 44.
  (/usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 43.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 43.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 44.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 44.
  (/usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    ... okay on input line 44.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count301
-\scratchdimen=\dimen190
+\scratchcounter=\count298
+\scratchdimen=\dimen189
 \scratchbox=\box63
-\nofMPsegments=\count302
-\nofMParguments=\count303
+\nofMPsegments=\count299
+\nofMParguments=\count300
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count304
-\MPscratchDim=\dimen191
-\MPnumerator=\count305
-\makeMPintoPDFobject=\count306
+\MPscratchCnt=\count301
+\MPscratchDim=\dimen190
+\MPnumerator=\count302
+\makeMPintoPDFobject=\count303
 \everyMPtoPDFconversion=\toks34
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -486,53 +481,52 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 44.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 45.
  (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 44.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 45.
  (/usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 44.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 45.
  (/usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 44.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 45.
  (/usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 <figs/logo_cabecalho.png, id=1, 235.1184pt x 302.5704pt>
 File: figs/logo_cabecalho.png Graphic file (type png)
 <use figs/logo_cabecalho.png>
-Package pdftex.def Info: figs/logo_cabecalho.png  used on input line 44.
+Package pdftex.def Info: figs/logo_cabecalho.png  used on input line 45.
 (pdftex.def)             Requested size: 50.18768pt x 64.58505pt.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 70.
+(Font)              size <5> substituted on input line 71.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 70.
+(Font)              size <5> substituted on input line 71.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 70.
+(Font)              size <5> substituted on input line 71.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 70.
+(Font)              size <5> substituted on input line 71.
 
 [1
 
@@ -540,147 +534,185 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png, id=23, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png  used on input line 134.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png  used on input line 135.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [2]
 <../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png, id=28, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png  used on input line 163.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png  used on input line 164.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [3 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>]
 <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png, id=35, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 172.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 173.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
 <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png, id=36, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 181.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 182.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [4 <../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png> <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png> <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>]
 <../trab2 (ADALINE)/figs/predict-f1.png, id=40, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f1.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f1.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 232.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 233.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab2 (ADALINE)/figs/predict-f2.png, id=42, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f2.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f2.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 237.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 238.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
  [5] [6 <../trab2 (ADALINE)/figs/predict-f1.png> <../trab2 (ADALINE)/figs/predict-f2.png>] [7] [8]
-<../trab3 (single layer perceptron)/figs/dummy data - heatmap.png, id=62, 602.25pt x 401.5pt>
+<../trab3 (single layer perceptron)/figs/dummy data - heatmap.png, id=63, 602.25pt x 401.5pt>
 File: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 397.
+Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 398.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
- [9]
-<../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png, id=66, 602.25pt x 401.5pt>
+<../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png, id=64, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 407.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 408.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png, id=67, 602.25pt x 401.5pt>
+ [9 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png>]
+<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png, id=68, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 419.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 420.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png, id=68, 602.25pt x 401.5pt>
+<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png, id=69, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 423.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 424.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png, id=69, 602.25pt x 401.5pt>
+<../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png, id=70, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 427.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 428.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [10 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>] [11 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>] [12] [13] [14]
+ [10 <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>] [11 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>] [12] [13] [14]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 586.
+(Font)              size <10.95> substituted on input line 587.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 586.
+(Font)              size <10.95> substituted on input line 587.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 586.
+(Font)              size <10.95> substituted on input line 587.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 586.
+(Font)              size <10.95> substituted on input line 587.
 
 [15] [16]
-<../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png, id=93, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png, id=94, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png  used on input line 653.
+Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png  used on input line 654.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
-<../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png, id=94, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png, id=95, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png  used on input line 662.
+Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png  used on input line 663.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
-<../trab5 (MLP)/figs/xor-confusion-matrix.png, id=95, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/xor-confusion-matrix.png, id=96, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/xor-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/xor-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/xor-confusion-matrix.png  used on input line 670.
+Package pdftex.def Info: ../trab5 (MLP)/figs/xor-confusion-matrix.png  used on input line 671.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [17 <../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png> <../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png>]
-<../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png, id=99, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png, id=100, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png  used on input line 686.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png  used on input line 687.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png, id=101, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png, id=102, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png  used on input line 690.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png  used on input line 691.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png, id=103, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png, id=104, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png  used on input line 694.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png  used on input line 695.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [18 <../trab5 (MLP)/figs/xor-confusion-matrix.png>]
-<../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png, id=108, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png, id=109, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png  used on input line 710.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png  used on input line 711.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab5 (MLP)/figs/column-Normal-confusion-matrix.png, id=110, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/column-Normal-confusion-matrix.png, id=111, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png  used on input line 714.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png  used on input line 715.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png, id=112, 602.25pt x 401.5pt>
+<../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png, id=113, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png  used on input line 718.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png  used on input line 719.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [19 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png> <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png> <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>] [20 <../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png> <../trab5 (MLP)/figs/column-Normal-confusion-matrix.png> <../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>] (./main.aux)
+ [19 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png> <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png> <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>]
+<../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png, id=122, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png  used on input line 731.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ [20 <../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png> <../trab5 (MLP)/figs/column-Normal-confusion-matrix.png> <../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>]
+<../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png, id=130, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png  used on input line 743.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png, id=131, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png  used on input line 751.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png, id=132, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png  used on input line 761.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png, id=133, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png  used on input line 769.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ [21 <../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png>]
+<../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png, id=138, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png  used on input line 777.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+<../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png, id=139, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png  used on input line 785.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ [22 <../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>] [23 <../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 9319 strings out of 478238
- 146969 string characters out of 5850456
- 445402 words of memory out of 5000000
- 27348 multiletter control sequences out of 15000+600000
- 532269 words of font info for 199 fonts, out of 8000000 for 9000
+ 9839 strings out of 478238
+ 158908 string characters out of 5850456
+ 451106 words of memory out of 5000000
+ 27855 multiletter control sequences out of 15000+600000
+ 545399 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,24n,117p,1115b,589s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (20 pages, 1080816 bytes).
+ 83i,24n,131p,1115b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (23 pages, 1258914 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
+ 243 PDF objects out of 1000 (max. 8388607)
+ 132 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -124,7 +124,7 @@ m₂ = K # number of perceptrons (neurons) of the output layer = output vector s
 η = 0.1 # learning step
 
 ## load dataset
-𝐗, labels = FileIO.load("Datasets/Dermatology [uci]/dermatology.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
+𝐗, labels = FileIO.load("../Datasets/Dermatology [uci]/dermatology.jld2", "𝐗", "𝐝") # 𝐗 ➡ [attributes X instances]
 𝐃 = rand(K,0)
 for label ∈ labels
     global 𝐃 = [𝐃 one_hot_encoding(label)]
@@ -142,15 +142,15 @@ for nᵣ ∈ 1:Nᵣ
     # prepare the data!
     global 𝐗, 𝐃 = shuffle_dataset(𝐗, 𝐃)
     # hould-out
-    𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100]
-    𝐃ₜᵣₙ = 𝐃[:,1:(N*Nₜᵣₙ)÷100]
-    𝐗ₜₛₜ = 𝐗[:,size(𝐃ₜᵣₙ, 2)+1:end]
-    𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1:end]
-    # print("𝐗ₜᵣₙ: $(size(𝐗ₜᵣₙ))\n 𝐗ₜₛₜ: $(size(𝐗ₜₛₜ))")
+    𝐗ₜᵣₙ = 𝐗[:,1:(N*Nₜᵣₙ)÷100-6]
+    𝐃ₜᵣₙ = 𝐃[:,1:(N*Nₜᵣₙ)÷100-6]
+    𝐗ₜₛₜ = 𝐗[:,size(𝐃ₜᵣₙ, 2)+1-6:end]
+    𝐃ₜₛₜ = 𝐃[:,size(𝐃ₜᵣₙ, 2)+1-6:end]
+    # print("𝐗ₜᵣₙ: $(size(𝐗ₜᵣₙ))\n𝐗ₜₛₜ: $(size(𝐗ₜₛₜ))")
     
     # grid search with k-fold cross validation!
-    # (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 10, (3:6, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
-    (m₁, (φ, φʼ, a)) = (5, (v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1))
+    (m₁, (φ, φʼ, a)) = grid_search_cross_validation(𝐗ₜᵣₙ, 𝐃ₜᵣₙ, 10, (33:38, ((v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1), (v₍ₙ₎ -> (1-ℯ^(-v₍ₙ₎))/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> .5(1-y₍ₙ₎^2), 2))))
+    # (m₁, (φ, φʼ, a)) = (40, (v₍ₙ₎ -> 1/(1+ℯ^(-v₍ₙ₎)), y₍ₙ₎ -> y₍ₙ₎*(1-y₍ₙ₎), 1))
     println("For the realization $(nᵣ)")
     println("best m₁: $(m₁)")
     println("best φ: $(a==1 ? "logistic" : "Hyperbolic")")
@@ -169,19 +169,19 @@ for nᵣ ∈ 1:Nᵣ
     
     # plot training dataset accuracy evolution
     local fig = plot(𝛍ₜᵣₙ, ylims=(0,2), xlabel="Epochs", ylabel="Accuracy", linewidth=2)
-    savefig(fig, "trab5 (MLP)/figs/dermatology - training dataset accuracy evolution for realization $(nᵣ).png")
+    savefig(fig, "figs/dermatology - training dataset accuracy evolution for realization $(nᵣ).png")
 
     # confusion matrix
     𝐂 = zeros(2,2)
         𝐘ₜₛₜ = test(𝐗ₜₛₜ, 𝐃ₜₛₜ, 𝔚, φ, true)
-        for (l, label) ∈ enumerate(("psoriasis", "seboreic dermatitis", "lichen planus", "cronic dermatitis", "pityriasis rubra pilaris"))
-            if !isfile("trab5 (MLP)/figs/dermatology-$(label)-confusion-matrix.png")
+        for (l, label) ∈ enumerate(("psoriasis", "seboreic dermatitis", "lichen planus", "pityriasis rosea", "cronic dermatitis", "pityriasis rubra pilaris"))
+            if !isfile("figs/dermatology-$(label)-confusion-matrix.png")
                 for n ∈ 1:size(𝐘ₜₛₜ, 2)
                     # predicted x true label
                     𝐂[𝐘ₜₛₜ[l, n]+1, Int(𝐃ₜₛₜ[l, n])+1] += 1
                 end
-                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, (0, 1)), yticks=(1:2, (0, 1)), title="Confusion matrix for the label $(label)")
-                savefig(fig, "trab5 (MLP)/figs/dermatology-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
+                fig = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("not $(label)", "$(label)")), yticks=(1:2, ("not $(label)", "$(label)")), title="Confusion matrix for the label $(label)")
+                savefig(fig, "figs/dermatology-$(label)-confusion-matrix.png") # TODO: put the number onto each confusion square
             end
         end
 end

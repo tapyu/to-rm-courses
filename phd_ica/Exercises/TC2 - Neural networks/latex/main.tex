@@ -12,7 +12,8 @@
 \usepackage[lmargin=3cm, tmargin=3cm, rmargin=2cm, bmargin=2cm]{geometry}
 \usepackage{indentfirst}
 \usepackage{graphicx}
-\usepackage[caption=false]{subfig}
+% \usepackage[caption=false]{subfig}
+\usepackage[skip=0.5ex]{subcaption}
 % \usepackage[brazilian]{babel} % Traduzir para PT-BR
 \usepackage{IEEEtrantools}
 \usepackage{xcolor}
@@ -672,7 +673,7 @@ The confusion matrix is shown in Figure \ref{fig:confusion-matrix-mlp-xor}.
     \label{fig:confusion-matrix-mlp-xor}
 \end{figure}
 
-\subsection{Iris dataset}
+\subsubsection{Iris dataset}
 
 The iris dataset is used for an MLP with the same parameters as the XOR problem. However, the output layer now has 3 neurons since we have \(K=3\) classes: setosa, virginica, and versicolor.
 
@@ -698,7 +699,7 @@ The number of neurons on the hidden layer varies around \(m_1=5\) and the activa
 
 \end{figure}
 
-\subsection*{Column dataset}
+\subsubsection*{Column dataset}
 
 The cancer dataset was applied to the column dataset. The MLP reached a mean accuracy of 86.66\%, with a standard deviation of 0.042. The Figure \ref{fig:column-mlp-confusion-matrix} shows the confusion matrix for each class.
 
@@ -722,8 +723,82 @@ The cancer dataset was applied to the column dataset. The MLP reached a mean acc
 
 \end{figure}
 
-\subsection{Breast cancer dataset}
+\subsubsection{Breast cancer dataset}
 
-For the breast cancer dataset, the 
+For the breast cancer dataset, the MLP reached a mean accuracy of 96.44\% with a standard deviation of 0.0118. The Figure \ref{fig:cancer-mlp-confusion-matrix} show the confusion matrix for this case.
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip,scale=0.4]{../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png}
+    \caption{Confusion matrix for the cancer dataset.}
+    \label{fig:cancer-mlp-confusion-matrix}
+\end{figure}
+
+\subsubsection{Dermatology}
+
+For the dermatology dataset, the MLP reached an accuracy of 97.15\% with a standard deviation of 0.01836. The Figure \ref{fig:cancer-mlp-confusion-matrix} show the confusion matrix for this case.
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png}
+        \subcaption{Cronic dermatitis.}
+        \label{subfig:itema}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png}
+        \subcaption{Lichen planus.}
+        \label{subfig:itemb}
+    \end{subfigure}
+
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png}
+        \subcaption{Pityriasis rosea.}
+        \label{subfig:itemc}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png}
+        \subcaption{Pityriasis rubra pilaris.}
+        \label{subfig:itemd}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png}
+        \subcaption{Psoriasis.}
+        \label{subfig:iteme}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[scale=.4]{../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png}
+        \subcaption{Seboreic dermatitis.}
+        \label{subfig:itemf}
+    \end{subfigure}
+
+    \caption{Confusion matrix for all classes of the dermatology dataset.}
+    \label{fig:dermatology-mlp-confusion-matrix}
+\end{figure}
+
+\section*{Regression problem}
+
+For the regression task, the following datasets are considered
+
+\begin{itemize}
+    \item Dummy dataset: Artificial data set of a sine signal.
+    \item Electric Motor Temperature.
+    \item Car Fuel Consumption.
+\end{itemize}
 
 \end{document}
