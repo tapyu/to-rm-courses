@@ -796,9 +796,46 @@ For the dermatology dataset, the MLP reached an accuracy of 97.15\% with a stand
 For the regression task, the following datasets are considered
 
 \begin{itemize}
-    \item Dummy dataset: Artificial data set of a sine signal.
-    \item Electric Motor Temperature.
-    \item Car Fuel Consumption.
+    \item Dummy dataset: Artificial dataset where the desired signal is \(d(n) = 3\sin\left( x(n) \right)+1\).
+    \item Electric Motor Temperature: The usage of a set of parameters of an electric motor (current and voltages in d/q coordinates, motor speed, torque, etc...) to estimate its temperature. In total, the neural network tries to estimate the electric motor temperature in five areas: stator tooth, stator winding, stator yoke, permanent magnet, and coolant.
+    \item Car Fuel Consumption: An attempt to estimate the car consumption based on a series of parameters, such as the gasoline type, the weather condition, the usage of the air conditioner, etc...
 \end{itemize}
+
+All datasets were normalized the of the range \([-1, 1]\). This makes the neural network output signal range suitable for the normalized desired signal when it is employed the hyperbolic tangent as the activation function. Moreover, the output layer has only one neuron since it is a regression problem. The unique exception is the Electric Motor Temperature dataset, in which the MLP estimates five features, thus using five neurons on the output layer.
+
+The Figure \ref{fig:sine-regression} shows the regression for the sine function and the Table \ref{tab:rmse-regression-results} summarizes the results in terms of the mean RMSE and its standard deviation obtained for each dataset.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.4]{../trab5 (MLP)/figs/sine_regression.png}
+    \caption{Regression solution for the sine function problem.}
+    \label{fig:sine-regression}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{RMSE for several datasets of regression problem}
+	\footnotesize
+	\setlength{\tabcolsep}{5pt}
+	\begin{tabular}{ccc}
+		% \toprule [1.3pt]	
+		% \multicolumn{4}{c}{ \textbf{Style} } \\
+		\hline
+		Dataset & mean RMSE & standard deviation \\
+		\hline
+		Car fuel & 0.1417 & 0.022 \\
+        \hline
+		Electric Motor Temperature - Coolant & 0.3295 & 0.08 \\
+		\hline
+		Electric Motor Temperature - Stator winding & 0.0337 & 0.3378 \\
+		\hline
+        Electric Motor Temperature - Stator tooth & 0.033 & 0.3378 \\
+		\hline
+        Electric Motor Temperature - Permanent magnet & 0.0512 & 0.3355 \\
+		\hline
+        Electric Motor Temperature - Stator yoke & 0.03981 & 0.3371 \\
+		\hline
+	\end{tabular} \label{tab:rmse-regression-results}
+\end{table}
 
 \end{document}

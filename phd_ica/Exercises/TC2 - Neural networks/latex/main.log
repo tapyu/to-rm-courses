@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  7 AUG 2022 09:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  8 AUG 2022 14:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -694,25 +694,31 @@ File: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png G
 <use ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>
 Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png  used on input line 785.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
- [22 <../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>] [23 <../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>] (./main.aux)
+ [22 <../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>]
+<../trab5 (MLP)/figs/sine_regression.png, id=143, 602.25pt x 401.5pt>
+File: ../trab5 (MLP)/figs/sine_regression.png Graphic file (type png)
+<use ../trab5 (MLP)/figs/sine_regression.png>
+Package pdftex.def Info: ../trab5 (MLP)/figs/sine_regression.png  used on input line 810.
+(pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
+ [23 <../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>] [24 <../trab5 (MLP)/figs/sine_regression.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 9839 strings out of 478238
- 158908 string characters out of 5850456
- 451106 words of memory out of 5000000
- 27855 multiletter control sequences out of 15000+600000
+ 9848 strings out of 478238
+ 159242 string characters out of 5850456
+ 451125 words of memory out of 5000000
+ 27863 multiletter control sequences out of 15000+600000
  545399 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,24n,131p,1115b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (23 pages, 1258914 bytes).
+Output written on main.pdf (24 pages, 1284560 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
+ 247 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 200 words of extra memory for PDF output out of 10000 (max. 10000000)
 

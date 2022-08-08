@@ -1,7 +1,8 @@
-function grid_search_cross_validation(𝐗, 𝐃, K, hyperparameters)
+function grid_search_cross_validation(𝐗, 𝐃, K, hyperparameters, valuation_method="accuracy")
     # 𝐗 ➡ the dataset without the test instances [attributes X instances]
     # K ➡ number of folds
     # hyperparameters ➡ vector of vector of all hyperparameters
+    # valuation_method ➡ accuracy: classification problem, get the highest; RMSE: regression problem, get the lowest
 
     𝐗, 𝐃 = shuffle_dataset(𝐗, 𝐃) # shuffle dataset
     Nₐ = ndims(𝐗)==1 ? 1 : size(𝐗,1) # number of attributes
@@ -39,13 +40,19 @@ function grid_search_cross_validation(𝐗, 𝐃, K, hyperparameters)
 
         μ_set = sum(𝐞)/length(𝐞) # mean accuracy for this set of hyperparameters
 
-        if μ_set > μ_best
-            μ_best = μ_set
-            best_set_of_hyperparameter = set_of_hyperparameter
+        if valuation_method=="accuracy"
+            if μ_set > μ_best
+                μ_best = μ_set
+                best_set_of_hyperparameter = set_of_hyperparameter
+            end
+        else
+            if μ_set < μ_best
+                μ_best = μ_set
+                best_set_of_hyperparameter = set_of_hyperparameter
+            end
         end
 
     end
 
-    return best_set_of_hyperparameter
-    
+    return best_set_of_hyperparameter 
 end
