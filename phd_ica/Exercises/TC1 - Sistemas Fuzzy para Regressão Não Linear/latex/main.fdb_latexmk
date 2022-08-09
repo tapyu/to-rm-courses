@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1659380933 "main.aux" "main.bbl" "main" 1659381288
+["bibtex main"] 1659380933 "main.aux" "main.bbl" "main" 1660085150
   "./bib_sobraep.bst" 1659305814 26077 f5bf4eee36291635a15c39bdfe9fd954 ""
-  "main.aux" 1659381288 5252 71b99f61ea8bfb3270b2dd740c27cf6e "pdflatex"
+  "main.aux" 1660085150 5252 71b99f61ea8bfb3270b2dd740c27cf6e "pdflatex"
   "refs.bib" 1659311504 1058 795164ff0423924fd316f8bd0924c0e9 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1659381287 "/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1659381288
+["pdflatex"] 1660085149 "/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" "main.pdf" "main" 1660085150
   "../figs/OLS-by-parts/OLS_by_4parts.png" 1659305814 53328 06cd184d305675b3653e4faafccfb894 ""
   "../figs/OLS-by-parts/OLS_by_5parts.png" 1659305814 54466 27bfef982b060d6da4e4d86183e4e327 ""
   "../figs/OLS-by-parts/OLS_by_6parts.png" 1659305814 54526 e25b35c5e29c6b0e7c300131a7c13a69 ""
@@ -20,7 +20,7 @@
   "../figs/mamdani_fuzzy/fuzzy_prediction.png" 1659305814 53842 ccf2c4997c83885115f4a8d4a0fafae7 ""
   "../figs/takagi_sugeno/fuzzy_prediction.png" 1659375116 54115 5513c7a9a8240bc21d7e9ed38a5a0ca5 ""
   "../figs/takagi_sugeno/fuzzyset_takagi_sugeno.png" 1659375116 40295 6bc435211bc5bd20bea1c5c1d90f7465 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1659381286 27531 7ea5d90c2f17d9d811553545ea923c2f ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC1 - Sistemas Fuzzy para Regressão Não Linear/latex/main.tex" 1660085148 27592 8582f7f7efd8146d0f13fb6602f63ea1 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1650179560 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -199,9 +199,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1650183167 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1659310336 4408072 42ceaa83bae76aebad711d3f3dd7f55f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659310315 2927664 8a466914be073631d0aa9de154f8e01b ""
-  "main.aux" 1659381288 5252 71b99f61ea8bfb3270b2dd740c27cf6e "pdflatex"
+  "main.aux" 1660085150 5252 71b99f61ea8bfb3270b2dd740c27cf6e "pdflatex"
   "main.bbl" 1659380933 1197 ffa1c8e66c30b979b7c1de091aa27fd0 "bibtex main"
-  "main.tex" 1659381286 27531 7ea5d90c2f17d9d811553545ea923c2f ""
+  "main.tex" 1660085148 27592 8582f7f7efd8146d0f13fb6602f63ea1 ""
   "sobraep.cls" 1659305814 5542 7bff468020cfdcced00821df18ab1ff0 ""
   (generated)
   "main.aux"

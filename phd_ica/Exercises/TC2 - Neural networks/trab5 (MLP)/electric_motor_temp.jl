@@ -174,4 +174,6 @@ end
 
 𝐘 = test(𝐗, 𝐃, 𝔚, φ, true) # accuracy for this realization
 
-plot([𝐃[2,:] 𝐘[2,:]])
+fig = plot([𝐘[2,:] 𝐃[2,:]], title="Stator winding estimation", label=["Estimated signal" "Desired signal"], linestyle=[:dashdot :solid], linewidth=3, xlabel="Samples", ylabel="Stator winding temperature (in °C)")
+
+savefig(fig, "figs/electric-motor-temp - Stator winding regression.png")
