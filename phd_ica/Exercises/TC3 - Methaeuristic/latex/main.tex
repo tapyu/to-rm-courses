@@ -206,12 +206,68 @@ The Global Random Search (GRS), which is a nonnature-inspired metaheuristic tech
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../figs/grs_regression_result.png}
-    \caption{Curve fitting obtained by the Global Random Search algorithm.}
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/grs_regression_result1.png}
+        \subcaption{First realization.}
+        % \label{subfig:item2}
+    \end{subfigure}
+\end{figure}%
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/grs_regression_result2.png}
+        \subcaption{Second realization.}
+        % \label{subfig:item3}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/grs_regression_result3.png}
+        \subcaption{Third realization.}
+    \end{subfigure}
+    \caption{result of the curve regression through GRS.}
     \label{fig:global-random-search-fit}
 \end{figure}
 
-Despite the good results, both PSO and GRS are very sensitive to the range of the search space. In other words, they only achieve reasonable results when the search space is very close to the best solution. Otherwise, the best solution can differ significantly from a reasonable result.
+Despite the good results, both PSO and GRS are very sensitive to the search space range. In other words, they only achieve reasonable results when the search space is very close to the best solution. Otherwise, the best solution can differ significantly from a reasonable result.
+
+Although the PSO is much more costly than the GRS, the final results suggest that the swarm approach outperforms the individual random search method.
+
+For the following cost function
+\begin{align}
+    J_i^{(m)} = \sum_{n=1}^{N} \abs{e_i (n)},
+\end{align}
+
+The results of the curve fitting are shown in Figure \ref{fig:heuristic-regression2}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/methaeuristic_regression_result1F.png}
+        \subcaption{First realization.}
+        % \label{subfig:item2}
+    \end{subfigure}
+\end{figure}%
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/methaeuristic_regression_result2F.png}
+        \subcaption{Second realization.}
+        % \label{subfig:item3}
+    \end{subfigure}
+\end{figure}    
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{../figs/methaeuristic_regression_result3F.png}
+        \subcaption{Third realization.}
+    \end{subfigure}
+    \caption{result of the curve regression through PSO.}
+    \label{fig:heuristic-regression2}
+\end{figure}
+
+These results are significantly worse than the squared value.
 
 \bibliography{ref.bib}
 \bibliographystyle{ieeetr}

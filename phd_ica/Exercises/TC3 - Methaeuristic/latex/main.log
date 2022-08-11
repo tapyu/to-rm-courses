@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  10 AUG 2022 23:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  11 AUG 2022 00:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -378,25 +378,52 @@ File: ../figs/methaeuristic_regression_result3.png Graphic file (type png)
 Package pdftex.def Info: ../figs/methaeuristic_regression_result3.png  used on input line 185.
 (pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
  [4 <../figs/methaeuristic_regression_result1.png> <../figs/methaeuristic_regression_result2.png> <../figs/methaeuristic_regression_result3.png>]
-<../figs/grs_regression_result.png, id=37, 602.25pt x 401.5pt>
-File: ../figs/grs_regression_result.png Graphic file (type png)
-<use ../figs/grs_regression_result.png>
-Package pdftex.def Info: ../figs/grs_regression_result.png  used on input line 209.
-(pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- (./main.bbl [5 <../figs/grs_regression_result.png>]) [6] (./main.aux) ) 
+<../figs/grs_regression_result1.png, id=37, 602.25pt x 401.5pt>
+File: ../figs/grs_regression_result1.png Graphic file (type png)
+<use ../figs/grs_regression_result1.png>
+Package pdftex.def Info: ../figs/grs_regression_result1.png  used on input line 210.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+<../figs/grs_regression_result2.png, id=38, 602.25pt x 401.5pt>
+File: ../figs/grs_regression_result2.png Graphic file (type png)
+<use ../figs/grs_regression_result2.png>
+Package pdftex.def Info: ../figs/grs_regression_result2.png  used on input line 218.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+<../figs/grs_regression_result3.png, id=39, 602.25pt x 401.5pt>
+File: ../figs/grs_regression_result3.png Graphic file (type png)
+<use ../figs/grs_regression_result3.png>
+Package pdftex.def Info: ../figs/grs_regression_result3.png  used on input line 226.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+ [5 <../figs/grs_regression_result1.png>]
+<../figs/methaeuristic_regression_result1F.png, id=44, 602.25pt x 401.5pt>
+File: ../figs/methaeuristic_regression_result1F.png Graphic file (type png)
+<use ../figs/methaeuristic_regression_result1F.png>
+Package pdftex.def Info: ../figs/methaeuristic_regression_result1F.png  used on input line 247.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+<../figs/methaeuristic_regression_result2F.png, id=45, 602.25pt x 401.5pt>
+File: ../figs/methaeuristic_regression_result2F.png Graphic file (type png)
+<use ../figs/methaeuristic_regression_result2F.png>
+Package pdftex.def Info: ../figs/methaeuristic_regression_result2F.png  used on input line 255.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+ [6 <../figs/grs_regression_result2.png> <../figs/grs_regression_result3.png>]
+<../figs/methaeuristic_regression_result3F.png, id=49, 602.25pt x 401.5pt>
+File: ../figs/methaeuristic_regression_result3F.png Graphic file (type png)
+<use ../figs/methaeuristic_regression_result3F.png>
+Package pdftex.def Info: ../figs/methaeuristic_regression_result3F.png  used on input line 263.
+(pdftex.def)             Requested size: 273.14923pt x 182.1069pt.
+ (./main.bbl [7 <../figs/methaeuristic_regression_result1F.png> <../figs/methaeuristic_regression_result2F.png> <../figs/methaeuristic_regression_result3F.png>]) [8] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 6868 strings out of 478238
- 114435 string characters out of 5850456
- 423671 words of memory out of 5000000
- 25016 multiletter control sequences out of 15000+600000
+ 6904 strings out of 478238
+ 116005 string characters out of 5850456
+ 423679 words of memory out of 5000000
+ 25047 multiletter control sequences out of 15000+600000
  480860 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,63p,813b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (6 pages, 580206 bytes).
+Output written on main.pdf (8 pages, 799812 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 130 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

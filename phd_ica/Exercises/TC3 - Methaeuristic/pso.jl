@@ -1,4 +1,4 @@
-using FileIO, Plots, LinearAlgebra, Statistics
+using FileIO, Plots, LinearAlgebra, Statistics, Distributions
 Σ=sum
 ⊙ = .* # Hadamard
 
@@ -12,6 +12,7 @@ using FileIO, Plots, LinearAlgebra, Statistics
 
 I = 30 # number of particles
 J = 𝐲̂ᵢ -> Σ((𝐲̂-𝐲̂ᵢ).^2) # cost function
+F = 𝐲̂ᵢ -> Σ(abs.(𝐲̂-𝐲̂ᵢ)) # alternative cost function
 cₚ = cg = .1 # accelerator coefficients
 k = 6 # order of the polynomial regression
 Nᵢ = 100 # number of iterations

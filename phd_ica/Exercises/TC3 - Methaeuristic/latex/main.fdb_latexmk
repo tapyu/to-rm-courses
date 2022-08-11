@@ -1,18 +1,23 @@
 # Fdb version 3
-["bibtex main"] 1660185080 "main.aux" "main.bbl" "main" 1660185250
+["bibtex main"] 1660186737 "main.aux" "main.bbl" "main" 1660186961
   "/usr/share/texmf-dist/bibtex/bst/base/ieeetr.bst" 1650183167 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1660185250 1067 6d358a76d53c59940f6b6958c2c87cd3 "pdflatex"
+  "main.aux" 1660186960 1247 3b246ca29ff59bf32985fdf21e9513fe "pdflatex"
   "ref.bib" 1660146013 694 4e315e831555ac30ce509b75d6d44b6a ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1660185249 "/home/tapyu/git/courses/phd_ica/Exercises/TC3 - Methaeuristic/latex/main.tex" "main.pdf" "main" 1660185250
+["pdflatex"] 1660186959 "/home/tapyu/git/courses/phd_ica/Exercises/TC3 - Methaeuristic/latex/main.tex" "main.pdf" "main" 1660186961
   "../../TC1 - Sistemas Fuzzy para Regressão Não Linear/figs/OLS-by-parts/scatterplot.png" 1659305814 49917 6af31b305b3d28b3ceb9041aa36d96b8 ""
-  "../figs/grs_regression_result.png" 1660177556 58423 366acb542cd25dedd8bca06fc3af7aa9 ""
-  "../figs/methaeuristic_regression_result1.png" 1660184189 59073 e296bf4c7bfacbad0855fb7b0134d097 ""
-  "../figs/methaeuristic_regression_result2.png" 1660184192 59072 76fc8c9035f461e15432e52170d8111b ""
-  "../figs/methaeuristic_regression_result3.png" 1660184194 59068 544d42dffc459455008fb19b0b907251 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC3 - Methaeuristic/latex/main.tex" 1660185248 11389 48a5e7c9cc117e2679d090c66585b3e8 ""
+  "../figs/grs_regression_result1.png" 1660185884 57256 3ad801c355e5face5e18477557610f02 ""
+  "../figs/grs_regression_result2.png" 1660185891 57256 3ad801c355e5face5e18477557610f02 ""
+  "../figs/grs_regression_result3.png" 1660185898 57256 3ad801c355e5face5e18477557610f02 ""
+  "../figs/methaeuristic_regression_result1.png" 1660186624 53187 dd769f256afd345a603c9c889e9fb65d ""
+  "../figs/methaeuristic_regression_result1F.png" 1660186544 55918 965538c216d2f87d2ca11ee2e5a574e8 ""
+  "../figs/methaeuristic_regression_result2.png" 1660186627 54549 0133d2899c938313e7719b8d8b07ba67 ""
+  "../figs/methaeuristic_regression_result2F.png" 1660186546 56118 c7f163b13d0c0f7bba05a3971b415e94 ""
+  "../figs/methaeuristic_regression_result3.png" 1660186630 54477 0c468e52eec97d9637dbac331472fe04 ""
+  "../figs/methaeuristic_regression_result3F.png" 1660186548 56118 a99dbae8275a6d63899f9b6f0af00cef ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC3 - Methaeuristic/latex/main.tex" 1660186959 13314 e3160c6cf3afb546c8ee43235e143c71 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650183167 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650183167 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -108,9 +113,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659310315 2927664 8a466914be073631d0aa9de154f8e01b ""
   "cabecalho.sty" 1659597454 508 c3f49f95f55eb95acf52853931e91918 ""
   "figs/logo_cabecalho.png" 1659597454 213280 87c4b5e45e8800dd08c28d374a9695b6 ""
-  "main.aux" 1660185250 1067 6d358a76d53c59940f6b6958c2c87cd3 "pdflatex"
-  "main.bbl" 1660185080 429 fd31481735af7170d6be5251caadca0b "bibtex main"
-  "main.tex" 1660185248 11389 48a5e7c9cc117e2679d090c66585b3e8 ""
+  "main.aux" 1660186960 1247 3b246ca29ff59bf32985fdf21e9513fe "pdflatex"
+  "main.bbl" 1660186737 429 fd31481735af7170d6be5251caadca0b "bibtex main"
+  "main.tex" 1660186959 13314 e3160c6cf3afb546c8ee43235e143c71 ""
   (generated)
   "main.aux"
   "main.log"

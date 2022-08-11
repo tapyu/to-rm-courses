@@ -22,19 +22,21 @@ Nᵢ = 10_000 # number of iterations
 𝐱ₒ = [rand(Uniform(a,b)) for (a, b) ∈ zip(𝐱ₗ, 𝐱ᵤ)] # initialize the best solution with the bound
 𝐲̂ₒ = map(x₍ₙ₎ -> Σ(𝐱ₒ ⊙ x₍ₙ₎.^(0:k)), 𝐱) # output value of the best function
 Jₒ = J(𝐲̂ₒ) # best cost function
+M = 3 # number of realizations
 
-for _ ∈ 1:Nᵢ
-    𝐱c = [rand(Uniform(a,b)) for (a, b) ∈ zip(𝐱ₗ, 𝐱ᵤ)] # candidate solution
-    𝐲̂c = map(x₍ₙ₎ -> Σ(𝐱c ⊙ x₍ₙ₎.^(0:k)), 𝐱) # output value of the best function
-    if J(𝐲̂c) < Jₒ
-        # println("pass here!")
-        global 𝐱ₒ = 𝐱c
-        global Jₒ = J(𝐲̂c)
+for m ∈ 1:M
+    for _ ∈ 1:Nᵢ
+        𝐱c = [rand(Uniform(a,b)) for (a, b) ∈ zip(𝐱ₗ, 𝐱ᵤ)] # candidate solution
+        𝐲̂c = map(x₍ₙ₎ -> Σ(𝐱c ⊙ x₍ₙ₎.^(0:k)), 𝐱) # output value of the best function
+        if J(𝐲̂c) < Jₒ
+            # println("pass here!")
+            global 𝐱ₒ = 𝐱c
+            global Jₒ = J(𝐲̂c)
+        end
     end
+    𝐲̂ₒ = map(x₍ₙ₎ -> Σ(𝐱ₒ ⊙ x₍ₙ₎.^(0:k)), 𝐱) # heuristic solution
+    
+    fig = plot([𝐲̂ 𝐲̂ₒ], label=["Least Square Polynomial solution" "Heuristic solution"], linewidth=3)
+    scatter!(𝐱, 𝐲, label="Dataset")
+    savefig(fig, "./TC3 - Methaeuristic/figs/grs_regression_result$(m).png")
 end
-
-𝐲̂ₒ = map(x₍ₙ₎ -> Σ(𝐱ₒ ⊙ x₍ₙ₎.^(0:k)), 𝐱) # heuristic solution
-
-fig = plot([𝐲̂ 𝐲̂ₒ], label=["Least Square Polynomial solution" "Heuristic solution"], linewidth=3)
-scatter!(𝐱, 𝐲, label="Dataset")
-savefig(fig, "./TC3 - Methaeuristic/figs/grs_regression_result.png")
