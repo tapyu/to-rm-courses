@@ -12,14 +12,14 @@ Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
 #define ENA 10 // MOTOR A velocity
 #define ENB 11 // MOTOR B velocity
 
-void set_forward(){
+void set_left(){
   digitalWrite(OUT1,HIGH);
   digitalWrite(OUT2,LOW);
   digitalWrite(OUT3,HIGH);
   digitalWrite(OUT4,LOW);
 }
 
-void set_left(){
+void set_forward(){
   digitalWrite(OUT1,HIGH);
   digitalWrite(OUT2,LOW);
   digitalWrite(OUT3,LOW);
@@ -42,6 +42,15 @@ void turn_left(){
   delay(500);
 }
 
+// float distancia()                   
+// {
+//   float cmMsec;
+//   long microsec = ultrasonic.timing();
+//   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
+//   return(cmMsec);                   
+// delay(10);
+// }
+
 // begin code!
 
 void setup() {
@@ -60,9 +69,14 @@ void setup() {
 
 void loop() {
     set_forward();
+    turn_left();
+    delay(10);
     float dist_cm = ultrasonic.read();
+    Serial.println("In main loop");
 
     if (dist_cm < 20){
-    turn_left();
+    Serial.println("Lower than 20!");
+    set_forward();
+    // turn_left();
     }
 }
