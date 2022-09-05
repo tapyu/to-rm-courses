@@ -66,16 +66,19 @@ class FixedInFrameMObjectTest(ThreeDScene):
         theta =  ValueTracker(0.3) # it is also the tracker
         y = always_redraw(lambda : Dot3D(point=theta.get_value()*x1.get_center()+(1-theta.get_value())*x2.get_center(), radius=0.08, color=BLUE))
         y_text = MathTex(r"\mathbf{y} = \theta\mathbf{x}_1+(1-\theta)\mathbf{x}_2")
-        theta_text = DecimalNumber().set_value(theta.get_value())
-        theta_text.add_updater(lambda x: x.set_value(theta.get_value()))
+        theta_text = Variable(theta.get_value(), MathTex(r"\theta"))
+        def numbers_updater(m):
+            m.set_value(theta.get_value())
+            self.add_fixed_in_frame_mobjects(m)
+        theta_text.add_updater(numbers_updater)
         # theta_text.rotate(PI/2, axis=RIGHT)
-        theta_text.to_edge(UP + RIGHT)
         self.add_fixed_in_frame_mobjects(y_text, theta_text)
+        theta_text.to_corner(UL)
         y_text.next_to(y, direction=array([0., .5, 1.]))
         self.play(
             Create(y),
             Write(y_text),
-            Write(MathTex(f"\\theta = {theta_text.get_value()}"))
+            Write(theta_text)
         )
         self.wait()
         self.play(FadeOut(y_text))
