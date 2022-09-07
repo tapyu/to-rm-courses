@@ -152,12 +152,15 @@ class Affine(ThreeDScene):
         self.play(Write(c_is_convex_text))
         self.wait()
         # show that c is not an affine set
-        c_isnt_affine_text = Tex(r"But is not an affine\\set since it\\is a bounded sheet :(").to_corner(UL)
+        c_isnt_affine_text = Tex(r"But is not an affine set since it is a \\ bounded sheet :(. An infinite line\\(in red) cannot be in it", color=RED).to_corner(UL)
         self.add_fixed_in_frame_mobjects(c_isnt_affine_text)
-        line = Line3D(start=[-10,-10,-20], end=[10,10,20], color=BLACK)
-        self.play(ReplacementTransform(c_is_convex_text, c_isnt_affine_text), FadeOut(line_segment, x1, x2), Create(line))
+        line = Line3D(start=[-20,-20,-40], end=[60,20,80], color=RED)
+        self.play(ReplacementTransform(c_is_convex_text, c_isnt_affine_text), FadeOut(line_segment, x1, x2)) # animation 6
+        self.wait()
         self.move_camera(phi=135*DEGREES, theta=45*DEGREES, gamma=20*DEGREES, zoom=0.5)
-        # # stretch c to make it an affine set
+        self.play(Create(line))
+        self.wait(2)
+        # stretch c to make it an affine set
         transforming_c_to_affine_text = Tex(r"However, if we stretch out\\this sheet to infinity,\\ we get an affine set :)", color=BLACK).to_corner(UL)
         self.add_fixed_in_frame_mobjects(transforming_c_to_affine_text)
         affine_set = Surface(lambda x, y: (x, y, x+y),[-20,20], [-20,20])
@@ -165,7 +168,7 @@ class Affine(ThreeDScene):
         self.wait()
         origin_dot = Dot3D(ORIGIN, color=RED)
         self.play(Create(origin_dot))
-        subspace_conclusion_text = Tex(r"When the affine set\\happens to include\\the origin. It is\\also a subspace in $\mathbb{R}$", color=BLACK).to_corner(UL)
+        subspace_conclusion_text = Tex(r"When the affine set\\happens to include\\the origin. It is\\also a subspace in $\mathbb{R}^3$", color=BLACK).to_corner(UL)
         self.add_fixed_in_frame_mobjects(subspace_conclusion_text)
         self.play(ReplacementTransform(transforming_c_to_affine_text, subspace_conclusion_text))
         self.wait(3)
