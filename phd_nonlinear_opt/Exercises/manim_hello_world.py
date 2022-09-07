@@ -1,8 +1,9 @@
 from ast import Add
+from gzip import WRITE
 from manim import *
 from numpy import array, sin
 
-class FixedInFrameMObjectTest(ThreeDScene):
+class SegmentLine(ThreeDScene):
     def construct(self):
         # initialize enunciate
         title = Tex(r"Consider the following vectors")
@@ -25,7 +26,6 @@ class FixedInFrameMObjectTest(ThreeDScene):
         e1_axis_text = ax.get_x_axis_label(MathTex("e_1"))
         e2_axis_text = ax.get_y_axis_label(MathTex("e_2"))
         e3_axis_text = ax.get_z_axis_label(MathTex("e_3"))
-        self.add(ax, e1_axis_text, e2_axis_text, e3_axis_text)
         self.play(
             Create(ax, run_time=3, lag_ratio=0.1),
             Create(e1_axis_text, run_time=3, lag_ratio=0.1),
@@ -71,9 +71,9 @@ class FixedInFrameMObjectTest(ThreeDScene):
         )
         self.wait()
         self.play(y_text.animate.to_corner(UL), theta_text.animate.shift(DOWN))
-        # y_text.to_corner(UL)
         self.wait()
         # play y moving around and initialize and play the covex set
+        self.begin_ambient_camera_rotation(rate=PI/10, about="theta")
         for value in (0,1)*2:
             theta = value
             self.play(theta_text.tracker.animate.set_value(theta))
@@ -85,39 +85,76 @@ class FixedInFrameMObjectTest(ThreeDScene):
         for value in (1,0)*2:
             theta = value
             self.play(theta_text.tracker.animate.set_value(theta))
+        self.stop_ambient_camera_rotation()
         self.play(FadeOut(line_segment_text, line_segment, x1, x2, y))
+        self.move_camera(phi=45*DEGREES, theta=-45*DEGREES)
 
+class Convex(ThreeDScene):
+    def construct(self):
+        # initialize and add 3D axis, x1, and x2
+        ax = ThreeDAxes()
+        self.set_camera_orientation(phi=75*DEGREES, theta=-45*DEGREES, zoom=0.8)
+        e1_axis_text = ax.get_x_axis_label(MathTex("e_1"))
+        e2_axis_text = ax.get_y_axis_label(MathTex("e_2"))
+        e3_axis_text = ax.get_z_axis_label(MathTex("e_3"))
+        self.add(ax, e1_axis_text, e2_axis_text, e3_axis_text)
+        
         # initialize and play plane
-        plane = Surface(lambda x, y: (x, y, x+y),[-1,1], [-1,1])
-        plane_text = Tex(r"consider the set, denoted by $C$.").to_corner(UL)
-        affine_set_text = Tex(r"The infinite set for $\theta \in \mathbf{R}$\\is called \emph{affine} set.")
+        convex_set = Surface(lambda x, y: (x, y, x+y),[-10,10], [-10,10])
+        convex_set_text = Tex(r"consider the following set, denoted by $C$.").to_corner(UL)
+        self.add_fixed_in_frame_mobjects(convex_set_text)
+        self.play(Create(convex_set), Write(convex_set_text))
 
-        self.play(Create(plane))
-        self.move_camera(phi=45*DEGREES)
-        start_tip_tracker = ValueTracker([1,1,2])
-        end_tip_tracker = ValueTracker([-1,-1,-2])
-        line_segment = Line3D(start=start_tip_tracker.get_value(), end=end_tip_tracker.get_value())
-        line_segment.add_updater(lambda mobj: mobj.set_start(start_tip_tracker.get_value()))
-        line_segment.add_updater(lambda mobj: mobj.set_start(end_tip_tracker.get_value()))
-        self.play(Create(line_segment))
+        # move line segment around on the plane
+        x1 = Dot3D(point=[1,1,2], radius=0.08, color=YELLOW)
+        x2 = Dot3D(point=[-1,-1,-2], radius=0.08, color=YELLOW)
+        # line_segment = always_redraw(lambda : Line3D(start=x1.get_center(), end=x2.get_center()))
+        line_segment = Line3D(start=x1.get_center(), end=x2.get_center())
+        line_segment = line_segment.add_updater(lambda mob: mob.become(Line3D(start=x1.get_center(), end=x2.get_center())))
+        self.play(Create(line_segment), FadeOut(convex_set_text))
         self.wait()
-        self.play(start_tip_tracker.animate.set_value([1,2,3]))
-        self.play(end_tip_tracker.animate.set_value([2,2,6]))
-        self.play(start_tip_tracker.animate.set_value([-6,2,-4]))
+        self.play(x1.animate.move_to([1,2,3]))
+        self.play(x2.animate.move_to([2,2,6]))
+        self.play(x2.animate.move_to([0.3,0.5,0.8]))
+        self.play(x2.animate.move_to([0,1.3,1.3]))
+        self.play(x1.animate.move_to([-3,1,-2]))
         self.wait()
-        # self.add_fixed_in_frame_mobjects(affine_set_text)
-        # affine_set_text.to_corner(DR)
-        # self.play(theta_text.tracker.animate.set_value(1), Write(affine_set_text), FadeOut(line_segment))
-        # for value in (-2,2)*2:
-        #     theta = value
-        #     self.play(theta_text.tracker.animate.set_value(theta))
-        # self.play(FadeOut(y_text, theta_text, affine_set_text))
-        # self.move_camera(phi=45*DEGREES, theta=-45*DEGREES, zoom=2)
-        # theta = 0.5
-        # subspace_text1 = Tex(r"When the affine set $S$ happens\\to contain the origin, it is\\also a subspace in $\mathbb{R}^3$, since")
-        # subspace_text2 = Tex(r"$a\mathbf{v}+b\mathbf{w} \in S, \forall\:\:\mathbf{v}, \mathbf{w} \in S$; $a,b \in \mathbb{R}$")
-        # subspace_text = VGroup(subspace_text1, subspace_text2).arrange(DOWN)
-        # self.add_fixed_in_frame_mobjects(subspace_text)
-        # subspace_text.to_corner(LEFT).shift(0.5*LEFT)
-        # self.play(theta_text.tracker.animate.set_value(theta), Write(subspace_text))
+        # say what is convex set
+        convex_conclusion_text = Tex(r"The line segment between $\mathbf{x}_1,\mathbf{x}_2 \in C$, i.e.,\\ $\{\mathbf{y} \in \mathbb{R}^3 \mid \mathbf{y} = \theta \mathbf{x}_1+(1-\theta) \mathbf{x}_2, 0\leq \theta \leq 1 \}$, also belongs to $C$.\\When this happen, we say that $C$ is a \emph{Convex set}").to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(convex_conclusion_text)
+        self.play(Write(convex_conclusion_text), FadeOut(ax, convex_set, line_segment, x1, x2, e1_axis_text, e2_axis_text, e3_axis_text))
+        self.wait(3)
+    
+class Affine():
+    def construct(self):
+        # initialize and add 3D axis, x1, and x2
+        ax = ThreeDAxes()
+        self.set_camera_orientation(phi=75*DEGREES, theta=-45*DEGREES, zoom=0.8)
+        e1_axis_text = ax.get_x_axis_label(MathTex("e_1"))
+        e2_axis_text = ax.get_y_axis_label(MathTex("e_2"))
+        e3_axis_text = ax.get_z_axis_label(MathTex("e_3"))
+        self.add(ax, e1_axis_text)
+        # say what is affine set
+        affine_conclusion_text = Tex(r"The \emph{Affine set} almost has the same definition,\\but the line is infinite instead of a segment,\\ that is, $L = \{\mathbf{y} \in \mathbb{R}^3 \mid \mathbf{y} = \theta \mathbf{x}_1+(1-\theta) \mathbf{x}_2, \forall\: \theta \in \mathbb{R}\}$.\\When $L \subset C$ for any $\mathbf{x}_1,\mathbf{x}_2 \in C$, we say that $C$ is an \emph{Affine set}.").to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(affine_conclusion_text)
+        self.play(ReplacementTransform(convex_conclusion_text, affine_conclusion_text))
+        self.wait(3)
+        self.play(FadeOut(affine_conclusion_text), FadeIn(ax, convex_set, line_segment, x1, x2, e1_axis_text, e2_axis_text, e3_axis_text))
+        self.wait()
+        # show that c is a convex set
+        c_is_convex_text = Text("Our plane is a convex set as any\nline segment whose tips\nbelongs to it is also inside the plane.\n").to_corner(UL)
+        self.add_fixed_in_frame_mobjects(c_is_convex_text)
+        self.play(Write(c_is_convex_text))
+        # show that c is not an affine set
+        c_isnt_affine_text = Text("But is not an affine\nset since it\nis a bounded sheet :(").to_corner(UL)
+        self.add_fixed_in_frame_mobjects(c_isnt_affine_text)
+        self.play(ReplacementTransform(c_is_convex_text, c_isnt_affine_text), x1.animate.move_to([10,10,20]), x2.animate.move_to([10,10,-20]))
+        # # stretch c to make it an affine set
+        # transforming_c_to_affine_text = Text("However, if we stretch out\nthis sheet to infinity,\n we get an affine set :)").to_corner(UL)
+        # self.add_fixed_in_frame_mobjects(transforming_c_to_affine_text)
+        # affine_set = Surface(lambda x, y: (x, y, x+y),[-20,20], [-20,20])
+        # self.play(ReplacementTransform(c_isnt_affine_text, transforming_c_to_affine_text), Transform(convex_set, affine_set))
         # self.wait()
+        # self.play(x1.animate.move_to([0,0,0]))
+        # subspace_conclusion_text = Tex(r"When the affine set\\happens to include\\the origin. It is\\also a subspace in $\mathbb{R}$").to_corner(UL)
+        # self.wait(3)
