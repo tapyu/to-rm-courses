@@ -150,10 +150,12 @@ class Affine(ThreeDScene):
         c_is_convex_text = Tex(r"Our plane is a convex set as any line\\segment whose tips belongs to\\it is also inside the plane.").to_corner(UL)
         self.add_fixed_in_frame_mobjects(c_is_convex_text)
         self.play(Write(c_is_convex_text))
+        self.wait()
         # show that c is not an affine set
         c_isnt_affine_text = Tex(r"But is not an affine\\set since it\\is a bounded sheet :(").to_corner(UL)
         self.add_fixed_in_frame_mobjects(c_isnt_affine_text)
-        self.play(ReplacementTransform(c_is_convex_text, c_isnt_affine_text), FadeOut(line_segment, x1, x2))
+        line = Line3D(start=[-10,-10,-20], end=[10,10,20], color=BLACK)
+        self.play(ReplacementTransform(c_is_convex_text, c_isnt_affine_text), FadeOut(line_segment, x1, x2), Create(line))
         self.move_camera(phi=135*DEGREES, theta=45*DEGREES, gamma=20*DEGREES, zoom=0.5)
         # # stretch c to make it an affine set
         transforming_c_to_affine_text = Tex(r"However, if we stretch out\\this sheet to infinity,\\ we get an affine set :)", color=BLACK).to_corner(UL)
