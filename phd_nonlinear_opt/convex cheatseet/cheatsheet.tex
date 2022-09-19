@@ -1,19 +1,25 @@
 \documentclass{article}
 
 \begin{document}
-\begin{center}
-    \begin{tabular}{||c | c | c||} 
-     \hline
-     Function & Convex? & Proof \\ [0.5ex] 
-     \hline\hline
-     $y = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\ 
-     \hline
-     2 & 7 & 78 \\
-     \hline
-     3 & 545 & 778 \\
-     \hline
-     4 & 545 & 18744 \\
-     \hline
+\begin{table}
+    \centering
+    \begin{tabular}{||c | c | c||}
+        \hline
+        \multicolumn{3}{|c|}{Sets} \\
+        \hline
+        Set & Convex? & Proof \\ [0.5ex] 
+        \hline\hline
+        $C = A \cup B $ & Not always & \\
+        \hline
+        $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+        \hline
+        \hline
+        \multicolumn{3}{|c|}{Functions} \\
+        \hline
+        Function & Convex? & Proof \\ [0.5ex] 
+        \hline\hline
+        $y = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
+        \hline
     \end{tabular}
-\end{center}
+\end{table}
 \end{document}
