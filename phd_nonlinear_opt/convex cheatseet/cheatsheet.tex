@@ -1,8 +1,35 @@
 \documentclass{article}
 
+\usepackage{pdflscape}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\hermit}{\mathsf{H}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Irrational}{\mathbb{I}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\obs}[1]{\textcolor{red}{(#1)}}
+\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}} % Used to seize the height of equation
+%\newcommand{\iff}{\mbox{$\Longleftrightarrow$}}    % biimplication
+% \newcommand{\and}{\wedge}
+% \newcommand{\or}{\vee}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
+
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
 \begin{document}
-\begin{table}
-    \centering
+\begin{landscape}
+    \begin{table}
+        \centering
     \begin{tabular}{||c | c | c||}
         \hline
         \multicolumn{3}{|c|}{Sets} \\
@@ -18,8 +45,15 @@
         \hline
         Function & Convex? & Proof \\ [0.5ex] 
         \hline\hline
-        $y = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
+        $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
+        \hline
+        $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
+        \hline
+        $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
+        \hline
+        $y = \norm{\mathbf{x}}_p $ (p-norm) & Yes (for any $p \in \mathbb{N}_+$) & $\norm{\theta\mathbf{x} + (1-\theta)\mathbf{y}} \leq \theta\norm{\mathbf{x}} + (1-\theta)\norm{\mathbf{y}}$ (triangular inequality) \\
         \hline
     \end{tabular}
 \end{table}
+\end{landscape}
 \end{document}
