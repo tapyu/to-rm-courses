@@ -124,7 +124,7 @@ class Convex(ThreeDScene):
         self.wait()
         self.move_camera(phi=45*DEGREES, theta=-45*DEGREES)
         # say what is convex set
-        convex_conclusion_text = Tex(r"The line segment between $\mathbf{x}_1,\mathbf{x}_2 \in C$, i.e.,\\ $\{\mathbf{y} \in \mathbb{R}^3 \mid \mathbf{y} = \theta \mathbf{x}_1+(1-\theta) \mathbf{x}_2, 0\leq \theta \leq 1 \}$, also belongs to $C$.\\When it happens, we say that $C$ is a \emph{Convex set}").to_edge(DOWN)
+        convex_conclusion_text = Tex(r"For any $\mathbf{x}_1,\mathbf{x}_2 \in C$ the line segment \\ $L=\{\mathbf{y} \in \mathbb{R}^3 \mid \mathbf{y} = \theta \mathbf{x}_1+(1-\theta) \mathbf{x}_2, 0\leq \theta \leq 1 \}$, also \\belongs to $C$. When it happens, we say that $C$ is a \emph{Convex set}").to_edge(DOWN)
         self.add_fixed_in_frame_mobjects(convex_conclusion_text)
         self.play(Write(convex_conclusion_text), FadeOut(ax, convex_set, line_segment, x1, x2, e1_axis_text, e2_axis_text, e3_axis_text))
         self.wait(3)
