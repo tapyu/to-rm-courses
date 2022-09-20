@@ -37,11 +37,11 @@
 \maketitle
 
 \begin{abstract}
-	This paper shows different methods for solving a nonlinear regression problem. The same dataset with 250 observations of a nonlinear SISO (single input, single output) system is used for the following methods: least-squares regressor by parts, $k$th order polynomial regressor, Mamdani fuzzy system, and zero-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ and coefficient correlation for different hyperparameters (polynomial order, number of intervals, etc...). The best solutions' residues and scatter plots are analyzed and discussed.
+	This paper shows different methods for solving a nonlinear regression problem. The same dataset with 250 observations of a nonlinear SISO (single input, single output) system is used for the following methods: piecewise least-squares regressor, $k$th order polynomial regressor, Mamdani fuzzy system, and zero-order Takagi-Sugeno fuzzy system. All models are analyzed via $R^2$ and coefficient correlation for different hyperparameters (polynomial order, number of intervals, etc...). The best solutions' residues and scatter plots are analyzed and discussed.
 \end{abstract}
 
 \begin{keywords}
-	Nonlinear regression problem, Mamdani fuzzy system, Takagi-Sugeno fuzzy system, polynomial regressor, regression by parts. 
+	Nonlinear regression problem, Mamdani fuzzy system, Takagi-Sugeno fuzzy system, polynomial regressor, piecewise regression. 
 \end{keywords}
 
 % \let\thefootnote\relax\footnotetext{\hspace*{-5mm}This footnote will be used only by the Editor and Associate Editors.~The edition in this area is not permitted to the authors. This footnote must not be removed while editing the manuscript.}
@@ -58,7 +58,7 @@
 
 %Introduction
 
-\section{Least-Squares by parts}
+\section{Piecewise Least-Squares}
 
 The Lest-Squares (LS) method is an approximation technique for overdetermined systems that aims to minimize the squared value of the residuals. Such systems are characterized by having more equations than variables and are easily found in practice \cite{kay1993fundamentals}.
 
@@ -118,7 +118,7 @@ Although the solution of the SISO OLS method is rather straightforward, many inp
 	\label{fig:scatterplot}
 \end{figure}
 
-In this paper, the OLS algorithm by parts is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each choice of \(I\). The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the OLS algorithm by parts, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
+In this paper, the piecewise OLS algorithm is implemented for different sets of curve intervals, \(\left\{ R_i \right\}_{i=1}^{I}\), where \(I \in \left\{ 4,5,6 \right\}\) and \(R_i\) is the \(i\)th interval. Since it is obtained a coefficient of determination, \(R^2\), for each interval, the mean, \(\mu_{R^2}\), and the variance, \(\sigma_{R^2}^2\), is analyzed for each choice of \(I\). The Figure \ref{fig:OLS-by-parts} shows where the delimiters have been placed, in addition to the linear curves obtained by the OLS algorithm. The Algorithm \ref{alg:OLS-by-parts} summarizes the behavior of the piecewise OLS algorithm, and the Table \ref{tab:OLS-performance} shows the performance for each value of \(I\).
 
 \begin{figure}[htp]
     \subfloat[\centering\(I=4\)]{%
@@ -135,7 +135,7 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
     \label{fig:OLS-by-parts-I6}
     }
     
-    \caption{The OLS method by parts.}
+    \caption{The piecewise OLS method.}
     \label{fig:OLS-by-parts}
 \end{figure}
 
@@ -169,13 +169,13 @@ In this paper, the OLS algorithm by parts is implemented for different sets of c
             }
         }
     
-    \caption{OLS algorithm by parts}
+    \caption{Piecewise OLS algorithm.}
     \label{alg:OLS-by-parts}
 \end{algorithm}
 
 \begin{table}[H]
 	\centering
-	\caption{OLS by parts performance - \(R^2\)}
+	\caption{Piecewise OLS performance - \(R^2\)}
 	\footnotesize
 	\setlength{\tabcolsep}{5pt}
 	\begin{tabular}{ccccccccc}
