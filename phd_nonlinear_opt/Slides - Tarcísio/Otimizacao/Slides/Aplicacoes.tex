@@ -1,0 +1,300 @@
+% !TeX root = Otimizacao.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+% !TeX program = pdflatex
+\section{Problemas de otimização}
+
+\subsection{Algoritmo de {\itshape water filling}}
+
+\begin{frame}{Algoritmo de \textit{water filling}}
+  \begin{itemize}
+    \item O objetivo do water filling é distribuir potências entre os links de uma sistema telecomunicação objetivando a maximizaçao da vazão de dados, uma vez que a qualidade do link dependente da potência utilizada na comunicação, dessa forma:
+    \begin{equation}
+    \min - \sum\limits_{i = 1}^n \log(\alpha_{i} + x_{i}) \text{sujeito a}\begin{cases}
+    x  \succeq 0, \\
+    \textbf{1}^{T}x = 1
+    \end{cases}
+    \end{equation}
+    onde $\alpha_{i} > 0$, $x_{i}$ representa a potência alocada ao canal $i$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algoritmo de \textit{water filling}}
+  
+  \begin{itemize}
+    \item Adotando o multiplicador lagrangeano $ \lambda^{*} \in \fdR^n$ para $x \succeq 0$ e o multiplicador $v^{*} \in \fdR$ para $\textbf{1}^{T}x = 1$, o lagrangeano apresenta a seguinte forma:
+    \begin{equation}
+    H(x^{*},\lambda^{*}, v^{*}) = - \sum\limits_{i = 1}^n \log(\alpha_{i} + x_{i}) - \lambda^{*} x + v^{*}(\textbf{1}^{T}x - 1)
+    \end{equation}
+    
+    \item Derivando em seguida utilizando as KKT: 
+    
+    \begin{subequations}
+      \begin{align}		
+      \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial x^{*}} = - \frac{1}{(\alpha_{i}+x_{i})} - \lambda^{*} + v^{*} = 0\\
+      \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial \lambda^{*}} = x = 0\\
+      \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial v^{*}} = \textbf{1}^{T}x - 1 = 0
+      \end{align}
+    \end{subequations}
+    
+    
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algoritmo de \textit{water filling}}
+  
+  \begin{itemize}
+    \item Utilizando as KKT:
+    \begin{subequations}
+      \begin{align}		
+      x_{*} \succeq 0, \\
+      \textbf{1}^{T}x^{*} = 1, \\
+      \lambda^{*} \succeq 0,\\
+      \lambda^{*}_{i}x^{*}_{i} = 0, \\
+      - \frac{1}{(\alpha_{i}+x^{*}_{i})} - \lambda^{*}_{i} + v^{*} = 0
+      \end{align}
+    \end{subequations}
+    
+    \item Isolando $\lambda^{*}_{i}$ e substituindo em $\lambda^{*}_{i}x^{*}_{i}$:
+    
+    \begin{subequations}
+      \begin{align}		
+      x^{*}_{i}( v^{*} - \frac{1}{\alpha_{i} + x^{*}_{i}}) = 0, \\
+      v^{*} - \frac{1}{\alpha_{i} + x^{*}_{i}} \succeq 0
+      \end{align}
+    \end{subequations}
+    
+    
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algoritmo de \textit{water filling}}
+  
+  \begin{itemize}
+    \item Isolando $x^{*}_{i}$ da expressão $v^{*} \succeq  \frac{1}{\alpha_{i} + x^{*}_{i}}$ temos:
+    
+    \begin{equation}
+    x^{*}_{i} \geq \frac{1}{v_{*}} - \alpha_{i} 
+    \end{equation}
+    
+    
+    \item Entretando $x^{*}_{i}$ não pode ser negativo no caso $ v^{*} > \frac{1}{\alpha_{i}}$, assim:
+    
+    \begin{equation}\label{eq_vec_orthonormal}
+    x^{*}_{i} = \begin{cases}
+    \frac{1}{v^{*}} - \alpha_{i}, & v^{*} < \frac{1}{\alpha_{i}} \\
+    0, & v^{*} \geq \frac{1}{\alpha_{i}}
+    \end{cases}
+    \end{equation}
+    
+  \end{itemize}
+\end{frame}
+
+\subsection{Regressão}
+
+\begin{frame}
+	\frametitle{Regressão}
+	\begin{itemize}
+		\item Sejam dois vetores $\vtX = \Transp{\left[x_1 \,\, x_2 \,\, \dots \,\, x_N \right]}$ e $\vtY = \Transp{\left[y_1 \,\, y_2 \,\, \dots \,\, y_N \right]}$, que representam respectivamente a entrada e a saída de um determinado sistema, em que $\vtX, \vtY \in \mathbb{R}^{N \times 1}$;
+		\item A análise de regressão visa estimar relacionamento entre $\vtX$ e $\vtY$.
+		\item Em um caso geral, a análise de regressão visa encontrar os $M$ parâmetros $\vtAlpha = \Transp{\left[\alpha_1 \,\, \alpha_2 \,\, \dots \,\, \alpha_M \right]}$ de uma função $f(\cdot)$ qualquer, de modo que $f(\vtX, \vtAlpha)$ seja o mais próximo de $\vtY$, ou seja,
+		\[
+			\vtY \approx f(\vtX, \vtAlpha)
+		\]
+		\item Em outras palavras, para se estimar os parâmetros $\vtAlpha$, podemos minimizar erro quadrático médio entre $\vtY$ e $f(\vtX, \vtAlpha)$;
+		\item Assim, temos que:
+		\[
+			e = \dfrac{1}{N}\Norm{\vtY - f(\vtX, \vtAlpha)}^2
+		\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão}
+	\begin{itemize}		
+		\item Assim, escrevendo o problema de otimização, temos que:
+		\begin{align*}
+			\dot{\vtAlpha} &= \ArgMin{\vtAlpha}{e} \\
+			&= \ArgMin{\vtAlpha}{\dfrac{1}{N}\Norm{\vtY - f(\vtX, \vtAlpha)}^2}
+		\end{align*}
+		\item Como $N$ é uma constante positiva, então o problema de otimização pode ser simplificado como
+		\[
+			\dot{\vtAlpha} = \ArgMin{\vtAlpha}{\Norm{\vtY - f(\vtX, \vtAlpha)}^2}
+		\]
+		\item Como a norma ao quadrado é uma função convexa, então, desde que a função $f(\vtX, \vtAlpha)$ seja convexa, o problema de otimização em questão pode ser resolvido pelo método \textit{Least-squares}.
+		\item Na literatura existem vários modelos de regressão, para diversos casos.
+	\end{itemize}
+\end{frame}
+
+\subsection{Regressão polinomial}
+\begin{frame}
+	\frametitle{Regressão polinomial}
+	\begin{itemize}
+		\item Um dos modelos de regressão mais utilizados é a polinomial;
+		\item É um caso geral da regressão linear;
+		\item Neste caso, seja um polinômio de ordem $M$, então
+		\begin{equation}
+			\vtAlpha = \Transp{\left[\alpha_0 \,\, \alpha_1 \,\, \dots \,\, \alpha_M \right]}
+			\label{eq:mtARegPol}
+		\end{equation}
+		 é o vetor de coeficientes com $M+1$ elementos;
+		\item Temos que a função $f(\vtX, \vtAlpha)$ é definida como:
+		\[
+			f(\vtX, \vtAlpha) = \mtV \vtAlpha
+		\]
+		em que $\mtV \in \mathbb{R}^{N \times M}$ é uma matriz de Vandermonde, gerada pelos elementos de $\vtX$
+		{\scriptsize
+		\begin{equation}
+			\mtV = \begin{bmatrix} 
+				1 & x_1 & x_1^2 & \dots & x_1^M \\
+				1 & x_2 & x_2^2 & \dots & x_2^M \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				1 & x_N & x_N^2 & \dots & x_N^M
+			\end{bmatrix}
+			\label{eq:mtVRegPol}
+		\end{equation}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão polinomial}
+	\begin{itemize}
+		\item Nesse caso, $\mtV \vtAlpha$ é convexo.
+		\item Assim, denotando o resultado da função objetivo por $L(\vtAlpha)$, temos que:
+		\begin{align*}
+			L(\vtAlpha) &= \Norm{\vtY - \mtV \vtAlpha}^2 \\
+			&= \Transp{(\vtY - \mtV \vtAlpha)}(\vtY - \mtV \vtAlpha) \\
+			&= (\Transp{\vtY} - \Transp{\vtAlpha} \Transp{\mtV})(\vtY - \mtV \vtAlpha) \\
+			&= \Transp{\vtY}\vtY - \Transp{\vtY}\mtV\vtAlpha - \Transp{\vtAlpha}\Transp{\mtV}\vtY + \Transp{\vtAlpha}\Transp{\mtV}\mtV \vtAlpha
+		\end{align*}
+		\item Assim, para encontrar o valor de $\vtAlpha$ que minimiza o valor de $L(\vtAlpha)$, temos que \alert{$\dfrac{\partial L(\vtAlpha)}{\partial \vtAlpha} = 0$}, logo:
+		\begin{align*}
+			\dfrac{\partial L(\vtAlpha)}{\partial \vtAlpha} &= - \Transp{\mtV}\vtY - \Transp{\mtV}\vtY + (\mtV\Transp{\mtV} + \Transp{\mtV}\mtV)\vtAlpha = 0
+		\end{align*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão polinomial}
+	\begin{itemize}
+		\item Como $\mtV\Transp{\mtV}$ é simétrico, então, temos que:
+		\[
+			2\Transp{\mtV}\mtV\vtAlpha - 2\Transp{\mtV}\vtY = 0
+		\]
+		\[
+			\Transp{\mtV}\mtV\vtAlpha = \Transp{\mtV}\vtY
+		\]
+		\[
+			\vtAlpha = \Inv{\left(\Transp{\mtV}\mtV\right)}\Transp{\mtV}\vtY
+		\]
+		\[
+			\boxed{\vtAlpha = \PInv{\mtV}\vtY}
+		\]
+	\end{itemize}
+\end{frame}
+
+\subsection{Regressão polinomial multivariada}
+\begin{frame}
+	\frametitle{Regressão polinomial multivariada}
+	\begin{itemize}
+		\item Em alguns casos, a variável de saída depende de uma associação de $K$ de valores de entrada;
+		\item Matematicamente, podemos escrever que cada elemento do vetor de saída $\vtY = \Transp{\left[y_1 \,\, y_2 \,\, \dots \,\, y_N \right]}$ depende de uma linha da matriz de dados de entrada
+		\[
+			\vtX = \begin{bmatrix} 
+				x_{11} & x_{12} & \dots & x_{1K} \\
+				x_{21} & x_{22} & \dots & x_{2K} \\
+				\vdots & \vdots & \ddots & \vdots \\
+				x_{N1} & x_{N2} & \dots & x_{NK}
+			 \end{bmatrix}
+		\]
+		\item Podemos reescrever nosso problema como um problema de regressão polinomial normal, alterando apenas a matriz $\mtV$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão polinomial multivariada}
+	\begin{itemize}
+		\item No caso da regressão polinomial multivariada, seja um polinômio de grau $M$, o vetor de coeficientes de $KM + 1$ elementos e é dado por:
+		\begin{equation}
+			\vtAlpha = \Transp{\left[\alpha_0 \,\, \alpha_{11} \,\, \dots \,\, \alpha_{M1} \,\, \dots \,\, \alpha_{12} \,\, \dots \,\, \alpha_{M2} \,\, \dots \,\, \alpha_{1K} \,\, \dots \,\, \alpha_{MK} \right]}
+			\label{eq:mtARegPolMV}
+		\end{equation}
+		\item Temos que a matriz $\mtV$ é dada por:
+		\begin{equation}
+			{\setcounter{MaxMatrixCols}{20}
+			\mtV = \begin{bmatrix}
+				1 & x_{11} & x_{11}^2 & \dots & x_{11}^M & x_{12} & x_{12}^2 & \dots & x_{12}^M & \dots & x_{1K} & \dots & x_{1K}^M \\
+				%
+				1 & x_{21} & x_{21}^2 & \dots & x_{21}^M & x_{22} & x_{22}^2 & \dots & x_{22}^M & \dots & x_{2K} & \dots & x_{2K}^M \\
+				%
+				\vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+				%
+				1 & x_{N1} & x_{N1}^2 & \dots & x_{N1}^M & x_{N2} & x_{N2}^2 & \dots & x_{N2}^M & \dots & x_{NK} & \dots & x_{NK}^M 
+			\end{bmatrix}}
+			\label{eq:mtVRegPolMV}
+		\end{equation}
+		\item A solução do problema de otimização se dá da mesma forma que no caso monovariável.
+	\end{itemize}
+\end{frame}
+
+\subsection{Regressão logística}
+\begin{frame}{Regressão logística}
+	\begin{itemize}
+		\item Considere agora que a variável de saída $\vtY$ é qualitativa dicotômica (sucesso (1) ou falha (0));
+		\item Nosso objetivo é saber qual a probabilidade de sucesso de $y_i$ dado um conjunto de $K$ dados de entrada $\vtX_i = [x_{i1} \,\, x_{2i} \,\, \dots \,\, x_{iK}]$, para $i \in (1, N)$;
+		\item Como $y_i$ possui uma distribuição binomial de probabilidades, podemos calcular o valor da probabilidade de sucesso $(y_i = 1)$ a partir da média de várias amostras de $y_i$ sob as mesmas condições $\vtX_i$.
+		\item Assim temos que o vetor de probabilidades de sucesso é dado por:
+		\[
+			\vtP_y = \begin{bmatrix}
+				P(y_1 | \vtX_1) \\
+				P(y_2 | \vtX_2) \\
+				\vdots \\
+				P(y_N | \vtX_N)
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				\Mean{y_1 | \vtX_1} \\
+				\Mean{y_2 | \vtX_2} \\
+				\vdots \\
+				\Mean{y_N | \vtX_N}
+			\end{bmatrix}
+		\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão logística}
+	\begin{itemize}
+		\item Da maneira como os dados de saída estão, o modelo de regressão polinomial não se mostra adequado, visto que o mesmo pode inferir valores de probabilidade maiores que 1 ou menores que 0, o que seria incorreto!
+		\item Para utilizar a regressão polinomial seria necessário aplicar uma função de mapeamento em $\vtP_y$ de forma a gerar $\vtQ_y$, que pudesse admitir quaisquer valores reais. Ou seja,
+		\begin{equation}
+			\vtP_y \xrightarrow{f} \vtQ_y, \,\,\,\,\, \vtP_y \in (0,1) \textrm{ e } \vtQ_y \in \mathbb{R}
+		\end{equation}
+		\item Uma função que resolve este problema é a função logística, dada por:
+		\begin{equation}
+			f(p) = \ln\left(\dfrac{p}{1-p}\right)
+		\end{equation}
+		\item Assim, temos que:
+		\begin{equation}
+			\vtQ_y = \ln\left(\dfrac{\vtP_y}{1 - \vtP_y}\right)
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Regressão logística}
+	\begin{itemize}
+		\item Agora, podemos aplicar uma regressão polinomial considerando os dados de entrada $\mtX = \Transp{\left[\vtX_1 \,\, \vtX_2 \,\, \dots \,\, \vtX_K\right]}$ e a saída $\vtQ_y$. Logo,
+		\begin{equation}
+			\vtQ_y = \mtV \vtAlpha,
+		\end{equation}
+		em que $\vtAlpha$ e $\mtV$ são definidos de acordo com \eqref{eq:mtARegPol} e \eqref{eq:mtVRegPol} se for utilizada a regressão polinomial monovariada $(K=1)$ ou \eqref{eq:mtARegPolMV} e \eqref{eq:mtVRegPolMV} se for utilizada a regressão polinomial multivariada.
+		\item Assim, temos que os coeficientes da regressão polinominal são dados por:
+		\begin{equation}
+			\vtAlpha = \PInv{\mtV} \vtQ_y \,\,\,\, \Longrightarrow \,\,\,\, \vtAlpha = \PInv{\mtV} \ln\left(\dfrac{\vtP_y}{1 - \vtP_y}\right)
+		\end{equation}
+		\item Assim, temos que a função de regressão que relaciona $\mtX$ com $\vtP_y$ é dada por:
+		\begin{equation}
+			\boxed{\vtP_y = \dfrac{\exp\left(\mtV \vtAlpha\right)}{1 + \exp\left(\mtV \vtAlpha\right)}}
+		\end{equation}
+	\end{itemize}
+\end{frame}

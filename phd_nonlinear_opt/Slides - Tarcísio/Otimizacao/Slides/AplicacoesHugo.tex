@@ -1,0 +1,390 @@
+% !TeX root = Otimizacao.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+% !TeX program = pdflatex
+\section{Problemas de Otimização}
+
+\subsection{Projeto de Arranjo de Antenas}
+
+\begin{frame}
+\frametitle{Motivação}
+\begin{itemize}
+\item Em um arranjo de antenas, as sa\'idas de in\'umeros elementos emissores s\~ao linearmente combinadas de modo a gerar um padr\~ao de radiação resultante.
+
+\item O arranjo resultante tem um padr\~ao direcional que depende dos pesos relativos (fatores de escala) usados no processo de combinação.
+
+\item O objetivo do projeto de fatores de escala é escolher os pesos de modo a gerar um diagrama de irradiação desejado.
+
+\item O diagrama de irradiação pode ser ajustado de modo a aumentar o ganho na direção de um usuário ou reduzir o ganho na direção de maior interfer\^encia.
+
+% Inserir figura de um padrão diagrama de irradiação aleatório.
+
+\end{itemize}
+
+\end{frame}
+
+\subsection{Modelagem Matemática}
+% osciladores harmônicos
+\begin{frame}
+\frametitle{Osciladores Harmônicos}
+\begin{itemize}
+
+% \item A unidade básica de uma antena transmissora é o oscilador harmônico isotrópico, que emite ondas eletromagnéticas de frequ\^encia $\omega$ e comprimento de onda $\lambda$.
+
+\item Osciladores harmônicos isotrópicos constituem a unidade básica das antenas transmissoras. Estes elementos emitem ondas eletromagnéticas com frequ\^encia $\omega$ e comprimento de onda $\lambda$.
+
+\item O campo elétrico gerado por um oscilador em um ponto $P$ do espa\c{c}o, localizado a uma distância $d$ da antena, é dado por
+
+\begin{equation}
+\frac{1}{d}\cdot\mathbf{Re}\left[z \cdot \exp \left( j\omega t - \frac{2\pi d}{\lambda} \right) \right]
+\end{equation}
+
+\item Observe que $z \in \mathbb{C}$,  é um parâmetro de projeto denominado peso da antena. Este fator dimensiona a magnitude e a fase do campo elétrico.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Arranjo de osciladores}
+\begin{itemize}
+
+% \item Um \'unico elemento de irradiação n\~ao é capaz de atender a todos os requisitos técnicos necessários a uma determinada aplicação, sendo assim necessária a combinação de vários elementos osciladores, arranjados nos espa\c{c}o e interconectados entre si.
+
+\item Arranjo de osciladores é uma combinação de vários elementos de irradiação, com uma determinada distribuição espacial e interconectados entre si.
+
+\item Considere que colocamos $n$ osciladores nas posi\c{c}\~oes $p_{k} \in \mathbb{R}^{3}$, $k = 1, \ldots, n$. Cada oscilador é associado a um peso complexo $z_{k}$. Assim, o campo elétrico total recebido em um ponto $p \in \mathbb{R}^{3}$ é dado por
+
+\begin{equation}
+E = \mathfrak{Re}\left[ \exp\left( j\omega t \right) \cdot \sum_{k = 1}^{n} \frac{1}{d_{k}} z_{k} \cdot \exp \left( - \frac{2 \pi j d_{k}}{\lambda}  \right) \right]
+\end{equation}
+
+\item onde $d_{k} = \Norm{p - p_{k}}$ é a distância entre os pontos $p$ e $p_{k}$, onde $ k = 1, \ldots, n$.
+
+\end{itemize}
+\end{frame}
+
+
+% diagrama de um arranjo linear
+\begin{frame}
+\frametitle{Diagrama de um Arranjo Linear}
+\begin{itemize}
+%\item Assumindo que os osciladores formam um arranjo linear, isto é,  eles s\~ao colocados em pontos equidistantes ao longo do eixo x, suas posi\c{c}\~oes s\~ao dadas por $p_k = k\cdot e_{1}$, onde $k = 1, \ldots, n$ e $e_{1} = \left(1, 0, 0 \right)$ é o primeiro vetor unitário. 
+
+\item Considera-se que o ponto $p$ em análise está muito distante do arranjo de osciladores. Desse modo, sua posição será dada por $p = ru$, onde $u \in \mathbb{R}^{3}$ é um vetor unitário que determina a direção  e $r$ é um escalar que especifica a distância da origem.
+
+\item Para um arranjo linear, o campo elétrico $E$ depende apenas do ângulo $\phi$ entre o vetor e o ponto distante $p$
+
+\begin{equation}
+E \approx \mathfrak{Re} \left(\frac{1}{r}\cdot \exp \left( j\omega t - \frac{2\pi r}{\lambda}\right) \right) \cdot D_{z}\left( \phi \right)
+\end{equation}
+
+\item observe que $\phi$ é o â ngulo entre os vetores $u$ e $e_{1}$.
+
+\item A função $D_z : [0, 2\pi]  \to \mathbb{C}$ é chamada de diagrama da antena. Esta função depende da escolha do vetor de pesos complexos $z = \left(z_{1}, \ldots, z_{n} \right)$
+
+\begin{equation}
+D_{z} \left( \phi \right) = \sum_{k = 1}^{n} z_{k} \cdot \exp \left( \frac{2 \pi j k \cos{\phi}}{\lambda} \right)
+\end{equation}
+
+\end{itemize}
+\end{frame}
+
+\subsection{Modelagem do Diagrama de Antenas}
+
+\begin{frame}
+\frametitle{Modelagem do Diagrama de Antenas}
+\begin{itemize}
+\item O quadrado do módulo do diagrama de antena, $|D_{z}\left( \phi \right)|$, é proporcional a direção da densidade de energia emitida pela antena.
+
+\item \'E de grande interesse modelar a magnitude do diagrama $\| D_{z}\left( \cdot \right) |$, por meio da escolha do vetor de pesos, $z$,  de modo a atender os requisitos de diretividade do sistema.
+
+\item Um requerimento t\'ipico estabelece que a antena transmite bem ao longo de uma determinada direção. Ou seja, a energia é concentrada ao longo de direção alvo, $\phi_{alvo}$, enquanto é reduzida numa outra regi\~ao.
+
+\item Outro requerimento clássico considera a minimização da pot\^encia de rui\'ido térmico gerado pela antena.
+
+% Inserir figura indicando as regiões de incidência
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Normalização}
+\begin{itemize}
+
+\item A energia enviada ao longo da direção alvo deve ser normalizada. 
+
+\begin{equation}
+\mathfrak{Re} \left( D_{z}\left( \phi_{alvo} \right) \right) \geq 1
+\end{equation}
+
+\item  N\~ao se modifica a direção da distribuição de energia ao multiplicar-se todos os pesos por um n\'umero complexo n\~ao nulo. 
+
+\item Esta é uma restrição afim nas partes reais e imaginárias da variável $z \in \mathbb{C}^{n}$
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Atenuação do Lóbulo Lateral}
+\begin{itemize}
+
+\item Define-se como banda de passagem o intervalo angular $\left[ - \Phi, \Phi \right]$ onde se pretende concentrar a energia; a banda de parada, corresponde aos pontos fora deste intervalo.
+
+\item Para garantir o cumprimento do requerimento de concentração de energia, estabelece-se que
+
+\begin{equation}
+|\phi| \geq \Phi \iff |D_{z}\left( \phi \right)| \leq \delta
+\end{equation}
+
+\item onde $\delta$ é o n\'ivel desejado de atenuação na banda de parada ou como o n\'ivel do lóbulo lateral.
+
+\item Em vez de considerar um intervalo cont\'inuo, é feita uma discretização dessa restrição
+
+\begin{equation}
+|D_{z}\left( \phi_{i} \right)| \leq \delta, i = 1, \ldots, N
+\end{equation}
+
+\item os angulos $\phi_{1}, \ldots, \phi_{N}$ s\~ao regularmente espa\c{c}ados na banda de parada.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Limitação da Pot\^encia do Ru\'ido Térmico}
+
+\begin{itemize}
+\item Em algumas situa\c{c}\~oes é importante controlar a pot\^encia do ru\'ido térmico gerado pelas antenas.
+
+\item Verifica-se que esta pot\^encia é proporcional \`a norma Euclidiana do vetor complexo $z$
+
+\begin{equation}
+\Gamma \propto \sqrt{\sum_{i = 1}^{n} |z_{i}|^{2}}
+\end{equation}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dilema entre Atenuação do Lóbulo Lateral e a Pot\^encia do Ru\'ido Térmico}
+
+Um problema de otimização t\'ipico envolveria
+
+\begin{itemize}
+\item uma restrição de normalização, que determina um valor unitário no diagrama de magnitude em uma direção espec\'ifica :
+\begin{equation}
+\mathfrak{Re} \left( D_{z}\left( \phi_{alvo}\right) \geq 1 \right)
+\end{equation}
+\item uma restrição quanto ao n\'ivel de atenuação do lóbulo lateral :
+\begin{equation}
+|D_{z} \left( \phi_{z} \right) | \leq \delta, i = 1, \ldots, N
+\end{equation}
+\item uma restrição na pot\^encia do ru\'ido térmico:
+\begin{equation}
+\Norm{z}_{2} \leq \gamma
+\end{equation}
+\end{itemize}
+\end{frame}
+
+
+\subsection{Método dos M\'inimos Quadrados}
+
+\begin{frame}
+
+\frametitle{Formulação do problema de otimização}
+
+\begin{itemize}
+
+\item Uma curva de trade-off t\'ipica pode ser obtida comparando-se o n\'ivel de ru\'ido térmico $\gamma$ para um dado valor de atenuação do lóbulo lateral $\delta$.
+
+\item Cada ponto da curva $\left( \delta, \gamma \right)$ pode ser obtido solucionando-se o problema de otimização
+
+\begin{equation*}
+\begin{aligned}
+& \underset{z}{\text{minimize}}
+&& \Norm{z}_{2} \\
+& \text{subject to}
+&& \mathfrak{Re}(D_{z}(\phi_{alvo})) \geq 1 \\
+&
+&& |D_{z}(\phi_{i})| \leq \delta, i = 1, \ldots, N
+\end{aligned}
+\end{equation*}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Projeto de Arranjo de Antenas usando o Método dos M\'inimos Quadrados}
+\begin{itemize}
+\item A ideia básica para a resolução deste problema consiste em penalizar as restri\c{c}\~oes, isto é, definir um parâmetro de trade-off, $\mu$ e se reescrever o problema como
+
+\begin{equation*}
+\begin{aligned}
+& \underset{z}{\text{minimize}}
+&& \Norm{z}_{2}^{2} + \mu \sum_{i = 1}^{n}|D_{z}(\phi_{i})|^{2} \\
+& \text{subject to}
+&& \mathfrak{Re}(D_{z}(\phi_{alvo})) \geq 1 \\
+\end{aligned}
+\end{equation*}
+
+\item Lembrando que a função é linear em $z$, pode-se afirmar que se trata de um problema de m\'inimos quadrados com restri\c{c}\~oes lineares. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementação no CVX}
+
+\begin{table}[!tb]
+\centering
+\caption{Parâmetros de Simulação}
+\centering
+\small
+\begin{tabular}{l|c}
+\hline
+\hline
+\textbf{Parâmetro} & \textbf{Valor}\\
+\hline
+N\'umero de antenas & 10\\
+\hline
+Comprimento de onda & 8\\
+\hline
+\^Angulo alvo & $0$\\
+\hline
+Banda de Passagem & $\left[- \pi / 6, \pi / 6\right]$\\
+\hline
+Parâmetro de Discretização & 90\\
+\hline
+Parâmetro de Trade-off & 0,5\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+% \begin{frame}
+% \frametitle{Implementação no CVX}
+%\lstinputlisting[language=Matlab]{Codes/beamOpt_LS.m}
+% \end{frame}
+
+\begin{frame}
+
+\frametitle{Diagrama de Irradiação}
+\begin{figure}
+\centering
+\includegraphics[width = 0.6\columnwidth]{Figs/pattern_LS}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Curva $(\delta, \gamma)$}
+\begin{figure}
+\centering
+\includegraphics[width = 0.6\columnwidth]{Figs/tradeoffCurve}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Projeto de Arranjo de Antenas usando SOCP}
+O método Second Order Cone Programming (SOCP) permite realizar o projeto de arranjo de antenas de dois modos diferentes
+
+\begin{itemize}
+\item Minimização do ru\'ido térmico para um dado n\'ivel dos lóbulos laterais
+\item Minimização da atenuação do lóbulo lateral 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Minimização do ru\'ido térmico para um dado n\'ivel dos lóbulos laterais}
+
+O problema de minimização da pot\^encia do ru\'ido térmico submetido a uma restrição do n\'ivel dos lóbulos laterais pode ser escrito como
+
+\begin{equation*}
+\begin{aligned}
+& \underset{z \in \mathbf{C}^{n},\delta}{\text{minimize}}
+&& \sum_{i = 1}^{n} \Norm{z_{i}}_{2} \\
+& \text{subject to}
+&& \mathfrak{Re}(D_{z}(\phi_{alvo})) \geq 1 \\
+&
+&& |D_{z}(\phi_{i})| \leq \delta, i = 1, \ldots, m
+\end{aligned}
+\end{equation*}
+\\
+
+As N restri\c{c}\~oes representam cones de segunda ordem em função das variáveis de decis\~ao, uma vez que eles envolvem restrição de magnitude em um vetor complexo que depende de modo afim dessas variáveis.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Restrição de Magnitude em Vetores Complexos Afins}
+\begin{itemize}
+\item Muitos problemas que envolvem variáveis complexas e restri\c{c}\~oes de magnitude podem ser solucionados usando SOCP.
+
+\item A ideia básica consiste em escrever a magnitude de um n\'umero complexo como uma norma euclidiana
+
+\begin{equation*}
+|z| = \sqrt{z_{R}^{2} + z_{I}^{2}} = \Norm{\dfrac{z_{R}}{z_{I}}}_{2}
+\end{equation*}
+
+\item Por exemplo, considere o n\'umero complexo f(x), onde $x \in \mathbf{R}^{n}$ é uma variável de projeto e que a função $f: \mathbf{R}^{n} \rightarrow \mathbf{C}$ é afim. Os valores dessa função podem ser escritos como $f(x) = (a_{R}^{T}x + b_{R}) + j (a_{I}^{T}x + b_{I})$.
+
+\item Uma restrição de magnitude da forma $|f(x)| \leq t$ pode ser escrita como um cone de segunda ordem em (x,t)
+
+\begin{equation*}
+\Norm{\dfrac{a_{R}^{T}x + b_{R}}{a_{I}^{T}x + b_{I}}}_{2} \leq t
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+% \begin{frame}
+% \frametitle{Implementação no CVX}
+%\lstinputlisting[language=Matlab]{Codes/beamOpt_SOCP.m}
+% \end{frame}
+
+\begin{frame}
+\frametitle{Resultado}
+\begin{figure}
+\centering
+\includegraphics[width = 0.6\columnwidth]{Figs/result_SOCP}
+\end{figure}
+
+Padr\~ao de radiação resultante para a pot\^encia de ruido térmico m\'inima dado um limite de 0,4 no lóbulo lateral considerando N = 90 pontos.
+\end{frame}
+
+\begin{frame}
+\frametitle{ Minimização da atenuação do lóbulo lateral}
+Este problema tem como objetivo minimizar o n\'ivel de atenuação dos lóbulos laterais, $\delta$, dado o requerimento de normalização $\mathfrak{Re}(D_{z}(0)) \geq 1$. 
+
+Esta análise pode ser realizada a partir do seguinte  formula\c{a}\~ao de um SOCP 
+
+\begin{equation*}
+\begin{aligned}
+& \underset{z \in \mathbf{C}^{n},\delta}{\text{minimize}}
+&&\delta \\
+& \text{subject to}
+&& \mathfrak{Re}(D_{z}(0)) \geq 1 \\
+&
+&& |D_{z}(\phi_{i})| \leq \delta, i = 1, \ldots, m
+\end{aligned}
+\end{equation*}
+\end{frame}
+
+%{\begin{frame}
+%\frametitle{Implementação no CVX}
+%\lstinputlisting[language=Matlab]{Codes/beamOpt_SOCP_02.m}
+%\end{frame}}
+
+\begin{frame}
+\frametitle{Resutado}
+\begin{figure}
+\centering
+\includegraphics[width = 0.6\columnwidth]{Figs/result_SOCP_02}
+\end{figure}
+\end{frame}
+
+% Local Variables:
+% TeX-master: "Otimizacao.tex"
+% End:

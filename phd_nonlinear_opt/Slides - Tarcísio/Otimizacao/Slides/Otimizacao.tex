@@ -1,0 +1,296 @@
+\documentclass[brazil,xcolor={svgnames},10pt,aspectratio=1610]{beamer}
+\mode<handout>{
+  % No modo handout o beamer vai colocar mais do que um slide por página. Dá
+  % para fazer mudanças como mudar o tema ou uma cor também.
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+}
+
+\usepackage[brazil]{babel}
+\usepackage[none]{hyphenat}
+
+% Disable beamer solution environment to support exsheets
+\let\solution\relax
+\usepackage{exsheets}
+\SetupExSheets{headings-format={\bfseries},counter-format={:},headings=runin,solution/print=true,no-skip-below=true}
+
+\usepackage{pifont}
+\usepackage[default,scaled=0.95]{sourcesanspro}
+\usepackage[scaled=0.95]{inconsolata}
+\usepackage{fontawesome}
+%%% FVExtra bug fix %%%
+\makeatletter
+\def\mdseries@tt{m}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{newtxmath}
+\usepackage{mathtools}
+\usepackage{icomma}
+\usepackage{centernot}
+
+\usepackage{booktabs}
+\usepackage{tabularkv}
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\flushright\arraybackslash}X}
+\newcolumntype{L}{>{\flushleft\arraybackslash}X}
+\usepackage{colortbl}
+
+\usepackage{multicol}
+
+\usepackage{calc}
+
+\usepackage[ddmmyy]{datetime}
+\ddmmyyyydate
+
+\usepackage{calc}
+
+\hypersetup{
+  pdfauthor = {Tarcisio F. Maciel}, %
+  pdftitle = {Métodos numéricos para engenharias},%
+  pdfsubject = {Disciplina de métodos numéricos para engenharias do CT-UFC},%
+  pdfkeywords = {métodos numéricos, programação computacional},%
+  colorlinks=false,%
+}
+
+\usepackage{graphicx}
+\graphicspath{{.}{./Figs/}}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{circuits.ee.IEC}
+\usepackage{pgf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[cache=true,newfloat=true]{minted}
+% Run the command "pygmentize -L styles" to see available styles
+\setminted{fontseries=b}
+
+% C++
+\newminted{cpp}{autogobble}  % Define ambiente 'cppcode' para c++
+\newmintedfile[inputmintedcpp]{c++}{}  % Define versão customizada de inputminted para c++
+\newmintinline[cppinline]{c++}{}  % Define nova versão customizada do
+% mintinline chamada 'cppinline'
+
+% Bash
+\newminted{bash}{autogobble}  % Define ambiente 'bashcode' para bash
+\newmintedfile[inputmintedbash]{bash}{}  % Define versão customizada de inputminted para bash
+\newmintinline[bashinline]{bash}{}  % Define nova versão customizada do
+% mintinline chamada 'bashinline'
+
+% Octave
+\newminted{octave}{autogobble}  % Define ambiente 'cppcode' para c++
+\newmintedfile[inputmintedoctave]{octave}{}  % Define versão customizada de inputminted para c++
+\newmintinline[octaveinline]{octave}{}  % Define nova versão customizada do
+% mintinline chamada 'octaveinline'
+
+% \usemintedstyle{emacs}
+\SetupFloatingEnvironment{listing}{name=Listagem} % para newfloat=true no minted
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% CAPTION / SUBFIG / BEAMER BUG FIX
+\makeatletter
+\let\@@magyar@captionfix\relax
+\makeatother
+\usepackage{caption}
+\captionsetup[listing]{belowskip=0pt,aboveskip=0pt}  % This will impact minted with the newfloat option
+\renewcommand\theFancyVerbLine{\tiny\arabic{FancyVerbLine}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{hyperref}
+\hypersetup{
+  pdfauthor = {Tarcisio Ferreira Maciel},%
+  pdftitle = {Otimização não-linear},%
+  pdfsubject = {Disciplina de otimização não-linear para os cursos do PPGETI},%
+  pdfkeywords = {programação matemática, otimização linear, otimização não-linear},%
+}
+
+\usepackage{graphicx}
+\graphicspath{{.}{./Figs/}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.gates.logic.US}
+\usetikzlibrary{fit}
+\usetikzlibrary{circuits.ee.IEC}
+
+\usetikzlibrary{external}
+%\tikzexternalize
+\tikzsetexternalprefix{Figs/}
+
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepgfplotslibrary{patchplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% xxxxxxxxxxRedefine o template para a "partpage" xxxxxxxxxxxxxxxxxxxxxxxxx
+%\setbeamertemplate{part page}{
+%  \begin{beamercolorbox}[sep=8pt,center,wd=\textwidth]{part title}
+%    \usebeamerfont{part title}\insertpart\par
+%  \end{beamercolorbox}
+%}
+% xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+\usecolortheme{structure}
+\useoutertheme{infolines}
+\useinnertheme[shadow]{rounded}
+\usefonttheme{structurebold}
+\usefonttheme[onlymath]{serif}
+
+%%% Printing
+%\setbeamercolor{structure}{bg=White,fg=Black}
+%\setbeamercolor{alerted text}{fg=Black}
+
+%%% Screen
+\setbeamercolor{structure}{bg=White,fg=DarkGreen}
+\setbeamercolor{palette primary}{fg=Black,bg=structure.bg}
+\setbeamercolor{palette secondary}{fg=Black,bg=structure.fg!30!White}
+\setbeamercolor{palette tertiary}{fg=structure.bg,bg=structure.fg!90!White}
+\setbeamercolor{title}{fg=structure.fg,bg=structure.bg}
+\setbeamercolor{part page}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{frametitle}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{block title}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{block body}{fg=Black,bg=structure.fg!05!White}
+\setbeamercolor{alerted text}{fg=Red}
+
+\setbeamerfont{part page}{size=\Large,series=\bfseries}
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{block title}{size=\small,series=\bfseries}
+\setbeamerfont{block body}{size=\footnotesize}
+\setbeamerfont{section in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{subsection in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{institute in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{author in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{date in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{bibliography entry author}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry title}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry journal}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry note}{size=\scriptsize,series=\bfseries}
+
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{theorems}[numbered]
+\newtheorem{teorema}[theorem]{Teorema}
+\newtheorem{propriedade}[theorem]{Propriedade}
+\newtheorem{corolario}[theorem]{Corolário}
+
+\setbeamertemplate{frametitle continuation}{(\insertcontinuationcount)}
+\setbeamertemplate{navigation symbols}{}
+
+
+
+\setlength{\leftmargini}{1em}
+\setlength{\leftmarginii}{1em}
+\setlength{\leftmarginiii}{1em}
+
+\setlength{\abovedisplayskip}{-\baselineskip}
+
+\newlength{\AuxWidth}
+
+\input{Math.tex}
+%\input{Acronimos.tex}
+
+\title{Otimização não-linear}
+\author[DRAFT]{
+  \textbf{Prof. Tarcisio F. Maciel, Dr.-Eng.} \\
+  \small\textbf{Colaboradores:} Diego A. Sousa, M.-Eng., José Mairton B. da Silva Jr., M.-Eng., \\
+  Francisco Hugo C. Neto, M.-Eng., e Yuri Victor L. de Melo, M.-Eng.
+}
+\institute[Em desenvolvimento]{
+  \normalsize Universidade Federal do Ceará \\
+  Centro de Tecnologia \\
+  Programa de Pós-Graduação em Engenharia de Teleinformática
+}
+\date{\today}
+
+% Command to start a new part and also create a frame with the part page
+\newcommand{\createpartandshowpage}[1]{
+  \part{#1}
+  \begin{frame}
+    \partpage{}
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+% \AtBeginPart{
+% \begin{frame}<handout:0>
+% 	\begin{block}{\centering\large\bfseries Parte \insertpartnumber}
+% 		\centering\large\insertpart
+% 	\end{block}
+% \end{frame}
+%
+% \begin{frame}<handout:0>
+% 	\frametitle{Conteúdo}
+% 	\tableofcontents[hideallsubsections]
+% \end{frame}
+% }
+%
+% \AtBeginLecture{
+% \begin{frame}<handout:0>
+% 	\begin{block}{\centering\large\bfseries Tema da aula}
+% 		\centering\large\insertlecture
+% 	\end{block}
+% \end{frame}
+% }
+
+\AtBeginSection{
+\begin{frame}
+	\frametitle{Conteúdo}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+}
+
+\AtBeginSubsection{
+\begin{frame}<handout:0>
+	\frametitle{Conteúdo}
+	\tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
+\end{frame}
+}
+
+\createpartandshowpage{Introdução}
+\include{Introducao}
+\createpartandshowpage{Conjuntos convexos e funções convexas}
+\include{ConjuntosFuncoesConvexas}
+\createpartandshowpage{Problemas de otimização convexa}
+\include{ProblemasOtimizacaoConvexa}
+\createpartandshowpage{Aplicações}
+\include{Aplicacoes}
+% \include{AplicacoesMVDR}
+\include{AplicacoesHugo}
+\createpartandshowpage{Revisão de ferramentas matemática}
+\include{Algebra}
+\include{DerivadasMatriciais}
+% \include{Otimizacao_yuri_parte_2}
+
+\section{Bibliografia}
+\begin{frame}
+	\frametitle{Bibliografia}
+	\footnotesize\bfseries
+	\bibliographystyle{IEEEtranSA}
+	\bibliography{IEEEfull,Full,MyBib}
+\end{frame}
+
+\end{document}
+
+% Local Variables:
+% fill-column: 120
+% ispell-local-dictionary: "pt_BR"
+% TeX-master: "Slides"
+% End:

@@ -1,0 +1,143 @@
+% !TeX root = Otimizacao.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+% !TeX program = pdflatex
+\subsection{Beamforming Adaptativo e Robusto}
+
+% Introducao
+\begin{frame}{Introdução}
+		\begin{itemize}
+		\item Uma das abordagens recentes para aumentar a capacidade e desempenho de sistemas celulares é a utilização de antenas inteligentes (\textit{smart}) em [type=exam];
+		\item Considerando essa abordagem, a tecnologia SDMA tornou-se recentemente uma dos conceitos chave da $3^a$ e subsequente gerações de sistemas celulares;
+		\item Especificamente, \textit{beamforming} adaptativo no UL utilizando diversas tem se mostrado capaz de eficientemente mitigar a interferência co-canal e melhorar consideravelmente as características do sistema em termos de:
+		\begin{itemize}
+		  \item Capacidade;
+		  \item Desempenho;
+		  \item Cobertura.
+		\end{itemize}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{O que é \textit{beamforming} adaptativo ?}
+	\begin{itemize}
+		\item Cada sensor em uma série (\textit{array}) de antenas possui um coeficiente de peso ajustável;
+		\item Esses coeficientes podem ser utilizados pela BS para colocar o feixe principal de seu padrão de radiação na direção do usuário de interesse, enquanto rejeita a interferência co-canal dos outros usuários com um nulo em suas direções;
+		\item Para emparelhar de forma ótima o feixe principal com o usuário de interesse, a BS necessita de um conhecimento preciso da \textbf{assinatura espacial do canal};
+		\item Devido à dificuldade de obter essa informação com precisão, é necessária a utilização de um \textit{beamforming} adaptativo robusto tanto aos \textcolor{red}{\textbf{erros no canal}} como também à \textcolor{red}{\textbf{contaminação por interferência}}~\cite[Cap. 6]{Trees2002} \cite[Cap.9]{Kaiser2005}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - Intro.}
+	\begin{itemize}
+		\item Um esquema básico com 6 antenas é ilustrado na Figura \ref{fig:basic_beamforming}
+		\begin{figure}
+			\centering
+      \includegraphics[width=0.60\linewidth]{Figs/basic_beamforming}\label{fig:basic_beamforming}
+	  \end{figure}
+	  \item A saída do beamformer é:
+	  \[ y(k) = \Herm{\vtW}\vtX(k),
+	  \]
+	  onde $k$ é o índice temporal, $\vtW = [w_1,\ldots,w_M]^T$ é o vetor complexo $M\times 1$ de peso da antena, $\vtX(k)=[x_1(k),\ldots,x_M(k)]^T$ é o vetor $M\times 1$ de entrada e $M$ é o número de antenas na base (no array).
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - Intro.}
+	\begin{itemize}
+		\item O vetor de entrada $\vtX(k)$ é dado por
+		\[
+			\vtX(k) = \vtS_s(k) + \vtI(k) + \vtN(k),
+		\]
+		onde $\vtS_s(k),\vtI(k), \vtN(k)$ são componentes estatisticamente independentes do sinal desejado, da interferência de múltiplo acesso e do ruído, respectivamente;
+		\item Em cenários com desvanecimento lento, o vetor $\vtS_s(k)$ pode ser modelado como 
+		\[
+		\vtS_s(k)=s(k)\vtA_s,
+		\]
+		onde $s(k)$ é a forma de onda complexa do usuário desejado e $\vtA_s$ é a assinatura espacial $M\times 1$ que especifica a frente de onda do usuário;
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - Intro.}
+	\begin{itemize}
+		\item As matrizes de covariância do sinal e da interferência mais ruído são dadas por
+		\begin{align}
+		  \mtR_s &= \fdE\{\vtS_s(k)\Herm{\vtS}_s(k)\},\\
+		  \mtR_{i+n} &= \fdE\left\{(\vtI(k)+\vtN(k))\Herm{(\vtI(k)+\vtN(k))}\right\};
+		\end{align}
+		\item Considerando desvanecimento lento, temos então:
+		\begin{equation}
+		  \mtR_s = \sigma^2 \vtA_s \Herm{\vtA}_s,
+		\end{equation}
+		onde $\sigma^2 = \fdE\{\|s(k)\|^2\}$;
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - Intro.}
+	\begin{itemize}
+		\item A relação sinal-interferência mais ruído (SINR) pode então ser definida como:
+		\begin{align}
+		  SINR &= \frac{\fdE\{\|\Herm{\vtW}\vtS_s(k)\|^2\}}{\fdE\{\|\Herm{\vtW}(\vtI(k) + \vtN(k)))\|^2\}};\\
+		  SINR &= \frac{\Herm{\vtW}\mtR_s\vtW}{\Herm{\vtW}\mtR_{i+n}\vtW};
+		\end{align}
+		\item Considerando desvanecimento lento, temos então:
+		\begin{equation}
+		  SINR = \frac{\sigma^2\|\Herm{\vtW}\vtA_a\|^2}{\Herm{\vtW}\mtR_{i+n}\vtW};
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - MVDR }
+        \begin{itemize}
+                \item Um critério importante é o da não distorção , onde é requerido que na ausência de ruido,
+                \begin{align}
+                  \Herm{\vtW}\mtR_s\vtW &= 1\\
+                  \text{ou}\nonumber\\
+                  \Herm{\vtW}\vtA_s &= 1;
+                \end{align}
+                \item Outro critério importante é o da miníma variância da saída com a presença do ruido, dado por:
+                \begin{align}
+                  \fdE\{\|y(k)\|^2\} = \Herm{\vtW}\mtR_{i+n}\vtW;
+                \end{align}
+                \item Ao considerar ambos os critérios, temos o chamado beamforming MVDR.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - MVDR}
+	\begin{itemize}
+		\item O problema de otimização pode ser escrito como:
+		\begin{equation}
+			\label{eq:util_max}
+			\begin{array}{ll}
+				\minimize_\vtW & \Herm{\vtW}\mtR_{i+n}\vtW, \\
+				\text{suj. a} & \Herm{\vtW}\mtR_{s}\vtW = 1;
+			\end{array}
+		\end{equation}
+		\item O beamforming MVDR também pode ser compreendido como a maximização da SINR com o critério da não distorção;
+		\item O lagrangeano pode ser escrito como:
+		\begin{equation}
+		  \stL(\vtW,\lambda) = \Herm{\vtW}\mtR_{i+n}\vtW - \lambda\left(\Herm{\vtW}\mtR_{s}\vtW - 1\right)
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - MVDR}
+	\begin{itemize}
+		\item As condições de KKT do problema são dadas por:
+		\begin{align}
+		  \frac{\partial\stL(\vtW,\lambda)}{\partial\vtW} &= 0,\\
+		  \lambda\left(\Herm{\vtW}\mtR_{s}\vtW - 1\right) &= 0;
+		\end{align}
+		\item Temos portanto:
+		\begin{align}
+		  \frac{\partial\stL(\vtW,\lambda)}{\partial\vtW} &= \mtR_{i+n}\vtW - \lambda\mtR_s\vtW\\
+		  \mtR_{i+n}\vtW &= \lambda\mtR_s\vtW\label{seq:gen_eigen};
+		\end{align}
+		\item A equação \eqref{seq:gen_eigen} pode ser interpretada como um problema de autovalor generalizado, onde $\lambda$ é o autovalor e  $\vtW$ o autovetor.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beamforming adaptativo - MVDR}
+	\begin{itemize}
+		\item A solução da equação \eqref{seq:gen_eigen} corresponde ao menor autovalor generalizado ($\lambda$) das matrizes $\{\mtR_{i+n},\mtR_s\}$ e ao autovetor ($\vtW$) relacionado ao maior autovalor de $\Inv{\mtR}_{i+n}\mtR_s$;
+		\item 
+	\end{itemize}
+\end{frame}

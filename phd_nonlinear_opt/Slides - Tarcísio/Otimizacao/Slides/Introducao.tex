@@ -1,0 +1,211 @@
+% !TeX root = Otimizacao.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+% !TeX program = pdflatex
+\section{Introdução}
+
+\subsection{O que é otimização?}
+
+\begin{frame}{Introdução~\cite{Nocedal2006}}
+  \begin{itemize}\addtolength{\itemsep}{\baselineskip}
+    \item Pessoas otimizam
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{Engenheiros}}
+    \item \makebox[\AuxWidth][l]{Investidores} \ding{220} criam portfólios que minimizam riscos e atingem uma certa taxa
+      de retorno
+    \item \makebox[\AuxWidth][l]{Fabricantes} \ding{220} maximizam eficiência no projeto e operação de suas plantas
+      produtivas
+    \item \makebox[\AuxWidth][l]{Engenheiros} \ding{220} ajustam parâmetros para reduzir custos e aumentar a eficiência
+      de seus projetos
+    \end{itemize}
+
+    \item A natureza otimiza
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{Sistemas físicos}}
+      \item \makebox[\AuxWidth][l]{Sistemas físicos} \ding{220} tendem ao estado de mínima energia
+      \item \makebox[\AuxWidth][l]{Raios de luz} \ding{220} percorrem o caminho de menor tempo de percurso
+      \item \makebox[\AuxWidth][l]{Moléculas} \ding{220} se acomodam para minimizar a energia potencial dos elétrons
+    \end{itemize}
+
+    \item Otimização é uma ferramenta importante para tomada de decisões e análise de sistemas físicos
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução~\cite{Nocedal2006}}
+  \begin{itemize}\addtolength{\itemsep}{\baselineskip}
+    \item O que é otimização?
+    \begin{itemize}
+      \item Dar a algo um rendimento ótimo, criando-lhe as condições mais favoráveis ou tirando o melhor partido possível; tornar algo ótimo ou ideal \cite{HolandaFerreira2010}
+    \end{itemize}
+  
+    \item Porque otimizar?
+    \begin{itemize}
+      \item Com otimização é possível melhorar o desempenho de um sistema, ou seja, deixar o sistema mais rápido e eficiente \cite{Nocedal2006}
+    \end{itemize}
+    
+    \item Como otimizar?
+    \begin{itemize}
+      \item Para otimizar é preciso definir o \alert{objetivo}, uma medida que quantifica o desempenho do sistema
+      \item O objetivo depende de certos de certas características do sistema, chamadas de \alert{variáveis} que otimizam o sistema
+      \item Por fim é frequente o uso de \alert{restrições} que descrevem situações do sistema consideradas não-desejáveis \cite{Nocedal2006}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Problemas de otimização}
+
+\begin{frame}{Elementos de um problema de otimização}
+  \begin{itemize}
+    \item Uso da ferramenta de otimização \ding{220} identificar alguns elementos
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{Restrições}}
+      \item \makebox[\AuxWidth][l]{Objetivo} \ding{220} medida quantitativa do desempenho do sistema em estudo \ding{220} lucro, tempo, energia, entre outros, ou uma combinação de fatores resultando em um escalar
+      \item \makebox[\AuxWidth][l]{Variáveis} \ding{220} parâmetros cujos valores podem ser ajustados e dos quais depende o desempenho do sistema 
+      \item \makebox[\AuxWidth][l]{Restrições} \ding{220} condições às quais os valores da variáveis estão sujeitos
+    \end{itemize}
+    
+    \item Modelagem de problemas de otimização \ding{220} Processo de identificação do objetivo, variáveis e restrições
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{Construção de um modelo apropriado}}
+      \item \makebox[\AuxWidth][l]{Construção de um modelo apropriado} \ding{220} \alert{algumas vezes é o passo mais importante}
+      \item \makebox[\AuxWidth][l]{Excessivamente simplista} \ding{220} não provê informação suficiente
+      \item \makebox[\AuxWidth][l]{Complexo demais} \ding{220} difícil de resolver
+    \end{itemize}
+
+    \item Após modelado \ding{220} solucionado usando um algoritmo de otimização
+
+    \item Não há algoritmo universal \ding{220} coleção de algoritmos especializados para cada tipo de problema
+
+    \item<alert@1> Maiores benefícios \ding{220} surgem quando o tipo do problema é conhecido
+
+    \item Resultado do algoritmo \ding{220} validado utilizando as condições de optimalidade
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Modelo matématico de um problema de otimização}
+  \begin{itemize}
+    \item \alert{Matematicamente, otimização é a maximização ou minimização de uma função objetivo sujeita a restrições sobre suas variáveis de otimização}
+    \item Em nossos modelos matemáticos, tipicamente:
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{$f_i(\vtX) : \fdR^n \rightarrow \fdR$}}
+      \item \makebox[\AuxWidth][l]{$\vtX \in \fdR^{n}$} \ding{220} vetor de \alert{variáveis de otimização}
+      \item \makebox[\AuxWidth][l]{$f(\vtX) : \fdR^n \rightarrow \fdR$} \ding{220} \alert{função objetivo} que se deseja maximizar ou minimizar
+      \item \makebox[\AuxWidth][l]{$f_i(\vtX) : \fdR^n \rightarrow \fdR$} \ding{220} as \alert{restrições} de igualdade e desigualdade que $\vtX$ deve satisfazer
+    \end{itemize}
+    \item Logo, pode-se escrever um problema de otimização como
+    \begin{subequations}\label{eq_prob_otimizacao}
+      \begin{align}
+        \vtX^\star &= \Minimize{\vtX \in \fdR^n}{f(\vtX)} \\
+        \Sujeito \quad f_i(\vtX) &= 0, \quad i = 1, 2, \ldots, I, \\
+        f_j(\vtX) &\geq 0, \quad j = 1, 2, \ldots, J,
+      \end{align}
+    \end{subequations}
+    onde $i$ e $j$ são os índices para as restrições de igualdade e desigualdade, respectivamente, e $ \vtX^\star $ é uma \alert{solução ótima}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo de problema de otimização: transporte de produtos~\cite{Nocedal2006}}
+  \begin{itemize}\footnotesize
+    \item Uma companhia possui $ 02 $ fábricas $ F_1 $ e $ F_2 $ e $ 12 $ lojas $ R_1, R_2, \ldots, R_{12} $. Cada
+      fábrica $ F_i $ pode produzir $ a_i $ toneladas de um produto ($ a_i $ é a capacidade de produção da planta) e cada loja possui uma demanda semanal de $ b_j $ toneladas do produto. O custo de transporte da fábrica $ F_i $ para a loja $ R_j $ de uma tonelada do produto é $ c_{i,j} $. O problema é determinar as quantidades $ x_{i,j} \in \fdR_{+} $ do produto que devem ser transportadas de cada fábrica para cada loja de modo a atender a todos os requisitos e minimizar o custo total. % 
+    \uncover<2->{ % Begin uncover
+    Esse problema pode ser formulado como segue: %
+    \begin{subequations}
+      \begin{align}
+        \{ x^\star_{i,j} \} = \Minimize{ \{x_{i,j}\} }{ & \sum\limits_{i = 1}^{2}\sum\limits_{j = 1}^{12}  c_{i,j}x_{i,j} } \\
+        \Sujeito \quad & \sum\limits_{j = 1}^{12} x_{i,j} \leq a_i, \quad i = 1, 2 \\
+        & \sum\limits_{i = 1}^{2} x_{i,j} \geq b_j, \quad j = 1, 2, \ldots, 12 \\
+        & x_{i,j} \geq 0, \quad i = 1, 2 \quad \text{e} \quad j = 1, 2, \ldots, 12
+      \end{align}
+    \end{subequations}
+    \item Este problema é um \alert{problema de otimização linear} \ding{220} função custo e todas as restrições são funções lineares das variáveis do problema
+    \item<alert@2->[\faBook] Reescreva o problema acima em forma vetorial/matricial
+  } % End uncover
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{\normalsize Exemplo de problema de otimização: minimização da soma das correlações espaciais~\cite{Maciel2006}}
+	\begin{itemize}\footnotesize
+  \item A correlação espacial $ \rho_{i,j} $ entre os canais $ \vtH_i = \begin{bmatrix} h_{i,1} & h_{i,2} & \ldots &
+      h_{i,N} \end{bmatrix}$ e $ \vtH_j = \begin{bmatrix} h_{j,1} & h_{j,2} & \ldots & h_{j,N} \end{bmatrix}$, com
+    $\vtH_i, \vtH_j \in \fdC^N $ do enlace direto de uma estação rádio base com $ N $ antenas para os terminais móveis $
+    i, j $ é dada por $ \rho_{i,j} = \dfrac{\Abs{\vtH_i \vtHh_j}}{\NormTwo{\vtH_i} \NormTwo{\vtH_j}} $. Sabendo que
+    existem $ K $ terminais móveis, selecione $ G \leq N $ terminais móveis tal que a soma das correlações entre eles
+    dois-a-dois seja mínima, ou seja, selecione os $ G $ terminais móveis com os canais menos correlacionados.
+    \uncover<2->{ % Begin uncover
+			Esse problema pode ser formulado como segue: %
+			\begin{subequations}
+				\begin{align}
+					\vtX^\star = \Minimize{ \vtX }{& \frac{1}{2}\vtXt \mtR \vtX }, \\
+					\Sujeito \quad & \Transp{\vtOne}\vtX = G, \\
+					& \vtX \in \fdB^K,
+				\end{align}
+			\end{subequations} %
+			onde $ \mtR = {[\rho_{i,j}]}_{i,j}, \quad i, j \in  \{1, 2, \ldots, K\} $.
+			\item Este problema é um \alert{problema de otimização binário quadrático} \ding{220} função custo quadrática com variáveis de otimização binárias
+			\item<alert@2->[\faBook] Reescreva o problema acima utilizando somatórios
+		} % End uncover
+	\end{itemize}
+\end{frame}
+
+\subsection{Classes de problemas de otimização}
+
+\begin{frame}{Classes de problemas de otimização}
+  \begin{itemize}\addtolength{\itemsep}{0.5\baselineskip}\setlength{\AuxWidth}{\widthof{Máximo/mínimo global}}
+    \item Natureza das variáveis de otimização, da função objetivo, e das restrições \ding{220} diferentes tipos de problemas de otimização e algoritmos de otimização
+
+    \item Variáveis de otimização
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{$ x_1, \ldots, x_k \in \fdR $ e $ x_{k+1}, \ldots, x_n \in \fdZ $}}
+      \item \makebox[\AuxWidth][l]{$\vtX \in \fdR^{n}$} \ding{220} otimização contínua (mais fácil de resolver)
+      \item \makebox[\AuxWidth][l]{$\vtX \in \fdZ^{n}$} \ding{220} otimização inteira (pode requerer relaxações contínuas)
+      \item \makebox[\AuxWidth][l]{$ x_1, \ldots, x_k \in \fdR $ e $ x_{k+1}, \ldots, x_n \in \fdZ $} \ding{220} otimização inteira mista
+    \end{itemize}
+
+    \item Função objetivo e restrições
+    \begin{itemize}\setlength{\AuxWidth}{\widthof{$ f(\vtX) $ e $ f_i(\vtX) $ convexas, $ f_j(\vtX)  $ lineares}}
+      \item \makebox[\AuxWidth][l]{$ f(\vtX) $, $ f_i(\vtX) $ e $ f_j(\vtX)  $ lineares} \ding{220} Otimização linear
+      \item \makebox[\AuxWidth][l]{$ f(\vtX) $ e $ f_i(\vtX) $ convexas, $ f_j(\vtX)  $ lineares} \ding{220} Otimização convexa
+    \end{itemize}
+
+    \item \makebox[\AuxWidth][l]{Máximo/mínimo local} \ding{220} $f( \vtX^{\star} )$ é um máximo/mínimo local de $f(\vtX)$ se existe um sub-espaço aberto $\fdA \subset \fdR^n$ contendo $\vtX^{\star}$ tal que $f(\vtX) \lesseqgtr f(\vtX^{\star}), \forall \vtX \in \fdA$.
+
+		\item \makebox[\AuxWidth][l]{Máximo/mínimo global} \ding{220} $f( \vtX^{\star} )$ é um máximo/mínimo global de $f(\vtX)$ se $f(\vtX) \lessgtr f(\vtX^{\star})$,   $ \forall \vtX \in \fdR^n$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Classes de problemas de otimização}
+  \begin{itemize}
+    \item Algoritmos de otimização \ding{220} especializados para cada tipo de problema
+    \begin{itemize}\addtolength{\itemsep}{0.5\baselineskip}\setlength{\AuxWidth}{\widthof{Otimização sem restrições}}
+      \item \makebox[\AuxWidth][l]{Otimização linear} \ding{220} método Simplex
+      \item \makebox[\AuxWidth][l]{Otimização convexa} \ding{220} método dos pontos interiores
+      \item \makebox[\AuxWidth][l]{Otimização linear inteira} \ding{220} método \textit{branch-and-bound}
+      \item \makebox[\AuxWidth][l]{Otimização sem restrições} \ding{220} método de busca direta e métodos do gradiente
+      \item \makebox[\AuxWidth][l]{Otimização com restrições} \ding{220} métodos dos pontos interiores
+      \item \makebox[\AuxWidth][l]{Otimização determinística} \ding{220} restrições e parâmetros dados por funções bem definidas
+      \item \makebox[\AuxWidth][l]{Otimização estocástica} \ding{220} restrições ou parâmetros dependem de variáveis aleatórias
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo de problema de otimização: mínimos quadrados~\cite{Boyd2004}}
+  \begin{itemize}\small
+    \item Considere o problema de minimizar a soma dos erros quadráticos entre as componentes de um vetor $ \vtY = \mtA \vtX $ e um vetor de referência $ \vtB $. Esse é um problema de mínimos quadrados sem restrições que pode ser escrito como
+    \begin{equation}
+      \vtX^\star = \Minimize{\vtX}{\NormTwo{\mtA \vtX - \vtB}^2}
+    \end{equation}
+    \item<2-> Note que
+    \begin{equation}
+      \begin{split}
+        \NormTwo{\mtA \vtX - \vtB}^2 &= \Transp{(\mtA \vtX - \vtB)}(\mtA \vtX - \vtB) = (\Transp{\vtX} \Transp{\mtA} - \Transp{\vtB})(\mtA \vtX - \vtB) \\ 
+        &= \Transp{\vtX} \Transp{\mtA}\mtA \vtX - \Transp{\vtX} \Transp{\mtA}\vtB -   \Transp{\vtB}\mtA \vtX - \Transp{\vtB}\vtB = \Transp{\vtX} \Transp{\mtA}\mtA \vtX - 2\Transp{\vtB}\mtA \vtX - \Transp{\vtB}\vtB
+      \end{split}
+    \end{equation}
+    \item<2-> Derivando a equação acima em relação a $ \vtX $ e igualando a $ \vtZero $ temos
+    \begin{equation}
+      \frac{d}{d\vtX}\left(\Transp{\vtX}\Transp{\mtA}\mtA\vtX - 2\Transp{\vtB}\mtA \vtX - \Transp{\vtB}\vtB\right) = 0 \Rightarrow 2\Transp{\mtA}\mtA\vtX - 2\Transp{\mtA}\vtB = 0 \Rightarrow \boxed{\vtX^\star = \Inv{(\Transp{\mtA}\mtA)}\Transp{\mtA}\vtB}
+    \end{equation}
+    \uncover<2->{\item<alert@2>[\faBook] Liste as classes de problemas de otimização às quais esse problema pertence}
+  \end{itemize}
+\end{frame}
+
+% Local Variables:
+% fill-column: 120
+% ispell-local-dictionary: "pt_BR"
+% TeX-master: "Slides"
+% End:

@@ -1,0 +1,1311 @@
+% !TeX root = Otimizacao.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pt_BR
+\section{Revisão de álgebra linear}
+
+\subsection{Vetores e operações com vetores}
+
+\begin{frame}{Campo de um espaço vetorial~\cite{Horn2012}}
+  \begin{itemize}
+    \item O campo escalar subjacente a um espaço vetorial é o conjunto de escalares onde os elementos do vetor são definidos
+    \begin{itemize}
+      \item Normalmente o campo dos números reais $ \fdR $ ou complexos $ \fdC $
+      \item Alternativamente poderia ser o dos racionais, inteiros módulo algum número primo, etc.
+    \end{itemize}
+    \item Um campo precisa ser fechado sob duas operações binárias (i.e., que recebem dois operandos)
+    \begin{itemize}
+      \item Adição
+      \item Multiplicação
+    \end{itemize}
+    \item As operações precisam ser associativas, comutativas e possuir um elemento neutro
+    \item Elementos inversos precisam existir para todos elemento sob a adição e multiplicação, exceto para a identidade sobre a multiplicação
+    \item Multiplicação precisa ser distributiva sobre adição
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Vetores e (sub)espaços vetoriais}
+  \begin{itemize}
+    \item O \textbf{\alert{espaço vetorial linear}} $\fdR^n$ é o conjunto de todos os vetores $\vtX$ de dimensão $n\times 1$ juntamente com as operações de adição de vetores e multiplicação por um escalar \cite[cap. 2]{Strang1988}
+
+    \item Um \textbf{\alert{vetor}} $\vtX \in \fdR^n$ é normalmente representado como
+    \begin{equation}
+      \vtX = \left[\begin{matrix} x_1 \\ x_2 \\ \vdots \\ x_n\end{matrix}\right], \text{ com } \Transp{\vtX} = \left[\begin{matrix} x_1 & x_2 & \ldots & x_n\end{matrix}\right]
+    \end{equation}
+    
+
+    \item Embora a maior parte dos conceitos se estenda facilmente para vetores complexos, consideraremos apenas vetores reais (exceto se explicitamente mencionado)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Vetores e (sub)espaços vetoriais}
+  \begin{itemize}
+    \item Há oito propriedades que precisam ser satisfeitas por um espaço vetorial\footnote{Relações similares podem ser definidas para números complexos em $\fdC^n$} \cite[Ex. 2.1.5]{Strang1988}
+    {\scriptsize \begin{subequations}\label{eq_vector_space}
+      \begin{align}
+        \vtX + \vtY &= \vtY + \vtX & \quad \text{\scriptsize(Comutatividade da adição)} \\
+        \vtX + (\vtY + \vtZ) &= (\vtX + \vtY) + \vtZ & \quad \text{\scriptsize(Associatividade da adição)} \\
+        \exists \vtZero \Rightarrow \vtX + \vtZero &= \vtX & \quad \text{\scriptsize(Elemento neutro da adição)} \\
+        \exists -\vtX \Rightarrow \vtX + (-\vtX) &= \vtZero & \quad \text{\scriptsize(Elemento simétrico)} \\
+        1\cdot\vtX &= \vtX & \quad \text{\scriptsize(Elemento neutro da multiplicação)} \\
+        (\alpha_1\cdot\alpha_2)\cdot\vtX &= \alpha_1\cdot(\alpha_2\cdot\vtX) & \quad \text{\scriptsize(Associatividade da multiplicação)} \\
+        \alpha_1\cdot(\vtX + \vtY) &= \alpha_1\cdot\vtX + \alpha_1\cdot\vtY & \quad \text{\scriptsize(Distributividade)} \\
+        (\alpha_1 + \alpha_2)\cdot\vtX &= \alpha_1\cdot\vtX + \alpha_2\cdot\vtX & \quad \text{\scriptsize(Distributividade)}
+      \end{align}
+    \end{subequations}}
+    
+    \item Um \textbf{\alert{subespaço vetorial linear}} $\fdS \subset \fdR^n$ é um conjunto não-vazio que satisfaz:
+    \begin{itemize}
+      \item $\forall \vtX, \vtY \in \fdS \Rightarrow \vtX + \vtY \in \fdS$
+      \item $\forall \vtX \in \fdS$ e $\alpha \in \fdR \Rightarrow \alpha\vtX \in \fdS$
+    \end{itemize}
+    
+    \item Um subespaço é portanto um subconjunto \alert{fechado} sob as operações de adição e multiplicação por escalar
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Vetores e (sub)espaços vetoriais}
+  \begin{itemize}
+    \item Considerando o espaço vetorial $ \fdR^3 $, alguns exemplos simples de subespaços vetoriais $ \fdS \subset \fdR^3 $ são \alert{retas} e \alert{planos}
+    
+    \item Um vetor $ \vtV \in \fdR^3 $ age como suporte de uma reta que representa um subespaço $ \fdS_1 \subset \fdR^3 $
+    \begin{itemize}
+      \item Quaisquer vetores $ \vtV_1, \vtV_2 \in \fdS_1$ encontram-se sobre a reta e, portanto, podem ser escritos como $ \vtV_1 = \alpha \vtV $ e $ \vtV_2 = \beta \vtV $, para algum $ \alpha, \beta \in \fdR $
+      \item Além disso, $ \vtV_3= \vtV_1 + \vtV_2 = (\alpha + \beta)\vtV $ está também sobre a reta
+    \end{itemize}
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.48\linewidth}
+      \centering
+      \begin{tikzpicture}[
+        font=\scriptsize,
+        >=stealth',]
+        \begin{axis}[
+          scale=0.75,
+          xlabel=$ x $,ylabel=$ y $,zlabel=$ z $,
+          xtick=\empty,
+          ytick=\empty,
+          ztick=\empty,
+          mesh/interior colormap={bluewhite}{color=(Gray) color=(White)},
+          colormap/blackwhite,]      
+
+          \addplot3[surf,domain=0:1] {x + y};
+          \addplot3 [->,DarkGreen] plot coordinates {(0,0,0) (1,1,2)};
+          \addplot3 [->,DarkRed] plot coordinates {(0.5,0.5,1) (0.8,0.8,1.6)};
+          \addplot3 [->,DarkCyan] plot coordinates {(0.5,0.5,1) (0.3,0.3,0.6)};
+          \addplot3 [->,DarkMagenta] plot coordinates {(0,0,0) (0.1,0.1,0.2)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \hfill
+    \begin{column}{0.48\linewidth}
+      \centering
+      \begin{tikzpicture}[
+        font=\scriptsize,
+        >=stealth',]
+        \begin{axis}[
+          scale=0.75,
+          xlabel=$ x $,ylabel=$ y $,zlabel=$ z $,
+          xtick=\empty,
+          ytick=\empty,
+          ztick=\empty,
+          mesh/interior colormap={bluewhite}{color=(Gray) color=(White)},
+          colormap/blackwhite,]      
+
+          \addplot3[surf,domain=0:1] {x + y};
+          \addplot3 [->,DarkGreen] plot coordinates {(0,0,0) (0.2,0.8,1)};
+          \addplot3 [->,DarkGreen] plot coordinates {(0,0,0) (0.8,0.2,1)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Norma de vetores}
+  \begin{itemize}
+    \item A \textbf{\alert{norma}} de um vetor é uma generalização do conceito de comprimento ou magnitude de um vetor
+    \item A \textbf{\alert{norma}} $\Norm{\vtX}$ de $\vtX \in \fdR^n$ é uma função $f : \fdR^n \rightarrow \fdR$ que satisfaz \cite[pág. 46]{Chen1999}:
+    {\small\begin{subequations}
+      \begin{align}
+        \Norm{\vtX} &\geq 0 & \text{(Não-negatividade)} \\
+        \Norm{\vtX} &= 0 \Leftrightarrow \vtX = \vtZero & \text{(Elemento neutro)} \\
+        \Norm{\alpha\vtX} &= \Abs{\alpha}\Norm{\vtX}, \forall \alpha \in \fdR & \text{(Escalabilidade)} \\
+        \Norm{\vtX + \vtY} &\leq \Norm{\vtX} + \Norm{\vtY}, \forall \vtX, \vtY \in \fdR^n & \text{(Desigualdade triangular)}
+      \end{align}
+    \end{subequations}}
+    \item Uma família de normas (norma-$p$) que atende às propriedades é dada por
+    \begin{equation}\label{eq_norm_p}
+      \NormP{\vtX} = \left(\sum\limits_{i = 1}^n \Abs{x_i}^p\right)^{\frac{1}{p}}, \quad p \in \fdN_+
+    \end{equation}
+    \item Um caso caso de interesse é \textbf{\alert{norma-1}} (ou norma $\ell_1$) onde $p = 1$ em \eqref{eq_norm_p}
+    \item Outro caso de interesse é \textbf{\alert{norma euclidiana}} (ou norma-2 ou ainda norma $\ell_2$) onde $p = 2$ em \eqref{eq_norm_p}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Norma euclidiana e produto interno~\cite[cap. 1]{Rugh1996}}
+  \begin{itemize}\small
+    \item A norma euclidiana atende ainda as seguintes propriedades:
+    \begin{itemize}
+      \item $\Abs{\Transp{\vtX}\vtY} \leq \NormTwo{\vtX}\NormTwo{\vtY}$ (Desigualdade de Cauchy-Schwartz)
+      \item $\underset{1 \leq i \leq n}{\max} \Abs{x_i} \leq \NormTwo{\vtX} \leq \sqrt{n} \underset{1 \leq i \leq n}{\max}\Abs{x_i}$
+    \end{itemize}
+    \item O \textbf{\alert{produto interno}} ou \textbf{\alert{produto escalar}} $\InnerProd{\vtX}{\vtY}$ entre dois vetores $\vtX$ e $\vtY \in \fdR^n$ é escrito como
+    \begin{equation}\label{eq_inner_prod}
+      \InnerProd{\vtX}{\vtY} = \Transp{\vtX}\vtY = \sum\limits_{i=1}^n x_i y_i = \Transp{\vtY}\vtX = \InnerProd{\vtY}{\vtX}
+    \end{equation}
+    \item A norma euclidiana guarda as seguintes relações com o produto interno
+    \begin{subequations}
+      \begin{align}
+        \InnerProd{\vtX}{\vtX} = \Transp{\vtX}\vtX &= \sum\limits_{i=1}^n x_i x_i = \sum\limits_{i=1}^n x^2_i = \sum\limits_{i=1}^n \Abs{x_i}^2 = \NormTwo{\vtX}^2 \\
+        \InnerProd{\vtX}{\vtY} = \Transp{\vtX}\vtY &= \NormTwo{\vtX}\NormTwo{\vtY}\cos\theta_{\angle^{\vtX}_{\vtY}}
+      \end{align}
+    \end{subequations}
+    \item Pare vetores pertencentes a $\fdC$, $\Transp{(\cdot)}$ é substituído por $\Herm{(\cdot)}$ que representa o conjugado-transposto de um vetor com a conjugação denotada por $\Conj{(\cdot)}$
+  \end{itemize}
+\end{frame}
+
+\subsection{Independência linear, bases e representações}
+
+\begin{frame}
+  \frametitle{Independência linear \cite[cap. 3]{Chen1999}}
+  \begin{itemize}
+    \item Os vetores $\vtX_1, \vtX_2, \ldots, \vtX_m \in \fdR^n$ são ditos \textbf{\alert{linearmente independentes}} (L.I.) se e somente se, para $\alpha_1, \alpha_2, \ldots, \alpha_m \in \fdR$,
+    \begin{equation}\label{eq_indep_lin}
+      \alpha_1\vtX_1 + \alpha_2\vtX_2 + \ldots + \alpha_m\vtX_m = \vtZero \Leftrightarrow \alpha_1 = \alpha_2 = \ldots = \alpha_m = 0,
+    \end{equation}
+    caso contrário $\vtX_1, \vtX_2, \ldots, \vtX_m$ são ditos \textbf{\alert{linearmente dependentes}} (L.D.)
+    \item Se $\vtX_1, \vtX_2, \ldots, \vtX_m$ são L.D., então existe pelo menos um $\alpha_i \neq 0$, tal que é possível escrever
+    {\small\begin{equation}
+      \vtX_i = -\frac{1}{\alpha_i}\left[\alpha_1\vtX_1 + \alpha_2\vtX_2 + \ldots + \alpha_{i-1}\vtX_{i-1} + \alpha_{i+1}\vtX_{i+1} + \ldots + \alpha_m\vtX_m\right]
+    \end{equation}}
+    \item A \textbf{\alert{dimensão}} de um (sub)espaço vetorial linear é dado pelo máximo número de vetores L.I. neste (sub)espaço
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bases, representações e ortonormalização}
+  \begin{itemize}
+    \item Um conjunto de $n$ vetores L.I. pertencentes a um (sub)espaço vetorial é chamado uma \textbf{\alert{base}} para esse (sub)espaço
+    \item Dada uma base para um (sub)espaço vetorial, todo vetor desse subespaço pode ser escrito como uma combinação linear única dos vetores que formam a base
+    \item Sejam $\left\{\vtB_1, \vtB_2, \ldots, \vtB_n\right\} \in \fdR^n$ um conjunto de vetores L.I. que formam uma base para $\fdR^n$
+    \item Todo vetor $\vtX \in \fdR^n$ pode ser representado como
+    \begin{equation}
+      \vtX = \alpha_1\vtB_1+\alpha_2\vtB_2+\ldots+\alpha_n\vtB_n = \underbrace{\left[\begin{matrix}\vtB_1 &\vtB_2 &\ldots & \vtB_n\end{matrix}\right]}_{\mtB}\underbrace{\left[\begin{matrix}\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n\end{matrix}\right]}_{\vtAlpha} = \mtB\vtAlpha
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bases, representações e ortonormalização}
+  \begin{itemize}
+    \item O vetor $\vtAlpha = \Transp{\left[\begin{matrix}\alpha_1 & \alpha_2 & \ldots & \alpha_n\end{matrix}\right]}$ é chamado de \textbf{\alert{representação}} do vetor $\vtX$ na base $\left\{\vtB_1, \vtB_2, \ldots, \vtB_n\right\}$ (ou ainda na base $\mtB$)
+    \item A cada $\fdR^n$ é associada uma \textbf{\alert{base canônica}} $\left\{\vtI_1, \vtI_2, \ldots, \vtI_n\right\}$ onde $\vtI_i$ é a $i$-ésima coluna de uma matriz identidade $\mtI_n$ de dimensão $n \times n$
+    \item Note que, na base canônica, um vetor $\vtX \in \fdR^n$ é representado como
+    \begin{equation}
+      \vtX = x_1\vtI_1+x_2\vtI_2+\ldots+x_n\vtI_n = \left[\begin{matrix}x_1 \\ x_2 \\ \vdots \\ x_n\end{matrix}\right]
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vetores normalizados, ortogonais e ortonormais}
+  \begin{itemize}
+    \item Um vetor $\vtX$ é dito \textbf{\alert{normalizado}} se sua norma euclidiana $\NormTwo{\vtX} = 1$
+    \item Um vetor unitário $\vtU$ na direção de um vetor $\vtX$ é obtido normalizando o vetor $\vtX$ como
+    \begin{equation}
+      \vtU_{\vtX} = \frac{\vtX}{\NormTwo{\vtX}}
+    \end{equation}
+    \item Dois vetores $\vtX_1$ e $\vtX_2$ são ditos \textbf{\alert{ortogonais}} se o produto interno entre eles é nulo, i.e., se $\Transp{\vtX}_1\vtX_2 = \Transp{\vtX}_2\vtX_1 = 0$
+    \item Um conjunto de vetores $\vtX_1, \vtX_2, \ldots, \vtX_n$ é dito \textbf{\alert{ortonormal}} se
+    \begin{equation}\label{eq_vec_orthonormal}
+      \Transp{\vtX}_i\vtX_j = \begin{cases}
+        1, & i = j \\
+        0, & i \neq j
+      \end{cases}
+    \end{equation}
+    \item Um conjunto de vetores L.I. $\left\{\vtX_1, \vtX_2, \ldots, \vtX_n\right\} \in \fdR^n$ que atende a \eqref{eq_vec_orthonormal} formam uma \textbf{\alert{base ortonormal}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Componente ortogonal e paralela}
+  \begin{itemize}
+    \item O comprimento $\Abs{P_{\parallel}(\vtX_i, \vtX_j)}$ da componente paralela $P_{\parallel}(\vtX_i, \vtX_j)$ de um vetor $\vtX_i$ na direção de um vetor $\vtX_j$ é dado pelo produto escalar do primeiro vetor com o vetor unitário na direção do segundo vetor, i.e.,
+    \begin{equation}\label{eq_proj_parallel}
+      \Abs{P_{\parallel}(\vtX_i, \vtX_j)} = \frac{\Transp{\vtX}_i\vtX_j}{\NormTwo{\vtX_j}} = \Transp{\vtX}_i\frac{\vtX_j}{\NormTwo{\vtX_j}} = \Transp{\vtX}_i\vtU_j, \text{ onde } \vtU_j = \frac{\vtX_j}{\NormTwo{\vtX_j}}
+    \end{equation}
+    \item Usando \eqref{eq_proj_parallel}, a \textbf{\alert{componente paralela}} $P_{\parallel}(\vtX_i, \vtX_j)$ e a \textbf{\alert{componente ortogonal}} $P_{\perp}(\vtX_i, \vtX_j)$ de um vetor $\vtX_i$ em relação a um vetor $\vtX_j$ são dadas respectivamente por
+    \begin{subequations}
+      \begin{align}
+        P_{\parallel}(\vtX_i, \vtX_j) &= (\Transp{\vtX}_i\vtU_j)\vtU_j \\
+        P_{\perp}(\vtX_i, \vtX_j) &= \vtX_i - P_{\parallel}(\vtX_i, \vtX_j) = \vtX_i - (\Transp{\vtX}_i\vtU_j)\vtU_j
+      \end{align}
+    \end{subequations}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Processo de ortonormalização de Gram-Schmidt}
+  \begin{itemize}
+    \item O \textbf{\alert{processo de ortonormalização de Gram-Schmidt}} permite construir uma base ortonormal a partir de um conjunto de vetores L.I.
+    \item Segundo esse processo, um conjunto $\left\{\vtX_1, \vtX_2, \ldots, \vtX_n\right\} \in \fdR^n$ de vetores L.I. produz a base ortonormal $\left\{\vtB_1, \vtB_2, \ldots, \vtB_n\right\}$ como
+    \begin{align*}
+      \vtV_1 & = \vtX_1, & \vtB_1 = \vtV_1/\NormTwo{\vtV_1} \\
+      \vtV_2 & = \vtX_2 - (\Transp{\vtX}_2\vtB_1)\vtB_1, & \vtB_2 = \vtV_2/\NormTwo{\vtV_2} \\
+      \vtV_3 & = \vtX_3 - (\Transp{\vtX}_3\vtB_1)\vtB_1 - (\Transp{\vtX}_3\vtB_2)\vtB_2, & \vtB_3 = \vtV_3/\NormTwo{\vtV_3} \\
+      \vtV_4 & = \vtX_4 - (\Transp{\vtX}_4\vtB_1)\vtB_1 - (\Transp{\vtX}_4\vtB_2)\vtB_2 - (\Transp{\vtX}_4\vtB_3)\vtB_3, & \vtB_4 = \vtV_4/\NormTwo{\vtV_4} \\
+      \ldots \\
+      \vtV_n & = \vtX_n - \sum\limits_{i=1}^{n-1}(\Transp{\vtX}_n\vtB_i)\vtB_i, & \vtB_n = \vtV_n/\NormTwo{\vtV_n} \\
+    \end{align*}
+  \end{itemize}
+\end{frame}
+
+\subsection{Matrizes e operações com matrizes}
+
+\begin{frame}
+  \frametitle{Matrizes}
+  \begin{itemize}
+    \item Uma matriz $\mtA$ de dimensão $m \times n$ pertencente ao $\fdR^{m \times n}$ e sua transposta $\Transp{\mtA} \in \fdR^{n \times m}$ são denotadas por
+    \begin{equation}\label{eq_mat_transp}
+      \begin{split}
+        \mtA &= \left[\begin{matrix}
+          a_{1,1} & a_{1,2} & \ldots & a_{1,n} \\
+          a_{2,1} & a_{2,2} & \ldots & a_{2,n} \\
+          \vdots & \vdots & \ddots & \vdots \\
+          a_{m,1} & a_{m,2} & \ldots & a_{m,n}
+        \end{matrix}\right] = \left[\begin{matrix} \vtA_1 & \vtA_2 & \ldots & \vtA_n\end{matrix}\right] \text{ e } \\
+        \Transp{\mtA} &= \left[\begin{matrix}
+          a_{1,1} & a_{2,1} & \ldots & a_{m,1} \\
+          a_{1,2} & a_{2,2} & \ldots & a_{m,2} \\
+          \vdots & \vdots & \ddots & \vdots \\
+          a_{1,n} & a_{2,n} & \ldots & a_{m,n}
+        \end{matrix}\right] = \left[\begin{matrix} \Transp{\vtA}_1 \\ \Transp{\vtA}_2 \\ \vdots \\ \Transp{\vtA}_n\end{matrix}\right],
+      \end{split}
+    \end{equation}
+    onde $\vtA_i, 1 \leq i \leq n$ denota a $i$-ésima coluna de $\mtA$
+    \item Assume-se aqui conhecimento sobre as operações de adição de matrizes, multiplicação por escalar, e multiplicação de matrizes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algumas operações com matrizes}
+  \begin{itemize}
+    \item Para uma matriz $\mtA \in \fdC^{m\times n}$, a \textbf{\alert{matrix conjugada}} $\Conj{\mtA}$ é obtida conjugando cada elemento $a_{i,j}$ de $\mtA$
+    \item De forma similar, a \textbf{\alert{matriz conjugada-transposta}} $\Herm{\mtA}$ de $\mtA$ é obtida conjugando a matriz transposta $\Transp{\mtA}$  de $\mtA$, i.e., $\Herm{\mtA} = \Conj{\left(\Transp{\mtA}\right)}$
+    \item A \textbf{\alert{matriz inversa}} $\Inv{\mtA}$ de uma matriz $\mtA$ de dimensão $n\times n$ é a matriz que satisfaz $\Inv{\mtA}\mtA = \mtI_n$
+    \item Algumas propriedades relevantes envolvendo matrizes são \cite{Petersen2008}:
+    {\footnotesize\begin{subequations}
+      \begin{align}
+        \Inv{(\mtA\mtB)} &= \Inv{\mtB}\Inv{\mtA} \\
+        \Transp{(\mtA\mtB)} &= \Transp{\mtB}\Transp{\mtA} \\
+        \Herm{(\mtA\mtB)} &= \Herm{\mtB}\Herm{\mtA} \\
+        \Inv{\left(\Transp{\mtA}\right)} &= \Transp{\left(\Inv{\mtA}\right)} \\
+        \Inv{\left(\Herm{\mtA}\right)} &= \Herm{\left(\Inv{\mtA}\right)} \\
+        \Transp{(\mtA+\mtB)} &= \Transp{\mtA} + \Transp{\mtB} \\
+        \Herm{(\mtA+\mtB)} &= \Herm{\mtA} + \Herm{\mtB}
+      \end{align}
+    \end{subequations}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Traço de uma matriz}
+  \begin{itemize}
+    \item O \textbf{\alert{traço}} $\Trace{\mtA}$ de uma matriz $\mtA$ de dimensão $n \times n$ é definido como a soma dos elementos da diagonal da mesma, i.e.,
+    \begin{equation}\label{eq_trace}
+      \Trace{\mtA} = \sum\limits_{i=1}^n a_{i,i}
+    \end{equation}
+    \item Entre as propriedades do $\Trace{\cdot}$ temos \cite{Petersen2008}:
+    \begin{subequations}
+      \begin{align}
+        \Trace{\mtA} &= \Trace{\Transp{\mtA}} \\
+        \Trace{\mtA\mtB} &= \Trace{\mtB\mtA} \\
+        \Trace{\mtA\mtB\mtC} &= \Trace{\mtC\mtA\mtB} = \Trace{\mtB\mtC\mtA} \\
+        \Trace{\alpha\mtA + \beta\mtB} &= \alpha\Trace{\mtA} + \beta\Trace{\mtB}
+      \end{align}
+    \end{subequations}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Determinante uma matriz}
+  \begin{itemize}\small
+    \item O \textbf{\alert{determinante}} $\Det{\mtA}$ de uma matriz $\mtA \in \fdR^{n\times n}$ pode ser escrito através da \alert{expansão de Laplace} sobre uma linha ou uma coluna da matriz como
+    \begin{equation}\label{eq_det}
+      \Det{\mtA} = \sum\limits_{i = 1}^n a_{i,j}c_{i,j} = \sum\limits_{j = 1}^n a_{i,j}c_{i,j},
+    \end{equation}
+    onde $c_{i,j}$ é o \textbf{\alert{cofator}} associado a $a_{i,j}$, o qual é dado por
+    \begin{equation}\label{eq_cofactor}
+      c_{i,j} = (-1)^{i+j}\Det{\tilde{\mtA}_{i,j}},
+    \end{equation}
+    onde a matriz $\tilde{\mtA}_{i,j} \in \fdR^{(n-1)\times(n-1)}$ é formada a partir de $\mtA$ pela exclusão de sua $i$-ésima linha e $j$-ésima coluna
+    \item A \textbf{\alert{matriz adjunta}} $\Adj{\mtA}$ de $\mtA$ é a matriz transposta dos cofatores de $\mtA$
+    \item Uma matriz $\mtA$ é dita \textbf{\alert{não-singular}} e possui inversa $\Inv{\mtA}$ se $\Det{\mtA} \neq 0$
+    \item A matriz inversa pode ser calculada como
+    \begin{equation}\label{eq_adjoint}
+      \Inv{\mtA} = \frac{1}{\Det{\mtA}}\Adj{\mtA}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exemplo para inversa de uma matriz}
+  \begin{itemize}
+    \item Se a matriz $\mtA$ é dada por
+    \begin{equation*}
+      \mtA = \left[\begin{matrix}
+          a_{1,1} & a_{1,2} \\
+          a_{2,1} & a_{2,2}
+      \end{matrix}\right]
+    \end{equation*}
+    temos que
+    \begin{equation*}
+      \begin{split}
+        \Inv{\mtA} &= \frac{1}{\Det{\mtA}}\Adj{\mtA} = \frac{1}{a_{1,1}a_{2,2} - a_{1,2}a_{2,1}}\left[\begin{matrix}
+          c_{1,1} & c_{2,1} \\
+          c_{1,2} & c_{2,2}
+        \end{matrix}\right] \\
+        &= \frac{1}{a_{1,1}a_{2,2} - a_{1,2}a_{2,1}}\left[\begin{matrix}
+          a_{2,2} & -a_{1,2} \\
+          -a_{2,1} & a_{1,1}
+        \end{matrix}\right]
+      \end{split}
+    \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\subsection{Transformações lineares}
+
+\begin{frame}
+  \frametitle{Transformação linear}
+  \begin{itemize}
+    \item Um função $f(\cdot) : \fdR^n \rightarrow \fdR^m$ é um \textbf{\alert{operador linear}} se e somente se
+    \begin{equation}\label{eq_lin_operator}
+      f(\alpha_1\vtX_1+\alpha_2\vtX_2) = \alpha_1 f(\vtX_1)+\alpha_2 f(\vtX_2), \forall \vtX_1, \vtX_2 \in \fdR^n, \alpha_1, \alpha_2 \in \fdR
+    \end{equation}
+    \item Sejam $\fdX \subset \fdR^n$ e $\fdY \subset \fdR^m$ são dois espaços vetoriais e sejam:
+    \begin{itemize}
+      \item $L(\cdot) : \fdX \rightarrow \fdY$ um operador linear
+      \item $\vtX_1, \vtX_2, \ldots, \vtX_n$ um conjunto de $n$ vetores L.I. em $\fdX$
+      \item $\vtY_i = L(\vtX_i), i = 1, 2, \ldots, n$ um conjunto de $n$ vetores em $\fdY$
+    \end{itemize}
+    \item Então, podemos afirmar que:
+    \begin{itemize}
+      \item O operador linear $L(\cdot)$ é unicamente determinado pelos $n$ pares $(\vtX_i, \vtY_i), i = 1, 2, \ldots, n$
+      \item Se $\{\vtP_1, \vtP_2, \ldots, \vtP_n\}$ e $\{\vtQ_1, \vtQ_2, \ldots, \vtQ_m\}$ são bases para $\fdX$ e $\fdY$, respectivamente, então o operador linear $L(\cdot)$ pode ser representado por uma matriz $\mtT$ de dimensão $m\times n$
+      \item A $i$-ésima coluna da matriz $\mtT$ é a representação de $\vtY_i$ na base $\mtP = \left[\begin{matrix}\vtP_1 & \vtP_2 & \ldots & \vtP_n\end{matrix}\right]$
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: mudança de base}
+  \begin{itemize}
+    \item Exemplos de transformações lineares comuns no $\fdR^2$
+    \begin{itemize}
+      \item \textbf{Mudança de escala}: $\mtT = \alpha\mtI$ (mesma escala nos eixos $x$ e $y$) ou $\mtT = \left[\begin{matrix}\alpha_1 & 0 \\ 0 & \alpha_2 \end{matrix}\right]$ (escalas diferentes para os eixos $x$ e $y$)
+      \item \textbf{Rotação}: $\mtT = \left[\begin{matrix}\cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{matrix}\right]$
+    \end{itemize}
+    \item Outra transformação linear de interesse refere-se à mudança de base em um espaço vetorial
+    \item Se $\vtAlpha$ e $\vtBeta$ são respectivamente as representações de $\vtX \in \fdX \subset \fdR^n$ nas bases $\mtA = \left[\begin{matrix}\vtA_1 & \vtA_2 & \ldots & \vtA_n\end{matrix}\right]$ e $\mtB = \left[\begin{matrix}\vtB_1 & \vtB_2 & \ldots & \vtB_n\end{matrix}\right]$, temos
+    \begin{equation}\label{eq_base_change}
+      \vtX = \underbrace{\left[\begin{matrix}\vtA_1 & \vtA_2 & \ldots & \vtA_n\end{matrix}\right]}_{\mtA}\underbrace{\left[\begin{matrix}\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n\end{matrix}\right]}_{\vtAlpha} = \underbrace{\left[\begin{matrix}\vtB_1 & \vtB_2 & \ldots & \vtB_n\end{matrix}\right]}_{\mtB}\underbrace{\left[\begin{matrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_n\end{matrix}\right]}_{\vtBeta}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: mudança de base}
+  \begin{itemize}
+    \item Se $\vtP_i$ é a representação de $\vtA_i$ na base $\mtB$, então temos que
+    \begin{equation}
+      \vtA_i = \left[\begin{matrix}\vtB_1 & \vtB_2 & \ldots & \vtB_n\end{matrix}\right]\vtP_i = \mtB\vtP_i,\quad i = 1, 2, \ldots, n
+    \end{equation}
+    \item Juntando as $n$ equações acima em expressão matricial obtemos
+    \begin{equation}\label{eq_base_change2}
+      \mtA = \left[\begin{matrix}\vtB_1 & \vtB_2 & \ldots & \vtB_n\end{matrix}\right]\left[\begin{matrix}\vtP_1 & \vtP_2 & \ldots & \vtP_n\end{matrix}\right] = \mtB\mtP
+    \end{equation}
+    \item Substituindo \eqref{eq_base_change2} em \eqref{eq_base_change}, obtemos
+    \begin{equation*}
+        \mtA\vtAlpha = \mtB\vtBeta \Rightarrow \mtB\mtP\vtAlpha = \mtB\vtBeta \Rightarrow \Inv{\mtB}\mtB\mtP\vtAlpha = \Inv{\mtB}\mtB\vtBeta \Rightarrow \boxed{\mtP\vtAlpha = \vtBeta}
+    \end{equation*}
+    \item Logo, temos que $\mtP$ é a transformação linear que leva a representação $\vtAlpha$ de $\vtX$ na base $\mtA$ para sua representação $\vtBeta$ na base $\mtB$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: mudança de base}
+  \begin{itemize}
+    \item Um desenvolvimento análogo ao anterior provê a transformação linear $\mtQ$ que leva a representação $\vtBeta$ de $\vtX$ na base $\mtB$ para sua representação $\vtAlpha$ na base $\mtA$
+    \item Se $\mtP$ e $\mtQ$ são conhecidas, então para um vetor $\vtX$ qualquer com representações $\vtAlpha$ na base $\mtA$ e $\vtBeta$ na base $\mtB$ temos
+    \begin{equation*}
+      \vtBeta = \mtP\vtAlpha \text{ e } \vtAlpha = \mtQ\vtBeta \Rightarrow \vtBeta = \mtP\mtQ\vtBeta \Rightarrow \mtQ\mtP = \mtI \Rightarrow \boxed{\Inv{\mtP} = \mtQ}
+    \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: transformações de similaridade}
+  \begin{itemize}
+    \item Considere que:
+    \begin{itemize}
+      \item $\mtU = \left[\begin{matrix} \vtU_1 & \vtU_2 & \ldots & \vtU_n\end{matrix}\right]$ e $\bar{\mtU} = \left[\begin{matrix} \bar{\vtU}_1, \bar{\vtU}_2, \ldots, \bar{\vtU}_n\end{matrix}\right]$ são duas bases para um subespaço vetorial $\fdX$
+      \item $L(\cdot)$ é um operador linear tal que $\vtY_i = L(\vtU_i)$ e $\bar{\vtY}_i = L(\bar{\vtU}_i)$, $i = 1, 2, \ldots, n$
+      \item $\mtV = \left[\begin{matrix}\vtV_1, \vtV_2, \ldots, \vtV_n\end{matrix}\right]$ e $\bar{\mtV} = \left[\begin{matrix}\bar{\vtV}_1, \bar{\vtV}_2, \ldots, \bar{\vtV}_n\end{matrix}\right]$ são duas uma base para o espaço gerado por $\vtY_i$
+      \item $\mtA = \left[\begin{matrix}\vtA_1, \vtA_2, \ldots, \vtA_n\end{matrix}\right]$ e $\bar{\mtA} = \left[\begin{matrix}\bar{\vtA}_1, \bar{\vtA}_2, \ldots, \bar{\vtA}_n\end{matrix}\right]$ são as representação de $\vtY_i$ e $\bar{\vtY}_i$ nas bases $\mtV$ e $\bar{\mtV}$, respectivamente
+    \end{itemize}
+    \item Como $\mtU$ e $\bar{\mtU}$ são base para $\fdX$, um vetor $\vtX \in \fdX$ pode ser escrito como combinação linear das colunas de $\mtU$ ou de $\bar{\mtU}$ e como $L(\vtX)$ é um operador linear temos
+    \begin{subequations}\label{eq_transf_sim_lin_op}
+      \begin{align}
+        L(\vtX) &= L\left(\sum\limits_{i = 1}^n \alpha_i\vtU_i\right) = \sum\limits_{i = 1}^n \alpha_iL\left(\vtU_i\right) = \sum\limits_{i = 1}^n \alpha_i\vtY_i \label{eq_transf_sim_lin_op_a} \\
+        L(\vtX) &= L\left(\sum\limits_{i = 1}^n \bar{\alpha}_i\bar{\vtU}_i\right) = \sum\limits_{i = 1}^n \bar{\alpha}_iL\left(\bar{\vtU}_i\right) = \sum\limits_{i = 1}^n \bar{\alpha}_i\bar{\vtY}_i \label{eq_transf_sim_lin_op_b}
+      \end{align}
+    \end{subequations}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: transformações de similaridade}
+  \begin{itemize}\footnotesize
+    \item Podemos escrever ainda que
+    \begin{subequations}\label{eq_transf_sim_rep_y}
+      \begin{align}
+        L\left(\left[\begin{matrix} \vtU_1 & \vtU_2 & \ldots & \vtU_n\end{matrix}\right]\right) &= \left[\begin{matrix} \vtY_1 & \vtY_2 & \ldots & \vtY_n\end{matrix}\right] \nonumber \\
+        &= \left[\begin{matrix} \vtV_1 & \vtV_2 & \ldots & \vtV_n\end{matrix}\right]\left[\begin{matrix} \vtA_1 & \vtA_2 & \ldots & \vtA_n\end{matrix}\right] = \mtV\mtA \label{eq_transf_sim_rep_y_a}\\
+        L\left(\left[\begin{matrix} \bar{\vtU}_1 & \bar{\vtU}_2 & \ldots & \bar{\vtU}_n\end{matrix}\right]\right) &= \left[\begin{matrix} \bar{\vtY}_1 & \bar{\vtY}_2 & \ldots & \bar{\vtY}_n\end{matrix}\right]  \nonumber \\
+        &= \left[\begin{matrix} \bar{\vtV}_1 & \bar{\vtV}_2 & \ldots & \bar{\vtV}_n\end{matrix}\right]\left[\begin{matrix} \bar{\vtA}_1 & \bar{\vtA}_2 & \ldots & \bar{\vtA}_n\end{matrix}\right] = \bar{\mtV}\bar{\mtA} \label{eq_transf_sim_rep_y_b}
+      \end{align}
+    \end{subequations}
+    \item Usando \eqref{eq_transf_sim_lin_op} e \eqref{eq_transf_sim_rep_y}, para um vetor $\vtX$ com representação $\vtAlpha$ na base $\mtU$ e um vetor $\vtY = L(\vtX)$ com representação $\vtBeta$ na base $\mtV$ temos
+    \begin{equation}\label{eq_beta_rep}
+      \begin{split}
+        \vtY &= L(\vtX) \Rightarrow \mtV\vtBeta = L(\mtU\vtAlpha) \Rightarrow \mtV\vtBeta = \sum\limits_{i=1}^n \alpha_iL\left(\vtU_i\right) \Rightarrow \mtV\vtBeta = \sum\limits_{i=1}^n \alpha_i\vtY_i \\
+        & \Rightarrow \mtV\vtBeta = \mtV\mtA\vtAlpha \Rightarrow \boxed{\vtBeta  = \mtA\vtAlpha}
+      \end{split}
+    \end{equation}
+    \item Analogamente para um vetor $\vtX$ com representação $\bar{\vtAlpha}$ na base $\bar{\mtU}$ e um vetor $\bar{\vtY} = L(\bar{\vtX})$ com representação $\bar{\vtBeta}$ na base $\bar{\mtV}$ obtemos
+    \begin{equation}\label{eq_betabar_rep}
+      \boxed{\bar{\vtBeta}  = \bar{\mtA}\bar{\vtAlpha}}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: transformações de similaridade}
+  \begin{itemize}\small
+    \item Seja $\mtP$ a transformação linear que leva a representação $\vtAlpha$ de $\vtX$ da base $\mtU$ para $\bar{\vtAlpha}$ na base $\bar{\mtU}$ e seja $\mtQ = \Inv{\mtP}$ a transformação linear que traz a representação $\vtAlpha$ de $\vtX$ na base $\bar{\mtU}$ de volta para a base $\mtU$
+    \item Como há um representação única para o operador linear $L(\vtX)$ e $\vtY = L(\vtX)$, as transformações $\mtP$ e $\mtQ = \Inv{\mtP}$ também realizam as mudança de base de $\mtV$ para $\bar{\mtV}$ e vice-versa para um vetor $\vtY$
+  \end{itemize}
+  \vspace{-\baselineskip}
+  \begin{columns}[t]
+    \begin{column}{0.48\linewidth}
+  \begin{center}
+    \begin{tikzpicture}[
+      thick,
+      bend angle=30,
+      font=\footnotesize,
+      node distance=2cm,
+      >=stealth',
+      ]
+      \node (x)  {$\vtX$};
+      \node (y) [right=of x] {$\vtY = L(\vtX)$};
+      \node (alpha) [below=0.3cm of x] {$\mtU\vtAlpha$};
+      \node (alphabar) [below=of alpha] {$\bar{\mtU}\bar{\vtAlpha}$};
+      \node (beta) [right=of alpha] {$\vtBeta = \mtA\vtAlpha$};
+      \node (betabar) [right=of alphabar] {$\bar{\vtBeta} = \bar{\mtA}\bar{\vtAlpha}$};
+      \node (pL) [coordinate,right=1cm of x.east,label=90:$L$] {};
+      \node (pA) [coordinate,right=1cm of alpha.east,label=90:$\mtA$] {};
+      \node (pAbar) [coordinate,right=1cm of alphabar.east,label=90:$\bar{\mtA}$] {};
+      \node (pP1) [coordinate,below=1cm of alpha] {};
+      \node (P1) [left=0.5cm of pP1] {$\mtP$};
+      \node (Q1) [right=0.5cm of pP1] {$\Inv{\mtP}$};
+      \node (pP2) [coordinate,below=1cm of beta] {};
+      \node (P2) [left=0.5cm of pP2] {$\mtP$};
+      \node (Q2) [right=0.5cm of pP2] {$\Inv{\mtP}$};
+      \path (x) edge[->] (y);
+      \path (alpha) edge[->] (beta);
+      \path (alphabar) edge[->] (betabar);
+      \path (alpha) edge[->,bend right] (alphabar);
+      \path (alphabar) edge[->,bend right] (alpha);
+      \path (beta) edge[->,bend right] (betabar);
+      \path (betabar) edge[->,bend right] (beta);
+    \end{tikzpicture}
+  \end{center}
+    \end{column}
+    \hfill
+    \begin{column}{0.48\linewidth}
+      \begin{itemize}\small
+        \item Com o auxílio do diagrama ao lado e usando \eqref{eq_beta_rep} e \eqref{eq_betabar_rep} temos que
+        \begin{equation}\label{eq_transf_sim}
+          \begin{split}
+            \bar{\vtBeta} &= \bar{\mtA}\bar{\vtAlpha} \Rightarrow \bar{\mtA}\bar{\vtAlpha} = \mtP\vtBeta \\
+            & \Rightarrow \bar{\mtA}\bar{\vtAlpha} = \mtP\mtA\vtAlpha \\
+            & \Rightarrow \bar{\mtA}\bar{\vtAlpha} = \mtP\mtA\Inv{\mtP}\bar{\vtAlpha} \\
+            & \Rightarrow \boxed{\bar{\mtA} = \mtP\mtA\Inv{\mtP}} \\
+            & \Rightarrow \boxed{\mtA = \Inv{\mtP}\bar{\mtA}\mtP}
+          \end{split}
+        \end{equation}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformações lineares: transformações de similaridade}
+  \begin{itemize}\small
+    \item As transformações em $\mtP\bar{\mtA}\Inv{\mtP}$ e $\Inv{\mtP}\mtA\mtP$ mostradas em \eqref{eq_transf_sim} são chamadas \textbf{\alert{transformações de similaridade}}
+    \item Matrizes $\mtA$ e $\bar{\mtA}$ que se relacionam conforme \eqref{eq_transf_sim} são ditas \textbf{\alert{matrizes similares}}
+    \item Em particular, as matrizes $\mtA$ e $\bar{\mtA}$ são representações de um mesmo operador linear $L(\cdot)$ em duas bases distintas
+    \item Todas as representações de um mesmo operador linear são similares
+    \item Como um operador linear em uma dada base pode ser representado por uma matriz $\mtA$, essa matriz pode ser vista como o operador linear propriamente dito
+    \item Sendo o operador linear $L(\cdot) : \fdR^n \rightarrow \fdR^n$ descrito pela matriz $\mtA \in \fdR^{n \times n}$, temos que
+    \begin{equation}
+      \begin{split}
+        \vtY &= L(\vtX) = \mtA\left(\sum\limits_{i=1}^n \alpha_i\vtU_i\right) = \sum\limits_{i=1}^n \alpha_i\mtA\vtU_i = \sum\limits_{i=1}^n \alpha_i\vtY_i \\
+        & \Rightarrow \vtY_i = \mtA\vtU_i, i = 1, 2, \ldots, n
+      \end{split}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Subespaços fundamentais}
+
+\begin{frame}
+  \frametitle{Sistema de equações lineares}
+  \begin{itemize}\small
+    \item Considere um sistema de $m$ equações lineares e $n$ variáveis $x_1, x_2, \ldots, x_n$,
+    \begin{equation}\label{eq_sys}
+      \begin{split}
+        a_{1,1}\cdot x_1 + a_{1,2}\cdot x_2 + \ldots + a_{1,n}\cdot x_n &= y_1 \\
+        a_{2,1}\cdot x_1 + a_{2,2}\cdot x_2 + \ldots + a_{2,n}\cdot x_n &= y_2 \\
+        \ldots & \\
+        a_{m,1}\cdot x_1 + a_{m,2}\cdot x_2 + \ldots + a_{m,n}\cdot x_n &= y_m
+      \end{split}
+    \end{equation}
+    onde os coeficientes $a_{i,j}$ e $y_{i}$ são dados e $i = 1, 2, \ldots, m$ e $j = 1, 2, \ldots, n$
+    \item Usando notação matricial, podemos definir
+    \begin{equation}
+      \mathbf{A} =
+      \left[\begin{matrix}
+        a_{1,1} & a_{1,2} & \ldots & a_{1,n} \\
+        a_{2,1} & a_{2,2} & \ldots & a_{2,n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m,1} & a_{m,2} & \ldots & a_{m,n}
+      \end{matrix}\right],
+      \quad
+      \mathbf{x} =
+      \left[\begin{matrix}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+      \end{matrix}\right],
+      \quad \text{e} \quad
+      \vtY =
+      \left[\begin{matrix}
+        y_1 \\
+        y_2 \\
+        \vdots \\
+        y_m
+      \end{matrix}\right],
+    \end{equation}
+    e reescrever \eqref{eq_sys} como
+    \begin{equation}\label{eq_sis_mat}
+      \mathbf{A}\mathbf{x} = \vtY
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Posto de uma matriz}
+  \begin{itemize}
+    \item O \textbf{\alert{posto}} ou \textbf{\alert{rank}} de uma matriz $\mtA = \left[\begin{matrix} \vtA_1 & \vtA_2 & \ldots & \vtA_n\end{matrix}\right]$ é denotado por $\Rank{\mtA}$ e pode ser definido como o número de colunas $\vtA_i$ de $\mtA$ que são L.I.
+    \item O posto de uma matriz corresponde portanto à dimensão do espaço vetorial gerado pelas colunas da matriz
+    \item Dada uma matriz $\mtA$ de dimensão $m\times n$, temos que
+    \begin{equation}\label{eq_rank_transp}
+      \Rank{\mtA} = \Rank{\Transp{\mtA}} \Rightarrow \Rank{\mtA} \leq \Min{m,n}
+    \end{equation}
+    e portanto os espaço vetoriais gerados pelas colunas e pelas linhas de $\mtA$ têm a mesma dimensão
+    \item Para $\mtA$ com dimensão $m \times n$ e $\mtB$ com dimensão $n \times p$, a \textbf{\alert{desigualdade de Sylvester}} estabelece que
+    \begin{equation}\label{eq_sylvester}
+      \Rank{\mtA} + \Rank{\mtB} - n \leq \Rank{\mtA\mtB} \leq \Min{\Rank{\mtA},\Rank{\mtB}}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Subespaços fundamentais: espaço coluna}
+  \begin{itemize}\small
+    \item O sistema \eqref{eq_sys} possui solução se $\vtY$ pode ser escrito como combinação linear das colunas de $\mtA$
+    \item Nesse caso, cada vetor $\vtX$ (se existir) que satisfaz \eqref{eq_sys} é uma representação de $\vtY$ no subespaço gerado pelas colunas de $\mtA$
+    \item Considere que $\{\vtB_1, \vtB_2, \ldots, \vtB_r\}$ formam uma base para o subespaço gerado pelas colunas de $\mtA$, onde $r = \Rank{\mtA}$
+    \item O sistema \eqref{eq_sys} possui solução se e somente se $\vtY$ pertence ao subespaço $\Range{\mtA}$ gerado pela base $\{\vtB_1, \vtB_2, \ldots, \vtB_r\}$, ou seja, o subespaço gerado pelas colunas de $\mtA$
+    \item O subespaço $\Range{\mtA}$ de $\mtA \in \fdR^{m \times n}$ é chamado \textbf{\alert{espaço coluna}} ou \textbf{\alert{espaço \textit{range}}} de $ \mtA $
+    \begin{equation}\label{eq_range_space}
+      \Range{\mtA} \triangleq \left\{\vtY = \mtA\vtX \vert \vtX \in \fdR^n \right\} \subset \fdR^m
+    \end{equation}
+    \item O $\Rank{\mtA}$ é a dimensão do espaço coluna $\Range{\mtA}$
+    \item Um matriz $\mtA$ possui (pseudo-)inversa quando o seu $\Rank{\mtA}$ é máximo, i.e., $\Rank{\mtA} = \Min{m,n}$
+    \item Para $ \mtA \in \fdR^{m \times p} $ e $ \mtB \in \fdR^{m \times q} $, temos que
+    \begin{equation}
+      \Range{\mtA} + \Range{\mtB} = \Range{\begin{bmatrix}\mtA & \mtB\end{bmatrix}}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Subespaços fundamentais: espaço nulo}
+  \begin{itemize}
+    \item Quando $\vtY = \vtZero$ em \eqref{eq_sys} temos $\mtA\vtX = \vtZero$
+    \item O conjunto de soluções de $\mtA\vtX = \vtZero$ define por si só um subespaço vetorial: o \textbf{\alert{espaço nulo}} $\Null{\mtA}$ de $\mtA$
+    \begin{equation}\label{eq_null_space}
+      \Null{\mtA} \triangleq \left\{\vtX \in \fdR^n \vert \mtA\vtX = 0\right\} \subset \fdR^n
+    \end{equation}
+    \item A dimensão do espaço nulo $\Null{\mtA}$ é chamada de \textbf{\alert{nulidade}} de $\mtA$ e é denotada por $\Nullity{\mtA}$
+    \item Para $ \mtA \in \fdR^{p \times n} $ e $ \mtB \in \fdR^{q \times n} $, temos que
+    \begin{equation}
+      \Null{\mtA} + \Null{\mtB} = \Null{\begin{bmatrix}\mtA \\ \mtB\end{bmatrix}}
+    \end{equation}
+    \item Note que o espaço coluna e o espaço nulo de uma matriz $\mtA$ são duais tal que o $\Rank{\mtA}$ é o dual da $\Nullity{\mtA}$
+    \item De fato, para $\mtA$ com dimensão $m \times n$ temos que
+    \begin{align}
+      \Rank{\mtA} + \Nullity{\mtA} &= n & \text{(Teorema do posto-nulidade)}
+    \end{align}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\normalsize Subespaços fundamentais: espaço linha e espaço nulo à esquerda}
+  \begin{itemize}
+    \item Associados a uma matriz $\mtA$ e seus subespaços $\Range{\mtA}$ e $\Null{\mtA}$ temos ainda dois outros subespaços:
+    \begin{itemize}
+      \item O \textbf{\alert{espaço linha}} de $\mtA$, denotado por $\Range{\Transp{\mtA}}$, que corresponde ao espaço coluna de $\Transp{\mtA}$ e é gerado pelas linhas de $\mtA$
+      \item O \textbf{\alert{espaço nulo à esquerda}} de $\mtA$, denotado $\Null{\Transp{\mtA}}$, que corresponde ao espaço nulo de $\Transp{\mtA}$ e é o espaço que contém todos os vetores $\vtZ$ que satisfazem $\Transp{\mtA}\vtZ = 0$
+    \end{itemize}
+    \item De maneira similar à anterior, temos para $\mtA$ com dimensão $m \times n$ que
+    \begin{align}
+      \Rank{\Transp{\mtA}} + \Nullity{\Transp{\mtA}} &= m & \text{(Teorema do posto-nulidade)}
+    \end{align}
+    \item Além disso, temos ainda de acordo com \eqref{eq_rank_transp} que
+    \begin{equation}
+      \Rank{\mtA} = \Rank{\Transp{\mtA}} = r \leq \Min{m,n}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Caracterização do posto de uma matriz~\cite{Horn2012}}
+  \begin{itemize}
+    \item Na caracterização do posto de uma matriz $ \mtA \in \fdR^{m \times n} $ são equivalentes
+    \begin{enumerate}\addtolength{\itemsep}{0.5\baselineskip}
+      \item $ \Rank{\mtA} = r $
+      \item $ r $, e não mais que $ r $, linhas de $ \mtA $ são linearmente independentes
+      \item $ r $, e não mais que $ r $, colunas de $ \mtA $ são linearmente independentes
+      \item Alguma submatriz $ r \times r $ de $ \mtA $ tem determinante não-nulo e toda submatriz $ (r+1) \times (r+1) $ de $ \mtA $ tem determinante nulo
+      \item $ \Dim{\Range{ \mtA }} = r $
+      \item Há $ r $, e não mais que $ r $, vetores $ \vtB_1, \ldots, \vtB_r $ tais que o sistema linear $ \mtA\vtX = \vtB_j $ é consistente para $ j = 1, \ldots, r $
+      \item $ r = n - \Dim{\Null{\mtA}} $ (teorema do posto-nulidade)
+      \item $ r = \Min{p : \mtA = \mtX \Transp{\mtY}} $ para algum $ \mtX \in \fdR^{m\times p}, \mtY \in \fdR^{n\times p} $
+      \item $ r = \Min{p : \mtA = \vtX_1 \Transp{\vtY}_1 + \ldots + \vtX_p \Transp{\vtY}_p} $ para algum $ \vtX_1, \ldots, \vtX_p \in \fdR^m, \vtY_1, \ldots, \vtY_p \in \fdR^n $
+    \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Desigualdades do posto de uma matriz~\cite{Horn2012}}
+  \begin{enumerate}\addtolength{\itemsep}{\baselineskip}
+    \item Se $ \mtA \in \fdR^{m\times n} $, então $ \Rank{\mtA} \leq \Min{m, n} $
+    \item Desigualdade de Sylvester: se $ \mtA \in \fdR^{m \times k} $ e $ \mtB \in \fdR^{k \times n} $, então $ (\Rank{\mtA} + \Rank{\mtB}) - k \leq \Rank{\mtA \mtB} \leq \Min{\Rank{\mtA}, \Rank{\mtB}} $ ()
+    \item Desigualdade soma-posto: se $ \mtA, \mtB \in \fdR^{m \times k} $ então $\Abs{\Rank{\mtA}-\Rank{\mtB}} \leq \Rank{\mtA + \mtB} \leq \Rank{\mtA} + \Rank{\mtB} $ com igualdade na segunda desigualdade se e somente se $ \Range{\mtA} \cap \Range{\mtB} = \emptyset $
+    \item Desigualdade de Frobenius: se $ \mtA \in \fdR^{m \times k} $, $ \mtB \in \fdR^{k \times p} $ e $ \mtC \in \fdR^{p \times n} $, então $ \Rank{\mtA\mtB} + \Rank{\mtB \mtC} \leq \Rank{\mtB} + \Rank{\mtA \mtB \mtC} $ com igualdade se e somente se $ \exists \mtX, \mtY : \mtB= \mtB \mtC \mtX + \mtY \mtA \mtB $
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Igualdades do posto de uma matriz~\cite{Horn2012}}
+  \begin{enumerate}\addtolength{\itemsep}{0.5\baselineskip}
+    \item Se $ \mtA \in \fdC^{m \times n} $, então $ \Rank{\mtA} = \Rank{\Transp{\mtA}} = \Rank{\Conj{\mtA}} = \Rank{\Herm{\mtA}}$
+    
+    \item Se $ \mtA \in \fdR^{m \times m} $ e $ \mtC \in \fdR^{n \times n} $ são matrizes não-singulares e $ \mtB \in \fdR^{m \times n} $, então $ \Rank{\mtA\mtB} = \Rank{\mtB} = \Rank{\mtB\mtC} = \Rank{\mtA\mtB\mtC} $, ou seja, multiplicações à direita ou esquerda por matrizes não-singulares não afetam o posto
+    
+    \item Se $ \mtA, \mtB \in \fdR^{m \times n} $  então $ \Rank{\mtA} = \Rank{\mtB} $ se e somente se $ \exists \mtX \in \fdR^{m \times m}, \mtY \in \fdR^{n \times n} $ não-singulares tais que $ \mtB = \mtX \mtA \mtY $
+
+    \item Se $ \mtA \in \fdC^{m \times n} $ então $ \Rank{\Herm{\mtA}\mtA} = \Rank{\mtA} $
+    
+    \item Fatorização de posto completo: se $ \mtA \in \fdR^{m \times n} $, então $ \Rank{\mtA} = k $ se e somente se $ \mtA =  \mtX \Transp{\mtY} $ onde $\mtX \in \fdR^{m \times k}$  e $ \mtY \in \fdR^{n \times k} $ têm colunas independentes cada
+    
+    \item Se $ \mtA \in \fdR^{m \times n} $, $ \mtX \in \fdR^{n \times k} $, e $ \mtY \in \fdR^{m \times k}  $ e $ \mtW= \Transp{\mtY}\mtA \mtX $ é não-singular, então $ \Rank{\mtA - \mtA\mtX\Inv{\mtW}\Transp{\mtY}\mtA} = \Rank{\mtA} - \Rank{\mtA \mtX \Inv{\mtW} \Transp{\mtY} \mtA} $
+  \end{enumerate}
+\end{frame}
+
+\subsection{Autovalores e autovetores}
+
+\begin{frame}
+  \frametitle{Definições básicas}
+  \begin{itemize}
+    \item Sejam uma matriz $\mtA \in \fdR^{n\times n}$ , um vetor $\vtV \in \fdR^{n}$ e um escalar $\lambda \in \fdR$ tais que %
+    \begin{equation}\label{eq_auto}
+      \mtA\vtV = \lambda\vtV
+    \end{equation}
+    \item A transformação linear expressa por $\mtA$ aplicada ao vetor $\vtV$ resulta em uma versão escalonada de $\vtV$, i.e., $\lambda\vtV$
+    \item Nesse caso, o escalar $\lambda$ é denominado um {\alert{autovalor}} de $\mtA$ e $\vtV$ é chamado o {\alert{autovetor}} de $\mtA$ associado ao autovalor $\lambda$
+    \item Autovalores e autovetores encontram diversas aplicações em engenharia
+    \begin{itemize}
+      \item Esforços e direções principais em mecânica dos materiais
+      \item Estudos de momentos de inércia
+      \item Frequências naturais e modos de vibração
+      \item Alocação ótima de potência em comunicações co-canal
+      \item Formação de feixe em sistemas de comunicação com antenas inteligentes
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Equação característica}
+  \begin{itemize}\small
+    \item Sendo $\mtI$ uma matriz identidade e $\mathbf{0}$ um vetor de zeros, reescrevemos \eqref{eq_auto} como
+    \begin{equation}
+      (\mtA - \lambda\mtI)\vtV = \mathbf{0}
+    \end{equation}
+    \item Se a matriz $(\mtA - \lambda\mtI)$ não é singular \ding{220} $\exists \; (\mtA - \lambda\mtI)^{-1}$  \ding{220} $\vtV = (\mtA - \lambda\mtI)^{-1}\mathbf{0}$ (solução trivial)
+    \item Se a matriz $(\mtA - \lambda\mtI)$ é singular, temos que
+    \begin{equation}\label{eq_carac}
+      \det(\mtA - \lambda\mtI) = 0,
+    \end{equation}
+    \item Expandindo \eqref{eq_carac} usando as regras para cálculo de determinantes \ding{220} equação polinomial de grau $n$
+    \item De fato, \eqref{eq_carac} é chamada de {\alert{equação característica}} da matriz $\mtA$ e suas raízes $\lambda_1, \lambda_2, \ldots, \lambda_n$ são os \alert{autovalores} de $\mtA$
+    \item O autovetor $\vtV_i$ associado a $\lambda_i, \; i = 1, 2, \ldots, n$, pode ser determinado substituindo-se $\lambda_i$ em \eqref{eq_auto}, ou seja,
+    \begin{equation}\label{eq_lambda}
+      \mtA\vtV_i = \lambda_i\vtV_i, \quad i = 1, 2, \ldots, n
+    \end{equation}
+    \item Por convenção, assume-se que $\Abs{\lambda_{\max}} = \Abs{\lambda_1} \geq \Abs{\lambda_2} \geq \ldots \geq \Abs{\lambda_n} = \Abs{\lambda_{\min}}$ e que $\NormTwo{\vtV_i} = 1, \quad i = 1, 2, \ldots, n$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \begin{propriedade}
+    Se $\lambda_1, \lambda_2, \ldots, \lambda_n$ são os autovalores da matriz $\mtA \in \fdR^{n \times n}$, então os autovalores de $\mtA^k$, $k > 0$, são $\lambda^k_1, \lambda^k_2, \ldots, \lambda^k_n$.
+  \end{propriedade}
+  \vfill
+  \begin{proof}[Prova]
+    $\mtA^k \vtV_i =  \mtA^{k-1} \mtA \vtV_i = \lambda_i \mtA^{k-1} \vtV_i = \lambda^2_i \mtA^{k-2} \vtV_i = \ldots = \lambda^{k-1}_i \mtA \vtV_i = \lambda^{k}_i \vtV_i$.
+  \end{proof}
+  \vfill
+  \begin{itemize}
+    \item Logo, todo autovetor $\vtV_i$ de $\mtA$ é autovetor de $\mtA^k$.
+  \end{itemize}
+  \vfill
+  \begin{propriedade}
+    Sejam  $\vtV_1, \vtV_2, \ldots, \vtV_n$ os autovetores da matriz $\mtA \in \fdR^{n \times n}$, correspondentes a autovalores distintos $\lambda_1, \lambda_2, \ldots, \lambda_n$, então $\vtV_1, \vtV_2, \ldots, \vtV_n$ são linearmente independentes.
+  \end{propriedade}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \vspace{-0.5\baselineskip}
+  \begin{proof}[Prova]
+    \begin{itemize}
+      \item  Se $\vtV_1, \vtV_2, \ldots, \vtV_n$, então existe $\alpha_i, i = 1, 2, \ldots, n$, não todos nulos, tal que $\sum\limits_{i=1}^n \alpha_i \vtV_i = 0$, que multiplicado repetidamente por $\mtA$ leva ao conjunto de $n$ equações
+      \begin{equation}\label{eq_li_autovect2}
+        \sum\limits_{i=1}^n \alpha_i \lambda^k_i\vtV_i = 0, \quad k = 1, 2, \ldots, n,
+      \end{equation}
+      o qual pode ser reescrito matricialmente como
+      \begin{equation}\label{eq_li_autovect3}
+        \begin{bmatrix}
+          \alpha_1 \vtV_1 & \alpha_2 \vtV_2 & \alpha_3 \vtV_3 & \ldots & \alpha_n \vtV_n
+        \end{bmatrix}
+        \underbrace{\begin{bmatrix}
+          1 & \lambda_1 & \lambda^2_1 & \ldots & \lambda^{n-1}_1 \\
+          1 & \lambda_2 & \lambda^2_2 & \ldots & \lambda^{n-1}_2 \\
+          \vdots & \vdots & \vdots & \ddots & \vdots \\
+          1 & \lambda_n & \lambda^2_n & \ldots & \lambda^{n-1}_n
+        \end{bmatrix}}_{\mtS} = \mtZero
+      \end{equation}
+    \end{itemize}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    \begin{itemize}
+      \item A matriz $\mtS$ em \eqref{eq_li_autovect3} é chamada \alert{matriz de Vandermonde} e para $\lambda_i$ distintos é não-singular. Logo
+      \begin{equation}\label{eq_li_autovect4}
+        \begin{bmatrix}
+          \alpha_1 \vtV_1 & \alpha_2 \vtV_2 & \ldots & \alpha_n \vtV_n
+        \end{bmatrix}
+        \mtS = \mtZero \Rightarrow
+        \begin{bmatrix}
+          \alpha_1 \vtV_1 & \alpha_2 \vtV_2 & \ldots & \alpha_n \vtV_n
+        \end{bmatrix}
+        = \mtZero \Inv{\mtS} = \mtZero
+      \end{equation}
+      \item Logo, $\alpha_i$ precisam ser todos nulos, já que $\vtV_i$ são não-nulos e, portanto, $\vtV_i$ são L.I.
+    \end{itemize}
+  \end{proof}
+  \vspace{-0.25\baselineskip}
+  \begin{propriedade}
+    Sejam $\lambda_1, \lambda_2, \ldots, \lambda_n$ os autovalores da matriz $\mtA \in \fdC^{n \times n}$, $\mtA = \Herm{\mtA}$, então $\lambda_1, \lambda_2, \ldots, \lambda_n \in \fdR$ e $\lambda_i \geq 0$.
+  \end{propriedade}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    Temos que $\mtA \vtV_i = \lambda_i \vtV_i \Rightarrow \Herm{\vtV}_i \Herm{\mtA}  = \Conj{\lambda}_i \Herm{\vtV}_i \Rightarrow \Herm{\vtV}_i \mtA  = \Conj{\lambda}_i \Herm{\vtV}_i$. Logo \\
+    $\mtA \vtV_i = \lambda_i \vtV_i \Rightarrow \Herm{\vtV}_i \mtA \vtV_i = \lambda_i \Herm{\vtV}_i \vtV_i \geq 0 \Rightarrow \Conj{\lambda}_i \Herm{\vtV}_i \vtV_i = \lambda_i \Herm{\vtV}_i \vtV_i \geq 0 \Rightarrow \lambda_i = \Conj{\lambda}_i \geq 0$
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \vspace{-0.25\baselineskip}
+  \begin{propriedade}
+    Sejam  $\vtV_1, \vtV_2, \ldots, \vtV_n$ os autovetores da matriz $\mtA \in \fdC^{n \times n}, \mtA = \Herm{\mtA}$, correspondentes a autovalores distintos $\lambda_1, \lambda_2, \ldots, \lambda_n$, então $\vtV_1, \vtV_2, \ldots, \vtV_n$ são ortogonais.
+  \end{propriedade}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    Temos que $\mtA \vtV_j = \lambda_j \vtV_j \Rightarrow \Herm{\vtV}_j \Herm{\mtA}  = \Conj{\lambda}_j \Herm{\vtV}_j \Rightarrow \Herm{\vtV}_j \mtA  = \lambda_j \Herm{\vtV}_j$. Logo \\
+    $\mtA \vtV_i = \lambda_i \vtV_i \Rightarrow \Herm{\vtV}_j \mtA \vtV_i = \lambda_i \Herm{\vtV}_j \vtV_i \Rightarrow \lambda_j \Herm{\vtV}_j \vtV_i = \lambda_i \Herm{\vtV}_j \vtV_i \Rightarrow \Herm{\vtV}_j \vtV_i = 0$, pois $\lambda_i \neq \lambda_j$
+  \end{proof}
+  \begin{itemize}\footnotesize
+    \item Os autovetores de uma matriz $\mtA$, são ortonormais se associados a autovalores distintos, i.e.,
+      \begin{subequations}\label{u}
+        \begin{align}
+          \Transp{\vtV}_i\vtV_i &= 1, \quad \forall i, \quad i = 1,2,\ldots,n \label{eq_ortogonal}\\
+          \Transp{\vtV}_i\vtV_j &= 0, \quad \forall i \neq j, \quad i,j = 1,2,\ldots,n \label{eq_normal}
+        \end{align}
+      \end{subequations}
+    \item Formam uma base para o espaço coluna gerado pela matriz, i.e., qualquer vetor $\vtX$ nesse espaço pode ser escrito como uma combinação linear
+    \begin{equation}\label{eq_comb_lin}
+      \vtX = \alpha_1\vtV_1 + \alpha_2\vtV_1 + \cdots + \alpha_n\vtV_n
+    \end{equation}
+    onde $\alpha_i, \; i = 1,2,\ldots,n$, são constantes reais tais $\alpha_i = 0, \forall i \Leftrightarrow \vtX = \mathbf{0}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \vspace{-0.25\baselineskip}
+  \begin{propriedade}
+    Sejam $\vtV_1, \vtV_2, \ldots, \vtV_n$ os autovetores da matriz $\mtA$, correspondentes a autovalores distintos $\lambda_1, \lambda_2, \ldots, \lambda_n$, então $\Inv{\mtV} \mtA \mtV = \mtLambda, \mtA \in \fdR^{n\times n}$ e $\Herm{\mtV} \mtA \mtV = \mtLambda, \mtA \in \fdC^{n\times n}$ onde $\mtV = \begin{bmatrix} \vtV_1 & \vtV_2 & \ldots & \vtV_n\end{bmatrix}$ e $\mtLambda = \diag\{\lambda_1, \lambda_2, \ldots, \lambda_n\}$.
+  \end{propriedade}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    A prova segue diretamente das propriedades de independência linear ($\exists \Inv{\mtV}$) e de ortogonalidade ($\Herm{\mtV}\mtV = \mtI$).
+  \end{proof}
+  \vspace{-0.25\baselineskip}
+  \begin{propriedade}
+    Sejam $\lambda_1, \lambda_2, \ldots, \lambda_n$ os autovalores da matriz $\mtA$, então o traço $\Trace{\mtA}$ de $\mtA$ é igual à soma dos autovalores de $\mtA$.
+  \end{propriedade}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    Temos que $\Trace{\mtA} = \sum\limits_{i=1}^{n} a_{i,i} = \Trace{\mtV \mtLambda \Inv{\mtV}} = \Trace{\mtLambda \Inv{\mtV} \mtV} = \Trace{\mtLambda} = \sum\limits_{i=1}^{n} \lambda_i$.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Propriedades de autovalores e autovetores}
+  \begin{propriedade}
+    Sejam $\lambda_1, \lambda_2, \ldots, \lambda_n$ os autovalores da matriz $\mtA$, então o determinante $\Det{\mtA}$ de $\mtA$ é igual ao produto dos autovalores de $\mtA$.
+  \end{propriedade}
+  \vspace{-0.25\baselineskip}
+  \begin{proof}[Prova]
+    Temos que $\Det{\mtA} = \Det{\mtV \mtLambda \Inv{\mtV}} = \Det{\mtV} \Det{\mtLambda} \Det{\Inv{\mtV}} = \Det{\mtV} \Det{\mtLambda} \Det{\mtV}^{-1} = \Det{\mtLambda} = \prod\limits_{i=1}^{n} \lambda_i$.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformação de similaridade}
+  \begin{itemize}
+    \item Transformações de similaridade são úteis para transformar uma matriz associada a um problema em uma forma similar e de mais simples manipulação
+    \item Se agruparmos as $n$ equações em \eqref{eq_lambda} em uma única equação podemos escrever
+    \begin{equation}\label{eq_mat_auto}
+      \begin{split}
+        \mtA \underbrace{\left[\begin{matrix} \vtV_1 & \vtV_2 & \ldots & \vtV_n\end{matrix}\right]}_{\mtV} &=
+        \underbrace{ \left[\begin{matrix} \vtV_1 & \vtV_2 & \ldots & \vtV_n\end{matrix}\right] }_{\mtV} \underbrace{\left[\begin{matrix}
+          \lambda_1 & 0 & \ldots & 0 \\
+          0 & \lambda_2 & \ldots & 0 \\
+          \vdots & \vdots & \ddots & \vdots \\
+          0 & 0 & \ldots & \lambda_n \\
+        \end{matrix}\right]}_{\mtLambda} \\
+        \mtA\mtV &= \mtV\mtLambda \Rightarrow \boxed{\mtA = \mtV\mtLambda\Inv{\mtV}}
+      \end{split}
+    \end{equation}
+    \item As matrizes $\mtLambda$ e $\mtV$ são as matrizes dos autovalores e autovetores de $\mtA$, respectivamente
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformação de similaridade}
+  \begin{itemize}\footnotesize
+    \item Duas matrizes $\mtA$ e $\mtB$ de dimensão $n \times n$ são ditas \textbf{similares} se existe uma transformação $\mtT$ tal que
+    \begin{equation}\label{eq_similaridade}
+      \mtA = \mtT\mtB\Inv{\mtT} \Rightarrow \mtB = \Inv{\mtT}\mtA\mtT
+    \end{equation}
+    \item Matrizes similares possuem os mesmos autovalores e encontram várias aplicações em engenharia
+    \item A partir de \eqref{eq_mat_auto} e \eqref{eq_similaridade}, podemos observar que
+    \begin{equation}\label{eq_autosimilar}
+      \mtA = \mtV\mtLambda\Inv{\mtV} \text { e } \mtLambda = \Inv{\mtV}\mtA\mtV,
+    \end{equation}
+    de modo que a matriz $\mtA$ é similar à matriz diagonal $\mtLambda$
+    \item Observe ainda que há uma relação entre as inversas de matrizes similares dada por
+    \begin{equation}\label{eq_inv_sim}
+      \Inv{\mtA} = \left(\Inv{\mtV}\right)^{-1}\Inv{\mtLambda}\Inv{\mtV} = \mtV\Inv{\mtLambda}\Inv{\mtV},
+    \end{equation}
+    de modo que a inversa de $\mtA$ pode ser facilmente obtida se $\mtLambda$ e $\mtV$ forem conhecidas, pois $\mtLambda$ é diagonal
+    \item Note ainda que $\Det{\Inv{\mtA}} = \Det{\Inv{\mtLambda}} = \prod\limits_{i=1}^n\lambda^{-1}_i$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Forma de Jordan}
+  \begin{itemize}
+    \item ...
+  \end{itemize}
+\end{frame}
+
+\subsection{Funções de matrizes quadradas}
+
+\begin{frame}
+  \frametitle{Polinômios de matrizes quadradas}
+  \begin{itemize}
+    \item Se $\mtA$ é uma matriz quadrada e $k$ é um número não-negativo, então
+    \begin{equation}
+      \mtA^k = \underbrace{\mtA\cdot\mtA\cdot\mtA\cdots\mtA}_{k \text{ vezes}} \quad \text{e} \quad \mtA^0 = \mtI
+    \end{equation}
+    \item Se $f(\lambda)$ é um polinômio qualquer e, por exemplo, $f_1(\lambda) = \lambda^3 + 2\lambda^2 - 6$ e $f_2(\lambda) = (\lambda+2)(4\lambda-3)$ então
+    \begin{equation}
+      f_1(\mtA) = \mtA^3 + 2\mtA^2 - 6\mtI \quad \text{e} \quad f_2(\mtA) = (\mtA+2\mtI)(4\mtA - 3\mtI)
+    \end{equation}
+    \item Em outros termos, polinômios podem ser aplicados diretamente a matrizes constituindo assim uma classe de funções de matrizes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Teorema de Cayley-Hamilton}
+  \begin{itemize}
+    \item Se $\mtA$ é uma matriz quadrada, então seu polinômio característico $\Delta(\lambda) = \Det{\lambda\mtI - \mtA}$ é dado por
+    \begin{equation}\label{eq_delta_char}
+      \Delta(\lambda) = \lambda^n + \alpha_{n-1}\lambda^{n-1} + \alpha_{n-2}\lambda^{n-2} + \ldots + \alpha_{1}\lambda + \alpha_0
+    \end{equation}
+    \item O teorema de Cayley-Hamilton estabelece que a função polinomial \eqref{eq_delta_char} aplicada à matriz $\mtA$ é identicamente nula, i.e.,
+    \begin{equation}\label{eq_cayley}
+      \Delta(\mtA) = \mtA^n + \alpha_{n-1}\mtA^{n-1} + \alpha_{n-2}\mtA^{n-2} + \ldots + \alpha_{1}\mtA + \alpha_0\mtI = \mtZero,
+    \end{equation}
+    \item Logo, $\mtA$ satisfaz sua própria equação característica
+    \item O teorema de Cayley-Hamilton é útil para calcular potências de $\mtA^{k}, k > n$ em função de $\mtA^n, \ldots, \mtA$, como por exemplo
+    {\small\begin{equation}
+      \begin{split}\label{eq_a_n_plus_one}
+        \mtA^{n+1} &= \mtA\cdot(\mtA^n + \alpha_{n-1}\mtA^{n-1} + \alpha_{n-2}\mtA^{n-2} + \ldots + \alpha_{1}\mtA + \alpha_0\mtI) = \mtZero \Rightarrow \\
+        \mtA^{n+1} &= -\alpha_{n-1}\mtA^{n} - \alpha_{n-2}\mtA^{n-1} - \ldots - \alpha_{1}\mtA^2 - \alpha_0\mtA
+      \end{split}
+    \end{equation}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Teorema de Cayley-Hamilton}
+  \begin{itemize}
+    \item De acordo com \eqref{eq_cayley}, $\mtA^{n}$ pode ser escrita como combinação linear de $\left\{\mtI, \mtA, \ldots, \mtA^{n-1}\right\}$
+    \item De acordo com \eqref{eq_a_n_plus_one}, $\mtA^{n+1}$ pode ser escrita como combinação linear de $\left\{\mtA, \mtA^2, \ldots, \mtA^n\right\}$
+    \item Logo, para qualquer função polinomial $f(\lambda)$ temos que $f(\mtA)$ pode ser escrita como
+    \begin{equation}
+      f(\mtA) = \beta_{0}\mtI + \beta_{1}\mtA + \ldots + \beta_{n-2}\mtA^{n-2} + \beta_{n-1}\mtA^{n-1}
+    \end{equation}
+    para algum conjunto de valores $\beta_0, \beta_1, \ldots, \beta_{n-1}$
+    \item Se $\mtA = \mtT\bar{\mtA}\Inv{\mtT}$ então $\mtA^k = \mtT\bar{\mtA}^k\Inv{\mtT}$ e, portanto $ f(\mtA) = \mtT f(\bar{\mtA})\Inv{\mtT} $, pois
+    \begin{multline*}
+      f(\mtA) = f(\mtT\bar{\mtA}\Inv{\mtT}) \\ 
+      = \beta_{0}\mtT \Inv{\mtT} + \beta_{1}\mtT \bar{\mtA} \Inv{\mtT} + \ldots + \beta_{n-2}\mtT\bar{\mtA}^{n-2}\Inv{\mtT} + \beta_{n-1}\mtT \bar{\mtA}^{n-1} \Inv{\mtT} \\
+      = \mtT(\beta_{0}\mtI + \beta_{1}\mtA + \ldots + \beta_{n-2}\mtA^{n-2} + \beta_{n-1}\mtA^{n-1})\Inv{\mtT} \\
+      = \mtT f(\bar{\mtA})\Inv{\mtT}
+    \end{multline*}
+  \end{itemize}
+\end{frame}
+
+\subsection{Norma de matrizes}
+
+\begin{frame}
+  \frametitle{Norma induzida}
+  \begin{itemize}
+    \item A {\alert{norma induzida}} $\Norm{\mtA}$ de uma matriz $\mtA$ pode ser definida através do problema de otimização
+    \begin{subequations}\label{eq_induced_norm}
+      \begin{align}
+        \Norm{\mtA} &= \Max{\NormTwo{\mtA\vtX}} = \Max{(\Transp{\vtX}\Transp{\mtA}\mtA\vtX)^{\frac{1}{2}}}, \label{eq_induced_norm_a} \\
+        \SubTo \NormTwo{\vtX} &= 1 \label{eq_induced_norm_b}
+      \end{align}
+    \end{subequations}
+    \item Dado que o $\Range{\mtA} = \Range{\Transp{\mtA}\mtA}$ e que $\NormTwo{\vtX} = 1$ conforme \eqref{eq_induced_norm_b}, verificamos que a solução de \eqref{eq_induced_norm} corresponde à raiz quadrada do maior autovalor de $\Transp{\mtA}\mtA$
+    \item A norma induzida acima pode ser definida em termos de outras normas que não a norma euclidiana
+    \item Apenas a norma induzida pela norma euclidiana é também chamada {\alert{norma espectral}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Norma induzida}
+  \begin{itemize}
+    \item As normas induzidas para matrizes satisfazem as mesmas propriedades que as normas de vetores, tais como:
+    \begin{subequations}
+      \begin{align}
+        \Norm{\mtA} &= \Norm{\Transp{\mtA}} \geq 0 & \text{(Não-negatividade)}\\
+        \Norm{\mtA\mtB} &\leq \Norm{\mtA}\Norm{\mtB} & \text{(Desigualdade de Cauchy-Schwarz)} \\
+        \Norm{\mtA} &= 0 \Leftrightarrow \mtA = \mtZero & \text{(Elemento neutro)} \\
+        \Norm{\alpha\mtA} &= \Abs{\alpha}\Norm{\mtA}, \forall \alpha \in \fdR & \text{(Escalabilidade)} \\
+        \Norm{\mtA + \mtB} &\leq \Norm{\mtA} + \Norm{\mtB}, \forall \mtA, \mtB \in \fdR^{n\times n} & \text{(Desigualdade triangular)} \\
+        \underset{\substack{1 \leq i \leq m \\ 1 \leq j \leq n}}{\max} \Abs{a_{i,j}} &\leq \Norm{\mtA} \leq \sqrt{mn} \underset{\substack{1 \leq i \leq m \\ 1 \leq j \leq n}}{\max}\Abs{a_{i,j}}
+      \end{align}
+    \end{subequations}
+    \item Para matrizes complexas, as matrizes transpostas são substituídas por matrizes hermitianas
+  \end{itemize}
+\end{frame}
+
+\subsection{Cálculo com matrizes}
+
+\begin{frame}
+  \frametitle{Cálculo com matrizes}
+  \begin{itemize}
+    \item As regras de cálculo aplicadas a matrizes devem ser consistentes com as regras de cálculo utilizando escalares
+    \item Os resultados sugerem apenas a reorganização dos termos entre formas escalares e matriciais
+    \item Este princípio conduz à conclusão de que a derivada e a integral de matrizes pode ser definida elemento-a-elemento, i.e., o elemento $i,j$ das matrizes
+    \begin{equation}
+      \int_{0}^t \mtA(\tau)d\tau \quad \text{e} \quad \frac{d\mtA(t)}{dt} \quad \text{são} \quad \int_{0}^t a_{i,j}(\tau)d\tau \quad \text{e} \quad \frac{d a_{i,j}(t)}{dt},
+    \end{equation}
+    respectivamente
+    \item O teorema fundamental do cálculo aplicado a matrizes leva a
+    \begin{equation}
+      \frac{d}{dt}\left(\int_{0}^t \mtA(\tau)d\tau\right) = \mtA(t)
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cálculo com matrizes}
+  \begin{itemize}
+    \item Similarmente, a regra do produto para matrizes $\mtA(t)$ e $\mtB(t)$ resulta em
+    \begin{equation}
+      \frac{d}{dt}\left(\mtA(t)\mtB(t)\right) = \dot{\mtA}(t)\mtB(t) + \mtA(t)\dot{\mtB}(t)
+    \end{equation}
+    \item No entanto, é importante observar que
+    \begin{equation}
+      \frac{d\mtA^2(t)}{dt} = \dot{\mtA}(t)\mtA(t) + \mtA(t)\dot{\mtA}(t)
+    \end{equation}
+    \item Nesse contexto, um relação importante é a desigualdade triangular %
+    \begin{equation}
+      \Norm{\int_{t_0}^t \vtX(\tau)d\tau} \leq \Abs{\int_{t_0}^t \Norm{\vtX(\tau)}d\tau}
+    \end{equation}
+    onde para $ t \geq t_0 $ o módulo pode ser desconsiderado
+  \end{itemize}
+\end{frame}
+
+\subsection{Forma quadrática e matriz positiva (semi)definida}
+
+\begin{frame}
+  \frametitle{Forma quadrática e matriz positiva (semi)definida}
+  \begin{itemize}
+    \item Seja $\mtQ$ uma matriz pertencente a $\fdR^{n\times n}$ e $\vtX$ um vetor pertencente a $\fdR^n$
+    \item O produto $\Transp{\vtX}\mtQ\vtX$ é chamado {\alert{forma quadrática}} em $\vtX$
+    \item A matriz $\mtQ$ pode ser considerada simétrica (i.e., $\mtQ = \Transp{\mtQ}$) no estudo de formas quadráticas pois
+    \begin{equation}
+      \Transp{\vtX}\left(\mtQ + \Transp{\mtQ}\right)\vtX = \Transp{\vtX}\mtQ\vtX + \Transp{\vtX}\Transp{\mtQ}\vtX = 2\Transp{\vtX}\mtQ\vtX
+    \end{equation}
+    e a forma quadrática não muda ao se substituir $\mtQ$ por $\dfrac{\mtQ + \Transp{\mtQ}}{2}$
+    \item Um matriz $\mtQ$ é chamada:
+    \begin{itemize}
+      \item {\alert{Positiva definida}} se $\Transp{\vtX}\mtQ\vtX > 0, \forall \vtX \neq \vtZero$
+      \item {\alert{Positiva semidefinida}} se $\Transp{\vtX}\mtQ\vtX \geq 0, \forall \vtX$
+    \end{itemize}
+    \item Um matriz $\mtQ$ é {\alert{negativa definida ou semidefinida}} se $-\mtQ$ é positiva definida ou semidefinida, respectivamente
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Forma quadrática e matriz positiva (semi)definida}
+  \begin{itemize}
+    \item A notação $\mtQ \succ 0$ e $\mtQ \succeq 0$ é normalmente utilizada para indicar que $\mtQ$ é positiva definida ou semidefinida, respectivamente
+    \item A notação $\mtQ_1 \succ \mtQ_2$ e $\mtQ_1 \succeq \mtQ_2$ implicam $\mtQ_1 - \mtQ_2 \succ 0$ e $\mtQ_1 - \mtQ_2 \succeq 0$, respectivamente
+    \item Todos os autovalores de uma matriz simétrica são reais
+    \begin{itemize}
+      \item Todos os autovalores de $\mtQ$ são reais e positivos se $\mtQ \succ 0$
+      \item Todos os autovalores de $\mtQ$ são reais e não-negativos se $\mtQ \succeq 0$
+    \end{itemize}
+    \item Algumas relações importantes para formas quadráticas são:
+    {\small \begin{subequations}
+      \begin{align}
+        \lambda_{\min}\Transp{\vtX}\vtX &\leq \Transp{\vtX}\mtQ\vtX \leq \lambda_{\max}\Transp{\vtX}\vtX, & \text{(Desigualdade de Rayleigh-Ritz)}\\
+        \Norm{\mtQ} & \leq \Trace{\mtQ} \leq n \Norm{\mtQ}
+      \end{align}
+    \end{subequations}}
+    \item Para matrizes e vetores complexos, a operação $\Transp{(\cdot)}$ é substituída por $\Herm{(\cdot)}$ e a forma quadrática em $\vtX$ torna-se $\Herm{\vtX}\mtQ\vtX$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Menores principais dominantes}
+  \begin{itemize}\small
+    \item Um {\alert{menor principal}} de uma matriz $\mtQ$ simétrica em $\fdR^{n\times n}$ é o determinante da submatriz formada pela remoção de $ r $ linhas e colunas de mesmo índice da matriz
+    \item Para a mesma matriz $\mtQ$, o $p$-ésimo {\alert{menor principal dominante}} de $\mtQ$ é o determinante da submatriz $\mtQ_p$ superior esquerda compreendendo os elementos $q_{i,j}$ de $\mtQ$ para $i,j = 1, 2, \ldots, p$, de modo que o 1$^\text{o}$, 2$^\text{o}$ e 3$^\text{o}$ menores principais dominantes $\mtQ \in \fdR^{n\times n}$, $n \geq 3$, são
+    {\footnotesize \begin{equation}
+      \begin{split}
+        \Det{\mtQ_1} &= \Det{\left[q_{1,1}\right]}, \quad \Det{\mtQ_2} = \Det{\left[\begin{matrix}q_{1,1} & q_{1,2} \\ q_{2,1} & q_{2,2}\end{matrix}\right]}, \text{ e } \\
+        \Det{\mtQ_3} &= \Det{\left[\begin{matrix}q_{1,1} & q_{1,2} & q_{1,3}\\ q_{2,1} & q_{2,2} & q_{2,3} \\ q_{3,1} & q_{3,2} & q_{3,3}\end{matrix}\right]}
+      \end{split}
+    \end{equation}}
+    \item A matriz $\mtQ$ é positiva definida se e somente se todos os seus menores principais dominantes são positivos, i.e., se $\Det{\mtQ_p} > 0,$ $\forall p = 1, 2, \ldots, n$
+    \item A matriz $\mtQ$ é positiva semidefinida se e somente se todos os seus menores principais dominantes são não-negativos
+  \end{itemize}
+\end{frame}
+
+
+
+\subsection{Fatoração QR}
+
+\begin{frame}{Fatoração QR~\cite[cap. 4]{Gilat2008}}
+  \footnotesize
+  \begin{itemize}
+    \item O método da fatoração QR faz uso de {\alert{transformações de Householder}} e de {\alert{transformações de similaridade}} para decompor uma matriz $\mtA$ em um produto de uma matriz ortogonal $\mtQ$ ($\mtQ\Transp{\mtQ} = \mtI$), por uma matriz triangular superior $\mtR$
+    \item A fatoração QR se inicia com a matriz $\mtA^{(1)} = \mtA$ cujos autovalores devem ser determinados
+    \item A matriz $\mtA^{(1)}$ é fatorada como
+    \begin{equation}\label{eq_qr1}
+      \mtA^{(1)} = \mtQ^{(1)}\mtR^{(1)},
+    \end{equation}
+    onde $\mtQ^{(1)}$ é uma matriz ortogonal, i.e., $\mtQ^{(1)}\Transp{\left(\mtQ^{(1)}\right)} = \mtI$, mas a matriz $\mtR^{(1)}$ não é ainda uma matriz triangular superior
+    \item A matriz $\mtA^{(2)}$ é obtida multiplicando $\mtR^{(1)}$ à direita por $\mtQ^{(1)}$, i.e.,
+    \begin{equation}\label{eq_qr2}
+      \mtA^{(2)} = \mtR^{(1)}\mtQ^{(1)}
+    \end{equation}
+    \item Usando \eqref{eq_qr1}, temos que $\mtR^{(1)} = \left(\mtQ^{(1)}\right)^{-1}\mtA^{(1)}$, a qual substituida em \eqref{eq_qr2} resulta em
+    \begin{equation}
+      \mtA^{(2)} = \left(\mtQ^{(1)}\right)^{-1}\mtA^{(1)}\mtQ^{(1)}
+    \end{equation}
+    \item Logo, $\mtA^{(1)}$ e $\mtA^{(2)}$ são matrizes similares, i.e., possuem os mesmos autovalores
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Matriz de Householder}
+  \begin{itemize}
+    \item Para obter $\mtQ$ e $\mtR$, o método de decomposição QR utiliza matrizes de transformação de Householder
+    \item Dado um vetor
+    \begin{equation}
+      \vtV = \mathbf{c} + \Vert \mathbf{c} \Vert_2\vtE,
+    \end{equation}
+    a {\alert{matriz de transformação de Householder}} $\mathbf{H}$ associada ao vetor $\vtV$ é definida como
+    \begin{equation}\label{eq_householder}
+      \mathbf{H} = \mtI - 2\frac{\vtV\Transp{\vtV}}{\Transp{\vtV}\vtV},
+    \end{equation}
+    onde $\mtI$ é a matriz identidade e $\vtE$ é um vetor com uma única componente igual a $\pm 1$ e todas as demais componentes igual a zero.
+    \item Por conveniência, costuma-se definir ainda o vetor $\vtE$ como $\pm\vtI_i$, i.e., em termos da $i$-ésima coluna $\mtI$
+    \item Note que a matriz de transformação de Householder é ortogonal, i.e., $\Transp{\mtH}\mtH = \mtI$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algoritmo de fatoração QR}
+  \begin{itemize}
+    \item O \textbf{passo 1} do algoritmo QR consiste em determinar $\mtQ^{(1)}$ e $\mtR^{(1)}$
+    \item Para tanto, os vetores $\mathbf{c}^{(1)}$ e $\vtE^{(1)}$ geradores da matriz de Householder $\mathbf{H}^{(1)}$ são definidos como
+    \begin{equation}\label{eq_hh1}
+      \begin{split}
+      \mathbf{c}^{(1)} &= \mathbf{a}_1, \text{ onde }
+      \mtA = \left[\begin{matrix}
+        \mathbf{a}_1 & \mathbf{a}_2 & \ldots & \mathbf{a}_n
+      \end{matrix}\right] = \left[\begin{matrix}
+        a_{1,1} & a_{1,2} & \ldots & a_{1,n} \\
+        a_{2,1} & a_{2,2} & \ldots & a_{2,n} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        a_{n,1} & a_{n,2} & \ldots & a_{n,n}
+      \end{matrix}\right], \text{ e }\\
+      \vtE^{(1)} &=
+      \begin{cases}
+        \vtI_1, & a_{1,1} \geq 0 \\
+        -\vtI_1, & a_{1,1} < 0
+      \end{cases}, \text{ onde } \mtI = \left[\begin{matrix}
+        \vtI_1 & \vtI_2 & \ldots & \vtI_n
+      \end{matrix}\right]
+      \end{split}
+    \end{equation}
+    \item Usando \eqref{eq_hh1} em \eqref{eq_householder}, as matrizes $\mtQ^{(1)}$ e $\mtR^{(1)}$ são definidas como
+    \begin{equation}
+      \mtQ^{(1)} = \mathbf{H}^{(1)} \quad \text{ e } \quad  \mtR^{(1)} = \mathbf{H}^{(1)}\mtA^{(1)}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algoritmo de fatoração QR}
+  \begin{itemize}
+    \item A matriz $\mtR^{(1)}$ obtida no \textbf{passo 1} é da forma
+    \begin{equation}
+      \mtR^{(1)} =
+      \left[\begin{matrix}
+        \mathbf{r}^{(1)}_{1,1} & \mathbf{r}^{(1)}_{1,2} & \mathbf{r}^{(1)}_{1,3} & \ldots & \mathbf{r}^{(1)}_{1,n} \\
+        0 & \mathbf{r}^{(1)}_{2,2} & \mathbf{r}^{(1)}_{2,3} & \ldots & \mathbf{r}^{(1)}_{2,n} \\
+        0 & \mathbf{r}^{(1)}_{3,2} & \mathbf{r}^{(1)}_{3,3} & \ldots & \mathbf{r}^{(1)}_{3,n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & \mathbf{r}^{(1)}_{n,2} & \mathbf{r}^{(1)}_{n,3} & \ldots & \mathbf{r}^{(1)}_{n,n}
+      \end{matrix}\right]
+    \end{equation}
+    \item No \textbf{passo 2} do algoritmo QR, aproximadamente o mesmo processo do \textbf{passo 1} é repetido
+    \item No entanto, os vetores $\mathbf{c}^{(2)}$ e $\vtE^{(2)}$ geradores da matriz de Householder $\mathbf{H}^{(2)}$ são definidos como
+    \begin{equation}\label{eq_hh2}
+      \mathbf{c}^{(2)} = \left[\begin{matrix}
+        0 & r^{(1)}_{2,2} & r^{(1)}_{3,2} & \ldots & r^{(1)}_{n,2}
+      \end{matrix}\right]^{T}, \quad \text{e} \quad
+      \vtE^{(2)} =
+      \begin{cases}
+        \vtI_2, & r^{(1)}_{2,2} \geq 0 \\
+        -\vtI_2, & r^{(1)}_{2,2} < 0
+      \end{cases}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algoritmo de fatoração QR}
+  \begin{itemize}\small
+    \item Usando \eqref{eq_hh2} e \eqref{u}, as matrizes $\mtQ^{(2)}$ e $\mtR^{(2)}$ são obtidas como
+    \begin{equation}
+      \mtQ^{(2)} = \mtQ^{(1)}\mathbf{H}^{(2)} \quad \text{ e } \quad  \mtR^{(2)} = \mathbf{H}^{(2)}\mtR^{(1)}
+    \end{equation}
+    onde a matriz $\mtR^{(2)}$ tem a forma
+    \begin{equation}
+      \mtR^{(2)} =
+      \left[\begin{matrix}
+        \mathbf{r}^{(2)}_{1,1} & \mathbf{r}^{(2)}_{1,2} & \mathbf{r}^{(2)}_{1,3} & \ldots & \mathbf{r}^{(2)}_{1,n} \\
+        0 & \mathbf{r}^{(2)}_{2,2} & \mathbf{r}^{(2)}_{2,3} & \ldots & \mathbf{r}^{(2)}_{2,n} \\
+        0 & 0 & \mathbf{r}^{(2)}_{3,3} & \ldots & \mathbf{r}^{(2)}_{3,n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \mathbf{r}^{(2)}_{n,3} & \ldots & \mathbf{r}^{(2)}_{n,n}
+      \end{matrix}\right]
+    \end{equation}
+    \item No \textbf{passo 3} aproximadamente o mesmo processo do \textbf{passo 2} é repetido, exceto que os vetores $\mathbf{c}^{(3)}$ e $\vtE^{(3)}$ geradores $\mathbf{H}^{(3)}$ são dados por
+    \begin{equation}\label{eq_hh3}
+      \mathbf{c}^{(3)} = \left[\begin{matrix}
+        0 & 0 & r^{(2)}_{3,3} & \ldots & r^{(2)}_{n,3}
+      \end{matrix}\right]^{T}, \quad \text{e} \quad
+      \vtE^{(3)} =
+      \begin{cases}
+        \vtI_3, & r^{(2)}_{3,3} \geq 0 \\
+        -\vtI_3, & r^{(2)}_{3,3} < 0
+      \end{cases}
+    \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algoritmo de fatoração QR}
+  \begin{itemize}
+    \item Usando \eqref{eq_hh3} e \eqref{eq_householder}, as matrizes $\mtQ^{(3)}$ e $\mtR^{(3)}$ são obtidas como
+    \begin{equation}
+      \mtQ^{(3)} = \mtQ^{(2)}\mathbf{H}^{(3)} \quad \text{ e } \quad  \mtR^{(3)} = \mathbf{H}^{(3)}\mtR^{(2)}
+    \end{equation}
+    \item Em cada passo, o processo descrito anteriormente é repetido
+    \item Observe ainda que a cada passo $i$, os elementos da $i$-ésima coluna da matriz $\mtR^{(i)}$ são zerados
+    \item De forma geral, as iterações descritas anteriormente podem ser escritas como
+    \begin{equation}
+      \mtQ^{(i)} = \mtQ^{(i-1)}\mathbf{H}^{(i)} \quad \text{ e } \quad  \mtR^{(i)} = \mathbf{H}^{(i)}\mtR^{(i-1)}
+    \end{equation}
+    onde $\mtQ^{(0)} = \mtI$ e $\mtR^{(0)} = \mtA$
+    \item Um total de $n-1$ passos é realizado até que a matriz $\mtR^{(n-1)} = \mathbf{H}^{(n-1)}\mtR^{(n-2)}$ obtida é triangular superior
+    \item Esse processo pode ser repetido até que a matriz $ \mtA^{(n)} = \mtR^{(n-1)}\mtQ^{(n-1)} $ seja triangular. Nesse caso, os autovalores de $ \mtA $ serão os elementos da diagonal de $ \mtA^{(n)} $
+  \end{itemize}
+\end{frame}
+

@@ -1,0 +1,553 @@
+\documentclass[xcolor={svgnames},11pt]{beamer}
+% \documentclass[xcolor={svgnames},handout]{beamer}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+\usepackage[brazil]{babel}
+\usepackage[none]{hyphenat}
+
+% \usepackage[default]{sourcesanspro}
+\usepackage{inconsolata}
+\usepackage{pifont}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+\usepackage{tabularx}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}                           % Allow graphic usage
+\graphicspath{{.}{./Figs/}}
+
+\usepackage[nolist]{acronym}
+
+\usepackage[ddmmyy]{datetime}
+\ddmmyyyydate
+
+\usepackage{calc}
+
+\hypersetup{
+pdfauthor = {Tarcisio F. Maciel, Diego A. Sousa, José Mairton B. da Silva Jr., Francisco Hugo C. Neto, e Yuri Victor L de Melo}, %
+pdftitle = {Otimização convexa},%
+pdfsubject = {Curso de otimização convexa},%
+pdfkeywords = {Otimização, programação matemática},%
+}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{shapes.geometric}
+
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saída:}}
+\renewcommand{\algorithmicend}{\textbf{fim}}
+\renewcommand{\algorithmicif}{\textbf{se}}
+\renewcommand{\algorithmicthen}{\textbf{então}}
+\renewcommand{\algorithmicelse}{\textbf{senão}}
+\renewcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
+\renewcommand{\algorithmicendif}{\algorithmicend-\algorithmicif;}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicforall}{\textbf{para todo}}
+\renewcommand{\algorithmicdo}{\textbf{faça}}
+\renewcommand{\algorithmicendfor}{\algorithmicend-\algorithmicfor;}
+\renewcommand{\algorithmicwhile}{\textbf{enquanto}}
+\renewcommand{\algorithmicendwhile}{\algorithmicend-\algorithmicwhile;}
+\renewcommand{\algorithmicrepeat}{\textbf{repita}}
+\renewcommand{\algorithmicuntil}{\textbf{até}}
+\renewcommand{\algorithmicprint}{\textbf{imprima}}
+\renewcommand{\algorithmicreturn}{\textbf{retorne}}
+\renewcommand{\algorithmictrue}{\textbf{verdadeiro}}
+\renewcommand{\algorithmicfalse}{\textbf{falso}}
+\renewcommand{\algorithmiccomment}[1]{\{#1\}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usecolortheme{structure}
+\useoutertheme{infolines}
+\useinnertheme[shadow]{rounded}
+\usefonttheme{structurebold}
+\usefonttheme{professionalfonts}
+\usefonttheme[onlymath]{serif}
+
+% Printing
+% \usepackage{pgfpages}\in\fdR^n
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+% \setbeamercolor{structure}{bg=White,fg=Black}
+% \setbeamercolor{alerted text}{fg=Black}
+
+% Screen
+\setbeamercolor{structure}{bg=White,fg=Sienna!80!Black}
+\setbeamercolor{palette primary}{fg=Black,bg=structure.bg}
+\setbeamercolor{palette secondary}{fg=Black,bg=structure.fg!30!White}
+\setbeamercolor{palette tertiary}{fg=structure.bg,bg=structure.fg!90!White}
+\setbeamercolor{title}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{part page}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{frametitle}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{block title}{fg=structure.bg,bg=structure.fg}
+\setbeamercolor{block body}{fg=Black,bg=structure.fg!05!White}
+\setbeamercolor{alerted text}{fg=Red}
+
+\setbeamerfont{part page}{size=\Large,series=\bfseries}
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{block title}{size=\small,series=\bfseries}
+\setbeamerfont{block body}{size=\footnotesize}
+\setbeamerfont{section in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{subsection in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{institute in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{author in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{date in head/foot}{series=\bfseries,size=\tiny}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{bibliography entry author}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry title}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry journal}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{bibliography entry note}{size=\scriptsize,series=\bfseries}
+
+\setbeamertemplate{bibliography item}[text]
+
+\setbeamertemplate{theorems}[numbered]
+\newtheorem{teorema}[theorem]{Teorema}
+\newtheorem{propriedade}[theorem]{Propriedade}
+\newtheorem{corolario}[theorem]{Corolário}
+\newtheorem{atividade}[theorem]{Atividade}
+
+
+\setlength{\leftmargini}{1em}
+\setlength{\leftmarginii}{1em}
+\setlength{\leftmarginiii}{1em}
+
+\setlength{\abovedisplayskip}{-\baselineskip}
+
+\setlength{\arraycolsep}{3pt}
+
+\newlength{\AuxWidth}
+
+\title{Otimização Convexa}
+\author[T. Maciel et al]{Tarcisio F. Maciel, Diego A. Sousa, José Mairton B. da Silva Jr., Francisco Hugo C. Neto, e Yuri Victor L de Melo}
+\institute[PPGETI-CT-UFC]{\normalsize Universidade Federal do Ceará \\ Centro de Tecnologia \\ Programa de Pós-Graduação em Engenharia de Teleinformática}
+\date{\today}
+
+\input{Math.tex}
+\input{Acros.tex}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\AtBeginPart{
+\begin{frame}<handout:0>
+	\begin{block}{\centering\large\bfseries Parte \insertpartnumber}
+		\centering\large\insertpart
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conteúdo}
+	\tableofcontents
+\end{frame}
+}
+%
+% \AtBeginLecture{
+% \begin{frame}<handout:0>
+% 	\begin{block}{\centering\large\bfseries Tema da aula}
+% 		\centering\large\insertlecture
+% 	\end{block}
+% \end{frame}
+% }
+
+% \AtBeginSection{
+% \begin{frame}
+% 	\frametitle{Conteúdo}
+% 	\tableofcontents[currentsection,hideothersubsections]
+% \end{frame}
+% }
+
+\AtBeginSubsection{
+\begin{frame}<handout:0>
+	\frametitle{Conteúdo}
+	\tableofcontents[subsectionstyle=show/shaded/shaded]
+% 	\tableofcontents[subsectionstyle=show/shaded/hide]
+\end{frame}
+}
+
+\part{Conjuntos Convexos}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Conjuntos Afins 
+            \begin{itemize}
+            \item Um conjunto $ C \subseteq \fdR^n$ é afim caso um segmento entre $x_{1}, x_{2} \in C$ e $ \theta \in \fdR^n$, pertença a $ C $, ou seja, $ \theta x_{1}+(1-\theta) x_{2} \in C$.
+	     \end{itemize}
+	
+	\end{itemize}
+
+ \begin{itemize}
+	\item Conjuntos Convexos
+            \begin{itemize}
+            \item Um conjunto $ C \subseteq \fdR^n$ é convexo caso um segmento entre $x_{1}, x_{2} \in C$ e $ 0 \leq \theta \leq 1 $, pertença a $ C $, ou seja, $ \theta x_{1}+(1-\theta) x_{2} \in C$.
+	     \end{itemize}
+ \end{itemize}
+% 
+\end{frame}
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Covex Hull 
+            \begin{itemize}
+            \item Dado um conjunto $ C $, o convex hull é o menor conjunto convexo que engloba $ C $, denotado por $\textbf{conv } C$. 
+               
+               \begin{equation}\label{eq_convex_hull}
+			\textbf{conv } C = \{ \theta_{1} x_{1} + \cdots + \theta_{k} x_{k} \mid x_{1} \in C, \theta_{i} \geq 0, i=1, \cdots, k, \theta_{1} + \cdots + \theta_{k} = 1\}
+		\end{equation}
+         
+	    
+	    \end{itemize}
+	
+	\end{itemize}
+% 
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Cone
+            \begin{itemize}
+            \item Um conjunto é chamado cone, caso para todo $ x \in C$ e $ \theta \geq 0$ (não negativo), ou seja:
+            
+                \begin{equation}\label{eq_cone}
+			\theta x \in C
+		\end{equation}
+		
+	    \end{itemize}
+	
+	\item Cone Convexo
+            \begin{itemize}
+            \item Um conjunto é chamado cone convexo, caso seja cone e convexo, para qualquer $x_{1}, x_{2} \in C$ e $ \theta_{1}, \theta_{2} \geq 0$, ou seja:  
+                \begin{equation}\label{eq_cone_conv}
+	         \theta_{1} x_{1} + \theta_{2} x_{2} \in C
+		\end{equation}
+	    \end{itemize}
+	
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Hiperplano
+            \begin{itemize}
+            \item Hiperplano é um conjunto de pontos, podendo ser escrito como:
+            
+                \begin{equation}\label{eq_hiperplano}
+			\{ x \mid a^{T}(x-x_{0} = 0) \}
+		\end{equation}
+		onde $ a \in \fdR^n$, $ a \neq 0$ e $x_{0}$ determina o offset do hiperplano. Um hiperplano divide o espaço em dois semi-espaços.
+	    \end{itemize}
+	
+	\item Semi-espaço
+            \begin{itemize}
+            \item Um semi-espaço é um conjunto da forma:  
+                \begin{equation}\label{eq_halfspace}
+	         \{ x \mid a^{T}(x-x_{0} \leq 0) \}
+		\end{equation}
+		onde $ a \in \fdR^n$, $ a \neq 0$.
+	    \end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Bola Euclidiana
+            \begin{itemize}
+            \item A bola euclidiana com o centro em $x_{c}$ e raio $r$ é representado por:
+            
+                \begin{equation}\label{eq_ball}
+			B(x_{c},r) = \{ x_{c} + ru \mid \Norm{u}_2 \leq 1 \}
+		\end{equation}
+	    \end{itemize}
+	
+	\item Elipsoide
+            \begin{itemize}
+            \item  O elipsoide é um conjunto que pode ser representado na forma:   
+                \begin{equation}\label{eq_elipsoide}
+	        \varepsilon = \{ x \mid (x-x_{c})^{T} P^{-1} (x-x_{c}) \leq 1) \}
+		\end{equation}
+		onde $ P \in \fdS^n_{++}$(matriz simetrica e positiva definida).
+	    \end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Poliedro
+            \begin{itemize}
+            \item O poliedro é definido como um conjunto de igualdades lineares e inequações.
+            
+                \begin{equation}\label{eq_poliedro}
+			A x \preceq b, C x = d
+		\end{equation}
+		onde $\preceq$ é o símbolo que representa desiguadade componente a componente entre vetores.
+	  
+	     \item Dessa forma, a representação do poliedro pode escrita como: 
+	  
+	        \begin{equation}\label{eq_poliedro_2}
+	        P = \{ x \mid A x \preceq b, C x = d \}
+		\end{equation}
+	  \end{itemize}
+	
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item Norma da Bola com centro $x_{c}$ e raio $r$ é representado por:
+	
+	\begin{equation}\label{eq_norm_ball}
+			\{ x \mid \Norm{x-x_c} \leq r \}
+		\end{equation}
+  onde $\Norm{\cdot}$ é a norma.
+  
+            \item A norma do cone pode ser definido como:
+            
+                \begin{equation}\label{eq_norm_cone}
+			\{ (x,t) \in  \fdR^n+1 \mid \Norm{x} \leq t \}
+		\end{equation}
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize}
+	\item PSD (Cone positivo semidefinido) é um cone formado a parti das matrizes positivas semidefinidas que utiliza a notação:
+	
+	\begin{equation}\label{eq_psd}
+			\fdS^n_+ = \{ X \in \fdS^n \mid X \succ 0 \}
+		\end{equation}
+  onde $\fdS^n$ denota o conjunto de matrizes simetricas. Dessa forma o conjunto $\fdS^n_+$ é um cone positivo semidefinido, se $ \theta_{1}, \theta_{2} \geqslant 0$ e $A, B \in \fdS^n_+$, assim $ \theta_{1} A + \theta_{2} B \in \fdS^n_+$.	
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize} 
+	\item Operações que preserva a convexidade
+            \begin{itemize}
+              \item Interseção
+                  \begin{itemize}
+                    \item Sendo $ S_{\alpha}$ convexo para todo $\alpha \in A$:
+                    	        \begin{equation}\label{eq_oper_inter}
+				   \cap_{\alpha \in A} S_{\alpha} \textbf{ (Convexo)}
+				\end{equation}
+                    
+                  \end{itemize}
+              
+              \item Multiplicação por escalar
+                  \begin{itemize}
+                    \item Se $ S \subseteq \fdR^n$ é convexa, $\alpha \in \fdR$:
+                               \begin{equation}\label{eq_oper_escalar}
+				   \alpha S = \{ \alpha x \mid x \in S \} \textbf{ (Convexo)}
+				\end{equation}
+                    
+                  \end{itemize}
+      
+	                  \item Translação
+                  \begin{itemize}
+                    \item Se $ S \subseteq \fdR^n$ é convexa, $a \in \fdR^n$:
+                               \begin{equation}\label{eq_oper_trans}
+				   S + a = \{ x + a \mid x \in S \} \textbf{ (Convexo)}
+				\end{equation}
+                    
+                  \end{itemize}
+	    
+	    \end{itemize}
+	
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize} 
+	\item Operações que preserva a convexidade
+            \begin{itemize}
+              \item Soma
+                  \begin{itemize}
+                    \item Se $S_{1}$ e $S_{2}$ são convexos:
+                    	        \begin{equation}\label{eq_oper_soma}
+				  S_{1} + S_{2} = \{ x + y \mid x \in S_{1}, y \in S_{2}\} \textbf{ (Convexo)}
+				\end{equation}
+                    
+                  \end{itemize}
+              
+              \item Produto Cartesiano
+                  \begin{itemize}
+                     \item Se $S_{1}$ e $S_{2}$ são convexos:
+                               \begin{equation}\label{eq_oper_pcart}
+				   S_{1} \times S_{2} = \{ (x,y) \mid x \in S_{1}, y \in S_{2}\} \textbf{ (Convexo)}
+				\end{equation}
+                    
+                  \end{itemize}
+      
+	    
+	    \end{itemize}
+	
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conjuntos Convexos}
+
+ \begin{itemize} 
+	\item Desigualdade generalizadas
+            \begin{itemize}
+              \item Um cone pode ser usado para definir a desigualdade generalizada, que é similar a relação de ordem apresentada em $\fdR$. Desta forma, para um cone $ K $ onde $ K \subseteq \fdR^n$, as desigualdades não estritas e estritas $ \preceq_{K}$ e $\prec_{K}$, respectivamente são definidas da seguinte maneira:
+              
+			\begin{subequations}
+			\begin{align}
+                               x \preceq_{K} y \Leftrightarrow y - x \in K\\
+                               x \prec_{K} y \Leftrightarrow y - x \in \textbf{int(}K\textbf{)}
+			\end{align}
+		\end{subequations}
+		
+		onde $\textbf{int($K$)}$ representa o interior do conjunto $K$.
+			
+		\item Propriedades
+                  \begin{itemize}
+                     \item Se $x \preceq_{K} y$ e $u \preceq_{K} v$, então $ x + u \preceq_{K} y + v$
+                      \item  Se $x \preceq_{K} y$ e $y \preceq_{K} u$, então $ x \preceq_{K} u$
+                       \item  Se $x \preceq_{K} y$ e $y \preceq_{K} x$, então $ x = y$
+                        \item  Se $x \prec_{K} y$ e $u \preceq_{K} v$, então $ x + u \prec_{K} y + v$
+                  \end{itemize}
+	    
+	    \end{itemize}
+	
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Water filling}
+
+ \begin{itemize}
+	\item O objetivo do water filling é distribuir potências entre os links de uma sistema telecomunicação objetivando a maximizaçao da vazão de dados, uma vez que a qualidade do link dependente da potência utilizada na comunicação, dessa forma:
+		\begin{equation}
+		\min - \sum\limits_{i = 1}^n \log(\alpha_{i} + x_{i}) \text{sujeito a}\begin{cases}
+				x  \succeq 0, \\
+				\textbf{1}^{T}x = 1
+			\end{cases}
+		\end{equation}
+		onde $\alpha_{i} > 0$, $x_{i}$ representa a potência alocada ao canal $i$.
+  \end{itemize}
+
+  \end{frame}
+
+  \part{Water Filling}
+  
+  \begin{frame}{Water Filling}
+
+ \begin{itemize}
+	\item Adotando o multiplicador lagrangeano $ \lambda^{*} \in \fdR^n$ para $x \succeq 0$ e o multiplicador $v^{*} \in \fdR$ para $\textbf{1}^{T}x = 1$, o lagrangeano apresenta a seguinte forma:
+		\begin{equation}
+		H(x^{*},\lambda^{*}, v^{*}) = - \sum\limits_{i = 1}^n \log(\alpha_{i} + x_{i}) - \lambda^{*} x + v^{*}(\textbf{1}^{T}x - 1)
+		\end{equation}
+
+    \item Derivando em seguida utilizando as KKT: 
+  
+			\begin{subequations}
+			\begin{align}		
+                               \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial x^{*}} = - \frac{1}{(\alpha_{i}+x_{i})} - \lambda^{*} + v^{*} = 0\\
+                                \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial \lambda^{*}} = x = 0\\
+                                 \frac{H(x^{*}, \lambda^{*}, v^{*})}{\partial v^{*}} = \textbf{1}^{T}x - 1 = 0
+			\end{align}
+		\end{subequations}
+  
+  
+    \end{itemize}
+  \end{frame}
+
+  
+    \begin{frame}{Water Filling}
+
+ \begin{itemize}
+	\item Utilizando as KKT:
+		\begin{subequations}
+			\begin{align}		
+                              x_{*} \succeq 0, \\
+                              \textbf{1}^{T}x^{*} = 1, \\
+                              \lambda^{*} \succeq 0,\\
+                              \lambda^{*}_{i}x^{*}_{i} = 0, \\
+                              - \frac{1}{(\alpha_{i}+x^{*}_{i})} - \lambda^{*}_{i} + v^{*} = 0
+			\end{align}
+		\end{subequations}
+
+ \item Isolando $\lambda^{*}_{i}$ e substituindo em $\lambda^{*}_{i}x^{*}_{i}$:
+  
+			\begin{subequations}
+			\begin{align}		
+                              x^{*}_{i}( v^{*} - \frac{1}{\alpha_{i} + x^{*}_{i}}) = 0, \\
+                              v^{*} - \frac{1}{\alpha_{i} + x^{*}_{i}} \succeq 0
+			\end{align}
+		\end{subequations}
+  
+  
+    \end{itemize}
+  \end{frame}
+  
+  
+  
+    \begin{frame}{Water Filling}
+
+ \begin{itemize}
+	\item Isolando $x^{*}_{i}$ da expressão $v^{*} \succeq  \frac{1}{\alpha_{i} + x^{*}_{i}}$ temos:
+	
+			\begin{equation}
+                             x^{*}_{i} \geq \frac{1}{v_{*}} - \alpha_{i} 
+		        \end{equation}
+		
+
+ \item Entretando $x^{*}_{i}$ não pode ser negativo no caso $ v^{*} > \frac{1}{\alpha_{i}}$, assim:
+  
+		\begin{equation}\label{eq_vec_orthonormal}
+			x^{*}_{i} = \begin{cases}
+				\frac{1}{v^{*}} - \alpha_{i}, & v^{*} < \frac{1}{\alpha_{i}} \\
+				0, & v^{*} \geq \frac{1}{\alpha_{i}}
+			\end{cases}
+		\end{equation}
+  
+  
+    \end{itemize}
+  \end{frame}
+  
+ 
+
+\end{document}
