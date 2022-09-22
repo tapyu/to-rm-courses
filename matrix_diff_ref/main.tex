@@ -1,0 +1,102 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% math
+\usepackage{amsfonts}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\hermit}{\mathsf{H}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Irrational}{\mathbb{I}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\obs}[1]{\textcolor{red}{(#1)}}
+
+% |a| -> absolute value of a, which is a scalar
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% title packages
+\usepackage{authblk}
+
+% biblatex
+\usepackage[backend=bibtex, sorting=none, style=numeric-comp, defernumbers=true]{biblatex} % using biblatex
+\addbibresource{refs.bib} % add reference file
+% for each cited reference create a category named "cited"
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+
+% strike out texts
+\usepackage{soul}
+
+% begin
+\title{\textbf{Quick-but-comprehensive guide to Matrix Differentiation}  \vspace{-.3cm}}
+\author{Rubem Vasconcelos Pacelli\\
+  {\tt rubem.engenharia@gmail.com}}
+\affil{Department of Teleinformatics Engineering, Federal University of Ceará.\\Fortaleza, Ceará, Brazil. \vspace{-.5cm}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+Since my Master's degree, I've been struggling with matrix differentiation as I could not find good references that cover it nicely. The bibliographies I found at that time were books from Economics (see references), and they use a \st{weird} distinct notation.
+
+After delving a lot, I finally found a good reference of the \href{https://atmos.washington.edu/~dennis/MatrixCalculus.pdf}{Professor Randal} (honorable mention for \href{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}{the Matrix Cookbook} too). However, to my surprise, when I tried to apply theses matrix differentiation propositions, I got ``wrong'' answers! Only in my Doctorate, I discovered what was going on: \emph{there are different ways to represent a derivative of a vector}. As far as I know, there are two ways. If you do not select the author's representation, you will end up with the same result, but in a row vector (Jacobian formulation) instead of a column vector (Hessian formulation), and vice-versa. For the cases where the resulting derivative is a matrix, you will get its transpose.
+
+Due to the lack of references and the need to get my own guide, I decided to make this quick guide. I will use the notation that most Engineers might be used to. Moreover, I will only cover the Jacobian formulation since this is the one that matches the derivative results I find in my books. If you are looking for the Hessian formulation, I highly recommend Professor Randal's notes, which use this representation. The unique drawback is that he does not use complex numbers.
+
+Some of the proposals here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email.
+
+\section{Notation and nomeclature}
+
+Let
+\begin{align}
+    \mathbf{A} = \begin{bmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots &        &        & \vdots \\
+        a_{m1} & \cdots & \cdots & a_{mn}
+    \end{bmatrix} \in \mathbb{C}^{m \times n}
+\end{align}
+be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \mathbb{C}\) is its element in the position \((i,j)\). Similarly, a complex vector is defined by
+\begin{align}
+    \mathbf{x} = \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{bmatrix}  \in \mathbb{C}^{n}.
+\end{align}
+
+Nonbold Romain and Greek alphabets represent scalars, while bold uppercases and bold lowercases represent matrices and vectors, respectively. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
+
+\subsection{Jacobian formulation}
+
+Consider two vectors \(\mathbf{x} \in \\mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\). In the Jacobian formulation (also called Denominator Layout), the partial derivative of each element in \(\mathbf{y}\) by each element in \(\mathbf{x}\) is represented as
+\begin{align}
+    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = 
+\end{align}
+
+\section{Matrix Differentiation}
+
+\nocite{*}
+% \printbibheading
+% \printbibliography[category=cited,heading=subbibliography,title={Cited papers}]
+\printbibliography[notcategory=cited] % title={Supplementary papers},heading=subbibliography
+
+\end{document}
