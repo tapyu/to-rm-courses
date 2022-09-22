@@ -33,6 +33,15 @@
 % title packages
 \usepackage{authblk}
 
+% bmatrix with additional gaps
+\usepackage{tabstackengine}
+\stackMath
+\setstackgap{L}{30pt} % vertical gap
+\setstacktabbedgap{10pt} % horizontal gap
+\def\lrgap{\kern6pt}
+\def\xbracketVectorstack#1{\left[\lrgap\Vectorstack{#1}\lrgap\right]} % use it for vectors
+\def\xbracketMatrixstack#1{\left[\lrgap\tabbedCenterstack{#1}\lrgap\right]} % use it for matrices
+
 % biblatex
 \usepackage[backend=bibtex, sorting=none, style=numeric-comp, defernumbers=true]{biblatex} % using biblatex
 \addbibresource{refs.bib} % add reference file
@@ -56,21 +65,21 @@
 \section{Introduction}
 Since my Master's degree, I've been struggling with matrix differentiation as I could not find good references that cover it nicely. The bibliographies I found at that time were books from Economics (see references), and they use a \st{weird} distinct notation.
 
-After delving a lot, I finally found a good reference of the \href{https://atmos.washington.edu/~dennis/MatrixCalculus.pdf}{Professor Randal} (honorable mention for \href{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}{the Matrix Cookbook} too). However, to my surprise, when I tried to apply theses matrix differentiation propositions, I got ``wrong'' answers! Only in my Doctorate, I discovered what was going on: \emph{there are different ways to represent a derivative of a vector}. As far as I know, there are two ways. If you do not select the author's representation, you will end up with the same result, but in a row vector (Jacobian formulation) instead of a column vector (Hessian formulation), and vice-versa. For the cases where the resulting derivative is a matrix, you will get its transpose.
+After delving a lot, I finally found a good reference of the \href{https://atmos.washington.edu/~dennis/MatrixCalculus.pdf}{Professor Randal} (honorable mention for \href{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}{the Matrix Cookbook} too). However, to my surprise, when I tried to apply these matrix differentiation propositions, I got ``wrong'' answers! Only in my Doctorate, I discovered what was going on: \emph{there are two ways to represent a derivative of a vector} \cite{Singh}. If you do not select the author's representation, you will end up with the same result, but in a row vector\footnote{Although the expression ``row vector'' is quite common, I really advocate to avoid it since, once defined a vector as a column, \(\mathbf{y}^{\trans} \in \mathbb{C}^{1\times n}\) is actually a linear transformation from \(\mathbb{R}^{n}\) to \(\mathbb{R}\). That is, it does not have anything to do with a vector, which is an entity in a \(n\)-dimensional space. Therefore, throughout this note, I will refer to is as \(1\times n\) matrix.} (Jacobian formulation or numerator layout) instead of a column vector (Hessian formulation or denominator layout), and vice-versa. For the cases where the resulting derivative is a matrix, you will get its transpose.
 
-Due to the lack of references and the need to get my own guide, I decided to make this quick guide. I will use the notation that most Engineers might be used to. Moreover, I will only cover the Jacobian formulation since this is the one that matches the derivative results I find in my books. If you are looking for the Hessian formulation, I highly recommend Professor Randal's notes, which use this representation. The unique drawback is that he does not use complex numbers.
+Due to the lack of references and the need to get my own guide, I decided to make this quick guide. I will use the notation that most Engineers might be used to. Moreover, I will only cover the Hessian formulation since this is the one that matches the derivative results I find in my books. If you are looking for the Jacobian formulation, I highly recommend Professor Randal's notes, which use this representation. The unique drawback is that he does not use complex numbers.
 
-Some of the proposals here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email.
+Some of the proposals here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email or simply make a pull request on my \href{https://github.com/tapyu/courses/tree/main/matrix_diff_ref}{Github}.
 
 \section{Notation and nomeclature}
 
 Let
 \begin{align}
     \mathbf{A} = \begin{bmatrix}
-        a_{11} & a_{12} & \cdots & a_{1n} \\
-        a_{21} & a_{22} & \cdots & a_{2n} \\
-        \vdots &        &        & \vdots \\
-        a_{m1} & \cdots & \cdots & a_{mn}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{12} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1m} & a_{m2} & \dots & a_{mn} \\
     \end{bmatrix} \in \mathbb{C}^{m \times n}
 \end{align}
 be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \mathbb{C}\) is its element in the position \((i,j)\). Similarly, a complex vector is defined by
@@ -85,18 +94,67 @@ be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \
 
 Nonbold Romain and Greek alphabets represent scalars, while bold uppercases and bold lowercases represent matrices and vectors, respectively. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
 
-\subsection{Jacobian formulation}
+\subsection{Jacobian formulation (numerator layout)}
 
-Consider two vectors \(\mathbf{x} \in \\mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\). In the Jacobian formulation (also called Denominator Layout), the partial derivative of each element in \(\mathbf{y}\) by each element in \(\mathbf{x}\) is represented as
+Consider two vectors \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\). In the Jacobian formulation (also called numerator layout), the partial derivative of each element in \(\mathbf{y}\) by each element in \(\mathbf{x}\) is represented as
 \begin{align}
-    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = 
+    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
+        \dfrac{\partial y_1^\trans}{\partial \mathbf{x}} \\
+        \dfrac{\partial y_2^\trans}{\partial \mathbf{x}} \\ 
+        \vdots \\ 
+        \dfrac{\partial y_m^\trans}{\partial \mathbf{x}}
+    \end{bmatrix} = \renewcommand{\arraystretch}{1.8}
+    \begin{bmatrix}
+        \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_1}{\partial x_2} & \dots & \dfrac{\partial y_1}{\partial x_n} \\
+        \dfrac{\partial y_2}{\partial x_1} & \dfrac{\partial y_2}{\partial x_2} & \dots & \dfrac{\partial y_2}{\partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial y_m}{\partial x_1} & \dfrac{\partial y_m}{\partial x_2} & \dots & \dfrac{\partial y_m}{\partial x_n} \\
+    \end{bmatrix} \in \mathbb{C}^{m\times n}.
 \end{align}
+
+Note that it perfectly matches with the Jacobian matrix definition,
+
+\begin{align}
+    \mathbf{J} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
+        \dfrac{\partial f_1^\trans}{\partial \mathbf{x}} \\
+        \dfrac{\partial f_2^\trans}{\partial \mathbf{x}} \\ 
+        \vdots \\ 
+        \dfrac{\partial f_m^\trans}{\partial \mathbf{x}}
+    \end{bmatrix} = \begin{bmatrix}
+        \dfrac{\partial f_1}{\partial x_1} & \dfrac{\partial f_1}{\partial x_2} & \dots & \dfrac{\partial f_1}{\partial x_n} \\
+        \dfrac{\partial f_2}{\partial x_1} & \dfrac{\partial f_2}{\partial x_2} & \dots & \dfrac{\partial f_2}{\partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial f_m}{\partial x_1} & \dfrac{\partial f_m}{\partial x_2} & \dots & \dfrac{\partial f_m}{\partial x_n} \\
+    \end{bmatrix},
+\end{align}
+where \(f: \mathbb{R}^n \rightarrow \mathbb{R}\). Perhaps that is why it is called the ``Jacobian formulation''.
+
+\subsection{Hessian formulation (denominator layout)}
+
+The Hessian formulation (or denominator layout) has the following notation
+\begin{align}
+    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = \begin{bmatrix}
+        \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_2}{\partial x_1} & \dots & \dfrac{\partial y_m}{\partial x_1} \\
+        \dfrac{\partial y_1}{\partial x_2} & \dfrac{\partial y_2}{\partial x_2} & \dots & \dfrac{\partial y_m}{\partial x_2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial y_1}{\partial x_n} & \dfrac{\partial y_2}{\partial x_n} & \dots & \dfrac{\partial y_m}{\partial x_n} \\
+    \end{bmatrix} \in \mathbb{C}^{n\times m}.
+\end{align}
+I've tried to find some analogy with the Hessian matrix but, unfortunately, I haven't discovered it yet.
+
+\subsection{Comparative between Jacobian and Hessian formulations}
+
+As you could have noticed,
+\begin{align}
+    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}}^{\trans}.
+\end{align}
+
 
 \section{Matrix Differentiation}
 
 \nocite{*}
-% \printbibheading
-% \printbibliography[category=cited,heading=subbibliography,title={Cited papers}]
-\printbibliography[notcategory=cited] % title={Supplementary papers},heading=subbibliography
+\printbibheading
+\printbibliography[category=cited,heading=subbibliography,title={Cited references}]
+\printbibliography[title={Supplementary papers},heading=subbibliography,notcategory=cited]
 
 \end{document}
