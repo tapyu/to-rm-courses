@@ -3,6 +3,8 @@
 % Language setting
 % Replace `english' with e.g. `spanish' to change the document language
 \usepackage[english]{babel}
+\usepackage{float}
+\usepackage{multirow}
 
 % math
 \usepackage{amsfonts}
@@ -46,8 +48,6 @@
 \usepackage[backend=bibtex, sorting=none, style=numeric-comp, defernumbers=true]{biblatex} % using biblatex
 \addbibresource{refs.bib} % add reference file
 % for each cited reference create a category named "cited"
-\DeclareBibliographyCategory{cited}
-\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
 % strike out texts
 \usepackage{soul}
@@ -65,11 +65,11 @@
 \section{Introduction}
 Since my Master's degree, I've been struggling with matrix differentiation as I could not find good references that cover it nicely. The bibliographies I found at that time were books from Economics (see references), and they use a \st{weird} distinct notation.
 
-After delving a lot, I finally found a good reference of the \href{https://atmos.washington.edu/~dennis/MatrixCalculus.pdf}{Professor Randal} (honorable mention for \href{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}{the Matrix Cookbook} too). However, to my surprise, when I tried to apply these matrix differentiation propositions, I got ``wrong'' answers! Only in my Doctorate, I discovered what was going on: \emph{there are two ways to represent a derivative of a vector} \cite{Singh}. If you do not select the author's representation, you will end up with the same result, but in a row vector\footnote{Although the expression ``row vector'' is quite common, I really advocate to avoid it since, once defined a vector as a column, \(\mathbf{y}^{\trans} \in \mathbb{C}^{1\times n}\) is actually a linear transformation from \(\mathbb{R}^{n}\) to \(\mathbb{R}\). That is, it does not have anything to do with a vector, which is an entity in a \(n\)-dimensional space. Therefore, throughout this note, I will refer to is as \(1\times n\) matrix.} (Jacobian formulation or numerator layout) instead of a column vector (Hessian formulation or denominator layout), and vice-versa. For the cases where the resulting derivative is a matrix, you will get its transpose.
+After delving a lot, I finally found a good reference of the \href{https://atmos.washington.edu/~dennis/MatrixCalculus.pdf}{Professor Randal} (honorable mention for \href{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}{the Matrix Cookbook} too). However, to my surprise, when I tried to apply these matrix differentiation propositions, I got ``wrong'' answers! Only in my Doctorate, I discovered what was going on: \emph{there are two ways to represent a derivative of a vector} \cite{Singh}. If you do not select the author's representation, you will end up with the same result, but in a row vector\footnote{Although the expression ``row vector'' is quite common, I really advocate to avoid it since, once defined a vector as a column, \(\mathbf{y}^{\trans} \in \mathbb{C}^{1\times n}\) is actually a linear transformation from \(\mathbb{R}^{n}\) to \(\mathbb{R}\). That is, it has nothing to do with a vector, which is an entity in a \(n\)-dimensional space. Therefore, throughout this note, I will refer to is as \(1\times n\) matrix.} instead of a column vector and vice-versa. For the cases where the resulting derivative is a matrix, you will get its transpose. The first representation is called Jacobian formulation or numerator layout, while the second one is called Hessian formulation or denominator layout.
 
-Due to the lack of references and the need to get my own guide, I decided to make this quick guide. I will use the notation that most Engineers might be used to. Moreover, I will only cover the Hessian formulation since this is the one that matches the derivative results I find in my books. If you are looking for the Jacobian formulation, I highly recommend Professor Randal's notes, which use this representation. The unique drawback is that he does not use complex numbers.
+Due to the lack of references and the need to get my own guide, I decided to make this quick guide. I will use the notation that most Engineers might be used to. Moreover, I will only cover the Hessian formulation since this is the one that matches the derivative results I find in my books. If you are looking for the Jacobian formulation, I highly recommend Professor Randal's note, which uses this representation. The unique drawback is that he does not use complex numbers.
 
-Some of the proposals here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email or simply make a pull request on my \href{https://github.com/tapyu/courses/tree/main/matrix_diff_ref}{Github}.
+Some of the differentiation solutions here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email or simply make a pull request on my \href{https://github.com/tapyu/courses/tree/main/matrix_diff_ref}{Github}.
 
 \section{Notation and nomeclature}
 
@@ -92,13 +92,13 @@ be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \
     \end{bmatrix}  \in \mathbb{C}^{n}.
 \end{align}
 
-Nonbold Romain and Greek alphabets represent scalars, while bold uppercases and bold lowercases represent matrices and vectors, respectively. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
+Nonbold Romain and Greek alphabets represent scalars, while bold uppercases and bold lowercases represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent knows variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjulgate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
 
 \subsection{Jacobian formulation (numerator layout)}
 
 Consider two vectors \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\). In the Jacobian formulation (also called numerator layout), the partial derivative of each element in \(\mathbf{y}\) by each element in \(\mathbf{x}\) is represented as
 \begin{align}
-    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
+    \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
         \dfrac{\partial y_1^\trans}{\partial \mathbf{x}} \\
         \dfrac{\partial y_2^\trans}{\partial \mathbf{x}} \\ 
         \vdots \\ 
@@ -112,7 +112,7 @@ Consider two vectors \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathb
     \end{bmatrix} \in \mathbb{C}^{m\times n}.
 \end{align}
 
-Note that it perfectly matches with the Jacobian matrix definition,
+Note that it perfectly matches the Jacobian matrix definition,
 
 \begin{align}
     \mathbf{J} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
@@ -133,7 +133,9 @@ where \(f: \mathbb{R}^n \rightarrow \mathbb{R}\). Perhaps that is why it is call
 
 The Hessian formulation (or denominator layout) has the following notation
 \begin{align}
-    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = \begin{bmatrix}
+    \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = \begin{bmatrix}
+        \dfrac{\partial y_1}{\partial \mathbf{x}} & \dfrac{\partial y_2}{\partial \mathbf{x}} & \cdots & \dfrac{\partial y_3}{\partial \mathbf{x}}
+    \end{bmatrix} = \begin{bmatrix}
         \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_2}{\partial x_1} & \dots & \dfrac{\partial y_m}{\partial x_1} \\
         \dfrac{\partial y_1}{\partial x_2} & \dfrac{\partial y_2}{\partial x_2} & \dots & \dfrac{\partial y_m}{\partial x_2} \\
         \vdots & \vdots & \ddots & \vdots \\
@@ -146,15 +148,193 @@ I've tried to find some analogy with the Hessian matrix but, unfortunately, I ha
 
 As you could have noticed,
 \begin{align}
-    \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \left[ \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}}^{\trans}.
+    \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}}^{\trans}.
 \end{align}
 
+That is the difference when you try to differentiate without paying attention to which representation the author adopted. The good news is that, as long as you differentiate it correctly, you can switch between the Jacobian and Hessian formulations by simply transposing the final result. Fortunately, the denominator layout is the most adopted by authors from areas related to Electrical Engineering. That is why we will focus on the denominator layout hereafter.
 
-\section{Matrix Differentiation}
+As a rule of thumb, keep in mind that:
+\begin{itemize}
+    \item \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{x}}\) will yield a matrix.
+    \item \(\dfrac{\partial \mathbf{Y}}{\partial x}\) will yield a matrix.
+    \item \(\dfrac{\partial x}{\partial \mathbf{X}}\) will yield a matrix.
+    \item \(\dfrac{\partial y}{\partial \mathbf{x}}\) will yield a vector.
+    \item \(\dfrac{\partial \mathbf{y}}{\partial x}\) will yield a \(1\times n\) matrix (``row vector'').
+\end{itemize}
+
+\section{Matrix Differentiation}\label{sec:diff}
+
+\subsection{\(\dfrac{\partial \mathbf{A}  \mathbf{x}}{\partial \mathbf{x}}\)}
+
+Let \(\mathbf{A}\in \mathbb{C}^{m\times n}\) and \(\mathbf{x} \in \mathbb{C}^{n}\), in which \(\mathbf{A}\) does not depend on \(\mathbf{x}\), we have that:
+\begin{align}
+    \dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = & \dfrac{\partial}{\partial \mathbf{x}} \left(
+        \begin{bmatrix}
+            a_{11} & a_{12} & \dots & a_{1n} \\
+            a_{21} & a_{22} & \dots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \dots & a_{mn} \\
+        \end{bmatrix} \begin{bmatrix}
+            x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+        \end{bmatrix} \right) \nonumber \\
+    %
+    = & \dfrac{\partial}{\partial \mathbf{x}} \left(\begin{bmatrix} 
+        \sum_{j = 1}^n a_{1j}x_j \\
+        \sum_{j = 1}^n a_{2j}x_j \\
+        \vdots \\
+        \sum_{j = 1}^n a_{mj}x_j
+    \end{bmatrix}^\trans \right) \nonumber \\
+    %
+    = & \begin{bmatrix} 
+        \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{1j}x_j}\right) & \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{2j}x_j}\right) & \dots & \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{mj}x_j}\right)
+    \end{bmatrix}
+\end{align}
+
+Since a scalar-vector derivative is represented by a vector, we have that
+\begin{align}
+    %
+    \dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = & \begin{bmatrix}
+        \dfrac{\partial}{\partial x_1} \left( \sum_{j = 1}^n a_{1j}x_j \right) & 
+        \dfrac{\partial}{\partial x_1} \left( \sum_{j = 1}^n a_{21j}x_j \right) & 
+        \dots & 
+        \dfrac{\partial}{\partial x_1} \left( \sum_{j = 1}^n a_{mj}x_j \right) \\
+        \dfrac{\partial}{\partial x_2} \left( \sum_{j = 1}^n a_{1j}x_j \right) & 
+        \dfrac{\partial}{\partial x_2} \left( \sum_{j = 1}^n a_{21j}x_j \right) & 
+        \dots & 
+        \dfrac{\partial}{\partial x_2} \left( \sum_{j = 1}^n a_{mj}x_j \right) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial}{\partial x_n} \left( \sum_{j = 1}^n a_{1j}x_j \right) & 
+        \dfrac{\partial}{\partial x_n} \left( \sum_{j = 1}^n a_{21j}x_j \right) & 
+        \dots & 
+        \dfrac{\partial}{\partial x_n} \left( \sum_{j = 1}^n a_{mj}x_j \right) \\
+    \end{bmatrix} \nonumber \\
+    %
+    = & \begin{bmatrix}
+        a_{11} & a_{21} & \dots & a_{n1} \\
+        a_{12} & a_{22} & \dots & a_{n2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1m} & a_{2m} & \dots & a_{nm} \\
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans}
+\end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{a}^\trans  \mathbf{x}}{\partial \mathbf{x}}\)}
+
+Let \(\mathbf{a, x} \in \mathbb{C}^{n}\), in which \(\mathbf{a}\) does not depend on \(\mathbf{x}\). You can derive the derivative for the inner product by considering that \(\mathbf{a}^\trans\) is actually a \(1\times n\) matrix that transforms \(\mathbb{R}^{n}\) into \(\mathbb{R}\), and we already know what is the derivate of a \(\mathbf{Ax}\). Thus,
+\begin{align}
+    \dfrac{\partial \mathbf{a}^\trans \mathbf{x}}{\partial \mathbf{x}} = {\mathbf{a}^\trans}^\trans = \mathbf{a}.
+\end{align}
+
+Even though, if you want the step-by-step, here it is:
+\begin{align}
+    \dfrac{\partial \mathbf{a}^\trans \mathbf{x}}{\partial \mathbf{x}} &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        a_1 & a_2 & \dots & a_n
+    \end{bmatrix} \begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+    \end{bmatrix} \right) \\
+    & = \dfrac{\partial}{\partial \mathbf{x}} \left( \sum_{i = 1}^n a_ix_i \right) \\
+    & = \begin{bmatrix}
+        \dfrac{\partial}{\partial x_1} \left( \sum_{i = 1}^n a_ix_i \right) \\ \dfrac{\partial}{\partial x_2} \left( \sum_{i = 1}^n a_ix_i \right) \\ \vdots \\ \dfrac{\partial}{\partial x_n} \left( \sum_{i = 1}^n a_ix_i \right) 
+    \end{bmatrix} = \begin{bmatrix}
+        a_1 \\ a_2 \\ \vdots \\ a_n
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{a}^\trans \mathbf{x}}{\partial \mathbf{x}} = \mathbf{a}}
+\end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans  \mathbf{a}}{\partial \mathbf{x}}\)}
+
+This one can be solved quickly by noticing that \(\mathbf{x}^\trans  \mathbf{a} = \mathbf{a}^\trans  \mathbf{x}\). Hence,
+\begin{align}
+    \dfrac{\partial \mathbf{x}^\trans  \mathbf{a}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{a}^\trans  \mathbf{x}}{\partial \mathbf{x}} = \mathbf{a}
+\end{align}
+
+Nevertheless, here is the step-by-step:
+\begin{align}
+    \dfrac{\partial \mathbf{x}^\trans \mathbf{a}}{\partial \mathbf{x}} &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        x_1 & x_2 & \dots & x_n
+    \end{bmatrix} \begin{bmatrix}
+        a_{1} \\ a_{2} \\ \vdots \\ a_{n}
+    \end{bmatrix} \right) \\
+    & = \dfrac{\partial}{\partial \mathbf{x}} \left( \sum_{i = 1}^n x_ia_i \right) \\
+    & = \begin{bmatrix}
+        \dfrac{\partial}{\partial x_1} \left( \sum_{i = 1}^n x_ia_i \right) \\ \dfrac{\partial}{\partial x_2} \left( \sum_{i = 1}^n x_ia_i \right) \\ \vdots \\ \dfrac{\partial}{\partial x_n} \left( \sum_{i = 1}^n x_ia_i \right) 
+    \end{bmatrix} 
+    = \begin{bmatrix}
+        a_1 \\ a_2 \\ \vdots \\ a_n
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{a}}{\partial \mathbf{x}} = \mathbf{a}}
+\end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{a}^\hermit  \mathbf{x}}{\partial \mathbf{x}}\)}
+
+Let \(\mathbf{a, x} \in \mathbb{C}^{n}\), in which \(\mathbf{a}\) does not depend on \(\mathbf{x}\). Once again, we could say that
+\begin{align}
+    \dfrac{\partial \mathbf{a}^\hermit \mathbf{x}}{\partial \mathbf{x}} = {\mathbf{a}^\hermit}^\trans = \mathbf{a}^*
+\end{align}
+
+Nevertheless, here is the step-by-step:
+\begin{align}
+    \dfrac{\partial \mathbf{a}^\hermit \mathbf{x}}{\partial \mathbf{x}} &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        a^*_1 & a^*_2 & \dots & a^*_n
+    \end{bmatrix} \begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+    \end{bmatrix} \right) 
+    = \dfrac{\partial}{\partial \mathbf{x}} \left( \sum_{i = 1}^n a^*_ix_i \right) \\
+\end{align}
+
+Since a scalar-vector derivative is represented by a vector, we have that
+\begin{align}
+    \dfrac{\partial \mathbf{a}^\hermit \mathbf{x}}{\partial \mathbf{x}} &= \begin{bmatrix}
+        \dfrac{\partial}{\partial x_1} \left( \sum_{i = 1}^n a^*_ix_i \right) \\ \dfrac{\partial}{\partial x_2} \left( \sum_{i = 1}^n a^*_ix_i \right) \\ \vdots \\ \dfrac{\partial}{\partial x_n} \left( \sum_{i = 1}^n a^*_ix_i \right) 
+    \end{bmatrix}
+    = \begin{bmatrix}
+        a^*_1 \\ a^*_2 \\ \vdots \\ a^*_n
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{a}^\hermit \mathbf{x}}{\partial \mathbf{x}} = \mathbf{a}^*}
+\end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\hermit \mathbf{a}}{\partial \mathbf{x}}\)}
+Notice that \(\mathbf{x}^\hermit \mathbf{a} \neq \mathbf{a}^\hermit \mathbf{x}\). Therefore, we have no choice but derive it. Let \(\mathbf{a, x} \in \mathbb{C}^{n}\), in which \(\mathbf{a}\) does not depend on \(\mathbf{x}\), we have that
+\begin{align}
+    \frac{\partial \mathbf{x}^\hermit \mathbf{a}}{\mathbf{x}} & = \frac{\partial}{\mathbf{x}} \left(
+    \begin{bmatrix}
+        x^*_1 & x^*_2 & \dots & x^*_n
+    \end{bmatrix} \begin{bmatrix}
+        a_{1} \\ a_{2} \\ \vdots \\ a_{n}
+    \end{bmatrix} \right) \\
+    & = \frac{\partial}{\mathbf{x}} \left( \sum_{i = 1}^n x^*_ia_i \right) \\
+    &= \begin{bmatrix}
+            \dfrac{\partial}{\partial x_1} \left( \sum_{i = 1}^n x^*_ia_i \right) \\ \dfrac{\partial}{\partial x_2} \left( \sum_{i = 1}^n x^*_ia_i \right) \\ \vdots \\
+            \dfrac{\partial}{\partial x_n} \left( \sum_{i = 1}^n x^*_ia_i \right)
+        \end{bmatrix}.
+\end{align}
+By recalling that \(\dfrac{\partial x^*}{x} = 0\), we have that
+\begin{align}
+    \frac{\partial \mathbf{x}^\hermit \mathbf{a}}{\mathbf{x}} = \begin{bmatrix}
+        0 \\ 0 \\ \vdots \\ 0
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\frac{\partial \mathbf{x}^\hermit \mathbf{a}}{\mathbf{x}} = \mathbf{0}}
+\end{align}
+where \(\mathbf{0} \in \mathbb{C}^n\) is the zero vector.
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
+
+
 
 \nocite{*}
-\printbibheading
-\printbibliography[category=cited,heading=subbibliography,title={Cited references}]
-\printbibliography[title={Supplementary papers},heading=subbibliography,notcategory=cited]
+\printbibliography
 
 \end{document}
