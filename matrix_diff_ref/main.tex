@@ -10,14 +10,8 @@
 \usepackage{amsfonts}
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\hermit}{\mathsf{H}}
-\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
-\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
-\newcommand{\Natural}{\mathbb{N}}
-\newcommand{\Integer}{\mathbb{Z}}
-\newcommand{\Irrational}{\mathbb{I}}
-\newcommand{\Rational}{\mathbb{Q}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
+\newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjoint
 \newcommand{\obs}[1]{\textcolor{red}{(#1)}}
 
 % |a| -> absolute value of a, which is a scalar
@@ -176,14 +170,14 @@ Let \(\mathbf{A}\in \mathbb{C}^{m\times n}\) and \(\mathbf{x} \in \mathbb{C}^{n}
             a_{m1} & a_{m2} & \dots & a_{mn} \\
         \end{bmatrix} \begin{bmatrix}
             x_{1} \\ x_{2} \\ \vdots \\ x_{n}
-        \end{bmatrix} \right) \nonumber \\
+        \end{bmatrix} \right)  \\
     %
     = & \dfrac{\partial}{\partial \mathbf{x}} \left(\begin{bmatrix} 
         \sum_{j = 1}^n a_{1j}x_j \\
         \sum_{j = 1}^n a_{2j}x_j \\
         \vdots \\
         \sum_{j = 1}^n a_{mj}x_j
-    \end{bmatrix}^\trans \right) \nonumber \\
+    \end{bmatrix}^\trans \right)  \\
     %
     = & \begin{bmatrix} 
         \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{1j}x_j}\right) & \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{2j}x_j}\right) & \dots & \dfrac{\partial}{\partial \mathbf{x}}\left(\sum_{j = 1}^n {a_{mj}x_j}\right)
@@ -207,7 +201,7 @@ Since a scalar-vector derivative is represented by a vector, we have that
         \dfrac{\partial}{\partial x_n} \left( \sum_{j = 1}^n a_{21j}x_j \right) & 
         \dots & 
         \dfrac{\partial}{\partial x_n} \left( \sum_{j = 1}^n a_{mj}x_j \right) \\
-    \end{bmatrix} \nonumber \\
+    \end{bmatrix}  \\
     %
     = & \begin{bmatrix}
         a_{11} & a_{21} & \dots & a_{n1} \\
@@ -331,8 +325,157 @@ By recalling that \(\dfrac{\partial x^*}{x} = 0\), we have that
 where \(\mathbf{0} \in \mathbb{C}^n\) is the zero vector.
 
 \subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
+Let \(\mathbf{A}\in \mathbb{C}^{n\times n}\) and \(\mathbf{x} \in \mathbb{C}^{n}\), in which \(\mathbf{A}\) does not depend on \(\mathbf{x}\). For the quadratic form, it follows that
+\begin{align}
+    \frac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} &= \frac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        x_{1} & x_{2} & \dots & x_{n}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \dots & a_{nn} \\
+    \end{bmatrix} \begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+    \end{bmatrix} \right) \\
+    &= \frac{\partial}{\partial \mathbf{x}} \left(
+			\begin{bmatrix}
+				\displaystyle \sum_{i = 1}^{n} x_{i}a_{i1} & 
+				\displaystyle \sum_{i = 1}^{n} x_{i}a_{i2} & 
+				\dots & 
+				\displaystyle \sum_{i = 1}^{n} x_{i}a_{in}
+			\end{bmatrix} \begin{bmatrix}
+				x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+			\end{bmatrix} \right) \\
+            &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+				\sum_{i = 1}^{n}\sum_{j = 1}^{n} a_{ij} x_{i} x_{j}
+			\right).
+\end{align}
 
+Note that the element inside the parentheses is a scalar and that a scalar-vector derivative results in a vector, that is,
+\begin{align}
+    \frac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} &= \begin{bmatrix}
+        \displaystyle \frac{\partial}{\partial x_1} \left( \sum_{i = 1}^{n}\sum_{j = 1}^{n} x_{i} a_{ij} x_{j} \right) \\ 
+        \displaystyle  \frac{\partial}{\partial x_2} \left( \sum_{i = 1}^{n}\sum_{j = 1}^{n} x_{i} a_{ij} x_{j} \right) \\ 
+        \vdots \\ 
+        \displaystyle \frac{\partial}{\partial x_n} \left( \sum_{i = 1}^{n}\sum_{j = 1}^{n} x_{i} a_{ij} x_{j} \right) 
+    \end{bmatrix} \\
+    & = \begin{bmatrix}
+        \displaystyle 2x_1a_{11} + \sum_{\substack{j = 1 \\ j \neq 1}}^{n} a_{1j} x_{j} + \sum_{\substack{i = 1 \\ i \neq 1}}^{n} a_{i1} x_{i} \\
+        \displaystyle 2x_2a_{22} + \sum_{\substack{j = 1 \\ j \neq 2}}^{n} a_{2j} x_{j} + \sum_{\substack{i = 1 \\ i \neq 2}}^{n} a_{i2} x_{i} \\
+        \vdots \\
+        \displaystyle 2x_na_{nn} + \sum_{\substack{j = 1 \\ j \neq n}}^{n} a_{nj} x_{j} + \sum_{\substack{i = 1 \\ i \neq n}}^{n} a_{in} x_{i} 
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        \displaystyle \sum_{j = 1}^{n} a_{1j} x_{j} + \sum_{i = 1}^{n} a_{i1} x_{i} \\
+        \displaystyle \sum_{j = 1}^{n} a_{2j} x_{j} + \sum_{i = 1}^{n} a_{i2} x_{i} \\
+        \vdots \\
+        \displaystyle \sum_{j = 1}^{n} a_{nj} x_{j} + \sum_{i = 1}^{n} a_{in} x_{i} 
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\frac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans \mathbf{x} + \mathbf{A} \mathbf{x}}
+\end{align}
+For the special case where \(\mathbf{A}\) is symmetric, it we obtain
+\begin{align}
+    \boxed{\frac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{A} \mathbf{x}}
+\end{align}
 
+\subsection{\(\dfrac{\partial \textnormal{tr}(\mathbf{AX})}{\partial \mathbf{X}}\)}
+
+Let \(\mathbf{A}, \mathbf{X} \in \mathbb{R}^{n\times n}\), where \(\mathbf{A}\) does not depend on the elements in \(\mathbf{X}\).
+\begin{align*}
+    \frac{\partial \textnormal{tr}\left(\mathbf{A} \mathbf{X}\right)}{\partial \mathbf{X}} &= \frac{\partial}{\partial \mathbf{X}} \left( \tr{\begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \dots & a_{nn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_{11} & x_{12} & \dots & x_{1n} \\
+        x_{21} & x_{22} & \dots & x_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        x_{n1} & x_{n2} & \dots & x_{nn} \\
+    \end{bmatrix} \right)} \\
+    %
+    &= \frac{\partial}{\partial \mathbf{X}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) \\
+    %
+    &= \begin{bmatrix}
+        \displaystyle \frac{\partial}{\partial x_{11}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{12}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{1n}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) \\
+        \displaystyle \frac{\partial}{\partial x_{21}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{22}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{2n}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \displaystyle \frac{\partial}{\partial x_{n1}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{n2}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{nn}} \left( \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}x_{ji} \right) \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+            a_{11} & a_{21} & \dots & a_{n1} \\
+            a_{12} & a_{22} & \dots & a_{n2} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{1n} & a_{2n} & \dots & a_{nn} \\
+        \end{bmatrix}
+\end{align*}
+\begin{align}
+    \boxed{\frac{\partial \textnormal{tr}\left(\mathbf{A} \mathbf{X}\right)}{\partial \mathbf{X}} = \mathbf{A}^\trans}
+\end{align}
+\subsection{\(\dfrac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}}\)}
+Let \(\mathbf{X} \in \mathbb{R}^{n\times n}\). Through Laplace expansion (cofactor expansion), we can rewrite the determinant of \(\mathbf{X}\) as the sum of the cofactors of any row or column, multiplied by its generating element, that is
+\begin{align}
+    \abs{\mathbf{X}} = \sum_{i = 1}^{n} x_{ki} \abs{\mathbf{C}_{ki}} = \sum_{i = 1}^{n} x_{ik} \abs{\mathbf{C}_{ik}} \,\,\,\,\,\, \forall \,\, k \in \left\{ 1, 2, ..., n \right\},
+\end{align}
+where \(\mathbf{C}_{ij}\) denotes the cofactor matrix of \(\mathbf{X}\) generated from element \(x_{ij}\). It is worth noting that the cofactor of \(\mathbf{C}_{ij}\) is independent of the value of any element \((i,j)\) in \(\mathbf{X}\). Therefore, it follows that
+\begin{align}
+    \frac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}} &= \frac{\partial}{\partial \mathbf{X}} \left( \sum_{i = 1}^{n} x_{ki} \abs{\mathbf{C}_{ki}} \right) \,\,\,\,\,\, \forall \,\, k \in \left\{ 1, 2, ..., n \right\} \\
+    %
+    & = \frac{\partial}{\partial \mathbf{X}} \left( \begin{bmatrix}
+        \displaystyle \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} & 
+        \displaystyle \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} & 
+        \dots & 
+        \displaystyle \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} \\
+        \displaystyle \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} & 
+        \displaystyle \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} & 
+        \dots & 
+        \displaystyle \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \displaystyle \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}} & 
+        \displaystyle \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}} & 
+        \dots & 
+        \displaystyle \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}}
+    \end{bmatrix} \right) \\
+    %
+    & = \begin{bmatrix}
+        \displaystyle \frac{\partial}{\partial x_{11}} \left( \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{12}} \left( \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{13}} \left( \sum_{i = 1}^{n} x_{1i} \abs{\mathbf{C}_{1i}} \right) \\
+        \displaystyle \frac{\partial}{\partial x_{21}} \left( \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{22}} \left( \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{33}} \left( \sum_{i = 1}^{n} x_{2i} \abs{\mathbf{C}_{2i}} \right) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \displaystyle \frac{\partial}{\partial x_{n1}} \left( \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}} \right) & 
+        \displaystyle \frac{\partial}{\partial x_{n2}} \left( \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}} \right) & 
+        \dots & 
+        \displaystyle \frac{\partial}{\partial x_{n3}} \left( \sum_{i = 1}^{n} x_{ni} \abs{\mathbf{C}_{ni}} \right) \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        \abs{\mathbf{C}_{11}} & \abs{\mathbf{C}_{12}} & \dots & \abs{\mathbf{C}_{1n}} \\
+        \abs{\mathbf{C}_{21}} & \abs{\mathbf{C}_{22}} & \dots & \abs{\mathbf{C}_{2n}} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \abs{\mathbf{C}_{n1}} & \abs{\mathbf{C}_{n2}} & \dots & \abs{\mathbf{C}_{nn}} \\
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\frac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}} = \adj{\mathbf{X}}}
+\end{align}
 
 \nocite{*}
 \printbibliography
