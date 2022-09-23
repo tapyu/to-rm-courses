@@ -214,6 +214,8 @@ Since a scalar-vector derivative is represented by a vector, we have that
     \boxed{\dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans}
 \end{align}
 
+\subsection{\(\dfrac{\partial \mathbf{A}  \mathbf{x}}{\partial \mathbf{z}}\)}
+
 \subsection{\(\dfrac{\partial \mathbf{a}^\trans  \mathbf{x}}{\partial \mathbf{x}}\)}
 
 Let \(\mathbf{a, x} \in \mathbb{C}^{n}\), in which \(\mathbf{a}\) does not depend on \(\mathbf{x}\). You can derive the derivative for the inner product by considering that \(\mathbf{a}^\trans\) is actually a \(1\times n\) matrix that transforms \(\mathbb{R}^{n}\) into \(\mathbb{R}\), and we already know what is the derivate of a \(\mathbf{Ax}\). Thus,
@@ -313,7 +315,7 @@ Notice that \(\mathbf{x}^\hermit \mathbf{a} \neq \mathbf{a}^\hermit \mathbf{x}\)
             \dfrac{\partial}{\partial x_n} \left( \sum_{i = 1}^n x^*_ia_i \right)
         \end{bmatrix}.
 \end{align}
-By recalling that \(\dfrac{\partial x^*}{x} = 0\), we have that
+By recalling that \(\dfrac{\partial x^*}{x} = 0\) \obs{reference required}, we have that
 \begin{align}
     \frac{\partial \mathbf{x}^\hermit \mathbf{a}}{\mathbf{x}} = \begin{bmatrix}
         0 \\ 0 \\ \vdots \\ 0
@@ -323,6 +325,10 @@ By recalling that \(\dfrac{\partial x^*}{x} = 0\), we have that
     \boxed{\frac{\partial \mathbf{x}^\hermit \mathbf{a}}{\mathbf{x}} = \mathbf{0}}
 \end{align}
 where \(\mathbf{0} \in \mathbb{C}^n\) is the zero vector.
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{z}}\)}
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{z}}\)}
 
 \subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
 Let \(\mathbf{A}\in \mathbb{C}^{n\times n}\) and \(\mathbf{x} \in \mathbb{C}^{n}\), in which \(\mathbf{A}\) does not depend on \(\mathbf{x}\). For the quadratic form, it follows that
@@ -381,6 +387,14 @@ For the special case where \(\mathbf{A}\) is symmetric, it we obtain
 \begin{align}
     \boxed{\frac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{A} \mathbf{x}}
 \end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}}\)}
+
+\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
+
+\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{y}}\)}
+
+\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}}\)}
 
 \subsection{\(\dfrac{\partial \textnormal{tr}(\mathbf{AX})}{\partial \mathbf{X}}\)}
 
@@ -476,6 +490,8 @@ where \(\mathbf{C}_{ij}\) denotes the cofactor matrix of \(\mathbf{X}\) generate
 \begin{align}
     \boxed{\frac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}} = \adj{\mathbf{X}}}
 \end{align}
+
+\subsection{\(\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha }\)}
 
 \nocite{*}
 \printbibliography
