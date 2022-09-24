@@ -567,14 +567,14 @@ Note that the element inside the parentheses is a scalar and that a scalar-vecto
 \end{align}
 \begin{align}
     \label{eq:quadratic-solution}
-    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \left(\mathbf{A}^\trans + \mathbf{A}\right) \mathbf{x}}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \left(\mathbf{A}^\trans + \mathbf{A}\right) \mathbf{x} \in \mathbb{C}^{n}}
 \end{align}
 For the special case where \(\mathbf{A}\) is symmetric, we obtain
 \begin{align}
-    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{A} \mathbf{x}}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{A} \mathbf{x} \in \mathbb{C}^{n}}
 \end{align}
 
-\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}}\)}
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\left( \mathbf{A} + \mathbf{A}^\trans \right) \mathbf{x}\)}
 Let \(\mathbf{z} \in \mathbb{C}^{m}, \mathbf{x} \in \mathbb{C}^{n}\) and \(\mathbf{A}\in \mathbb{C}^{n\times n}\), where \(\mathbf{x}\) depends on \(\mathbf{z}\), but \(\mathbf{A}\) does not. For the quadratic form, it follows that
 \begin{align}
     \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} &= \dfrac{\partial}{\partial \mathbf{z}} \left(
@@ -665,19 +665,19 @@ Recalling that \((fg)' = f'g + g'f\), we have that
      & = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{A} \mathbf{x} + \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{A}^\trans \mathbf{x}
 \end{align}
 \begin{align}
-    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\left( \mathbf{A} + \mathbf{A}^\trans \right) \mathbf{x}}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\left( \mathbf{A} + \mathbf{A}^\trans \right) \mathbf{x} \in \mathbb{C}^{m}}
 \end{align}
 
 For the special case where \(\mathbf{A}\) is symmetric, we get
 \begin{align}
-    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = 2\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{A} \mathbf{x}}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = 2\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{A} \mathbf{x} \in \mathbb{C}^{m}}
 \end{align}
 
 Note that the solution is much easier if we maintain the matrix calculus notation and apply the chain rule, that is,
 \begin{align}
     \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \left(\mathbf{A}^\trans + \mathbf{A}\right) \mathbf{x},
 \end{align}
-where the last equality come from Equation \eqref{eq:quadratic-solution}.
+where the last equality comes from the Equation \eqref{eq:quadratic-solution}.
 
 \subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
 
