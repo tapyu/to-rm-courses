@@ -89,7 +89,7 @@ be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \
     \end{bmatrix}  \in \mathbb{C}^{n}.
 \end{align}
 
-Nonbold Romain and Greek alphabets represent scalars, while bold uppercase and bold lowercase represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent known variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjugate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar). Greek letters will be preferred to represent scalars that are not within a vector or matrix.
+Nonbold Romain and Greek alphabets represent scalars, while bold uppercase and bold lowercase represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent known variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjugate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar). Greek letters will be preferred to represent independent and unknown scalars that are not within a vector or matrix.
 
 \subsection{Jacobian formulation (numerator layout)}
 
@@ -193,7 +193,6 @@ As you could have noticed,
 
 That is the difference when you try to differentiate without paying attention to which representation the author adopted. The good news is that, as long as you differentiate it correctly, you can switch between the Jacobian and Hessian formulations by simply transposing the final result\footnote{First, you should apply \(\left[\cdot\right]_{\textnormal{Den}} = \left[\cdot\right]_{\textnormal{Num}}^{\trans}\) on partial derivatives that you get in the solution. Then, you apply the transpose to the whole solution.}. Fortunately, the denominator layout is the most adopted by authors from areas related to Electrical Engineering. That is why we will focus on the denominator layout hereafter (the notation \(\left[\cdot\right]_{\textnormal{Den}}\) will be dropped out since we do not need it anymore).
 
-\newpage
 As a rule of thumb, keep in mind that:
 \begin{itemize}
     \item \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{x}}\) will yield a matrix.
@@ -205,8 +204,109 @@ As a rule of thumb, keep in mind that:
 
 Note that notations such as \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{X}}, \dfrac{\partial \mathbf{Y}}{\partial \mathbf{X}}\), or \(\dfrac{\partial \mathbf{Y}}{\partial \mathbf{x}}\) do not exist for both Jacobian and Hessian formulations.
 
-\section{Matrix Differentiation}\label{sec:diff}
-To solve matrix differentiations, you only need to know that a scalar-vector derivate results in a vector for the Hessian formulation. All other shapes will naturally arise.
+\section{Identities}
+
+We usually have two ways to solve matrix differentiation:
+\begin{enumerate}
+    \item Performing element-by-element operations in matrices and vectors;
+    \item Preserving the matrix calculus notation, performing operations on the whole matrix/vector and, eventually, using some identities.
+\end{enumerate}
+The latter is usually more straightforward and less toilsome than the former and is therefore preferable.
+
+However, in order to only use matrix calculus notations, we need to be cautious when applying the matrix differentiation identities since the element orders matter. For instance, for scalar elements, the product rule may be written as either \((fg)' = f'g + g'f\) or \((fg)' = g f' + f g'\). In matrix calculus, we do not have such a privilege.
+
+\subsection{Chain rule}
+\subsubsection{One intermediate variable}
+For scalar elements, the chain rule is given by
+\begin{align}
+    \dfrac{\partial w}{\partial z} = \dfrac{\partial w}{\partial x} \dfrac{\partial x}{\partial y} \dfrac{\partial y}{\partial z}.
+\end{align}
+Similarly, in matrix notation, we have
+\begin{align}
+    \label{eq:chain-1inter}
+    \dfrac{\partial \mathbf{w}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}}{\partial \mathbf{y}} \dfrac{\partial \mathbf{w}}{\partial \mathbf{x}},
+\end{align}
+where \(\mathbf{x} \in \mathbb{C}^{n}, \mathbf{y} \in \mathbb{C}^{m}, \mathbf{z} \in \mathbb{C}^{p}\), and \(\mathbf{w} \in \mathbb{R}^q\). In this expression, \(\mathbf{w}\) depends on \(\mathbf{x}\), \(\mathbf{x}\) depends on \(\mathbf{y}\), and \(\mathbf{y}\) depends on \(\mathbf{z}\). The number of elements in the chain rule can be increased indiscriminately. The main point here is that \emph{the chain rule in matrix calculus notation must be placed backward when compared with the standard chain rule of scalar elements}.
+
+\subsubsection{Multi-intermediate variables}
+
+In the previous section, we needed the partial derivative of \(\mathbf{w}\) by \(\mathbf{z}\). We could solve it by applying the chain rule. \(\mathbf{w}\) is called \emph{dependent} variable, \(\mathbf{z}\) is called \emph{independent} variable, and \(\mathbf{x}\) and \(\mathbf{y}\) are called \emph{intermediate} variables.
+
+We had the luck of having only one intermediate variable by time, that is, \(\mathbf{w}\) depends on \(\mathbf{x}\), which depends on \(\mathbf{y}\), which depends on \(\mathbf{z}\). However, we might find a situation where \(\mathbf{w}\) depends on both \(\mathbf{x}\) and \(\mathbf{y}\) which, in turn, depend on \(\mathbf{z}\).
+
+For scalar elements, we could solve this kind of problem by considering that \(w = f(x, y)\) is differentiable on \(x\) and \(y\). The chain rule becomes
+\begin{align}
+    \dfrac{\partial w}{\partial z} = \dfrac{\partial w}{\partial x} \dfrac{\partial x}{\partial z} + \dfrac{\partial w}{\partial y} \dfrac{\partial y}{\partial z}.
+\end{align}
+
+Similarly, for matrix calculus notation, we have
+\begin{align}
+    \label{eq:chain-multi-inter}
+    \dfrac{\partial \mathbf{w}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{w}}{\partial \mathbf{x}} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{w}}{\partial \mathbf{y}}
+\end{align}
+
+Note the backward placement of each summation term. This expression can be used for an unrestricted number of intermediate variables.
+
+\subsection{Sum (or minus) rule}
+\subsubsection{Vector-vector derivative}
+Let \(\mathbf{x}, \mathbf{y} \in \mathbb{C}^{m}\) and \(a, b \in \mathbb{C}\), where \(\mathbf{x}\) and \(\mathbf{y}\) depend on \(\mathbf{w} \in \mathbb{C}^{n}\), but \(a\) and \(b\) do not. Therefore,
+\begin{align}
+    \dfrac{\partial (a\mathbf{x} \pm b\mathbf{y})}{\partial\mathbf{w}} = a\dfrac{\partial \mathbf{x}}{\partial\mathbf{w}} \pm b\dfrac{\partial \mathbf{y}}{\partial\mathbf{w}}
+\end{align}
+\subsubsection{Matrix-scalar derivative}
+Another is when you have
+\begin{align}
+    \dfrac{\partial \left( a\mathbf{X} \pm b\mathbf{Y} \right)}{\partial \alpha},
+\end{align}
+where \(\mathbf{X}, \mathbf{Y} \in \mathbb{C}^{m \times n}\) depend on \(\alpha \in \mathbb{C}\). The solution is
+\begin{align}
+    \dfrac{\partial (a\mathbf{X} \pm b\mathbf{Y})}{\partial\mathbf{\alpha}} = a\dfrac{\partial \mathbf{X}}{\partial \alpha} \pm b \dfrac{\partial \mathbf{Y}}{\partial \alpha}.
+\end{align}
+\subsubsection{Scalar-matrix derivative}
+The scalar-matrix derivative has a similar result, i.e.,
+\begin{align}
+    \dfrac{\partial \left( ax \pm by \right)}{\partial \mathbf{W}} = a\dfrac{\partial x}{\partial \mathbf{W}} \pm b \dfrac{\partial y}{\partial \mathbf{W}},
+\end{align}
+where \(x, y \in \mathbb{C}\) depend on \(\mathbf{W} \in \mathbb{C}^{m\times n}\), but \(a,b \in \mathbb{C}\) do not.
+
+\subsection{Product rule}
+\subsubsection{Vector-vector derivative}
+Let \(w \in \mathbb{C}\) and \(\mathbf{z} \in \mathbb{C}^{m}\), where both depend on \(\mathbf{x} \in \mathbb{C}^{n}\). Then,
+\begin{align}
+    \dfrac{\partial w \mathbf{z}}{\partial \mathbf{x}} = w \dfrac{\partial \mathbf{z}}{\partial \mathbf{x}} + \dfrac{\partial w}{\partial \mathbf{x}} \mathbf{z}^\trans.
+\end{align}
+
+Note that is not possible to apply the product rule when you have \(\mathbf{Wz}\), where \(\mathbf{W} \in \mathbb{C}^{n \times m}\) also depends on \(\mathbf{x}\). If you tried, you would get \(\partial\mathbf{W}/\partial\mathbf{x}\), which does not exist.
+\subsubsection{Scalar-vector derivative}
+Another possibility of applying the product rule is when you have \(\mathbf{w}^{\trans} \mathbf{z}\), where \(\mathbf{w} \in \mathbb{C}^{m}\) also depends on \(\mathbf{x} \in \mathbb{C}^{n}\). In this case, the dot product is given by
+\begin{align}
+    \dfrac{\partial \mathbf{w}^{\trans} \mathbf{z}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{z}}{\partial \mathbf{x}} \mathbf{w} + \dfrac{\partial \mathbf{w}}{\partial \mathbf{x}} \mathbf{z}.
+\end{align}
+
+\subsubsection{Scalar-matrix derivative}
+It is still possible to apply the product rule to
+\begin{align}
+    \dfrac{\partial wz}{\partial \mathbf{X}},
+\end{align}
+where \(w,z \in \mathbb{C}\) depend on \(\mathbf{X} \in \mathbb{C}^{m \times n}\). In this case, we have
+\begin{align}
+    \dfrac{\partial wz}{\partial \mathbf{X}} = w \dfrac{\partial z}{\partial \mathbf{X}} + z \dfrac{\partial w}{\partial \mathbf{X}}.
+\end{align}
+
+\subsubsection{Matrix-scalar derivative}
+The last case is when you have
+\begin{align}
+    \dfrac{\partial \mathbf{W}\mathbf{Z}}{\partial \alpha},
+\end{align}
+where both \(\mathbf{W} \in \mathbb{C}^{m \times p}\) and \(\mathbf{Z} \in \mathbb{C}^{p\times n}\) depend on \(\alpha \in \mathbb{C}\). In this case, we have
+\begin{align}
+    \label{eq:matrix-matrix-product-rule}
+    \dfrac{\partial \mathbf{W}\mathbf{Z}}{\partial \alpha} = \dfrac{\partial \mathbf{Z}}{\partial \alpha}\mathbf{W}^{\trans} + \mathbf{Z}^{T} \dfrac{\mathbf{W}}{\partial \alpha}
+\end{align}
+
+
+\section{Solution of Matrix Differentiations}\label{sec:diff}
+The solutions in this Section will usually show the element-by-element solution and the solution by preserving the matrix calculus notation. For the element-by-element solutions, you only need to know that a scalar-vector derivate results in a vector for the Hessian formulation. All other shapes will naturally arise. For solutions with matrix calculus notation, you need to be acquainted with some of their identities.
 
 \subsection{\(\dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans\)}
 
@@ -294,12 +394,10 @@ Let \(\mathbf{x} \in \mathbb{C}^{n}\), \(\mathbf{z} \in \mathbb{C}^{p}\) and \(\
     \boxed{\dfrac{\partial \mathbf{A}  \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^\trans \in \mathbb{C}^{p \times m}}
 \end{align}
 
-Observe that this result is equivalent to applying the chain rule in the following way
+Observe that this result is equivalent to applying the chain rule (c.f. Equation \eqref{eq:chain-1inter}), that is,
 \begin{align}
     \dfrac{\partial \mathbf{A}  \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{A}  \mathbf{x}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^\trans.
 \end{align}
-
-Note that the chain rule in matrix calculus is placed backward when compared with the standard chain rule of scalar elements.
 
 \subsection{\(\dfrac{\partial \mathbf{a}^\trans \mathbf{x}}{\partial \mathbf{x}} = \mathbf{a}\)}
 
@@ -504,7 +602,7 @@ Let \(\mathbf{x} \in \mathbb{C}^{n}\) and \(\mathbf{z}\in \mathbb{C}^m\), where 
     \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{z}} = 2\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{x} \in \mathbb{C}^m}
 \end{align}
 
-Note that this solution could also be solved by the chain rule as follows
+Note that this solution could also be solved by the chain rule (c.f. Equation \eqref{eq:chain-1inter}) as follows
 \begin{align}
     \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{x}} = 2\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{x} \in \mathbb{C}^m}
 \end{align}
@@ -879,19 +977,12 @@ Recalling that \((fg)' = f'g + g'f\), we have that
     \boxed{\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^{\trans} \mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \mathbf{A} \mathbf{x}}
 \end{align}
 
-Even though this problem is trickier, we can find the same solution in a clever way by preserving the matrix calculus notation. But first, let us make a quick recap of multivariate derivatives of scalar values.
-
-Suppose that \(w = f(x, y) \in \mathbb{R}\), where \(f\) has first-order partial derivatives in \(x\) and \(y\). Therefore, the differential element is given by
+Even though this problem is trickier, we can find the same solution in a clever way by preserving the matrix calculus notation and applying the chain rule. Note that \(\mathbf{y}^\trans \mathbf{A} \mathbf{x}\) depends on both \(\mathbf{x}\) and \(\mathbf{y}\) which, in turn, depend on \(\mathbf{z}\). Therefore (c.f. Equation \eqref{eq:chain-multi-inter}),
 \begin{align}
-    f(\diff x, \diff y) = \diff w = \dfrac{\partial w}{\partial x} \diff x + \dfrac{\partial w}{\partial y} \diff y.
+    \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} & = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{y}} \\
+    & = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^{\trans} \mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \mathbf{A} \mathbf{x},
 \end{align}
-
-Similarly, in matrix calculus, we have \(w = f(\mathbf{x}, \mathbf{y}) = \mathbf{y}^\trans \mathbf{A} \mathbf{x} \), and its differential element is given by
-\begin{align}
-    f(\diff \mathbf{x}, \diff \mathbf{y}) & = \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} \diff \mathbf{x} + \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{y}} \diff \mathbf{y} \\
-    & = \mathbf{A}^\trans \mathbf{y} \diff \mathbf{x} + \mathbf{A} \mathbf{x} \diff \mathbf{y}
-\end{align}
-\obs{find how to solve it in this way and check if it is valid for complex numbers}
+where the second equality comes from previous solutions.
 
 \subsection{\(\dfrac{\partial \textnormal{tr}\left(\mathbf{A} \mathbf{X}\right)}{\partial \mathbf{X}} = \mathbf{A}^\trans\)}
 
@@ -993,16 +1084,18 @@ where \(\mathbf{C}_{ij}\) denotes the cofactor matrix of \(\mathbf{X}\) generate
 
 I have no idea how to make this solution simpler.
 
-\subsection{\(\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\mathbf{A}^{-1}}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans}\)}
-Let \(\mathbf{A}\in \mathbb{C}^{m\times n}\) and \(\alpha \in \mathbb{C}\). Remember that \(\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}\). Differentiating both sides of this equation and recalling that \((fg)' = f'g + g'f\), we get
+\subsection{\(\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\left( \mathbf{A}^{-1} \right)}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\left( \mathbf{A}^{-1} \right)}^{\trans}\)}
+Let \(\mathbf{A}\in \mathbb{C}^{m\times n}\) and \(\alpha \in \mathbb{C}\). Remember that \(\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}\). Differentiating both sides of this equation with respect to \(\alpha\), we get
 \begin{align}
-    \dfrac{\partial \mathbf{A}^{-1}\mathbf{A}}{\partial \alpha} & = \dfrac{\partial \mathbf{I}}{\partial \alpha} \\
-    \mathbf{A}^{\trans} \dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} + \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans} & = \mathbf{0}_{m \times n} \\
-    \mathbf{A}^{\trans} \dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} + \dfrac{\partial \mathbf{A}}{\partial \alpha} \left( \mathbf{A}^{\trans} \right)^{-1} & = \mathbf{0}_{m \times n}
+    \dfrac{\partial \mathbf{A}^{-1}\mathbf{A}}{\partial \alpha} & = \dfrac{\partial \mathbf{I}}{\partial \alpha} = \mathbf{0}_{m \times n},
 \end{align}
-where \(\mathbf{0}_{m \times n}\) is a matrix of dimension \(m \times n\) with zeros. Here, we have used the property \(\left( \mathbf{A}^{\trans} \right)^{-1} = {\mathbf{A}^{-1}}^{\trans}\) Rearranging this expression, yields
+where \(\mathbf{0}_{m \times n}\) is a zero matrix with dimension \(m \times n\). By applying the product rule of a matrix-matrix derivate, we get (c.f. Equation \eqref{eq:matrix-matrix-product-rule})
 \begin{align}
-    \boxed{\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\mathbf{A}^{-1}}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans}}
+    \dfrac{\partial \mathbf{A}^{-1}\mathbf{A}}{\partial \alpha} =  \dfrac{\partial \mathbf{A}}{\partial \alpha} \left( \mathbf{A}^{-1} \right)^{\trans} + \mathbf{A}^{\trans} \dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} & = \mathbf{0}_{m \times n}
+\end{align}
+Using the property \(\left( \mathbf{A}^{\trans} \right)^{-1} = \left( \mathbf{A}^{-1} \right)^{\trans}\) and rearranging this expression, we get
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\left( \mathbf{A}^{-1} \right)}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\left( \mathbf{A}^{-1} \right)}^{\trans}}
 \end{align}
 
 \nocite{*}
