@@ -48,7 +48,7 @@
 \usepackage{soul}
 
 % begin
-\title{\textbf{Solutions of the most common Matrix Calculus}  \vspace{-.3cm}}
+\title{\textbf{Solutions of the most common Matrix Differentiations}  \vspace{-.3cm}}
 \author{Rubem Vasconcelos Pacelli\\
   {\tt rubem.engenharia@gmail.com}}
 \affil{Department of Teleinformatics Engineering, Federal University of Ceará.\\Fortaleza, Ceará, Brazil. \vspace{-.5cm}}
@@ -89,7 +89,7 @@ be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \
     \end{bmatrix}  \in \mathbb{C}^{n}.
 \end{align}
 
-Nonbold Romain and Greek alphabets represent scalars, while bold uppercases and bold lowercases represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent knows variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjulgate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
+Nonbold Romain and Greek alphabets represent scalars, while bold uppercase and bold lowercase represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent known variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjugate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar). Greek letters will be preferred to represent scalars that are not within a vector or matrix.
 
 \subsection{Jacobian formulation (numerator layout)}
 
@@ -261,6 +261,7 @@ Since a scalar-vector derivative is represented by a vector, we have that
     \end{bmatrix}
 \end{align}
 \begin{align}
+    \label{eq:lt-slution}
     \boxed{\dfrac{\partial \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans \in \mathbb{C}^{n\times m}}
 \end{align}
 
@@ -448,7 +449,7 @@ Recalling that \((fg)' = f'g + g'f\), we have
 \begin{align}
     \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x} \in \mathbb{C}^{m}}
 \end{align}
-Note that, if either \(\mathbf{x}\) or \(\mathbf{y}\) does not depend on \(\mathbf{z}\), just disconsider \(\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y}\) or \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x}\), respectively.
+Note that, if either \(\mathbf{x}\) or \(\mathbf{y}\) does not depend on \(\mathbf{z}\), just disregard \(\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y}\) or \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x}\), respectively. When neither depends on \(\mathbf{z}\), the obvious result is the zero vector, \(\mathbf{0}\).
 
 \subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{x}\)}
 Let \(\mathbf{x} \in \mathbb{C}^{n}\) and \(\mathbf{z}\in \mathbb{C}^m\), where \(\mathbf{x}\) depends on \(\mathbf{z}\). Thus,
@@ -677,13 +678,220 @@ Note that the solution is much easier if we maintain the matrix calculus notatio
 \begin{align}
     \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \left(\mathbf{A}^\trans + \mathbf{A}\right) \mathbf{x},
 \end{align}
-where the last equality comes from the Equation \eqref{eq:quadratic-solution}.
+where the last equality comes from Equation \eqref{eq:quadratic-solution}.
 
-\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}}\)}
+\subsection{\(\dfrac{\partial \mathbf{b}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans \mathbf{b}\)} \label{sec:bt-A-x}
+Let \(\mathbf{x} \in \mathbb{C}^{n}\), \(\mathbf{b} \in \mathbb{C}^{m}\) and \(\mathbf{A}\in \mathbb{C}^{m\times n}\), where neither \(\mathbf{b}\) nor \(\mathbf{A}\) depend on \(\mathbf{x}\). It follows that
 
-\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{y}}\)}
+\begin{align}
+    \dfrac{\partial \mathbf{b}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        b_{1} & b_{2} & \dots & b_{m}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix} \begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+    \end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+			\begin{bmatrix}
+				\displaystyle \sum_{i = 1}^{m} a_{i1}b_{i} & 
+				\displaystyle \sum_{i = 1}^{m} a_{i2}b_{i} & 
+				\dots & 
+				\displaystyle \sum_{i = 1}^{m} a_{in}b_{i}
+			\end{bmatrix} \begin{bmatrix}
+				x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+			\end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+        \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} b_{i} x_{j}
+    \right) \\
+    &= \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} b_{i} \dfrac{\partial x_{j}}{\partial \mathbf{x}} \\
+    &= \begin{bmatrix}
+        \sum_{i = 1}^{m} a_{i1} b_{i} \\
+        \sum_{i = 1}^{m} a_{i2} b_{i} \\
+        \vdots \\
+        \sum_{i = 1}^{m} a_{in} b_{i} \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        a_{11} & a_{21} & \dots & a_{m1} \\
+        a_{12} & a_{22} & \dots & a_{m2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1n} & a_{2n} & \dots & a_{mn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_1 \\
+        b_2 \\
+        \vdots \\
+        b_m
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{b}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \mathbf{A}^\trans \mathbf{b} \in \mathbb{C}^{n}}
+\end{align}
 
-\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}}\)}
+Note that this solution could solve by simply observing that \(\mathbf{\mathbf{b}^\trans \mathbf{A}}\) is actually a linear transformation from \(\mathbb{R}^{n}\) to \(\mathbb{R}\). Thus,
+\begin{align}
+    \dfrac{\partial \mathbf{b}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} = \left( \mathbf{b}^\trans \mathbf{A} \right)^{\trans} = \mathbf{A}^\trans \mathbf{b},
+\end{align}
+where the first equality comes from the Equation \eqref{eq:lt-slution}.
+
+\subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{b}}{\partial \mathbf{x}} = \mathbf{Ab}\)}
+Let \(\mathbf{x} \in \mathbb{C}^{m}\), \(\mathbf{b} \in \mathbb{C}^{n}\) and \(\mathbf{A}\in \mathbb{C}^{m\times n}\), where neither \(\mathbf{b}\) nor \(\mathbf{A}\) depend on \(\mathbf{x}\). The quickest way to solve it is to note that \(\mathbf{x}^\trans \mathbf{A} \mathbf{b} =  \mathbf{b}^\trans \mathbf{A}^\trans \mathbf{x}\), which is the problem solved by the Section \ref{sec:bt-A-x}. Thus,
+\begin{align}
+    \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{b}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{b}^\trans \mathbf{A}^\trans \mathbf{x}}{\partial \mathbf{x}} = \left( \mathbf{b}^\trans \mathbf{A}^\trans \right)^{\trans} = \mathbf{A} \mathbf{b},
+\end{align}
+where the second equality comes from Equation \eqref{eq:lt-slution}. Nevertheless, here is the step-by-step
+\begin{align}
+    \dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{b}}{\partial \mathbf{x}} &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+    \begin{bmatrix}
+        x_{1} & x_{2} & \dots & x_{m}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix} \begin{bmatrix}
+        b_{1} \\ b_{2} \\ \vdots \\ b_{n}
+    \end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+			\begin{bmatrix}
+				\displaystyle \sum_{i = 1}^{m} a_{i1}x_{i} & 
+				\displaystyle \sum_{i = 1}^{m} a_{i2}x_{i} & 
+				\dots & 
+				\displaystyle \sum_{i = 1}^{m} a_{in}x_{i}
+			\end{bmatrix} \begin{bmatrix}
+				b_{1} \\ b_{2} \\ \vdots \\ b_{n}
+			\end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{x}} \left(
+        \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} b_{j} x_{i}
+    \right) \\
+    &= \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} b_{j} \dfrac{\partial x_{i}}{\partial \mathbf{x}} \\
+    &= \begin{bmatrix}
+        \sum_{j = 1}^{n} a_{1j} b_{j} \\
+        \sum_{j = 1}^{n} a_{2j} b_{j} \\
+        \vdots \\
+        \sum_{j = 1}^{n} a_{nj} b_{j} \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_1 \\
+        b_2 \\
+        \vdots \\
+        b_n
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{A} \mathbf{b}}{\partial \mathbf{x}} = \mathbf{Ab} \in \mathbb{C}^{m}}
+\end{align}
+
+
+\subsection{\(\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^{\trans} \mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \mathbf{A} \mathbf{x}\)}
+Let \(\mathbf{x} \in \mathbb{C}^{n}\), \(\mathbf{y} \in \mathbb{C}^{m}\), \(\mathbf{z} \in \mathbb{C}^{p}\), and \(\mathbf{A}\in \mathbb{C}^{m\times n}\), where \(\mathbf{x}\) and \(\mathbf{y}\) depend on \(\mathbf{z}\), but \(\mathbf{A}\) does not. Therefore,
+\begin{align}
+    \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} &= \dfrac{\partial}{\partial \mathbf{z}} \left(
+    \begin{bmatrix}
+        y_{1} & y_{2} & \dots & y_{m}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix} \begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+    \end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{z}} \left(
+			\begin{bmatrix}
+				\displaystyle \sum_{i = 1}^{m} a_{i1}y_{i} & 
+				\displaystyle \sum_{i = 1}^{m} a_{i2}y_{i} & 
+				\dots & 
+				\displaystyle \sum_{i = 1}^{m} a_{in}y_{i}
+			\end{bmatrix} \begin{bmatrix}
+				x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+			\end{bmatrix} \right) \\
+    &= \dfrac{\partial}{\partial \mathbf{z}} \left(
+        \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} x_{j} y_{i}
+    \right) \\
+    &= \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} \dfrac{\partial y_{i}x_{j}}{\partial \mathbf{z}} %\\
+    % &= \begin{bmatrix}
+    %     \sum_{j = 1}^{n} a_{1j} b_{j} \\
+    %     \sum_{j = 1}^{n} a_{2j} b_{j} \\
+    %     \vdots \\
+    %     \sum_{j = 1}^{n} a_{nj} b_{j} \\
+    % \end{bmatrix} \\
+    % &= \begin{bmatrix}
+    %     a_{11} & a_{12} & \dots & a_{1n} \\
+    %     a_{21} & a_{22} & \dots & a_{2n} \\
+    %     \vdots & \vdots & \ddots & \vdots \\
+    %     a_{m1} & a_{m2} & \dots & a_{mn} \\
+    % \end{bmatrix}
+    % \begin{bmatrix}
+    %     b_1 \\
+    %     b_2 \\
+    %     \vdots \\
+    %     b_n
+    % \end{bmatrix}
+\end{align}
+Recalling that \((fg)' = f'g + g'f\), we have that
+\begin{align}
+    \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} & = \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} y_{i} \dfrac{\partial x_{j}}{\partial \mathbf{z}} + \sum_{i = 1}^{m}\sum_{j = 1}^{n} a_{ij} x_{j} \dfrac{\partial y_{i}}{\partial \mathbf{z}} \\
+    & = \begin{bmatrix}
+        \dfrac{\partial x_1}{\partial \mathbf{z}} & \dfrac{\partial x_2}{\partial \mathbf{z}} & \cdots & \dfrac{\partial x_n}{\partial \mathbf{z}}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{21} & \dots & a_{m1} \\
+        a_{12} & a_{22} & \dots & a_{m2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1n} & a_{2n} & \dots & a_{mn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_1 \\
+        y_2 \\
+        \vdots \\
+        y_m
+    \end{bmatrix} + \\
+    & \hspace{3ex} \begin{bmatrix}
+        \dfrac{\partial y_1}{\partial \mathbf{z}} & \dfrac{\partial y_2}{\partial \mathbf{z}} & \cdots & \dfrac{\partial y_m}{\partial \mathbf{z}}
+    \end{bmatrix}
+    \begin{bmatrix}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \mathbf{A}^{\trans} \mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \mathbf{A} \mathbf{x}}
+\end{align}
+
+Even though this problem is trickier, we can find the same solution in a clever way by preserving the matrix calculus notation. But first, let us make a quick recap of multivariate derivatives of scalar values.
+
+Suppose that \(w = f(x, y) \in \mathbb{R}\), where \(f\) has first-order partial derivatives in \(x\) and \(y\). Therefore, the differential element is given by
+\begin{align}
+    f(\diff x, \diff y) = \diff w = \dfrac{\partial w}{\partial x} \diff x + \dfrac{\partial w}{\partial y} \diff y.
+\end{align}
+
+Similarly, in matrix calculus, we have \(w = f(\mathbf{x}, \mathbf{y}) = \mathbf{y}^\trans \mathbf{A} \mathbf{x} \), and its differential element is given by
+\begin{align}
+    f(\diff \mathbf{x}, \diff \mathbf{y}) & = \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{x}} \diff \mathbf{x} + \dfrac{\partial \mathbf{y}^\trans \mathbf{A} \mathbf{x}}{\partial \mathbf{y}} \diff \mathbf{y} \\
+    & = \mathbf{A}^\trans \mathbf{y} \diff \mathbf{x} + \mathbf{A} \mathbf{x} \diff \mathbf{y}
+\end{align}
+\obs{find how to solve it in this way and check if it is valid for complex numbers}
 
 \subsection{\(\dfrac{\partial \textnormal{tr}\left(\mathbf{A} \mathbf{X}\right)}{\partial \mathbf{X}} = \mathbf{A}^\trans\)}
 
@@ -729,6 +937,9 @@ Let \(\mathbf{A}, \mathbf{X} \in \mathbb{R}^{n\times n}\), where \(\mathbf{A}\) 
 \begin{align}
     \boxed{\dfrac{\partial \textnormal{tr}\left(\mathbf{A} \mathbf{X}\right)}{\partial \mathbf{X}} = \mathbf{A}^\trans}
 \end{align}
+
+I have no idea how to make this solution simpler.
+
 \subsection{\(\dfrac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}} = \adj{\mathbf{X}}\)}
 Let \(\mathbf{X} \in \mathbb{R}^{n\times n}\). Through Laplace expansion (cofactor expansion), we can rewrite the determinant of \(\mathbf{X}\) as the sum of the cofactors of any row or column, multiplied by its generating element, that is
 \begin{align}
@@ -780,7 +991,19 @@ where \(\mathbf{C}_{ij}\) denotes the cofactor matrix of \(\mathbf{X}\) generate
     \boxed{\dfrac{\partial \abs{\mathbf{X}}}{\partial \mathbf{X}} = \adj{\mathbf{X}}}
 \end{align}
 
-\subsection{\(\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha }\)}
+I have no idea how to make this solution simpler.
+
+\subsection{\(\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\mathbf{A}^{-1}}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans}\)}
+Let \(\mathbf{A}\in \mathbb{C}^{m\times n}\) and \(\alpha \in \mathbb{C}\). Remember that \(\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}\). Differentiating both sides of this equation and recalling that \((fg)' = f'g + g'f\), we get
+\begin{align}
+    \dfrac{\partial \mathbf{A}^{-1}\mathbf{A}}{\partial \alpha} & = \dfrac{\partial \mathbf{I}}{\partial \alpha} \\
+    \mathbf{A}^{\trans} \dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} + \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans} & = \mathbf{0}_{m \times n} \\
+    \mathbf{A}^{\trans} \dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} + \dfrac{\partial \mathbf{A}}{\partial \alpha} \left( \mathbf{A}^{\trans} \right)^{-1} & = \mathbf{0}_{m \times n}
+\end{align}
+where \(\mathbf{0}_{m \times n}\) is a matrix of dimension \(m \times n\) with zeros. Here, we have used the property \(\left( \mathbf{A}^{\trans} \right)^{-1} = {\mathbf{A}^{-1}}^{\trans}\) Rearranging this expression, yields
+\begin{align}
+    \boxed{\dfrac{\partial \mathbf{A}^{-1}}{\partial \alpha} = - {\mathbf{A}^{-1}}^{\trans} \dfrac{\partial \mathbf{A}}{\partial \alpha} {\mathbf{A}^{-1}}^{\trans}}
+\end{align}
 
 \nocite{*}
 \printbibliography
