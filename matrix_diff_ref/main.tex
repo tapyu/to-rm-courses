@@ -280,6 +280,7 @@ Note that is not possible to apply the product rule when you have \(\mathbf{Wz}\
 \subsubsection{Scalar-vector derivative}
 Another possibility of applying the product rule is when you have \(\mathbf{w}^{\trans} \mathbf{z}\), where \(\mathbf{w} \in \mathbb{C}^{m}\) also depends on \(\mathbf{x} \in \mathbb{C}^{n}\). In this case, the dot product is given by
 \begin{align}
+    \label{eq:scalar-vector-product-rule}
     \dfrac{\partial \mathbf{w}^{\trans} \mathbf{z}}{\partial \mathbf{x}} = \dfrac{\partial \mathbf{z}}{\partial \mathbf{x}} \mathbf{w} + \dfrac{\partial \mathbf{w}}{\partial \mathbf{x}} \mathbf{z}.
 \end{align}
 
@@ -547,7 +548,10 @@ Recalling that \((fg)' = f'g + g'f\), we have
 \begin{align}
     \boxed{\dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x} \in \mathbb{C}^{m}}
 \end{align}
-Note that, if either \(\mathbf{x}\) or \(\mathbf{y}\) does not depend on \(\mathbf{z}\), just disregard \(\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y}\) or \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x}\), respectively. When neither depends on \(\mathbf{z}\), the obvious result is the zero vector, \(\mathbf{0}\).
+Note that, if either \(\mathbf{x}\) or \(\mathbf{y}\) does not depend on \(\mathbf{z}\), just disregard \(\dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y}\) or \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x}\), respectively. When neither depends on \(\mathbf{z}\), the obvious result is the zero vector, \(\mathbf{0}\). A simpler way to solve it is to apply the scalar-vector product rule (see Equation \eqref{eq:scalar-vector-product-rule}), that is,
+\begin{align}
+    \dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{x}} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{x}^\trans \mathbf{y}}{\partial \mathbf{y}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}}\mathbf{y} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}}\mathbf{x}
+\end{align}
 
 \subsection{\(\dfrac{\partial \mathbf{x}^\trans \mathbf{x}}{\partial \mathbf{x}} = 2\mathbf{x}\)}
 Let \(\mathbf{x} \in \mathbb{C}^{n}\) and \(\mathbf{z}\in \mathbb{C}^m\), where \(\mathbf{x}\) depends on \(\mathbf{z}\). Thus,
