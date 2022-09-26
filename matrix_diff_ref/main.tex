@@ -216,7 +216,7 @@ The latter is usually more straightforward and less toilsome than the former and
 However, in order to only use matrix calculus notations, we need to be cautious when applying the matrix differentiation identities since the element orders matter. For instance, for scalar elements, the product rule may be written as either \((fg)' = f'g + g'f\) or \((fg)' = g f' + f g'\). In matrix calculus, we do not have such a privilege.
 
 \subsection{Chain rule}
-\subsubsection{One intermediate variable}
+\subsubsection{Univariate functions}
 For scalar elements, the chain rule is given by
 \begin{align}
     \dfrac{\partial w}{\partial z} = \dfrac{\partial w}{\partial x} \dfrac{\partial x}{\partial y} \dfrac{\partial y}{\partial z}.
@@ -228,13 +228,11 @@ Similarly, in matrix notation, we have
 \end{align}
 where \(\mathbf{x} \in \mathbb{C}^{n}, \mathbf{y} \in \mathbb{C}^{m}, \mathbf{z} \in \mathbb{C}^{p}\), and \(\mathbf{w} \in \mathbb{R}^q\). In this expression, \(\mathbf{w}\) depends on \(\mathbf{x}\), \(\mathbf{x}\) depends on \(\mathbf{y}\), and \(\mathbf{y}\) depends on \(\mathbf{z}\). The number of elements in the chain rule can be increased indiscriminately. The main point here is that \emph{the chain rule in matrix calculus notation must be placed backward when compared with the standard chain rule of scalar elements}.
 
-\subsubsection{Multi-intermediate variables}
+\subsubsection{Multivariate functions}
 
-In the previous section, we needed the partial derivative of \(\mathbf{w}\) by \(\mathbf{z}\). We could solve it by applying the chain rule. \(\mathbf{w}\) is called \emph{dependent} variable, \(\mathbf{z}\) is called \emph{independent} variable, and \(\mathbf{x}\) and \(\mathbf{y}\) are called \emph{intermediate} variables.
+In the previous section, we had a case where \(\mathbf{w}\) depends on \(\mathbf{x}\), which depends on \(\mathbf{y}\), which depends on \(\mathbf{z}\). If \(\mathbf{w} = f(\mathbf{x}), \mathbf{x} = g(\mathbf{y})\), and \(\mathbf{y} = h(\mathbf{z})\), then \(f, g\), and \(h\) are functions of one variable, also called univariate functions. However, we might find a situation where \(\mathbf{w} = f(\mathbf{x}, \mathbf{y})\) is a function of two (or more) variables.
 
-We had the luck of having only one intermediate variable by time, that is, \(\mathbf{w}\) depends on \(\mathbf{x}\), which depends on \(\mathbf{y}\), which depends on \(\mathbf{z}\). However, we might find a situation where \(\mathbf{w}\) depends on both \(\mathbf{x}\) and \(\mathbf{y}\) which, in turn, depend on \(\mathbf{z}\).
-
-For scalar elements, we could solve this kind of problem by considering that \(w = f(x, y)\) is differentiable on \(x\) and \(y\). The chain rule becomes
+For scalar elements, we can find partial derivatives of multivariate functions by considering that \(w = f(x, y)\) is differentiable on \(x\) and \(y\). The chain rule becomes
 \begin{align}
     \dfrac{\partial w}{\partial z} = \dfrac{\partial w}{\partial x} \dfrac{\partial x}{\partial z} + \dfrac{\partial w}{\partial y} \dfrac{\partial y}{\partial z}.
 \end{align}
@@ -245,7 +243,7 @@ Similarly, for matrix calculus notation, we have
     \dfrac{\partial \mathbf{w}}{\partial \mathbf{z}} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{w}}{\partial \mathbf{x}} + \dfrac{\partial \mathbf{y}}{\partial \mathbf{z}} \dfrac{\partial \mathbf{w}}{\partial \mathbf{y}}
 \end{align}
 
-Note the backward placement of each summation term. This expression can be used for an unrestricted number of intermediate variables.
+Note the backward placement of each summation term. This expression can be used for an unrestricted number of variables.
 
 \subsection{Sum (or minus) rule}
 \subsubsection{Vector-vector derivative}
