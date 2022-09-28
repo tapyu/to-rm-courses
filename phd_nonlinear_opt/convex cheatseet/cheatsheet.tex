@@ -1,6 +1,10 @@
 \documentclass{article}
-
+\usepackage[margin=25mm]{geometry}
 \usepackage{pdflscape}
+\usepackage{booktabs, makecell}
+
+\usepackage{siunitx}
+\usepackage{multirow}
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -24,10 +28,13 @@
 \newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
 \newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
 
+\setlength{\textwidth}{14cm}
+
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 \begin{landscape}
+    \vspace{-10ex}
     \begin{table}
         \centering
     \begin{tabular}{||c | c | c||}
@@ -49,6 +56,8 @@
         \hline
         $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
         \hline
+        $C = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b}, \mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m} \right\}$ & It is an affine set (all affine set is a convex set)  & \\
+        \hline
         $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
         \hline
         $y = \norm{\mathbf{x}}_p $ (p-norm) & Yes (for any $p \in \mathbb{N}_+$) & $\norm{\theta\mathbf{x} + (1-\theta)\mathbf{y}} \leq \theta\norm{\mathbf{x}} + (1-\theta)\norm{\mathbf{y}}$ (triangular inequality) \\
@@ -56,6 +65,19 @@
         $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
         \hline
     \end{tabular}
+    \begin{tabular}{|c|c|c|p{5cm}|}
+        Function & Domain & Codomain & Comments \\
+        \hline
+        System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in \mathbb{R}^{m}, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set.
+    \end{tabular}
 \end{table}
 \end{landscape}
+
+Remarks:
+\begin{enumerate}
+    \item All affine set is a convex set, but with infinite extension.
+    \item If the affine set happens to have the origin, it is also a subspace of that space.
+    \item An affine set contains every affine combination of its points: If \(C\) is an affine set, $x_1, \cdots , x_k \in C$, and \(\sum_{i=1}^{k} \theta_i = 1\), then the point \(\sum_{i=1}^{k} \theta_ix_1 \) also belongs to \(C\).
+    
+\end{enumerate}
 \end{document}
