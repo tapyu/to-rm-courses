@@ -1,10 +1,11 @@
 \documentclass{article}
-\usepackage[margin=25mm]{geometry}
+\usepackage[margin=2mm,paperheight=11in,paperwidth=15in]{geometry}
 \usepackage{pdflscape}
 \usepackage{booktabs, makecell}
 
 \usepackage{siunitx}
 \usepackage{multirow}
+\usepackage{enumitem}
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -28,8 +29,6 @@
 \newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
 \newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
 
-\setlength{\textwidth}{14cm}
-
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
@@ -38,15 +37,6 @@
     \begin{table}
         \centering
     \begin{tabular}{||c | c | c||}
-        \hline
-        \multicolumn{3}{|c|}{Sets} \\
-        \hline
-        Set & Convex? & Proof \\ [0.5ex] 
-        \hline\hline
-        $C = A \cup B $ & Not always & \\
-        \hline
-        $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
-        \hline
         \hline
         \multicolumn{3}{|c|}{Functions} \\
         \hline
@@ -68,8 +58,50 @@
     \begin{tabular}{|c|c|c|p{5cm}|}
         Function & Domain & Codomain & Comments \\
         \hline
-        System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set.
+        System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set. \\ \hline
     \end{tabular}
+    \begin{tabular}{|c|c|p{7cm}|}
+        \hline
+        \multicolumn{3}{|c|}{Sets}\\
+        \hline
+        Set & Convex? & Commens\\
+        \hline
+        \makecell{Convex hull: \\ $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, 0 \le \theta_i \le 1, i=1,\cdots, k, \sum_{i=1}^{k} \theta_i = 1  \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
+            \item $A$ will be the smallest convex set that contains $C$.
+            \item $\textnormal{conv } C$ will be a finite set as long as $C$ is also finite.
+        \end{itemize} \\
+        \hline
+        \makecell{Affine hull: \\ $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, i=1,\cdots, k, \sum_{i=1}^{k} \theta_i = 1  \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
+            \item $A$ will be the smallest affine set that contains $C$.
+            \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
+            \item $\textnormal{aff } C$ will always be an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
+        \end{itemize}\\
+        \hline
+        \makecell{Conic hull: \\ $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i > 0, i=1,\cdots, k \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
+            \item $A$ will be the smallest convex conic that contains $C$.
+            \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
+        \end{itemize} \\
+        \hline
+        \makecell{Euclidean ball: \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c}_2 \leq r \right\}\) \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r \right\}\) \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x}_c + r \norm{\mathbf{u}} \mid \norm{\mathbf{u}} \leq 1 \right\}\)} & Yes & \begin{itemize}[leftmargin=*]
+            \item \(B(\mathbf{x}_c, r)\) as long as \(r < \infty\).
+            \item \(\mathbf{x}_c\) is the center of the ball.
+            \item \(r\) is its radius.
+        \end{itemize} \\
+        \hline
+        \makecell{Ellipsoid:\\\(\mathcal{E} = \left\{ \mathbf{x} \mid (\mathbf{x}-\mathbf{x}_c)^\trans\mathbf{P}^{-1}(\mathbf{x}-\mathbf{x}_c) \leq 1 \right\}\) \\ \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{Au} \mid \norm{\mathbf{u}} \leq 1 \right\}\)} & Yes & \begin{itemize}[leftmargin=*]
+            \item \(\mathcal{E}\) is a finite set as long as \(\mathbf{P}\) is a finite matrix.
+            \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ 0\).
+            \item \(\mathbf{x}_{c}\) is the center of the ellipsoid.
+            \item The lengths of the semi-axes are given by \(\sqrt{\lambda_i}\).
+            \item \(\mathbf{A} = \mathbf{P}^{1/2}\).
+            \item \(\mathbf{A}\) is invertible. When it is not, we say that \(\mathcal{E}\) is a degenerated ellipsoid (degenerated ellipsoids are also convex).
+        \end{itemize} \\
+        \hline
+        $C = A \cup B $ & Not always. &  \\
+        \hline
+        $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+        \hline
+    \end{tabular} \\
 \end{table}
 \end{landscape}
 \end{document}
