@@ -55,3 +55,13 @@ class Hyperplane(Scene):
         area2 = ax.get_area(L, bounded_graph=ParametricFunction(lambda x: (x, -5, 0), t_range=[-10, 10]), color=GREY, opacity=0.5)
         self.play(FadeOut(area1), FadeIn(area2), conclusion.animate.become(Tex(r"For $\mathbf{x}$ in this area, $\mathbf{a}^\mathsf{T}\mathbf{x} < 3$").to_corner(DL)), x.animate.put_start_and_end_on(ORIGIN, (-5,-2,0)))
         self.wait(3)
+        # clean scene
+        self.play(FadeOut(x), FadeOut(a), FadeOut(dot_text), FadeOut(hyperplane_enunciate), FadeOut(area2))
+        self.wait(2)
+        self.play(Wiggle(L), conclusion.animate.become(Tex(r"This is the hyperplane").to_corner(DL)))
+        self.wait(2)
+        self.play(Indicate(area1), conclusion.animate.become(Tex(r"This is one halfspace").to_corner(DL)), run_time=2)
+        self.play(FadeOut(area1))
+        self.play(Indicate(area2), conclusion.animate.become(Tex(r"This is another halfspace").to_corner(DL)), run_time=2)
+        self.play(FadeOut(area2))
+        self.wait()
