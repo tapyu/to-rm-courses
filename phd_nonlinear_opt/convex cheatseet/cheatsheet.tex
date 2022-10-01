@@ -1,158 +1,185 @@
 \documentclass{article}
-\usepackage[margin=2mm,paperheight=11in,paperwidth=25in]{geometry}
-\usepackage{pdflscape}
-\usepackage{booktabs, makecell}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=60cm,paperwidth=30cm]{geometry}
 
-\usepackage{siunitx}
-\usepackage{multirow}
-\usepackage{enumitem}
+% table
 \usepackage{tabularx}
+\newcolumntype{A}{>{\setlength\hsize{1.4\hsize}\setlength\linewidth{\hsize}}X}
+\newcolumntype{B}{>{\setlength\hsize{.5\hsize}\setlength\linewidth{\hsize}\centering\arraybackslash}X}
+\newcolumntype{C}{>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X}
 
-\usepackage{amsfonts}
+% itemize
+\usepackage{enumitem}
+
+% math
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{amssymb}
 
+% commands
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\hermit}{\mathsf{H}}
-\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
-\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
-\newcommand{\Natural}{\mathbb{N}}
-\newcommand{\Integer}{\mathbb{Z}}
-\newcommand{\Irrational}{\mathbb{I}}
-\newcommand{\Rational}{\mathbb{Q}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\Complex}{\mathbb{C}}
-\newcommand{\obs}[1]{\textcolor{red}{(#1)}}
-\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}} % Used to seize the height of equation
-%\newcommand{\iff}{\mbox{$\Longleftrightarrow$}}    % biimplication
-% \newcommand{\and}{\wedge}
-% \newcommand{\or}{\vee}
-\newcommand*\diff{\mathop{}\!\mathrm{d}}
-\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
-\newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
-
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
-\usepackage{booktabs}% http://ctan.org/pkg/booktabs
-\newcommand{\tabitem}{~~\llap{\textbullet}~~}
-
 \begin{document}
-\begin{landscape}
-    \vspace{-10ex}
-    \begin{table}
-        \centering
-    \begin{tabular}{||c | c | c||}
-        \hline
-        \multicolumn{3}{|c|}{Functions} \\
-        \hline
-        Function & Convex? & Proof \\ [0.5ex] 
-        \hline\hline
-        $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
-        \hline
-        $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
-        \hline
-        $C = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b}, \mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m} \right\}$ & It is an affine set (all affine set is a convex set)  & \\
-        \hline
-        $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
-        \hline
-        $y = \norm{\mathbf{x}}_p $ (p-norm) & Yes (for any $p \in \mathbb{N}_+$) & $\norm{\theta\mathbf{x} + (1-\theta)\mathbf{y}} \leq \theta\norm{\mathbf{x}} + (1-\theta)\norm{\mathbf{y}}$ (triangular inequality) \\
-        \hline
-        $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
-        \hline
-    \end{tabular}
-    \begin{tabular}{|c|c|c|p{5cm}|}
-        Function & Domain & Codomain & Comments \\
-        \hline
-        System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set. \\ \hline
-    \end{tabular}
-    \begin{tabular}{|l|c|p{7cm}|}
-        \hline
-        \multicolumn{3}{|c|}{Sets}\\
-        \hline
-        Set & Convex? & Commens\\
-        \hline
-        \makecell{Convex hull: \\ $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, 0 \le \theta_i \le 1 \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
-            \item $A$ will be the smallest convex set that contains $C$.
-            \item $\textnormal{conv } C$ will be a finite set as long as $C$ is also finite.
-        \end{itemize} \\
-        \hline
-        \makecell{Affine hull: \\ $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
-            \item $A$ will be the smallest affine set that contains $C$.
-            \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
-            \item $\textnormal{aff } C$ will always be an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
-        \end{itemize}\\
-        \hline
-        \makecell{Conic hull: \\ $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i > 0 \textnormal{ for } i=1,\cdots, k \right\}$} & Yes. & \begin{itemize}[leftmargin=*]
-            \item $A$ will be the smallest convex conic that contains $C$.
-            \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
-        \end{itemize} \\
-        \hline
-        \makecell{Hyperplane: \\ \( \mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} = b \right\}\) \\ \(\mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans (\mathbf{x} - \mathbf{x}_{0}) = \mathbf{0} \right\}\) \\ \(\mathcal{H} = \mathbf{x}_0 + a^{\perp} \) } & Yes. & \begin{itemize}[leftmargin=*]
-            \item It is an infinite set \(\mathbb{R}^{n-1} \subset \mathbb{R}^{n}\) that divides the space into two halfspaces.
-            \item \(a^{\perp} = \left\{ \mathbf{v} \mid \mathbf{a}^\trans \mathbf{v} = 0 \right\}\) is the set of vectors perpendicular to \(\mathbf{a}\). It passes through the origin.
-            \item \(a^{\perp}\) is offset from the origin by \(\mathbf{x}_0\), which is any vector in \(\mathcal{H}\).
-        \end{itemize} \\
-        \hline
-        \makecell{Halfspace: \\ \(\mathcal{H}_{-}\textnormal{ or }\mathcal{H}_{+}\left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \lessgtr b \right\}\)} & Yes. & \begin{itemize}[leftmargin=*]
-            \item They are infinite sets of the parts divided by \(\mathcal{H}\).
-        \end{itemize}\\
-        \hline
-        \makecell{Euclidean ball: \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c}_2 \leq r \right\}\) \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r \right\}\) \\ \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x}_c + r \norm{\mathbf{u}} \mid \norm{\mathbf{u}} \leq 1 \right\}\)} & Yes & \begin{itemize}[leftmargin=*]
-            \item \(B(\mathbf{x}_c, r)\) as long as \(r < \infty\).
-            \item \(\mathbf{x}_c\) is the center of the ball.
-            \item \(r\) is its radius.
-        \end{itemize} \\
-        \hline
-        \makecell{Ellipsoid:\\\(\mathcal{E} = \left\{ \mathbf{x} \mid (\mathbf{x}-\mathbf{x}_c)^\trans\mathbf{P}^{-1}(\mathbf{x}-\mathbf{x}_c) \leq 1 \right\}\) \\ \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{Au} \mid \norm{\mathbf{u}} \leq 1 \right\}\)} & Yes & \begin{itemize}[leftmargin=*]
-            \item \(\mathcal{E}\) is a finite set as long as \(\mathbf{P}\) is a finite matrix.
-            \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ 0\).
-            \item \(\mathbf{x}_{c}\) is the center of the ellipsoid.
-            \item The lengths of the semi-axes are given by \(\sqrt{\lambda_i}\).
-            \item \(\mathbf{A} = \mathbf{P}^{1/2}\).
-            \item \(\mathbf{A}\) is invertible. When it is not, we say that \(\mathcal{E}\) is a degenerated ellipsoid (degenerated ellipsoids are also convex).
-        \end{itemize} \\
-        \hline
-        \makecell{Norm cone: \\ \(C = \left\{ [x_1, x_2, \cdots, x_n, t]^\trans \in \mathbb{R}^{n+1} \mid \mathbf{x} \in \mathbb{R}^{n}, \norm{\mathbf{x}}_{p} \leq t \right\} \subseteq \mathbb{R}^{n+1}\)} & Yes. & \begin{itemize}[leftmargin=*]
-            \item Although it is named ``Norm cone'', it is a set, not a scalar.
-            \item The cone norm increases the dimension of \(\mathbf{x}\) in 1.
-            \item For \(p=2\), it is called the second-order cone, quadratic cone,  Lorentz cone or ice-cream cone.
-        \end{itemize}\\
-        \hline
-        \makecell{Polyhedra: \\
-        $\mathcal{P} = \left\{ \mathbf{x} \mid \mathbf{a}_j^\trans \mathbf{x} \leq b_j, j=1, \dots, m, \mathbf{a}_j^\trans \mathbf{x} = d_j, j=1,\cdots, p  \right\}$ \\ \(\mathcal{P} = \left\{ \mathbf{x} \mid \mathbf{Ax} \preceq \mathbf{b}, \mathbf{Cx} = \mathbf{d} \right\}\),\\where \(\mathbf{A} = \begin{bmatrix}
-            \mathbf{a}_1 & \mathbf{a}_2 & \dots & \mathbf{a}_m
-        \end{bmatrix}^\trans\)\\and \(\mathbf{C} = \begin{bmatrix}
-            \mathbf{c}_1 & \mathbf{c}_2 & \dots & \mathbf{c}_m
-        \end{bmatrix}^\trans\)} & Yes. & \begin{itemize}[leftmargin=*]
-            \item Polyhedron is the intersection of \(m\) halfspaces.
-            \item The polyhedron may or may not be an infinite set.
-            \item Subspaces, hyperplanes, lines, rays line segments, and
-            halfspaces are all polyhedra.
-            \item The \emph{nonnegative orthant}, \(\mathbb{R}_{+}^{n} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid x_i \leq 0 \textnormal{ for } i=1,\dots n \right\} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid \mathbf{Ix}  \succeq \mathbf{0}\right\}\), is a special polyhedron
-            \item \emph{Simplexes}, , are another family of polyhedra, where \(\left\{ \mathbf{v}_m \right\}_{m=0}^{k}\) is a affinely independent set. It forms a k-dimensional shape in \(\mathbb{R}^{n}\), thus being called k-dimensional simplex in \(\mathbb{R}^{n}\).
-        \end{itemize} \\
-        \hline
-            \multicolumn{1}{|c|}{Simplex:} \\
-            \tabitem \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\theta} = 1 \right\}\) \\
-            \tabitem \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0 \right\}\) \\
-            \tabitem \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \prec \mathbf{b}, \mathbf{Cx} = \mathbf{d} \right\}\) (Polyhedra form),\\ where \(\mathbf{b} = \mathbf{A}_1 \mathbf{v}_0, \mathbf{C}=\mathbf{A}_2, \mathbf{d} = \mathbf{A}_2 \mathbf{v}_0\) & Yes. & \begin{itemize}[leftmargin=*]
-            \item Also called k-dimensional Simplex in \(\mathbb{R}^{n}\).
-            \end{itemize} \\
-        \hline
-        $C = A \cup B $ & Not always. &  \\
-        \hline
-        $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
-        \hline
-    \end{tabular}
-    
-\end{table}
-\end{landscape}
-\begin{landscape}
-    \begin{itemize}
-        \item All convex set is quasiconvex, but not all quasiconvex is convex.
-        \item It is possible to solve quasiconvex functions, even if it is not convex (see Algorithm 4.1). But not all quasiconvex functions that are nonconvex can be solved(?).
-        \item Superlevel set (a set) 3.3.6, all convex functions have all convex \(\alpha\) sub-level set, but not all functions that have convex \(\alpha\) sub-level set are convex (see slide 3.11).
 
-    \end{itemize}
-\end{landscape}
+\begin{table}
+\begin{tabularx}{\textwidth}{|A|B|C|}
+\hline
+\multicolumn{3}{|c|}{Sets}\\
+\hline
+Set & Convex? & \multicolumn{1}{|c|}{Comments}\\
+\hline
+Convex hull:
+\begin{itemize}
+\item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$
+\end{itemize} &
+Yes &
+\begin{itemize}[leftmargin=*]
+    \item $\textnormal{conv } C$ will be the smallest convex set that contains $C$.
+    \item $\textnormal{conv } C$ will be a finite set as long as $C$ is also finite.
+\end{itemize}\\
+\hline
+Affine hull: 
+\begin{itemize}[leftmargin=*]
+    \item $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$
+\end{itemize} &
+Yes. &
+\begin{itemize}[leftmargin=*]
+    \item $A$ will be the smallest affine set that contains $C$.
+    \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
+    \item $\textnormal{aff } C$ will always be an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
+\end{itemize}\\
+\hline
+Conic hull:
+\begin{itemize}[leftmargin=*]
+    \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i > 0 \textnormal{ for } i=1,\cdots, k \right\}$
+\end{itemize} &
+Yes. &
+\begin{itemize}[leftmargin=*]
+    \item $A$ will be the smallest convex conic that contains $C$.
+    \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
+\end{itemize}\\
+\hline
+Hyperplane:
+\begin{itemize}[leftmargin=*]
+    \item \( \mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} = b \right\}\)
+    \item \(\mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans (\mathbf{x} - \mathbf{x}_{0}) = \mathbf{0} \right\}\)
+    \item \(\mathcal{H} = \mathbf{x}_0 + a^{\perp} \)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item It is an infinite set \(\mathbb{R}^{n-1} \subset \mathbb{R}^{n}\) that divides the space into two halfspaces.
+    \item \(a^{\perp} = \left\{ \mathbf{v} \mid \mathbf{a}^\trans \mathbf{v} = 0 \right\}\) is the set of vectors perpendicular to \(\mathbf{a}\). It passes through the origin.
+    \item \(a^{\perp}\) is offset from the origin by \(\mathbf{x}_0\), which is any vector in \(\mathcal{H}\).
+\end{itemize} \\
+\hline
+Halfspaces:
+\begin{itemize}[leftmargin=*]
+    \item \(\mathcal{H}_{-} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \leq b \right\}\)
+    \item \(\mathcal{H}_{+} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \geq b \right\}\)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item They are infinite sets of the parts divided by \(\mathcal{H}\).
+\end{itemize}\\
+\hline
+Euclidean ball:
+\begin{itemize}[leftmargin=*]
+    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c}_2 \leq r \right\}\)
+    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r \right\}\)
+    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x}_c + r \norm{\mathbf{u}} \mid \norm{\mathbf{u}} \leq 1 \right\}\)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item \(B(\mathbf{x}_c, r)\) is a finite set as long as \(r < \infty\).
+    \item \(\mathbf{x}_c\) is the center of the ball.
+    \item \(r\) is its radius.
+\end{itemize}\\
+\hline
+Ellipsoid:
+\begin{itemize}[leftmargin=*]
+    \item \(\mathcal{E} = \left\{ \mathbf{x} \mid (\mathbf{x}-\mathbf{x}_c)^\trans\mathbf{P}^{-1}(\mathbf{x}-\mathbf{x}_c) \leq 1 \right\}\)
+    \item \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{Au} \mid \norm{\mathbf{u}} \leq 1 \right\}\), where \(\mathbf{A} = \mathbf{P}^{1/2}\).
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item \(\mathcal{E}\) is a finite set as long as \(\mathbf{P}\) is a finite matrix.
+    \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ 0\).
+    \item \(\mathbf{x}_{c}\) is the center of the ellipsoid.
+    \item The lengths of the semi-axes are given by \(\sqrt{\lambda_i}\).
+    \item \(\mathbf{A}\) is invertible. When it is not, we say that \(\mathcal{E}\) is a degenerated ellipsoid (degenerated ellipsoids are also convex).
+\end{itemize}\\
+\hline
+Norm cone:
+\begin{itemize}[leftmargin=*]
+    \item \(C = \left\{ [x_1, x_2, \cdots, x_n, t]^\trans \in \mathbb{R}^{n+1} \mid \mathbf{x} \in \mathbb{R}^{n}, \norm{\mathbf{x}}_{p} \leq t \right\} \subseteq \mathbb{R}^{n+1}\)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item Although it is named ``Norm cone'', it is a set, not a scalar.
+    \item The cone norm increases the dimension of \(\mathbf{x}\) in 1.
+    \item For \(p=2\), it is called the second-order cone, quadratic cone,  Lorentz cone or ice-cream cone.
+\end{itemize} \\
+\hline
+Polyhedra:
+\begin{itemize}[leftmargin=*]
+    \item $\mathcal{P} = \left\{ \mathbf{x} \mid \mathbf{a}_j^\trans \mathbf{x} \leq b_j, j=1, \dots, m, \mathbf{a}_j^\trans \mathbf{x} = d_j, j=1,\cdots, p  \right\}$
+    \item \(\mathcal{P} = \left\{ \mathbf{x} \mid \mathbf{Ax} \preceq \mathbf{b}, \mathbf{Cx} = \mathbf{d} \right\}\), where \(\mathbf{A} = \begin{bmatrix}
+            \mathbf{a}_1 & \mathbf{a}_2 & \dots & \mathbf{a}_m
+        \end{bmatrix}^\trans\) and \(\mathbf{C} = \begin{bmatrix}
+            \mathbf{c}_1 & \mathbf{c}_2 & \dots & \mathbf{c}_m
+        \end{bmatrix}^\trans\)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item Polyhedron is the intersection of \(m\) halfspaces.
+    \item The polyhedron may or may not be an infinite set.
+    \item Subspaces, hyperplanes, lines, rays line segments, and
+    halfspaces are all polyhedra.
+    \item The \emph{nonnegative orthant}, \(\mathbb{R}_{+}^{n} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid x_i \leq 0 \textnormal{ for } i=1,\dots n \right\} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid \mathbf{Ix}  \succeq \mathbf{0}\right\}\), is a special polyhedron.
+\end{itemize}\\
+\hline
+Simplex:
+\begin{itemize}[leftmargin=*]
+    \item \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\theta} = 1 \right\}\)
+    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0 \right\}\)
+    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \prec \mathbf{b}, \mathbf{Cx} = \mathbf{d} \right\}\) (Polyhedra form), where \(\mathbf{b} = \mathbf{A}_1 \mathbf{v}_0, \mathbf{C}=\mathbf{A}_2, \mathbf{d} = \mathbf{A}_2 \mathbf{v}_0\)
+\end{itemize} & Yes. &
+\begin{itemize}[leftmargin=*]
+    \item Simplexes are another family of polyhedra.
+    \item Also called k-dimensional Simplex in \(\mathbb{R}^{n}\).
+    \item The set \(\left\{ \mathbf{v}_m \right\}_{m=0}^{k}\) is a affinely independent set.
+\end{itemize}\\
+\hline
+$C = A \cup B $ & Not always. &  \\
+\hline
+$C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+\hline
+\end{tabularx}
+% \begin{tabular}{|c|c|c|p{5cm}|}
+%     Function & Domain & Codomain & Comments \\
+%     \hline
+%     System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set. \\ \hline
+% \end{tabular} \\
+% \begin{tabular}{||c | c | c||}
+%     \hline
+%     \multicolumn{3}{|c|}{Functions} \\
+%     \hline
+%     Function & Convex? & Proof \\ [0.5ex] 
+%     \hline\hline
+%     $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
+%     \hline
+%     $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
+%     \hline
+%     $C = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b}, \mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m} \right\}$ & It is an affine set (all affine set is a convex set)  & \\
+%     \hline
+%     $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
+%     \hline
+%     $y = \norm{\mathbf{x}}_p $ (p-norm) & Yes (for any $p \in \mathbb{N}_+$) & $\norm{\theta\mathbf{x} + (1-\theta)\mathbf{y}} \leq \theta\norm{\mathbf{x}} + (1-\theta)\norm{\mathbf{y}}$ (triangular inequality) \\
+%     \hline
+%     $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
+%     \hline
+% \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item All convex set is quasiconvex, but not all quasiconvex is convex.
+    \item It is possible to solve quasiconvex functions, even if it is not convex (see Algorithm 4.1). But not all quasiconvex functions that are nonconvex can be solved(?).
+    \item Superlevel set (a set) 3.3.6, all convex functions have all convex \(\alpha\) sub-level set, but not all functions that have convex \(\alpha\) sub-level set are convex (see slide 3.11).
+\end{itemize}
+
 \end{document}
