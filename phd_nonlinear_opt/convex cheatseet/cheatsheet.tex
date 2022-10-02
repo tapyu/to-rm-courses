@@ -126,7 +126,7 @@ Polyhedra:
         \end{bmatrix}^\trans\)
 \end{itemize} & Yes. &
 \begin{itemize}[leftmargin=*]
-    \item Polyhedron is the intersection of \(m\) halfspaces.
+    \item Polyhedron is the result of the intersection of \(m\) halfspaces and \(p\) hyperplanes.
     \item The polyhedron may or may not be an infinite set.
     \item Subspaces, hyperplanes, lines, rays line segments, and
     halfspaces are all polyhedra.
@@ -136,18 +136,22 @@ Polyhedra:
 Simplex:
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\theta} = 1 \right\}\)
-    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0 \right\}\)
-    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{A}_1 \mathbf{x} \prec \mathbf{b}, \mathbf{Cx} = \mathbf{d} \right\}\) (Polyhedra form), where \(\mathbf{b} = \mathbf{A}_1 \mathbf{v}_0, \mathbf{C}=\mathbf{A}_2, \mathbf{d} = \mathbf{A}_2 \mathbf{v}_0\)
+    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{x} = \mathbf{v}_0 + \mathbf{V} \boldsymbol{\theta} \right\}\), where \(\mathbf{V} = \begin{bmatrix}
+        \mathbf{v}_1 - \mathbf{v}_0 & \dots & \mathbf{v}_n - \mathbf{v}_0
+    \end{bmatrix} \in \mathbb{R}^{n \times k}\)
+    \item \(\mathcal{S} = \{ \mathbf{x} \mid \underbrace{\mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0}_{\textnormal{Linear inequalities in } x}, \, \underbrace{\mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0}_{\substack{\text{\textnormal{Linear equalities}} \\\textnormal{in } x}} \}\) (Polyhedra form), where \(\mathbf{A} = \begin{bmatrix}
+        \mathbf{A}_1 \\ \mathbf{A}_2
+    \end{bmatrix}\) and \(\mathbf{AV} = \begin{bmatrix}
+        \mathbf{I}_{k\times k}\\
+        \mathbf{0}_{n-k \times n-k}
+    \end{bmatrix}\)
 \end{itemize} & Yes. &
 \begin{itemize}[leftmargin=*]
-    \item Simplexes are another family of polyhedra.
+    \item Simplexes are a subfamily of the polyhedra set.
     \item Also called k-dimensional Simplex in \(\mathbb{R}^{n}\).
-    \item The set \(\left\{ \mathbf{v}_m \right\}_{m=0}^{k}\) is a affinely independent set.
+    \item The set \(\left\{ \mathbf{v}_m \right\}_{m=0}^{k}\) is a affinely independent, which means \(\left\{ \mathbf{v}_1-\mathbf{v}_0, \dots, \mathbf{v}_k-\mathbf{v}_0 \right\}\) are linearly independent.
+    \item \(\mathbf{V} \in \mathbb{R}^{n\times k}\) is a full-rank tall matrix, i.e., \(\textnormal{rank}(\mathbf{V}) = k\). All its column vectors are independent. The matrix \(\mathbf{A}\) is its left pseudoinverse.
 \end{itemize}\\
-\hline
-$C = A \cup B $ & Not always. &  \\
-\hline
-$C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
 \hline
 \end{tabularx}
 % \begin{tabular}{|c|c|c|p{5cm}|}
@@ -174,6 +178,20 @@ $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
 %     $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
 %     \hline
 % \end{tabular}
+\end{table}
+
+\begin{table}
+    \begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
+        \hline
+        \multicolumn{3}{|c|}{Functions (or operators) and their implication regarding convexity} \\
+        \hline
+        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convex?} & \multicolumn{1}{|c|}{Comments} \\
+        \hline
+        Union: $C = A \cup B $ & Not always. & \\
+        \hline
+        Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+        \hline
+    \end{tabularx}
 \end{table}
 
 \begin{itemize}
