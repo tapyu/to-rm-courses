@@ -14,6 +14,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
 
 % commands
 \newcommand{\trans}{\mathsf{T}}
@@ -31,7 +32,7 @@ Set & Convex? & \multicolumn{1}{|c|}{Comments}\\
 \hline
 Convex hull:
 \begin{itemize}
-\item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$
+\item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
 \end{itemize} &
 Yes &
 \begin{itemize}[leftmargin=*]
@@ -41,7 +42,7 @@ Yes &
 \hline
 Affine hull: 
 \begin{itemize}[leftmargin=*]
-    \item $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\theta} = 1  \right\}$
+    \item $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
 \end{itemize} &
 Yes. &
 \begin{itemize}[leftmargin=*]
@@ -135,8 +136,8 @@ Polyhedra:
 \hline
 Simplex:
 \begin{itemize}[leftmargin=*]
-    \item \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\theta} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\theta} = 1 \right\}\)
-    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{x} = \mathbf{v}_0 + \mathbf{V} \boldsymbol{\theta} \right\}\), where \(\mathbf{V} = \begin{bmatrix}
+    \item \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\thetaup} = 1 \right\}\)
+    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{x} = \mathbf{v}_0 + \mathbf{V} \boldsymbol{\thetaup} \right\}\), where \(\mathbf{V} = \begin{bmatrix}
         \mathbf{v}_1 - \mathbf{v}_0 & \dots & \mathbf{v}_n - \mathbf{v}_0
     \end{bmatrix} \in \mathbb{R}^{n \times k}\)
     \item \(\mathcal{S} = \{ \mathbf{x} \mid \underbrace{\mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0}_{\textnormal{Linear inequalities in } x}, \, \underbrace{\mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0}_{\substack{\text{\textnormal{Linear equalities}} \\\textnormal{in } x}} \}\) (Polyhedra form), where \(\mathbf{A} = \begin{bmatrix}
