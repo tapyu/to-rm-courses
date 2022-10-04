@@ -7,10 +7,11 @@ import numpy as np
 # gamma = The rotation of the camera about the vector from the ORIGIN to the Camera.
 # see https://www.geogebra.org/m/hqPfxIpp
 
-class LinearTransformation(ThreeDScene):
+class AffineAndLinearFunction(ThreeDScene):
     def construct(self):
         # enunciate
-        enunciate = Tex(r"Consider the following transformation\\$\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$").to_edge(UP)
+        enunciate = Tex(r"Suppose that ", r"$D$", r"$\subseteq \mathbb{R}^3$ is an Euclidean ball (a convex set) and $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ is an Affine function, that is, $f(\mathbf{x}) = \mathbf{Ax}+\mathbf{b}$. For a moment, let us set $\mathbf{b}$ to $\mathbf{0}$, so we have a special case of the affine function: the linear function, $f(\mathbf{x}) = \mathbf{Ax}$.", font_size=35).to_edge(UP)
+        enunciate[1].set_color(RED)
         self.play(Write(enunciate))
         self.wait(2)
         self.play(FadeOut(enunciate))
@@ -32,10 +33,11 @@ class LinearTransformation(ThreeDScene):
             ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
             checkerboard_colors=[RED_B, RED_E],
             resolution=(32, 32)) # resolution=(8, 8)
-        domain_set = MathTex(r"D", r"= \left\{ \mathbf{x} \in \mathbb{R}^{3} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{3 \times 3} \right\}", font_size=30).to_corner(UR)
-        domain_set[0].set_color(RED)
-        codomain_set = MathTex(r"C", r" = \left\{ \mathbf{b} \in \mathbb{R}^{3} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}", font_size=30).to_corner(UR)
-        codomain_set[0].set_color(BLUE)
+        domain_set = Tex(r"This is the domain set ", r"$D$", font_size=30).to_corner(UR)
+        domain_set[1].set_color(RED)
+        codomain_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_corner(UR)
+        for i, color in zip((1, 3, 5), (BLUE, RED, RED)):
+            codomain_set[i].set_color(color)
 
         # play sphere
         self.add_fixed_in_frame_mobjects(domain_set)
@@ -55,7 +57,17 @@ class LinearTransformation(ThreeDScene):
         self.wait()
 
         # conclusion
-        conclusion = Tex(r"If $D$ is convex, $C$ is also convex.").to_edge(DOWN)
+        conclusion = Tex(r"If $D$ is convex, $C$ is also convex.\\Then the affine function is a convex function", font_size=30).to_edge(DL)
         self.add_fixed_in_frame_mobjects(conclusion)
         self.play(FadeOut(codomain_set), Write(conclusion))
         self.wait(3)
+        self.play(FadeOut(conclusion))
+
+        # add b vector
+        b_vector_text = Tex(r"{10cm} If the Affine function is $f(\mathbf{x}) = \mathbf{Ax}+\mathbf{b}$, then the image is offset by $\mathbf{b}$, and the transformation is not linear anymore.", tex_environment="minipage", font_size=30).to_corner(DL)
+        self.add_fixed_in_frame_mobjects(b_vector_text)
+        self.play(sphere.animate.shift([1, 3, -2]), Write(b_vector_text))
+        self.begin_ambient_camera_rotation(rate=PI/2, about="theta")
+        self.wait(5)
+        self.stop_ambient_camera_rotation()
+        self.wait()
