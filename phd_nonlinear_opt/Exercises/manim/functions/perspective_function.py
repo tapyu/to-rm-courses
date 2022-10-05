@@ -21,23 +21,23 @@ class PerspectiveFunction(ThreeDScene):
 
         # initialize and add 3D axis, x1, x2, and x3
         self.set_camera_orientation(phi=75*DEGREES , theta=-30*DEGREES, zoom=0.7)
-        ax3d = ThreeDAxes(x_length=5, y_length=5, z_length=5, z_range=[-1, 7])#.shift(np.array([-1,-2,0])) # if you change the z component, it makes the function behave wrongly!
+        ax3d = ThreeDAxes(x_length=5, y_length=5, z_length=5, z_range=[-1, 5])
         x1_ax3d = ax3d.get_x_axis_label(MathTex("x1"))
         x2_ax3d = ax3d.get_y_axis_label(MathTex("x2"))
         x3_ax3d = ax3d.get_z_axis_label(MathTex("x3"))
         self.play(Create(ax3d), Write(x1_ax3d), Write(x2_ax3d), Write(x3_ax3d))
         self.wait()
 
-        # initialize Euclidean ball
-        euclidean_ball = Surface(
+        # initialize Euclidean ball + linear transformation = ellipse
+        ellipse = Surface(
             # u -> angle from xy plane to the point
             lambda u, theta: 
-                ax3d.c2p(1.5 * np.cos(u) * np.cos(theta), # x axis
-                1.5 * np.cos(u) * np.sin(theta), # y axis
-                1.5 * np.sin(u) + 2), # z axis
+                ax3d.c2p((1.5 * np.cos(u) * np.cos(theta)) + 1, # x axis
+                (1.5 * np.cos(u) * np.sin(theta)) + 1, # y axis
+                1.5 * np.sin(u) + 1.5), # z axis
                 v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
             checkerboard_colors=[RED_B, RED_E],
-            resolution=(32, 32)) # resolution=(8, 8)
+            resolution=(32, 32)).apply_matrix([[1, 0.2, 0.4], [0.4, 1.2, 0.35], [0.2, 0.35, 1.3]])
         domain_set = Tex(r"This is the domain set ", r"$D$", font_size=30).to_corner(UL)
         domain_set[1].set_color(RED)
         image_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_corner(UR)
@@ -46,12 +46,15 @@ class PerspectiveFunction(ThreeDScene):
         
         # play Euclidean ball
         self.add_fixed_in_frame_mobjects(domain_set)
-        self.play(Create(euclidean_ball), Write(domain_set), run_time=2)
+        self.play(Create(ellipse), Write(domain_set), run_time=2)
         self.wait(2)
 
         # perspective function
         def perspective(x):
             return np.array((*(x[:-1]/x[-1]), 0))
         
-        self.play(euclidean_ball.animate.apply_function(perspective))
-        self.wait(2)
+        self.play(ellipse.animate.apply_function(perspective))
+        self.wait(3)
+        self.move_camera(phi=0*DEGREES , theta=-90*DEGREES, zoom=1.2)
+        self.remove(ax3d.z_axis)
+        self.wait(3)
