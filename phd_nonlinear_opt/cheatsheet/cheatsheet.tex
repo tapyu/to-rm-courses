@@ -3,9 +3,9 @@
 
 % table
 \usepackage{tabularx}
-\newcolumntype{A}{>{\setlength\hsize{1.4\hsize}\setlength\linewidth{\hsize}}X}
+\newcolumntype{A}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
 \newcolumntype{B}{>{\setlength\hsize{.5\hsize}\setlength\linewidth{\hsize}\centering\arraybackslash}X}
-\newcolumntype{C}{>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X}
+\newcolumntype{C}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
 
 % itemize
 \usepackage{enumitem}
@@ -24,17 +24,16 @@
 \begin{document}
 
 \begin{table}[ht!]
-\begin{tabularx}{\textwidth}{|A|B|C|}
+\begin{tabularx}{\textwidth}{|A|C|}
 \hline
-\multicolumn{3}{|c|}{Sets}\\
+\multicolumn{2}{|c|}{Convex sets}\\
 \hline
-\multicolumn{1}{|c|}{Set}& \multicolumn{1}{|c|}{Convex?} & \multicolumn{1}{|c|}{Comments}\\
+\multicolumn{1}{|c|}{Set} & \multicolumn{1}{|c|}{Comments}\\
 \hline
 Convex hull:
 \begin{itemize}
 \item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
-\end{itemize} &
-Yes & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item $\textnormal{conv } C$ will be the smallest convex set that contains $C$.
     \item $\textnormal{conv } C$ will be a finite set as long as $C$ is also finite.
@@ -43,8 +42,7 @@ Yes & \vspace{-3.5ex}
 Affine hull: 
 \begin{itemize}[leftmargin=*]
     \item $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
-\end{itemize} &
-Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item $A$ will be the smallest affine set that contains $C$.
     \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
@@ -54,8 +52,7 @@ Yes. & \vspace{-3.5ex}
 Conic hull:
 \begin{itemize}[leftmargin=*]
     \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i > 0 \textnormal{ for } i=1,\cdots, k \right\}$
-\end{itemize} &
-Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item $A$ will be the smallest convex conic that contains $C$.
     \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
@@ -64,7 +61,7 @@ Yes. & \vspace{-3.5ex}
 Ray:
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{R} = \left\{ \mathbf{x}_0 + \theta \mathbf{v} \mid \theta \geq 0 \right\}\)
-\end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+\end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
     \item The ray is an infinite set that begins in \(\mathbf{x}_0\) and extends infinitely in direction of \(\mathbf{v}\). In other words, it has a beginning, but it has no end.
 \end{itemize} \\
 \hline
@@ -73,7 +70,7 @@ Hyperplane:
     \item \( \mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} = b \right\}\)
     \item \(\mathcal{H} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans (\mathbf{x} - \mathbf{x}_{0}) = \mathbf{0} \right\}\)
     \item \(\mathcal{H} = \mathbf{x}_0 + a^{\perp} \)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item It is an infinite set \(\mathbb{R}^{n-1} \subset \mathbb{R}^{n}\) that divides the space into two halfspaces.
     \item \(a^{\perp} = \left\{ \mathbf{v} \mid \mathbf{a}^\trans \mathbf{v} = 0 \right\}\) is the set of vectors perpendicular to \(\mathbf{a}\). It passes through the origin.
@@ -84,7 +81,7 @@ Halfspaces:
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{H}_{-} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \leq b \right\}\)
     \item \(\mathcal{H}_{+} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \geq b \right\}\)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item They are infinite sets of the parts divided by \(\mathcal{H}\).
 \end{itemize}\\
@@ -94,7 +91,7 @@ Euclidean ball:
     \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c}_2 \leq r \right\}\)
     \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r \right\}\)
     \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x}_c + r \norm{\mathbf{u}} \mid \norm{\mathbf{u}} \leq 1 \right\}\)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item \(B(\mathbf{x}_c, r)\) is a finite set as long as \(r < \infty\).
     \item \(\mathbf{x}_c\) is the center of the ball.
@@ -105,7 +102,7 @@ Ellipsoid:
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{E} = \left\{ \mathbf{x} \mid (\mathbf{x}-\mathbf{x}_c)^\trans\mathbf{P}^{-1}(\mathbf{x}-\mathbf{x}_c) \leq 1 \right\}\)
     \item \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{Au} \mid \norm{\mathbf{u}} \leq 1 \right\}\), where \(\mathbf{A} = \mathbf{P}^{1/2}\).
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{E}\) is a finite set as long as \(\mathbf{P}\) is a finite matrix.
     \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ 0\).
@@ -117,7 +114,7 @@ Ellipsoid:
 Norm cone:
 \begin{itemize}[leftmargin=*]
     \item \(C = \left\{ [x_1, x_2, \cdots, x_n, t]^\trans \in \mathbb{R}^{n+1} \mid \mathbf{x} \in \mathbb{R}^{n}, \norm{\mathbf{x}}_{p} \leq t \right\} \subseteq \mathbb{R}^{n+1}\)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item Although it is named ``Norm cone'', it is a set, not a scalar.
     \item The cone norm increases the dimension of \(\mathbf{x}\) in 1.
@@ -130,14 +127,14 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
     \item \(K\) is closed.
     \item \(K\) is solid.
     \item \(K\) is pointed, i.e., \(-K \cap K = \left\{ \mathbf{0} \right\}\).
-\end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+\end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
     \item The proper cone \(K\) is used to define the \emph{generalized inequality} (or \emph{partial ordering}) in some set \(S\). For the generalized inequality, one must define both the proper cone \(K\) and the set \(S\).
     \item \(\mathbf{x} \preceq \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in K\) for \(\mathbf{x}, \mathbf{y} \in S\) (generalized inequality)
     \item \(\mathbf{x} \prec \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in \textnormal{int }K\) for \(\mathbf{x}, \mathbf{y} \in S\) (strict generalized inequality).
     \item There are two cases where \(K\) and \(S\) are understood from context and the subscript \(K\) is dropped out:
         \begin{itemize}[label={$\triangleright$}]
             \item When \(S = \mathbb{R}^{n}\) and \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
-            \item When \(S = \mathcal{S}^{n}\) and \(K = \mathcal{S}^{n}_{+}\) or \(K = \mathcal{S}^{n}_{++}\), where \(\mathcal{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathcal{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathcal{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathcal{S}^{n}_{+}\) is a proper cone in \(\mathcal{S}^{n}\) (??). In this case, \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix. It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
+            \item When \(S = \mathcal{S}^{n}\) and \(K = \mathcal{S}^{n}_{+}\) or \(K = \mathcal{S}^{n}_{++}\), where \(\mathcal{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathcal{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathcal{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathcal{S}^{n}_{+}\) is a proper cone in \(\mathcal{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathcal{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathcal{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
         \end{itemize}
     \item Another common usage is when \(S = \mathbb{R}^{n}\) and \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
     \item The generalized inequality has the following properties:
@@ -158,7 +155,7 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
 Dual cone:
 \begin{itemize}
     \item \(K^* = \left\{ \mathbf{y}\mid \mathbf{x}^\mathsf{T}\mathbf{y} \geq 0, \;\forall\; \mathbf{x} \in K \right\}\)
-\end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+\end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
     \item \(K^*\) is a cone, and it is convex even when the original cone \(K\) is nonconvex.
     \item \(K^*\) has the following properties:
     \begin{itemize}[label={$\triangleright$}]
@@ -178,7 +175,7 @@ Polyhedra:
         \end{bmatrix}^\trans\) and \(\mathbf{C} = \begin{bmatrix}
             \mathbf{c}_1 & \mathbf{c}_2 & \dots & \mathbf{c}_m
         \end{bmatrix}^\trans\)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item The polyhedron may or may not be an infinite set.
     \item Polyhedron is the result of the intersection of \(m\) halfspaces and \(p\) hyperplanes.
@@ -199,7 +196,7 @@ Simplex:
         \mathbf{I}_{k\times k}\\
         \mathbf{0}_{n-k \times n-k}
     \end{bmatrix}\)
-\end{itemize} & Yes. & \vspace{-3.5ex}
+\end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item Simplexes are a subfamily of the polyhedra set.
     \item Also called k-dimensional Simplex in \(\mathbb{R}^{n}\).
@@ -208,11 +205,6 @@ Simplex:
 \end{itemize}\\
 \hline
 \end{tabularx}
-% \begin{tabular}{|c|c|c|p{5cm}|}
-%     Function & Domain & Codomain & Comments \\
-%     \hline
-%     System of linear equation: $\mathbf{b} = f(\mathbf{x}) = \mathbf{Ax}$ & $D = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b} \in C, \mathbf{A} \in \mathbb{R}^{m \times n} \right\}$ & $C = \left\{ \mathbf{b} \in \mathbb{R}^{m} | \mathbf{b} = \mathbf{Ax},\: \forall\: \mathbf{x} \in D  \right\}$ & If $D$ is an affine set, so $C$ is also affine set which, in turn, is a convex set. \\ \hline
-% \end{tabular} \\
 % \begin{tabular}{||c | c | c||}
 %     \hline
 %     \multicolumn{3}{|c|}{Functions} \\
@@ -222,8 +214,6 @@ Simplex:
 %     $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
 %     \hline
 %     $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
-%     \hline
-%     $C = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{Ax} = \mathbf{b}, \mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m} \right\}$ & It is an affine set (all affine set is a convex set)  & \\
 %     \hline
 %     $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
 %     \hline
@@ -238,9 +228,24 @@ Simplex:
         \hline
         \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convex?} & \multicolumn{1}{|c|}{Comments} \\
         \hline
-        Union: $C = A \cup B $ & Not always. & \\
+        Union: $C = A \cup B $ & Not in most of the cases. & \\
         \hline
         Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+        \hline
+        Convex function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
+            \item \(\textnormal{dom } f\subseteq \mathbb{R}^{n}\) shall be a convex set to \(f\) be a convex function.
+        \end{itemize} & Yes. & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+            \item Affine (and therefore also linear) functions are examples of convex functions.
+            \item Graphically, the line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\).
+            \item In terms of sets, a function is convex iff a line segment within \(\textnormal{dom } f\), which is a convex set, gives an image set that is also convex.
+            \item \(\textnormal{dom} f\) is convex iff all points for any line segment within \(\textnormal{dom } f\) belong to it.
+            \item \emph{First-order condition}: \(f\) is convex iff \(\textnormal{dom } f\) is convex and \(f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \textnormal{dom } f, \mathbf{x}\neq\mathbf{y}\), being \(\nabla f (\mathbf{x})\) the gradient vector. This inequation says that the first-order Taylor approximation is a \emph{underestimator} for convex functions. The first-order condition requires that \(f\) is differentiable.
+            \item If \(\nabla f(\mathbf{x}) = \mathbf{0}\), then \(f(\mathbf{y})\geq f(\mathbf{x}),\forall\;\mathbf{y}\in\textnormal{dom }f\) and \(\mathbf{x}\) is a global minimum.
+            \item \emph{Second-order condition}: \(f\) is convex iff \(\textnormal{dom } f\) is convex and \(\mathbf{H}\succeq \mathbf{0}\), that is, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix. It means that the graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\). It is important to note that, if \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \textnormal{dom }f\), then \(f\) is strictly convex. But is \(f\) is strictly convex, not necessarily that \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \textnormal{dom }f\). Therefore, the strict convexity can only be partially characterized.
+        \end{itemize}\\
         \hline
         Affine function \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
         \begin{itemize}[leftmargin=*]
