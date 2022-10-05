@@ -40,7 +40,7 @@ class PerspectiveFunction(ThreeDScene):
             resolution=(32, 32)).apply_matrix([[1, 0.2, 0.4], [0.4, 1.2, 0.35], [0.2, 0.35, 1.3]])
         domain_set = Tex(r"This is the domain set ", r"$D$", font_size=30).to_corner(UL)
         domain_set[1].set_color(RED)
-        image_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_edge(DOWN)
+        image_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_edge(DOWN).shift(0.5*UP)
         for i, color in zip((1, 3, 5), (BLUE, RED, RED)):
             image_set[i].set_color(color)
         
@@ -53,7 +53,7 @@ class PerspectiveFunction(ThreeDScene):
         def perspective(x):
             return np.array((*(x[:-1]/x[-1]), 0))
         
-        self.play(ellipse.animate.apply_function(perspective), FadeOut(domain_set))
+        self.play(ellipse.animate.apply_function(perspective).set_color([BLUE_B, BLUE_E]), FadeOut(domain_set))
         self.move_camera(phi=0*DEGREES , theta=-90*DEGREES, zoom=1.2)
         self.remove(ax3d.z_axis)
         self.play(Write(image_set), run_time=1)
