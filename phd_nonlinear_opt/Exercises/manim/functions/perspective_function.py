@@ -8,16 +8,16 @@ import numpy as np
 
 class PerspectiveFunction(ThreeDScene):
     def construct(self):
-        # # enunciate
-        # enunciate = Tex(r"{10cm}The perspective function $f: \mathbb{R}^{n+1} \rightarrow \mathbb{R}^n$ is given by $$f(\mathbf{x}, x_{n+1}) = \frac{\mathbf{x}}{x_{n+1}},$$ where $\mathbf{x} \in \mathbb{R}^n$ and $x_{n+1} \in \mathbb{R}$. The domain of the perspective function is $\textnormal{dom f } = \mathbb{R}^n \times \mathbb{R}_{++}$. This function scales or normalizes vectors based on the last component of the input vector. If $D \subseteq \textnormal{dom f}$ is convex , then the resulting image set, $f(D) = \{f(\mathbf{x}, x_{n+1}) \mid (\mathbf{x}, x_{n+1}) \in D\}$, is also convex.", tex_environment="minipage")
-        # enunciate.generate_target()
-        # enunciate.target = Tex(r"{10cm}Suppose that $n=2$ and that $C$ is an Euclidean ball. As this transformation is from $\mathbb{R}^3$ to $\mathbb{R}^2$, we will show two separated coordinate systems.", tex_environment="minipage")
-        # self.play(Write(enunciate))
-        # self.wait(4)
-        # self.play(MoveToTarget(enunciate))
-        # self.wait(2)
-        # self.play(FadeOut(enunciate))
-        # self.wait(2)
+        # enunciate
+        enunciate = Tex(r"{10cm}The perspective function $f: \mathbb{R}^{n+1} \rightarrow \mathbb{R}^n$ is given by $$f(\mathbf{x}, x_{n+1}) = \frac{\mathbf{x}}{x_{n+1}},$$ where $\mathbf{x} \in \mathbb{R}^n$ and $x_{n+1} \in \mathbb{R}$. The domain of the perspective function is $\textnormal{dom f } = \mathbb{R}^n \times \mathbb{R}_{++}$. This function scales or normalizes vectors based on the last component of the input vector. If $D \subseteq \textnormal{dom f}$ is convex , then the resulting image set, $f(D) = \{f(\mathbf{x}, x_{n+1}) \mid (\mathbf{x}, x_{n+1}) \in D\}$, is also convex.", tex_environment="minipage")
+        enunciate.generate_target()
+        enunciate.target = Tex(r"{10cm}Suppose that $n=2$ and that $C$ is an Euclidean ball. As this transformation is from $\mathbb{R}^3$ to $\mathbb{R}^2$, we will show two separated coordinate systems.", tex_environment="minipage")
+        self.play(Write(enunciate))
+        self.wait(4)
+        self.play(MoveToTarget(enunciate))
+        self.wait(2)
+        self.play(FadeOut(enunciate))
+        self.wait(2)
 
         # initialize and add 3D axis, x1, x2, and x3
         self.set_camera_orientation(phi=75*DEGREES , theta=-30*DEGREES, zoom=0.7)
@@ -53,7 +53,7 @@ class PerspectiveFunction(ThreeDScene):
         def perspective(x):
             return np.array((*(x[:-1]/x[-1]), 0))
         
-        self.play(ellipse.animate.apply_function(perspective).set_color([BLUE_B, BLUE_E]), FadeOut(domain_set))
+        self.play(ellipse.animate.apply_function(perspective).set_fill_by_checkerboard([BLUE, DARK_BLUE]), FadeOut(domain_set))
         self.move_camera(phi=0*DEGREES , theta=-90*DEGREES, zoom=1.2)
         self.remove(ax3d.z_axis)
         self.play(Write(image_set), run_time=1)
