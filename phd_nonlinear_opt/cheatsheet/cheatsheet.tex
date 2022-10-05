@@ -155,6 +155,21 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
     \item When \(K = \mathbb{R}_{+}\) and \(S = \mathbb{R}\) (ordinary inequality), the minimal is equal to the minimum and the maximal is equal to the maximum.
 \end{itemize} \\
 \hline
+Dual cone:
+\begin{itemize}
+    \item \(K^* = \left\{ \mathbf{y}\mid \mathbf{x}^\mathsf{T}\mathbf{y} \geq 0, \;\forall\; \mathbf{x} \in K \right\}\)
+\end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+    \item \(K^*\) is a cone, and it is convex even when the original cone \(K\) is nonconvex.
+    \item \(K^*\) has the following properties:
+    \begin{itemize}[label={$\triangleright$}]
+        \item \(K^*\) is closed and convex.
+        \item \(K_1 \subseteq K_2\) implies \(K_1^* \subseteq K_2^*\).
+        \item If \(K\) has a nonempty interior, then \(K^*\) is pointed.
+        \item If the closure of \(K\) is pointed then \(K^*\) has a nonempty interior.
+        \item \(K^{**}\) is the closure of the convex hull of \(K\). Hence, if \(K\) is convex and closed, \(K^{**}=K\).
+    \end{itemize}
+\end{itemize} \\
+\hline
 Polyhedra:
 \begin{itemize}[leftmargin=*]
     \item $\mathcal{P} = \left\{ \mathbf{x} \mid \mathbf{a}_j^\trans \mathbf{x} \leq b_j, j=1, \dots, m, \mathbf{a}_j^\trans \mathbf{x} = d_j, j=1,\cdots, p  \right\}$

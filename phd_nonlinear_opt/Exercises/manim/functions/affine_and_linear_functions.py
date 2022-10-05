@@ -7,7 +7,7 @@ import numpy as np
 # gamma = The rotation of the camera about the vector from the ORIGIN to the Camera.
 # see https://www.geogebra.org/m/hqPfxIpp
 
-class AffineAndLinearFunction(ThreeDScene):
+class AffineAndLinearFunctions(ThreeDScene):
     def construct(self):
         # enunciate
         enunciate = Tex(r"Suppose that ", r"$D$", r"$\subseteq \mathbb{R}^3$ is an Euclidean ball (a convex set) and $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ is an Affine function, that is, $f(\mathbf{x}) = \mathbf{Ax}+\mathbf{b}$. For a moment, let us set $\mathbf{b}$ to $\mathbf{0}$, so we have a special case of the affine function: the linear function, $f(\mathbf{x}) = \mathbf{Ax}$.", font_size=35).to_edge(UP)
@@ -35,9 +35,9 @@ class AffineAndLinearFunction(ThreeDScene):
             resolution=(32, 32)) # resolution=(8, 8)
         domain_set = Tex(r"This is the domain set ", r"$D$", font_size=30).to_corner(UR)
         domain_set[1].set_color(RED)
-        codomain_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_corner(UR)
+        image_set = Tex(r"This is the image set ", r"$C$", r"$ = f($", r"$D$", r"$) = \{f(\mathbf{x}\mid \mathbf{x} \in$", r"$D$", r"$)\}$", font_size=30).to_corner(UR)
         for i, color in zip((1, 3, 5), (BLUE, RED, RED)):
-            codomain_set[i].set_color(color)
+            image_set[i].set_color(color)
 
         # play sphere
         self.add_fixed_in_frame_mobjects(domain_set)
@@ -46,9 +46,9 @@ class AffineAndLinearFunction(ThreeDScene):
 
         # apply matrix
         A = [[1, 0.2, 0.4], [0.4, 1.2, 0.35], [0.2, 0.35, 1.3]]
-        self.play(sphere.animate.apply_matrix(A).set_color([BLUE_B, BLUE_E]), ReplacementTransform(domain_set, codomain_set), run_time=2)
+        self.play(sphere.animate.apply_matrix(A).set_color([BLUE_B, BLUE_E]), ReplacementTransform(domain_set, image_set), run_time=2)
         # self.play(ApplyMatrix(A, sphere), run_time=2)
-        self.add_fixed_in_frame_mobjects(codomain_set)
+        self.add_fixed_in_frame_mobjects(image_set)
 
         # rotate ambient
         self.begin_ambient_camera_rotation(rate=PI/2, about="theta")
@@ -59,7 +59,7 @@ class AffineAndLinearFunction(ThreeDScene):
         # conclusion
         conclusion = Tex(r"If $D$ is convex, $C$ is also convex.\\Then the affine function is a convex function", font_size=30).to_edge(DL)
         self.add_fixed_in_frame_mobjects(conclusion)
-        self.play(FadeOut(codomain_set), Write(conclusion))
+        self.play(FadeOut(image_set), Write(conclusion))
         self.wait(3)
         self.play(FadeOut(conclusion))
 
