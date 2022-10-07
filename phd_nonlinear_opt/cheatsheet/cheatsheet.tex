@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2mm,textwidth=155mm,paperheight=100cm,paperwidth=30cm]{geometry}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=130cm,paperwidth=30cm]{geometry}
 
 % table
 \usepackage{tabularx}
@@ -214,11 +214,7 @@ Simplex:
 %     \hline\hline
 %     $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
 %     \hline
-%     $\mathbf{y} = \min(f_1, f_2)$ & Not always & \\
-%     \hline
 %     $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
-%     \hline
-%     $y = \norm{\mathbf{x}}_p $ (p-norm) & Yes (for any $p \in \mathbb{N}_+$) & $\norm{\theta\mathbf{x} + (1-\theta)\mathbf{y}} \leq \theta\norm{\mathbf{x}} + (1-\theta)\norm{\mathbf{y}}$ (triangular inequality) \\
 %     \hline
 %     $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
 %     \hline
@@ -282,9 +278,60 @@ Simplex:
             \item \(f(x) = \abs{x}^p\), where \(p\leq 1\).
         \end{itemize} & Yes. & \\
         \hline
-        Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}
+        Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
             \item \(f(x) = \log x\)
         \end{itemize} & Yes. & \\
+        \hline
+        Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(x) = x\log x \)
+        \end{itemize} & Yes &
+        \begin{itemize}[leftmargin=*]
+            \item When if is defined \(f(x)\mid_{x=0}\)
+        \end{itemize} \\
+        \hline
+        Minkwoski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \norm{\mathbf{x}}_{p}\), where \(p \in \mathbb{N}_{++}\).
+        \end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item It can be proved by triangular inequality.
+        \end{itemize} \\
+        \hline
+        Maximum element: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
+        \end{itemize} & Yes. & \\
+        \hline
+        Maximum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
+        \end{itemize} & Yes, if \(f_1, \dots, f_n\) are convex function. & \\
+        \hline
+        Minimum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \min\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
+        \end{itemize} & Not in most of the cases. & \\
+        \hline
+        Log-sum-exp function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \log\left( e^{x_1} + \dots+ e^{x_n} \right)\)
+        \end{itemize} & Yes. & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+            \item This function is interpreted as the approximation of the maximum element function, since \(\max\left\{ x_1, \dots, x_n \right\} \leq f(\mathbf{x}) \leq \max \left\{ x_1, \dots, x_n \right\} + \log n\)
+        \end{itemize} \\
+        \hline
+        Geometric mean function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{x}) = \left( \Pi_{i=1}^{n} x_i \right)^{1/n}\)
+        \end{itemize} & Yes & \\
+        \hline
+        Log-determinant function \(f: \mathcal{S}^{n}_{++}\rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
+        \end{itemize} & Yes & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+            \item \(\mathbf{X}\in \mathcal{S}^{n}_{++}\), that is, \(\mathbf{X}\) is positive semidefinite (\(\mathbf{X} \succ \mathbf{0}\)).
+        \end{itemize} \\
         \hline
         Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
         \begin{itemize}[leftmargin=*]
@@ -293,6 +340,7 @@ Simplex:
             \item The perspective function decreases the dimension of the function domain since \(\textnormal{dim}(\textnormal{dom } f) = n+1\).
             \item Its effect is similar to the camera zoom.
             \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
+            \item A special case is when \(n=1\), which is called \emph{quadratic-over-linear function}.
         \end{itemize} \\
         \hline
         Projective (or linear-fractional) function, \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\)
