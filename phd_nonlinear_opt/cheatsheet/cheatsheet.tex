@@ -289,7 +289,7 @@ Simplex:
         Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}\).
-        \end{itemize} & Yes, if the domain \(S \subseteq \textnormal{dom } f\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \end{itemize} & Yes, if \(S \subseteq \textnormal{dom } f\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item The perspective function decreases the dimension of the function domain since \(\textnormal{dim}(\textnormal{dom } f) = n+1\).
             \item Its effect is similar to the camera zoom.
             \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
@@ -316,7 +316,7 @@ Simplex:
                         \mathbf{c}^\mathsf{T} & d
                     \end{bmatrix} \in \mathbb{R}^{(m+1)\times(n+1)}\)
                 \end{itemize}
-        \end{itemize} & Yes, if the domain \(S \subseteq \textnormal{dom } f\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{m}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \end{itemize} & Yes, if \(S \subseteq \textnormal{dom } f\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item The linear and affine functions are special cases of the linear-fractional function.
             \item \(\textnormal{dom } f = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{c}^\mathsf{T} \mathbf{x} + d > 0 \right\}\)
             \item \(\mathcal{P}(\mathbf{x}) \subset \mathbb{R}^{n+1}\) is a ray set that begins at the origin and its last component takes only positive values. For each \(\mathbf{x} \in \textnormal{dom } f\), it is associated a ray set in \(\mathbb{R}^{n+1}\) in this form. This (projective) correspondence between all points in \(\textnormal{dom } f\) and their respective sets \(\mathcal{P}\) is a biunivocal mapping.
