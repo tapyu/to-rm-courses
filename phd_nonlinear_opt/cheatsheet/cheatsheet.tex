@@ -10,17 +10,25 @@
 % itemize
 \usepackage{enumitem}
 
+% commands
+\usepackage{xparse} % make command behave differently depending on the number of arguments
+
 % math
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
 
+% tikz
+\usepackage{tikz} 
+
 % commands
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\hermit}{\mathsf{H}}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\eval}[2]{\left.#1\right|_{#2}} % x|_x=a -> evaluation bar
+\NewDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}}
 
 \begin{document}
 
@@ -206,19 +214,6 @@ Simplex:
 \end{itemize}\\
 \hline
 \end{tabularx}
-% \begin{tabular}{||c | c | c||}
-%     \hline
-%     \multicolumn{3}{|c|}{Functions} \\
-%     \hline
-%     Function & Convex? & Proof \\ [0.5ex] 
-%     \hline\hline
-%     $\mathbf{y} = \max(f_1, f_2)$ & Yes, if $f_1$ and $f_2$ are convex functions & \\
-%     \hline
-%     $y = \mathbf{c}^\trans \mathbf{x}$ (linear function) & Yes (but not strictly convex) & \\
-%     \hline
-%     $f(g(\mathbf{x}))$ & Yes, if $f, g$ are convex & \\
-%     \hline
-% \end{tabular}
     \begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
         \hline
         \multicolumn{3}{|c|}{Functions (or operators) and their implications regarding convexity} \\
@@ -229,10 +224,10 @@ Simplex:
         \hline
         Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
         \hline
-        Convex function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        Convex function: \(f: \textnormal{dom } f \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
-            \item \(\textnormal{dom } f\subseteq \mathbb{R}^{n}\) shall be a convex set to \(f\) be a convex function.
+            \item \(\textnormal{dom } f\) shall be a convex set to \(f\) be considered a convex function.
         \end{itemize} & Yes. & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
             \item Graphically, the line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\).
@@ -248,7 +243,8 @@ Simplex:
             \item $f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}$, where \(\mathbf{A} \in \mathbb{R}^{m\times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{x} \in \mathbb{R}^{n}\)
         \end{itemize} & Yes, if the domain \(S \subseteq \mathbb{R}^{n}\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{m}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item The affine function, \(f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\), is a broader category that encompasses the linear function, \(f(\mathbf{x}) = \mathbf{Ax}\). The linear function has its origin fixed at \(\mathbf{0}\) after the transformation, whereas the affine function does not necessarily have it (when not, this makes the affine function nonlinear). Graphically, we can think of an affine function as a linear transformation plus a shift from the origin of \(\mathbf{b}\).
-            \item Similarly, the inverse image of \(C\), \(f^{-1}(C) = \left\{ \mathbf{x} \mid f(\mathbf{x}) \in C \right\}\), is also convex.
+            \item A special case of the linear function is when \(\mathbf{A} = \mathbf{c}^\mathsf{T}\). In this case, we have \(f(\mathbf{x}) = \mathbf{c}^\mathsf{T}\mathbf{x}\), which is the inner product between the vector \(\mathbf{c}\) and \(\mathbf{x}\).
+            \item The inverse image of \(C\), \(f^{-1}(C) = \left\{ \mathbf{x} \mid f(\mathbf{x}) \in C \right\}\), is also convex.
             \item The \emph{linear matrix inequality} (LMI), \(\mathbf{A}(\mathbf{x}) = x_1\mathbf{A}_1 + \dots + x_n\mathbf{A}_n \preceq \mathbf{B}\), is a special case of affine function. In other words, \(f(S) = \left\{ \mathbf{x} \mid \mathbf{A}(\mathbf{x}) \preceq \mathbf{B} \right\}\) is a convex set if \(S\) is convex. Many optimization problems can be formulated as LMI problems and solved optimally.
         \end{itemize} \\
         \hline
@@ -287,7 +283,7 @@ Simplex:
             \item \(f(x) = x\log x \)
         \end{itemize} & Yes &
         \begin{itemize}[leftmargin=*]
-            \item When if is defined \(f(x)\mid_{x=0}\)
+            \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\textnormal{dom } f = \mathbb{R}\).
         \end{itemize} \\
         \hline
         Minkwoski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
@@ -333,6 +329,11 @@ Simplex:
             \item \(\mathbf{X}\in \mathcal{S}^{n}_{++}\), that is, \(\mathbf{X}\) is positive semidefinite (\(\mathbf{X} \succ \mathbf{0}\)).
         \end{itemize} \\
         \hline
+        Compose function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}^{m}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f = g \circ h\), i.e., \(f(\mathbf{x}) = (g\circ h)(\mathbf{x}) = g(h(\mathbf{x}))\), where \(\mathbf{x} \in S \subseteq \mathbb{R}^{p}\), \(h: \mathbb{R}^{p}\rightarrow \mathbb{R}^{k}\), and \(g: \mathbb{R}^{k}\rightarrow \mathbb{R}^{n}\).
+        \end{itemize} & Yes, if \(g\) and \(h\) are convex functions and \(S\) is a convex set. & \\
+        \hline
         Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}\).
@@ -374,6 +375,10 @@ Simplex:
         \hline
     \end{tabularx}
 \end{table}
+
+\newpage
+
+test
 
 % \begin{itemize}
 %     \item All convex set is quasiconvex, but not all quasiconvex is convex.
