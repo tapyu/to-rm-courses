@@ -1,14 +1,17 @@
 \documentclass{article}
 \usepackage[margin=2mm,textwidth=155mm,paperheight=130cm,paperwidth=30cm]{geometry}
 
-% table
+% items, table and figs
+\usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{standalone} % place tikz environments or other material in own source files
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+
 \newcolumntype{A}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
 \newcolumntype{B}{>{\setlength\hsize{.5\hsize}\setlength\linewidth{\hsize}\centering\arraybackslash}X}
 \newcolumntype{C}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
-
-% itemize
-\usepackage{enumitem}
 
 % commands
 \usepackage{xparse} % make command behave differently depending on the number of arguments
@@ -18,9 +21,6 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
-
-% tikz
-\usepackage{tikz} 
 
 % commands
 \newcommand{\trans}{\mathsf{T}}
@@ -376,9 +376,22 @@ Simplex:
     \end{tabularx}
 \end{table}
 
-\newpage
+\clearpage
+\edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
+\pdfpagewidth=80cm
+\pdfpageheight=40cm
+\pagenumbering{gobble}
+\newgeometry{top=1in,left=1in,textwidth=15in,textheight=9in}
 
-test
+\begin{figure}
+    \centering
+    \includestandalone{figs/optmization_types}
+  \end{figure}
+
+
+% \restoregeometry
+% \hmm
+% Back to a standard page
 
 % \begin{itemize}
 %     \item All convex set is quasiconvex, but not all quasiconvex is convex.
