@@ -12,67 +12,69 @@
     auto,
     node distance=3cm,
     thick, % make the arrow's width thickier
-    roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
-    squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+    nconvex/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+    covex/.style={rectangle, draw=blue!60, fill=blue!5, very thick, minimum size=5mm},
+    uncertainties/.style={rectangle, draw=yellow!60, fill=yellow!5, very thick, minimum size=5mm},
+    main/.style={rectangle, draw, ultra thick},
     ]
     %Nodes
-    \node[squarednode, align=center]      (opt)  {Type of\\Optimization\\Problems};
+    \node[main, align=center]      (opt)  {Type of\\Optimization\\Problems};
     
     % convex branch
-    \node[squarednode]      (convex)          [above of=opt]                        {Convex Optimization};
-    \node[squarednode]      (constrained)     [above of=convex, left of=convex, xshift=-2.5cm]    {Constrained};
-    \node[squarednode]      (unconstrained)   [above of=convex, right of=convex, xshift=2.5cm]    {Unconstrained};
+    \node[covex]      (convex)          [above of=opt]                        {Convex Optimization};
+    \node[covex]      (constrained)     [above of=convex, left of=convex, xshift=-2.5cm]    {Constrained};
+    \node[covex]      (unconstrained)   [above of=convex, right of=convex, xshift=2.5cm]    {Unconstrained};
     %% constrained branch
-    \node[squarednode, align=center]      (linconstopt)   [above of=constrained]    {Linearly\\Constrained\\Optimization};
-    \node[squarednode, align=center]      (nonlinconstopt)   [left of=constrained, , xshift=-3cm]    {Nonlinear\\Constrained\\Optimization};
+    \node[covex, align=center]      (linconstopt)   [above of=constrained]    {Linearly\\Constrained\\Optimization};
+    \node[covex, align=center]      (nonlinconstopt)   [left of=constrained, , xshift=-3cm]    {Nonlinear\\Constrained\\Optimization};
 
     %%% Linearly constrained optimization branch
-    \node[squarednode, align=center]      (lp)   [left of=linconstopt, above of=linconstopt, xshift=-9cm]    {Linear\\Programming (LP)};
-    \node[squarednode, align=center]  (network2) [right of=lp, xshift=3cm] {Network Optimization};
-    \node[squarednode, align=center]  (qp) [right of=network2, xshift=3cm] {Quadratic\\Programming (QP)};
-    \node[squarednode, align=center]  (boundconstopt) [right of=qp, xshift=3cm] {Bound Constrained Optimization};
+    \node[covex, align=center]      (lp)   [left of=linconstopt, above of=linconstopt, xshift=-9cm]    {Linear\\Programming (LP)};
+    \node[covex, align=center]  (network2) [right of=lp, xshift=3cm] {Network Optimization};
+    \node[covex, align=center]  (qp) [right of=network2, xshift=3cm] {Quadratic\\Programming (QP)};
+    \node[covex, align=center]  (boundconstopt) [right of=qp, xshift=3cm] {Bound Constrained Optimization};
     
     %% constrained branch
-    \node[squarednode, align=center]      (smoothopt)   [above of=unconstrained, left of=unconstrained]    {Smooth\\Optimization};
-    \node[squarednode, align=center]      (nsmoothopt)   [right of=smoothopt, xshift=3cm]    {Nonsmooth\\Optimization};
+    \node[covex, align=center]      (smoothopt)   [above of=unconstrained, left of=unconstrained]    {Smooth\\Optimization};
+    \node[covex, align=center]      (nsmoothopt)   [right of=smoothopt, xshift=3cm]    {Nonsmooth\\Optimization};
     
     %%% Nonlinear Constrained Optimization branch
-    \node[squarednode, align=center]      (qcqp)   [left of=nonlinconstopt, above of=nonlinconstopt, xshift=-3cm]    {Quadratically-Constrained\\Quadratic Programming\\(QCQP)};
-    \node[squarednode, align=center]      (sip)   [below of=qcqp]    {Semi-Infinite\\Programming (SIP)};
-    \node[squarednode, align=center]      (sdp)   [below of=sip]    {(Linear)\\Semidefinite\\Programming\\(SDP)};
+    \node[covex, align=center]      (qcqp)   [left of=nonlinconstopt, above of=nonlinconstopt, xshift=-3cm]    {Quadratically-Constrained\\Quadratic Programming\\(QCQP)};
+    \node[covex, align=center]      (sip)   [below of=qcqp]    {Semi-Infinite\\Programming (SIP)};
+    \node[covex, align=center]      (sdp)   [below of=sip]    {(Linear)\\Semidefinite\\Programming\\(SDP)};
     %%%% Semidefinite Programming (SDP) branch
-    \node[squarednode, align=center]      (socp)   [left of=sdp, xshift=-3cm]    {Second-Order Cone\\Programming (SOCP)};
+    \node[covex, align=center]      (socp)   [left of=sdp, xshift=-3cm]    {Second-Order Cone\\Programming (SOCP)};
 
 
     % nonconvex branch
-    \node[squarednode]                  (nconvex)       [right of=opt, xshift=3cm]     {Nonconvex Optimization};
-    \node[squarednode]                  (continuous)       [right of=nconvex, xshift=3cm, yshift=-3cm]     {Continuous 
+    \node[nconvex]                  (nconvex)       [right of=opt, xshift=3cm]     {Nonconvex Optimization};
+    \node[nconvex]                  (continuous)       [right of=nconvex, xshift=3cm, yshift=-3cm]     {Continuous 
     Optimization};
-    \node[squarednode] (discrete) [right of=nconvex, xshift=3cm, yshift=4cm] {Discrete Optimization};
+    \node[nconvex] (discrete) [right of=nconvex, xshift=3cm, yshift=4cm] {Discrete Optimization};
     %% discrete branch
-    \node[squarednode]  (combinational) [right of=discrete, xshift=3cm, yshift=3cm] {Combinational Optimization};
-    \node[squarednode]  (integer) [right of=discrete, xshift=3cm, yshift=1cm] {Integer Programming};
-    \node[squarednode, align=center]  (minlp) [right of=discrete, xshift=3cm, yshift=-1cm] {Mixed-Integer\\Nonlinear\\Programming\\(MINLP)};
-    \node[squarednode, align=center]  (network) [right of=discrete, xshift=3cm, yshift=-3cm] {Network Optimization};
+    \node[nconvex]  (combinational) [right of=discrete, xshift=3cm, yshift=3cm] {Combinational Optimization};
+    \node[nconvex]  (integer) [right of=discrete, xshift=3cm, yshift=1cm] {Integer Programming};
+    \node[nconvex, align=center]  (minlp) [right of=discrete, xshift=3cm, yshift=-1cm] {Mixed-Integer\\Nonlinear\\Programming\\(MINLP)};
+    \node[nconvex, align=center]  (network) [right of=discrete, xshift=3cm, yshift=-3cm] {Network Optimization};
     %% continuous branch
-    \node[squarednode]      (cunconstrained)     [above of=continuous, right of=continuous, xshift=2.5cm, yshift=-1cm]    {Unconstrained};
-    \node[squarednode]      (cconstrained)   [below of=continuous, right of=continuous, xshift=2.5cm, yshift=1cm]    {Constrained};
+    \node[nconvex]      (cunconstrained)     [above of=continuous, right of=continuous, xshift=2.5cm, yshift=-1cm]    {Unconstrained};
+    \node[nconvex]      (cconstrained)   [below of=continuous, right of=continuous, xshift=2.5cm, yshift=1cm]    {Constrained};
     %%% continuous branch unconstrained
-    \node[squarednode, align=center]      (nls)     [right of=cunconstrained, xshift=3cm]    {Nonlinear\\Least-Squares};
+    \node[nconvex, align=center]      (nls)     [right of=cunconstrained, xshift=3cm]    {Nonlinear Least-\\Squares (NLS)};
     %%% continuous branch constrained
-    \node[squarednode, align=center]      (nopt)     [right of=cconstrained, above of=cconstrained, xshift=3cm, yshift=-0.3cm]    {Nonlinear\\Optimization};
-    \node[squarednode, align=center]      (mpec)     [below of=nopt, yshift=1cm]    {Mathematical Program\\with Equilibrium\\Constraints (MPEC)};
+    \node[nconvex, align=center]      (nopt)     [right of=cconstrained, above of=cconstrained, xshift=3cm, yshift=-0.3cm]    {Nonlinear\\Optimization};
+    \node[nconvex, align=center]      (mpec)     [below of=nopt, yshift=1cm]    {Mathematical Program\\with Equilibrium\\Constraints (MPEC)};
     %%%% MPEC branch
-    \node[squarednode, align=center]      (complementarity)     [right of=mpec, xshift=3cm]    {Complementarity Problems};
+    \node[nconvex, align=center]      (complementarity)     [right of=mpec, xshift=3cm]    {Complementarity Problems};
     %%%% nop branch
-    \node[squarednode, align=center]      (qp2)     [right of=nopt, xshift=3cm]    {Quadratic Programming (QP)};
-    \node[squarednode, align=center]      (boundconstopt2)     [right of=nopt, above of=nopt, xshift=3cm]    {Bound Constrained Optimization};
+    \node[nconvex, align=center]      (qp2)     [right of=nopt, xshift=3cm]    {Quadratic Programming (QP)};
+    \node[nconvex, align=center]      (boundconstopt2)     [right of=nopt, above of=nopt, xshift=3cm]    {Bound Constrained Optimization};
 
 
     % underuncert branch
-    \node[squarednode, align=center]      (underuncert)   [below of=opt]                 {Optimization\\Under\\Uncertainties};
-    \node[squarednode, align=center]      (roubust)   [below of=underuncert,left of=underuncert]                 {Roubust\\Optimization};
-    \node[squarednode, align=center]      (stochastic)   [below of=underuncert,right of=underuncert]                 {Stochastic\\Optimization};
+    \node[uncertainties, align=center]      (underuncert)   [below of=opt]                 {Optimization\\Under\\Uncertainties};
+    \node[uncertainties, align=center]      (roubust)   [below of=underuncert,left of=underuncert]                 {Roubust\\Optimization};
+    \node[uncertainties, align=center]      (stochastic)   [below of=underuncert,right of=underuncert]                 {Stochastic\\Optimization};
 
     
     \path[every node/.style={font=\sffamily\small}]
