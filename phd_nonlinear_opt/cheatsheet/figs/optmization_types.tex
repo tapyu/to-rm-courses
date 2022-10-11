@@ -7,8 +7,8 @@
 
 \begin{document}
 \begin{tikzpicture}[
-    ->,
-    >=stealth', % make the arrow's tip prettier
+    ->, % make tip
+    >=stealth', % make the arrow's tip prettier (stealth style)
     auto,
     node distance=3cm,
     thick, % make the arrow's width thickier
@@ -79,55 +79,56 @@
     
     \path[every node/.style={font=\sffamily\small}]
     % lines from opt
-    (opt) edge node [right] {} (nconvex)
-    (opt) edge node [below] {} (underuncert)
-    (opt) edge node [above] {} (convex)
+    (opt) edge node [] {} (nconvex)
+    (opt) edge node [] {} (underuncert)
+    (opt) edge node [] {} (convex)
     % lines from convex
-    (convex) edge[bend left=15] node [above] {} (constrained)
-    (convex) edge[bend right=15] node [above] {} (unconstrained)
+    (convex) edge[bend left=15] node [] {} (constrained)
+    (convex) edge[bend right=15] node [] {} (unconstrained)
     % lines from unconstrained
-    (unconstrained) edge[bend left=20] node [above] {} (smoothopt)
-    (unconstrained) edge[bend right=20] node [above] {} (nsmoothopt)
+    (unconstrained) edge[bend left=20] node [] {} (smoothopt)
+    (unconstrained) edge[bend right=20] node [] {} (nsmoothopt)
     % lines from constrained
-    (constrained) edge node [above] {} (linconstopt)
-    (constrained) edge node [left] {} (nonlinconstopt)
+    (constrained) edge node [] {} (linconstopt)
+    (constrained) edge node [] {} (nonlinconstopt)
     % lines from linconstopt
-    (linconstopt) edge node [above] {} (lp)
-    (linconstopt) edge node [above] {} (network2)
-    (linconstopt) edge node [above] {} (boundconstopt)
-    (linconstopt) edge node [above] {} (qp)
+    (linconstopt) edge node [] {} (lp)
+    (linconstopt) edge node [] {} (network2)
+    (linconstopt) edge node [] {} (boundconstopt)
+    (linconstopt) edge node [] {} (qp)
     % lines from boundconstopt
     (boundconstopt) edge node [] {} (smoothopt)
     (boundconstopt) edge node [] {} (nsmoothopt)
     % lines from nonlinconstopt
-    (nonlinconstopt) edge[bend right=20] node [left] {} (qcqp)
-    (nonlinconstopt) edge[] node [left] {} (sip)
-    (nonlinconstopt) edge[bend left=20] node [left] {} (sdp)
+    (nonlinconstopt) edge[bend right=20] node [] {} (qcqp)
+    (nonlinconstopt) edge[] node [] {} (sip)
+    (nonlinconstopt) edge[bend left=20] node [] {} (sdp)
     % lines from sdp
     (sdp) edge[] node [] {} (socp)
     % lines from underuncert
     (underuncert) edge node [] {} (roubust)
     (underuncert) edge node [] {} (stochastic)
     % lines from nconvex
-    (nconvex) edge[bend left=25] node [right] {} (continuous)
-    (nconvex) edge[bend right=25] node [right] {} (discrete)
+    (nconvex) edge[bend left=25] node [] {} (continuous)
+    
+    (nconvex) edge[bend right=25] node [] {} (discrete)
     % lines from discrete
-    (discrete) edge[bend left=25] node [right] {} (combinational)
-    (discrete) edge[right, bend left=15] node [left] {} (integer)
-    (discrete) edge[right, bend left=15] node [left] {} (minlp)
-    (discrete) edge[right, bend right=25] node [left] {} (network)
+    (discrete) edge[bend left=25] node [] {} (combinational)
+    (discrete) edge[right, bend left=15] node [] {} (integer)
+    (discrete) edge[right, bend left=15] node [] {} (minlp)
+    (discrete) edge[right, bend right=25] node [] {} (network)
     % lines from continuous
-    (continuous) edge[bend left=25] node [right] {} (cunconstrained)
-    (continuous) edge[bend right=25] node [right] {} (cconstrained)
+    (continuous) edge[bend left=25] node [] {} (cunconstrained)
+    (continuous) edge[bend right=25] node [] {} (cconstrained)
     % lines from cunconstrained
-    (cunconstrained) edge[] node [right] {} (nls)
+    (cunconstrained) edge[] node [] {} (nls)
     % lines from cconstrained
-    (cconstrained) edge[bend left] node [right] {} (nopt)
-    (cconstrained) edge[] node [right] {} (mpec)
+    (cconstrained) edge[bend left] node [] {} (nopt)
+    (cconstrained) edge[] node [] {} (mpec)
     % lines from mpec
-    (mpec) edge[] node [right] {} (complementarity)
+    (mpec) edge[] node [] {} (complementarity)
     % lines from nopt
-    (nopt) edge[] node [right] {} (qp2)
-    (nopt) edge[bend right=20] node [right] {} (boundconstopt2);
+    (nopt) edge[] node [] {} (qp2)
+    (nopt) edge[bend right=20] node [] {} (boundconstopt2);
 \end{tikzpicture}
 \end{document}
