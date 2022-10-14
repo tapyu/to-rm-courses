@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2mm,textwidth=155mm,paperheight=130cm,paperwidth=30cm]{geometry}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=150cm,paperwidth=30cm]{geometry}
 
 % items, table and figs
 \usepackage{enumitem}
@@ -159,9 +159,10 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
             \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
         \end{itemize}
     \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in S\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
-    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) if \(\mathbf{x} \preceq_K \mathbf{y}\) for every \(\mathbf{y} \in S\). The set does not necessarily have a minimum, but the minimum is unique if it does. The same is true for \emph{maximum}. The mathematical notation for that is \(S \subseteq \mathbf{x} + K\), where \(\mathbf{x} + K\) denotes all points that are comparable to \(\mathbf{x}\) and greater than or equal to \(\mathbf{x}\) (for the maximum, we have \(S \subseteq \mathbf{x} - K\)).
+    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) with respect to the convex cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)). It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is greater or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
     \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\). The same is true for \emph{maximal}. We can have many different minimal (maximal) elements. The mathematical notation for that is \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\), where \(\mathbf{x} - K\) denotes all points that are comparable to \(\mathbf{x}\) and less than or equal to \(\mathbf{x}\) (for the maximal, we have \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)).
     \item When \(K = \mathbb{R}_{+}\) and \(S = \mathbb{R}\) (ordinary inequality), the minimal is equal to the minimum and the maximal is equal to the maximum.
+    \item When we say that a scalar-valued function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) is nondecreasing, it means that whenever \(\mathbf{u}\preceq \mathbf{v}\), we have \(\tilde{h}(\mathbf{u})\leq \tilde{h}(\mathbf{v})\). Similar results hold for decreasing, increasing, and nonincreasing scalar functions.
 \end{itemize} \\
 \hline
 Dual cone:
@@ -360,15 +361,16 @@ Simplex:
                     \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nonincreasing, and \(g\) is convex.
                 \end{itemize}
         \end{itemize}
-        Where \(\tilde{h}\) is the extended-value extension of the function \(h\), which assigns the value \(\infty\) (\(-\infty\)) to the point not in \(\dom{h}\) for \(h\) convex (concave).
         \begin{itemize}[leftmargin=*]
             \item Vector composition: the following statements hold for \(k\geq 1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}^{k} \rightarrow \mathbb{R}\) and \(\boldsymbol{g}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{k}\). Hence, \(g(\mathbf{x}) = (g_1 (\mathbf{x}), g_2(\mathbf{x}), \dots, g_k(\mathbf{x}))\) is a vector-valued function (or simply, vector function), where \(g_i: \mathbb{R}^{k} \rightarrow \mathbb{R}\) for \(1 \leq i \leq k\).
             \begin{itemize}[label=\(\triangleright\)]
-                \item \(f\) is convex if \(h\) is convex and nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of convex functions.
-                \item \(f\) is convex if \(h\) is convex and nonincreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
-                \item \(f\) is concave if \(h\) is concave and nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+                \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of convex functions.
+                \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nonincreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+                \item \(f\) is concave if \(h\) is is concave, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
             \end{itemize}
-        \end{itemize} & \vspace{-3.5ex}
+        \end{itemize}
+        Where \(\tilde{h}\) is the extended-value extension of the function \(h\), which assigns the value \(\infty\) (\(-\infty\)) to the point not in \(\dom{h}\) for \(h\) convex (concave).
+        & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
         \item The composition function allows us to see a large class of functions as convex (or concave).
         \item For scale composition, the remarkable ones are:
@@ -377,7 +379,14 @@ Simplex:
                 \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = \log{g(\mathbf{x})}\) is concave.
                 \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = 1/g(\mathbf{x})\) is convex.
                 \item If \(g\) is convex and \(\dom{g} \subseteq \mathbb{R}_{+}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = g^{p}(\mathbf{x})\) is convex, where \(p\geq 1\).
-                \item If \(g\) is convex then \(f(\mathbf{x}) = h(g(\mathbf{x})) = - \log{\left( -g(x) \right)}\) is convex on \(\left\{ x\mid g(x)<0 \right\}\).
+                \item If \(g\) is convex then \(f(\mathbf{x}) = h(g(\mathbf{x})) = - \log{\left( -g(x) \right)}\) is convex, where \(\dom{f} = \left\{ \mathbf{x} \mid g(\mathbf{x})<0 \right\}\).
+            \end{itemize}
+        \item For vector composition, we have the following examples:
+            \begin{itemize}[label=\(\triangleright\)]
+                \item If \(g(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\) is an affine function, then \(f = h \circ g\) is convex (concave) if \(h\) is convex (concave).
+                \item Let \(h(\mathbf{x}) = x_{\left[ 1 \right]} + \dots + x_{\left[ r \right]}\) be the sum of the \(r\) largest components of \(\mathbf{x} \in \mathbb{R}^{k}\). If \(g_1, g_2, \dots, g_k\) are convex, where \(\dom{g_i} = \mathbb{R}^{n}\), then \(f = h\circ g\), which is the pointwise sum of the largest \(g_i\)'s, is convex.
+                \item \(f = h\circ g\) is a convex function when \(h(\mathbf{x}) = \log\left( \sum_{i=1}^{k} e^{x_i} \right)\) and \(g_1, g_2, \dots, g_k\) are convex functions.
+                \item For \(0<p \leq 1\), the function \(h(\mathbf{x}) = \left( \sum_{i=1}^{k} x_i^p \right)^{1/p}\), where \(\dom{h} = \mathbb{R}_+^{n}\), is concave. If \(g_1, g_2, \dots, g_k\) are concaves (convexes) and nonnegatives, then \(f = h \circ g\) is concave (convex).
             \end{itemize}
         \end{itemize}\\
         \hline
