@@ -339,13 +339,64 @@ Simplex:
             \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
         \end{itemize} & Yes & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
-            \item \(\mathbf{X}\in \mathcal{S}^{n}_{++}\), that is, \(\mathbf{X}\) is positive semidefinite (\(\mathbf{X} \succ \mathbf{0}\)).
+            \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathcal{S}^{n}_{++}\).
         \end{itemize} \\
         \hline
-        Compose function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}^{m}\)
+        Composite function \(f = h\circ g : \mathbb{R}^{n}\rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
-            \item \(f = g \circ h\), i.e., \(f(\mathbf{x}) = (g\circ h)(\mathbf{x}) = g(h(\mathbf{x}))\), where \(\mathbf{x} \in S \subseteq \mathbb{R}^{p}\), \(h: \mathbb{R}^{p}\rightarrow \mathbb{R}^{k}\), and \(g: \mathbb{R}^{k}\rightarrow \mathbb{R}^{n}\).
-        \end{itemize} & Yes, if \(g\) and \(h\) are convex functions and \(S\) is a convex set. & \\
+            \item \(f = g \circ h\), i.e., \(f(\mathbf{x}) = (h\circ g)(\mathbf{x}) = h(g(\mathbf{x}))\), where:
+            \begin{itemize}[label=\(\triangleright\)]
+                \item \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}^{k}\).
+                \item \(h: \mathbb{R}^{k}\rightarrow \mathbb{R}\).
+                \item \(\dom{f} = \left\{ \mathbf{x} \in \dom{g}\mid g(\mathbf{x}) \in \dom{h} \right\}\).
+            \end{itemize}  %\(\mathbf{x} \in S \subseteq \mathbb{R}^{p}\)
+        \end{itemize} & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+            \item Scalar composition: the following statements hold for \(k=1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}\rightarrow \mathbb{R}\) and \(g: \mathbb{R}^{n} \rightarrow \mathbb{R}\):
+                \begin{itemize}[label=\(\triangleright\)]
+                    \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nondecreasing, and \(g\) is convex. In this case, \(\dom{h}\) is either \((-\infty, a]\) or \((-\infty, a)\).
+                    \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nonincreasing, and \(g\) is concave. In this case, \(\dom{h}\) is either \([a, \infty)\) or \((a, \infty)\).
+                    \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nondecreasing, and \(g\) is concave.
+                    \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nonincreasing, and \(g\) is convex.
+                \end{itemize}
+        \end{itemize}
+        Where \(\tilde{h}\) is the extended-value extension of the function \(h\), which assigns the value \(\infty\) (\(-\infty\)) to the point not in \(\dom{h}\) for \(h\) convex (concave).
+        \begin{itemize}[leftmargin=*]
+            \item Vector composition: the following statements hold for \(k\geq 1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}^{k} \rightarrow \mathbb{R}\) and \(\boldsymbol{g}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{k}\). Hence, \(g(\mathbf{x}) = (g_1 (\mathbf{x}), g_2(\mathbf{x}), \dots, g_k(\mathbf{x}))\) is a vector-valued function (or simply, vector function), where \(g_i: \mathbb{R}^{k} \rightarrow \mathbb{R}\) for \(1 \leq i \leq k\).
+            \begin{itemize}[label=\(\triangleright\)]
+                \item \(f\) is convex if \(h\) is convex and nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of convex functions.
+                \item \(f\) is convex if \(h\) is convex and nonincreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+                \item \(f\) is concave if \(h\) is concave and nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+            \end{itemize}
+        \end{itemize} & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+        \item The composition function allows us to see a large class of functions as convex (or concave).
+        \item For scale composition, the remarkable ones are:
+            \begin{itemize}[label=\(\triangleright\)]
+                \item If \(g\) is convex then \(f(x) = h(g(\mathbf{x})) = \exp{g(\mathbf{x})}\) is convex.
+                \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = \log{g(\mathbf{x})}\) is concave.
+                \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = 1/g(\mathbf{x})\) is convex.
+                \item If \(g\) is convex and \(\dom{g} \subseteq \mathbb{R}_{+}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = g^{p}(\mathbf{x})\) is convex, where \(p\geq 1\).
+                \item If \(g\) is convex then \(f(\mathbf{x}) = h(g(\mathbf{x})) = - \log{\left( -g(x) \right)}\) is convex on \(\left\{ x\mid g(x)<0 \right\}\).
+            \end{itemize}
+        \end{itemize}\\
+        \hline
+        Nonnegative weighted sum: \(f: \dom{f} \rightarrow \mathbb{R}\)
+        \begin{itemize}
+            \item \(f(\mathbf{x}) = \sum_{i=1}^{m} w_if_i(\mathbf{x})\), where \(w\geq 0\).
+        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item If \(f_1, f_2, \dots, f_m\) are convex or concave functions, then \(f\) is a convex or concave function, respectively.
+            \item If \(f_1, f_2, \dots, f_m\) are strictly convex or concave functions, then \(f\) is a strictly convex or concave function, respectively.
+        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item Special cases is when \(f = w f\) (a nonnegative scalar factor) and \(f = f_1 + f_2\) (sum).
+        \end{itemize}\\
+        \hline
+        Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
+        \begin{itemize}
+            \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
+        \end{itemize} & \vspace{-3.5ex}\begin{itemize}[leftmargin=*]
+            \item If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists).
+        \end{itemize} & \\
         \hline
         Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
         \begin{itemize}[leftmargin=*]
