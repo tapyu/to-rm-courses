@@ -159,8 +159,8 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
             \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
         \end{itemize}
     \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in S\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
-    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) with respect to the convex cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)). It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is greater or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
-    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\). The same is true for \emph{maximal}. We can have many different minimal (maximal) elements. The mathematical notation for that is \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\), where \(\mathbf{x} - K\) denotes all points that are comparable to \(\mathbf{x}\) and less than or equal to \(\mathbf{x}\) (for the maximal, we have \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)).
+    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)). It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
+    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)). It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\). Note that any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is lower or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) can have many different minimal (maximal) elements.
     \item When \(K = \mathbb{R}_{+}\) and \(S = \mathbb{R}\) (ordinary inequality), the minimal is equal to the minimum and the maximal is equal to the maximum.
     \item When we say that a scalar-valued function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) is nondecreasing, it means that whenever \(\mathbf{u}\preceq \mathbf{v}\), we have \(\tilde{h}(\mathbf{u})\leq \tilde{h}(\mathbf{v})\). Similar results hold for decreasing, increasing, and nonincreasing scalar functions.
 \end{itemize} \\
@@ -192,8 +192,7 @@ Polyhedra:
 \begin{itemize}[leftmargin=*]
     \item The polyhedron may or may not be an infinite set.
     \item Polyhedron is the result of the intersection of \(m\) halfspaces and \(p\) hyperplanes.
-    \item Subspaces, hyperplanes, lines, rays line segments, and
-    halfspaces are all polyhedra.
+    \item Subspaces, hyperplanes, lines, rays line segments, and halfspaces are all special cases of polyhedra.
     \item The \emph{nonnegative orthant}, \(\mathbb{R}_{+}^{n} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid x_i \leq 0 \textnormal{ for } i=1,\dots n \right\} = \left\{ \mathbf{x} \in \mathbb{R}^n \mid \mathbf{Ix}  \succeq \mathbf{0}\right\}\), is a special polyhedron.
 \end{itemize}\\
 \hline
@@ -219,12 +218,13 @@ Simplex:
 \hline
 \(\alpha\)-sublevel set:
 \begin{itemize}[leftmargin=*]
-    \item \(C_\alpha = \{\mathbf{x} \in \dom{f} \mid f(\mathbf{x}) \leq \alpha\}\) (regarding convexity)
-    \item \(C_\alpha = \{\mathbf{x} \in \dom{f} \mid f(\mathbf{x}) \geq \alpha\}\) (regarding concavity)
+    \item \(C_\alpha = \{\mathbf{x} \in \dom{f} \mid f(\mathbf{x}) \leq \alpha\}\) (regarding convexity), where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \item \(C_\alpha = \{\mathbf{x} \in \dom{f} \mid f(\mathbf{x}) \geq \alpha\}\) (regarding concavity), where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
-    \item If \(f\) is a convex function, then sublevel sets of \(f\) are convexes for any \(\alpha\in \mathbb{R}\).
+    \item If \(f\) is a convex (concave) function, then sublevel sets of \(f\) are convexes (concaves) for any \(\alpha\in \mathbb{R}\).
     \item The converse is not true: a function can have all its sublevel set convex and not be a convex function.
+    \item \(C_\alpha \subseteq \dom{f}\)
 \end{itemize}\\
 \hline
 \end{tabularx}
@@ -312,7 +312,7 @@ Simplex:
             \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
         \end{itemize} & Yes. & \\
         \hline
-        Maximum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        Maximum function (pointwise maximum): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
         \end{itemize} & Yes, if \(f_1, \dots, f_n\) are convex function. & \\
@@ -451,17 +451,21 @@ Simplex:
             \item \(\textnormal{epi } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
         \end{itemize} & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
-            \item Visually, it is the graph above the \(\mathbf{x}, f(\mathbf{x})\) curve.
             \item The function \(f\) is convex iff its epigraph is convex.
-        \end{itemize}\\
+        \end{itemize} & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+        \item Visually, it is the graph above the \(\mathbf{x}, f(\mathbf{x})\) curve.
+    \end{itemize}\\
         \hline
         Hypograph:
         \begin{itemize}[leftmargin=*]
             \item \(\textnormal{hypo } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
         \end{itemize} & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
-            \item Visually, it is the graph below the \(\mathbf{x}, f(\mathbf{x})\) curve.
             \item The function \(f\) is concave iff its hypograph is convex.
+        \end{itemize} & \vspace{-3.5ex}
+        \begin{itemize}[leftmargin=*]
+            \item Visually, it is the graph below the \(\mathbf{x}, f(\mathbf{x})\) curve.
         \end{itemize}\\
         \hline
     \end{tabularx}
