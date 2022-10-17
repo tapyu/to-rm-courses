@@ -31,6 +31,7 @@
 \newcommand{\dom}[1]{\ensuremath{\textnormal{dom}\left(#1\right)}} % domain of the function f
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
+\newcommand{\intersection}{\bigcap\limits}
 \NewDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}}
 
 \begin{document}
@@ -125,7 +126,7 @@ Ellipsoid:
 \hline
 Norm cone:
 \begin{itemize}[leftmargin=*]
-    \item \(C = \left\{ [x_1, x_2, \cdots, x_n, t]^\trans \in \mathbb{R}^{n+1} \mid \mathbf{x} \in \mathbb{R}^{n}, \norm{\mathbf{x}}_{p} \leq t \right\} \subseteq \mathbb{R}^{n+1}\)
+    \item \(C = \left\{ (x_1, x_2, \cdots, x_n, t) \in \mathbb{R}^{n+1} \mid \mathbf{x} \in \mathbb{R}^{n}, \norm{\mathbf{x}}_{p} \leq t \right\} \subseteq \mathbb{R}^{n+1}\)
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item Although it is named ``Norm cone'', it is a set, not a scalar.
@@ -160,7 +161,7 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
         \end{itemize}
     \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in S\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
     \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)). It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
-    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)). It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\). Note that any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is lower or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) can have many different minimal (maximal) elements.
+    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)). It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\). Note that any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is less than or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) can have many different minimal (maximal) elements.
     \item When \(K = \mathbb{R}_{+}\) and \(S = \mathbb{R}\) (ordinary inequality), the minimal is equal to the minimum and the maximal is equal to the maximum.
     \item When we say that a scalar-valued function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) is nondecreasing, it means that whenever \(\mathbf{u}\preceq \mathbf{v}\), we have \(\tilde{h}(\mathbf{u})\leq \tilde{h}(\mathbf{v})\). Similar results hold for decreasing, increasing, and nonincreasing scalar functions.
 \end{itemize} \\
@@ -232,7 +233,7 @@ Simplex:
         \hline
         \multicolumn{3}{|c|}{Functions (or operators) and their implications regarding convexity} \\
         \hline
-        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convex?} & \multicolumn{1}{|c|}{Comments} \\
+        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convex (concave)?} & \multicolumn{1}{|c|}{Comments} \\
         \hline
         Union: $C = A \cup B $ & Not in most of the cases. & \\
         \hline
@@ -312,10 +313,38 @@ Simplex:
             \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
         \end{itemize} & Yes. & \\
         \hline
-        Maximum function (pointwise maximum): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        Pointwise maximum (maximum function): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
-        \end{itemize} & Yes, if \(f_1, \dots, f_n\) are convex function. & \\
+        \end{itemize} & Yes, if \(f_1, \dots, f_n\) are convex function. &
+        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item Its domain \(\dom{f} = \bigcap\limits_{i=1}^{n} \dom{f_i}\) is also convex.
+        \end{itemize} \\
+        \hline
+        Pointwise infimum:
+        \begin{itemize}[leftmargin=*]
+            \item \(f(x) = \underset{y \in \mathcal{A}}{\textnormal{inf }} g(x,y)\).
+        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item .%\(f\) is convex in \(x\) if \(g\) is convex in \(x\) for each \(y \in \mathcal{A}\).
+            % \item \(f\) is concave in \(x\) if \(g\) is concave in \(x\) for each \(y \in \mathcal{A}\).
+        \end{itemize} &
+        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the greatest value in the codomain of \(f\) that is less than or equal this set.
+            \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ inf }}g(x,y)> -\infty \right\}\).
+        \end{itemize} \\
+        \hline
+        Pointwise supremum:
+        \begin{itemize}[leftmargin=*]
+            \item \(f(x) = \underset{y \in \mathcal{A}}{\textnormal{sup }} g(x,y)\).
+        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item \(f\) is convex in \(x\) if \(g\) is convex in \(x\) for each \(y \in \mathcal{A}\).
+            \item \(f\) is concave in \(x\) if \(g\) is concave in \(x\) for each \(y \in \mathcal{A}\).
+        \end{itemize} &
+        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the least value in the codomain of \(f\) that is greater than or equal this set.
+            \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ sup }}g(x,y)<\infty \right\}\).
+            \item In terms of epigraphs, the pointwise supremum of the infinite set of functions \(\eval{g(x,y)}{y\in \mathcal{A}}\) corresponds to the intersection of the following epigraphs: \(\textnormal{epi } f = \intersection_{y \in \mathcal{A}} \textnormal{epi } g(\cdot, y)\)
+        \end{itemize} \\
         \hline
         Minimum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
@@ -454,7 +483,7 @@ Simplex:
             \item The function \(f\) is convex iff its epigraph is convex.
         \end{itemize} & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
-        \item Visually, it is the graph above the \(\mathbf{x}, f(\mathbf{x})\) curve.
+        \item Visually, it is the graph above the \((\mathbf{x}, f(\mathbf{x}))\) curve.
     \end{itemize}\\
         \hline
         Hypograph:
@@ -465,7 +494,7 @@ Simplex:
             \item The function \(f\) is concave iff its hypograph is convex.
         \end{itemize} & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
-            \item Visually, it is the graph below the \(\mathbf{x}, f(\mathbf{x})\) curve.
+            \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
         \end{itemize}\\
         \hline
     \end{tabularx}
