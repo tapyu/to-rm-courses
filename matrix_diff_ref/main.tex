@@ -30,7 +30,7 @@
 
 % math
 \usepackage{amsfonts}
-\newcommand{\trans}{\mathsf{T}}
+\newcommand{\trans}{\top}
 \newcommand{\hermit}{\mathsf{H}}
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjoint
@@ -157,9 +157,9 @@ where \(\mathbf{X} \in \mathbb{C}^{m \times n}\).
 
 \subsubsection{The hidden equality for the numerator layout}
 
-From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-num}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\mathsf{T} \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
+From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-num}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\top \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
 \begin{align}
-    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Num}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} & \dfrac{\partial \alpha}{\partial x_{2}} & \cdots & \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n}.
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\top}\right]_{\textnormal{Num}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} & \dfrac{\partial \alpha}{\partial x_{2}} & \cdots & \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n}.
 \end{align}
 However, by using we definition from the Eq.\eqref{eq:jacobian-formulation}, it is also true to state that
 \begin{align}
@@ -168,7 +168,7 @@ However, by using we definition from the Eq.\eqref{eq:jacobian-formulation}, it 
 Therefore,
 \begin{align}
     \label{eq:hidden-num}
-    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Num}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Num}}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\top}\right]_{\textnormal{Num}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Num}}
 \end{align}
 
 \subsubsection{Jacobian matrix for the numerator layout}
@@ -196,25 +196,26 @@ where \(f = (f_1, f_2, \dots, f_m)\), being \(f_i: \mathbb{R}^n \rightarrow \mat
 \begin{align}
     \mathbf{J} = \left[ \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right]_{\textnormal{Num}}.
 \end{align}
-That is why it is also called ``Jacobian formulation''
+That is why it is also called ``Jacobian formulation''.
 
 \subsubsection{Hessian matrix for the numerator layout}
 
 The matrix calculus notation for the Hessian matrix is given by
 \begin{align}
     \label{eq:hessian-eq}
-    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
         \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
         \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
-        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2},
-    \end{bmatrix}
+        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2}
+    \end{bmatrix},
 \end{align}
 where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). We can rewrite it by recalling the Eq.\eqref{eq:hidden-num}, that is,
 \begin{align}
-    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\mathsf{T}} \right) = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right),
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\top} \right) = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right).
 \end{align}
-we have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix (or a row vector), we cannot going on. Indeed, as we will see after, the notation of the Hessian matrix in Eq.\eqref{eq:hessian-eq} follows the denominator layout, not the numerator.
+
+We have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix, we cannot going on. Indeed, as we will see after, the notation of the Hessian matrix in Eq.\eqref{eq:hessian-eq} follows the denominator layout, not the numerator.
 
 \subsection{Hessian formulation (denominator layout)}
 
@@ -254,9 +255,9 @@ where \(\mathbf{X} \in \mathbb{C}^{m \times n}\).
 
 \subsubsection{The hidden equality for the denominator layout}
 
-From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-den}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\mathsf{T} \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
+From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-den}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\top \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
 \begin{align}
-    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Den}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} \\
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\top}\right]_{\textnormal{Den}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} \\
         \dfrac{\partial \alpha}{\partial x_{2}} \\
         \vdots \\
         \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n},
@@ -272,7 +273,7 @@ however, by using we definition from the Eq.\eqref{eq:denominator-layout}, it is
 Therefore,
 \begin{align}
     \label{eq:hidden-den}
-    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Den}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Den}}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\top}\right]_{\textnormal{Den}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Den}}
 \end{align}
 
 \subsubsection{The Jacobian matrix for the denominator layout}
@@ -282,13 +283,13 @@ The matrix calculus notation for the Jacobian matrix is given by
 \end{align}
 where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a vector function. We have seen that this equation follows the numerator layout, not the denominator. As we will see after, to transform from one layout to another, we need to apply the transpose operator, that is (c.f. Eq.\eqref{eq:jacobian-matrix}),
 \begin{align}
-    \left[ \mathbf{J} \right]_{\textnormal{Den}} & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^{\mathsf{T}} \\
-    & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}\\
+    \left[ \mathbf{J} \right]_{\textnormal{Den}} & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^{\top} \\
+    & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\top\\
     & = \begin{bmatrix}
         \dfrac{\partial f_1(\mathbf{x})}{\partial \mathbf{x}} & \dfrac{\partial f_2(\mathbf{x})}{\partial \mathbf{x}} & \dots & \dfrac{\partial f_m(\mathbf{x})}{\partial \mathbf{x}}
-    \end{bmatrix}^\mathsf{T} \\
+    \end{bmatrix}^\top \\
     & = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
-        \dfrac{\partial f_1(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T} \\ \dfrac{\partial f_2(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T} \\ \vdots \\ \dfrac{\partial f_m(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}
+        \dfrac{\partial f_1(\mathbf{x})}{\partial \mathbf{x}}^\top \\ \dfrac{\partial f_2(\mathbf{x})}{\partial \mathbf{x}}^\top \\ \vdots \\ \dfrac{\partial f_m(\mathbf{x})}{\partial \mathbf{x}}^\top
     \end{bmatrix}
 \end{align}
 
@@ -296,7 +297,7 @@ where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a vector function. We 
 The matrix calculus notation for the Hessian matrix is given by
 \begin{align}
     \label{eq:hessian-eq}
-    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
         \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
         \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
@@ -305,7 +306,7 @@ The matrix calculus notation for the Hessian matrix is given by
 \end{align}
 where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). As we will see below, the Hessian matrix follows the denominator layout,
 \begin{align}
-    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\mathsf{T}} \right),
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\top} \right),
 \end{align}
 by recalling the Eq.\eqref{eq:hidden-den}, it follows that
 \begin{align}
@@ -322,8 +323,9 @@ Since \(\dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} = \left( \dfrac{\par
 \end{align}
 Therefore, it is true to state that
 \begin{align}
-    \mathbf{H} = \left[ \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} \right]_{\textnormal{Den}}
+    \mathbf{H} = \left[ \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} \right]_{\textnormal{Den}}.
 \end{align}
+That is why it is called Hessian formulation.
 
 \subsection{Comparative between Jacobian and Hessian formulations}
 
@@ -343,9 +345,9 @@ As a rule of thumb, keep in mind that:
     \item \(\dfrac{\partial x}{\partial \mathbf{X}}\) will yield a matrix.
     \item \(\dfrac{\partial y}{\partial \mathbf{x}}\) will yield a vector.
     \item \(\dfrac{\partial \mathbf{y}}{\partial x}\) will yield a \(1\times n\) matrix (``row vector'').
-    \item \(\mathbf{J} = \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}\).
-    \item \(\mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}}\).
-    \item \(\dfrac{\partial\alpha}{\partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial\alpha}{\partial \mathbf{x}}\).
+    \item \(\mathbf{J} = \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\top\).
+    \item \(\mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top}\).
+    \item \(\dfrac{\partial\alpha}{\partial \mathbf{x}^\top} = \dfrac{\partial\alpha}{\partial \mathbf{x}}\).
 \end{itemize}
 
 Note that notations such as \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{X}}, \dfrac{\partial \mathbf{Y}}{\partial \mathbf{X}}\), or \(\dfrac{\partial \mathbf{Y}}{\partial \mathbf{x}}\) do not exist for both Jacobian and Hessian formulations.
