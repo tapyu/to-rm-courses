@@ -45,7 +45,7 @@
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
@@ -90,7 +90,7 @@ I will use the notation that most Engineers might be used to, and only cover the
 
 Some of the differentiation solutions here were collected from class notes, while others I derived by myself. Obviously, this guide may have errors (I hope not). If you find it, feel free to reach me out through email or simply make a pull request on my \href{https://github.com/tapyu/courses/tree/main/matrix_diff_ref}{Github}.
 
-\section{Notation and nomeclature}
+\section{Notation and nomeclatures}
 
 Let
 \begin{align}
@@ -108,10 +108,11 @@ be a complex matrix with dimension equal to \(m \times n\), where \(a_{ij} \in \
         x_2 \\
         \vdots \\
         x_n
-    \end{bmatrix}  \in \mathbb{C}^{n}.
+    \end{bmatrix}  \in \mathbb{C}^{n},
 \end{align}
+which may also be denoted as an \(n\)-tuple, \((x_1, x_2, \dots, x_n)\), when more convenient.
 
-Nonbold Romain and Greek alphabets represent scalars, while bold uppercase and bold lowercase represent matrices and vectors, respectively. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent known variables, and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent unknown variables. The operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) represent, respectively, the transpose, the hermitian, the conjugate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar). Greek letters will be preferred to represent independent and unknown scalars that are not within a vector or matrix.
+Nonbold Romain and Greek alphabets represent scalars, while bold uppercase and bold lowercase represent matrices and vectors, respectively. I make no distinction between scalar- and vector-valued functions, both are denoted as nonbold letters. In Section \ref{sec:diff}, I will try to use the initial letters of the Romain alphabet (\(a, b, c, \dots\)) to represent constants (known values), and the final letters of the Romain alphabet (\(x, y, z, w, \dots\)) to represent variables (unknown values). Greek letters will be preferred to represent independent and unknown scalars that are not within a vector or matrix. Finally, the operators \(\cdot^{\trans}\), \(\cdot^{\hermit}\), \(\cdot^*\) \(\text{tr}(\cdot)\), \(\textnormal{adj}(\cdot)\), and \(\abs{\cdot}\) denote, respectively, the transpose, the hermitian, the conjugate, the trace, the adjoint, and the determinant (or absolute value when the operand is a scalar).
 
 \subsection{Jacobian formulation (numerator layout)}
 
@@ -119,10 +120,10 @@ Consider two vectors \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathb
 \begin{align}
     \label{eq:jacobian-formulation}
     \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
-        \dfrac{\partial y_1^\trans}{\partial \mathbf{x}} \\
-        \dfrac{\partial y_2^\trans}{\partial \mathbf{x}} \\ 
+        \dfrac{\partial y_1}{\partial \mathbf{x}} \\
+        \dfrac{\partial y_2}{\partial \mathbf{x}} \\ 
         \vdots \\ 
-        \dfrac{\partial y_m^\trans}{\partial \mathbf{x}}
+        \dfrac{\partial y_m}{\partial \mathbf{x}}
     \end{bmatrix} = \renewcommand{\arraystretch}{1.8}
     \begin{bmatrix}
         \dfrac{\partial y_1}{\partial x_1} & \dfrac{\partial y_1}{\partial x_2} & \dots & \dfrac{\partial y_1}{\partial x_n} \\
@@ -131,23 +132,6 @@ Consider two vectors \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathb
         \dfrac{\partial y_m}{\partial x_1} & \dfrac{\partial y_m}{\partial x_2} & \dots & \dfrac{\partial y_m}{\partial x_n} \\
     \end{bmatrix} \in \mathbb{C}^{m\times n}.
 \end{align}
-
-Note that it perfectly matches the Jacobian matrix definition,
-
-\begin{align}
-    \mathbf{J} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
-        \dfrac{\partial f_1^\trans}{\partial \mathbf{x}} \\
-        \dfrac{\partial f_2^\trans}{\partial \mathbf{x}} \\ 
-        \vdots \\ 
-        \dfrac{\partial f_m^\trans}{\partial \mathbf{x}}
-    \end{bmatrix} = \begin{bmatrix}
-        \dfrac{\partial f_1}{\partial x_1} & \dfrac{\partial f_1}{\partial x_2} & \dots & \dfrac{\partial f_1}{\partial x_n} \\
-        \dfrac{\partial f_2}{\partial x_1} & \dfrac{\partial f_2}{\partial x_2} & \dots & \dfrac{\partial f_2}{\partial x_n} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        \dfrac{\partial f_m}{\partial x_1} & \dfrac{\partial f_m}{\partial x_2} & \dots & \dfrac{\partial f_m}{\partial x_n} \\
-    \end{bmatrix},
-\end{align}
-where \(f: \mathbb{R}^n \rightarrow \mathbb{R}\). Perhaps that is why it is called the ``Jacobian formulation''.
 
 We can infer what is the shape of \(\dfrac{\partial y}{\partial \mathbf{x}}\) and \(\dfrac{\partial \mathbf{y}}{\partial x}\) by changing the respective vectors in Equation \eqref{eq:jacobian-formulation} by scalar, but we cannot infer which shape the derivate results when one of the terms is a matrix. The partial derivative \(\dfrac{\partial \mathbf{Y}}{\partial x}\) (usually called tangent matrix) is defined for the numerator layout as
 \begin{align}
@@ -160,6 +144,7 @@ We can infer what is the shape of \(\dfrac{\partial y}{\partial \mathbf{x}}\) an
 \end{align}
 where \(\mathbf{Y} \in \mathbb{C}^{m \times n}\), and the partial derivative of \(\dfrac{\partial y}{\partial \mathbf{X}}\) (usually called gradient matrix) is given by
 \begin{align}
+    \label{eq:gradient-matrix-num}
     \renewcommand{\arraystretch}{1.8}
 			\left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Num}} = \begin{bmatrix}
 				\dfrac{\partial y}{\partial x_{11}} & \dfrac{\partial y}{\partial x_{12}} & \dots & \dfrac{\partial y}{\partial x_{1n}} \\
@@ -170,10 +155,72 @@ where \(\mathbf{Y} \in \mathbb{C}^{m \times n}\), and the partial derivative of 
 \end{align}
 where \(\mathbf{X} \in \mathbb{C}^{m \times n}\).
 
+\subsubsection{The hidden equality for the numerator layout}
+
+From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-num}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\mathsf{T} \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
+\begin{align}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Num}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} & \dfrac{\partial \alpha}{\partial x_{2}} & \cdots & \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n}.
+\end{align}
+However, by using we definition from the Eq.\eqref{eq:jacobian-formulation}, it is also true to state that
+\begin{align}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Num}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} & \dfrac{\partial \alpha}{\partial x_{2}} & \cdots & \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{1 \times n},
+\end{align}
+Therefore,
+\begin{align}
+    \label{eq:hidden-num}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Num}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Num}}
+\end{align}
+
+\subsubsection{Jacobian matrix for the numerator layout}
+The matrix calculus notation for the Jacobian matrix is given by
+
+\begin{align}
+    \mathbf{J} = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}},
+\end{align}
+where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a vector function. As shown below, the matrix differentiation notation used to represent the Jacobian matrix is the numerator layout (c.f. Eq.\eqref{eq:jacobian-formulation})
+\begin{align}
+    \label{eq:jacobian-matrix}
+    \mathbf{J} = \renewcommand{\arraystretch}{2.6} \begin{bmatrix}
+        \dfrac{\partial f_1}{\partial \mathbf{x}} \\
+        \dfrac{\partial f_2}{\partial \mathbf{x}} \\ 
+        \vdots \\ 
+        \dfrac{\partial f_m}{\partial \mathbf{x}}
+    \end{bmatrix} = \begin{bmatrix}
+        \dfrac{\partial f_1}{\partial x_1} & \dfrac{\partial f_1}{\partial x_2} & \dots & \dfrac{\partial f_1}{\partial x_n} \\
+        \dfrac{\partial f_2}{\partial x_1} & \dfrac{\partial f_2}{\partial x_2} & \dots & \dfrac{\partial f_2}{\partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial f_m}{\partial x_1} & \dfrac{\partial f_m}{\partial x_2} & \dots & \dfrac{\partial f_m}{\partial x_n} \\
+    \end{bmatrix},
+\end{align}
+where \(f = (f_1, f_2, \dots, f_m)\), being \(f_i: \mathbb{R}^n \rightarrow \mathbb{R}\), for \(1 \leq i \leq m\). Therefore, it is true to state that
+\begin{align}
+    \mathbf{J} = \left[ \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right]_{\textnormal{Num}}.
+\end{align}
+That is why it is also called ``Jacobian formulation''
+
+\subsubsection{Hessian matrix for the numerator layout}
+
+The matrix calculus notation for the Hessian matrix is given by
+\begin{align}
+    \label{eq:hessian-eq}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+        \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
+        \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2},
+    \end{bmatrix}
+\end{align}
+where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). We can rewrite it recalling the Eq.\eqref{eq:hidden-num}, that is,
+\begin{align}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\mathsf{T}} \right) = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right),
+\end{align}
+we have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix (or a row vector), we cannot going on. Therefore, the matrix calculus of the Hessian notation in Eq.\eqref{eq:hessian-eq} does not follow the numerator layout.
+
 \subsection{Hessian formulation (denominator layout)}
 
 The Hessian formulation (or denominator layout) has the following notation
 \begin{align}
+    \label{eq:denominator-layout}
     \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}} = \begin{bmatrix}
         \dfrac{\partial y_1}{\partial \mathbf{x}} & \dfrac{\partial y_2}{\partial \mathbf{x}} & \cdots & \dfrac{\partial y_3}{\partial \mathbf{x}}
     \end{bmatrix} = \begin{bmatrix}
@@ -183,7 +230,7 @@ The Hessian formulation (or denominator layout) has the following notation
         \dfrac{\partial y_1}{\partial x_n} & \dfrac{\partial y_2}{\partial x_n} & \dots & \dfrac{\partial y_m}{\partial x_n} \\
     \end{bmatrix} \in \mathbb{C}^{n\times m}.
 \end{align}
-I've tried to find some analogy with the Hessian matrix but, unfortunately, I haven't discovered it yet. The tangent matrix is given by
+The tangent matrix is given by
 \begin{align}
     \left[\dfrac{\partial \mathbf{Y}}{\partial x}\right]_{\textnormal{Den}} \renewcommand{\arraystretch}{1.8} = \begin{bmatrix}
         \dfrac{\partial y_{11}}{\partial x} & \dfrac{\partial y_{21}}{\partial x} & \dots & \dfrac{\partial y_{m1}}{\partial x} \\
@@ -194,15 +241,89 @@ I've tried to find some analogy with the Hessian matrix but, unfortunately, I ha
 \end{align}
 where \(\mathbf{Y} \in \mathbb{C}^{m \times n}\), and the partial derivative of the gradient matrix is given by
 \begin{align}
+    \label{eq:gradient-matrix-den}
     \renewcommand{\arraystretch}{1.8}
 			\left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Den}} = \begin{bmatrix}
 				\dfrac{\partial y}{\partial x_{11}} & \dfrac{\partial y}{\partial x_{21}} & \dots & \dfrac{\partial y}{\partial x_{m1}} \\
 				\dfrac{\partial y}{\partial x_{12}} & \dfrac{\partial y}{\partial x_{22}} & \dots & \dfrac{\partial y}{\partial x_{m2}} \\
 				\vdots & \vdots & \ddots & \vdots \\
 				\dfrac{\partial y}{\partial x_{1n}} & \dfrac{\partial y}{\partial x_{2n}} & \dots & \dfrac{\partial y}{\partial x_{mn}} \\
-			\end{bmatrix} \in \mathbb{C}^{m \times n},
+			\end{bmatrix} \in \mathbb{C}^{n \times m},
 \end{align}
-where \(\mathbf{X} \in \mathbb{C}^{n \times m}\).
+where \(\mathbf{X} \in \mathbb{C}^{m \times n}\).
+
+\subsubsection{The hidden equality for the denominator layout}
+
+From these definitions, we can infer a nonobvious equality that is rather useful when we handle matrix differentiations. If we consider a special case of the gradient matrix (Eq.\eqref{eq:gradient-matrix-den}) when $m=1 \therefore \mathbf{X} = \mathbf{x}^\mathsf{T} \in \mathbb{R}^{1\times n}$, where $\mathbf{x} \in \mathbb{R}^n$, we have that
+\begin{align}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Den}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} \\
+        \dfrac{\partial \alpha}{\partial x_{2}} \\
+        \vdots \\
+        \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n},
+\end{align}
+however, by using we definition from the Eq.\eqref{eq:denominator-layout}, it is also true to state that
+\begin{align}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Den}} = \begin{bmatrix} \dfrac{\partial \alpha}{\partial x_{1}} \\
+        \dfrac{\partial \alpha}{\partial x_{2}} \\
+        \vdots \\
+        \dfrac{\partial \alpha}{\partial x_{n}} \end{bmatrix} \in \mathbb{R}^{n}.
+\end{align}
+
+Therefore,
+\begin{align}
+    \label{eq:hidden-den}
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^\mathsf{T}}\right]_{\textnormal{Den}} = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}}\right]_{\textnormal{Den}}
+\end{align}
+
+\subsubsection{The Jacobian matrix for the denominator layout}
+The matrix calculus notation for the Jacobian matrix is given by
+\begin{align}
+    \mathbf{J} = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}},
+\end{align}
+where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a vector function. We have seen that this equation follows the numerator layout, not the denominator. As we will see after, to transform from one layout to another, we need to apply the transpose operator, that is (c.f. Eq.\eqref{eq:jacobian-matrix}),
+\begin{align}
+    \left[ \mathbf{J} \right]_{\textnormal{Den}} & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^{\mathsf{T}} \\
+    & = \frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}\\
+    & = \begin{bmatrix}
+        \dfrac{\partial f_1(\mathbf{x})}{\partial \mathbf{x}} & \dfrac{\partial f_2(\mathbf{x})}{\partial \mathbf{x}} & \dots & \dfrac{\partial f_m(\mathbf{x})}{\partial \mathbf{x}}
+    \end{bmatrix}^\mathsf{T} \\
+    & = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+        \dfrac{\partial f_1(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T} \\ \dfrac{\partial f_2(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T} \\ \vdots \\ \dfrac{\partial f_m(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}
+    \end{bmatrix}
+\end{align}
+
+\subsubsection{The Hessian matrix for the denominator layout}
+The matrix calculus notation for the Hessian matrix is given by
+\begin{align}
+    \label{eq:hessian-eq}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+        \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
+        \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2},
+    \end{bmatrix}
+\end{align}
+where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). As we will see below, the Hessian matrix follows the denominator layout,
+\begin{align}
+    \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\mathsf{T}} \right),
+\end{align}
+by recalling the Eq.\eqref{eq:hidden-den}, it follows that
+\begin{align}
+    \mathbf{H} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right).
+\end{align}
+Since \(\dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} = \left( \dfrac{\partial f(\mathbf{x})}{\partial x_1}, \dfrac{\partial f(\mathbf{x})}{\partial x_2}, \dots, \dfrac{\partial f(\mathbf{x})}{\partial x_n} \right)\) is a vector, we have a vector-vector differentiation, which for denominator layout is defined as
+\begin{align}
+    \mathbf{H} = \renewcommand{\arraystretch}{2.2}\begin{bmatrix}
+        \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
+        \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2}.
+    \end{bmatrix}
+\end{align}
+Therefore, it is true to state that
+\begin{align}
+    \mathbf{H} = \left[ \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} \right]_{\textnormal{Den}}
+\end{align}
 
 \subsection{Comparative between Jacobian and Hessian formulations}
 
@@ -222,6 +343,9 @@ As a rule of thumb, keep in mind that:
     \item \(\dfrac{\partial x}{\partial \mathbf{X}}\) will yield a matrix.
     \item \(\dfrac{\partial y}{\partial \mathbf{x}}\) will yield a vector.
     \item \(\dfrac{\partial \mathbf{y}}{\partial x}\) will yield a \(1\times n\) matrix (``row vector'').
+    \item \(\mathbf{J} = \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}}^\mathsf{T}\).
+    \item \(\mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}}\).
+    \item \(\dfrac{\partial\alpha}{\partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial\alpha}{\partial \mathbf{x}}\).
 \end{itemize}
 
 Note that notations such as \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{X}}, \dfrac{\partial \mathbf{Y}}{\partial \mathbf{X}}\), or \(\dfrac{\partial \mathbf{Y}}{\partial \mathbf{x}}\) do not exist for both Jacobian and Hessian formulations.
