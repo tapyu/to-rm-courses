@@ -1,4 +1,5 @@
 *.tar.gz
+*_backup.pdf
 phd_ica/Exercises/TC2 - Neural networks/Datasets/*
 __pycache__/
 media
