@@ -210,11 +210,11 @@ The matrix calculus notation for the Hessian matrix is given by
         \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2},
     \end{bmatrix}
 \end{align}
-where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). We can rewrite it recalling the Eq.\eqref{eq:hidden-num}, that is,
+where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). We can rewrite it by recalling the Eq.\eqref{eq:hidden-num}, that is,
 \begin{align}
     \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\mathsf{T}} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\mathsf{T}} \right) = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right),
 \end{align}
-we have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix (or a row vector), we cannot going on. Therefore, the matrix calculus of the Hessian notation in Eq.\eqref{eq:hessian-eq} does not follow the numerator layout.
+we have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix (or a row vector), we cannot going on. Indeed, as we will see after, the notation of the Hessian matrix in Eq.\eqref{eq:hessian-eq} follows the denominator layout, not the numerator.
 
 \subsection{Hessian formulation (denominator layout)}
 
