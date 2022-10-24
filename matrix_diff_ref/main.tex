@@ -190,7 +190,7 @@ where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a vector function. As 
         \dfrac{\partial f_2}{\partial x_1} & \dfrac{\partial f_2}{\partial x_2} & \dots & \dfrac{\partial f_2}{\partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
         \dfrac{\partial f_m}{\partial x_1} & \dfrac{\partial f_m}{\partial x_2} & \dots & \dfrac{\partial f_m}{\partial x_n} \\
-    \end{bmatrix},
+    \end{bmatrix} \in \mathbb{R}^{m \times n},
 \end{align}
 where \(f = (f_1, f_2, \dots, f_m)\), being \(f_i: \mathbb{R}^n \rightarrow \mathbb{R}\), for \(1 \leq i \leq m\). Therefore, it is true to state that
 \begin{align}
@@ -208,14 +208,14 @@ The matrix calculus notation for the Hessian matrix is given by
         \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
         \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2}
-    \end{bmatrix},
+    \end{bmatrix} \in \mathbb{R}^{n \times n},
 \end{align}
 where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). We can rewrite it by recalling the Eq.\eqref{eq:hidden-num}, that is,
 \begin{align}
     \mathbf{H} = \dfrac{\partial^{2} f(\mathbf{x})}{\partial \mathbf{x} \partial \mathbf{x}^\top} = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}^\top} \right) = \dfrac{\partial }{\partial \mathbf{x}}\left( \dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} \right).
 \end{align}
 
-We have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix, we cannot going on. Indeed, as we will see after, the notation of the Hessian matrix in Eq.\eqref{eq:hessian-eq} follows the denominator layout, not the numerator.
+We have found a restriction here: we have not defined a matrix-vector differentiation for the numerator layout. Since \(\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\) is a \(1\times n\) matrix, we cannot continue. Indeed, as we will see after, the notation of the Hessian matrix in Eq.\eqref{eq:hessian-eq} follows the denominator layout, not the numerator.
 
 \subsection{Hessian formulation (denominator layout)}
 
@@ -301,8 +301,8 @@ The matrix calculus notation for the Hessian matrix is given by
         \dfrac{\partial^{2} f}{\partial x_1^2} & \dfrac{\partial^{2} f}{\partial x_1 \partial x_2} & \cdots & \dfrac{\partial^{2} f}{\partial x_1 \partial x_n} \\
         \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
-        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2},
-    \end{bmatrix}
+        \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2}
+    \end{bmatrix} \in \mathbb{R}^{n \times n},
 \end{align}
 where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) and \(\mathbf{x} \in \mathbb{R}^{n}\). As we will see below, the Hessian matrix follows the denominator layout,
 \begin{align}
@@ -319,7 +319,7 @@ Since \(\dfrac{\partial f(\mathbf{x})}{\partial \mathbf{x}} = \left( \dfrac{\par
         \dfrac{\partial^{2} f}{\partial x_2 \partial x_1} & \dfrac{\partial^{2} f}{\partial x_2^2} & \cdots & \dfrac{\partial^{2} f}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
         \dfrac{\partial^{2} f}{\partial x_n \partial x_1} & \dfrac{\partial^{2} f}{\partial x_n \partial x_2} & \dots & \dfrac{\partial^{2} f}{\partial x_n^2}.
-    \end{bmatrix}
+    \end{bmatrix}.
 \end{align}
 Therefore, it is true to state that
 \begin{align}
