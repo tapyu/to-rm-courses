@@ -417,8 +417,10 @@ As you could have noticed,
 \begin{align}
     \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Num}} & = \left[ \dfrac{\partial \mathbf{y}}{\partial \mathbf{x}} \right]_{\textnormal{Den}}^{\trans}, \\
     \left[ \dfrac{\partial \mathbf{Y}}{\partial x}\right]_{\textnormal{Num}} & = \left[ \dfrac{\partial \mathbf{Y}}{\partial x}\right]_{\textnormal{Den}}^{\trans}, \\
-    \left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Num}} & = \left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Den}}^{\trans}.
+    \left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Num}} & = \left[\dfrac{\partial y}{\partial \mathbf{X}}\right]_{\textnormal{Den}}^{\trans}, \\
+    \left[\dfrac{\partial \alpha}{\partial \mathbf{x} \partial\mathbf{x}^\top}\right]_{\textnormal{Num}} & = \left[\dfrac{\partial \alpha}{\partial \mathbf{x}^{2}}\right]_{\textnormal{Den}},
 \end{align}
+where that last equation can be inferred from the discussion about the Hessian matrix.
 
 That is the difference when you try to differentiate without paying attention to which representation the author adopted. The good news is that, as long as you differentiate it correctly, you can switch between the Jacobian and Hessian formulations by simply transposing the final result\footnote{First, you should apply \(\left[\cdot\right]_{\textnormal{Den}} = \left[\cdot\right]_{\textnormal{Num}}^{\trans}\) on partial derivatives that you get in the solution. Then, you apply the transpose to the whole solution.}. Fortunately, the denominator layout is the most adopted by authors from areas related to Electrical Engineering. That is why we will focus on the denominator layout hereafter (the notation \(\left[\cdot\right]_{\textnormal{Den}}\) will be dropped out since we do not need it anymore).
 
@@ -434,7 +436,6 @@ As a rule of thumb, keep in mind that:
     \item \(\dfrac{\partial\alpha}{\partial \mathbf{x}^\top} = \dfrac{\partial\alpha}{\partial \mathbf{x}}^\top\) for \(\alpha\in \mathbb{R}\).
     \item \(\dfrac{\partial \mathbf{y}^\top}{\partial \alpha} = \dfrac{\partial \mathbf{y}}{\partial \alpha}^\top\) for \(\alpha\in \mathbb{R}\).
 \end{itemize}
-\vspace{0.2ex}
 
 \subsection{Notations not widely agreed upon}
 Expressions such as \(\dfrac{\partial \mathbf{y}}{\partial \mathbf{X}}, \dfrac{\partial \mathbf{Y}}{\partial \mathbf{X}}\), or \(\dfrac{\partial \mathbf{Y}}{\partial \mathbf{x}}\) have no agreement for Jacobian and Hessian notations. It is possible, however, to define the matrix-matrix derivative for both representations. The problem is that some authors define it in the most intuitive manner: a matrix whose element in the position \((i,j)\) is \(\partial y_{ij}/\partial x_{ij}\). However, as we saw, it is inconsistent for both formulations as the matrix for the Jacobian (Hessian) formulation must lay out its denominator (numerator) in its transposed shape. Therefore, for a consistent numerator layout, we would have
