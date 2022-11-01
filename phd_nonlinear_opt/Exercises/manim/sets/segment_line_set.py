@@ -55,11 +55,11 @@ class SegmentLine(ThreeDScene):
 
         # initialize and play y and theta
         theta = 0.3
-        theta_text = Variable(theta, MathTex(r"\theta"))
-        theta_text.to_corner(UL)
-        self.add_fixed_in_frame_mobjects(theta_text, theta_text.label, theta_text.tracker, theta_text.value)
+        theta_text = Variable(theta, MathTex(r"\theta")).to_corner(UL)
+        self.add_fixed_in_frame_mobjects(theta_text)
+        theta_text.add_updater(lambda mobj: self.add_fixed_in_frame_mobjects(mobj))
         y = Dot3D(point=theta*x1.get_center()+(1-theta)*x2.get_center(), radius=0.08, color=BLUE)
-        y.add_updater(lambda x: x.move_to(theta_text.tracker.get_value()*x1.get_center()+(1-theta_text.tracker.get_value())*x2.get_center()))
+        y.add_updater(lambda mobj: mobj.move_to(theta_text.tracker.get_value()*x1.get_center()+(1-theta_text.tracker.get_value())*x2.get_center()))
         y_text = MathTex(r"\mathbf{y} = \theta\mathbf{x}_1+(1-\theta)\mathbf{x}_2")
         y_text.next_to(y, direction=LEFT)
         self.add_fixed_in_frame_mobjects(y_text)
