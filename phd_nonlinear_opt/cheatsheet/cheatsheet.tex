@@ -44,30 +44,30 @@
 \multicolumn{1}{|c|}{Set} & \multicolumn{1}{|c|}{Comments}\\
 \hline
 Convex hull:
-\begin{itemize}
-\item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
+\begin{itemize}[leftmargin=*]
+\item $\textnormal{conv } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
-    \item $\textnormal{conv } C$ will be the smallest convex set that contains $C$.
-    \item $\textnormal{conv } C$ will be a finite set as long as $C$ is also finite.
+    \item $\textnormal{conv } C$ is the smallest convex set that contains $C$.
+    \item $\textnormal{conv } C$ is a finite set as long as $C$ is also finite.
 \end{itemize}\\
 \hline
-Affine hull: 
+Affine hull:
 \begin{itemize}[leftmargin=*]
     \item $\textnormal{aff } C = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C \textnormal{ for } i=1,\cdots, k, \mathbf{1}^\trans\boldsymbol{\thetaup} = 1  \right\}$
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
-    \item $A$ will be the smallest affine set that contains $C$.
+    \item $\textnormal{aff } C$ is the smallest affine set that contains $C$.
+    \item $\textnormal{aff } C$ is always an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
     \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
-    \item $\textnormal{aff } C$ will always be an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
 \end{itemize}\\
 \hline
 Conic hull:
 \begin{itemize}[leftmargin=*]
-    \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i > 0 \textnormal{ for } i=1,\cdots, k \right\}$
+    \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i \geq 0 \textnormal{ for } i=1,\cdots, k \right\}$
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
-    \item $A$ will be the smallest convex conic that contains $C$.
+    \item $A$ is the smallest convex conic that contains $C$.
     \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
 \end{itemize}\\
 \hline
@@ -76,6 +76,7 @@ Ray:
     \item \(\mathcal{R} = \left\{ \mathbf{x}_0 + \theta \mathbf{v} \mid \theta \geq 0 \right\}\)
 \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
     \item The ray is an infinite set that begins in \(\mathbf{x}_0\) and extends infinitely in direction of \(\mathbf{v}\). In other words, it has a beginning, but it has no end.
+    \item The ray becomes a convex cone if \(\mathbf{x}_0 = \mathbf{0}.\)
 \end{itemize} \\
 \hline
 Hyperplane:
@@ -86,7 +87,8 @@ Hyperplane:
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item It is an infinite set \(\mathbb{R}^{n-1} \subset \mathbb{R}^{n}\) that divides the space into two halfspaces.
-    \item \(a^{\perp} = \left\{ \mathbf{v} \mid \mathbf{a}^\trans \mathbf{v} = 0 \right\}\) is the set of vectors perpendicular to \(\mathbf{a}\). It passes through the origin.
+    \item The inner product between \(\mathbf{a}\) and any vector in \(\mathcal{H}\) yields the constant value \(b\).
+    \item \(a^{\perp} = \left\{ \mathbf{v} \mid \mathbf{a}^\trans \mathbf{v} = 0 \right\}\) is the infinite set of vectors perpendicular to \(\mathbf{a}\). It passes through the origin.
     \item \(a^{\perp}\) is offset from the origin by \(\mathbf{x}_0\), which is any vector in \(\mathcal{H}\).
 \end{itemize} \\
 \hline
@@ -101,8 +103,8 @@ Halfspaces:
 \hline
 Euclidean ball:
 \begin{itemize}[leftmargin=*]
-    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c}_2 \leq r \right\}\)
-    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r \right\}\)
+    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \norm{\mathbf{x}-\mathbf{x}_c} \leq r \right\}\)
+    \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x} \mid \left( \mathbf{x}-\mathbf{x}_c \right)^\trans \left( \mathbf{x}-\mathbf{x}_c \right) \leq r^2 \right\}\)
     \item \(B(\mathbf{x}_c, r) = \left\{ \mathbf{x}_c + r \norm{\mathbf{u}} \mid \norm{\mathbf{u}} \leq 1 \right\}\)
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
@@ -114,14 +116,14 @@ Euclidean ball:
 Ellipsoid:
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{E} = \left\{ \mathbf{x} \mid (\mathbf{x}-\mathbf{x}_c)^\trans\mathbf{P}^{-1}(\mathbf{x}-\mathbf{x}_c) \leq 1 \right\}\)
-    \item \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{Au} \mid \norm{\mathbf{u}} \leq 1 \right\}\), where \(\mathbf{A} = \mathbf{P}^{1/2}\).
+    \item \(\mathcal{E} = \left\{ \mathbf{x}_{c} + \mathbf{P}^{1/2}\mathbf{u} \mid \norm{\mathbf{u}} \leq 1 \right\}\)
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item \(\mathcal{E}\) is a finite set as long as \(\mathbf{P}\) is a finite matrix.
-    \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ 0\).
+    \item \(\mathbf{P}\) is symmetric and positive definite, that is, \(\mathbf{P}=\mathbf{P}^\trans \succ \mathbf{0}\). It determines how far the ellipsoid extends in every direction from \(\mathbf{x}_c\).
     \item \(\mathbf{x}_{c}\) is the center of the ellipsoid.
     \item The lengths of the semi-axes are given by \(\sqrt{\lambda_i}\).
-    \item \(\mathbf{A}\) is invertible. When it is not, we say that \(\mathcal{E}\) is a degenerated ellipsoid (degenerated ellipsoids are also convex).
+    \item When \(\mathbf{P}^{1/2} \succeq \mathbf{0}\) but singular, we say that \(\mathcal{E}\) is a degenerated ellipsoid (degenerated ellipsoids are also convex).
 \end{itemize}\\
 \hline
 Norm cone:
@@ -166,6 +168,14 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
     \item When we say that a scalar-valued function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) is nondecreasing, it means that whenever \(\mathbf{u}\preceq \mathbf{v}\), we have \(\tilde{h}(\mathbf{u})\leq \tilde{h}(\mathbf{v})\). Similar results hold for decreasing, increasing, and nonincreasing scalar functions.
 \end{itemize} \\
 \hline
+Subspace (cone set?) of the symmetric matrices:
+\begin{itemize}
+    \item \(\mathcal{S}^n = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} = \mathbf{X}^\mathsf{T}\right\}\)
+\end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+    \item The positive semidefinite cone is given by \(\mathcal{S}^n_+ = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succeq \mathbf{0} \right\}\). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \preceq \mathbf{B}\).
+    \item The positive definite cone is given by \(\mathcal{S}^n_{++} = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succ \mathbf{0} \right\}\). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \prec \mathbf{B}\).
+\end{itemize} \\
+\hline
 Dual cone:
 \begin{itemize}
     \item \(K^* = \left\{ \mathbf{y}\mid \mathbf{x}^\mathsf{T}\mathbf{y} \geq 0, \;\forall\; \mathbf{x} \in K \right\}\)
@@ -199,11 +209,11 @@ Polyhedra:
 \hline
 Simplex:
 \begin{itemize}[leftmargin=*]
-    \item \(\mathcal{S} = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\thetaup} = 1 \right\}\)
-    \item \(\mathcal{S} = \left\{ \mathbf{x} \mid \mathbf{x} = \mathbf{v}_0 + \mathbf{V} \boldsymbol{\thetaup} \right\}\), where \(\mathbf{V} = \begin{bmatrix}
+    \item \(S = \textnormal{conv }\left\{ \mathbf{v}_m \right\}_{m=0}^{k} = \left\{ \sum_{i=0}^{k} \theta_i \mathbf{v}_i \mid \mathbf{0} \preceq \boldsymbol{\thetaup} \preceq \mathbf{1}, \mathbf{1}^\trans \boldsymbol{\thetaup} = 1 \right\}\)
+    \item \(S = \left\{ \mathbf{x} \mid \mathbf{x} = \mathbf{v}_0 + \mathbf{V} \boldsymbol{\thetaup} \right\}\), where \(\mathbf{V} = \begin{bmatrix}
         \mathbf{v}_1 - \mathbf{v}_0 & \dots & \mathbf{v}_n - \mathbf{v}_0
     \end{bmatrix} \in \mathbb{R}^{n \times k}\)
-    \item \(\mathcal{S} = \{ \mathbf{x} \mid \underbrace{\mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0}_{\textnormal{Linear inequalities in } x}, \, \underbrace{\mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0}_{\substack{\text{\textnormal{Linear equalities}} \\\textnormal{in } x}} \}\) (Polyhedra form), where \(\mathbf{A} = \begin{bmatrix}
+    \item \(S = \{ \mathbf{x} \mid \underbrace{\mathbf{A}_1 \mathbf{x} \preceq \mathbf{A}_1 \mathbf{v}_0, \, \mathbf{1}^\trans \mathbf{A}_1 \mathbf{x} \leq 1 + \mathbf{1}^\trans\mathbf{A}_1 \mathbf{v}_0}_{\textnormal{Linear inequalities in } x}, \, \underbrace{\mathbf{A}_2 \mathbf{x} = \mathbf{A}_2 \mathbf{v}_0}_{\substack{\text{\textnormal{Linear equalities}} \\\textnormal{in } x}} \}\) (Polyhedra form), where \(\mathbf{A} = \begin{bmatrix}
         \mathbf{A}_1 \\ \mathbf{A}_2
     \end{bmatrix}\) and \(\mathbf{AV} = \begin{bmatrix}
         \mathbf{I}_{k\times k}\\
@@ -257,11 +267,17 @@ Simplex:
         \begin{itemize}[leftmargin=*]
             \item $f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}$, where \(\mathbf{A} \in \mathbb{R}^{m\times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{x} \in \mathbb{R}^{n}\)
         \end{itemize} & Yes, if the domain \(S \subseteq \mathbb{R}^{n}\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{m}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+            \item $f$ is an affine function iff $f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})$, where \(\theta \in \mathbb{R}\).
             \item The affine function, \(f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\), is a broader category that encompasses the linear function, \(f(\mathbf{x}) = \mathbf{Ax}\). The linear function has its origin fixed at \(\mathbf{0}\) after the transformation, whereas the affine function does not necessarily have it (when not, this makes the affine function nonlinear). Graphically, we can think of an affine function as a linear transformation plus a shift from the origin of \(\mathbf{b}\).
             \item A special case of the linear function is when \(\mathbf{A} = \mathbf{c}^\mathsf{T}\). In this case, we have \(f(\mathbf{x}) = \mathbf{c}^\mathsf{T}\mathbf{x}\), which is the inner product between the vector \(\mathbf{c}\) and \(\mathbf{x}\).
             \item The inverse image of \(C\), \(f^{-1}(C) = \left\{ \mathbf{x} \mid f(\mathbf{x}) \in C \right\}\), is also convex.
             \item The \emph{linear matrix inequality} (LMI), \(\mathbf{A}(\mathbf{x}) = x_1\mathbf{A}_1 + \dots + x_n\mathbf{A}_n \preceq \mathbf{B}\), is a special case of affine function. In other words, \(f(S) = \left\{ \mathbf{x} \mid \mathbf{A}(\mathbf{x}) \preceq \mathbf{B} \right\}\) is a convex set if \(S\) is convex. Many optimization problems can be formulated as LMI problems and solved optimally.
         \end{itemize} \\
+        \hline
+        Constant function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = f(\mathbf{x})\), where \(\theta \in \mathbb{R}\).
+        \end{itemize} & Yes, it is convex as well as concave. & \\
         \hline
         Exponential function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
@@ -291,17 +307,17 @@ Simplex:
         \hline
         Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
             \item \(f(x) = \log x\)
-        \end{itemize} & Yes. & \\
+        \end{itemize} & Yes, it is concave. & \\
         \hline
         Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(x) = x\log x \)
-        \end{itemize} & Yes &
+        \end{itemize} & Yes, it is convex. &
         \begin{itemize}[leftmargin=*]
             \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\dom{f} = \mathbb{R}\).
         \end{itemize} \\
         \hline
-        Minkwoski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+        Minkowski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \norm{\mathbf{x}}_{p}\), where \(p \in \mathbb{N}_{++}\).
         \end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
@@ -316,18 +332,15 @@ Simplex:
         Pointwise maximum (maximum function): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
-        \end{itemize} & Yes, if \(f_1, \dots, f_n\) are convex function. &
+        \end{itemize} & \(f\) is convex if \(f_1, \dots, f_n\) are convex functions. &
         \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item Its domain \(\dom{f} = \bigcap\limits_{i=1}^{n} \dom{f_i}\) is also convex.
         \end{itemize} \\
         \hline
         Pointwise infimum:
         \begin{itemize}[leftmargin=*]
-            \item \(f(x) = \underset{y \in \mathcal{A}}{\textnormal{inf }} g(x,y)\).
-        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item .%\(f\) is convex in \(x\) if \(g\) is convex in \(x\) for each \(y \in \mathcal{A}\).
-            % \item \(f\) is concave in \(x\) if \(g\) is concave in \(x\) for each \(y \in \mathcal{A}\).
-        \end{itemize} &
+            \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\).
+        \end{itemize} & \(f\) is concave if \(g\) is concave for each \(\mathbf{y}\in \mathcal{A}\). &
         \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the greatest value in the codomain of \(f\) that is less than or equal this set.
             \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ inf }}g(x,y)> -\infty \right\}\).
@@ -335,11 +348,8 @@ Simplex:
         \hline
         Pointwise supremum:
         \begin{itemize}[leftmargin=*]
-            \item \(f(x) = \underset{y \in \mathcal{A}}{\textnormal{sup }} g(x,y)\).
-        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item \(f\) is convex in \(x\) if \(g\) is convex in \(x\) for each \(y \in \mathcal{A}\).
-            \item \(f\) is concave in \(x\) if \(g\) is concave in \(x\) for each \(y \in \mathcal{A}\).
-        \end{itemize} &
+            \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\).
+        \end{itemize} & \(f\) is convex if \(g\) is convex for each \(\mathbf{y}\in \mathcal{A}\). &
         \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the least value in the codomain of \(f\) that is greater than or equal this set.
             \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ sup }}g(x,y)<\infty \right\}\).
@@ -426,7 +436,7 @@ Simplex:
             \item If \(f_1, f_2, \dots, f_m\) are convex or concave functions, then \(f\) is a convex or concave function, respectively.
             \item If \(f_1, f_2, \dots, f_m\) are strictly convex or concave functions, then \(f\) is a strictly convex or concave function, respectively.
         \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item Special cases is when \(f = w f\) (a nonnegative scalar factor) and \(f = f_1 + f_2\) (sum).
+            \item Special cases is when \(f = w f\) (a nonnegative scaling) and \(f = f_1 + f_2\) (sum).
         \end{itemize}\\
         \hline
         Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
