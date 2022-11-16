@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2mm,textwidth=155mm,paperheight=150cm,paperwidth=30cm]{geometry}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm]{geometry}
 
 % items, table and figs
 \usepackage{enumitem}
@@ -243,7 +243,7 @@ Simplex:
         \hline
         \multicolumn{3}{|c|}{Functions (or operators) and their implications regarding convexity} \\
         \hline
-        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convex (concave)?} & \multicolumn{1}{|c|}{Comments} \\
+        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convexity} & \multicolumn{1}{|c|}{Comments} \\
         \hline
         Union: $C = A \cup B $ & Not in most of the cases. & \\
         \hline
@@ -263,6 +263,12 @@ Simplex:
             \item \emph{Second-order condition}: \(f\) is convex iff \(\dom{f}\) is convex and \(\mathbf{H}\succeq \mathbf{0}\), that is, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix. It means that the graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\). It is important to note that, if \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But is \(f\) is strictly convex, not necessarily that \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
         \end{itemize}\\
         \hline
+        Convex function: \(f: \dom{f} \rightarrow \mathbb{R}\)
+        \begin{itemize}[leftmargin=*]
+            \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \geq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
+            \item \(\dom{f}\) shall be a concave set to \(f\) be considered a concave function.
+        \end{itemize} & Concave & yes \\
+        \hline
         Affine function \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
         \begin{itemize}[leftmargin=*]
             \item $f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}$, where \(\mathbf{A} \in \mathbb{R}^{m\times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{x} \in \mathbb{R}^{n}\)
@@ -277,12 +283,12 @@ Simplex:
         Constant function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = f(\mathbf{x})\), where \(\theta \in \mathbb{R}\).
-        \end{itemize} & Yes, it is convex as well as concave. & \\
+        \end{itemize} & Convex and concave. & \\
         \hline
         Exponential function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(x)=e^{ax} \in \mathbb{R}\), where \(a \in \mathbb{R}\)
-        \end{itemize} & Yes. & \\
+        \end{itemize} & Convex. & \\
         \hline
         Quadratic function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
@@ -303,16 +309,16 @@ Simplex:
         \hline
         Power of absolute value: \(f: \mathbb{R} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
             \item \(f(x) = \abs{x}^p\), where \(p\leq 1\).
-        \end{itemize} & Yes. & \\
+        \end{itemize} & Convex. & \\
         \hline
         Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
             \item \(f(x) = \log x\)
-        \end{itemize} & Yes, it is concave. & \\
+        \end{itemize} & Concave. & \\
         \hline
         Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(x) = x\log x \)
-        \end{itemize} & Yes, it is convex. &
+        \end{itemize} & Convex. &
         \begin{itemize}[leftmargin=*]
             \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\dom{f} = \mathbb{R}\).
         \end{itemize} \\
@@ -320,14 +326,14 @@ Simplex:
         Minkowski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \norm{\mathbf{x}}_{p}\), where \(p \in \mathbb{N}_{++}\).
-        \end{itemize} & Yes. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \end{itemize} & Convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
             \item It can be proved by triangular inequality.
         \end{itemize} \\
         \hline
         Maximum element: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
-        \end{itemize} & Yes. & \\
+        \end{itemize} & Convex. & \\
         \hline
         Pointwise maximum (maximum function): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
@@ -359,12 +365,12 @@ Simplex:
         Minimum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \min\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
-        \end{itemize} & Not in most of the cases. & \\
+        \end{itemize} & Nonconvex and nonconcave in most of the cases. & \\
         \hline
         Log-sum-exp function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \log\left( e^{x_1} + \dots+ e^{x_n} \right)\)
-        \end{itemize} & Yes. & \vspace{-3.5ex}
+        \end{itemize} & Convex. & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
             \item This function is interpreted as the approximation of the maximum element function, since \(\max\left\{ x_1, \dots, x_n \right\} \leq f(\mathbf{x}) \leq \max \left\{ x_1, \dots, x_n \right\} + \log n\)
         \end{itemize} \\
@@ -372,12 +378,12 @@ Simplex:
         Geometric mean function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{x}) = \left( \Pi_{i=1}^{n} x_i \right)^{1/n}\)
-        \end{itemize} & Yes & \\
+        \end{itemize} & Convex. & \\
         \hline
         Log-determinant function \(f: \mathcal{S}^{n}_{++}\rightarrow \mathbb{R}\)
         \begin{itemize}[leftmargin=*]
             \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
-        \end{itemize} & Yes & \vspace{-3.5ex}
+        \end{itemize} & Convex. & \vspace{-3.5ex}
         \begin{itemize}[leftmargin=*]
             \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathcal{S}^{n}_{++}\).
         \end{itemize} \\
@@ -442,9 +448,7 @@ Simplex:
         Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
         \begin{itemize}
             \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
-        \end{itemize} & \vspace{-3.5ex}\begin{itemize}[leftmargin=*]
-            \item If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists).
-        \end{itemize} & \\
+        \end{itemize} & If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists). & \\
         \hline
         Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
         \begin{itemize}[leftmargin=*]
