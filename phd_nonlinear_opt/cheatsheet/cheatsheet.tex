@@ -6,6 +6,7 @@
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{standalone} % place tikz environments or other material in own source files
+\usepackage{float}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 
@@ -36,7 +37,8 @@
 
 \begin{document}
 
-\begin{table}[ht!]
+\section{Sets}
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{|A|C|}
 \hline
 \multicolumn{2}{|c|}{Convex sets}\\
@@ -239,292 +241,302 @@ Simplex:
 \end{itemize}\\
 \hline
 \end{tabularx}
-    \begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
-        \hline
-        \multicolumn{3}{|c|}{Functions (or operators) and their implications regarding convexity} \\
-        \hline
-        \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convexity} & \multicolumn{1}{|c|}{Comments} \\
-        \hline
-        Union: $C = A \cup B $ & Not in most of the cases. & \\
-        \hline
-        Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
-        \hline
-        Convex function: \(f: \dom{f} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
-            \item \(\dom{f}\) shall be a convex set to \(f\) be considered a convex function.
-        \end{itemize} & Yes. & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item Graphically, the line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\).
-            \item In terms of sets, a function is convex iff a line segment within \(\dom{f}\), which is a convex set, gives an image set that is also convex.
-            \item \(\textnormal{dom} f\) is convex iff all points for any line segment within \(\dom{f}\) belong to it.
-            \item \emph{First-order condition}: \(f\) is convex iff \(\dom{f}\) is convex and \(f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}\), being \(\nabla f (\mathbf{x})\) the gradient vector. This inequation says that the first-order Taylor approximation is a \emph{underestimator} for convex functions. The first-order condition requires that \(f\) is differentiable.
-            \item If \(\nabla f(\mathbf{x}) = \mathbf{0}\), then \(f(\mathbf{y})\geq f(\mathbf{x}),\forall\;\mathbf{y}\in\dom{f}\) and \(\mathbf{x}\) is a global minimum.
-            \item \emph{Second-order condition}: \(f\) is convex iff \(\dom{f}\) is convex and \(\mathbf{H}\succeq \mathbf{0}\), that is, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix. It means that the graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\). It is important to note that, if \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But is \(f\) is strictly convex, not necessarily that \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
-        \end{itemize}\\
-        \hline
-        Convex function: \(f: \dom{f} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \geq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
-            \item \(\dom{f}\) shall be a concave set to \(f\) be considered a concave function.
-        \end{itemize} & Concave & yes \\
-        \hline
-        Affine function \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
-        \begin{itemize}[leftmargin=*]
-            \item $f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}$, where \(\mathbf{A} \in \mathbb{R}^{m\times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{x} \in \mathbb{R}^{n}\)
-        \end{itemize} & Yes, if the domain \(S \subseteq \mathbb{R}^{n}\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{m}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item $f$ is an affine function iff $f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})$, where \(\theta \in \mathbb{R}\).
-            \item The affine function, \(f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\), is a broader category that encompasses the linear function, \(f(\mathbf{x}) = \mathbf{Ax}\). The linear function has its origin fixed at \(\mathbf{0}\) after the transformation, whereas the affine function does not necessarily have it (when not, this makes the affine function nonlinear). Graphically, we can think of an affine function as a linear transformation plus a shift from the origin of \(\mathbf{b}\).
-            \item A special case of the linear function is when \(\mathbf{A} = \mathbf{c}^\mathsf{T}\). In this case, we have \(f(\mathbf{x}) = \mathbf{c}^\mathsf{T}\mathbf{x}\), which is the inner product between the vector \(\mathbf{c}\) and \(\mathbf{x}\).
-            \item The inverse image of \(C\), \(f^{-1}(C) = \left\{ \mathbf{x} \mid f(\mathbf{x}) \in C \right\}\), is also convex.
-            \item The \emph{linear matrix inequality} (LMI), \(\mathbf{A}(\mathbf{x}) = x_1\mathbf{A}_1 + \dots + x_n\mathbf{A}_n \preceq \mathbf{B}\), is a special case of affine function. In other words, \(f(S) = \left\{ \mathbf{x} \mid \mathbf{A}(\mathbf{x}) \preceq \mathbf{B} \right\}\) is a convex set if \(S\) is convex. Many optimization problems can be formulated as LMI problems and solved optimally.
-        \end{itemize} \\
-        \hline
-        Constant function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = f(\mathbf{x})\), where \(\theta \in \mathbb{R}\).
-        \end{itemize} & Convex and concave. & \\
-        \hline
-        Exponential function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(x)=e^{ax} \in \mathbb{R}\), where \(a \in \mathbb{R}\)
-        \end{itemize} & Convex. & \\
-        \hline
-        Quadratic function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = a \mathbf{x}^\mathsf{T}\mathbf{P} \mathbf{x} + \mathbf{p}^\mathsf{T} \mathbf{x} + r \in \mathbb{R}\), where \(\mathbf{x},\mathbf{p} \in \mathbb{R}^{n}, \mathbf{P} \in \mathbb{R}^{n\times n}\), and \(a,b \in \mathbb{R}\)
-        \end{itemize} & It depends on the matrix \(\mathbf{P}\): \begin{itemize}[leftmargin=*]
-            \item \(f\) is convex iff \(\mathbf{P} \succeq \mathbf{0}\).
-            \item \(f\) is strictly convex iff \(\mathbf{P} \succ \mathbf{0}\).
-            \item \(f\) is concave iff \(\mathbf{P} \preceq \mathbf{0}\).
-            \item \(f\) is strictly concave iff \(\mathbf{P} \prec \mathbf{0}\).
-        \end{itemize} & \\
-        \hline
-        Power function \(f: \mathbb{R}_{++} \rightarrow \mathbb{R} \) \begin{itemize}[leftmargin=*]
-            \item \(f(x) = x^{a}\)
-        \end{itemize} & It depends on \(a\) \begin{itemize}[leftmargin=*]
-            \item \(f\) is convex iff \(a\geq 1\) or \(a\leq 0\).
-            \item \(f\) is concave iff \(0\leq a \leq 1\).
-        \end{itemize} & \\
-        \hline
-        Power of absolute value: \(f: \mathbb{R} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
-            \item \(f(x) = \abs{x}^p\), where \(p\leq 1\).
-        \end{itemize} & Convex. & \\
-        \hline
-        Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
-            \item \(f(x) = \log x\)
-        \end{itemize} & Concave. & \\
-        \hline
-        Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(x) = x\log x \)
-        \end{itemize} & Convex. &
-        \begin{itemize}[leftmargin=*]
-            \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\dom{f} = \mathbb{R}\).
-        \end{itemize} \\
-        \hline
-        Minkowski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \norm{\mathbf{x}}_{p}\), where \(p \in \mathbb{N}_{++}\).
-        \end{itemize} & Convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item It can be proved by triangular inequality.
-        \end{itemize} \\
-        \hline
-        Maximum element: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
-        \end{itemize} & Convex. & \\
-        \hline
-        Pointwise maximum (maximum function): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
-        \end{itemize} & \(f\) is convex if \(f_1, \dots, f_n\) are convex functions. &
-        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item Its domain \(\dom{f} = \bigcap\limits_{i=1}^{n} \dom{f_i}\) is also convex.
-        \end{itemize} \\
-        \hline
-        Pointwise infimum:
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\).
-        \end{itemize} & \(f\) is concave if \(g\) is concave for each \(\mathbf{y}\in \mathcal{A}\). &
-        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the greatest value in the codomain of \(f\) that is less than or equal this set.
-            \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ inf }}g(x,y)> -\infty \right\}\).
-        \end{itemize} \\
-        \hline
-        Pointwise supremum:
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\).
-        \end{itemize} & \(f\) is convex if \(g\) is convex for each \(\mathbf{y}\in \mathcal{A}\). &
-        \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the least value in the codomain of \(f\) that is greater than or equal this set.
-            \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ sup }}g(x,y)<\infty \right\}\).
-            \item In terms of epigraphs, the pointwise supremum of the infinite set of functions \(\eval{g(x,y)}{y\in \mathcal{A}}\) corresponds to the intersection of the following epigraphs: \(\textnormal{epi } f = \intersection_{y \in \mathcal{A}} \textnormal{epi } g(\cdot, y)\)
-        \end{itemize} \\
-        \hline
-        Minimum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \min\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
-        \end{itemize} & Nonconvex and nonconcave in most of the cases. & \\
-        \hline
-        Log-sum-exp function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \log\left( e^{x_1} + \dots+ e^{x_n} \right)\)
-        \end{itemize} & Convex. & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item This function is interpreted as the approximation of the maximum element function, since \(\max\left\{ x_1, \dots, x_n \right\} \leq f(\mathbf{x}) \leq \max \left\{ x_1, \dots, x_n \right\} + \log n\)
-        \end{itemize} \\
-        \hline
-        Geometric mean function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}) = \left( \Pi_{i=1}^{n} x_i \right)^{1/n}\)
-        \end{itemize} & Convex. & \\
-        \hline
-        Log-determinant function \(f: \mathcal{S}^{n}_{++}\rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
-        \end{itemize} & Convex. & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathcal{S}^{n}_{++}\).
-        \end{itemize} \\
-        \hline
-        Composite function \(f = h\circ g : \mathbb{R}^{n}\rightarrow \mathbb{R}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f = g \circ h\), i.e., \(f(\mathbf{x}) = (h\circ g)(\mathbf{x}) = h(g(\mathbf{x}))\), where:
-            \begin{itemize}[label=\(\triangleright\)]
-                \item \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}^{k}\).
-                \item \(h: \mathbb{R}^{k}\rightarrow \mathbb{R}\).
-                \item \(\dom{f} = \left\{ \mathbf{x} \in \dom{g}\mid g(\mathbf{x}) \in \dom{h} \right\}\).
-            \end{itemize}  %\(\mathbf{x} \in S \subseteq \mathbb{R}^{p}\)
-        \end{itemize} & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item Scalar composition: the following statements hold for \(k=1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}\rightarrow \mathbb{R}\) and \(g: \mathbb{R}^{n} \rightarrow \mathbb{R}\):
-                \begin{itemize}[label=\(\triangleright\)]
-                    \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nondecreasing, and \(g\) is convex. In this case, \(\dom{h}\) is either \((-\infty, a]\) or \((-\infty, a)\).
-                    \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nonincreasing, and \(g\) is concave. In this case, \(\dom{h}\) is either \([a, \infty)\) or \((a, \infty)\).
-                    \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nondecreasing, and \(g\) is concave.
-                    \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nonincreasing, and \(g\) is convex.
-                \end{itemize}
-        \end{itemize}
-        \begin{itemize}[leftmargin=*]
-            \item Vector composition: the following statements hold for \(k\geq 1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}^{k} \rightarrow \mathbb{R}\) and \(\boldsymbol{g}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{k}\). Hence, \(g(\mathbf{x}) = (g_1 (\mathbf{x}), g_2(\mathbf{x}), \dots, g_k(\mathbf{x}))\) is a vector-valued function (or simply, vector function), where \(g_i: \mathbb{R}^{k} \rightarrow \mathbb{R}\) for \(1 \leq i \leq k\).
-            \begin{itemize}[label=\(\triangleright\)]
-                \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of convex functions.
-                \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nonincreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
-                \item \(f\) is concave if \(h\) is is concave, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
-            \end{itemize}
-        \end{itemize}
-        Where \(\tilde{h}\) is the extended-value extension of the function \(h\), which assigns the value \(\infty\) (\(-\infty\)) to the point not in \(\dom{h}\) for \(h\) convex (concave).
-        & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-        \item The composition function allows us to see a large class of functions as convex (or concave).
-        \item For scale composition, the remarkable ones are:
-            \begin{itemize}[label=\(\triangleright\)]
-                \item If \(g\) is convex then \(f(x) = h(g(\mathbf{x})) = \exp{g(\mathbf{x})}\) is convex.
-                \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = \log{g(\mathbf{x})}\) is concave.
-                \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = 1/g(\mathbf{x})\) is convex.
-                \item If \(g\) is convex and \(\dom{g} \subseteq \mathbb{R}_{+}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = g^{p}(\mathbf{x})\) is convex, where \(p\geq 1\).
-                \item If \(g\) is convex then \(f(\mathbf{x}) = h(g(\mathbf{x})) = - \log{\left( -g(x) \right)}\) is convex, where \(\dom{f} = \left\{ \mathbf{x} \mid g(\mathbf{x})<0 \right\}\).
-            \end{itemize}
-        \item For vector composition, we have the following examples:
-            \begin{itemize}[label=\(\triangleright\)]
-                \item If \(g(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\) is an affine function, then \(f = h \circ g\) is convex (concave) if \(h\) is convex (concave).
-                \item Let \(h(\mathbf{x}) = x_{\left[ 1 \right]} + \dots + x_{\left[ r \right]}\) be the sum of the \(r\) largest components of \(\mathbf{x} \in \mathbb{R}^{k}\). If \(g_1, g_2, \dots, g_k\) are convex, where \(\dom{g_i} = \mathbb{R}^{n}\), then \(f = h\circ g\), which is the pointwise sum of the largest \(g_i\)'s, is convex.
-                \item \(f = h\circ g\) is a convex function when \(h(\mathbf{x}) = \log\left( \sum_{i=1}^{k} e^{x_i} \right)\) and \(g_1, g_2, \dots, g_k\) are convex functions.
-                \item For \(0<p \leq 1\), the function \(h(\mathbf{x}) = \left( \sum_{i=1}^{k} x_i^p \right)^{1/p}\), where \(\dom{h} = \mathbb{R}_+^{n}\), is concave. If \(g_1, g_2, \dots, g_k\) are concaves (convexes) and nonnegatives, then \(f = h \circ g\) is concave (convex).
-            \end{itemize}
-        \end{itemize}\\
-        \hline
-        Nonnegative weighted sum: \(f: \dom{f} \rightarrow \mathbb{R}\)
-        \begin{itemize}
-            \item \(f(\mathbf{x}) = \sum_{i=1}^{m} w_if_i(\mathbf{x})\), where \(w\geq 0\).
-        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item If \(f_1, f_2, \dots, f_m\) are convex or concave functions, then \(f\) is a convex or concave function, respectively.
-            \item If \(f_1, f_2, \dots, f_m\) are strictly convex or concave functions, then \(f\) is a strictly convex or concave function, respectively.
-        \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item Special cases is when \(f = w f\) (a nonnegative scaling) and \(f = f_1 + f_2\) (sum).
-        \end{itemize}\\
-        \hline
-        Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
-        \begin{itemize}
-            \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
-        \end{itemize} & If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists). & \\
-        \hline
-        Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}\).
-        \end{itemize} & Yes, if \(S \subseteq \dom{f}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item The perspective function decreases the dimension of the function domain since \(\textnormal{dim}(\dom{f}) = n+1\).
-            \item Its effect is similar to the camera zoom.
-            \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
-            \item A special case is when \(n=1\), which is called \emph{quadratic-over-linear function}.
-        \end{itemize} \\
-        \hline
-        Projective (or linear-fractional) function, \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\)
-        \begin{itemize}[leftmargin=*]
-            \item \(f = p \circ g\), i.e., \(f(\mathbf{x}) = (p\circ g)(\mathbf{x}) = p(g(\mathbf{x}))\), where
-                \begin{itemize}[label={$\triangleright$}]
-                    \item \(g: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m+1}\) is an affine function given by \(g(\mathbf{x}) = \begin{bmatrix}
-                        \mathbf{A}\\
-                        \mathbf{c}^\mathsf{T}
-                    \end{bmatrix} \mathbf{x} + \begin{bmatrix}
-                        \mathbf{b} \\
-                        d
-                    \end{bmatrix}\), being \(\mathbf{A}\in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{c} \in \mathbb{R}^{n}\), and \(d \in \mathbb{R}\).
-                    \item \(p: \mathbb{R}^{m+1} \rightarrow \mathbb{R}^{m}\) is the perspective function.
-                \end{itemize}
-            \item \(f(\mathbf{x}) = \mathcal{P}^{-1}(\mathbf{Q}\mathcal{P}(\mathbf{x}))\)
-                \begin{itemize}[label={$\triangleright$}]
-                    \item \(\mathcal{P}(\mathbf{x}) = \left\{ (t\mathbf{x}, t) \mid t \geq 0 \right\} \subset \mathbb{R}^{n+1}\)
-                    \item \(\mathbf{Q} = \begin{bmatrix}
-                        \mathbf{A} & \mathbf{b} \\
-                        \mathbf{c}^\mathsf{T} & d
-                    \end{bmatrix} \in \mathbb{R}^{(m+1)\times(n+1)}\)
-                \end{itemize}
-        \end{itemize} & Yes, if \(S \subseteq \dom{f}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-            \item The linear and affine functions are special cases of the linear-fractional function.
-            \item \(\dom{f} = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{c}^\mathsf{T} \mathbf{x} + d > 0 \right\}\)
-            \item \(\mathcal{P}(\mathbf{x}) \subset \mathbb{R}^{n+1}\) is a ray set that begins at the origin and its last component takes only positive values. For each \(\mathbf{x} \in \dom{f}\), it is associated a ray set in \(\mathbb{R}^{n+1}\) in this form. This (projective) correspondence between all points in \(\dom{f}\) and their respective sets \(\mathcal{P}\) is a biunivocal mapping.
-            \item The linear transformation \(\mathbf{Q}\) acts on these rays, forming another set of rays.
-            \item Finally we take the inverse projective transformation to recover \(f(\mathbf{x})\).
-        \end{itemize}\\
-        \hline
-        Epigraph:
-        \begin{itemize}[leftmargin=*]
-            \item \(\textnormal{epi } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
-        \end{itemize} & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item The function \(f\) is convex iff its epigraph is convex.
-        \end{itemize} & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-        \item Visually, it is the graph above the \((\mathbf{x}, f(\mathbf{x}))\) curve.
-    \end{itemize}\\
-        \hline
-        Hypograph:
-        \begin{itemize}[leftmargin=*]
-            \item \(\textnormal{hypo } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
-        \end{itemize} & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item The function \(f\) is concave iff its hypograph is convex.
-        \end{itemize} & \vspace{-3.5ex}
-        \begin{itemize}[leftmargin=*]
-            \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
-        \end{itemize}\\
-        \hline
-    \end{tabularx}
 \end{table}
 
 \clearpage
 \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
-\pdfpagewidth=80cm
-\pdfpageheight=40cm
+\pdfpagewidth=30cm
+\pdfpageheight=170cm
 \pagenumbering{gobble}
-\newgeometry{top=1in,left=1in,textwidth=15in,textheight=9in}
+\newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
+\section{Fuctions}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
+    \hline
+    \multicolumn{3}{|c|}{Functions (or operators) and their implications regarding convexity} \\
+    \hline
+    \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Convexity} & \multicolumn{1}{|c|}{Comments} \\
+    \hline
+    Union: $C = A \cup B $ & Not in most of the cases. & \\
+    \hline
+    Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
+    \hline
+    Convex function: \(f: \dom{f} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
+        \item \(\dom{f}\) shall be a convex set to \(f\) be considered a convex function.
+    \end{itemize} & Yes. & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item Graphically, the line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\).
+        \item In terms of sets, a function is convex iff a line segment within \(\dom{f}\), which is a convex set, gives an image set that is also convex.
+        \item \(\textnormal{dom} f\) is convex iff all points for any line segment within \(\dom{f}\) belong to it.
+        \item \emph{First-order condition}: \(f\) is convex iff \(\dom{f}\) is convex and \(f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}\), being \(\nabla f (\mathbf{x})\) the gradient vector. This inequation says that the first-order Taylor approximation is a \emph{underestimator} for convex functions. The first-order condition requires that \(f\) is differentiable.
+        \item If \(\nabla f(\mathbf{x}) = \mathbf{0}\), then \(f(\mathbf{y})\geq f(\mathbf{x}),\forall\;\mathbf{y}\in\dom{f}\) and \(\mathbf{x}\) is a global minimum.
+        \item \emph{Second-order condition}: \(f\) is convex iff \(\dom{f}\) is convex and \(\mathbf{H}\succeq \mathbf{0}\), that is, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix. It means that the graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\). It is important to note that, if \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But is \(f\) is strictly convex, not necessarily that \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
+    \end{itemize}\\
+    \hline
+    Convex function: \(f: \dom{f} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \geq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})\), where \(0\leq\theta\leq 1\).
+        \item \(\dom{f}\) shall be a concave set to \(f\) be considered a concave function.
+    \end{itemize} & Concave & yes \\
+    \hline
+    Affine function \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
+    \begin{itemize}[leftmargin=*]
+        \item $f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}$, where \(\mathbf{A} \in \mathbb{R}^{m\times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{x} \in \mathbb{R}^{n}\)
+    \end{itemize} & Yes, if the domain \(S \subseteq \mathbb{R}^{n}\) is a convex set, then its image \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{m}\) is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item $f$ is an affine function iff $f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y})$, where \(\theta \in \mathbb{R}\).
+        \item The affine function, \(f(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\), is a broader category that encompasses the linear function, \(f(\mathbf{x}) = \mathbf{Ax}\). The linear function has its origin fixed at \(\mathbf{0}\) after the transformation, whereas the affine function does not necessarily have it (when not, this makes the affine function nonlinear). Graphically, we can think of an affine function as a linear transformation plus a shift from the origin of \(\mathbf{b}\).
+        \item A special case of the linear function is when \(\mathbf{A} = \mathbf{c}^\mathsf{T}\). In this case, we have \(f(\mathbf{x}) = \mathbf{c}^\mathsf{T}\mathbf{x}\), which is the inner product between the vector \(\mathbf{c}\) and \(\mathbf{x}\).
+        \item The inverse image of \(C\), \(f^{-1}(C) = \left\{ \mathbf{x} \mid f(\mathbf{x}) \in C \right\}\), is also convex.
+        \item The \emph{linear matrix inequality} (LMI), \(\mathbf{A}(\mathbf{x}) = x_1\mathbf{A}_1 + \dots + x_n\mathbf{A}_n \preceq \mathbf{B}\), is a special case of affine function. In other words, \(f(S) = \left\{ \mathbf{x} \mid \mathbf{A}(\mathbf{x}) \preceq \mathbf{B} \right\}\) is a convex set if \(S\) is convex. Many optimization problems can be formulated as LMI problems and solved optimally.
+    \end{itemize} \\
+    \hline
+    Constant function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = f(\mathbf{x})\), where \(\theta \in \mathbb{R}\).
+    \end{itemize} & Convex and concave. & \\
+    \hline
+    Exponential function \(f: \mathbb{R} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(x)=e^{ax} \in \mathbb{R}\), where \(a \in \mathbb{R}\)
+    \end{itemize} & Convex. & \\
+    \hline
+    Quadratic function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = a \mathbf{x}^\mathsf{T}\mathbf{P} \mathbf{x} + \mathbf{p}^\mathsf{T} \mathbf{x} + r \in \mathbb{R}\), where \(\mathbf{x},\mathbf{p} \in \mathbb{R}^{n}, \mathbf{P} \in \mathbb{R}^{n\times n}\), and \(a,b \in \mathbb{R}\)
+    \end{itemize} & It depends on the matrix \(\mathbf{P}\): \begin{itemize}[leftmargin=*]
+        \item \(f\) is convex iff \(\mathbf{P} \succeq \mathbf{0}\).
+        \item \(f\) is strictly convex iff \(\mathbf{P} \succ \mathbf{0}\).
+        \item \(f\) is concave iff \(\mathbf{P} \preceq \mathbf{0}\).
+        \item \(f\) is strictly concave iff \(\mathbf{P} \prec \mathbf{0}\).
+    \end{itemize} & \\
+    \hline
+    Power function \(f: \mathbb{R}_{++} \rightarrow \mathbb{R} \) \begin{itemize}[leftmargin=*]
+        \item \(f(x) = x^{a}\)
+    \end{itemize} & It depends on \(a\) \begin{itemize}[leftmargin=*]
+        \item \(f\) is convex iff \(a\geq 1\) or \(a\leq 0\).
+        \item \(f\) is concave iff \(0\leq a \leq 1\).
+    \end{itemize} & \\
+    \hline
+    Power of absolute value: \(f: \mathbb{R} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
+        \item \(f(x) = \abs{x}^p\), where \(p\leq 1\).
+    \end{itemize} & Convex. & \\
+    \hline
+    Logarithm function: \(f: \mathbb{R}_{++} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
+        \item \(f(x) = \log x\)
+    \end{itemize} & Concave. & \\
+    \hline
+    Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(x) = x\log x \)
+    \end{itemize} & Convex. &
+    \begin{itemize}[leftmargin=*]
+        \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\dom{f} = \mathbb{R}\).
+    \end{itemize} \\
+    \hline
+    Minkowski distance, \(p\)-norm function, or \(l_p\) norm function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \norm{\mathbf{x}}_{p}\), where \(p \in \mathbb{N}_{++}\).
+    \end{itemize} & Convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item It can be proved by triangular inequality.
+    \end{itemize} \\
+    \hline
+    Maximum element: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
+    \end{itemize} & Convex. & \\
+    \hline
+    Pointwise maximum (maximum function): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \max\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
+    \end{itemize} & \(f\) is convex if \(f_1, \dots, f_n\) are convex functions. &
+    \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item Its domain \(\dom{f} = \bigcap\limits_{i=1}^{n} \dom{f_i}\) is also convex.
+    \end{itemize} \\
+    \hline
+    Pointwise infimum:
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\).
+    \end{itemize} & \(f\) is concave if \(g\) is concave for each \(\mathbf{y}\in \mathcal{A}\). &
+    \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the greatest value in the codomain of \(f\) that is less than or equal this set.
+        \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ inf }}g(x,y)> -\infty \right\}\).
+    \end{itemize} \\
+    \hline
+    Pointwise supremum:
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\).
+    \end{itemize} & \(f\) is convex if \(g\) is convex for each \(\mathbf{y}\in \mathcal{A}\). &
+    \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the least value in the codomain of \(f\) that is greater than or equal this set.
+        \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ sup }}g(x,y)<\infty \right\}\).
+        \item In terms of epigraphs, the pointwise supremum of the infinite set of functions \(\eval{g(x,y)}{y\in \mathcal{A}}\) corresponds to the intersection of the following epigraphs: \(\textnormal{epi } f = \intersection_{y \in \mathcal{A}} \textnormal{epi } g(\cdot, y)\)
+    \end{itemize} \\
+    \hline
+    Minimum function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \min\left\{ f_1(\mathbf{x}), \dots, f_n(\mathbf{x}) \right\}\).
+    \end{itemize} & Nonconvex and nonconcave in most of the cases. & \\
+    \hline
+    Log-sum-exp function: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \log\left( e^{x_1} + \dots+ e^{x_n} \right)\)
+    \end{itemize} & Convex. & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item This function is interpreted as the approximation of the maximum element function, since \(\max\left\{ x_1, \dots, x_n \right\} \leq f(\mathbf{x}) \leq \max \left\{ x_1, \dots, x_n \right\} + \log n\)
+    \end{itemize} \\
+    \hline
+    Geometric mean function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \left( \Pi_{i=1}^{n} x_i \right)^{1/n}\)
+    \end{itemize} & Convex. & \\
+    \hline
+    Log-determinant function \(f: \mathcal{S}^{n}_{++}\rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
+    \end{itemize} & Convex. & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathcal{S}^{n}_{++}\).
+    \end{itemize} \\
+    \hline
+    Composite function \(f = h\circ g : \mathbb{R}^{n}\rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f = g \circ h\), i.e., \(f(\mathbf{x}) = (h\circ g)(\mathbf{x}) = h(g(\mathbf{x}))\), where:
+        \begin{itemize}[label=\(\triangleright\)]
+            \item \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}^{k}\).
+            \item \(h: \mathbb{R}^{k}\rightarrow \mathbb{R}\).
+            \item \(\dom{f} = \left\{ \mathbf{x} \in \dom{g}\mid g(\mathbf{x}) \in \dom{h} \right\}\).
+        \end{itemize}  %\(\mathbf{x} \in S \subseteq \mathbb{R}^{p}\)
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item Scalar composition: the following statements hold for \(k=1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}\rightarrow \mathbb{R}\) and \(g: \mathbb{R}^{n} \rightarrow \mathbb{R}\):
+            \begin{itemize}[label=\(\triangleright\)]
+                \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nondecreasing, and \(g\) is convex. In this case, \(\dom{h}\) is either \((-\infty, a]\) or \((-\infty, a)\).
+                \item \(f\) is convex if \(h\) is convex, \(\tilde{h}\) is nonincreasing, and \(g\) is concave. In this case, \(\dom{h}\) is either \([a, \infty)\) or \((a, \infty)\).
+                \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nondecreasing, and \(g\) is concave.
+                \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nonincreasing, and \(g\) is convex.
+            \end{itemize}
+    \end{itemize}
+    \begin{itemize}[leftmargin=*]
+        \item Vector composition: the following statements hold for \(k\geq 1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}^{k} \rightarrow \mathbb{R}\) and \(\boldsymbol{g}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{k}\). Hence, \(g(\mathbf{x}) = (g_1 (\mathbf{x}), g_2(\mathbf{x}), \dots, g_k(\mathbf{x}))\) is a vector-valued function (or simply, vector function), where \(g_i: \mathbb{R}^{k} \rightarrow \mathbb{R}\) for \(1 \leq i \leq k\).
+        \begin{itemize}[label=\(\triangleright\)]
+            \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of convex functions.
+            \item \(f\) is convex if \(h\) is is convex, \(\tilde{h}\) is nonincreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+            \item \(f\) is concave if \(h\) is is concave, \(\tilde{h}\) is nondecreasing in each argument of \(\mathbf{x}\), and \(\left\{ g_i \right\}_{i=1}^{k}\) is a set of concave functions.
+        \end{itemize}
+    \end{itemize}
+    Where \(\tilde{h}\) is the extended-value extension of the function \(h\), which assigns the value \(\infty\) (\(-\infty\)) to the point not in \(\dom{h}\) for \(h\) convex (concave).
+    & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+    \item The composition function allows us to see a large class of functions as convex (or concave).
+    \item For scale composition, the remarkable ones are:
+        \begin{itemize}[label=\(\triangleright\)]
+            \item If \(g\) is convex then \(f(x) = h(g(\mathbf{x})) = \exp{g(\mathbf{x})}\) is convex.
+            \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = \log{g(\mathbf{x})}\) is concave.
+            \item If \(g\) is concave and \(\dom{g} \subseteq \mathbb{R}_{++}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = 1/g(\mathbf{x})\) is convex.
+            \item If \(g\) is convex and \(\dom{g} \subseteq \mathbb{R}_{+}\), then \(f(\mathbf{x}) = h(g(\mathbf{x})) = g^{p}(\mathbf{x})\) is convex, where \(p\geq 1\).
+            \item If \(g\) is convex then \(f(\mathbf{x}) = h(g(\mathbf{x})) = - \log{\left( -g(x) \right)}\) is convex, where \(\dom{f} = \left\{ \mathbf{x} \mid g(\mathbf{x})<0 \right\}\).
+        \end{itemize}
+    \item For vector composition, we have the following examples:
+        \begin{itemize}[label=\(\triangleright\)]
+            \item If \(g(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\) is an affine function, then \(f = h \circ g\) is convex (concave) if \(h\) is convex (concave).
+            \item Let \(h(\mathbf{x}) = x_{\left[ 1 \right]} + \dots + x_{\left[ r \right]}\) be the sum of the \(r\) largest components of \(\mathbf{x} \in \mathbb{R}^{k}\). If \(g_1, g_2, \dots, g_k\) are convex, where \(\dom{g_i} = \mathbb{R}^{n}\), then \(f = h\circ g\), which is the pointwise sum of the largest \(g_i\)'s, is convex.
+            \item \(f = h\circ g\) is a convex function when \(h(\mathbf{x}) = \log\left( \sum_{i=1}^{k} e^{x_i} \right)\) and \(g_1, g_2, \dots, g_k\) are convex functions.
+            \item For \(0<p \leq 1\), the function \(h(\mathbf{x}) = \left( \sum_{i=1}^{k} x_i^p \right)^{1/p}\), where \(\dom{h} = \mathbb{R}_+^{n}\), is concave. If \(g_1, g_2, \dots, g_k\) are concaves (convexes) and nonnegatives, then \(f = h \circ g\) is concave (convex).
+        \end{itemize}
+    \end{itemize}\\
+    \hline
+    Nonnegative weighted sum: \(f: \dom{f} \rightarrow \mathbb{R}\)
+    \begin{itemize}
+        \item \(f(\mathbf{x}) = \sum_{i=1}^{m} w_if_i(\mathbf{x})\), where \(w\geq 0\).
+    \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item If \(f_1, f_2, \dots, f_m\) are convex or concave functions, then \(f\) is a convex or concave function, respectively.
+        \item If \(f_1, f_2, \dots, f_m\) are strictly convex or concave functions, then \(f\) is a strictly convex or concave function, respectively.
+    \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item Special cases is when \(f = w f\) (a nonnegative scaling) and \(f = f_1 + f_2\) (sum).
+    \end{itemize}\\
+    \hline
+    Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
+    \begin{itemize}
+        \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
+    \end{itemize} & If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists). & \\
+    \hline
+    Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}\).
+    \end{itemize} & Yes, if \(S \subseteq \dom{f}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item The perspective function decreases the dimension of the function domain since \(\textnormal{dim}(\dom{f}) = n+1\).
+        \item Its effect is similar to the camera zoom.
+        \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
+        \item A special case is when \(n=1\), which is called \emph{quadratic-over-linear function}.
+    \end{itemize} \\
+    \hline
+    Projective (or linear-fractional) function, \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f = p \circ g\), i.e., \(f(\mathbf{x}) = (p\circ g)(\mathbf{x}) = p(g(\mathbf{x}))\), where
+            \begin{itemize}[label={$\triangleright$}]
+                \item \(g: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m+1}\) is an affine function given by \(g(\mathbf{x}) = \begin{bmatrix}
+                    \mathbf{A}\\
+                    \mathbf{c}^\mathsf{T}
+                \end{bmatrix} \mathbf{x} + \begin{bmatrix}
+                    \mathbf{b} \\
+                    d
+                \end{bmatrix}\), being \(\mathbf{A}\in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{c} \in \mathbb{R}^{n}\), and \(d \in \mathbb{R}\).
+                \item \(p: \mathbb{R}^{m+1} \rightarrow \mathbb{R}^{m}\) is the perspective function.
+            \end{itemize}
+        \item \(f(\mathbf{x}) = \mathcal{P}^{-1}(\mathbf{Q}\mathcal{P}(\mathbf{x}))\)
+            \begin{itemize}[label={$\triangleright$}]
+                \item \(\mathcal{P}(\mathbf{x}) = \left\{ (t\mathbf{x}, t) \mid t \geq 0 \right\} \subset \mathbb{R}^{n+1}\)
+                \item \(\mathbf{Q} = \begin{bmatrix}
+                    \mathbf{A} & \mathbf{b} \\
+                    \mathbf{c}^\mathsf{T} & d
+                \end{bmatrix} \in \mathbb{R}^{(m+1)\times(n+1)}\)
+            \end{itemize}
+    \end{itemize} & Yes, if \(S \subseteq \dom{f}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item The linear and affine functions are special cases of the linear-fractional function.
+        \item \(\dom{f} = \left\{ \mathbf{x} \in \mathbb{R}^{n} \mid \mathbf{c}^\mathsf{T} \mathbf{x} + d > 0 \right\}\)
+        \item \(\mathcal{P}(\mathbf{x}) \subset \mathbb{R}^{n+1}\) is a ray set that begins at the origin and its last component takes only positive values. For each \(\mathbf{x} \in \dom{f}\), it is associated a ray set in \(\mathbb{R}^{n+1}\) in this form. This (projective) correspondence between all points in \(\dom{f}\) and their respective sets \(\mathcal{P}\) is a biunivocal mapping.
+        \item The linear transformation \(\mathbf{Q}\) acts on these rays, forming another set of rays.
+        \item Finally we take the inverse projective transformation to recover \(f(\mathbf{x})\).
+    \end{itemize}\\
+    \hline
+    Epigraph:
+    \begin{itemize}[leftmargin=*]
+        \item \(\textnormal{epi } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item The function \(f\) is convex iff its epigraph is convex.
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+    \item Visually, it is the graph above the \((\mathbf{x}, f(\mathbf{x}))\) curve.
+\end{itemize}\\
+    \hline
+    Hypograph:
+    \begin{itemize}[leftmargin=*]
+        \item \(\textnormal{hypo } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item The function \(f\) is concave iff its hypograph is convex.
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
+    \end{itemize}\\
+    \hline
+\end{tabularx}
+\end{table}
 
-\begin{figure}
-    \centering
-    \includestandalone{figs/optmization_types}
-  \end{figure}
+% \clearpage
+% \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
+% \pdfpagewidth=80cm
+% \pdfpageheight=40cm
+% \pagenumbering{gobble}
+% \newgeometry{top=1in,left=1in,textwidth=15in,textheight=9in}
+
+% \begin{figure}
+%     \centering
+%     \includestandalone{figs/optmization_types}
+%   \end{figure}
 
 
 % \restoregeometry

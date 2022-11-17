@@ -1,0 +1,192 @@
+\PassOptionsToPackage{svgnames,dvipsnames}{xcolor}
+\documentclass{beamer}
+
+\usepackage[brazilian]{babel}
+\usepackage{hyphenat}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\usepackage[dvips]{psfrag}
+
+\usepackage{multicol}
+
+\usepackage{datetime}
+
+\usepackage{hyperref}
+
+\usepackage{pgfplots}
+\usepackage{steinmetz}
+
+% \pgfplotsset{compat=1.8}
+
+\usepackage{pgf}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{fit}
+\usetikzlibrary{chains}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{plotmarks}
+
+\newcommand{\vax}{\mathbf{x}}
+\newcommand{\vay}{\mathbf{y}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\vu}{\mathbf{u}}
+
+\newcommand{\expec}{\mathrm{E}}
+\newcommand{\sinc}{\mathrm{sinc}}
+\newcommand{\trect}{\mathrm{rect}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\energy}{\mathcal{E}}
+
+\newcommand*{\medcup}{\mathbin{\scalebox{1.5}{\ensuremath{\cup}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usecolortheme{structure}
+\useoutertheme{infolines}
+\useinnertheme[shadow]{rounded}
+\usefonttheme[onlymath]{serif}
+\usefonttheme{structurebold}
+
+\setbeamercolor{structure}{bg=White,fg=Brown!50!Black}
+\setbeamercolor{palette primary}{fg=White,bg=Brown!50!Black}
+\setbeamercolor{palette secondary}{fg=White,bg=Brown!60!Black}
+\setbeamercolor{palette tertiary}{fg=White,bg=Black}
+\setbeamercolor{alerted text}{fg=DarkRed}
+
+\setbeamercolor{title}{fg=White,bg=Brown!50!Black}
+\setbeamercolor{frametitle}{fg=White,bg=Brown!50!Black}
+
+\setbeamercolor{block title}{fg=White,bg=Brown!50!Black}
+\setbeamercolor{block body}{fg=Black,bg=White}
+
+\setbeamercolor{block title example}{fg=White,bg=Brown!50!Black}
+\setbeamercolor{block body example}{fg=Black,bg=Brown!25!White}
+
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+
+\setbeamerfont{block title}{size=\small,series=\bfseries}
+\setbeamerfont{block body}{size=\footnotesize}
+\setbeamerfont{block title example}{size=\small,series=\bfseries}
+\setbeamerfont{block body example}{size=\footnotesize}
+
+\setbeamerfont{section in head/foot}{series=\bfseries}
+\setbeamerfont{subsection in head/foot}{series=\bfseries}
+\setbeamerfont{footnote}{size=\tiny}
+
+\setlength{\leftmargini}{1em}
+\setlength{\leftmarginii}{1em}
+\setlength{\leftmarginiii}{1em}
+
+\setlength{\abovedisplayskip}{-\baselineskip}
+
+\title[Sist. de Com. Digital]{Sistemas de Comunicações Digitais}
+\author[DETI]{Curso de Graduação em Engenharia de Telecomunicações}
+\institute[UFC]{\normalsize Universidade Federal do Ceará}
+\date{Semestre 2017.2}
+% \date[\year]{\year}
+
+
+\makeatletter
+\def\sectionintoc{}
+\def\beamer@sectionintoc#1#2#3#4#5{%
+\ifnum\c@tocdepth>0%
+\ifnum#4=\beamer@showpartnumber%
+{
+  \beamer@saveanother%
+  \gdef\beamer@todo{}%
+  \beamer@slideinframe=#1\relax%
+  \expandafter\only\beamer@tocsections{\gdef\beamer@todo{%
+      \beamer@tempcount=#5\relax%
+      \advance\beamer@tempcount by\beamer@sectionadjust%
+      \edef\inserttocsectionnumber{\the\beamer@tempcount}%
+      \def\inserttocsection{\hyperlink{Navigation#3}{#2}}%
+      \beamer@tocifnothide{\ifnum\c@section=#1\beamer@toc@cs\else\beamer@toc@os\fi}%
+      {
+        \ifbeamer@pausesections\pause\fi%
+        \ifx\beamer@toc@ooss\beamer@hidetext
+          \vskip0.6em
+        \else
+          \vfill
+        \fi
+        {%
+          \hbox{\vbox{%
+              \def\beamer@breakhere{\\}%
+              \beamer@tocact{\ifnum\c@section=#1\beamer@toc@cs\else\beamer@toc@os\fi}    {section in toc}}}%
+         \par%
+        }%
+      }%
+    }
+  }%
+  \beamer@restoreanother%
+  }
+  \beamer@todo%
+  \fi\fi%
+}
+
+\makeatother
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\AtBeginSection{
+\begin{frame}
+	\frametitle{Conteúdo}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+}
+
+% \part{Introdução e revisão de processos estocásticos}
+% \input{std_01.tex}
+
+% \part{Caracterização de sinais e sistemas de comunicação}
+% \input{std_02.tex}
+
+% \part{Modulação por amplitude de pulso - PAM}
+% \input{std_03.tex}
+
+% \part{Modulações avançadas}
+% \input{std_04.tex}
+
+% \part{Detecção Probabilística}
+% \input{std_05.tex}
+
+\part{Recuperação de Portadora}
+\input{std_06_rubem.tex}
+
+% \part{Recuperação de Relógio}
+% \input{std_07.tex}
+
+% \part{Técnicas de múltiplo acesso}
+% \input{std_08.tex}
+
+\begin{frame}
+    \frametitle{Referências}
+    \bibliographystyle{apalike}
+    \bibliography{refs.bib}
+\end{frame}
+
+
+\end{document}
