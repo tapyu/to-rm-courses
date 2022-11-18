@@ -1,4 +1,4 @@
-\lecture{Recuperação de Portadora}{lec_carrier}
+\lecture{Estimador de fase}{lec_carrier}
 
 \begin{frame}
 	\begin{block}{\centering\large\bfseries Parte 6}
@@ -6,13 +6,15 @@
 	\end{block}
 \end{frame}
 
-\section{Introdução}
+\section{Estimadores MAP e ML}
 \begin{frame}[t]
-	\frametitle{Introdução}
+	\frametitle{Estimadores MAP e ML}
 	
-	Em sistemas de comunicações digitais, a saída do demodulador deve ser amostrada periodicamente, a cada intervalo de símbolo, para que a informação transmitida seja recuperada. Em um sistema de comunicação \textbf{síncrono} ou \textbf{coerente}, para que o sistema opere satisfatoriamente, devemos considerar (e corrigir) as seguintes imperfeições que incidem no sistema:
-    \begin{itemize}
-        \item \textbf{Atraso de símbolo}: como atraso de propagação é usualmente desconhecido, é necessário que o demodulador recupere a temporização de símbolo (\textit{symbol timming}) para que o mesmo seja capaz de escolher o instante ótimo de amostragem, isto é o ínstante que maximize o diagrama de olho. O circuito que realiza essa tarefa é chamada de sincronizador (ou estimador ou recuperação) de temporização (ou relógio ou de tempo de símbolo). Aqui, iremos nos refirir a esse módulo como \textbf{estimador de relógio} \cite{abrantes2010recuperaccao}. Todo sistema de comunicação que transmite informação síncronamente requer um estimador de relógio \cite{mengali2013synchronization}.  % tau
+	\begin{itemize}
+        \item Na aula passada, vimos que
+        \begin{align}
+            p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k) = \dfrac{p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k) p(\hat{\boldsymbol{\lambdaup}}_k)}{p(\mathbf{r}_k)}
+        \end{align}
     \end{itemize}
 \end{frame}
 
@@ -26,7 +28,7 @@
 \begin{frame}[t]
 	\frametitle{Introdução}
     \begin{itemize}
-        \item \textbf{Desvio de frequência}: devido a efeitos durante a progapagação, como o efeito Doppler, existe uma diferença de frequência entre a portadora local e o sinal recebido. Salvo alguns esquemas de modulações que conseguem operar satisfatoriamente sob moderado desvio de frequência, o desvio de frequência também deve ser corrigido. O módulo que realiza essa tarefa é chamado de \textbf{estimador de frequência}. A recuperação da portadora é requerida sempre que o sinal é detectado coerentemente.
+        \item \textbf{Desvio de frequência}: devido a efeitos durante a progapagação, como o efeito Doppler, existe uma diferença de frequência entre a portadora local e o sinal recebido. Salvo alguns esquemas de modulações que conseguem operar satisfatoriamente sob moderado desvio de frequência, o desvio de frequência também deve ser corrigido. O módulo que realiza essa tarefa é chamado de \textbf{estimador de frequência}.
     \end{itemize}
 \end{frame}
 
@@ -123,57 +125,8 @@
 
     \begin{itemize}
         \item Como \(p(\mathbf{r}_k)\) é igual para \(\hat{\boldsymbol{\lambdaup}}_k\), podemos disconsidera-la.
-        \item Quando a probabilidade a priori possui uma distribuição uniforme, também podemos disconsidera-la. Neste caso, o método MAP se torna igual ao ML, i.e.,
-        \begin{align}
-            p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k) = p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k)
-        \end{align}
+        \item Quando a probabilidade a priori possui uma distribuição uniforme, também podemos disconsidera-la. Neste caso, o método MAP se torna igual ao ML
     \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Estimador ML e MAP}
-    \begin{itemize}
-        \item Duas perguntas surgem nesse momento:
-        \begin{itemize}
-            \item Como calcular \(p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k)\)?
-            \item Qual é o intervalo de observação utilizado para decidir \(\hat{\boldsymbol{\lambdaup}}_k\)? Em outras palavras, seja \(\left\{ \mathbf{r}_{k-K+1}, \mathbf{r}_{k-K+2}, \dots, \mathbf{r}_{k} \right\}\) a sequência utilizada para decidir \(\hat{\boldsymbol{\lambdaup}}_k\), qual é o valor de \(K\)?
-            \begin{itemize}
-                \item \(K=1 \rightarrow\) \textit{one-shot estimates}: Normalmente não utilizada na prática, mas é útil para analisar sua performance.
-                \item Update das estimativas \(\rightarrow\) \textit{tracking loop}: solução comumente utilizada na prática.
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Estimador ML e MAP}
-    \begin{itemize}
-        \item Como \(w(t)\) é um ruído branco e Gaussiano, temos que:
-        \begin{align}
-            p(\mathbf{r}_k | \hat{\boldsymbol{\lambdaup}}_k) = \left( \frac{1}{\sqrt{2\pi \sigma}} \right)^{N} \text{exp}\left\{ - \sum_{n = 1}^{N} \frac{\left(r_{k,n} - s_{k,n}\right)^{2}}{2\sigma^{2}} \right\}
-            \label{eq:p_r_lambda}
-        \end{align}
-        em que
-        \begin{itemize}
-            \item \[r_{k,n} = \int_{(k-K)T}^{kT} r(t) \phi_n (t) \]
-            \item \[s_{k,n} = \int_{(k-K)T}^{kT} s(t, \hat{\boldsymbol{\lambdaup}}_{k}) \phi_n (t) \]
-            \begin{itemize}
-                \item \(\phi_n (t)\) é a \(n\)-ésima função ortonormal.
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{}
-
-    \begin{itemize}
-        \item Ignorando os termos constantes na Eq.\eqref{eq:p_r_lambda}, obtemos o critério de máxima verossimilhança, dado por
-        \begin{align}
-            \max_{\hat{\boldsymbol{\lambdaup}}_{k}}\; \Lambda(\hat{\boldsymbol{\lambdaup}}_{k}) = \max_{\hat{\boldsymbol{\lambdaup}}_{k}}\; \textnormal{exp}\left\{ - \frac{1}{K} \int_{(k-K)T}^{kT} \left( r(t) - s(t, \hat{\boldsymbol{\lambdaup}}_{k}) \right)^{2} \right\}
-        \end{align}
-    \end{itemize}
-
 \end{frame}
 
 \section{Próxima aula}
@@ -181,6 +134,7 @@
     \frametitle{Estimador ML e MAP}
 
     \begin{itemize}
+        \item Derivação das equações de MAP e ML
         \item Apesentação de algumas arquiteturas de estimadores de fase.
     \end{itemize}
 \end{frame}
