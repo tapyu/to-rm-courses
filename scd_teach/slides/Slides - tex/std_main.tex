@@ -12,6 +12,8 @@
 \usepackage{amssymb}
 \usepackage{amstext}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
+\usepackage{IEEEtrantools} % IEEEeqnarray
+\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}}
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
@@ -55,6 +57,8 @@
 \newcommand{\sgn}{\mathrm{sgn}}
 \newcommand{\re}{\mathrm{Re}}
 \newcommand{\energy}{\mathcal{E}}
+\DeclareDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}} % derivative(for high-order, use the optinioal argument)
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert} % |x| -> absolute value or determinant
 
 \newcommand*{\medcup}{\mathbin{\scalebox{1.5}{\ensuremath{\cup}}}}
 
@@ -173,11 +177,11 @@
 % \part{Detecção Probabilística}
 % \input{std_05.tex}
 
-\part{Recuperação de Portadora}
-\input{std_06_rubem.tex}
+% \part{Introdução a sincronização de sistemas de comunicação digital}
+% \input{std_06_rubem.tex}
 
-% \part{Recuperação de Relógio}
-% \input{std_07.tex}
+\part{Recuperação de Portadora}
+\input{std_07_rubem.tex}
 
 % \part{Técnicas de múltiplo acesso}
 % \input{std_08.tex}

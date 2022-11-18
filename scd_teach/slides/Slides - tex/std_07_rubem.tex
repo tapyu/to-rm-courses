@@ -1,34 +1,58 @@
 \lecture{Estimador de fase}{lec_carrier}
 
 \begin{frame}
-	\begin{block}{\centering\large\bfseries Parte 6}
+	\begin{block}{\centering\large\bfseries Parte 7}
 		\centering\large\insertpart
 	\end{block}
 \end{frame}
 
-\section{Estimadores MAP e ML}
+\section{Método \(M\)-power}
 \begin{frame}[t]
-	\frametitle{Estimadores MAP e ML}
+	\frametitle{Método \(M\)-power}
 	
 	\begin{itemize}
-        \item Na aula passada, vimos que
+        \item Suporemos que o demodulador possiu perfeito conhecimento do atraso de símbolo, \(\tau\), e do o desvio de frequência, \(\nu\). Sendo assim, trabalharemos apenas com \(\theta\), i.e.,
         \begin{align}
-            p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k) = \dfrac{p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k) p(\hat{\boldsymbol{\lambdaup}}_k)}{p(\mathbf{r}_k)}
+            s(t, \hat{\theta}_{k}) = s_l (t) e^{j\hat{\theta}_{k}}
+            \label{eq:s_t}
         \end{align}
+        \item O método \(M\)-\textit{power} consiste em uma técnica de estimação de fase em malha aberta (\textit{feedforward}) para sinais \(M\)-PSK sem offset \footnote{O esquema OQPSK, por exemplo, não se adequa a este método.}.
+        \item Este método NDA (\textit{non-data-aided}), pois não depende dos simbolos transmitidos.
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
 	\frametitle{Introdução}
     \begin{itemize}
-        \item \textbf{Desvio de fase}: o atraso da propagação também resulta em um atraso de fase. Adicionalmente, a portadora local desconhece a fase inical da portadora do transmissor, o que gera uma diferença de fase. As imperfeições do oscilador de cristal também contribuem para um desvio de fase, uma vez que ela produz uma pequena diferença de fase (\textit{drifting}) com o passar do tempo. Para que a detecção coerente seja livre de pertubações, tal como o \textit{cross-talk}, faz-se necessário recuperar a fase do sinal transmitido. Chamamos esse circuito lógico de \textbf{estimador de fase}. % theta
+        \item Do slide anterior, temos que
+        \begin{align}
+            \Lambda_L(\hat{\theta}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t}
+        \end{align}
+        \item Como o envelope complexo possui módulo constante para sinais \(M\)-PSK, podemos ignorar o segundo termo desta equação, sendo assim
+        \begin{align}
+            \Lambda_L(\hat{\theta}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t}
+            \label{eq:ml}
+        \end{align}
+        Recorde que
+        \begin{align}
+            s_l(t) = \sum_k A_k g(t - kT)
+            \label{eq:s_l_t}
+        \end{align}
+        \begin{itemize}
+            \item \(A_k \in \mathbb{C}\) é o \(k\)-ésimo símbolo transmitido
+            \item \(g(t) \in \mathbb{C}\) é a resposta ao impulso do pulso formatador.
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
 	\frametitle{Introdução}
     \begin{itemize}
-        \item \textbf{Desvio de frequência}: devido a efeitos durante a progapagação, como o efeito Doppler, existe uma diferença de frequência entre a portadora local e o sinal recebido. Salvo alguns esquemas de modulações que conseguem operar satisfatoriamente sob moderado desvio de frequência, o desvio de frequência também deve ser corrigido. O módulo que realiza essa tarefa é chamado de \textbf{estimador de frequência}.
+        \item Substituindo \eqref{eq:s_l_t} e \eqref{eq:s_t} em \eqref{eq:ml}, obtemos
+        \begin{align}
+            \Lambda_L(\hat{\theta}_{k}) = \sum_k A^*_k e^{-j\hat{\theta}_{k}} \int_{(k-K)T}^{kT} r(t) g(t - kT) \diff{t}
+        \end{align}
+        \item Em uma aplicação prática, no entando, \(g(t)\) é limitado\footnote{Recorde a impossibilidade de implementarmos o filtro raiz cosseno levantado, e como solucionamos isso na prática através do truncamento de sua resposta ao impulso.}
     \end{itemize}
 \end{frame}
 

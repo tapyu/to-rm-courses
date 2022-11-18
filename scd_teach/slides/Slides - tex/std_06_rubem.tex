@@ -165,20 +165,37 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{}
+    \frametitle{Estimador ML e MAP}
 
     \begin{itemize}
-        \item Ignorando os termos constantes na Eq.\eqref{eq:p_r_lambda}, obtemos o critério de máxima verossimilhança, dado por
+        \item Ignorando os termos constantes na Eq.\eqref{eq:p_r_lambda}, obtemos
         \begin{align}
-            \max_{\hat{\boldsymbol{\lambdaup}}_{k}}\; \Lambda(\hat{\boldsymbol{\lambdaup}}_{k}) = \max_{\hat{\boldsymbol{\lambdaup}}_{k}}\; \textnormal{exp}\left\{ - \frac{1}{K} \int_{(k-K)T}^{kT} \left( r(t) - s(t, \hat{\boldsymbol{\lambdaup}}_{k}) \right)^{2} \right\}
+            \Lambda(\hat{\boldsymbol{\lambdaup}}_{k}) & = & \textnormal{exp} \left\{ \sizecorr{\frac{1}{K}}\right. & \left. - \frac{1}{K} \int_{(k-K)T}^{kT} \left( r(t) - s(t, \hat{\boldsymbol{\lambdaup}}_{k}) \right)^{2} \diff{t} \right\} \nonumber \\
+            & = & \textnormal{exp}\left\{ \sizecorr{\frac{1}{K}}\right. & - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{r(t)}^{2} \diff{t} + \frac{2}{K} \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\boldsymbol{\lambdaup}}_{k})\right\} \diff{t}  \nonumber \\
+            &&& \left. - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\boldsymbol{\lambdaup}}_{k})}^{2} \diff{t} \right\}
         \end{align}
     \end{itemize}
+\end{frame}
 
+\begin{frame}[t]
+    \frametitle{Estimador ML e MAP}
+    \begin{itemize}
+        \item É comum utilizarmos o log da função de máxima verossimilhança, isto é
+        \begin{align}
+            \Lambda_L(\hat{\boldsymbol{\lambdaup}}_{k}) & = \log{\Lambda(\hat{\boldsymbol{\lambdaup}}_{k})} \\
+            \Lambda_L(\hat{\boldsymbol{\lambdaup}}_{k}) & = - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{r(t)}^{2} \diff{t} + \frac{2}{K} \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\boldsymbol{\lambdaup}}_{k})\right\} \diff{t} \nonumber \\
+            & - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\boldsymbol{\lambdaup}}_{k})}^{2} \diff{t}
+        \end{align}
+        \item Discartando o primeiro, obtemos
+        \begin{align}
+            \boxed{\Lambda_L(\hat{\boldsymbol{\lambdaup}}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\boldsymbol{\lambdaup}}_{k})\right\} \diff{t} - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\boldsymbol{\lambdaup}}_{k})}^{2} \diff{t}}
+        \end{align}
+    \end{itemize}
 \end{frame}
 
 \section{Próxima aula}
 \begin{frame}[t]
-    \frametitle{Estimador ML e MAP}
+    \frametitle{Próxima aula}
 
     \begin{itemize}
         \item Apesentação de algumas arquiteturas de estimadores de fase.
