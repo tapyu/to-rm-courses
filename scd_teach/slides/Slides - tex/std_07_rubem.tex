@@ -11,154 +11,152 @@
 	\frametitle{Método \(M\)-power}
 	
 	\begin{itemize}
+        \item O método \(M\)-\textit{power} consiste em uma técnica de estimação de fase em malha aberta (\textit{feedforward}) para sinais \(M\)-PSK sem offset \footnote{O esquema OQPSK, por exemplo, não se adequa a este método.}.
+        \item Este método é NDA (\textit{non-data-aided}), pois não depende dos simbolos transmitidos.
         \item Suporemos que o demodulador possiu perfeito conhecimento do atraso de símbolo, \(\tau\), e do o desvio de frequência, \(\nu\). Sendo assim, trabalharemos apenas com \(\theta\), i.e.,
         \begin{align}
-            s(t, \hat{\theta}_{k}) = s_l (t) e^{j\hat{\theta}_{k}}
+            s(t, \hat{\theta}_{k}) = s_l (t) e^{j\hat{\theta}_{k}}.
             \label{eq:s_t}
         \end{align}
-        \item O método \(M\)-\textit{power} consiste em uma técnica de estimação de fase em malha aberta (\textit{feedforward}) para sinais \(M\)-PSK sem offset \footnote{O esquema OQPSK, por exemplo, não se adequa a este método.}.
-        \item Este método NDA (\textit{non-data-aided}), pois não depende dos simbolos transmitidos.
+        % Neste cenário, a função de verossimilhança depende de dois termos desconhecidos para o demodulador: os símbolo transmitidos, \(\left\{ A_k \right\}\), e o desvio de fase, \(\theta\). Portanto, denotaremos o critério ML como \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\)
+        \item O estimador é derivado a partir da suposição de que o sistema opera em uma baixa SNR.
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Introdução}
+	\frametitle{Método \(M\)-power}
     \begin{itemize}
         \item Do slide anterior, temos que
         \begin{align}
-            \Lambda_L(\hat{\theta}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t}
+            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp} \left\{ \frac{2}{K}  \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} \right. \nonumber \\
+            \left. - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} \right\}
+            \label{eq:init}
         \end{align}
-        \item Como o envelope complexo possui módulo constante para sinais \(M\)-PSK, podemos ignorar o segundo termo desta equação, sendo assim
+        \item Recordando que \(\abs{z}^2 = z z^*\), para \(z \in \mathbb{C}\), e que
         \begin{align}
-            \Lambda_L(\hat{\theta}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t}
-            \label{eq:ml}
-        \end{align}
-        Recorde que
-        \begin{align}
-            s_l(t) = \sum_k A_k g(t - kT)
-            \label{eq:s_l_t}
+            s_l (t) = \sum_k A_k g(t - kT)
         \end{align}
         \begin{itemize}
-            \item \(A_k \in \mathbb{C}\) é o \(k\)-ésimo símbolo transmitido
-            \item \(g(t) \in \mathbb{C}\) é a resposta ao impulso do pulso formatador.
+            \item \(A_k \in \mathbb{C} \rightarrow\) \(k\)-ésimo śimbolo transmitido
+            \item \(g(t) \in \mathbb{R} \rightarrow\) pulso formatador
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Introdução}
+	\frametitle{Método \(M\)-power}
     \begin{itemize}
-        \item Substituindo \eqref{eq:s_l_t} e \eqref{eq:s_t} em \eqref{eq:ml}, obtemos
+        \item podemos reescrever o segundo termo da Eq.\eqref{eq:init} como
         \begin{align}
-            \Lambda_L(\hat{\theta}_{k}) = \sum_k A^*_k e^{-j\hat{\theta}_{k}} \int_{(k-K)T}^{kT} r(t) g(t - kT) \diff{t}
+            \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} = \frac{1}{K} \sum_{i = k-K}^{k} \sum_{p = m-K}^{m} A_i A_p^*h\left( \left[ i-p \right]T \right)
+            \label{eq:seg-term1}
         \end{align}
-        \item Em uma aplicação prática, no entando, \(g(t)\) é limitado\footnote{Recorde a impossibilidade de implementarmos o filtro raiz cosseno levantado, e como solucionamos isso na prática através do truncamento de sua resposta ao impulso.}
+        \begin{itemize}
+            \item \(h\left( t \right) = g(t) * g(-t) = \int_{-\infty}^{\infty} g(t) g(t - kT) \diff{t}\)
+        \end{itemize}
+        \item E o primeiro termo como
+        \begin{align}
+            \frac{2}{K} \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} = \frac{2}{K} \sum_{i = k-K}^{k} \textnormal{Re} \left\{ x_i A_i^* e^{-j \hat{\theta}_{i}} \right\}
+        \end{align}
+        \begin{itemize}
+            \item \(x_k = \eval{\left[r(t) * g(-t)\right]}{t=kT} \)
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Modelando o nosso sistema}
-	\begin{itemize}		
-	
-		\item Seja \(s_l (t)\) o envelope complexo transmitido, o equivalente passa-baixa do sinal recebido é dado por:
+	\frametitle{Método \(M\)-power}
+	\begin{itemize}
+		\item Como \(h\left( t \right)\) obedece o critério de Nyquist e \(z^*z = \abs{z}^2\) para \(z \in \mathbb{C}\) , a equação \eqref{eq:seg-term1} se torna
 		\begin{align}
-            r(t) & = s(t, \boldsymbol{\lambdaup}) + w(t), \nonumber \\
-                 & = s_l (t-\tau) e^{j(2\pi \nu t + \theta)} + w(t)
-            \label{eq:r_t}
+            \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} = \frac{1}{K} \sum_{i = k-K}^{k} \abs{A_i}^2
         \end{align}
-        em que
-        \begin{itemize}
-            \item \(s(t, \boldsymbol{\lambdaup}) = s_l (t-\tau) e^{j(2\pi \nu t + \theta)}\) é o sinal recebido considerando as imperfeições de atraso de símbolo e desvios de fase e frequência.
-            \item \(\theta\) é o desvio de fase.
-            \item \(\nu = f_c - f_{cL}\) é o desvio de frequência, sendo \(f_c\) e \(f_{cL}\) a frequência do sinal recebido e frequência da portadora local, respectivamente.
-            \item \(\tau\) é o atraso de símbolo.
-            \item \(\boldsymbol{\lambdaup} = (\theta, \nu, \tau)\) é o vetor de parâmetros.
-            \item \(w(t)\) é um ruído Gaussiano branco com densidade de potência \(N_0/2\).
-        \end{itemize}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Modelando o nosso sistema}
-
-    \begin{itemize}
-        \item \alert{Nosso objetivo é obter as estimativas de \(\boldsymbol{\lambdaup}\), i.e., \(\hat{\boldsymbol{\lambdaup}} = (\hat{\theta},\hat{\nu},\hat{\tau})\)}.
-        \item Ao longo dessa desciplina, as pertubações que incidem no sistemas são modeladas como segue:
-        \begin{itemize}
-            \item \(\nu\) é um valor determinístico, mas desconhecido, que está dentro do intervalo \(\pm 1/T\), sendo \(T\) o tempo de símbolo.
-            \item \(\theta\) é um valor determinístico, mas desconhecido, que está dentro do intervalo \((0,2\pi]\).
-            \item \(\tau\) é um valor determinístico, mas desconhecido, que está dentro do intervalo \((0,T]\).
-        \end{itemize}
-        \item Devido a complexidade do problema, suporemos que alguns parâmetros são conhecidos, ao passo que outros não.
-    \end{itemize}
-
-\end{frame}
-
-\section{Tipos de estimações}
-\begin{frame}[t]
-	\frametitle{Tipos de estimações}
-	\begin{itemize}
-		\item Existem diferentes estratégias para a estimação do vetor de parâmetros, e elas podem ser categorizadas a depender das seguintes características:
-		\begin{itemize}
-            \item \textit{Data-aided} (DA), \textit{decision-directed} (DD), \textit{non-data-aided} (NDA): o método DA faz uso de um preâmbulo para que o demodulador tenha o conhecimento adicional dos dados. Alternativamente, pode-se realizar a estimação dos parâmetros a partir das decisões feitas pelo detector, estratégia comumente chamada de estimação derecionada por decisão. Há ainda uma terceira estratégia, que não depende de dado algum, chamada de NDA. O método DA costumar obter melhor performance de estimação quando comparado com o método NDA \cite{mengali2013synchronization}. Naturalmente, o método DD opera em malha fechada (\textit{feedback loop}).
-            \item \textit{Clock-aided} ou \textit{non-clock-aided}: similarmente, quando o estimador possui o conhecimento do reógio, dizemos que é uma estimação ajudada por relógio. Caso contrário, dizemos que a estimação é \textit{non-clock-aided}.
-            \item Topologia do estimador: \textit{feedforward} ou \textit{feedback loops}.
-            \item Esquema da modulação: apesar de ser algo que independe do estimador utilizado, a presença ou a ausência de um \textit{offset} na modulação interfere na estratégia adotada.
-        \end{itemize}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Exemplo do diagrama de blocos de um receptor coerente}
-    \begin{figure}
-        \includegraphics[width=0.8\columnwidth]{figs/example.png}
-    \end{figure}
-	\begin{itemize}
-        \item Normalmente, a recuperação da portadora (fase e frequência) é feita antes da recuperação do tempo de símolo. Mas axistem diferentes arquiteturas que podem recuperar os parâmetros em outra ordem, inclusive em paralelo ou conjunta (\textit{joint estimation}).
-    \end{itemize}
-\end{frame}
-
-\section{Estimador ML e MAP}
-
-\begin{frame}
-	\frametitle{Estimador ML e MAP}
-	\begin{itemize}
-		
-		\item Existem basicamente dois critério amplamente empregados para a estimação de \(\hat{\boldsymbol{\lambdaup}}\): o criétio de máxima verossimilhança (ML) e o critério de máxima a posteriori (MAP), que originam os estimadores ML e MAP, respectivamente.
-		
-		\item Realizando a projeção de \(r(t)\) em um espaço de \(N\) funções ortonormais, obtemos, para o \(k\)-ésimo símbolo transmitido, o vetor \(\mathbf{r}_k \in \mathbb{R}^N\).
-		
-        \item Pelo o teorema de Bayes, tem-se a seguinte relação
+        \item Substituindo essas concluções, tem-se
         \begin{align}
-            p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k) = \dfrac{p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k) p(\hat{\boldsymbol{\lambdaup}}_k)}{p(\mathbf{r}_k)}
+            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp}\left\{ \frac{2}{K} \sum_{i = k-K}^{k} \textnormal{Re} \left\{ x_i A_i^* e^{-j \hat{\theta}_{i}} \right\} - \frac{1}{K} \sum_{i = k-K}^{k} \abs{A_i}^2 \right\}
         \end{align}
-
 	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Estimador ML e MAP}
+    \frametitle{Método \(M\)-power}
 
     \begin{itemize}
-        \item \(p(\hat{\boldsymbol{\lambdaup}}_k)\) é a probabilidade a priori.
-        \item \(p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k)\) é a probabilidade a posteriori.
-        \item \(p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k)\) é a função de verossimilhança.
+        \item A equação anterior se torna mais elegante se observarmos que a métrica de decisão \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\) pode ser mutiplicada pelo fator
+        \begin{align}
+            \textnormal{exp}\left\{ - \frac{1}{K} \sum_{i = k-K}^{k} \abs{x_i}^2 \right\}
+        \end{align}
+        sem causar consequnências na decisão\footnote{O fator em questão independe de \(\hat{\theta}_{k}\) e, portanto, não altera o valor máximo de \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\)}. Sendo assim, tem-se
+        \begin{align}
+            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp}\left\{ - \frac{1}{K} \sum_{i = k-K}^{k} \abs{x_i e^{-j \hat{\theta}_i} - A_i}^2 \right\}
+        \end{align}
     \end{itemize}
 
-    \begin{itemize}
-        \item Como \(p(\mathbf{r}_k)\) é igual para \(\hat{\boldsymbol{\lambdaup}}_k\), podemos disconsidera-la.
-        \item Quando a probabilidade a priori possui uma distribuição uniforme, também podemos disconsidera-la. Neste caso, o método MAP se torna igual ao ML
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Método \(M\)-power}
+	\begin{itemize}
+		\item Para o sinal M-PSK, tem-se que \(A_k = e^{j\frac{2\pi m}{M}}\), em que \(m \in \left\{ 0, 1, \dots, M-1 \right\}\). Recordando que \(\abs{z_1 \pm z_2}^2 = \abs{z_1}^2 \pm 2 \textnormal{Re}\left\{ z_1 z_2^* \right\} + \abs{z_2}^2\), para \(z_1, z_2 \in \mathbb{C}\), e ignorando os termos que não interferem na métrica, o função log-verossimilhança pode ser escrita como
+		\begin{align}
+            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) = \ln{\Lambda(\mathbf{r}_k|\hat{\theta}_{k})} = \sum_{i = k-K}^{k} \textnormal{Re}\left\{ x_i e^{-j \left(\frac{2\pi m}{M}+\hat{\theta}_i\right)} \right\} % TODO: a parte A_k no mengali ficou o cunjulgado do que está aqui, verificar
+        \end{align}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Método \(M\)-power}
+	\begin{itemize}
+        \item Mas recorde que \(2\textnormal{Re}\left\{ z \right\} = z + z^*\) e
+        \begin{align}
+            \left( z_1 + z_2 \right)^p = \sum_{q=0}^{p} \begin{pmatrix}
+                p \\
+                q
+            \end{pmatrix} z^p z^{q-p}
+        \end{align}
+        \item Realizando essas substituições e expandindo a exponencial complexa, tem-se
+        \begin{align}
+            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) = \sum_{i=k-K}^{k} \sum_{p=0}^{\infty}\frac{1}{p!} \sum_{q=0}^{p} \begin{pmatrix}
+                p \\
+                q
+            \end{pmatrix}
+            x^{q}_{i} \left( x^{*}_{i} \right)^{p-q} e^{j\left( p-2q \right)\hat{\theta}_i} e^{j\frac{2\pi m}{M}}
+        \end{align}
+        
     \end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Método \(M\)-power}
+	\begin{itemize}
+		
+		\item Para uma SNR suficientemente baixa, a seguinte aproximação é válida \cite{mengali2013synchronization}:
+        \begin{align}
+            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) \approx \textnormal{Re}\left\{e^{-jM \hat{\theta}_k} \sum_{i=k-K}^{k} x_{k}^{M} \right\}
+        \end{align}
+        \item O valor que \(\hat{\theta}_{k}\) que maximiza a função log-verossimilhança é dada por
+        \begin{align}
+            \hat{\theta}_{k} = \frac{1}{M} \textnormal{Arg}\left\{ \sum_{i=k-K+1}^{k} x_{i}^M \right\}
+        \end{align}
+	\end{itemize}
+\end{frame}
+
+\section{Implementação}
+\begin{frame}[c]
+    \frametitle{Implementação}
+
+    \begin{figure}
+        \includegraphics[scale=.3]{figs/m-power.png}
+    \end{figure}
 \end{frame}
 
 \section{Próxima aula}
 \begin{frame}[t]
-    \frametitle{Estimador ML e MAP}
+    \frametitle{Implementação}
 
     \begin{itemize}
-        \item Derivação das equações de MAP e ML
-        \item Apesentação de algumas arquiteturas de estimadores de fase.
+        \item Apesentação de algumas arquiteturas de estimadores de tempo de símbolo.
     \end{itemize}
 \end{frame}
