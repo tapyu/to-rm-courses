@@ -1,4 +1,4 @@
-\lecture{Estimador de fase}{lec_carrier}
+\lecture{Estimador de tempo de símbolo}{lec_carrier}
 
 \begin{frame}
 	\begin{block}{\centering\large\bfseries Parte 7}
@@ -6,62 +6,52 @@
 	\end{block}
 \end{frame}
 
-\section{Método \(M\)-power}
+\section{Introdução}
 \begin{frame}[t]
-	\frametitle{Método \(M\)-power}
+	\frametitle{Introdução}
 	
 	\begin{itemize}
-        \item O método \(M\)-\textit{power} consiste em uma técnica de estimação de fase em malha aberta (\textit{feedforward}) para sinais \(M\)-PSK sem offset \footnote{O esquema OQPSK, por exemplo, não se adequa a este método.}.
-        \item Este método é NDA (\textit{non-data-aided}), pois não depende dos simbolos transmitidos.
-        \item Suporemos que o demodulador possiu perfeito conhecimento do atraso de símbolo, \(\tau\), e do o desvio de frequência, \(\nu\). Sendo assim, trabalharemos apenas com \(\theta\), i.e.,
-        \begin{align}
-            s(t, \hat{\theta}_{k}) = s_l (t) e^{j\hat{\theta}_{k}}.
-            \label{eq:s_t}
-        \end{align}
-        % Neste cenário, a função de verossimilhança depende de dois termos desconhecidos para o demodulador: os símbolo transmitidos, \(\left\{ A_k \right\}\), e o desvio de fase, \(\theta\). Portanto, denotaremos o critério ML como \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\)
-        \item O estimador é derivado a partir da suposição de que o sistema opera em uma baixa SNR. Esses cenários tornam os métodos DD ineficientes uma vez que a BER do sistema é maior.
+        \item Em métodos \textit{clock-aided}, o transmissor envia o relógio do modulador separado do \textit{stream} de dados. Dizemos então que este método de transmissão é \emph{síncrono}.
+        \item No entanto, para diversas aplicações, a transmissão de um relógio separado seria ineficiente, uma vez que isso exigiria recursos adicionais (largura de banda, potência, etc...).
+        \item Como alternativa, faz-se necessário implementar um circuito adicional que recupere o tempo de símbolo no demodulador.
+        \item O requerimento fundamental do estimador de relógio é que instante de símbolo seja recuperado, mesmo que imperfeitamente. Em outras palavras, a partir do envelope complexo do sinal recebido, o demodulador precisa saber qual é o instante de tempo no qual o \(k\)-ésimo símbolo transmitido inicia.
+    \end{itemize}
+\end{frame}
+
+\section{Tipos de recuperação de relógio}
+\begin{frame}[t]
+	\frametitle{Tipos de recuperação de relógio}
+    \begin{figure}
+        \includegraphics[scale=.3]{figs/tipos_de_sinc_de_relogio.png}
+    \end{figure}
+    \begin{itemize}
+        \item A implementação de um detector completamente digital só é possível com a adoção do método de transmissão assíncrono.
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Método \(M\)-power}
-    \begin{itemize}
-        \item Do slide anterior, temos que
-        \begin{align}
-            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp} \left\{ \frac{2}{K}  \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} \right. \nonumber \\
-            \left. - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} \right\}
-            \label{eq:init}
-        \end{align}
-        \item Recordando que \(\abs{z}^2 = z z^*\), para \(z \in \mathbb{C}\), e que
-        \begin{align}
-            s_l (t) = \sum_k A_k g(t - kT)
-        \end{align}
-        \begin{itemize}
-            \item \(A_k \in \mathbb{C} \rightarrow\) \(k\)-ésimo śimbolo transmitido
-            \item \(g(t) \in \mathbb{R} \rightarrow\) pulso formatador
-        \end{itemize}
+    \frametitle{Método de recuperação de relógio completamente digital}
+    \begin{itemize}[<+->]
+        \item No caso do método de recuperação de relógio completamente digital, como recuperar o relógio?
+        \item \emph{Resposta}: através da \emph{interpolação} do sinal discretizado.
+        \item Como a correção do instante de símbolo é implementada?
+        \item \emph{Resposta}: utiliza-se três módulos funcionais que integram o chamado sincronizador de relógio \cite{abrantes2010recuperaccao}:
+            \begin{itemize}
+                \item<.-> Interpolador: responsável por corrigir o instante de amostragem do sinal discreto.
+                \item Controlador: utiliza o sinal de erro proveniente do estimador para gerar a parte inteira e fracionária do novo instante de símbolo.
+                \item Estimador do atraso de símbolo: gera um sinal de erro em relação à estimativa do atraso de símbolo. É aqui onde a estimação propriamente dita acontece.
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
-	\frametitle{Método \(M\)-power}
+	\frametitle{Método de recuperação de relógio completamente digital}
     \begin{itemize}
-        \item podemos reescrever o segundo termo da Eq.\eqref{eq:init} como
-        \begin{align}
-            \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} = \frac{1}{K} \sum_{i = k-K}^{k} \sum_{p = m-K}^{m} A_i A_p^*h\left( \left[ i-p \right]T \right)
-            \label{eq:seg-term1}
-        \end{align}
-        \begin{itemize}
-            \item \(h\left( t \right) = g(t) * g(-t) = \int_{-\infty}^{\infty} g(t) g(t - kT) \diff{t}\)
-        \end{itemize}
-        \item E o primeiro termo como
-        \begin{align}
-            \frac{2}{K} \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\theta}_{k})\right\} \diff{t} = \frac{2}{K} \sum_{i = k-K}^{k} \textnormal{Re} \left\{ x_i A_i^* e^{-j \hat{\theta}_{i}} \right\}
-        \end{align}
-        \begin{itemize}
-            \item \(x_k = \eval{\left[r(t) * g(-t)\right]}{t=kT} \)
-        \end{itemize}
+        \item Dentre os métodos re recuperação de temporização assíncronos (\textit{non-clock-aided}), estes ainda podem ser classificados como segue
     \end{itemize}
+    \begin{figure}
+        \includegraphics[scale=.45]{figs/tecnicas_estimacao.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[t]
