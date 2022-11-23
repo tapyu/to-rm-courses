@@ -122,7 +122,7 @@
     \end{itemize}
 
     \begin{itemize}
-        \item Como \(p(\mathbf{r}_k)\) é igual para \(\hat{\boldsymbol{\lambdaup}}_k\), podemos disconsidera-la.
+        \item Como \(p(\mathbf{r}_k)\) é igual para \(\hat{\boldsymbol{\lambdaup}}_k\), podemos disconsidera-la quando a símbolos forem equiprováveis.
         \item Quando a probabilidade a priori possui uma distribuição uniforme, também podemos disconsidera-la. Neste caso, o método MAP se torna igual ao ML, i.e.,
         \begin{align}
             p(\hat{\boldsymbol{\lambdaup}}_k | \mathbf{r}_k) = p(\mathbf{r}_k \mid \hat{\boldsymbol{\lambdaup}}_k)
@@ -188,7 +188,7 @@
         \end{align}
         \item Discartando o primeiro, obtemos
         \begin{align}
-            \boxed{\Lambda_L(\hat{\boldsymbol{\lambdaup}}_{k}) = \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\boldsymbol{\lambdaup}}_{k})\right\} \diff{t} - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\boldsymbol{\lambdaup}}_{k})}^{2} \diff{t}}
+            \Lambda_L(\hat{\boldsymbol{\lambdaup}}_{k}) = & \frac{2}{K} \int_{(k-K)T}^{kT} \textnormal{Re}\left\{r(t)s^*(t, \hat{\boldsymbol{\lambdaup}}_{k})\right\} \diff{t} \nonumber \\ & - \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\boldsymbol{\lambdaup}}_{k})}^{2} \diff{t}
         \end{align}
     \end{itemize}
 \end{frame}
