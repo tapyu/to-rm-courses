@@ -44,8 +44,9 @@
     \end{itemize}
 \end{frame}
 
+\section{Técnicas de estimação de relógio}
 \begin{frame}[t]
-	\frametitle{Método de recuperação de relógio completamente digital}
+	\frametitle{Técnicas de estimação de relógio}
     \begin{itemize}
         \item Dentre os métodos re recuperação de temporização assíncronos (\textit{non-clock-aided}), estes ainda podem ser classificados como segue
     \end{itemize}
@@ -54,99 +55,77 @@
     \end{figure}
 \end{frame}
 
+\section{Controlador}
 \begin{frame}[t]
-	\frametitle{Método \(M\)-power}
-	\begin{itemize}
-		\item Como \(h\left( t \right)\) obedece o critério de Nyquist e \(z^*z = \abs{z}^2\) para \(z \in \mathbb{C}\) , a equação \eqref{eq:seg-term1} se torna
-		\begin{align}
-            \frac{1}{K} \int_{(k-K)T}^{kT} \abs{s(t, \hat{\theta}_{k})}^{2} \diff{t} = \frac{1}{K} \sum_{i = k-K}^{k} \abs{A_i}^2
-        \end{align}
-        \item Substituindo essas concluções, tem-se
-        \begin{align}
-            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp}\left\{ \frac{2}{K} \sum_{i = k-K}^{k} \textnormal{Re} \left\{ x_i A_i^* e^{-j \hat{\theta}_{i}} \right\} - \frac{1}{K} \sum_{i = k-K}^{k} \abs{A_i}^2 \right\}
-        \end{align}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Método \(M\)-power}
-
+	\frametitle{Controlador}
     \begin{itemize}
-        \item A equação anterior se torna mais elegante se observarmos que a métrica de decisão \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\) pode ser mutiplicada pelo fator
-        \begin{align}
-            \textnormal{exp}\left\{ - \frac{1}{K} \sum_{i = k-K}^{k} \abs{x_i}^2 \right\}
-        \end{align}
-        sem causar consequnências na decisão\footnote{O fator em questão independe de \(\hat{\theta}_{k}\) e, portanto, não altera o valor máximo de \(\Lambda(\mathbf{r}_k|\hat{\theta}_{k})\)}. Sendo assim, tem-se
-        \begin{align}
-            \Lambda(\mathbf{r}_k|\hat{\theta}_{k}) = \textnormal{exp}\left\{ - \frac{1}{K} \sum_{i = k-K}^{k} \abs{x_i e^{-j \hat{\theta}_i} - A_i}^2 \right\}
-        \end{align}
+        \item Precisamos, a partir das amostras vindas do oscilador local operando em \textit{free-running} e do sinal de erro proveniente do estimador, obter novas amostras.
     \end{itemize}
-
-\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Método \(M\)-power}
-	\begin{itemize}
-		\item Para o sinal M-PSK, tem-se que \(A_k = e^{j\frac{2\pi m}{M}}\), em que \(m \in \left\{ 0, 1, \dots, M-1 \right\}\). Recordando que \(\abs{z_1 \pm z_2}^2 = \abs{z_1}^2 \pm 2 \textnormal{Re}\left\{ z_1 z_2^* \right\} + \abs{z_2}^2\), para \(z_1, z_2 \in \mathbb{C}\), e ignorando os termos que não interferem na métrica, o função log-verossimilhança pode ser escrita como
-		\begin{align}
-            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) = \ln{\Lambda(\mathbf{r}_k|\hat{\theta}_{k})} = \sum_{i = k-K}^{k} \textnormal{Re}\left\{ x_i e^{-j \left(\frac{2\pi m}{M}+\hat{\theta}_i\right)} \right\} % TODO: a parte A_k no mengali ficou o cunjulgado do que está aqui, verificar
-        \end{align}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Método \(M\)-power}
-	\begin{itemize}
-        \item Mas recorde que \(2\textnormal{Re}\left\{ z \right\} = z + z^*\) e
-        \begin{align}
-            \left( z_1 + z_2 \right)^p = \sum_{q=0}^{p} \begin{pmatrix}
-                p \\
-                q
-            \end{pmatrix} z^p z^{q-p}
-        \end{align}
-        \item Realizando essas substituições e expandindo a exponencial complexa, tem-se
-        \begin{align}
-            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) = \sum_{i=k-K}^{k} \sum_{p=0}^{\infty}\frac{1}{p!} \sum_{q=0}^{p} \begin{pmatrix}
-                p \\
-                q
-            \end{pmatrix}
-            x^{q}_{i} \left( x^{*}_{i} \right)^{p-q} e^{j\left( p-2q \right)\hat{\theta}_i} e^{j\frac{2\pi m}{M}}
-        \end{align}
-        
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Método \(M\)-power}
-	\begin{itemize}
-		
-		\item Para uma SNR suficientemente baixa, a seguinte aproximação é válida \cite{mengali2013synchronization}:
-        \begin{align}
-            \Lambda_L(\mathbf{r}_k|\hat{\theta}_{k}) \approx \textnormal{Re}\left\{e^{-jM \hat{\theta}_k} \sum_{i=k-K}^{k} x_{k}^{M} \right\}
-        \end{align}
-        \item O valor que \(\hat{\theta}_{k}\) que maximiza a função log-verossimilhança é dada por
-        \begin{align}
-            \hat{\theta}_{k} = \frac{1}{M} \textnormal{Arg}\left\{ \sum_{i=k-K+1}^{k} x_{i}^M \right\}
-        \end{align}
-	\end{itemize}
-\end{frame}
-
-\section{Implementação}
-\begin{frame}[c]
-    \frametitle{Implementação}
-
-    \begin{figure}
-        \includegraphics[scale=.3]{figs/m-power.png}
+	\begin{figure}
+        \includegraphics[scale=.35]{figs/sync_time.png}
     \end{figure}
 \end{frame}
 
-\section{Próxima aula}
+\begin{frame}[t]{Controlador}
+    \begin{itemize}
+        \item \begin{IEEEeqnarray}{rCl}
+            \label{eq:tau_k}
+            \hat{\tau}_k & = & \hat{\tau}_{k-1} + \gamma_\tau e_{\tau} \left[k\right]
+          \end{IEEEeqnarray}
+          \begin{itemize}
+            \item \(\gamma_\tau\): passo de aprendizagem.
+            \item \(e_{\tau} \left[k\right]\): Sinal de erro proveniente do estimador de atraso de símbolo.
+          \end{itemize}
+        \item Os instantes de interpolação podem ser definidos como
+        \begin{IEEEeqnarray}{rCl}
+          \label{eq:t_n+1}
+          t_{n+1} & = & t_n + T_s + \frac{\gamma_\tau}{N}\dot{e}_\tau \left[n\right],
+        \end{IEEEeqnarray}
+        em que $t_n$ indica o instante de amostragem do sinal $\dot{r} \left[n\right] \triangleq r \left(t_n\right)$, sendo $r \left(t\right)$ o envelope complexo contínuo do sinal recebido.
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[t]
-    \frametitle{Implementação}
+    \frametitle{Controlador}
 
     \begin{itemize}
-        \item Apesentação de algumas arquiteturas de estimadores de tempo de símbolo.
+        \item Note que, se normalizarmos $t_n$ por $T_s$, obteremos uma parte inteira, $l_n$, e uma parte fracionária, $0\leq \mu_n < 1$. Matematicamente, tem-se
+        \begin{IEEEeqnarray}{rCl}
+          \label{eq:t_n}
+          t_n & = & T_s \left( l_n + \mu_n \right).
+        \end{IEEEeqnarray}
+        \item Tomando as partes inteiras e fracionárias de ambos os lados, tem-se
+        \begin{IEEEeqnarray}{rCl}
+            \label{eq:l_n+1}
+            l_{n+1} & = & l_n + 1 +  \floor*{\mu_n + \frac{\gamma_\tau}{NT_s}\dot{e}_\tau \left[n\right]}
+        \end{IEEEeqnarray}
+        e
+        \begin{IEEEeqnarray}{rCl}
+            \label{eq:mu_n+1}
+            \mu_{n+1} & = & \mathrm{frac}\left(\mu_n + \frac{\gamma_\tau}{NT_s}\dot{e}_\tau \left[n\right]\right),
+        \end{IEEEeqnarray}
+        em que $\mathrm{frac}\left(x\right) \triangleq x - \floor*{x}$ indica a parte fracionária de $x$.
     \end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Controlador}
+	\begin{figure}
+        \includegraphics[scale=.4]{figs/interpolator.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Exemplo de sincronismo de tempo}
+	\begin{figure}
+        \includegraphics[scale=.4]{figs/time_synch.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Exemplo de sincronismo de tempo}
+	\begin{figure}
+        \includegraphics[scale=.4]{figs/time_synch2.png}
+    \end{figure}
 \end{frame}

@@ -12,6 +12,7 @@
 \usepackage{amssymb}
 \usepackage{amstext}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
+\usepackage{mathtools} % is an extension package to amsmath
 \usepackage{IEEEtrantools} % IEEEeqnarray
 \newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}}
 
@@ -60,6 +61,9 @@
 \DeclareDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}} % derivative(for high-order, use the optinioal argument)
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert} % |x| -> absolute value or determinant
 \newcommand{\eval}[2]{\left.#1\right|_{#2}} % x|_x=a -> evaluation bar
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+% \newcommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \newcommand*{\medcup}{\mathbin{\scalebox{1.5}{\ensuremath{\cup}}}}
 
@@ -178,14 +182,14 @@
 % \part{Detecção Probabilística}
 % \input{std_05.tex}
 
-\part{Introdução a sincronização de sistemas de comunicação digital}
-\input{std_06_rubem.tex}
+% \part{Introdução a sincronização de sistemas de comunicação digital}
+% \input{std_06_rubem.tex}
 
 % \part{Recuperação de Portadora}
 % \input{std_07_rubem.tex}
 
-% \part{Recuperação do tempo de símbolo}
-% \input{std_08_rubem.tex}
+\part{Recuperação do tempo de símbolo}
+\input{std_08_rubem.tex}
 
 \begin{frame}
     \frametitle{Referências}
