@@ -37,7 +37,9 @@
 
 \begin{document}
 
-\section{Table of the known sets}
+\section{Sets}
+\subsection{Generalized inequalities}
+\subsection{Table of the known sets}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{|A|C|}
 \hline
@@ -261,7 +263,7 @@ Simplex:
     \item The Eq.\eqref{eq:convex-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:convex-rule} implies that any line segment within \(\dom{f}\) gives a convex graph (bowl-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly convex.
-    \item If \(\nabla f(\mathbf{x}) = \mathbf{0}\), then \(f(\mathbf{y})\geq f(\mathbf{x}),\forall\;\mathbf{y}\in\dom{f}\) and \(\mathbf{x}\) is the global minimum.
+    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f} \wedge \nabla f(\mathbf{x}^{\star}) = \mathbf{0} \). This \(\mathbf{x}^{\star}\) is the global minimum.
     \item If \(f\) is (strictly convex) convex, then \(-f\) is (strictly concave) concave.
 \end{itemize}
 \subsubsection{Concave}
@@ -274,7 +276,7 @@ Simplex:
     \item The Eq.\eqref{eq:concave-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:concave-rule} implies that any line segment within \(\dom{f}\) gives a concave graph (hyperhyperbola-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always below the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly concave.
-    \item If \(\nabla f(\mathbf{x}) = \mathbf{0}\), then \(f(\mathbf{y})\geq f(\mathbf{x}),\forall\;\mathbf{y}\in\dom{f}\) and \(\mathbf{x}\) is the global maximum.
+    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f} \wedge \nabla f(\mathbf{x}^{\star}) = \mathbf{0} \). This \(\mathbf{x}^{\star}\) is the global maximum. 
     \item If \(f\) is (strictly concave) concave, then \(-f\) is (strictly convex) convex.
 \end{itemize}
 \subsubsection{Affine}
@@ -298,7 +300,7 @@ Simplex:
 \end{itemize}
 \subsubsection{Nonconvex and nonconcave}
 \begin{itemize}
-    \item Nonconvex and nonconcave functions do not attend the convexity or concavity rule
+    \item Nonconvex and nonconcave functions do not satisfy the convexity or concavity rule.
 \end{itemize}
 \subsection{Convexity conditions}
 \subsubsection{First-order condition}
