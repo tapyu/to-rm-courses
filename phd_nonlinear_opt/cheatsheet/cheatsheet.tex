@@ -7,6 +7,8 @@
 \usepackage{tikz}
 \usepackage{standalone} % place tikz environments or other material in own source files
 \usepackage{float}
+\usepackage{biblatex}
+\addbibresource{My Library.bib} % add reference file
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 
@@ -39,6 +41,46 @@
 
 \section{Sets}
 \subsection{Generalized inequalities}
+\begin{itemize}
+    \item A proper cone \(K\) is used to define the \textit{generalized inequality} in a space \(A\), where \(K \subset A\).
+    \item \(\mathbf{x} \preceq \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in K\) for \(\mathbf{x}, \mathbf{y} \in A\) (generalized inequality).
+    \item \(\mathbf{x} \prec \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in \textnormal{int }K\) for \(\mathbf{x}, \mathbf{y} \in A\) (strict generalized inequality).
+    \item There are two cases where \(K\) and \(A\) are understood from context and the subscript \(K\) is dropped out:
+    \begin{itemize}[label={$\triangleright$}]
+        \item When \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
+        \item When \(K = \mathcal{S}^{n}_{+}\) and \(A = \mathcal{S}^{n}\), or \(K = \mathcal{S}^{n}_{++}\) and \(A = \mathcal{S}^{n}\), where \(\mathcal{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathcal{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathcal{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathcal{S}^{n}_{+}\) is a proper cone in \(\mathcal{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathcal{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathcal{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
+    \end{itemize}
+    \item Another common usage is when \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
+    \item The generalized inequality has the following properties:
+    \begin{itemize}[label={$\triangleright$}]
+        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{u} \preceq_K \mathbf{v}\), then \(\mathbf{x} + \mathbf{u} \preceq_k \mathbf{y} + \mathbf{v}\) (preserve under addition).
+        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{y} \preceq_K \mathbf{z}\), then \(\mathbf{x} \preceq_K \mathbf{z}\) (transitivity).
+        \item If \(\mathbf{x}\preceq_K \mathbf{y}\), then \(\alpha\mathbf{x}\preceq_K \mathbf{y}\) for \(\alpha\geq0\) (preserve under nonnegative scaling).
+        \item \(\mathbf{x}\preceq_K \mathbf{x}\) (reflexivity).
+        \item If \(\mathbf{x}\preceq_K \mathbf{y}\) and \(\mathbf{y}\preceq_K \mathbf{x}\), then \(\mathbf{x} = \mathbf{y}\) (antisymmetric).
+        \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
+    \end{itemize}
+    \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in A\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
+\end{itemize}
+\subsection{Minimum (maximum)}
+\begin{itemize}
+    \item The minimum (maximum) element of a set \(S\) is always defined with respect to the proper cone \(K\).
+    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of the set \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)).
+    \item It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality sense.
+    \item The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
+\end{itemize}
+\subsection{Minimal (maximal)}
+\begin{itemize}
+    \item The minimal (maximal) element of a set \(S\) is always defined with respect to the proper cone \(K\).
+    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)).
+    \item It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\).
+    \item Any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is less than or equal to \(\mathbf{x}\) in the generalized inequality mean.
+    \item The set \(S\) can have many minimal (maximal) elements.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.5]{figs/minimum_maximum.jpg}
+\end{figure}
 \subsection{Table of the known sets}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{|A|C|}
@@ -147,27 +189,6 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
     \item \(K\) is solid.
     \item \(K\) is pointed, i.e., \(-K \cap K = \left\{ \mathbf{0} \right\}\).
 \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-    \item The proper cone \(K\) is used to define the \emph{generalized inequality} (or \emph{partial ordering}) in some set \(S\). For the generalized inequality, one must define both the proper cone \(K\) and the set \(S\).
-    \item \(\mathbf{x} \preceq \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in K\) for \(\mathbf{x}, \mathbf{y} \in S\) (generalized inequality)
-    \item \(\mathbf{x} \prec \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in \textnormal{int }K\) for \(\mathbf{x}, \mathbf{y} \in S\) (strict generalized inequality).
-    \item There are two cases where \(K\) and \(S\) are understood from context and the subscript \(K\) is dropped out:
-        \begin{itemize}[label={$\triangleright$}]
-            \item When \(S = \mathbb{R}^{n}\) and \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
-            \item When \(S = \mathcal{S}^{n}\) and \(K = \mathcal{S}^{n}_{+}\) or \(K = \mathcal{S}^{n}_{++}\), where \(\mathcal{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathcal{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathcal{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathcal{S}^{n}_{+}\) is a proper cone in \(\mathcal{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathcal{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathcal{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
-        \end{itemize}
-    \item Another common usage is when \(S = \mathbb{R}^{n}\) and \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
-    \item The generalized inequality has the following properties:
-        \begin{itemize}[label={$\triangleright$}]
-            \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{u} \preceq_K \mathbf{v}\), then \(\mathbf{x} + \mathbf{u} \preceq_k \mathbf{y} + \mathbf{v}\) (preserve under addition).
-            \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{y} \preceq_K \mathbf{z}\), then \(\mathbf{x} \preceq_K \mathbf{z}\) (transitivity).
-            \item If \(\mathbf{x}\preceq_K \mathbf{y}\), then \(\alpha\mathbf{x}\preceq_K \mathbf{y}\) for \(\alpha\geq0\) (preserve under nonnegative scaling).
-            \item \(\mathbf{x}\preceq_K \mathbf{x}\) (reflexivity).
-            \item If \(\mathbf{x}\preceq_K \mathbf{y}\) and \(\mathbf{y}\preceq_K \mathbf{x}\), then \(\mathbf{x} = \mathbf{y}\) (antisymmetric).
-            \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
-        \end{itemize}
-    \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in S\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
-    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)). It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
-    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)). It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\). Note that any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is less than or equal to \(\mathbf{x}\) in the generalized inequality mean. The set \(S\) can have many different minimal (maximal) elements.
     \item When \(K = \mathbb{R}_{+}\) and \(S = \mathbb{R}\) (ordinary inequality), the minimal is equal to the minimum and the maximal is equal to the maximum.
     \item When we say that a scalar-valued function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) is nondecreasing, it means that whenever \(\mathbf{u}\preceq \mathbf{v}\), we have \(\tilde{h}(\mathbf{u})\leq \tilde{h}(\mathbf{v})\). Similar results hold for decreasing, increasing, and nonincreasing scalar functions.
 \end{itemize} \\
@@ -253,6 +274,10 @@ Simplex:
 \newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
 \section{Fuctions}
 \subsection{Categories of functions}
+\begin{itemize}
+    \item In CVX, for functions with multiple arguments, the curvature categories are always considered jointly \autocite{DCPRulesetCVX}.
+	\item The CVX optimization package, and, apparently, its derivatives (CVXPY, Convex.jl, CVXR...) categorize the functions as follows \autocite{DCPRulesetCVX}:
+\end{itemize}
 \subsubsection{Convex}
 \begin{align}
     f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y}),\;\forall\; \mathbf{x}, \mathbf{y} \in \dom{f}, 0\leq\theta\leq 1
@@ -263,7 +288,7 @@ Simplex:
     \item The Eq.\eqref{eq:convex-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:convex-rule} implies that any line segment within \(\dom{f}\) gives a convex graph (bowl-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly convex.
-    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f} \wedge \nabla f(\mathbf{x}^{\star}) = \mathbf{0} \). This \(\mathbf{x}^{\star}\) is the global minimum.
+    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f}\), and \(\nabla f(\mathbf{y}) = \mathbf{0}\) iff \(\mathbf{y} = \mathbf{x}^{\star}\). This \(\mathbf{x}^{\star}\) is the global minimum.
     \item If \(f\) is (strictly convex) convex, then \(-f\) is (strictly concave) concave.
 \end{itemize}
 \subsubsection{Concave}
@@ -276,7 +301,7 @@ Simplex:
     \item The Eq.\eqref{eq:concave-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:concave-rule} implies that any line segment within \(\dom{f}\) gives a concave graph (hyperhyperbola-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always below the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly concave.
-    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f} \wedge \nabla f(\mathbf{x}^{\star}) = \mathbf{0} \). This \(\mathbf{x}^{\star}\) is the global maximum. 
+    \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f}\), and \(\nabla f(\mathbf{y}) = \mathbf{0}\) iff \(\mathbf{y} = \mathbf{x}^{\star}\). This \(\mathbf{x}^{\star}\) is the global maximum. 
     \item If \(f\) is (strictly concave) concave, then \(-f\) is (strictly convex) convex.
 \end{itemize}
 \subsubsection{Affine}
@@ -296,30 +321,12 @@ Simplex:
 \begin{itemize}
     \item \(f: \dom{f} \rightarrow \mathbb{R}\), where \(\dom{f} \subseteq \mathbb{R}^{n}\).
     \item \(k\in \mathbb{R}\) is a constant.
+    \item It is a special case of affine function.
     \item A constant function is convex and concave, simultaneously.
 \end{itemize}
 \subsubsection{Nonconvex and nonconcave}
 \begin{itemize}
     \item Nonconvex and nonconcave functions do not satisfy the convexity or concavity rule.
-\end{itemize}
-\subsection{Convexity conditions}
-\subsubsection{First-order condition}
-\begin{align}
-    f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}
-\end{align}
-\begin{itemize}
-    \item \(\nabla f (\mathbf{x})\): gradient vector.
-    \item This inequation says that the first-order Taylor approximation is a \emph{underestimator} for convex functions.
-    \item The first-order condition requires that \(f\) is differentiable.
-\end{itemize}
-\subsubsection{Second-order condition}
-\begin{align}
-    \mathbf{H}\succeq \mathbf{0}
-\end{align}
-\begin{itemize}
-    \item In other words, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix.
-    \item The graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\).
-    \item If \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But if \(f\) is strictly convex, not necessarily \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
 \end{itemize}
 \subsection{Table of known functions}
 \begin{table}[H]
@@ -573,6 +580,128 @@ Simplex:
     \hline
 \end{tabularx}
 \end{table}
+
+\section{Convexity}
+\subsection{First-order condition of convexity}
+\begin{align}
+    f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}
+\end{align}
+\begin{itemize}
+    \item \(\nabla f (\mathbf{x})\): gradient vector.
+    \item This inequation says that the first-order Taylor approximation is a \emph{underestimator} for convex functions.
+    \item The first-order condition requires that \(f\) is differentiable.
+\end{itemize}
+\subsection{Second-order condition of convexity}
+\begin{align}
+    \mathbf{H}\succeq \mathbf{0}
+\end{align}
+\begin{itemize}
+    \item In other words, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix.
+    \item The graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\).
+    \item If \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But if \(f\) is strictly convex, not necessarily \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
+\end{itemize}
+\subsection{CVX and convexity}
+\begin{itemize}
+    \item CVX does not consider a function to be convex or concave if it is so only over a portion of its domain, even if the argument is constrained to lie in one of these portions.
+    \begin{itemize}
+        \item As an example, consider the function \texttt{1/x}. This function is convex for \texttt{x>0}, and concave for \texttt{x<0}. But you can never write \texttt{1/x} in CVX (unless \texttt{x} is constant), even if you have imposed a constraint such as \texttt{x>=1}, which restricts \texttt{x} to lie in the convex portion of function \texttt{1/x}.
+        \item You can use the CVX function \texttt{inv\_pos(x)}, defined as \texttt{1/x} for \texttt{x>0} and \(\infty\) otherwise, for the convex portion of \texttt{1/x}. CVX recognizes this function as convex and nonincreasing.
+    \end{itemize}
+    \item Some computational functions are convex, concave, or affine only for a subset of its arguments.
+    \begin{itemize}
+        \item For example, the function \texttt{norm(x,p)} where \(p \geq 1\) is convex only in its first argument. Whenever this function is used in a CVX specification, then, the remaining arguments must be constant (these kinds of input values are called \emph{parameters}), or CVX will issue an error message.
+        \item Such arguments correspond to a function's parameters in mathematical terminology; e.g.,
+        \[f_p(\mathbf{x}): \mathbb{R}^n \rightarrow \mathbb{R}, f_p(\mathbf{x}) \triangleq \norm{\mathbf{x}}_p\]
+        So it seems fitting that we should refer to such arguments as parameters in this context as well.
+        \item Henceforth, whenever we speak of a CVX function as being convex, concave, or affine, we will assume that its parameters are known and have been given appropriate, constant values.
+    \end{itemize}
+\end{itemize}
+\section{Constraints}
+\begin{itemize}
+	\item Type of constraints:
+    \begin{itemize}
+        \item Equality constraint.
+        \item Inequality constraint (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)).
+        \item Strict inequality constraint (\(<\), \(>\), \(\prec_K\), \(\succ_K\)).
+    \end{itemize}
+    \item Nonequalities is \emph{nerver} a constraint.
+    \item For CVX packages, strict inequalities (\(<\), \(>\), \(\prec_K\), \(\succ_K\)) are analyzed as inequalities (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)). Thus, \emph{it is strongly recommended to only deal with nonstrict inequalities}.
+    \item Convex and concave functions in CVX are interpreted as their \emph{extended-valued extensions} \autocite{DCPRulesetCVX}. This has the effect of automatically constraining the argument of a function to be in the function's domain.
+    \begin{itemize}
+        \item For example, if we form \texttt{sqrt(x+1)} in a CVX specification, \texttt{x} will automatically be constrained to be larger than or equal to \texttt{-1}.
+        \item There is no need to add a separate constraint, \texttt{x>=-1}, to enforce this.
+    \end{itemize}
+\end{itemize}
+
+\section{CVX and Disciplined Convex Programming (DCP)}
+\subsection{Introduction}
+\begin{itemize}
+    \item CVX is a Matlab package for constructing and solving Disciplined Convex Programs (DCP's).
+    \item Disciplined convex programming is a methodology for constructing convex optimization problems proposed by Michael Grant, Stephen Boyd, and Yinyu Ye.
+    \item The CVX package is also implemented in other programming languages:
+    \begin{itemize}
+        \item Julia: Convex.jl.
+        \item R: CVXR.
+        \item Python: CVXPY.
+    \end{itemize}
+    \item What distinguishes disciplined convex programming from more general convex programming is the rules, called \emph{DCP ruleset}, that govern the construction of the expressions used in objective functions and constraints \autocite{DCPRulesetCVX}.
+    \item Problems that violate the ruleset are rejected—even when the problem is convex. That is not to say that such problems cannot be solved using DCP; they just need to be rewritten in a way that conforms to the DCP ruleset.
+    \item For matrix and array expressions, these rules are applied on an elementwise basis.
+    \item CVX generally forbids products between nonconstant expressions, with the exception of scalar quadratic forms.
+    \begin{itemize}
+        \item For example, the expression \texttt{x*sqrt(x)} happens to be a convex function of \texttt{x}, but its convexity cannot be verified using the CVX ruleset, and so is rejected.
+        \item It can be expressed as \texttt{pow\_p(x,3/2)}, however.
+        \item We call this the \emph{no-product rule}, and paying close attention to it will go a long way to ensuring that the expressions you construct are valid.
+    \end{itemize}
+    \item CVX is \emph{not} meant to be a tool for checking if your problem is convex.
+\end{itemize}
+\subsection{Ruleset \autocite{DCPRulesetCVX}}
+\begin{itemize}
+	\item A valid constant expression is
+	\begin{itemize}
+        \item Any well-formed Matlab expression that evaluates to a finite value.
+    \end{itemize}
+    \item A valid affine expression is
+    \begin{itemize}
+        \item A valid constant expression;
+        \item A declared variable;
+        \item A valid call to a function in the atom library with an affine result;
+        \item The sum or difference of affine expressions;
+        \item The product of an affine expression and a constant.
+    \end{itemize}
+    \item A valid convex expression is
+    \begin{itemize}
+        \item A valid constant or affine expression;
+        \item A valid call to a function in the atom library with a convex result;
+        \item An affine scalar raised to a constant power \(p\geq1\), \(p \notin \left\{3,5,7,9,\dots\right\}\);
+        \item A convex scalar quadratic form;
+        \item The sum of two or more convex expressions;
+        \item The difference between a convex expression and a concave expression;
+        \item The product of a convex expression and a nonnegative constant;
+        \item The product of a concave expression and a nonpositive constant;
+        \item The negation of a concave expression.
+    \end{itemize}
+    \item A valid concave expression is
+    \begin{itemize}
+        \item A valid constant or affine expression;
+        \item A valid call to a function in the atom library with a concave result;
+        \item A concave scalar raised to a power \(p\in(0,1)\);
+        \item A concave scalar quadratic form;
+        \item The sum of two or more concave expressions;
+        \item The difference between a concave expression and a convex expression;
+        \item The product of a concave expression and a nonnegative constant;
+        \item The product of a convex expression and a nonpositive constant;
+        \item The negation of a convex expression.
+    \end{itemize}
+\end{itemize}
+
+\subsection{How to construct a DCP problem?}
+
+\begin{itemize}
+    \item A basic rule of construction of a DCP problem is the composition property: A convex, concave, or affine function may accept an affine expression (of compatible size) as an argument. The result is convex, concave, or affine, respectively \autocite{DCPRulesetCVX}.
+\end{itemize}
+
+\printbibliography
 
 % \clearpage
 % \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
