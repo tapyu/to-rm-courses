@@ -30,7 +30,7 @@
 
 % items, tables and figs
 \usepackage{enumitem}
-\usepackage{tabularx}
+\usepackage{xltabular}
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{standalone} % place tikz environments or other material in own source files
@@ -40,6 +40,7 @@
 \usepackage{mathtools} % is an extension package to amsmath
 \usepackage{amsfonts}
 \usepackage{amssymb}
+% \usepackage{newcomputermodern}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
 \usepackage{bm} % for writing tensor, e.g., $\bm{\mathcal{A}}$
 \usepackage{IEEEtrantools}
@@ -48,6 +49,8 @@
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
 
 % newcommands - operators
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
 \DeclareMathOperator*{\argmax}{arg\,max} % argument min
 \DeclareMathOperator*{\argmin}{arg\,min} % argument max
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
@@ -55,12 +58,12 @@
 \renewcommand{\dim}[1]{\ensuremath{\textnormal{dim}\left(#1\right)}} % dimension of a set
 \newcommand{\nullspace}[1]{\ensuremath{\textnormal{N}\left(#1\right)}} % nullspace or kernel of the matrix
 \newcommand{\nullity}[1]{\ensuremath{\textnormal{nullity}\left(#1\right)}} % nullity=dim(N(A))
-\renewcommand{\span}[1]{\ensuremath{\textnormal{span}\left\{#1\right\}}} % span of a set of vectors
+\renewcommand{\span}[1]{\ensuremath{\textnormal{span}\left(#1\right)}} % span of a set of vectors
 \newcommand{\range}[1]{\ensuremath{\textnormal{C}\left(#1\right)}} % range or column space of a matrix=span(a1,a2, ..., an), where ai is the ith column vector of the matrix A
 \newcommand{\rank}[1]{\ensuremath{\textnormal{rank}\left(#1\right)}} % rank = dim(C(A))
 \newcommand{\diag}[1]{\ensuremath{\textnormal{diag}\left(#1\right)}} % diagonal operator
 \DeclareDocumentCommand{\vec}{om}{\ensuremath{\textnormal{vec}\IfValueT{#1}{_{\textnormal{#1}}}\left(#2\right)}} % vectorize operator, e.g., \vec[]{\mathbf{A}}
-\newcommand{\unvec}[1]{\ensuremath{\textnorma/l{unvec}\left(#1\right)}} % unvectorize operator
+\newcommand{\unvec}[1]{\ensuremath{\textnormal{unvec}\left(#1\right)}} % unvectorize operator
 \newcommand{\inner}[2]{\ensuremath{\langle#1,#2\rangle}} % inner product
 \makeatletter % changes the catcode of @ to 11
 
@@ -97,167 +100,243 @@
 \maketitle
 
 \section{Font notation}
-\begin{table}[htbp]
-\begin{tabular}{ll}
+\begin{xltabular}{\textwidth}{XX}
   $a,b,c, \dots, A, B, C, \dots$ & Scalars \\
   $\mathbf{a}, \mathbf{b}, \mathbf{c}, \dots$ & Vectors \\
   $\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots$ & Matrices \\
   $\bm{\mathcal{A}}, \bm{\mathcal{B}}, \bm{\mathcal{C}}, \dots$ & Tensors \\
   $A, B, C, \dots, \mathcal{A}, \mathcal{B}, \mathcal{C}, \dots$ &  Sets\\
-\end{tabular}
-\end{table}
+\end{xltabular}
 
-\section{Usual symbols}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-      \(\boldsymbol{\nabla}f, \mathbf{g}\) & Gradient vector \\
-      \(\boldsymbol{\nabla}_{x}f, \mathbf{g}_{x}\) & Gradient vector with respect \(x\)\\
-      \(\mathbf{g}\) (or \(\hat{\mathbf{g}}\) if the gradient vector is \(\mathbf{g}\)) & Stochastic approximation of the gradient vector \\
-      \(\mathbf{w}, \boldsymbol{\thetaup}\) & Parameters/coefficients/weights vector \\
-      \(\boldsymbol{\muup}_x, \mathbf{m}_x\) & Mean vector\\
-      \(\hat{\boldsymbol{\muup}}_x, \hat{\mathbf{m}}_x\) & Sample mean vector\\
-      \(\mathbf{R}_\mathbf{x}\) & Correlation matrix of \(\mathbf{x}\) \\
-      \(R_x(\tau), r_x(\tau)\) & Autocorrelation function of the sinal \(x(t)\) or \(x[n]\)\\
-      \(\delta(t)\) & Delta function\\
-      \(\delta[n]\) & Kronecker function\\
-      \(\hat{R}_x(\tau), \hat{r}_x(\tau)\) & Estimate autocorrelation function of the sinal \(x(t)\) or \(x[n]\)\\
-      \(\hat{\mathbf{R}}_\mathbf{x}\) & Sample correlation matrix \\
-      \(\mathbf{K}_\mathbf{x}, \mathbf{C}_x\) & Covariance matrix of \(\mathbf{x}\) \\
-      \(\hat{\mathbf{K}}_\mathbf{x}, \hat{\mathbf{C}}_x\) & Sample covariance matrix \\
-      \(\mathbf{W}, \mathbf{D}\) & Diagonal matrix \\
-      \(\mathbf{P}\) & Projection matrix; Permutation matrix \\
-      \(\boldsymbol{\Lambdaup}\) & Eigenvalue matrix \\
-      \(\boldsymbol{\Sigmaup}\) & Singular value matrix\\
-      \(\mathbf{U}\) & Upper matrix; Left singular vectors\\
-      \(\mathbf{L}\) & Lower matrix\\
-      \(\mathbf{V}\) & Right singular vectors\\
-      \(\mathbf{J}\) & Jordan matrix; Jacobian matrix\\
-      \(\mathbf{S}\) & Symmetric matrix\\
-      \(\mathbf{Q}\) & Orthogonal matrix\\
-      \(\mathbf{I}_N\) & \(N\times N\)-dimensional identity matrix\\
-      \(\mathbf{0}_{M\times N}\) & \(M\times N\)-dimensional null matrix\\
-      \(j\)& \(\sqrt{-1}\)
-    \end{tabularx}
-\end{table}
+\section{Common symbols}
+\begin{xltabular}{\textwidth}{XX}
+    \(\boldsymbol{\nabla}f, \mathbf{g}\) & Gradient vector \\
+    \(\boldsymbol{\nabla}_{x}f, \mathbf{g}_{x}\) & Gradient vector with respect \(x\)\\
+    \(\mathbf{g}\) (or \(\hat{\mathbf{g}}\) if the gradient vector is \(\mathbf{g}\)) & Stochastic approximation of the gradient vector \\
+    \(J(\cdot)\) & Cost-function or objective function\\
+    \(\Lambda(\cdot)\) & Likelihood function\\
+    \(\Lambda_l(\cdot)\) & Log-likelihood function\\
+    \(\boldsymbol{\muup}_x, \mathbf{m}_x\) & Mean vector\\
+    \(\hat{\boldsymbol{\muup}}_x, \hat{\mathbf{m}}_x\) & Sample mean vector\\
+    \(r_x(\tau), R_x(\tau)\) & Autocorrelation function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\hat{r}_x(\tau), \hat{R}_x(\tau)\) & Estimated autocorrelation function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\mathbf{R}_\mathbf{x}\) & (Auto)correlation matrix of \(\mathbf{x}\) \\
+    \(\hat{\mathbf{R}}_\mathbf{x}\) & Sample (auto)correlation matrix \\
+    \(r_{x,d}(\tau), R_{x,d}(\tau)\) & Cross-correlation between \(x[n]\) and \(d[n]\) or \(x(t)\) and \(d(t)\)\\
+    \(\hat{r}_{x,d}(\tau), \hat{R}_{x,d}(\tau)\) & Estimated cross-correlation between \(x[n]\) and \(d[n]\) or \(x(t)\) and \(d(t)\)\\
+    \(\mathbf{R}_\mathbf{xy}\) & Cross-correlation matrix of \(\mathbf{x}\) and \(\mathbf{y}\)\\
+    \(\hat{\mathbf{R}}_\mathbf{xy}\) & Sample cross-correlation matrix of \(\mathbf{R}_\mathbf{xy}\) \\
+    \(\mathbf{p}_{\mathbf{x}d}\)& Cross-correlation vector\\
+    \(\rho_{x,y}\) & Pearson correlation coefficient between \(x\) and \(y\)\\
+    \(\hat{\rho}_{x,y}\) & Estimated Pearson correlation coefficient between \(x\) and \(y\)\\
+    \(c_x(\tau), C_x(\tau)\) & Autocovariance function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\hat{c}_x(\tau), \hat{C}_x(\tau)\) & Estimated autocovariance function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\mathbf{C}_\mathbf{x}, \mathbf{K}_\mathbf{x}, \boldsymbol{\Sigmaup}_\mathbf{x}\) & (Auto)covariance matrix of \(\mathbf{x}\) \\
+    \(\hat{\mathbf{C}}_\mathbf{x}, \hat{\mathbf{K}}_\mathbf{x}, \hat{\boldsymbol{\Sigmaup}}_\mathbf{x}\) & Sample (auto)covariance matrix \\
+    \(c_{xy}(\tau), C_{xy}(\tau)\) & Cross-covariance function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\hat{c}_{xy}(\tau), \hat{C}_{xy}(\tau)\) & Estimated cross-covariance function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\mathbf{C}_{\mathbf{xy}}, \mathbf{K}_{\mathbf{xy}}, \boldsymbol{\Sigmaup}_{\mathbf{xy}}\) & Cross-covariance matrix of \(\mathbf{x}\) \\
+    \(\hat{\mathbf{C}}_{\mathbf{xy}}, \hat{\mathbf{K}}_{\mathbf{xy}}, \hat{\boldsymbol{\Sigmaup}}_{\mathbf{xy}}\) & Sample cross-covariance matrix \\
+    \(\delta(t)\) & Delta function\\
+    \(\delta[n]\) & Kronecker function\\
+    \(h(t), h[n]\) & Impulse response (continuous and discrete time)\\
+    \(\mathbf{C}\) & Cofactor matrix\\
+    \(\mathbf{W}, \mathbf{D}\) & Diagonal matrix \\
+    \(\mathbf{w}, \boldsymbol{\thetaup}\) & Parameters, coefficients, or weights vector \\
+    \(\mathbf{w}_o, \mathbf{w}^{\star}, \boldsymbol{\thetaup}_o, \boldsymbol{\thetaup}^{\star}\) & Optimum value of the parameters, coefficients, or weights vector \\
+    \(\mathbf{W}\) & Matrix of the weights \\
+    \(\mathbf{P}\) & Projection matrix; Permutation matrix \\
+    \(\boldsymbol{\Lambdaup}\) & Eigenvalue matrix \\
+    \(\boldsymbol{\Sigmaup}\) & Singular value matrix\\
+    \(\mathbf{U}\) & Upper matrix; Left singular vectors\\
+    \(\mathbf{L}\) & Lower matrix\\
+    \(\mathbf{V}\) & Right singular vectors\\
+    \(\mathbf{J}\) & Jordan matrix; Jacobian matrix\\
+    \(\mathbf{S}\) & Symmetric matrix\\
+    \(\mathbf{Q}\) & Orthogonal matrix\\
+    \(\mathbf{I}_N\) & \(N\times N\)-dimensional identity matrix\\
+    \(\mathbf{0}_{M\times N}\) & \(M\times N\)-dimensional null matrix\\
+    \(\mathbf{0}_{N}\) & \(N\)-dimensional null vector\\
+    \(\mathbf{0}\) & Null matrix, vector, or tensor (dimensionality understood by context)\\
+    \(\mathbf{1}_{M\times N}\) & \(M\times N\)-dimensional ones matrix\\
+    \(\mathbf{1}_{N}\) & \(N\)-dimensional ones vector\\
+    \(\mathbf{1}\) & Ones matrix, vector, or tensor (dimensionality understood by context)\\
+    \(j\)& \(\sqrt{-1}\)
+\end{xltabular}
 
 \section{Linear Algebra operations}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-        \(\mathbf{A}^{-1}\) & Inverse matrix\\
-        \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
-        \(\mathbf{A}^\mathsf{T}\) & Transpose\\
-        \(\mathbf{A}^*\) & Conjugate\\
-        \(\mathbf{A}^\mathsf{H}\) & Hermitian\\
-        \(\norm{\cdot}\) & \(l_1\) norm, 1-norm, or Manhatan norm\\
-        \(\norm{\cdot}, \norm{\cdot}_2\) & \(l_2\) norm, 2-norm, or Euclidean norm\\
-        \(\norm{\cdot}_p\) & \(l_p\) norm, \(p\)-norm, or Minkowski norm\\
-        \(\norm{\cdot}_\infty\) & \(l_\infty\) norm, \(\infty\)-norm, or Chebyshev norm\\
-        \(\frob{\cdot}\)& Frobenius norm \\
-        \(\abs{\mathbf{A}}, \textnormal{det}\left( \mathbf{A} \right)\) & Determinant\\
-        \(\nullspace{\mathbf{A}}\) & Nullspace (or kernel)\\
-        \(\range{\mathbf{A}}\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
-        \(\diag{\mathbf{a}}, \diag{\mathbf{A}}\) & Diagonalization: a square, diagonal matrix with entries given by the vector \(\mathbf{a}\) or the elements in the diagonal of \(\mathbf{A}\) \\
-        \(\vec[]{\mathbf{A}}\) &  Vectorization: stacks the columns of the matrix \(\mathbf{A}\) into a long column vector\\
-        \(\vec[d]{\mathbf{A}}\) &  Extracts the diagonal elements of a square matrix and returns them
-        in a column vector\\
-        \(\vec[l]{\mathbf{A}}\) & Extracts the elements strictly below the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
-        \(\vec[u]{\mathbf{A}}\) & Extracts the elements strictly above the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
-        \(\vec[b]{\mathbf{A}}\) & Block vectorization operator: stacks square block matrices of the input into a long block column matrix\\
-        \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Space spanned by the argument vectors\\
-        \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}} = \dim{\range{\mathbf{A}}}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
-        \(\tr{\mathbf{A}}\)& trace\\
-        \(\otimes\) & Kronecker product\\
-        \(\circ\) & Outer product\\
-        \(\odot\) & Hadamard (elementwise) product\\
-        \(\diamond\) & Khatri-Rao product\\
-        \(\times_n\) & \(n\)-mode product\\
-        \(\inner{\cdot}{\cdot}\) & Inner product
-    \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{XX}
+    \(\mathbf{A}^{-1}\) & Inverse matrix\\
+    \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
+    \(\mathbf{A}^\top\) & Transpose\\
+    \(\mathbf{A}^*\) & Conjugate\\
+    \(\mathbf{A}^\mathsf{H}\) & Hermitian\\
+    \(\frob{\mathbf{A}}\)& Frobenius norm \\
+    \(\norm{\mathbf{A}}\) & Matrix norm\\
+    \(\norm{\mathbf{a}}\) & \(l_1\) norm, 1-norm, or Manhatan norm\\
+    \(\norm{\mathbf{a}}, \norm{\mathbf{a}}_2\) & \(l_2\) norm, 2-norm, or Euclidean norm\\
+    \(\norm{\mathbf{a}}_p\) & \(l_p\) norm, \(p\)-norm, or Minkowski norm\\
+    \(\norm{\mathbf{a}}_\infty\) & \(l_\infty\) norm, \(\infty\)-norm, or Chebyshev norm\\
+    \(\abs{\mathbf{A}}, \textnormal{det}\left( \mathbf{A} \right)\) & Determinant\\
+    \(\diag{\mathbf{a}}, \diag{\mathbf{A}}\) & Diagonalization: a square, diagonal matrix with entries given by the vector \(\mathbf{a}\) or the elements in the diagonal of \(\mathbf{A}\) \\
+    \(\vec[]{\mathbf{A}}\) &  Vectorization: stacks the columns of the matrix \(\mathbf{A}\) into a long column vector\\
+    \(\vec[d]{\mathbf{A}}\) &  Extracts the diagonal elements of a square matrix and returns them
+    in a column vector\\
+    \(\vec[l]{\mathbf{A}}\) & Extracts the elements strictly below the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
+    \(\vec[u]{\mathbf{A}}\) & Extracts the elements strictly above the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
+    \(\vec[b]{\mathbf{A}}\) & Block vectorization operator: stacks square block matrices of the input into a long block column matrix\\
+    \(\unvec{\mathbf{A}}\)& Reshapes a column vector into a matrix\\
+    \(\left[ \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & CANDECOMP/PARAFAC(CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
+    \(\left[ \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & Normalized CANDECOMP/PARAFAC(CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
+    \(\nullspace{\mathbf{A}}\) & Nullspace (or kernel), i.e., \(\dim{\range{\mathbf{A}}}\)\\
+    \(\range{\mathbf{A}}\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Space spanned by the argument vectors\\
+    \(\span{\mathbf{A}}\) & Space spanned by the column vectors of \(\mathbf{A}\)\\
+    \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}} = \dim{\range{\mathbf{A}}}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\tr{\mathbf{A}}\)& trace\\
+    \(\mathbf{a} \perp \mathbf{b}\) & \(\mathbf{a}\) is orthogonal to \(\mathbf{b}\)\\
+    \(\mathbf{a} \not\perp \mathbf{b}\) & \(\mathbf{a}\) is not orthogonal to \(\mathbf{b}\)\\
+    \(\otimes\) & Kronecker product\\
+    \(\inner{\mathbf{a}}{\mathbf{b}}\) & Inner product, i.e., \(\mathbf{a}^\top\mathbf{b}\)\\
+    \(\mathbf{a} \circ \mathbf{b}\) & Outer product, i.e., \(\mathbf{a}\mathbf{b}^\top\)\\
+    \(\odot\) & Hadamard (elementwise) product\\
+    \(\diamond\) & Khatri-Rao product\\
+    \(\otimes\) & Kronecker Product\\
+    \(\times_n\) & \(n\)-mode product\\
+    \(\mathbf{X}_{(n)}\) & \(n\)-mode matricization of the tensor \(\bm{\mathcal{X}}\)\\
+    \(\bm{\mathcal{X}} \leq 0\) & Nonnegative tensor\\
+    \(\mathbf{a} \preceq_K \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the conic subset \(K\) in the space \(\mathbb{R}^{n}\)\\
+    \(\mathbf{a} \prec_K \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the interior of the conic subset \(K\) in the space \(\mathbb{R}^{n}\)\\
+    \(\mathbf{a} \preceq \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the nonnegative orthant conic subset, \(\mathbb{R}_{+}^{n}\), in the space \(\mathbb{R}^{n}\)\\
+    \(\mathbf{a} \prec \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the positive orthant conic subset, \(\mathbb{R}_{++}^{n}\), in the space \(\mathbb{R}^{n}\)\\
+    \(\mathbf{A} \preceq_K \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the conic subset \(K\) in the space \(\mathcal{S}^{n}\)\\
+    \(\mathbf{A} \prec_K \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the interior of the conic subset \(K\) in the space \(\mathcal{S}^{n}\)\\
+    \(\mathbf{A} \preceq \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive semidefinite conic subset, \(\mathcal{S}_{+}^{n}\), in the space \(\mathcal{S}^{n}\)\\
+    \(\mathbf{A} \prec \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive orthant conic subset, \(\mathcal{S}_{++}^{n}\), in the space \(\mathcal{S}^{n}\)
+\end{xltabular}
+
+\subsection{Indexing}
+\begin{xltabular}[l]{\linewidth}{XX}
+    \(x_{i_1,i_2, \dots, i_N}\) & Element in the position \((i_1,i_2, \dots, i_N)\) of the tensor \(\bm{\mathcal{X}}\)\\
+    \(\bm{\mathcal{X}}^{(n)}\) & \(n\)th tensor in a nontemporal sequence\\
+    \(\left[ \bm{\mathcal{X}} \right]_{i_1,i_2, \dots, i_N}\) & Element \(x_{i_1,i_2, \dots, i_N}\)\\
+    \(\mathbf{x}_{j}, \mathbf{x}_{:j}\) & \(j\)th column of the matrix \(X\)\\
+    \(\mathbf{x}_{j:}\) & \(j\)th row of the matrix \(X\)\\
+    \(\mathbf{x}_{i_1,\dots,i_{j-1}, :, i_{j+1},\dots, i_N}\) & Mode-\(j\) fiber of the tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{x}_{:,i_2,i_3}\) & Column fiber (mode-\(1\) fiber) of the thrid-order tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{x}_{i_1,:,i_3}\) & Row fiber (mode-\(2\) fiber) of the thrid-order tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{x}_{i_1,i_2,:}\) & Tube fiber (mode-\(3\) fiber) of the thrid-order tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{X}_{i_1,:,:}\) & Horizontal slice of the thrid-order tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{X}_{:,i_2,:}\) & Lateral slices slice of the thrid-order tensor \(\bm{\mathcal{X}}\)\\
+    \(\mathbf{X}_{i_3}, \mathbf{X}_{:,:,i_3}\) & Frontal slices slice of the thrid-order tensor \(\bm{\mathcal{X}}\)
+\end{xltabular}
+
+
 \section{Sets}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-        \(A \backslash B\) & Set subtraction, i.e., the set containing the elements of \(A\) that are not in \(B\)\\
-        \(A \cup B\) & Set of union\\
-        \(A \cap B\) & Set of intersection\\
-        \(a \in A\)& \(a\) is element of \(A\) \\
-        \(a \notin A\)& \(a\) is not element of \(A\) \\
-        \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
-        \(\mathbb{R}\) & Set of real numbers\\
-        \(\mathbb{C}\)& Set of complex numbers\\
-        \(\mathbb{Z}\) & Set of integer number\\
-        \(\mathbb{B} = \left\{ 0, 1 \right\}\) & Boolean set (?)\\ % Circuit Complexity and Neural Networks - Ian Parberry; Further Improvements in the Boolean Domain
-        \(\mathbb{N}\) & Set of natural numbers\\
-        \(\mathbb{K} \in \left\{ \mathbb{R}, \mathbb{C} \right\}\) & ???\\
-        \([a, b]\) & Closed interval of a real set from \(a\) to \(b\)\\
-        \((a, b)\) & Closed interval of a real set from \(a\) to \(b\)\\
-        \([a, b), (a, b]\) & Half-open intervals of a real set from \(a\) to \(b\)\\
-    \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{XX}
+    \(A \setminus B\) & Set subtraction, i.e., the set containing the elements of \(A\) that are not in \(B\)\\
+    \(A \cup B\) & Set of union\\
+    \(A \cap B\) & Set of intersection\\
+    \(A \times B\) & Cartesian product\\
+    \(A \oplus B\) & Direct sum, e.g., \(\range{A^{\top}} \oplus \range{A^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
+    \(A^{\perp}\) & Orthogonal complement\\
+    \(A^{c}\) & Complement\\
+    \(\#A\) & Cardinality\\
+    \(a \in A\)& \(a\) is element of \(A\) \\
+    \(a \notin A\)& \(a\) is not element of \(A\) \\
+    \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
+    \(\mathbb{R}\) & Set of real numbers\\
+    \(\mathbb{C}\)& Set of complex numbers\\
+    \(\mathbb{Z}\) & Set of integer number\\
+    \(\mathbb{B} = \left\{ 0, 1 \right\}\) & Boolean set\\ % Circuit Complexity and Neural Networks - Ian Parberry; Further Improvements in the Boolean Domain
+    \(\emptyset\) & Empty set\\
+    \(\mathbb{N}\) & Set of natural numbers\\
+    \(\mathbb{K} \in \left\{ \mathbb{R}, \mathbb{C} \right\}\) & ???\\
+    \(\mathbb{K}^{I_1\times I_2 \times \dots \times I_N}\) & \(I_1\times I_2 \times \dots \times I_N\)-dimensional real (or complex) space\\
+    \(\mathbb{K}_{+}\) & Nonnegative real (or complex) space\\
+    \(\mathbb{K}_{++}\) & Positive real (or complex) space, i.e., \(\mathbb{K}_{++} = \mathbb{K}_{+}\setminus\left\{ \mathbf{0} \right\}\)\\
+    \(\mathcal{S}^{n}, \mathbb{S}^{n}\) & Conic set of the symmetric \(n\times n\)-dimensional matrices\\
+    \(\mathcal{S}_{+}^{n}, \mathbb{S}_{+}^{n}\) & Conic set of the symmetric positive semidefinite \(n\times n\)-dimensional matrices\\
+    \(\mathcal{S}_{++}^{n}, \mathbb{S}_{++}^{n}\) & Conic set of the symmetric positive definite \(n\times n\)-dimensional matrices, i.e., \(\mathcal{S}_{++}^{n} = \mathcal{S}_{+}^{n}\setminus \left\{ \mathbf{0} \right\}\)\\
+    \([a, b]\) & Closed interval of a real set from \(a\) to \(b\)\\
+    \((a, b)\) & Opened interval of a real set from \(a\) to \(b\)\\
+    \([a, b), (a, b]\) & Half-opened intervals of a real set from \(a\) to \(b\)\\
+\end{xltabular}
 
 \section{Signals and functions operations and indexing}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-        \(f: A \rightarrow B\)& \\
-        \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
-        \(*\) & Convolution\\
-        \(x(t)\) & Continuous-time \(t\)\\
-        \(x[n], x[k], x[m], x[i], \dots\) & Discrete-time \(n, k, m, i, \dots\)\\
-        \(x(n), x(k), x(m), x(i), \dots\) & Discrete-time \(n, k, m, i, \dots\) (it should be used only if there are no continuous-time signals in the context to avoid ambiguity)\\
-        \(\tilde{x}(t)\) or \(\tilde{x}[n]\) & Estimate of \(x(t)\) or \(x[n]\); the Hilbert transform of \(x(t)\) or \(x[n]\)\\
-        \(x_I(t)\) or \(x_I[n]\) & Real or in-phase part of \(x(t)\) or \(x[n]\)\\
-        \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
-        \(X(s)\) & Laplace transform of \(x(t)\)\\
-        \(X(f)\) & Fourier transform (in linear frequency, \(\unit{\Hz}\)) of \(x(t)\)\\
-        \(X(j\omega)\) & Fourier transform (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\
-        \(X(z)\) & Z-transform of \(x[n]\)
-    \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{XX}
+    \(f: A \rightarrow B\)& A function \(f\) whose domain is \(A\) and codomain is \(B\)\\
+    \(f^{\left( n \right)}\) & \(n\)th derivative of the function \(f\)\\
+    \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
+    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
+    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
+    \(*\) & Convolution\\
+    \(x(t)\) & Continuous-time \(t\)\\
+    \(x[n], x[k], x[m], x[i], \dots\) & Discrete-time \(n, k, m, i, \dots\)\\
+    \(x(n), x(k), x(m), x(i), \dots\) & Discrete-time \(n, k, m, i, \dots\) (it should be used only if there are no continuous-time signals in the context to avoid ambiguity)\\
+    \(\tilde{x}(t)\) or \(\tilde{x}[n]\) & Estimate of \(x(t)\) or \(x[n]\); the Hilbert transform of \(x(t)\) or \(x[n]\)\\
+    \(x_I(t)\) or \(x_I[n]\) & Real or in-phase part of \(x(t)\) or \(x[n]\)\\
+    \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
+    \(X(s)\) & Laplace transform of \(x(t)\)\\
+    \(X(f)\) & Fourier transform (in linear frequency, \(\unit{\Hz}\)) of \(x(t)\)\\
+    \(S_x(f)\) & Power spectral density of \(x(t)\) in linear frequency\\
+    \(S_x(j\omega)\) & Power spectral density of \(x(t)\) in angular frequency\\
+    \(X(j\omega)\) & Fourier transform (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\
+    \(X(z)\) & Z-transform of \(x[n]\)  
+\end{xltabular}
 
 \section{Probability and stochastic processes}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-        \(E\left[ \cdot \right]\) & Statistical expectation\\
-        \(E_u\left[ \cdot \right]\) & Statistical expectation with respect to \(u\)\\
-        \(\textnormal{Var}(x)\) & Variance of the random variable \(x\)\\
-        \(\textnormal{erfc}(\cdot)\) & Complementary error function\\
-        \(P(A)\) & Probability of the event or set \(A\)\\
-        \(p(a)\) or \(p(\mathbf{a})\) & Probability density function of the random variable \(a\) or random vector \(\mathbf{a}\)\\
-        \(p(x\mid A)\) & Conditional probability density function\\
-        \(a\sim P\) & Random variable \(a\) with distribution \(P\)
-    \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{XX}
+    \(E\left[ \cdot \right]\) & Statistical expectation\\
+    \(E_u\left[ \cdot \right]\) & Statistical expectation with respect to \(u\)\\
+    \(\textnormal{var}(x)\) & Variance of the random variable \(x\)\\
+    \(\textnormal{erfc}(\cdot)\) & Complementary error function\\
+    \(P(A)\) & Probability of the event or set \(A\)\\
+    \(p(\cdot)\) & Probability density function\\
+    \(p(x\mid A)\) & Conditional probability density function\\
+    \(a\sim P\) & Random variable \(a\) with distribution \(P\)\\
+    \(\mathcal{N}(\mu, \sigma^2)\) & Gaussian distribution of a random variable with mean \(\mu\) and variance \(\sigma^{2}\)\\
+    \(\mathcal{CN}(\mu, \sigma^2)\) & Complex Gaussian distribution of a random variable with mean \(\mu\) and variance \(\sigma^{2}\)\\
+    \(\mathcal{N}(\boldsymbol{\muup}, \boldsymbol{\Sigmaup})\) & Gaussian distribution of a vector random variable with mean \(\boldsymbol{\muup}\) and covariance matrix \(\boldsymbol{\Sigmaup}\)\\
+    \(\mathcal{CN}(\boldsymbol{\muup}, \boldsymbol{\Sigmaup})\) & Complex Gaussian distribution of a vector random variable with mean \(\boldsymbol{\muup}\) and covariance matrix \(\boldsymbol{\Sigmaup}\)\\
+    \(\mathcal{U}(a,b)\) & Uniform distribution from \(a\) to \(b\)
+\end{xltabular}
 
 \section{General notations}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
-        \(a \wedge b\) & Logical AND of \(a\) and \(b\)\\
-        \(a \vee b\) & Logical OR of \(a\) and \(b\)\\
-        \(\exists\) & There exists\\
-        \(\nexists\) & There does not exist\\
-        \(\exists!\) & There exist an unique\\
-        \(\forall\) & For all\\
-        \(\mid\) & Such that\\
-        \(\triangleq\) & Equal by definition\\
-        \(\infty\) & Infinity\\
-        \(\abs{a}\) & Absolute value of \(a\)\\
-        \(\log\) & Base-10 logarithm or decimal logarithm\\
-        \(\ln\) & Natual logarithm\\
-        \(\textnormal{Re}\left\{ x \right\}\) & Real part of \(x\)\\
-        \(\textnormal{Im}\left\{ x \right\}\) & Imaginary part of \(x\)\\
-        \(\mathcal{O}(\cdot)\) & big-O notation\\
-        \(\ceil{\cdot}\) & Ceiling operation\\
-        \(\floor{\cdot}\) & Floor operation\\
-        \(\angle\cdot\) & phase (complex argument)
-    \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{XX}
+    \(a \wedge b\) & Logical AND of \(a\) and \(b\)\\
+    \(a \vee b\) & Logical OR of \(a\) and \(b\)\\
+    \(\lnot a\) & Logical negation of \(a\)\\
+    \(\exists\) & There exists\\
+    \(\nexists\) & There does not exist\\
+    \(\exists!\) & There exist an unique\\
+    \(\forall\) & For all\\
+    \(\mid\) & Such that\\
+    \(\therefore\) & Therefore\\
+    \(\iff\) & Logical equivalence\\
+    \(\triangleq\) & Equal by definition\\
+    \(\neq\) & Not equal\\
+    \(\infty\) & Infinity\\
+    \(\abs{a}\) & Absolute value of \(a\)\\
+    \(\log\) & Base-10 logarithm or decimal logarithm\\
+    \(\ln\) & Natual logarithm\\
+    \(\textnormal{Re}\left\{ x \right\}\) & Real part of \(x\)\\
+    \(\textnormal{Im}\left\{ x \right\}\) & Imaginary part of \(x\)\\
+    \(\mathcal{O}(\cdot)\) & big-O notation\\
+    \(\ceil{\cdot}\) & Ceiling operation\\
+    \(\floor{\cdot}\) & Floor operation\\
+    \(\angle\cdot\) & phase (complex argument)\\
+    \(x\;\mathrm{mod}\;y\) & Remainder, i.e., \(x-y\floor{x/y}\)\\
+    \(\mathrm{frac}\left(x\right)\) & Fractional part, i.e., \(x\;\mathrm{mod}\;1\)
+\end{xltabular}
 
 \section{Abbreviations}
-\begin{table}[H]
-    \begin{tabularx}{\textwidth}{XX}
+    \begin{xltabular}{\textwidth}{XX}
         wrt. & With respect to\\
         st. & Subject to\\
-        iff. & If and only if
-    \end{tabularx}
-\end{table}
+        iff. & If and only if\\
+        EVD & Eigenvalue decomposition, or eigendecomposition\\
+        SVD & Singular value decomposition\\
+        CP & CANDECOMP/PARAFAC\\
+    \end{xltabular}
 \end{document}
