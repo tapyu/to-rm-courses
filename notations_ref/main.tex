@@ -116,6 +116,7 @@
     \(J(\cdot)\) & Cost-function or objective function\\
     \(\Lambda(\cdot)\) & Likelihood function\\
     \(\Lambda_l(\cdot)\) & Log-likelihood function\\
+    \(\mathcal{O}(\cdot), O(\cdot)\) & big-O notation\\
     \(\boldsymbol{\muup}_x, \mathbf{m}_x\) & Mean vector\\
     \(\hat{\boldsymbol{\muup}}_x, \hat{\mathbf{m}}_x\) & Sample mean vector\\
     \(r_x(\tau), R_x(\tau)\) & Autocorrelation function of the signal \(x(t)\) or \(x[n]\)\\
@@ -186,19 +187,20 @@
     \(\vec[u]{\mathbf{A}}\) & Extracts the elements strictly above the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
     \(\vec[b]{\mathbf{A}}\) & Block vectorization operator: stacks square block matrices of the input into a long block column matrix\\
     \(\unvec{\mathbf{A}}\)& Reshapes a column vector into a matrix\\
-    \(\left[ \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & CANDECOMP/PARAFAC(CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
-    \(\left[ \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & Normalized CANDECOMP/PARAFAC(CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
-    \(\nullspace{\mathbf{A}}\) & Nullspace (or kernel), i.e., \(\dim{\range{\mathbf{A}}}\)\\
-    \(\range{\mathbf{A}}\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\left[ \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
+    \(\left[ \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & Normalized CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
+    \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel)\\
+    \(\range{\mathbf{A}}, \mathrm{columnspace}(\mathbf{A}), \mathrm{range}(\mathbf{A})\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
     \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Space spanned by the argument vectors\\
     \(\span{\mathbf{A}}\) & Space spanned by the column vectors of \(\mathbf{A}\)\\
     \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}} = \dim{\range{\mathbf{A}}}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\nullity{\mathbf{A}}\) & Nullity of \(\mathbf{A}\), i.e., \(\dim{\nullspace{\mathbf{A}}}\)\\
     \(\tr{\mathbf{A}}\)& trace\\
     \(\mathbf{a} \perp \mathbf{b}\) & \(\mathbf{a}\) is orthogonal to \(\mathbf{b}\)\\
     \(\mathbf{a} \not\perp \mathbf{b}\) & \(\mathbf{a}\) is not orthogonal to \(\mathbf{b}\)\\
-    \(\otimes\) & Kronecker product\\
     \(\inner{\mathbf{a}}{\mathbf{b}}\) & Inner product, i.e., \(\mathbf{a}^\top\mathbf{b}\)\\
     \(\mathbf{a} \circ \mathbf{b}\) & Outer product, i.e., \(\mathbf{a}\mathbf{b}^\top\)\\
+    \(\otimes\) & Kronecker product\\
     \(\odot\) & Hadamard (elementwise) product\\
     \(\diamond\) & Khatri-Rao product\\
     \(\otimes\) & Kronecker Product\\
@@ -255,9 +257,10 @@
     \(\mathbb{K}^{I_1\times I_2 \times \dots \times I_N}\) & \(I_1\times I_2 \times \dots \times I_N\)-dimensional real (or complex) space\\
     \(\mathbb{K}_{+}\) & Nonnegative real (or complex) space\\
     \(\mathbb{K}_{++}\) & Positive real (or complex) space, i.e., \(\mathbb{K}_{++} = \mathbb{K}_{+}\setminus\left\{ \mathbf{0} \right\}\)\\
-    \(\mathcal{S}^{n}, \mathbb{S}^{n}\) & Conic set of the symmetric \(n\times n\)-dimensional matrices\\
-    \(\mathcal{S}_{+}^{n}, \mathbb{S}_{+}^{n}\) & Conic set of the symmetric positive semidefinite \(n\times n\)-dimensional matrices\\
-    \(\mathcal{S}_{++}^{n}, \mathbb{S}_{++}^{n}\) & Conic set of the symmetric positive definite \(n\times n\)-dimensional matrices, i.e., \(\mathcal{S}_{++}^{n} = \mathcal{S}_{+}^{n}\setminus \left\{ \mathbf{0} \right\}\)\\
+    \(\mathbb{S}^{n}, \mathcal{S}^{n}\) & Conic set of the symmetric matrices in \(\mathbb{R}^{n\times n}\)\\
+    \(\mathbb{S}_{+}^{n}, \mathcal{S}_{+}^{n}\) & Conic set of the symmetric positive semidefinite matrices in \(\mathbb{R}^{n\times n}\)\\
+    \(\mathbb{S}_{++}^{n}, \mathcal{S}_{++}^{n}\) & Conic set of the symmetric positive definite matrices in \(\mathbb{R}^{n\times n}\), i.e., \(\mathbb{S}_{++}^{n} = \mathbb{S}_{+}^{n}\setminus \left\{ \mathbf{0} \right\}\)\\
+    \(\mathbb{H}^{n}\) & Set of all hermitian matrices in \(\mathbb{C}^{n\times n}\)\\
     \([a, b]\) & Closed interval of a real set from \(a\) to \(b\)\\
     \((a, b)\) & Opened interval of a real set from \(a\) to \(b\)\\
     \([a, b), (a, b]\) & Half-opened intervals of a real set from \(a\) to \(b\)\\
@@ -279,9 +282,9 @@
     \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
     \(X(s)\) & Laplace transform of \(x(t)\)\\
     \(X(f)\) & Fourier transform (in linear frequency, \(\unit{\Hz}\)) of \(x(t)\)\\
+    \(X(j\omega)\) & Fourier transform (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\
     \(S_x(f)\) & Power spectral density of \(x(t)\) in linear frequency\\
     \(S_x(j\omega)\) & Power spectral density of \(x(t)\) in angular frequency\\
-    \(X(j\omega)\) & Fourier transform (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\
     \(X(z)\) & Z-transform of \(x[n]\)  
 \end{xltabular}
 
@@ -322,7 +325,6 @@
     \(\ln\) & Natual logarithm\\
     \(\textnormal{Re}\left\{ x \right\}\) & Real part of \(x\)\\
     \(\textnormal{Im}\left\{ x \right\}\) & Imaginary part of \(x\)\\
-    \(\mathcal{O}(\cdot)\) & big-O notation\\
     \(\ceil{\cdot}\) & Ceiling operation\\
     \(\floor{\cdot}\) & Floor operation\\
     \(\angle\cdot\) & phase (complex argument)\\
