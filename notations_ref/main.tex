@@ -55,6 +55,8 @@
 \DeclareMathOperator*{\argmin}{arg\,min} % argument max
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
+\newcommand{\cof}[1]{\ensuremath{\textnormal{cof}\left(#1\right)}} % cofactor matrix
+\newcommand{\eig}[1]{\ensuremath{\textnormal{eig}\left(#1\right)}} % eigenvalues
 \renewcommand{\dim}[1]{\ensuremath{\textnormal{dim}\left(#1\right)}} % dimension of a set
 \newcommand{\nullspace}[1]{\ensuremath{\textnormal{N}\left(#1\right)}} % nullspace or kernel of the matrix
 \newcommand{\nullity}[1]{\ensuremath{\textnormal{nullity}\left(#1\right)}} % nullity=dim(N(A))
@@ -148,10 +150,15 @@
     \(\mathbf{W}\) & Matrix of the weights \\
     \(\mathbf{P}\) & Projection matrix; Permutation matrix \\
     \(\boldsymbol{\Lambdaup}\) & Eigenvalue matrix \\
-    \(\boldsymbol{\Sigmaup}\) & Singular value matrix\\
-    \(\mathbf{U}\) & Upper matrix; Left singular vectors\\
     \(\mathbf{L}\) & Lower matrix\\
+    \(\mathbf{U}\) & Upper matrix; Left singular vectors\\
+    \(\mathbf{U}_r\) & Left singular nondegenerated vectors\\
+    \(\boldsymbol{\Sigmaup}\) & Singular value matrix\\
+    \(\boldsymbol{\Sigmaup}_r\) & Singular value matrix with nonzero singular values in the main diagonal\\
+    \(\boldsymbol{\Sigmaup}^{+}\) & Singular value matrix of the pseudoinverse\\
+    \(\boldsymbol{\Sigmaup}^{+}_r\) & Singular value matrix of the pseudoinverse with nonzero singular values in the main diagonal\\
     \(\mathbf{V}\) & Right singular vectors\\
+    \(\mathbf{V}_r\) & Right singular nondegenerated vectors\\
     \(\mathbf{J}\) & Jordan matrix; Jacobian matrix\\
     \(\mathbf{S}\) & Symmetric matrix\\
     \(\mathbf{Q}\) & Orthogonal matrix\\
@@ -170,7 +177,7 @@
     \(\mathbf{A}^{-1}\) & Inverse matrix\\
     \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
     \(\mathbf{A}^\top\) & Transpose\\
-    \(\mathbf{A}^*\) & Conjugate\\
+    \(\mathbf{A}^*\) & Complex conjugate\\
     \(\mathbf{A}^\mathsf{H}\) & Hermitian\\
     \(\frob{\mathbf{A}}\)& Frobenius norm \\
     \(\norm{\mathbf{A}}\) & Matrix norm\\
@@ -187,13 +194,15 @@
     \(\vec[u]{\mathbf{A}}\) & Extracts the elements strictly above the main diagonal of a square matrix in a column-wise manner and returns them into a column vector\\
     \(\vec[b]{\mathbf{A}}\) & Block vectorization operator: stacks square block matrices of the input into a long block column matrix\\
     \(\unvec{\mathbf{A}}\)& Reshapes a column vector into a matrix\\
+    \(\cof{\mathbf{A}}\) & Cofactor matrix of \(\mathbf{A}\)\\
+    \(\eig{\mathbf{A}}\) & Set of the eigenvalues of \(\mathbf{A}\)\\
     \(\left[ \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
     \(\left[ \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & Normalized CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
     \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel)\\
     \(\range{\mathbf{A}}, \mathrm{columnspace}(\mathbf{A}), \mathrm{range}(\mathbf{A})\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
-    \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Space spanned by the argument vectors\\
-    \(\span{\mathbf{A}}\) & Space spanned by the column vectors of \(\mathbf{A}\)\\
-    \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}} = \dim{\range{\mathbf{A}}}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Vector space spanned by the argument vectors\\
+    \(\span{\mathbf{A}}\) & Vector space spanned by the column vectors of \(\mathbf{A}\), which gives the columnspace of \(\mathbf{A}\)\\
+    \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{A}}} = \dim{\range{\mathbf{A}}}\)\\
     \(\nullity{\mathbf{A}}\) & Nullity of \(\mathbf{A}\), i.e., \(\dim{\nullspace{\mathbf{A}}}\)\\
     \(\tr{\mathbf{A}}\)& trace\\
     \(\mathbf{a} \perp \mathbf{b}\) & \(\mathbf{a}\) is orthogonal to \(\mathbf{b}\)\\
@@ -240,8 +249,8 @@
     \(A \cup B\) & Set of union\\
     \(A \cap B\) & Set of intersection\\
     \(A \times B\) & Cartesian product\\
-    \(A \oplus B\) & Direct sum, e.g., \(\range{A^{\top}} \oplus \range{A^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
-    \(A^{\perp}\) & Orthogonal complement\\
+    \(A^{\perp}\) & Orthogonal complement of \(A\), e.g., \(\nullspace{\mathbf{A}} = \range{\mathbf{A}^{\top}}^{\perp}\)\\
+    \(A \oplus B\) & Direct sum, e.g., \(\range{\mathbf{A}^{\top}} \oplus \range{\mathbf{A}^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
     \(A^{c}\) & Complement\\
     \(\#A\) & Cardinality\\
     \(a \in A\)& \(a\) is element of \(A\) \\
