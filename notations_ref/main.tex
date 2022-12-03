@@ -119,9 +119,6 @@
     \(\boldsymbol{\nabla}f, \mathbf{g}\) & Gradient vector \\
     \(\boldsymbol{\nabla}_{x}f, \mathbf{g}_{x}\) & Gradient vector with respect \(x\)\\
     \(\mathbf{g}\) (or \(\hat{\mathbf{g}}\) if the gradient vector is \(\mathbf{g}\)) & Stochastic approximation of the gradient vector \\
-    \(\mathcal{F}\left\{ \cdot \right\}\) & Fourier transform\\
-    \(\mathcal{L}\left\{ \cdot \right\}\) & Laplace transform\\
-    \(\mathcal{Z}\left\{ \cdot \right\}\) & \(z\)-transform\\
     \(J(\cdot)\) & Cost-function or objective function\\
     \(\Lambda(\cdot)\) & Likelihood function\\
     \(\Lambda_l(\cdot)\) & Log-likelihood function\\
@@ -228,10 +225,10 @@
     \(\mathbf{a} \prec_K \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the interior of the conic subset \(K\) in the space \(\mathbb{R}^{n}\)\\
     \(\mathbf{a} \preceq \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the nonnegative orthant conic subset, \(\mathbb{R}_{+}^{n}\), in the space \(\mathbb{R}^{n}\)\\
     \(\mathbf{a} \prec \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the positive orthant conic subset, \(\mathbb{R}_{++}^{n}\), in the space \(\mathbb{R}^{n}\)\\
-    \(\mathbf{A} \preceq_K \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the conic subset \(K\) in the space \(\mathcal{S}^{n}\)\\
-    \(\mathbf{A} \prec_K \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the interior of the conic subset \(K\) in the space \(\mathcal{S}^{n}\)\\
-    \(\mathbf{A} \preceq \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive semidefinite conic subset, \(\mathcal{S}_{+}^{n}\), in the space \(\mathcal{S}^{n}\)\\
-    \(\mathbf{A} \prec \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive orthant conic subset, \(\mathcal{S}_{++}^{n}\), in the space \(\mathcal{S}^{n}\)
+    \(\mathbf{A} \preceq_K \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the conic subset \(K\) in the space \(\mathbb{S}^{n}\)\\
+    \(\mathbf{A} \prec_K \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the interior of the conic subset \(K\) in the space \(\mathbb{S}^{n}\)\\
+    \(\mathbf{A} \preceq \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive semidefinite conic subset, \(\mathbb{S}_{+}^{n}\), in the space \(\mathbb{S}^{n}\)\\
+    \(\mathbf{A} \prec \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive orthant conic subset, \(\mathbb{S}_{++}^{n}\), in the space \(\mathbb{S}^{n}\)
 \end{xltabular}
 
 \subsection{Indexing}
@@ -253,14 +250,16 @@
 
 \section{Sets}
 \begin{xltabular}{\textwidth}{XX}
-    \(A \setminus B\) & Set subtraction, i.e., the set containing the elements of \(A\) that are not in \(B\)\\
+    \(A + B\) & Set addition (Minkowski sum)\\
+    \(A - B\) &  Minkowski difference\\
+    \(A \setminus B, A-B\) & Set difference or set subtraction, i.e., the set containing the elements of \(A\) that are not in \(B\)\\
     \(A \cup B\) & Set of union\\
     \(A \cap B\) & Set of intersection\\
     \(A \times B\) & Cartesian product\\
     \(A^{\perp}\) & Orthogonal complement of \(A\), e.g., \(\nullspace{\mathbf{A}} = \range{\mathbf{A}^{\top}}^{\perp}\)\\
     \(A \oplus B\) & Direct sum, e.g., \(\range{\mathbf{A}^{\top}} \oplus \range{\mathbf{A}^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
-    \(A^{c}\) & Complement\\
-    \(\#A\) & Cardinality\\
+    \(A^{c}, \bar{A}\) & Complement set\\
+    \(\#A, \abs{A}\) & Cardinality\\
     \(a \in A\)& \(a\) is element of \(A\) \\
     \(a \notin A\)& \(a\) is not element of \(A\) \\
     \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
@@ -287,6 +286,7 @@
 \begin{xltabular}{\textwidth}{XX}
     \(f: A \rightarrow B\)& A function \(f\) whose domain is \(A\) and codomain is \(B\)\\
     \(f^{\left( n \right)}\) & \(n\)th derivative of the function \(f\)\\
+    \(f^{-1}\) & Inverse function of \(f\)\\
     \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
     \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
     \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
@@ -299,7 +299,10 @@
     \(\tilde{x}[n]\) & Periodic discrete-time signal\\
     \(x\left[ \left( \left( n - m \right) \right)_N \right], x \left( \left( n - m \right) \right)_N\) & Circular shift in \(m\) samples within a \(N\)-samples window\\
     \(x_I(t)\) or \(x_I[n]\) & Real or in-phase part of \(x(t)\) or \(x[n]\)\\
-    \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
+    \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\    \(\mathcal{F}\left\{ \cdot \right\}\) & Fourier transform\\
+    \(\mathcal{L}\left\{ \cdot \right\}\) & Laplace transform\\
+    \(\mathcal{Z}\left\{ \cdot \right\}\) & \(z\)-transform\\
+
     \(X(s)\) & Laplace transform of \(x(t)\)\\
     \(X(f)\) & Fourier transform (FT) (in linear frequency, \(\unit{\Hz}\)) of \(x(t)\)\\
     \(X(j\omega)\) & Fourier transform (FT) (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\

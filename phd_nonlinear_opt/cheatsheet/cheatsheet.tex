@@ -4,6 +4,7 @@
 % items, table and figs
 \usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{xltabular}
 \usepackage{tikz}
 \usepackage{standalone} % place tikz environments or other material in own source files
 \usepackage{float}
@@ -11,6 +12,7 @@
 \addbibresource{My Library.bib} % add reference file
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
+\usetikzlibrary{calc}
 
 \newcolumntype{A}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
 \newcolumntype{B}{>{\setlength\hsize{.5\hsize}\setlength\linewidth{\hsize}\centering\arraybackslash}X}
@@ -48,7 +50,7 @@
     \item There are two cases where \(K\) and \(A\) are understood from context and the subscript \(K\) is dropped out:
     \begin{itemize}[label={$\triangleright$}]
         \item When \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
-        \item When \(K = \mathcal{S}^{n}_{+}\) and \(A = \mathcal{S}^{n}\), or \(K = \mathcal{S}^{n}_{++}\) and \(A = \mathcal{S}^{n}\), where \(\mathcal{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathcal{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathcal{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathcal{S}^{n}_{+}\) is a proper cone in \(\mathcal{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathcal{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathcal{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
+        \item When \(K = \mathbb{S}^{n}_{+}\) and \(A = \mathbb{S}^{n}\), or \(K = \mathbb{S}^{n}_{++}\) and \(A = \mathbb{S}^{n}\), where \(\mathbb{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathbb{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathbb{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathbb{S}^{n}_{+}\) is a proper cone in \(\mathbb{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathbb{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathbb{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
     \end{itemize}
     \item Another common usage is when \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
     \item The generalized inequality has the following properties:
@@ -195,10 +197,10 @@ Proper cone: \(K \subset \mathbb{R}^{n}\) is a proper cone when it has the follo
 \hline
 Subspace (cone set?) of the symmetric matrices:
 \begin{itemize}
-    \item \(\mathcal{S}^n = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} = \mathbf{X}^\mathsf{T}\right\}\)
+    \item \(\mathbb{S}^n = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} = \mathbf{X}^\mathsf{T}\right\}\)
 \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-    \item The positive semidefinite cone is given by \(\mathcal{S}^n_+ = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succeq \mathbf{0} \right\} \subset \mathcal{S}^n\). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \preceq \mathbf{B}\).
-    \item The positive definite cone is given by \(\mathcal{S}^n_{++} = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succ \mathbf{0} \right\}\subseteq \mathcal{S}^n_+ \). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \prec \mathbf{B}\).
+    \item The positive semidefinite cone is given by \(\mathbb{S}^n_+ = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succeq \mathbf{0} \right\} \subset \mathbb{S}^n\). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \preceq \mathbf{B}\).
+    \item The positive definite cone is given by \(\mathbb{S}^n_{++} = \left\{ \mathbf{X} \in \mathbb{R}^{n\times n} \mid \mathbf{X} \succ \mathbf{0} \right\}\subset \mathbb{S}^n_+ \). This is the proper cone used to define the generalized inequalities between matrices, e.g., \(\mathbf{A} \prec \mathbf{B}\).
 \end{itemize} \\
 \hline
 Dual cone:
@@ -266,6 +268,38 @@ Simplex:
 \end{tabularx}
 \end{table}
 
+\subsection{Operations on set and their implications regarding curvature}
+\begin{xltabular}[l]{0.5\linewidth}{|X|X|}
+    \hline
+    \multicolumn{1}{|c|}{Operation} & \multicolumn{1}{|c|}{Curvature}\\
+    \hline
+    Union \(C = A \cup B \)
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \mathbf{x}\in \mathbb{R}^{n} \mid \mathbf{x} \in A \text{ or } \mathbf{x} \in B \right\}\).
+    \end{itemize} & It is neither convex nor concave in most of the cases\\
+    \hline
+    Intersection: $C = A \cap B $
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \mathbf{x}\in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{x} \in B \right\}\).
+    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \hline
+    Minkowski sum: $C = A + B $
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \mathbf{x}+\mathbf{y} \in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{y} \in B \right\}\).
+    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \hline
+    Offset: $C = A + k $
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \mathbf{x}+k \in \mathbb{R}^{n} \mid \mathbf{x} \in A, k \in \mathbb{R} \right\}\).
+    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \hline
+    Cartesian product: $C = A \times B $
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ (\mathbf{x}, \mathbf{y}) \mid \mathbf{x} \in A, \mathbf{y} \in \mathbb{B} \right\}\).
+    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \hline
+\end{xltabular}
+
 \clearpage
 \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
 \pdfpagewidth=30cm
@@ -273,7 +307,7 @@ Simplex:
 \pagenumbering{gobble}
 \newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
 \section{Fuctions}
-\subsection{Categories of functions}
+\subsection{Categories of functions regarding its curvatuve}
 \begin{itemize}
     \item In CVX, for functions with multiple arguments, the curvature categories are always considered jointly \autocite{DCPRulesetCVX}.
 	\item The CVX optimization package, and, apparently, its derivatives (CVXPY, Convex.jl, CVXR...) categorize the functions as follows \autocite{DCPRulesetCVX}:
@@ -288,6 +322,10 @@ Simplex:
     \item The Eq.\eqref{eq:convex-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:convex-rule} implies that any line segment within \(\dom{f}\) gives a convex graph (bowl-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always above the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly convex.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.2]{figs/convex.png}
+    \end{figure}
     \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f}\), and \(\nabla f(\mathbf{y}) = \mathbf{0}\) iff \(\mathbf{y} = \mathbf{x}^{\star}\). This \(\mathbf{x}^{\star}\) is the global minimum.
     \item If \(f\) is (strictly convex) convex, then \(-f\) is (strictly concave) concave.
 \end{itemize}
@@ -301,6 +339,10 @@ Simplex:
     \item The Eq.\eqref{eq:concave-rule} implies that \(\dom{f}\) is a convex set, that is, all points for any line segment within \(\dom{f}\) belong to it.
     \item The Eq.\eqref{eq:concave-rule} implies that any line segment within \(\dom{f}\) gives a concave graph (hyperhyperbola-shaped).
     \item Graphically, any line segment between \((\mathbf{x}, f(\mathbf{x}))\) and \((\mathbf{y}, f(\mathbf{y}))\) lies always below the graph \(f\). If the line touches the graph but does not cross it, then the function is strictly concave.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.2]{figs/concave.png}
+    \end{figure}
     \item It is guaranteed that \(\exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f(\mathbf{x}^{\star}) \leq f(\mathbf{y})\;\forall\;\mathbf{y}\in\dom{f}\), and \(\nabla f(\mathbf{y}) = \mathbf{0}\) iff \(\mathbf{y} = \mathbf{x}^{\star}\). This \(\mathbf{x}^{\star}\) is the global maximum. 
     \item If \(f\) is (strictly concave) concave, then \(-f\) is (strictly convex) convex.
 \end{itemize}
@@ -310,8 +352,23 @@ Simplex:
 \end{align}
 \begin{itemize}
     \item \(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \therefore \dom{f} = \mathbb{R}^{n}\).
-    \item \(\dom{f}\) is infinite since \(\theta\) is not restricted to an interval.
-    \item The affine function is a broader category that encompasses the class of linear functions. The main difference is that linear functions must have their origin fixed after the transformation, whereas affine functions do not necessarily have it (when not, this makes the affine function nonlinear). We can think of an affine function as a linear transformation plus a shift from the origin.
+    \item \(\dom{f}\) must be infinite since \(\theta\) is not restricted to an interval.
+    \item The affine function has the following characteristic
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.2]{figs/affine.png}
+    \end{figure}
+    \item For all \(\mathbf{x}, \mathbf{y} \in \mathbb{R}^{n}\), \(f\) yields a line with the variation of \(\theta\).
+    \item The affine function is a broader category that encompasses the class of linear functions. The main difference is that linear functions must have its origin fixed after the transformation, whereas affine functions do not necessarily have it (when not, this makes the affine function nonlinear). Mathematically, the linear function shall obey the following relation
+    \begin{align}
+        f(\alpha \mathbf{x} + \beta \mathbf{y}) = \alpha f(\mathbf{x}) + \beta f(\mathbf{y}),\;\forall\; \mathbf{x}, \mathbf{y} \in \mathbb{R}^{n}, \alpha,\beta\in\mathbb{R}.
+    \end{align}
+    When \(\alpha=\beta=0\), \(f(\mathbf{0}) = 0\). It leads to the following graph
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.2]{figs/linear.png}
+    \end{figure}
+    \item We can think of an affine function as a linear transformation plus a shift from the origin.
     \item Affine functions are both convex and concave.
 \end{itemize}
 \subsubsection{Constant}
@@ -319,7 +376,8 @@ Simplex:
     f(\theta \mathbf{x} + (1-\theta)\mathbf{y}) = k,\;\forall\; \mathbf{x}, \mathbf{y} \in \dom{f}, \theta \in \mathbb{R}
 \end{align}
 \begin{itemize}
-    \item \(f: \dom{f} \rightarrow \mathbb{R}\), where \(\dom{f} \subseteq \mathbb{R}^{n}\).
+    \item \(f: \mathbb{R}^{n} \rightarrow \mathbb{R} \therefore \dom{f} = \mathbb{R}^{n}\).
+    \item \(\dom{f}\) must be infinite since \(\theta\) is not restricted to an interval.
     \item \(k\in \mathbb{R}\) is a constant.
     \item It is a special case of affine function.
     \item A constant function is convex and concave, simultaneously.
@@ -328,6 +386,14 @@ Simplex:
 \begin{itemize}
     \item Nonconvex and nonconcave functions do not satisfy the convexity or concavity rule.
 \end{itemize}
+\subsection{Categories of functions regarding its optimization variables}
+\begin{xltabular}[l]{\linewidth}{|>{\hsize=.25\hsize}X|>{\hsize=.25\hsize}X|}
+    % \caption{Caption.\label{tab:xltabular}}\\[\belowcaptionskip]
+    \hline
+    \(\mathbf{x}\in \mathbb{R}^{n}\)     & Continuous optimization     \\ \hline
+    \(\mathbf{x}\in \mathbb{Z}^{n}\)     & Integer optimization        \\ \hline
+    \(x_1,x_2,\dots,x_k \in \mathbb{R}\) and \(x_{k+1}, \dots, x_n \in \mathbb{Z}\)         & Mixed-optimization        \\ \hline
+\end{xltabular}
 \subsection{Table of known functions}
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
@@ -335,10 +401,6 @@ Simplex:
     \multicolumn{3}{|c|}{Functions and their implications regarding curvatuve} \\
     \hline
     \multicolumn{1}{|c|}{Function} & \multicolumn{1}{|c|}{Curvature} & \multicolumn{1}{|c|}{Comments} \\
-    % \hline
-    % Union: $C = A \cup B $ & Not in most of the cases. & \\
-    % \hline
-    % Intersection: $C = A \cap B $ & Yes, if $A$ and $B$ are convex sets. & \\
     \hline
     Matrix functions \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)
     \begin{itemize}[leftmargin=*]
@@ -447,12 +509,12 @@ Simplex:
         \item \(f(\mathbf{x}) = \left( \Pi_{i=1}^{n} x_i \right)^{1/n}\)
     \end{itemize} & Convex. & \\
     \hline
-    Log-determinant function \(f: \mathcal{S}^{n}_{++}\rightarrow \mathbb{R}\)
+    Log-determinant function \(f: \mathbb{S}^{n}_{++}\rightarrow \mathbb{R}\)
     \begin{itemize}[leftmargin=*]
         \item \(f(\mathbf{X}) = \log \abs{\mathbf{X}}\)
     \end{itemize} & Convex. & \vspace{-3.5ex}
     \begin{itemize}[leftmargin=*]
-        \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathcal{S}^{n}_{++}\).
+        \item \(\mathbf{X}\) is positive semidefinite, i.e., \(\mathbf{X} \succ \mathbf{0} \therefore \mathbf{X}\in \mathbb{S}^{n}_{++}\).
     \end{itemize} \\
     \hline
     Composite function \(f = h\circ g : \mathbb{R}^{n}\rightarrow \mathbb{R}\)
@@ -695,6 +757,15 @@ Simplex:
     \end{itemize}
 \end{itemize}
 
+\section{Methods of each optimization problem\autocite{macielSlidesOtimizacaoNaolinear}}
+\begin{xltabular}[l]{\linewidth}{|>{\hsize=.25\hsize}X|>{\hsize=.25\hsize}X|}
+    \hline
+    Linear Optimization     & Simplex method     \\\hline
+    Convex Optimization         & Branch-and-bound method        \\\hline
+    Unconstrained Optimization         & subgradient, pattern search (also known as direct search, derivative-free search or black-box search)        \\\hline
+    Constrained Optimization & Interior-points method\\\hline
+\end{xltabular}
+
 \subsection{How to construct a DCP problem?}
 
 \begin{itemize}
@@ -703,17 +774,17 @@ Simplex:
 
 \printbibliography
 
-% \clearpage
-% \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
-% \pdfpagewidth=80cm
-% \pdfpageheight=40cm
-% \pagenumbering{gobble}
-% \newgeometry{top=1in,left=1in,textwidth=15in,textheight=9in}
+\clearpage
+\edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
+\pdfpagewidth=80cm
+\pdfpageheight=60cm
+\pagenumbering{gobble}
+\newgeometry{top=1in,left=1in,textwidth=15in,textheight=9in}
 
-% \begin{figure}
-%     \centering
-%     \includestandalone{figs/optmization_types}
-%   \end{figure}
+\begin{figure}
+    \centering
+    \includestandalone{figs/optmization_types}
+\end{figure}
 
 
 % \restoregeometry
