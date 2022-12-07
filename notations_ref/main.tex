@@ -40,8 +40,8 @@
 \usepackage{mathtools} % is an extension package to amsmath
 \usepackage{amsfonts}
 \usepackage{amssymb}
-% \usepackage{newcomputermodern}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
+\usepackage{stmaryrd} % provides new symbols, such as \llbracket \rrbracket
 \usepackage{bm} % for writing tensor, e.g., $\bm{\mathcal{A}}$
 \usepackage{IEEEtrantools}
 \usepackage{siunitx} % typesetting units and unitless numbers SI (Système International d’Unités) units
@@ -201,8 +201,8 @@
     \(\unvec{\mathbf{A}}\)& Reshapes a column vector into a matrix\\
     \(\cof{\mathbf{A}}\) & Cofactor matrix of \(\mathbf{A}\)\\
     \(\eig{\mathbf{A}}\) & Set of the eigenvalues of \(\mathbf{A}\)\\
-    \(\left[ \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
-    \(\left[ \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \right]\) & Normalized CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\) \obs{TODO: change the square brackets to the double one by using the commented commands} \\ % \lBrack/\mathbf{A}, \mathbf{B}, \mathbf{C}, \dots\rBrack\) and \usepackage{newcomputermodern}
+    \(\llbracket \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \rrbracket\) & CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\)\\
+    \(\llbracket \boldsymbol{\lambdaup}; \mathbf{A}, \mathbf{B}, \mathbf{C}, \dots \rrbracket\) & Normalized CANDECOMP/PARAFAC (CP) decomposition of the tensor \(\bm{\mathcal{X}}\) from the outer product of column vectors of \(\mathbf{A}\), \(\mathbf{B}\), \(\mathbf{C}, \dots\)\\
     \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel)\\
     \(\range{\mathbf{A}}, \mathrm{columnspace}(\mathbf{A}), \mathrm{range}(\mathbf{A})\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
     \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Vector space spanned by the argument vectors\\

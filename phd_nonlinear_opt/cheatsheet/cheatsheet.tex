@@ -18,19 +18,20 @@
 \newcolumntype{B}{>{\setlength\hsize{.5\hsize}\setlength\linewidth{\hsize}\centering\arraybackslash}X}
 \newcolumntype{C}{>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X}
 
+
 % commands
 \usepackage{xparse} % make command behave differently depending on the number of arguments
 
 % math
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
 
 % commands
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\hermit}{\mathsf{H}}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\eval}[2]{\left.#1\right|_{#2}} % x|_x=a -> evaluation bar
 \newcommand{\dom}[1]{\ensuremath{\textnormal{dom}\left(#1\right)}} % domain of the function f
@@ -38,6 +39,16 @@
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
 \newcommand{\intersection}{\bigcap\limits}
 \NewDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}}
+
+\makeatletter % changes the catcode of @ to 11
+\DeclarePairedDelimiter\inner{\langle}{\rangle} % inner product〈a|b〉
+\let\oldinner\inner
+\def\inner{\@ifstar{\oldinner}{\oldinner*}}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert} % ||x|| -> l2-norm, 2-norm, Euclidean norm
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother % changes the catcode of @ back to 12
+
 
 \begin{document}
 
@@ -303,13 +314,13 @@ Simplex:
 \clearpage
 \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
 \pdfpagewidth=30cm
-\pdfpageheight=170cm
+\pdfpageheight=180cm
 \pagenumbering{gobble}
 \newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
 \section{Fuctions}
 \subsection{Categories of functions regarding its curvatuve}
 \begin{itemize}
-    \item In CVX, for functions with multiple arguments, the curvature categories are always considered jointly \autocite{DCPRulesetCVX}.
+    \item In CVX, for functions with multiple arguments (a vector as input), the curvature categories are always considered jointly \autocite{DCPRulesetCVX}.
 	\item The CVX optimization package, and, apparently, its derivatives (CVXPY, Convex.jl, CVXR...) categorize the functions as follows \autocite{DCPRulesetCVX}:
 \end{itemize}
 \subsubsection{Convex}
@@ -434,7 +445,10 @@ Simplex:
     \end{itemize} & It depends on \(a\) \begin{itemize}[leftmargin=*]
         \item \(f\) is convex iff \(a\geq 1\) or \(a\leq 0\).
         \item \(f\) is concave iff \(0\leq a \leq 1\).
-    \end{itemize} & \\
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+        \item Note that it is guaranteed to be convex iff the base power is solely \(x\). For instance, \((x+1)^2\) is convex, but \((x-1)^2\) is not.
+    \end{itemize}\\
     \hline
     Power of absolute value: \(f: \mathbb{R} \rightarrow \mathbb{R}\) \begin{itemize}[leftmargin=*]
         \item \(f(x) = \abs{x}^p\), where \(p\leq 1\).
@@ -447,7 +461,7 @@ Simplex:
     Negative entropy function: \(f: \mathbb{R}_{+} \rightarrow \mathbb{R}\)
     \begin{itemize}[leftmargin=*]
         \item \(f(x) = x\log x \)
-    \end{itemize} & Convex. &
+    \end{itemize} & Convex. & \vspace{-3.5ex}
     \begin{itemize}[leftmargin=*]
         \item When it is defined \(\eval{f(x)}{x=0} = 0 \), \(\dom{f} = \mathbb{R}\).
     \end{itemize} \\
@@ -557,7 +571,7 @@ Simplex:
         \end{itemize}
     \item For vector composition, we have the following examples:
         \begin{itemize}[label=\(\triangleright\)]
-            \item If \(g(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\) is an affine function, then \(f = h \circ g\) is convex (concave) if \(h\) is convex (concave).
+            \item If \(g\) is an affine function, then \(f = h \circ g\) is convex (concave) if \(h\) is convex (concave).
             \item Let \(h(\mathbf{x}) = x_{\left[ 1 \right]} + \dots + x_{\left[ r \right]}\) be the sum of the \(r\) largest components of \(\mathbf{x} \in \mathbb{R}^{k}\). If \(g_1, g_2, \dots, g_k\) are convex, where \(\dom{g_i} = \mathbb{R}^{n}\), then \(f = h\circ g\), which is the pointwise sum of the largest \(g_i\)'s, is convex.
             \item \(f = h\circ g\) is a convex function when \(h(\mathbf{x}) = \log\left( \sum_{i=1}^{k} e^{x_i} \right)\) and \(g_1, g_2, \dots, g_k\) are convex functions.
             \item For \(0<p \leq 1\), the function \(h(\mathbf{x}) = \left( \sum_{i=1}^{k} x_i^p \right)^{1/p}\), where \(\dom{h} = \mathbb{R}_+^{n}\), is concave. If \(g_1, g_2, \dots, g_k\) are concaves (convexes) and nonnegatives, then \(f = h \circ g\) is concave (convex).
@@ -571,8 +585,19 @@ Simplex:
         \item If \(f_1, f_2, \dots, f_m\) are convex or concave functions, then \(f\) is a convex or concave function, respectively.
         \item If \(f_1, f_2, \dots, f_m\) are strictly convex or concave functions, then \(f\) is a strictly convex or concave function, respectively.
     \end{itemize} & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-        \item Special cases is when \(f = w f\) (a nonnegative scaling) and \(f = f_1 + f_2\) (sum).
+        \item Special cases are when
+        \begin{itemize}
+            \item \(f = w f\) (a nonnegative scaling)
+            \item \(f = f_1 + f_2\) (sum).
+        \end{itemize}
     \end{itemize}\\
+    \hline
+    Addition/subtraction by a constant: \(f: \dom{f} \rightarrow \mathbb{R}\):
+    \begin{itemize}
+        \item \(f(\mathbf{x}) = g(\mathbf{x}) + k\), where \(k \in \mathbb{R}\) is a constant and \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}\).
+    \end{itemize}&\vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item If \(g\) is convex (concave), then \(f\) is convex (concave)
+    \end{itemize}&\\
     \hline
     Integral function \(f: \mathbb{R}^{n}\rightarrow \mathbb{R}\):
     \begin{itemize}
@@ -662,38 +687,6 @@ Simplex:
     \item The graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\).
     \item If \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But if \(f\) is strictly convex, not necessarily \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
 \end{itemize}
-\subsection{CVX and convexity}
-\begin{itemize}
-    \item CVX does not consider a function to be convex or concave if it is so only over a portion of its domain, even if the argument is constrained to lie in one of these portions.
-    \begin{itemize}
-        \item As an example, consider the function \texttt{1/x}. This function is convex for \texttt{x>0}, and concave for \texttt{x<0}. But you can never write \texttt{1/x} in CVX (unless \texttt{x} is constant), even if you have imposed a constraint such as \texttt{x>=1}, which restricts \texttt{x} to lie in the convex portion of function \texttt{1/x}.
-        \item You can use the CVX function \texttt{inv\_pos(x)}, defined as \texttt{1/x} for \texttt{x>0} and \(\infty\) otherwise, for the convex portion of \texttt{1/x}. CVX recognizes this function as convex and nonincreasing.
-    \end{itemize}
-    \item Some computational functions are convex, concave, or affine only for a subset of its arguments.
-    \begin{itemize}
-        \item For example, the function \texttt{norm(x,p)} where \(p \geq 1\) is convex only in its first argument. Whenever this function is used in a CVX specification, then, the remaining arguments must be constant (these kinds of input values are called \emph{parameters}), or CVX will issue an error message.
-        \item Such arguments correspond to a function's parameters in mathematical terminology; e.g.,
-        \[f_p(\mathbf{x}): \mathbb{R}^n \rightarrow \mathbb{R}, f_p(\mathbf{x}) \triangleq \norm{\mathbf{x}}_p\]
-        So it seems fitting that we should refer to such arguments as parameters in this context as well.
-        \item Henceforth, whenever we speak of a CVX function as being convex, concave, or affine, we will assume that its parameters are known and have been given appropriate, constant values.
-    \end{itemize}
-\end{itemize}
-\section{Constraints}
-\begin{itemize}
-	\item Type of constraints:
-    \begin{itemize}
-        \item Equality constraint.
-        \item Inequality constraint (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)).
-        \item Strict inequality constraint (\(<\), \(>\), \(\prec_K\), \(\succ_K\)).
-    \end{itemize}
-    \item Nonequalities is \emph{nerver} a constraint.
-    \item For CVX packages, strict inequalities (\(<\), \(>\), \(\prec_K\), \(\succ_K\)) are analyzed as inequalities (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)). Thus, \emph{it is strongly recommended to only deal with nonstrict inequalities}.
-    \item Convex and concave functions in CVX are interpreted as their \emph{extended-valued extensions} \autocite{DCPRulesetCVX}. This has the effect of automatically constraining the argument of a function to be in the function's domain.
-    \begin{itemize}
-        \item For example, if we form \texttt{sqrt(x+1)} in a CVX specification, \texttt{x} will automatically be constrained to be larger than or equal to \texttt{-1}.
-        \item There is no need to add a separate constraint, \texttt{x>=-1}, to enforce this.
-    \end{itemize}
-\end{itemize}
 
 \section{CVX and Disciplined Convex Programming (DCP)}
 \subsection{Introduction}
@@ -709,13 +702,64 @@ Simplex:
     \item What distinguishes disciplined convex programming from more general convex programming is the rules, called \emph{DCP ruleset}, that govern the construction of the expressions used in objective functions and constraints \autocite{DCPRulesetCVX}.
     \item Problems that violate the ruleset are rejected—even when the problem is convex. That is not to say that such problems cannot be solved using DCP; they just need to be rewritten in a way that conforms to the DCP ruleset.
     \item For matrix and array expressions, these rules are applied on an elementwise basis.
-    \item CVX generally forbids products between nonconstant expressions, with the exception of scalar quadratic forms.
+    \item CVX is \emph{not} meant to be a tool for checking whether your problem is convex.
+\end{itemize}
+\subsection{\textit{No-product rule} and the scalar quadratic form expection}
+\begin{itemize}
+    \item CVX generally forbids products between nonconstant expressions, e.g., \(x * x\) (assuming \(x\) is a scalar variable). We call this the \emph{no-product rule}, and paying close attention to it will go a long way to ensuring that the expressions you construct are valid \autocite{DCPRulesetCVX}.
     \begin{itemize}
-        \item For example, the expression \texttt{x*sqrt(x)} happens to be a convex function of \texttt{x}, but its convexity cannot be verified using the CVX ruleset, and so is rejected.
-        \item It can be expressed as \texttt{pow\_p(x,3/2)}, however.
-        \item We call this the \emph{no-product rule}, and paying close attention to it will go a long way to ensuring that the expressions you construct are valid.
+        \item For example, the expression \texttt{x*sqrt(x)} happens to be a convex function of \texttt{x}, but its convexity cannot be verified using the CVX ruleset, and so it is rejected.
+        \item It can be expressed as \texttt{pow\_p(x,3/2)} though, where \(\texttt{pow\_p}(\cdot)\) is a function from the atom library that substitutes power expressions.
     \end{itemize}
-    \item CVX is \emph{not} meant to be a tool for checking if your problem is convex.
+    \item For practical reasons, we have chosen to make an exception to the ruleset to allow for the recognition of certain specific quadratic forms that map directly to certain convex quadratic functions (or their concave negatives) in the CVX atom library:
+    \begin{itemize}
+        \item \(\mathtt{\mathbf{x} \mathtt{.*} \mathbf{x}}\) is mapped to the function \(\mathtt{square(\mathbf{x})}\) from the CVS atom library, where \(\mathbf{x} \in \mathbb{R}^{n}\).
+        \item \(\mathtt{\mathtt{conj}(\mathbf{x}) \mathtt{.*} \mathbf{x}}\) is mapped to the function \(\mathtt{square\_abs(\mathbf{x})}\) from the CVS atom library, where \(\mathbf{x} \in \mathbb{C}^{n}\).
+        \item \(\mathtt{\mathbf{x}\textnormal{\textquotesingle} \mathtt{.*} \mathbf{x}}\) is mapped to the function \(\mathtt{square\_abs(\mathbf{x})}\) from the CVS atom library, where \(\mathbf{x} \in \mathbb{C}^{n}\) and \(\mathtt{\mathbf{x}\textnormal{\textquotesingle}}\) is the complex conjugate.
+        \item \(\mathtt{(\mathbf{Ax} + \mathbf{a})\textnormal{\textquotesingle} \mathtt{*} \mathbf{Q} * (\mathbf{Ax} + \mathbf{b})}\) is mapped to the function \(\mathtt{quad\_form(\mathbf{x}, \mathbf{Q})}\) from the CVS atom library, where \(\mathbf{x} \in \mathbb{R}^{n}\), \(\mathbf{Q}\in \mathbb{S}^{n}\) (is it symmetric?), and \(\mathtt{\mathbf{x}\textnormal{\textquotesingle}}\) is the complex conjugate. Note that \(\mathbf{\mathtt{a}}\) is not necessarily equal to \(\mathbf{\mathtt{b}}\), as it is in the quadratic form.
+    \end{itemize}
+    CVX detects the quadratic expressions such as those on the left above, and determines whether or not they are convex or concave; and if so, translates them to an equivalent function call from the atom library.
+    \item It will \emph{not} check, for example, sums of products of affine expressions. For example, \(\mathtt{x \textsuperscript{$\wedge$} 2 + 2 * x * y + y \textsuperscript{$\wedge$}2}\), where \(\mathtt{x,y} \in \mathbb{R}\), will cause an error in CVX, because the second term is neither convex nor concave. However, the alternative expressions \(( x + y ) \textsuperscript{$\wedge$} 2\) and \(( x + y ) * ( x + y )\) are compatible to CVX.
+    \item The quadratic form, however, can (and must) be avoided since there exist equivalent expressions.
+    \begin{itemize}
+        \item For instance, \(\mathtt{sum( ( \mathbf{A} * \mathbf{x} - \mathbf{b} ) .^ 2 ) <= 1}\) can the rewritten to the equivalent expression by using the Euclidean norm: \(\mathtt{norm( A * x - b ) <= 1}\), which is more efficient than that former \autocite{DCPRulesetCVX}.
+    \end{itemize}
+\end{itemize}
+\subsection{General approaches of convex analyses}
+\begin{itemize}
+    \item Assume that the objective function of convex and proceed.
+    \begin{itemize}
+        \item It may lead to errors.
+    \end{itemize}
+    \item Verify whether the problem is convex or not
+    \begin{itemize}
+        \item The basic approach is the first- and second-order conditions.
+        \item It usually leads to complicated analysis.
+    \end{itemize}
+    \item Construct the problem as convex from the DCP ruleset and a ``atom library'', which is a set of basic functions that preserve convexity/concavity.
+    \begin{itemize}
+        \item It is restricted to the atom library and DCP ruleset, but the convexity verification is automatic.
+        \item It usually involves adding auxiliary variables and reformulating the original optimization problem in order to get an expression that obeys the CDP ruleset \autocite{HomeConvexJl}.
+        \item The manipulation of the original problem by using operations that preserve the convexity/concavity is called convex calculus\autocite{boydDisciplinedConvexProgramming}.
+        \item The reformulation usually leads to a new optimization problem that is not equal to the original one. However, they are equivalents, that is, if your find the solve the reformulated problem, then you also find the solution to the original problem.
+    \end{itemize}
+\end{itemize}
+
+\subsection{CVX and convexity}
+\begin{itemize}
+    \item CVX does not consider a function to be convex or concave if it is so only over a portion of its domain, even if the argument is constrained to lie in one of these portions.
+    \begin{itemize}
+        \item As an example, consider the function \texttt{1/x}. This function is convex for \texttt{x>0}, and concave for \texttt{x<0}. But you can never write \texttt{1/x} in CVX (unless \texttt{x} is constant), even if you have imposed a constraint such as \texttt{x>=1}, which restricts \texttt{x} to lie in the convex portion of function \texttt{1/x}.
+        \item You can use the CVX function \texttt{inv\_pos(x)}, defined as \texttt{1/x} for \texttt{x>0} and \(\infty\) otherwise, for the convex portion of \texttt{1/x}. CVX recognizes this function as convex and nonincreasing.
+    \end{itemize}
+    \item Some computational functions are convex, concave, or affine only for a subset of its arguments\autocite{DCPRulesetCVX}.
+    \begin{itemize}
+        \item For example, the function \texttt{norm(x,p)} where \(p \geq 1\) is convex only in its first argument. Whenever this function is used in a CVX specification, then, the remaining arguments must be constant (these kinds of input values are called \emph{parameters}), or CVX will issue an error message.
+        \item Such arguments correspond to a function's parameters in mathematical terminology; e.g.,
+        \[f_p(\mathbf{x}): \mathbb{R}^n \rightarrow \mathbb{R}, f_p(\mathbf{x}) \triangleq \norm{\mathbf{x}}_p\]
+        So it seems fitting that we should refer to such arguments as parameters in this context as well.
+        \item Henceforth, whenever we speak of a CVX function as being convex, concave, or affine, we will assume that its parameters are known and have been given appropriate, constant values.
+    \end{itemize}
 \end{itemize}
 \subsection{Ruleset \autocite{DCPRulesetCVX}}
 \begin{itemize}
@@ -757,7 +801,50 @@ Simplex:
     \end{itemize}
 \end{itemize}
 
-\section{Methods of each optimization problem\autocite{macielSlidesOtimizacaoNaolinear}}
+\subsection{Construction examples of CVX-compatible expressions}
+The composition of convex functions is the base rule for the construction of expressions on CVX \autocite{DCPRulesetCVXa}. One shall use the atoms functions in order to build expressions on CVX \autocite{DCPRulesetCVX}. Consider the following examples:
+    \begin{itemize}
+        \item \(f = \mathtt{max}(\mathtt{abs}(\mathbf{x}))\)
+        \begin{itemize}
+            \item \(h = \mathtt{max}(\cdot)\) is a convex and \(\tilde{h}\) is nondecreasing in any argument. Therefore, if \(g\) is convex for any element in \(\mathbf{x} \in \mathbb{R}^{n}\), so is \(f = h \circ g\). Hence, the function \(f = h \circ g = \mathtt{max}(\mathtt{abs}(\mathbf{x}))\) is convex for any \(\mathbf{x} \in \mathbb{R}^{n}\).
+        \end{itemize}
+        \item \(f = \mathtt{sqrt}(\inner{\mathbf{k},\mathbf{x}}) + \mathtt{min}(4, 1.3-\mathtt{norm}(\mathbf{A}*\mathbf{x}-\mathbf{b}))\), where \(\mathbf{k}, \mathbf{A}, \mathbf{b}\) are constants.
+        \begin{itemize}
+            \item \(h_1 = \mathtt{sqrt}(\cdot)\) is concave and nondecreasing.
+            \item \(g_1 = \inner{\cdot, \cdot}\) is linear, consequently affine. Hence, it is both convex and concave.
+            \item Then \(f_1 = h_1 \circ g_1 = \mathtt{sqrt}(\inner{\cdot,\cdot})\) is concave.
+            \item \(h_2 = \mathtt{min}(\cdot)\) is concave and nondecreasing.
+            \item \(g_2 = 1.3 - \mathtt{norm}(\cdot)\) is concave as it is a difference of a constant and a concave function, \(\mathtt{norm}(\cdot)\).
+            \item Then, \(f_2 = h_2 \circ g_2\) is also concave.
+            \item Finally, \(f = f_1 + f_2\) is concave since it is the sum of two concave functions (vide nonnegative weighted sum).
+        \end{itemize}
+        \item \(f = (x\textsuperscript{$\wedge$}2 + 1)\textsuperscript{$\wedge$}2\)
+        \begin{itemize}
+            \item \(g_1 = x\textsuperscript{$\wedge$}2\) is a convex function (vide power function). \(g = g_1 + 1\) is convex (vide addition/subtraction by a constant). Although \(f = g^2\) is convex, the power function guarantees convexity only when the power base is solely \(x\). For instance, the function \((x\textsuperscript{$\wedge$}2 - 1)\textsuperscript{$\wedge$}2\) is nonconvex. Therefore, the function \((x\textsuperscript{$\wedge$}2 + 1)\textsuperscript{$\wedge$}2\) would be rejected by CVX.
+            \item To circumvent it, one can rewrite as \(f\) as \(x\textsuperscript{$\wedge$}4 + 2*x\textsuperscript{$\wedge$}2 + 1\). Now, the power function guarantees that \(f\) is convex, thus this expression is CVX-compatible.
+            \item Another approach is to use the atom library \(\mathtt{square\_pos}(\cdot)\), which represents the function \((x_+)^2\), where \(x_+ = \max \left\{ 0,x \right\}\). Now, since \(h = \mathtt{square\_pos}(\cdot)\) is convex and \(\tilde{h}\) is nondecreasing, \(f = h\circ g\) is guaranteed to be convex as long a \(g\) is convex as well. As \(g = x\textsuperscript{$\wedge$}2 + 1\) is convex, we conclude that \(f\) is convex and a valid CVX expression.
+        \end{itemize}
+    \end{itemize}
+
+\section{Constraints}
+\begin{itemize}
+	\item Type of constraints:
+    \begin{itemize}
+        \item Equality constraint.
+        \item Inequality constraint (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)).
+        \item Strict inequality constraint (\(<\), \(>\), \(\prec_K\), \(\succ_K\)).
+    \end{itemize}
+    \item Nonequalities is \emph{nerver} a constraint.
+    \item For CVX packages, strict inequalities (\(<\), \(>\), \(\prec_K\), \(\succ_K\)) are analyzed as inequalities (\(\leq\), \(\geq\), \(\preceq_K\), \(\succeq_K\)). Thus, \emph{it is strongly recommended to only deal with nonstrict inequalities}.
+    \item Convex and concave functions in CVX are interpreted as their \emph{extended-valued extensions} \autocite{DCPRulesetCVX}. This has the effect of automatically constraining the argument of a function to be in the function's domain.
+    \begin{itemize}
+        \item For example, if we form \texttt{sqrt(x+1)} in a CVX specification, \texttt{x} will automatically be constrained to be larger than or equal to \texttt{-1}.
+        \item There is no need to add a separate constraint, \texttt{x>=-1}, to enforce this.
+    \end{itemize}
+\end{itemize}
+
+
+\section{Methods of each optimization problem \autocite{macielSlidesOtimizacaoNaolinear}}
 \begin{xltabular}[l]{\linewidth}{|>{\hsize=.25\hsize}X|>{\hsize=.25\hsize}X|}
     \hline
     Linear Optimization     & Simplex method     \\\hline
@@ -765,12 +852,6 @@ Simplex:
     Unconstrained Optimization         & subgradient, pattern search (also known as direct search, derivative-free search or black-box search)        \\\hline
     Constrained Optimization & Interior-points method\\\hline
 \end{xltabular}
-
-\subsection{How to construct a DCP problem?}
-
-\begin{itemize}
-    \item A basic rule of construction of a DCP problem is the composition property: A convex, concave, or affine function may accept an affine expression (of compatible size) as an argument. The result is convex, concave, or affine, respectively \autocite{DCPRulesetCVX}.
-\end{itemize}
 
 \printbibliography
 
