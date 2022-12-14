@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm]{geometry}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=52cm,paperwidth=30cm]{geometry}
 
 % items, table and figs
 \usepackage{enumitem}
@@ -53,47 +53,6 @@
 \begin{document}
 
 \section{Sets}
-\subsection{Generalized inequalities}
-\begin{itemize}
-    \item A proper cone \(K\) is used to define the \textit{generalized inequality} in a space \(A\), where \(K \subset A\).
-    \item \(\mathbf{x} \preceq \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in K\) for \(\mathbf{x}, \mathbf{y} \in A\) (generalized inequality).
-    \item \(\mathbf{x} \prec \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in \textnormal{int }K\) for \(\mathbf{x}, \mathbf{y} \in A\) (strict generalized inequality).
-    \item There are two cases where \(K\) and \(A\) are understood from context and the subscript \(K\) is dropped out:
-    \begin{itemize}[label={$\triangleright$}]
-        \item When \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
-        \item When \(K = \mathbb{S}^{n}_{+}\) and \(A = \mathbb{S}^{n}\), or \(K = \mathbb{S}^{n}_{++}\) and \(A = \mathbb{S}^{n}\), where \(\mathbb{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathbb{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathbb{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathbb{S}^{n}_{+}\) is a proper cone in \(\mathbb{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathbb{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathbb{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
-    \end{itemize}
-    \item Another common usage is when \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
-    \item The generalized inequality has the following properties:
-    \begin{itemize}[label={$\triangleright$}]
-        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{u} \preceq_K \mathbf{v}\), then \(\mathbf{x} + \mathbf{u} \preceq_k \mathbf{y} + \mathbf{v}\) (preserve under addition).
-        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{y} \preceq_K \mathbf{z}\), then \(\mathbf{x} \preceq_K \mathbf{z}\) (transitivity).
-        \item If \(\mathbf{x}\preceq_K \mathbf{y}\), then \(\alpha\mathbf{x}\preceq_K \mathbf{y}\) for \(\alpha\geq0\) (preserve under nonnegative scaling).
-        \item \(\mathbf{x}\preceq_K \mathbf{x}\) (reflexivity).
-        \item If \(\mathbf{x}\preceq_K \mathbf{y}\) and \(\mathbf{y}\preceq_K \mathbf{x}\), then \(\mathbf{x} = \mathbf{y}\) (antisymmetric).
-        \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
-    \end{itemize}
-    \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in A\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
-\end{itemize}
-\subsection{Minimum (maximum)}
-\begin{itemize}
-    \item The minimum (maximum) element of a set \(S\) is always defined with respect to the proper cone \(K\).
-    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of the set \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)).
-    \item It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality sense.
-    \item The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
-\end{itemize}
-\subsection{Minimal (maximal)}
-\begin{itemize}
-    \item The minimal (maximal) element of a set \(S\) is always defined with respect to the proper cone \(K\).
-    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)).
-    \item It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\).
-    \item Any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is less than or equal to \(\mathbf{x}\) in the generalized inequality mean.
-    \item The set \(S\) can have many minimal (maximal) elements.
-\end{itemize}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=.5]{figs/minimum_maximum.jpg}
-\end{figure}
 \subsection{Table of the known sets}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{|A|C|}
@@ -109,6 +68,7 @@ Convex hull:
 \begin{itemize}[leftmargin=*]
     \item $\textnormal{conv } C$ is the smallest convex set that contains $C$.
     \item $\textnormal{conv } C$ is a finite set as long as $C$ is also finite.
+    \item \(\sum_{i=1}^{k} \theta_i\mathbf{x}_i\) is called a convex combination.
 \end{itemize}\\
 \hline
 Affine hull:
@@ -153,8 +113,10 @@ Hyperplane:
 \hline
 Halfspaces:
 \begin{itemize}[leftmargin=*]
-    \item \(\mathcal{H}_{-} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \leq b \right\}\)
-    \item \(\mathcal{H}_{+} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \geq b \right\}\)
+    \item \(\mathcal{H}_{-} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \leq b \right\}\) (closed), where \(\mathbf{x}, \mathbf{a} \in \mathbb{R}^{n}\)
+    \item \(\mathcal{H}_{-} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} < b \right\}\) (opened), where \(\mathbf{x}, \mathbf{a} \in \mathbb{R}^{n}\)
+    \item \(\mathcal{H}_{+} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} \geq b \right\}\) (closed), where \(\mathbf{x}, \mathbf{a} \in \mathbb{R}^{n}\)
+    \item \(\mathcal{H}_{+} = \left\{ \mathbf{x} \mid \mathbf{a}^\trans \mathbf{x} > b \right\}\) (opened), where \(\mathbf{x}, \mathbf{a} \in \mathbb{R}^{n}\)
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item They are infinite sets of the parts divided by \(\mathcal{H}\).
@@ -279,6 +241,48 @@ Simplex:
 \end{tabularx}
 \end{table}
 
+\subsection{Generalized inequalities}
+\begin{itemize}
+    \item A proper cone \(K\) is used to define the \textit{generalized inequality} in a space \(A\), where \(K \subset A\).
+    \item \(\mathbf{x} \preceq \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in K\) for \(\mathbf{x}, \mathbf{y} \in A\) (generalized inequality).
+    \item \(\mathbf{x} \prec \mathbf{y} \iff \mathbf{y} - \mathbf{x} \in \textnormal{int }K\) for \(\mathbf{x}, \mathbf{y} \in A\) (strict generalized inequality).
+    \item There are two cases where \(K\) and \(A\) are understood from context and the subscript \(K\) is dropped out:
+    \begin{itemize}[label={$\triangleright$}]
+        \item When \(K = \mathbb{R}^{n}_{+}\) (the nonnegative orthant) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq \mathbf{y}\) means that \(x_i \leq y_i\).
+        \item When \(K = \mathbb{S}^{n}_{+}\) and \(A = \mathbb{S}^{n}\), or \(K = \mathbb{S}^{n}_{++}\) and \(A = \mathbb{S}^{n}\), where \(\mathbb{S}^{n}\) denotes the set of symmetric \(n\times n\) matrices, \(\mathbb{S}^{n}_{+}\) is the space of the positive semidefinite matrices, and \(\mathbb{S}^{n}_{++}\) is the space of the positive definite matrices. \(\mathbb{S}^{n}_{+}\) is a proper cone in \(\mathbb{S}^{n}\) (??). In this case, the generalized inequality \(\mathbf{Y} \succeq \mathbf{X}\) means that \(\mathbf{Y}-\mathbf{X}\) is a positive semidefinite matrix belonging to the positive semidefinite cone \(\mathbb{S}^{n}_{+}\) in the subspace of symmetric matrices \(\mathbb{S}^{n}\). It is usual to denote \(\mathbf{X} \succ \mathbf{0}\) and \(\mathbf{X} \succeq \mathbf{0}\) to mean than \(\mathbf{X}\) is a positive definite and semidefinite matrix, respectively, where \(\mathbf{0} \in \mathbb{R}^{n\times n}\) is a zero matrix.
+    \end{itemize}
+    \item Another common usage is when \(K = \left\{ \mathbf{c} \in \mathbb{R}^{n} \mid c_1 + c_2 t + \dots + c_n t^{n-1} \geq 0, \textnormal{ for } 0\leq t\leq 1 \right\}\) and \(A = \mathbb{R}^{n}\). In this case, \(\mathbf{x} \preceq_K \mathbf{y}\) means that \(x_1 + x_2 t + \dots + x_n t^{n-1} \leq y_1 + y_2 t + \dots + y_n t^{n-1}\).
+    \item The generalized inequality has the following properties:
+    \begin{itemize}[label={$\triangleright$}]
+        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{u} \preceq_K \mathbf{v}\), then \(\mathbf{x} + \mathbf{u} \preceq_k \mathbf{y} + \mathbf{v}\) (preserve under addition).
+        \item If \(\mathbf{x} \preceq_K \mathbf{y}\) and \(\mathbf{y} \preceq_K \mathbf{z}\), then \(\mathbf{x} \preceq_K \mathbf{z}\) (transitivity).
+        \item If \(\mathbf{x}\preceq_K \mathbf{y}\), then \(\alpha\mathbf{x}\preceq_K \mathbf{y}\) for \(\alpha\geq0\) (preserve under nonnegative scaling).
+        \item \(\mathbf{x}\preceq_K \mathbf{x}\) (reflexivity).
+        \item If \(\mathbf{x}\preceq_K \mathbf{y}\) and \(\mathbf{y}\preceq_K \mathbf{x}\), then \(\mathbf{x} = \mathbf{y}\) (antisymmetric).
+        \item If \(\mathbf{x}_i\preceq_K \mathbf{y}_i\), for \(i = 1, 2, \dots\), and \(\mathbf{x}_i \rightarrow \mathbf{x}\) and \(\mathbf{y}_i \rightarrow \mathbf{y}\) as \(i \rightarrow \infty\), then \(\mathbf{x} \preceq_K \mathbf{y}\).
+    \end{itemize}
+    \item It is called partial ordering because \(\mathbf{x} \nsucceq_K \mathbf{y}\) and \(\mathbf{y} \nsucceq_K \mathbf{x}\) for many \(\mathbf{x}, \mathbf{y} \in A\). When it happens, we say that \(\mathbf{x}\) and \(\mathbf{y}\) are not comparable (this case does not happen in ordinary inequality, \(<\) and \(>\)).
+\end{itemize}
+\subsection{Minimum (maximum)}
+\begin{itemize}
+    \item The minimum (maximum) element of a set \(S\) is always defined with respect to the proper cone \(K\).
+    \item \(\mathbf{x} \in S\) is the \emph{minimum} element of the set \(S\) with respect to the proper cone \(K\) if \(\mathbf{x} \preceq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\) (for \emph{maximum}, \(\mathbf{x} \succeq_K \mathbf{y}, \;\forall\;\mathbf{y} \in S\)).
+    \item It means that \(S \subseteq \mathbf{x} + K\) (for the maximum, \(S \subseteq \mathbf{x} - K\)), where \(\mathbf{x} + K\) denotes the set \(K\) shifted from the origin by \(\mathbf{x}\). Note that any point in \(K+\mathbf{x}\) is comparable with \(\mathbf{x}\) and is greater or equal to \(\mathbf{x}\) in the generalized inequality sense.
+    \item The set \(S\) does not necessarily have a minimum (maximum), but the minimum (maximum) is unique if it does.
+\end{itemize}
+\subsection{Minimal (maximal)}
+\begin{itemize}
+    \item The minimal (maximal) element of a set \(S\) is always defined with respect to the proper cone \(K\).
+    \item \(\mathbf{x} \in S\) is the \emph{minimal} element of \(S\) with respect to the proper cone \(K\) if \(\mathbf{y} \preceq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\) (for the \emph{maximal}, \(\mathbf{y} \succeq_K \mathbf{x}\) only when \(\mathbf{y} = \mathbf{x}\)).
+    \item It means that \((\mathbf{x} - K) \cap S = \left\{ \mathbf{x} \right\}\) for minimal (for the maximal \((\mathbf{x} + K) \cap S = \left\{ \mathbf{x} \right\}\)), where \(\mathbf{x} - K\) denotes the reflected set \(K\) shift by \(\mathbf{x}\).
+    \item Any point in \(\mathbf{x} - K\) is comparable with \(\mathbf{x}\) and is less than or equal to \(\mathbf{x}\) in the generalized inequality mean.
+    \item The set \(S\) can have many minimal (maximal) elements.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.5]{figs/minimum_maximum.jpg}
+\end{figure}
+
 \subsection{Operations on set and their implications regarding curvature}
 \begin{xltabular}[l]{0.5\linewidth}{|X|X|}
     \hline
@@ -287,7 +291,7 @@ Simplex:
     Union \(C = A \cup B \)
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \mathbf{x}\in \mathbb{R}^{n} \mid \mathbf{x} \in A \text{ or } \mathbf{x} \in B \right\}\).
-    \end{itemize} & It is neither convex nor concave in most of the cases\\
+    \end{itemize} & It is neither convex nor concave in most of the cases, even if \(A\) and \(B\) are convex\\
     \hline
     Intersection: $C = A \cap B $
     \begin{itemize}[leftmargin=*]
@@ -299,9 +303,19 @@ Simplex:
         \item \(C = \left\{ \mathbf{x}+\mathbf{y} \in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{y} \in B \right\}\).
     \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
     \hline
+    Minkowski difference: $C = A - B $
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \mathbf{x}-\mathbf{y} \in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{y} \in B \right\}\).
+    \end{itemize} & It is neither convex nor concave in most of the cases, even if \(A\) and \(B\) are convex\\
+    \hline
     Offset: $C = A + k $
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \mathbf{x}+k \in \mathbb{R}^{n} \mid \mathbf{x} \in A, k \in \mathbb{R} \right\}\).
+    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \hline
+    Set scaling: $C = \alpha A$
+    \begin{itemize}[leftmargin=*]
+        \item \(C = \left\{ \alpha \mathbf{x} \mid \mathbf{x} \in A \right\}\).
     \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
     \hline
     Cartesian product: $C = A \times B $
@@ -311,10 +325,48 @@ Simplex:
     \hline
 \end{xltabular}
 
+\subsection{Analitical proofs that a set in convex}
+\subsubsection{Get a middle point between extremes of the set and see whether it leads to a contradiction (useful to prove nonconvexity)}
+The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinations of the points belonging to \(S\), i.e.,
+\begin{align}
+    \mathbf{w} = \theta \mathbf{x} + (1-\theta)\mathbf{y} \in S \;\forall\; \mathbf{x}, \mathbf{y} \in S, 0\leq\theta\leq 1
+\end{align}
+\begin{itemize}
+    \item Note that \(\mathbf{w}\) is a point between \(\mathbf{x}\) and \(\mathbf{y}\), i.e., \(\mathbf{x} \preceq_K \mathbf{w} \preceq_k \mathbf{y}\), where \(K\) is a given cone set.
+    \item For instance, if \(S = \left\{ \mathbf{v} \in \mathbb{R}_{+}^{2} \mid v_0v_1 \leq 1 \right\}\), we can show its nonconvexity with the following steps:
+    \begin{enumerate}
+        \item Take extreme points that belong to this set. In this example, consider the case where \(x_1 \gg 0\) and \(y_0 \gg 0\)
+        \item Apply the consequence of this extreme case on other vector elements. In this example, it leads to \(x_0 \rightarrow 0\) and \(y_1 \rightarrow 0\).
+        \item Set \(\mathbf{w}\) to the middle point between \(\mathbf{x}\) and \(\mathbf{y}\), i.e., \(\theta = 0.5\).
+        \item Try to find conditions, on element-by-element of \(\mathbf{w}\), that lead to a contradiction of the initial condition. In this example, the equation \(w_1 = \theta x_1 + (1-\theta)y_1\) makes us conclude that \(w_0 \rightarrow 0\), regarding that \(\mathbf{w} \in S\). On the other hand, the equation \(w_0 = \theta x_0 + (1-\theta)y_0\) makes us to conclude that \(w_0 \gg 0\), regarding that \(\mathbf{w} \in S\).
+        \item The contradiction leads us to prove that \(\mathbf{w} \not\in S\)
+    \end{enumerate}
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.2]{figs/2.8_set.png}
+\end{figure}
+
+\subsubsection{Apply the convex combination and verify whether it holds for all possible combinations}
+
+The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinations of the points belonging to \(S\), i.e.,
+\begin{align}
+    \mathbf{w} = \theta \mathbf{x} + (1-\theta)\mathbf{y} \in S \;\forall\; \mathbf{x}, \mathbf{y} \in S, 0\leq\theta\leq 1
+\end{align}
+\begin{itemize}
+    \item Note that \(\mathbf{w}\) is a point between \(\mathbf{x}\) and \(\mathbf{y}\), i.e., \(\mathbf{x} \preceq_K \mathbf{w} \preceq_k \mathbf{y}\), where \(K\) is a given cone set.
+    \item For instance, if \(S = \left\{ \mathbf{v} \in \mathbb{R}_{++}^{2} \mid v_0/v_1 \leq 1 \right\}\), we can show its convexity with the following steps:
+    \begin{itemize}
+        \item Apply the property of the set on the convex combination regarding \(\mathbf{x}\) and \(\mathbf{y}\), which are known to belong to \(S\). Thus, \(\mathbf{w} = \mathbf{x} + (1-\theta)\mathbf{y} = (\theta x_0 + (1 - \theta)y_0, \theta x_1 + (1 - \theta)y_1)\)
+        \item Assume that the resulting point of the convex combination, \(\mathbf{w}\), which is between \(\mathbf{x}\) and \(\mathbf{y}\), also belongs to \(S\), and apply the conditional that makes any point belong to \(S\). That is, \(\frac{\theta x_0 + (1 - \theta)y_0}{\theta x_1 + (1 - \theta)y_1} \geq 1\).
+        \item Manipulate the expression in a way that you see that this inequation hold for any \(\mathbf{x}, \mathbf{y} \in S\) (or discover that is does not hold). It is usually useful to apply the conditions from the fact that \(\mathbf{x}, \mathbf{y} \in S\) to infer whether the equation/inequation holds. In this example, \(\frac{x_0}{x_1}\frac{\theta}{y_1} + \frac{y_0}{y_1} \frac{1 - \theta}{x_1} \geq \frac{\theta}{y_1} + \frac{1 - \theta}{x_1}\) is clearly true for any \(\mathbf{x}, \mathbf{y} \in S\). Then, \(\mathbf{w} \in S\).
+    \end{itemize}
+\end{itemize}
+
 \clearpage
 \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
 \pdfpagewidth=30cm
-\pdfpageheight=180cm
+\pdfpageheight=80cm
 \pagenumbering{gobble}
 \newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
 \section{Fuctions}
@@ -406,6 +458,15 @@ Simplex:
     \(\mathbf{x}\in \mathbb{Z}^{n}\)     & Integer optimization        \\ \hline
     \(x_1,x_2,\dots,x_k \in \mathbb{R}\) and \(x_{k+1}, \dots, x_n \in \mathbb{Z}\)         & Mixed-optimization        \\ \hline
 \end{xltabular}
+
+\clearpage
+\edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
+\pdfpagewidth=30cm
+\pdfpageheight=100cm
+\pagenumbering{gobble}
+\newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
+
+
 \subsection{Table of known functions}
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
@@ -607,10 +668,12 @@ Simplex:
     \hline
     Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
     \begin{itemize}[leftmargin=*]
-        \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}\).
-    \end{itemize} & Yes, if \(S \subseteq \dom{f}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex. & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}_{++}\), and \((\mathbf{x}, t) \in \dom{f}\).
+    \end{itemize}
+    & It is a convex function as long as \(\dom{f}\) is also convex & \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
         \item The perspective function decreases the dimension of the function domain since \(\textnormal{dim}(\dom{f}) = n+1\).
-        \item Its effect is similar to the camera zoom.
+        \item Its effect is similar to the pin-hole camera.
+        \item If \(S \subseteq \dom{f} \subseteq \mathbb{R}^{n} \times \mathbb{R}_{++}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex.
         \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
         \item A special case is when \(n=1\), which is called \emph{quadratic-over-linear function}.
     \end{itemize} \\
@@ -669,8 +732,8 @@ Simplex:
 \end{tabularx}
 \end{table}
 
-\section{Convexity}
-\subsection{First-order condition of convexity}
+\section{Analytical proofs of the convexity of a function}
+\subsection{First-order condition of convexity (apparently too complicated to prove it)}
 \begin{align}
     f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}
 \end{align}
@@ -687,6 +750,16 @@ Simplex:
     \item In other words, the Hessian matrix \(\mathbf{H}\) is a positive semidefinite matrix.
     \item The graphic of the curvature has a positive (upward) curvature at \(\mathbf{x}\).
     \item If \(\mathbf{H}\succ\mathbf{0}, \forall\; \mathbf{x} \in \dom{f}\), then \(f\) is strictly convex. But if \(f\) is strictly convex, not necessarily \(\mathbf{H}\succ\mathbf{0},\forall\; \mathbf{x} \in \dom{f}\). Therefore, strict convexity can only be partially characterized.
+\end{itemize}
+\subsection{Convexity definition}
+\begin{align}
+    f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y}),\;\forall\; \mathbf{x}, \mathbf{y} \in \dom{f}, 0\leq\theta\leq 1
+\end{align}
+\begin{itemize}
+	\item If \(f\) is continuous, it is enough to check that(?)
+    \begin{align}
+        f\left( \dfrac{\mathbf{x}+\mathbf{y}}{2} \right) = \dfrac{f(\mathbf{x}) + f(\mathbf{y})}{2}
+    \end{align}
 \end{itemize}
 
 \section{CVX and Disciplined Convex Programming (DCP)}

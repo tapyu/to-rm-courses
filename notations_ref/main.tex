@@ -215,7 +215,10 @@
     \(\inner{\mathbf{a}}{\mathbf{b}}\) & Inner product, i.e., \(\mathbf{a}^\top\mathbf{b}\)\\
     \(\mathbf{a} \circ \mathbf{b}\) & Outer product, i.e., \(\mathbf{a}\mathbf{b}^\top\)\\
     \(\otimes\) & Kronecker product\\
-    \(\odot\) & Hadamard (elementwise) product\\
+    \(\odot\) & Hadamard (or Schur) (elementwise) product\\
+    \(\oslash\) & Hadamard (or Schur) (elementwise) division\\
+    \(\mathbf{A}^{\odot n}\) & \(n\)th-order Hadamard power of the matrix \(\mathbf{A}\)\\
+    \(\mathbf{A}^{\odot \frac{1}{n}}\) & \(n\)th-order Hadamard root of the matrix \(\mathbf{A}\)\\
     \(\diamond\) & Khatri-Rao product\\
     \(\otimes\) & Kronecker Product\\
     \(\times_n\) & \(n\)-mode product\\
@@ -256,13 +259,16 @@
     \(A \cup B\) & Set of union\\
     \(A \cap B\) & Set of intersection\\
     \(A \times B\) & Cartesian product\\
+    \(A^n\) & \(\underbrace{A \times A \times \dots \times A}_{n \text{ times}}\)\\
     \(A^{\perp}\) & Orthogonal complement of \(A\), e.g., \(\nullspace{\mathbf{A}} = \range{\mathbf{A}^{\top}}^{\perp}\)\\
     \(A \oplus B\) & Direct sum, e.g., \(\range{\mathbf{A}^{\top}} \oplus \range{\mathbf{A}^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
-    \(A^{c}, \bar{A}\) & Complement set\\
+    \(A^{c}, \bar{A}\) & Complement set (given $U$)\\
     \(\#A, \abs{A}\) & Cardinality\\
     \(a \in A\)& \(a\) is element of \(A\) \\
     \(a \notin A\)& \(a\) is not element of \(A\) \\
     \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
+    \(U\) & Universe\\
+    \(2^A\) & Power set of \(A\)\\
     \(\mathbb{R}\) & Set of real numbers\\
     \(\mathbb{C}\)& Set of complex numbers\\
     \(\mathbb{Z}\) & Set of integer number\\
@@ -340,7 +346,7 @@
     \(\nexists\) & There does not exist\\
     \(\exists!\) & There exist an unique\\
     \(\forall\) & For all\\
-    \(\mid\) & Such that\\
+    \(\mid, :\) & Such that\\
     \(\therefore\) & Therefore\\
     \(\iff\) & Logical equivalence\\
     \(\triangleq\) & Equal by definition\\
