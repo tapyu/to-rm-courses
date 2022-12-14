@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2mm,textwidth=155mm,paperheight=52cm,paperwidth=30cm]{geometry}
+\usepackage[margin=2mm,textwidth=155mm,paperheight=60cm,paperwidth=30cm]{geometry}
 
 % items, table and figs
 \usepackage{enumitem}
@@ -79,15 +79,17 @@ Affine hull:
     \item $\textnormal{aff } C$ is the smallest affine set that contains $C$.
     \item $\textnormal{aff } C$ is always an infinite set. If $\textnormal{aff } C$ contains the origin, it is also a subspace.
     \item Different from the convex set, \(\theta_i\) is not restricted between 0 and 1
+    \item \(\sum_{i=1}^{k} \theta_i\mathbf{x}_i\) is called an affine combination.
 \end{itemize}\\
 \hline
 Conic hull:
 \begin{itemize}[leftmargin=*]
-    \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C, \theta_i \geq 0 \textnormal{ for } i=1,\cdots, k \right\}$
+    \item $A = \left\{ \sum_{i=1}^{k} \theta_i\mathbf{x}_i \mid \mathbf{x}_i \in C  \textnormal{ for } i=1,\cdots, k, \boldsymbol{\thetaup} \succeq \mathbf{0} \right\}$
 \end{itemize} & \vspace{-3.5ex}
 \begin{itemize}[leftmargin=*]
     \item $A$ is the smallest convex conic that contains $C$.
     \item Different from the convex and affine sets, \(\theta_i\) does not need to sum up 1.
+    \item \(\sum_{i=1}^{k} \theta_i\mathbf{x}_i\) is called an conic combination.
 \end{itemize}\\
 \hline
 Ray:

@@ -258,7 +258,7 @@ Let us analyze carefully this inequation
 \begin{enumerate}
     \item If the RHS is greater than the LHS, this inequation is not satisfied. Hence, we must assess it for the worst case, where the LHS is as high as possible, and see whether this inequation holds.
     \item The worst case is when \(x_0 \gg 0\) and \(x_1 \gg 0\), and \(y_0=y_1=1\) because the term \(x_0 x_1\) cannot be quadratically compensated with \((x_0 x_1)^2\) on the LHS. Otherwise, the higher the values of \(y_0\) and \(y_1\), the lower the RHS becomes\footnote{The quadratic term \(4y_0^2 y_1^2\) on the RHS that could increase it is canceled with the very same term \(4y_0^2 y_1^2\) on the LHS.}.
-    \item However, even for this case, the LHS becomes approximately equal to \((x_0 + x_1)^2 = x_0^2 + 2x_0x_1 + x_1^2\), which is greater to \(x_0x_1\)
+    \item However, even for this case, the LHS becomes approximately equal to \((x_0 + x_1)^2 = x_0^2 + 2x_0x_1 + x_1^2\), which is greater than \(x_0x_1\)
 \end{enumerate}
 
 Therefore, the function \(f\) has no roots and the set \(\left\{ (x,y) \in \mathbb{R}_{+}^{2} \mid xy \geq 1 \right\}\) is convex. The Figure \ref{fig:28d} shows this set.
@@ -274,6 +274,37 @@ Therefore, the function \(f\) has no roots and the set \(\left\{ (x,y) \in \math
 
 Let \(S = \left\{\boldsymbol{\alphaup} \in \mathbb{R}^3 | \alpha_1 + \alpha_2e^{-t} + \alpha_3e^{-2t} \leq 1.1\text{ for }t \geq 1\right\}\). Is S affine, a halfspace, a convex cone, a convex set, or none of these?
 
+The set \(S\) is affine iff its affine combination is also affine, that is,
+\begin{align}
+    \mathbf{w} = \theta_1 \mathbf{x} + \theta_2 \mathbf{y} = \mqty[\theta_1 x_1 + \theta_2 y_1 \\ \theta_1 x_2 + \theta_2 y_2\\ \theta_1 x_3 + \theta_2 y_3] \in S \;\forall\; \mathbf{x}, \mathbf{y} \in S, \mathbf{1}^\top\boldsymbol{\thetaup}=1,
+\end{align}
+where \(\boldsymbol{\thetaup} = (\theta_1, \theta_2)\), \(\mathbf{x} = (x_1, x_2, x_3)\), and \(\mathbf{y} = (y_1, y_2, y_3)\). If \(\mathbf{w} \in S\), then
+\begin{align}
+    \label{eq:2.15-1}
+    \theta_1 x_1 + \theta_2 y_1 + (\theta_1 x_2 + \theta_2 y_2)e^{-t} + (\theta_1 x_3 + \theta_2 y_3)e^{-2t} & \leq 1.1 \nonumber \\
+    \theta_1 \left( x_1 + x_2e^{-t} + x_3e^{-2t} \right) + \theta_2 \left( y_1 + y_2e^{-t} + y_3e^{-2t} \right) & \leq 1.1
+\end{align}
+Once \(\mathbf{x}, \mathbf{y} \in S\), \(x_1 + x_2e^{-t} + x_3e^{-2t} \leq 1.1\) and \(y_1 + y_2e^{-t} + y_3e^{-2t} \leq 1.1\), the worst case when this inequation might not be satisfied is then \(x_1 + x_2e^{-t} + x_3e^{-2t} = y_1 + y_2e^{-t} + y_3e^{-2t} = 1.1\). In this case, we have
+\begin{align}
+    1.1(\theta_1 + \theta_2) \leq 1.1\\
+    1.1 \leq 1.1.
+\end{align}
+
+As the inequation holds, \(S\) is affine, which is consequently convex. The set \(S\) is a cone set iff the result of the conic combination also belongs to \(S\), that is,
+\begin{align}
+    \mathbf{w} = \theta_1 \mathbf{x} + \theta_2 \mathbf{y} = \mqty[\theta_1 x_1 + \theta_2 y_1 \\ \theta_1 x_2 + \theta_2 y_2\\ \theta_1 x_3 + \theta_2 y_3] \in S \;\forall\; \mathbf{x}, \mathbf{y} \in S, \boldsymbol{\thetaup}\succeq \mathbf{0}.
+\end{align}
+Recalling the Equation \eqref{eq:2.15-1}, we can clearly see that this inequation does not hold for \(\theta_1 \gg 0\), \(\theta_2 \gg 0\), and \(x_1 + x_2e^{-t} + x_3e^{-2t} = y_1 + y_2e^{-t} + y_3e^{-2t} = 1.1\). Thus, the set \(S\) is not a cone set. This set might be a close halfspace though, once halfspaces is a set of the form
+\begin{align}
+    \left\{ \mathbf{x} \mid \mathbf{a}^\top \mathbf{x} \leq b \right\}.
+\end{align}
+
+Considering that \(t \geq 1\) is a constant, we can rewrite \(S\) as
+\begin{align}
+    S = \left\{ \boldsymbol{\alphaup} \in \mathbb{R}^3 \mid \mathbf{a}^\top \boldsymbol{\alphaup} \leq b \right\},
+\end{align}
+
+where \(\mathbf{a} = (1, e^{-t}, e^{-2t})\) and \(b=1.1\). Therefore, \(S\) is a halspace.
 
 
 
