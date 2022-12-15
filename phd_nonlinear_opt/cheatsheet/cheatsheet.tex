@@ -668,6 +668,15 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
     \end{itemize} & If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists). & \\
     \hline
+    Quadratic-over-linear function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++}\)
+    \begin{itemize}[leftmargin=*]
+    \item In vector form \autocite{boydAdditionalExercisesConvex}: \(f(\mathbf{x}, y) = \norm{\mathbf{x}}^2/y\), where \(\mathbf{x} \in \mathbb{R}^{n}\) and \(y \in \mathbb{R}_{++}\)
+    \end{itemize} & Convex & \vspace{-3.5ex} 
+    \begin{itemize}[leftmargin=*]
+        \item It appeared for the first time in Stephen Boyd's Book \autocite{boydConvexOptimization2004} with \(n=1\), but then it appeared generalized for \(n\)-dimensional vector on the exercises \autocite{boydAdditionalExercisesConvex}.
+    \end{itemize}
+    \\
+    \hline
     Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
     \begin{itemize}[leftmargin=*]
         \item \(f(\mathbf{x}, t) = \mathbf{x}/t\), where \(\mathbf{x} \in \mathbb{R}^{n}, t \in \mathbb{R}_{++}\), and \((\mathbf{x}, t) \in \dom{f}\).
@@ -677,7 +686,6 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item Its effect is similar to the pin-hole camera.
         \item If \(S \subseteq \dom{f} \subseteq \mathbb{R}^{n} \times \mathbb{R}_{++}\) is a convex set, then its image, \(f(S) = \left\{ f(\mathbf{x})|\mathbf{x}\in S \right\} \subseteq \mathbb{R}^{n}\), is also convex.
         \item The inverse image is also convex, that is, if \(C \subseteq \mathbb{R}^{n}\) is convex, then \(f^{-1}(C) = \left\{ (\mathbf{x}, t) \in \mathbb{R}^{n+1} \mid \mathbf{x}/t \in C, t>0 \right\}\) is also convex.
-        \item A special case is when \(n=1\), which is called \emph{quadratic-over-linear function}.
     \end{itemize} \\
     \hline
     Projective (or linear-fractional) function, \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\)
