@@ -308,10 +308,37 @@ where \(\mathbf{a} = (1, e^{-t}, e^{-2t})\) and \(b=1.1\). Therefore, \(S\) is a
 
 \problem
 
-\subproblem Explain why \(t-(1/t)\mathbf{u}^\top \mathbf{u}\) is a concave function on \(\dom{f}\). Hint. Use convexity of the quadratic
-over linear function.
+\subproblem Explain why \(t-(1/t)\mathbf{u}^\top \mathbf{u}\) is a concave function on \(\dom{f}\). Hint. Use convexity of the quadratic-over-linear function.
 
-Note that the function \(s_1(\mathbf{u}) = \norm{\mathbf{u}}^2\) is convex.
+\subanswer
+The function \(s_1(\mathbf{u}, t) = (1/t)\mathbf{u}^\top \mathbf{u} = \norm{\mathbf{u}}^2/t\) is a quadratic-over-linear function, which is known to be convex. The function \(s_2(\mathbf{u}, t) = t - s_1(\mathbf{u}, t)\) is a linear minus a convex function, which yields a concave function.
+
+\subproblem From this, show that \(- \log(t - (1/t)\mathbf{u}^\top \mathbf{u})\) is a convex function on dom f.
+
+\subanswer
+Let us the define the function \(s_4(\mathbf{u}, t) = s_3 \circ s_2 = \log(s_2(\mathbf{u}, t))\), where \(s_3(x) = \log(x)\). Note that, since \(t > \norm{\mathbf{u}}\), \(\dom{s_2} = \mathbb{R}^{n}\times \mathbb{R}_{++}\) and \(s_3\) is concave and nondecreasing for this interval. As \(s_2\) is convex, we conclude by composition property that \(s_4\) is concave, thus \(s_5 = -s_4\) is convex.
+
+\subproblem From this, show that \(f\) is convex.
+
+\subanswer
+\begin{align}
+    f(\mathbf{x}, t) & = - \log(t^2 - \mathbf{x}^\top \mathbf{x}) \nonumber \\
+                     & = - \log(t(t - \mathbf{x}^\top \mathbf{x}/t)) \nonumber \\
+                     & = - \log(t) - \log(t - \mathbf{x}^\top \mathbf{x}/t) \nonumber \\
+                     & = s_6(t) + s_5(\mathbf{u}, t).
+\end{align}
+
+We have shown that \(s_5(\mathbf{x}, t) = - \log(t - \mathbf{x}^\top \mathbf{x}/t)\) is convex. Since \(s_6(t) = - \log(t)\) is also convex on \(\dom{f}\), \(f = s_6 + s_5\) is convex as well.
+
+\problem Square and reciprocal of convex and concave functions. For each of the following, determine if the function \(f\) is convex, concave, or neither.
+
+\subproblem \(f(x) = g^2(x)\)
+
+Since \(s(x) = x^2\) is convex and nondecreasing when \(g\) is nonnegative, and \(g\) is convex, then \(f = s \circ g\) is convex as well.
+
+\subproblem \(f(x) = 1/g(x)\)
+
+Since \(s(x) = 1/x\) is convex and nonincreasing when \(g\) is positive, and \(g\) is concave, then \(f = s \circ g\) is concave.
 
 
 

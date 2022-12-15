@@ -54,8 +54,7 @@
 
 \section{Sets}
 \subsection{Table of the known sets}
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{|A|C|}
+\begin{xltabular}{\textwidth}{|A|C|}
 \hline
 \multicolumn{2}{|c|}{Convex sets}\\
 \hline
@@ -240,8 +239,7 @@ Simplex:
     \item \(C_\alpha \subseteq \dom{f}\)
 \end{itemize}\\
 \hline
-\end{tabularx}
-\end{table}
+\end{xltabular}
 
 \subsection{Generalized inequalities}
 \begin{itemize}
@@ -365,12 +363,6 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \end{itemize}
 \end{itemize}
 
-\clearpage
-\edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
-\pdfpagewidth=30cm
-\pdfpageheight=80cm
-\pagenumbering{gobble}
-\newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
 \section{Fuctions}
 \subsection{Categories of functions regarding its curvature for CVX}
 \begin{itemize}
@@ -461,17 +453,8 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \(x_1,x_2,\dots,x_k \in \mathbb{R}\) and \(x_{k+1}, \dots, x_n \in \mathbb{Z}\)         & Mixed-optimization        \\ \hline
 \end{xltabular}
 
-\clearpage
-\edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
-\pdfpagewidth=30cm
-\pdfpageheight=100cm
-\pagenumbering{gobble}
-\newgeometry{top=1in,left=1in,margin=2mm,textwidth=155mm,paperheight=170cm,paperwidth=30cm}
-
-
 \subsection{Table of known functions}
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
+\begin{xltabular}{\textwidth}{|>{\setlength\hsize{1\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{.9\hsize}\setlength\linewidth{\hsize}}X|>{\setlength\hsize{1.1\hsize}\setlength\linewidth{\hsize}}X|}%{| >{\hsize=.5\hsize}X | >{\hsize=1.5\hsize}X |}
     \hline
     \multicolumn{3}{|c|}{Functions and their implications regarding curvatuve} \\
     \hline
@@ -504,6 +487,14 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item \(f\) is strictly concave iff \(\mathbf{P} \prec \mathbf{0}\).
     \end{itemize} & \\
     \hline
+    Quadratic-over-linear function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++}\)
+    \begin{itemize}[leftmargin=*]
+    \item In vector form \autocite{boydAdditionalExercisesConvex}: \(f(\mathbf{x}, y) = \norm{\mathbf{x}}^2/y\), where \(\mathbf{x} \in \mathbb{R}^{n}\) and \(y \in \mathbb{R}_{++}\)
+    \end{itemize} & Convex & \vspace{-3.5ex} 
+    \begin{itemize}[leftmargin=*]
+        \item It appeared for the first time in Stephen Boyd's Book \autocite{boydConvexOptimization2004} with \(n=1\), but then it appeared generalized for \(n\)-dimensional vector on the exercises \autocite{boydAdditionalExercisesConvex}.
+    \end{itemize}
+    \\
     Power function \(f: \mathbb{R}_{++} \rightarrow \mathbb{R} \) \begin{itemize}[leftmargin=*]
         \item \(f(x) = x^{a}\)
     \end{itemize} & It depends on \(a\) \begin{itemize}[leftmargin=*]
@@ -612,7 +603,7 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
                 \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nondecreasing, and \(g\) is concave.
                 \item \(f\) is concave if \(h\) is concave, \(\tilde{h}\) is nonincreasing, and \(g\) is convex.
             \end{itemize}
-    \end{itemize}
+        \end{itemize}
     \begin{itemize}[leftmargin=*]
         \item Vector composition: the following statements hold for \(k\geq 1\) and \(n\geq 1\), i.e., \(h: \mathbb{R}^{k} \rightarrow \mathbb{R}\) and \(\boldsymbol{g}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{k}\). Hence, \(g(\mathbf{x}) = (g_1 (\mathbf{x}), g_2(\mathbf{x}), \dots, g_k(\mathbf{x}))\) is a vector-valued function (or simply, vector function), where \(g_i: \mathbb{R}^{k} \rightarrow \mathbb{R}\) for \(1 \leq i \leq k\).
         \begin{itemize}[label=\(\triangleright\)]
@@ -656,9 +647,9 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \end{itemize}
     \end{itemize}\\
     \hline
-    Addition/subtraction by a constant: \(f: \dom{f} \rightarrow \mathbb{R}\):
+    Addition/subtraction by a constant \(f: \dom{f} \rightarrow \mathbb{R}\)
     \begin{itemize}
-        \item \(f(\mathbf{x}) = g(\mathbf{x}) + k\), where \(k \in \mathbb{R}\) is a constant and \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}\).
+        \item \(f(\mathbf{x}) = g(\mathbf{x}) \pm k\), where \(k \in \mathbb{R}\) is a constant and \(g: \mathbb{R}^{n}\rightarrow \mathbb{R}\).
     \end{itemize}&\vspace{-3.5ex} \begin{itemize}[leftmargin=*]
         \item If \(g\) is convex (concave), then \(f\) is convex (concave)
     \end{itemize}&\\
@@ -668,14 +659,6 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item \(f(\mathbf{x}) = \int_\mathcal{A} w(\mathbf{y}) g(\mathbf{x},\mathbf{y}) \diff \mathbf{y}\), where \(\mathbf{y} \in \mathcal{A} \subseteq \mathbb{R}^{m}\), and \(w: \mathbb{R}^{m} \rightarrow \mathbb{R}\).
     \end{itemize} & If \(g\) is convex in \(\mathbf{x}\) for each \(\mathbf{y}\in \mathcal{A}\) and if \(w(\mathbf{y}) \geq 0, \;\forall\; \mathbf{y}\in \mathcal{A}\), then \(f\) is convex (provided the integral exists). & \\
     \hline
-    Quadratic-over-linear function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++}\)
-    \begin{itemize}[leftmargin=*]
-    \item In vector form \autocite{boydAdditionalExercisesConvex}: \(f(\mathbf{x}, y) = \norm{\mathbf{x}}^2/y\), where \(\mathbf{x} \in \mathbb{R}^{n}\) and \(y \in \mathbb{R}_{++}\)
-    \end{itemize} & Convex & \vspace{-3.5ex} 
-    \begin{itemize}[leftmargin=*]
-        \item It appeared for the first time in Stephen Boyd's Book \autocite{boydConvexOptimization2004} with \(n=1\), but then it appeared generalized for \(n\)-dimensional vector on the exercises \autocite{boydAdditionalExercisesConvex}.
-    \end{itemize}
-    \\
     \hline
     Perspective function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++} \rightarrow \mathbb{R}^{n}\)
     \begin{itemize}[leftmargin=*]
@@ -739,8 +722,7 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
     \end{itemize}\\
     \hline
-\end{tabularx}
-\end{table}
+\end{xltabular}
 
 \section{Analytical proofs of the convexity of a function}
 \subsection{First-order condition of convexity (apparently too complicated to prove it)}
