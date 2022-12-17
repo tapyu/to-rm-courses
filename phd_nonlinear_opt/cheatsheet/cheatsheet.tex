@@ -296,12 +296,12 @@ Simplex:
     Intersection: $C = A \cap B $
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \mathbf{x}\in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{x} \in B \right\}\).
-    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \end{itemize} & It is convex as long as \(A\) and \(B\) are convexes\\
     \hline
     Minkowski sum: $C = A + B $
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \mathbf{x}+\mathbf{y} \in \mathbb{R}^{n} \mid \mathbf{x} \in A, \mathbf{y} \in B \right\}\).
-    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \end{itemize} & It is convex as long as \(A\) and \(B\) are convexes\\
     \hline
     Minkowski difference: $C = A - B $
     \begin{itemize}[leftmargin=*]
@@ -311,21 +311,21 @@ Simplex:
     Offset: $C = A + k $
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \mathbf{x}+k \in \mathbb{R}^{n} \mid \mathbf{x} \in A, k \in \mathbb{R} \right\}\).
-    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \end{itemize} & It is convex as long as \(A\) and \(B\) are convexes\\
     \hline
     Set scaling: $C = \alpha A$
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ \alpha \mathbf{x} \mid \mathbf{x} \in A \right\}\).
-    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \end{itemize} & It is convex as long as \(A\) and \(B\) are convexes\\
     \hline
     Cartesian product: $C = A \times B $
     \begin{itemize}[leftmargin=*]
         \item \(C = \left\{ (\mathbf{x}, \mathbf{y}) \mid \mathbf{x} \in A, \mathbf{y} \in \mathbb{B} \right\}\).
-    \end{itemize} & It is convex (concave) as long as \(A\) and \(B\) are convexes (concaves)\\
+    \end{itemize} & It is convex as long as \(A\) and \(B\) are convexes\\
     \hline
 \end{xltabular}
 
-\subsection{Analitical proofs that a set in convex}
+\subsection{Analitical strategies to prove that a set is convex}
 \subsubsection{Get a middle point between extremes of the set and see whether it leads to a contradiction (useful to prove nonconvexity)}
 The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinations of the points belonging to \(S\), i.e.,
 \begin{align}
@@ -724,7 +724,28 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \hline
 \end{xltabular}
 
-\section{Analytical proofs of the convexity of a function}
+\section{General approaches to convexity analysis}
+\begin{itemize}
+    \item Assume that the objective function of convex and proceed.
+    \begin{itemize}
+        \item It may lead to errors.
+    \end{itemize}
+    \item Verify analytically whether the problem is convex or not (vide Sec. \ref{sec:analytical-convex}).
+    \begin{itemize}
+        \item The basic approach is the first- and second-order conditions.
+        \item It usually leads to complicated analysis.
+    \end{itemize}
+    \item Construct the problem as convex from the DCP ruleset and a ``atom library'', which is a set of basic functions that preserve convexity/concavity (vide Sec. \ref{cvx-dcp}).
+    \begin{itemize}
+        \item It is restricted to the atom library and DCP ruleset, but the convexity verification is automatic.
+        \item It usually involves adding auxiliary variables and reformulating the original optimization problem in order to get an expression that obeys the CDP ruleset \autocite{HomeConvexJl}.
+        \item The manipulation of the original problem by using operations that preserve the convexity/concavity is called convex calculus\autocite{boydDisciplinedConvexProgramming}.
+        \item The reformulation usually leads to a new optimization problem that is not equal to the original one. However, they are equivalents, that is, if your find the solve the reformulated problem, then you also find the solution to the original problem.
+    \end{itemize}
+\end{itemize}
+
+\section{Analytical strategies to prove that a function is convex}
+\label{sec:analytical-convex}
 \subsection{First-order condition of convexity (apparently too complicated to prove it)}
 \begin{align}
     f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f (\mathbf{x})^\mathsf{T} (\mathbf{y} - \mathbf{x}),\forall\;\mathbf{x},\mathbf{y} \in \dom{f}, \mathbf{x}\neq\mathbf{y}
@@ -755,6 +776,7 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
 \end{itemize}
 
 \section{CVX and Disciplined Convex Programming (DCP)}
+\label{cvx-dcp}
 \subsection{Introduction}
 \begin{itemize}
     \item CVX is a Matlab package for constructing and solving Disciplined Convex Programs (DCP's).
@@ -791,25 +813,6 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item For instance, \(\mathtt{sum( ( \mathbf{A} * \mathbf{x} - \mathbf{b} ) .^ 2 ) <= 1}\) can the rewritten to the equivalent expression by using the Euclidean norm: \(\mathtt{norm( A * x - b ) <= 1}\), which is more efficient than that former \autocite{DCPRulesetCVX}.
     \end{itemize}
 \end{itemize}
-\subsection{General approaches of convex analyses}
-\begin{itemize}
-    \item Assume that the objective function of convex and proceed.
-    \begin{itemize}
-        \item It may lead to errors.
-    \end{itemize}
-    \item Verify whether the problem is convex or not
-    \begin{itemize}
-        \item The basic approach is the first- and second-order conditions.
-        \item It usually leads to complicated analysis.
-    \end{itemize}
-    \item Construct the problem as convex from the DCP ruleset and a ``atom library'', which is a set of basic functions that preserve convexity/concavity.
-    \begin{itemize}
-        \item It is restricted to the atom library and DCP ruleset, but the convexity verification is automatic.
-        \item It usually involves adding auxiliary variables and reformulating the original optimization problem in order to get an expression that obeys the CDP ruleset \autocite{HomeConvexJl}.
-        \item The manipulation of the original problem by using operations that preserve the convexity/concavity is called convex calculus\autocite{boydDisciplinedConvexProgramming}.
-        \item The reformulation usually leads to a new optimization problem that is not equal to the original one. However, they are equivalents, that is, if your find the solve the reformulated problem, then you also find the solution to the original problem.
-    \end{itemize}
-\end{itemize}
 
 \subsection{CVX and convexity}
 \begin{itemize}
@@ -827,7 +830,7 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item Henceforth, whenever we speak of a CVX function as being convex, concave, or affine, we will assume that its parameters are known and have been given appropriate, constant values.
     \end{itemize}
 \end{itemize}
-\subsection{Ruleset \autocite{DCPRulesetCVX}}
+\subsection{DCP Ruleset \autocite{DCPRulesetCVX}}
 \begin{itemize}
 	\item A valid constant expression is
 	\begin{itemize}
@@ -922,7 +925,7 @@ Consider the following examples:
         \end{figure}
     \end{itemize}
 
-\section{Constraints}
+\subsection{DCP and constraints}
 \begin{itemize}
 	\item Type of constraints:
     \begin{itemize}

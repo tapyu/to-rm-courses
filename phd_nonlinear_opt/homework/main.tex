@@ -11,8 +11,15 @@
 \usepackage{tikz}
 \usepackage{standalone} % place tikz environments or other material in own source files
 
+% true code and algorithms
+\usepackage{minted}
+\usepackage[mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{fontspec}
+\setmonofont{Noto Sans Math} %Might be better ones?
+
 % refs
-\usepackage{biblatex}
+% \usepackage{biblatex}
 
 % math
 \usepackage{amsmath}
@@ -190,7 +197,8 @@ Since \(x_1\) can be indiscriminality large, we have that \(w_1 \gg 0\), which l
     w_0 & = \theta x_0 + (1-\theta)y_0 \\
     w_0 & = 0.5y_0
 \end{align}
-Since \(y_0\) can be indiscriminately large, we have that \(w_0 \gg 0\). However, the statement \(w_0 \rightarrow 0\) should be true in order to \(\mathbf{w}\) belong to \(S\). The contradiction leads us to conclude that \(\mathbf{w} \not\in S\). The Figure \ref{fig:2.8c} shows the set S, and the Figure \ref{fig:2.8c-set} shows the cone set \(K\) in which \(\mathbf{x} \preceq_K \mathbf{w} \preceq_K \mathbf{y}\).
+
+Since \(y_0\) can be indiscriminately large, we have that \(w_0 \gg 0\). However, the statement \(w_0 \rightarrow 0\) should be true in order to \(\mathbf{w}\) belong to \(S\). The contradiction leads us to conclude that \(\mathbf{w} \not\in S\). The Figure \ref{fig:2.8c} shows the set \(S\), and the Figure \ref{fig:2.8c-set} shows the cone set \(K\) in which \(\mathbf{x} \preceq_K \mathbf{w} \preceq_K \mathbf{y}\).
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{figs/2.8c.png}
@@ -205,8 +213,6 @@ Since \(y_0\) can be indiscriminately large, we have that \(w_0 \gg 0\). However
     \label{fig:2.8c-set}
 \end{figure}
 
-
-Since \(x_1 \gg 0\), \(w_0 \rightarrow 0\)
 
 % Note that this set is equivalent to
 % \begin{align}
@@ -261,11 +267,12 @@ Let us analyze carefully this inequation
     \item However, even for this case, the LHS becomes approximately equal to \((x_0 + x_1)^2 = x_0^2 + 2x_0x_1 + x_1^2\), which is greater than \(x_0x_1\)
 \end{enumerate}
 
-Therefore, the function \(f\) has no roots and the set \(\left\{ (x,y) \in \mathbb{R}_{+}^{2} \mid xy \geq 1 \right\}\) is convex. The Figure \ref{fig:28d} shows this set.
+Therefore, the function \(f\) has no roots and the set \(\left\{ (x,y) \in \mathbb{R}_{+}^{2} \mid xy \geq 1 \right\}\) is convex. The Figure \ref{fig:2.8d} shows this set.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{figs/2.8d.png}
-    \label{fig:28d}
+    \caption{Set of the item d.}
+    \label{fig:2.8d}
 \end{figure}
 
 %============================================
@@ -339,6 +346,100 @@ Since \(s(x) = x^2\) is convex and nondecreasing when \(g\) is nonnegative, and 
 \subproblem \(f(x) = 1/g(x)\)
 
 Since \(s(x) = 1/x\) is convex and nonincreasing when \(g\) is positive, and \(g\) is concave, then \(f = s \circ g\) is concave.
+
+\problem
+
+Let us define \(\mathbf{x}(k) \in \mathbb{R}^{n}\) and \(u(k) \in \mathbb{R}\), for \(k = 0, \dots, N-1\), as the state of a linear dynamical system and its input signal, respectively, being \(n = 3\) and \(N = 30\). The system dynamic is governed by the following equation:
+\begin{align}
+    \mathbf{x}(k+1) = \mathbf{A} \mathbf{x}(k) + \mathbf{b} \mathbf{u}(k),
+\end{align}
+where
+\begin{align}
+    % \mqty[\mqty{-1 & 0.4} & 0.8 \\ \mqty{\imat{2}} & \mqty{0\\0}]\\
+    \mathbf{A} = \bmqty{-1 & 0.4 & 0.8\\
+           1 & 0 & 0\\
+           0 & 1 & 0}
+\end{align}
+and
+\begin{align}
+    \mathbf{b} = \mqty[7\\2\\-6]
+\end{align}
+
+Assuming that \(\mathbf{x}(0) = 0\), solve the following optimization problem:
+
+\begin{align}
+    \qq{Minimize} & \sum_{k = 0}^{N-1} f(u(k))\\
+    \qq{Subject to} & \mathbf{x}(N) = \mathbf{x}_{des},
+\end{align}
+where
+\begin{align}
+    \mathbf{x}_{des} = \mqty[7\\2\\-6]
+\end{align}
+and
+\begin{align}
+    f(a) = \begin{cases}
+        \abs{a} & \abs{a} \leq 1 \\
+        2\abs{a} - 1 & \abs{a} > 1
+    \end{cases},
+\end{align}
+which is equivalent to \(f(a) = \max{\left\{ \abs{a}, 2\abs{a} - 1 \right\}}\).
+
+\answer
+
+\begin{minted}[breaklines,escapeinside=||,mathescape=true, linenos, numbersep=3pt, gobble=2, frame=lines, fontsize=\small, framesep=2mm]{julia}
+    using Convex, SCS, Plots, LaTeXStrings
+
+    N = 30 # N in the set {0, 1, ..., N}
+    n = 3 # order of the linear dynamical system
+    x_des = [7, 2, -6] # constraint -> 𝐱(N) == x_des
+    # model parameters
+    𝐀 = [-1 .4 .8; 1 0 0; 0 1 0]
+    𝐛 = [1, 0, 0.3]
+
+    𝐗 = Variable(n, N+1) # [𝐱(0) 𝐱(1) ... 𝐱(N)]
+    𝐮 = Variable(1, N) # [u(0) u(1) ... u(N-1)]
+    f0 = sum(max(abs(𝐮), 2abs(𝐮)-1)) # objective function
+    constraints = [
+        𝐗[:,2:N+1] == 𝐀*𝐗[:,1:N]+𝐛*𝐮, # recursive equation
+        𝐗[:,1] == zeros(n), # initial condition
+        𝐗[:,N+1] == x_des, # final condition
+    ]
+    problem = minimize(f0, constraints)
+    solve!(problem, SCS.Optimizer; silent_solver = true)
+
+    fig = plot(vec(𝐮.value), xlabel=L"k", title=L"u(k)", seriestype=:sticks, markershape=:circle, label="")
+    savefig(fig, "figs/4.17.png")
+\end{minted}
+
+The optimal solution of the actuator signal is shown in Figure \ref{fig:4-17}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{figs/4.17.png}
+    \caption{Optimum solution of the actuator signal.}
+    \label{fig:4-17}
+\end{figure}
+
+\problem
+Consider the optimization problem
+\begin{align}
+    \qq*{minimize} & x_1^2 \\
+    \qq*{subject to} & x_1 \leq 1,\\
+     & x_1^{2} + x_2^{2} \leq 2
+\end{align}
+
+with \(\mathbf{x} = (x_1, x_2)\). Determine whether each of the following statements is true or false.
+
+\subproblem The point \((-1, 1)\) is a solution.
+
+Since \((-1, 1) \in S\), where \(S\) is the feasible set, \((-1, 1)\) is a possible solution for the problem.
+
+\subproblem The optimal value is 1.
+
+
+
+\subproblem The problem is convex.
+\subproblem The problem has multiple solutions.
 
 
 
