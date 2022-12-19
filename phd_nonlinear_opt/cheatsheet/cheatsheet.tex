@@ -56,7 +56,7 @@
 \subsection{Table of the known sets}
 \begin{xltabular}{\textwidth}{|A|C|}
 \hline
-\multicolumn{2}{|c|}{Convex sets}\\
+\multicolumn{2}{|c|}{Sets (mostly all convex)}\\
 \hline
 \multicolumn{1}{|c|}{Set} & \multicolumn{1}{|c|}{Comments}\\
 \hline
@@ -237,6 +237,26 @@ Simplex:
     \item If \(f\) is a convex (concave) function, then sublevel sets of \(f\) are convexes (concaves) for any \(\alpha\in \mathbb{R}\).
     \item The converse is not true: a function can have all its sublevel set convex and not be a convex function.
     \item \(C_\alpha \subseteq \dom{f}\)
+\end{itemize}\\
+\hline
+Epigraph:
+    \begin{itemize}[leftmargin=*]
+        \item \(\textnormal{epi } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\), where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \end{itemize} & \vspace{-3.5ex}
+    \begin{itemize}[leftmargin=*]
+    \item Epigraphs are not necessarily convex
+    \item The function \(f\) is convex iff its epigraph is convex.
+    \item Visually, it is the graph above the \((\mathbf{x}, f(\mathbf{x}))\) curve.
+\end{itemize}\\
+\hline
+Hypograph:
+\begin{itemize}[leftmargin=*]
+    \item \(\textnormal{hypo } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\), where \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+\end{itemize} & \vspace{-3.5ex}
+\begin{itemize}[leftmargin=*]
+    \item Hypographs are not necessarily convex
+    \item The function \(f\) is concave iff its hypograph is convex.
+    \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
 \end{itemize}\\
 \hline
 \end{xltabular}
@@ -489,12 +509,13 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \hline
     Quadratic-over-linear function \(f: \mathbb{R}^{n} \times \mathbb{R}_{++}\)
     \begin{itemize}[leftmargin=*]
-    \item In vector form \autocite{boydAdditionalExercisesConvex}: \(f(\mathbf{x}, y) = \norm{\mathbf{x}}^2/y\), where \(\mathbf{x} \in \mathbb{R}^{n}\) and \(y \in \mathbb{R}_{++}\)
+    \item \(f(\mathbf{x}, y) = \norm{\mathbf{x}}^2/y\), where \(\mathbf{x} \in \mathbb{R}^{n}\) and \(y \in \mathbb{R}_{++}\)
     \end{itemize} & Convex & \vspace{-3.5ex} 
     \begin{itemize}[leftmargin=*]
         \item It appeared for the first time in Stephen Boyd's Book \autocite{boydConvexOptimization2004} with \(n=1\), but then it appeared generalized for \(n\)-dimensional vector on the exercises \autocite{boydAdditionalExercisesConvex}.
     \end{itemize}
     \\
+    \hline
     Power function \(f: \mathbb{R}_{++} \rightarrow \mathbb{R} \) \begin{itemize}[leftmargin=*]
         \item \(f(x) = x^{a}\)
     \end{itemize} & It depends on \(a\) \begin{itemize}[leftmargin=*]
@@ -520,6 +541,11 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \begin{itemize}[leftmargin=*]
         \item \(f(\mathbf{x}) = \max\left\{ x_1, \dots, x_n \right\}\).
     \end{itemize} & Convex. & \\
+    \hline
+    Minimum element: \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
+    \begin{itemize}[leftmargin=*]
+        \item \(f(\mathbf{x}) = \min\left\{ x_1, \dots, x_n \right\}\).
+    \end{itemize} & Nonconvex and nonconcave in most of the cases. & \\
     \hline
     Maximum function (pointwise maximum): \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)
     \begin{itemize}[leftmargin=*]
@@ -700,28 +726,6 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
         \item Finally we take the inverse projective transformation to recover \(f(\mathbf{x})\).
     \end{itemize}\\
     \hline
-    Epigraph:
-    \begin{itemize}[leftmargin=*]
-        \item \(\textnormal{epi } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
-    \end{itemize} & \vspace{-3.5ex}
-    \begin{itemize}[leftmargin=*]
-        \item The function \(f\) is convex iff its epigraph is convex.
-    \end{itemize} & \vspace{-3.5ex}
-    \begin{itemize}[leftmargin=*]
-    \item Visually, it is the graph above the \((\mathbf{x}, f(\mathbf{x}))\) curve.
-\end{itemize}\\
-    \hline
-    Hypograph:
-    \begin{itemize}[leftmargin=*]
-        \item \(\textnormal{hypo } f = \{(\mathbf{x}, t)\mid \mathbf{x} \in \dom{f}, t\geq f(\mathbf{x})\}\)
-    \end{itemize} & \vspace{-3.5ex}
-    \begin{itemize}[leftmargin=*]
-        \item The function \(f\) is concave iff its hypograph is convex.
-    \end{itemize} & \vspace{-3.5ex}
-    \begin{itemize}[leftmargin=*]
-        \item Visually, it is the graph below the \((\mathbf{x}, f(\mathbf{x}))\) curve.
-    \end{itemize}\\
-    \hline
 \end{xltabular}
 
 \section{General approaches to convexity analysis}
@@ -769,9 +773,9 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     f(\theta\mathbf{x}+(1-\theta)\mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta)f(\mathbf{y}),\;\forall\; \mathbf{x}, \mathbf{y} \in \dom{f}, 0\leq\theta\leq 1
 \end{align}
 \begin{itemize}
-	\item If \(f\) is continuous, it is enough to check that(?)
+	\item If \(f\) is continuous, it is enough (and usually convenient as well) to check if
     \begin{align}
-        f\left( \dfrac{\mathbf{x}+\mathbf{y}}{2} \right) = \dfrac{f(\mathbf{x}) + f(\mathbf{y})}{2}
+        f\left( \dfrac{\mathbf{x}+\mathbf{y}}{2} \right) \leq \dfrac{f(\mathbf{x}) + f(\mathbf{y})}{2}
     \end{align}
 \end{itemize}
 

@@ -16,7 +16,7 @@
 \usepackage[mathletters]{ucs}
 \usepackage[utf8x]{inputenc}
 \usepackage{fontspec}
-\setmonofont{Noto Sans Math} %Might be better ones?
+\setmonofont{Noto Sans Math}[Scale=0.8] %Might be better ones?
 
 % refs
 % \usepackage{biblatex}
@@ -365,7 +365,7 @@ and
     \mathbf{b} = \mqty[7\\2\\-6]
 \end{align}
 
-Assuming that \(\mathbf{x}(0) = 0\), solve the following optimization problem:
+Assuming that \(\mathbf{x}(0) = \mathbf{0}\), solve the following optimization problem:
 
 \begin{align}
     \qq{Minimize} & \sum_{k = 0}^{N-1} f(u(k))\\
@@ -432,15 +432,91 @@ with \(\mathbf{x} = (x_1, x_2)\). Determine whether each of the following statem
 
 \subproblem The point \((-1, 1)\) is a solution.
 
-Since \((-1, 1) \in S\), where \(S\) is the feasible set, \((-1, 1)\) is a possible solution for the problem.
+\subanswer True. Since \((-1, 1) \in S\), where \(S\) is the feasible set, \((-1, 1)\) is a possible solution for the problem. It is not the optimal solution, though. For this problem, \(\mathbf{x}^{\star} \approx (-1, 0)\).
 
 \subproblem The optimal value is 1.
 
+\subanswer True.
 
+\begin{minted}{julia}
+    using Convex, SCS
 
+    𝐱 = Variable(2)
+
+    f0 = square(𝐱[1]) # objective function
+    constraints = [
+        𝐱[1] ≤ -1,
+        square(𝐱[1]) + square(𝐱[2]) ≤ 2
+    ]
+    problem = minimize(f0, constraints)
+    solve!(problem, SCS.Optimizer; silent_solver = true)
+
+    println(round(problem.optval, digits = 2)) # it prints 1
+\end{minted}
 \subproblem The problem is convex.
+
+\subanswer True. The objective function and its domain are convex. The constraints are also convex. Then this optimization problem is convex.
+
+
 \subproblem The problem has multiple solutions.
+\subanswer False. Since this problem is convex, one can state that
+\begin{align}
+    \exists!\; \mathbf{x}^{\star} \in \mathbb{R}^{n} \mid f_0(\mathbf{x}^{\star}) \leq f_0(\mathbf{y})\;\forall\;\mathbf{y}\in S \subset \text{dom}(f),
+\end{align}
+where \(S\) is the feasible set.
 
+\problem Consider the quadratic program
 
+\begin{align}
+    \qq*{minimize} & x_1^2 + x_2^2 - x_1x_2 - x_1  \nonumber \\
+    \qq*{subject to}& x_1 + 2x_2 \leq u_1 \nonumber \\
+     &  x_1 - 4x_2 \leq u_2 \nonumber \\
+     & 5x_1 - 76x_2 \leq 1 \nonumber
+\end{align}
+
+Solve this QP, for parameter values \(u_1 = -2, u_2 = -3\), to find optimal primal variable values \(x_1^\star, x_2^\star\), and optimal dual variable values \(\lambda_1^\star, \lambda_2^\star,\) and \(\lambda_3^\star\). Let \(p^\star\) denote the optimal objective value. Verify that the KKT conditions hold for the optimal primal and dual variables you found (within reasonable numerical accuracy).
+
+\subanswer
+
+\begin{minted}{julia}
+    using Convex, SCS
+    # data parameters
+    Q = [1 -1/2; -1/2 2];
+    f = [-1, 0];
+    A = [1 2; 1 -4; 5 76];
+    b = [-2, -3, 1];
+    
+    
+    # item 1 (a)
+    x = Variable(2);
+    constraints = A*x <= b;
+    p = minimize(quadform(x,Q)+f'*x, constraints);
+    solve!(p, SCS.Optimizer);
+    lambda = constraints.dual;
+    p_star = p.optval;
+    println(lambda);
+    println(p_star);
+    println(x.value);
+    println(A*x.value - b);
+    println(2*Q*x.value + f + A'*lambda);
+    
+    
+    # item (b)
+    arr_i = [0 -1 1];
+    delta = 0.1;
+    pa_table = zeros(9, 4);
+    count = 1;
+    for i in arr_i
+    for j in arr_i
+    p_pred = p_star - dot(lambda[1:2], [i;j])*delta;
+    x = Variable(2);
+    p = minimize(quadform(x,Q)+f'*x, A*x <= b+[1;j;0]*delta);
+    solve!(p, SCS.Optimizer);
+    p_exact = p.optval;
+    pa_table[count, :] = [i*delta j*delta p_pred p_exact];
+    global count += 1;
+    end
+    end
+\end{minted}
 
 \end{document}
