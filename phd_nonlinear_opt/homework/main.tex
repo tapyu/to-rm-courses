@@ -499,24 +499,6 @@ Solve this QP, for parameter values \(u_1 = -2, u_2 = -3\), to find optimal prim
     println(x.value);
     println(A*x.value - b);
     println(2*Q*x.value + f + A'*lambda);
-    
-    
-    # item (b)
-    arr_i = [0 -1 1];
-    delta = 0.1;
-    pa_table = zeros(9, 4);
-    count = 1;
-    for i in arr_i
-    for j in arr_i
-    p_pred = p_star - dot(lambda[1:2], [i;j])*delta;
-    x = Variable(2);
-    p = minimize(quadform(x,Q)+f'*x, A*x <= b+[1;j;0]*delta);
-    solve!(p, SCS.Optimizer);
-    p_exact = p.optval;
-    pa_table[count, :] = [i*delta j*delta p_pred p_exact];
-    global count += 1;
-    end
-    end
 \end{minted}
 
 \end{document}
