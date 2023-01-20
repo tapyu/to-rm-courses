@@ -23,8 +23,8 @@
     ]
     %main Nodes
     \node[main, align=center]      (opt)  {Type of\\Optimization\\Problems};
-    \node[main, align=center]      (deterministic)  [left of=opt, xshift=-2.5cm]  {Deterministic Methods\\ $\bullet$ Make use of derivatives\\ $\bullet$ Unique solution \\ $\bullet$ Less computational effort};
-    \node[main, align=center]      (stochasticmet)  [right of=opt, xshift=2.5cm]  {Stochastic Methods\\ $\bullet$ Make no use of derivatives\\ $\bullet$ May have many solutions \\ $\bullet$ Higher computational effort};
+    \node[main, align=center]      (deterministic)  [left of=opt, xshift=-2.5cm]  {Deterministic Methods\\ $\bullet$ Make use of derivatives\\ $\bullet$ Unique solution \\ $\bullet$ Lower computational effort\\ $\bullet$ Higher dependence on the starting point};
+    \node[main, align=center]      (stochasticmet)  [right of=opt, xshift=2.5cm]  {Stochastic Methods\\ $\bullet$ Make no use of derivatives\\ $\bullet$ May have many solutions \\ $\bullet$ Higher computational effort \\ $\bullet$ Lower dependence on the starting point};
     
     % convex branch
     \node[covex]      (convex)          [above of=deterministic]                        {Convex Optimization};
@@ -102,7 +102,7 @@
     \node[adapfilt, align=center]      (adapfilt)   [below of=stochasticmet] {Adaptive\\Filtering};
     \node[adapfilt, align=center]      (rls)   [below of=adapfilt, left of=adapfilt, xshift=-1cm] {Recursive Least Square (RLS) Algorithm\\$\bullet$ The objective function is the Least-\\Sqaures (LS) (deterministic)};
     \node[adapfilt, align=center]      (wiener)   [below of=adapfilt, right of=adapfilt, xshift=1cm] {Wiener Filter\\$\bullet$ Optimum solution\\$\bullet$ Nonpractical\\$\bullet$ The objective function is the Mean\\Square Error (MSE) (probabilistic)};
-    \node[adapfilt, align=center]      (gradientdescent)   [below of=wiener, left of=wiener] {Gradient Descent Algorithm\\$\bullet$ Deterministic gradient\\$\bullet$ Nonpractical};
+    \node[adapfilt, align=center]      (gradientdescent)   [below of=wiener, left of=wiener] {Gradient Descent\\(or steepest descent) Algorithm\\$\bullet$ Deterministic gradient\\$\bullet$ Nonpractical};
     \node[adapfilt, align=center]      (newton)   [below of=wiener, right of=wiener] {Newton Algorithm\\$\bullet$ Nonpractical};
     \node[adapfilt, align=center]      (sgd)   [below of=gradientdescent, right of=gradientdescent] {Stochastic Gradient Descent\\(SGD) family\\$\bullet$ Stochastic approximation \\ of the deterministic gradient};
     \node[adapfilt, align=center]      (lms)   [below of=sgd, right of=sgd] {Least-Mean Square\\(LMS) Algorithm};
