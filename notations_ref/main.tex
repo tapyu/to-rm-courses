@@ -130,7 +130,7 @@
     \(x_I(t)\) or \(x_I[n]\) & Real or in-phase part of \(x(t)\) or \(x[n]\)\\
     \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
     \(\delta(t)\) & Delta function\\
-    \(\delta[n]\) & Kronecker function\\
+    \(\delta[n], \delta_{i,j}\) & Kronecker function (\(n = i-j\))\\
     \(h(t), h[n]\) & Impulse response (continuous and discrete time)\\
     \(\tilde{x}[n], \tilde{x}(t)\) & Periodic discrete- or continuous-time signal\\
     \(\hat{x}[n], \hat{x}(t)\) & Estimate of \({x}[n]\) or \({x}(t)\)\\
@@ -189,8 +189,8 @@
 \subsection{Stochastic processes}
 \begin{xltabular}{\textwidth}{XX}
     \(r_x(\tau), R_x(\tau)\) & Autocorrelation function of the signal \(x(t)\) or \(x[n]\)\\
-    \(S_x(f)\) & Power spectral density of \(x(t)\) in linear frequency\\
-    \(S_x(j\omega)\) & Power spectral density of \(x(t)\) in angular frequency\\
+    \(S_x(f), S_x(j\omega)\) & Power spectral density (PSD) of \(x(t)\) in linear (\(f\)) or angular (\(\omega\)) frequency\\
+    \(S_{x,y}(f), S_{x,y}(j\omega)\) & Cross PSD of \(x(t)\) and \(y(t)\) in linear or angular (\(\omega\)) frequency\\
     \(\mathbf{R}_\mathbf{x}\) & (Auto)correlation matrix of \(\mathbf{x}(n)\) \\
     \(r_{x,d}(\tau), R_{x,d}(\tau)\) & Cross-correlation between \(x[n]\) and \(d[n]\) or \(x(t)\) and \(d(t)\)\\
     \(\mathbf{R}_\mathbf{xy}\) & Cross-correlation matrix of \(\mathbf{x}(n)\) and \(\mathbf{y}(n)\)\\
@@ -306,6 +306,7 @@
     \(\mathbf{A}^{-1}\) & Inverse matrix\\
     \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
     \(\mathbf{A}^\top\) & Transpose\\
+    \(\mathbf{A}^{-\top}\) & Transpose of the inverse\\
     \(\mathbf{A}^*\) & Complex conjugate\\
     \(\mathbf{A}^\mathsf{H}\) & Hermitian\\
     \(\frob{\mathbf{A}}\)& Frobenius norm \\
