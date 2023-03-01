@@ -52,8 +52,8 @@
 % newcommands - operators
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
-\DeclareMathOperator*{\argmax}{arg\,max} % argument min
-\DeclareMathOperator*{\argmin}{arg\,min} % argument max
+\NewDocumentCommand{\argmin}{ O{} m }{\underset{#1}{\operatorname{arg\,min}}\;#2}
+\NewDocumentCommand{\argmax}{ O{} m }{\underset{#1}{\operatorname{arg\,max}}\;#2}
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
 \newcommand{\cof}[1]{\ensuremath{\textnormal{cof}\left(#1\right)}} % cofactor matrix
@@ -435,6 +435,8 @@
 \end{xltabular}
 \subsection{Operations}
 \begin{xltabular}{\textwidth}{XX}
+    \(\argmax[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
+    \( \argmin[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
     \(\abs{a}\) & Absolute value of \(a\)\\
     \(\log\) & Base-10 logarithm or decimal logarithm\\
     \(\ln\) & Natual logarithm\\
