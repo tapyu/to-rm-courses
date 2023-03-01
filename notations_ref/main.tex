@@ -133,22 +133,16 @@
     \(\delta[n], \delta_{i,j}\) & Kronecker function (\(n = i-j\))\\
     \(h(t), h[n]\) & Impulse response (continuous and discrete time)\\
     \(\tilde{x}[n], \tilde{x}(t)\) & Periodic discrete- or continuous-time signal\\
-    \(\hat{x}[n], \hat{x}(t)\) & Estimate of \({x}[n]\) or \({x}(t)\)\\
-    \(\dot{x}[m]\) & Interpolation of \({x}[n]\)\\
+    \(\hat{x}[n], \hat{x}(t)\) & Estimate of \(x[n]\) or \(x(t)\)\\
+    \(\dot{x}[m]\) & Interpolation of \(x[n]\)\\
 \end{xltabular}
 \subsection{Operations and symbols}
 \begin{xltabular}{\textwidth}{XX}
     \(f: A \rightarrow B\)& A function \(f\) whose domain is \(A\) and codomain is \(B\)\\
-    \(f^{n}\) & \(n\)th power of the function \(f\)\\
-    \(x^{k}(t), x^{k}[n]\) & \(k\)th power of \({x}[n]\) or \({x}(t)\)\\
-    \(f^{-1}\) & Inverse function of \(f\)\\
-    \(x^{-1}(t), x^{-1}[n]\) & Inverse of \({x}[n]\) or \({x}(t)\)\\
-    \(f^{\left( n \right)}\) & \(n\)th derivative of the function \(f\)\\
-    \(x^{(n)}(t)\) & \(n\)th derivative of \({x}(t)\)\\
-    \(f', f^{\left( 1 \right)}\) & \(1\)th derivative of the function \(f\)\\
-    \(x'(t)\) & \(1\)th derivative of \({x}(t)\)\\
-    \(f'', f^{\left( 2 \right)}\) & \(2\)th derivative of the function \(f\)\\
-    \(x''(t)\) & \(2\)th derivative of \({x}(t)\)\\
+    \(f^{n}, x^{n}(t), x^{n}[k]\) & \(n\)th power of the function \(f\), \(x[n]\) or \(x(t)\)\\
+    \(f^{\left( n \right)},  x^{(n)}(t)\) & \(n\)th derivative of the function \(f\) or \(x(t)\)\\
+    \(f', f^{\left( 1 \right)}, x'(t)\) & \(1\)th derivative of the function \(f\) or \(x(t)\)\\
+    \(f'', f^{\left( 2 \right)}, x''(t)\) & \(2\)th derivative of the function \(f\) or \(x(t)\)\\
     \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
     \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
     \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
@@ -161,7 +155,7 @@
     \(\mathcal{F}\left\{ \cdot \right\}\) & Fourier transform\\
     \(\mathcal{L}\left\{ \cdot \right\}\) & Laplace transform\\
     \(\mathcal{Z}\left\{ \cdot \right\}\) & \(z\)-transform\\
-    \(\hat{x}(t)\) or \(\hat{x}[n]\) & Hilbert transform of \(x(t)\) or \(x[n]\)\\
+    \(\hat{x}(t), \hat{x}[n]\) & Hilbert transform of \(x(t)\) or \(x[n]\)\\
     \(X(s)\) & Laplace transform of \(x(t)\)\\
     \(X(f)\) & Fourier transform (FT) (in linear frequency, \(\unit{\Hz}\)) of \(x(t)\)\\
     \(X(j\omega)\) & Fourier transform (FT) (in angular frequency, \(\unit{\radian\per\sec}\)) of \(x(t)\)\\
@@ -181,6 +175,7 @@
     \(\mu_n\) & \(n\)th-order moment of a random variable \\
     \(\mathcal{K}_x, \mu_4\) & Kurtosis (4th-order moment) of the random variable \(x\)\\
     \(\textnormal{VAR}[\cdot]\) & Variance operator\\
+    \(\textnormal{VAR}_u[\cdot]\) & Variance operator with respect to \(u\)\\
     \(\kappa_n\) & \(n\)th-order cumulant of a random variable \\
     \(\sigma_x, \kappa_2\) & Variance of the random variable \(x\)\\
     \(\rho_{x,y}\) & Pearson correlation coefficient between \(x\) and \(y\)\\
@@ -246,8 +241,10 @@
     \(\hat{\boldsymbol{\muup}}_x, \hat{\mathbf{m}}_x\) & Sample mean of \(x[n]\) or \(x(t)\) \\
     \(\hat{\boldsymbol{\muup}}_\mathbf{x}, \hat{\mathbf{m}}_\mathbf{x}\) & Sample mean vector of \(\mathbf{x}[n]\) or \(\mathbf{x}(t)\)\\
     \(\hat{r}_x(\tau), \hat{R}_x(\tau)\) & Estimated autocorrelation function of the signal \(x(t)\) or \(x[n]\)\\
+    \(\hat{S}_x(f), \hat{S}_x(j\omega)\) & Estimated power spectral density (PSD) of \(x(t)\) in linear (\(f\)) or angular (\(\omega\)) frequency\\
     \(\hat{\mathbf{R}}_\mathbf{x}\) & Sample (auto)correlation matrix \\
     \(\hat{r}_{x,d}(\tau), \hat{R}_{x,d}(\tau)\) & Estimated cross-correlation between \(x[n]\) and \(d[n]\) or \(x(t)\) and \(d(t)\)\\
+    \(\hat{S}_{x,y}(f), \hat{S}_{x,y}(j\omega)\) & Estimated cross PSD of \(x(t)\) and \(y(t)\) in linear or angular (\(\omega\)) frequency\\
     \(\hat{\mathbf{R}}_\mathbf{xy}\) & Sample cross-correlation matrix of \(\mathbf{R}_\mathbf{xy}\) \\
     \(\hat{\rho}_{x,y}\) & Estimated Pearson correlation coefficient between \(x\) and \(y\)\\
     \(\hat{c}_x(\tau), \hat{C}_x(\tau)\) & Estimated autocovariance function of the signal \(x(t)\) or \(x[n]\)\\
@@ -258,7 +255,8 @@
     \(\mathbf{w}_o, \mathbf{w}^{\star}, \boldsymbol{\thetaup}_o, \boldsymbol{\thetaup}^{\star}\) & Optimum value of the parameters, coefficients, or weights vector \\
     \(\mathbf{W}\) & Matrix of the weights \\
     \(\mathbf{J}\) & Jacobian matrix\\
-    \(\mathbf{H}\) & Hessian matrix
+    \(\mathbf{H}\) & Hessian matrix \\
+    \(\hat{\mathbf{H}}\) & Estimate of the Hessian matrix
 \end{xltabular}
 
 \section{Linear Algebra}
@@ -374,7 +372,7 @@
     \(\bm{\mathcal{X}} \leq 0\) & Nonnegative tensor\\
     \(\mathbf{a} \preceq_K \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the conic subset \(K\) in the space \(\mathbb{R}^{n}\)\\
     \(\mathbf{a} \prec_K \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the interior of the conic subset \(K\) in the space \(\mathbb{R}^{n}\)\\
-    \(\mathbf{a} \preceq \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the nonnegative orthant conic subset, \(\mathbb{R}_{+}^{n}\), in the space \(\mathbb{R}^{n}\)\\
+    \(\mathbf{a} \preceq \mathbf{b}\) & Generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the nonnegative orthant conic subset, \(\mathbb{R}_{+}^{n}\), in the space \(\mathbb{R}^{n}\).\\
     \(\mathbf{a} \prec \mathbf{b}\) & Strict generalized inequality meaning that \(\mathbf{b}-\mathbf{a}\) belongs to the positive orthant conic subset, \(\mathbb{R}_{++}^{n}\), in the space \(\mathbb{R}^{n}\)\\
     \(\mathbf{A} \preceq_K \mathbf{B}\) & Generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the conic subset \(K\) in the space \(\mathbb{S}^{n}\)\\
     \(\mathbf{A} \prec_K \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the interior of the conic subset \(K\) in the space \(\mathbb{S}^{n}\)\\
@@ -419,15 +417,36 @@
     \([a, b), (a, b]\) & Half-opened intervals of a real set from \(a\) to \(b\)\\
 \end{xltabular}
 
+\section{Communication systems}
+\begin{xltabular}{\textwidth}{XX}
+    \(s\) & Trasmitted signal\\
+    \(\phi\) & Signal phase\\
+    \(s_l\) & Low-pass equivalent signal or envelope complex of \(s\)\\
+    \(\eta, w\) & Gaussian noise\\
+    \(r\) & Received signal\\
+    \(\tau\) & Timming delay \\
+    \(\Delta\tau\) & Timming error (delay - estimated) \\
+    \(\varphi\) & Phase offset \\
+    \(\Delta\varphi\) & Phase error (offset - estimated) \\
+    \(f_d\) & Doppler frequency\\
+    \(A\) & Received signal amplitude\\
+    \(\gamma\) & Combined effect of the path loss and antenna gain
+\end{xltabular}
+
+
 \section{Other notations}
 \subsection{Mathematical symbols}
 \begin{xltabular}{\textwidth}{XX}
     \(\exists\) & There exists\\
     \(\nexists\) & There does not exist\\
     \(\exists!\) & There exist an unique\\
+    \(\in\) & Belongs to\\
+    \(\not\in\) & Does not belong to\\
+    \(\blacksquare\) & Q.E.D. \\
+    \(\therefore\) & Therefore\\
+    \(\because\) & Because\\
     \(\forall\) & For all\\
     \(\mid, :\) & Such that\\
-    \(\therefore\) & Therefore\\
     \(\iff\) & Logical equivalence\\
     \(\triangleq, :=\) & Equal by definition\\
     \(\neq\) & Not equal\\
