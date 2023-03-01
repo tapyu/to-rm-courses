@@ -123,7 +123,8 @@
 \subsection{Time indexing}
 \begin{xltabular}{\textwidth}{p{5.7cm}X}
     \(x(t)\) & Continuous-time \(t\)\\
-    \(x[n], x[k], x[m], x[i], \dots\) \(x_n, x_k, x_m, x_i, \dots\) \(x(n), x(k), x(m), x(i), \dots\) & Discrete-time \(n, k, m, i, \dots\) (parenthesis should be adopted only if there are no continuous-time signals in the context to avoid ambiguity)
+    \(x[n], x[k], x[m], x[i], \dots\) \(x_n, x_k, x_m, x_i, \dots\) \(x(n), x(k), x(m), x(i), \dots\) & Discrete-time \(n, k, m, i, \dots\) (parenthesis should be adopted only if there are no continuous-time signals in the context to avoid ambiguity) \\
+    \(x\left[ \left( \left( n - m \right) \right)_N \right], x \left( \left( n - m \right) \right)_N\) & Circular shift in \(m\) samples within a \(N\)-samples window
 \end{xltabular}
 \subsection{Common functions}
 \begin{xltabular}{\textwidth}{XX}
@@ -143,12 +144,9 @@
     \(f^{\left( n \right)},  x^{(n)}(t)\) & \(n\)th derivative of the function \(f\) or \(x(t)\)\\
     \(f', f^{\left( 1 \right)}, x'(t)\) & \(1\)th derivative of the function \(f\) or \(x(t)\)\\
     \(f'', f^{\left( 2 \right)}, x''(t)\) & \(2\)th derivative of the function \(f\) or \(x(t)\)\\
-    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
-    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
     \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
     \(*\) & Convolution\\
     \(\circledast, \circconv{N}\) & Circular convolution\\
-    \(x\left[ \left( \left( n - m \right) \right)_N \right], x \left( \left( n - m \right) \right)_N\) & Circular shift in \(m\) samples within a \(N\)-samples window\\
 \end{xltabular}
 \subsection{Transformations}
 \begin{xltabular}{\textwidth}{XX}
@@ -295,11 +293,21 @@
     \(\mathbf{X}_{i_3}, \mathbf{X}_{:,:,i_3}\) & Frontal slices slice of the thrid-order tensor \(\bm{\mathcal{X}}\)
 \end{xltabular}
 
-\subsection{Operations with tensors}
+\subsection{General operations}
 \begin{xltabular}{\textwidth}{XX}
-\(\mathbf{X}_{(n)}\) & \(n\)-mode matricization of the tensor \(\bm{\mathcal{X}}\)\\
+    \(\inner{\cdot}{\cdot}\) & Inner product, e.g., \(\inner{\mathbf{a}}{\mathbf{b}} = \mathbf{a}^\top\mathbf{b}\)\\
+    \(\circ\) & Outer product, e.g., \(\mathbf{a} \circ \mathbf{b} = \mathbf{a}\mathbf{b}^\top\)\\
+    \(\otimes\) & Kronecker product\\
+    \(\odot\) & Hadamard (or Schur) (elementwise) product\\
+    \(\cdot^{\odot n}\) & \(n\)th-order Hadamard power\\
+    \(\cdot^{\odot \frac{1}{n}}\) & \(n\)th-order Hadamard root\\
+    \(\oslash\) & Hadamard (or Schur) (elementwise) division\\
+    \(\diamond\) & Khatri-Rao product\\
+    \(\otimes\) & Kronecker Product\\
+    \(\times_n\) & \(n\)-mode product\\
 \end{xltabular}
-\subsection{Operations with matrices}
+
+\subsection{Operations with matrices and tensors}
 \begin{xltabular}{\textwidth}{XX}
     \(\mathbf{A}^{-1}\) & Inverse matrix\\
     \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
@@ -319,14 +327,7 @@
     \(\vec[b]{\mathbf{A}}\) & Block vectorization operator: stacks square block matrices of the input into a long block column matrix\\
     \(\unvec{\mathbf{A}}\)& Reshapes a column vector into a matrix\\
     \(\tr{\mathbf{A}}\)& trace\\
-    \(\otimes\) & Kronecker product\\
-    \(\odot\) & Hadamard (or Schur) (elementwise) product\\
-    \(\mathbf{A}^{\odot n}\) & \(n\)th-order Hadamard power of the matrix \(\mathbf{A}\)\\
-    \(\mathbf{A}^{\odot \frac{1}{n}}\) & \(n\)th-order Hadamard root of the matrix \(\mathbf{A}\)\\
-    \(\oslash\) & Hadamard (or Schur) (elementwise) division\\
-    \(\diamond\) & Khatri-Rao product\\
-    \(\otimes\) & Kronecker Product\\
-    \(\times_n\) & \(n\)-mode product\\
+    \(\mathbf{X}_{(n)}\) & \(n\)-mode matricization of the tensor \(\bm{\mathcal{X}}\)\\
 \end{xltabular}
 \subsection{Operations with vectors}
 \begin{xltabular}{\textwidth}{XX}
@@ -335,8 +336,6 @@
     \(\norm{\mathbf{a}}_p\) & \(l_p\) norm, \(p\)-norm, or Minkowski norm\\
     \(\norm{\mathbf{a}}_\infty\) & \(l_\infty\) norm, \(\infty\)-norm, or Chebyshev norm\\
     \(\diag{\mathbf{a}}\) & Diagonalization: a square, diagonal matrix with entries given by the vector \(\mathbf{a}\)\\
-    \(\inner{\mathbf{a}}{\mathbf{b}}\) & Inner product, i.e., \(\mathbf{a}^\top\mathbf{b}\)\\
-    \(\mathbf{a} \circ \mathbf{b}\) & Outer product, i.e., \(\mathbf{a}\mathbf{b}^\top\)\\
 \end{xltabular}
 
 \subsection{Decompositions}
@@ -457,6 +456,8 @@
 \begin{xltabular}{\textwidth}{XX}
     \(\argmax[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
     \( \argmin[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
+    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
+    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
     \(\abs{a}\) & Absolute value of \(a\)\\
     \(\log\) & Base-10 logarithm or decimal logarithm\\
     \(\ln\) & Natual logarithm\\
