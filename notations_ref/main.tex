@@ -311,7 +311,7 @@
 \subsection{Operations with matrices and tensors}
 \begin{xltabular}{\textwidth}{XX}
     \(\mathbf{A}^{-1}\) & Inverse matrix\\
-    \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose pseudoinverse\\
+    \(\mathbf{A}^+, \mathbf{A}^{\dagger}\) & Moore-Penrose left pseudoinverse\\
     \(\mathbf{A}^\top\) & Transpose\\
     \(\mathbf{A}^{-\top}\) & Transpose of the inverse\\
     \(\mathbf{A}^*\) & Complex conjugate\\
@@ -358,10 +358,11 @@
 \end{xltabular}
 \subsection{Spaces}
 \begin{xltabular}{\textwidth}{XX}
-    \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel space)\\
-    \(\range{\mathbf{A}}, \mathrm{columnspace}(\mathbf{A}), \mathrm{range}(\mathbf{A})\) & Columnspace (or range), i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
     \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Vector space spanned by the argument vectors\\
-    \(\span{\mathbf{A}}\) & Vector space spanned by the column vectors of \(\mathbf{A}\), which gives the columnspace of \(\mathbf{A}\)\\
+    \(\range{\mathbf{A}}\), \(\mathrm{columnspace}(\mathbf{A})\), \(\mathrm{range}(\mathbf{A})\), \(\span{\mathbf{A}}\), \(\mathrm{image}(\mathbf{A})\) & Columnspace, range or image, i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\)\\
+    \(\range{\mathbf{A}^\mathsf{H}}\) & Row space\\
+    \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel space)\\
+    \(\nullspace{\mathbf{A^\mathsf{H}}}\) & Left nullspace\\
     \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{A}}} = \dim{\range{\mathbf{A}}}\)\\
     \(\nullity{\mathbf{A}}\) & Nullity of \(\mathbf{A}\), i.e., \(\dim{\nullspace{\mathbf{A}}}\)\\
     \(\mathbf{a} \perp \mathbf{b}\) & \(\mathbf{a}\) is orthogonal to \(\mathbf{b}\)\\
