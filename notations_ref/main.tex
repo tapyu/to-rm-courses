@@ -128,8 +128,6 @@
 \end{xltabular}
 \subsection{Common functions}
 \begin{xltabular}{\textwidth}{XX}
-    \(x_I(t)\) or \(x_I[n]\) & Real or in-phase part of \(x(t)\) or \(x[n]\)\\
-    \(x_Q(t)\) or \(x_Q[n]\) & Imaginary or quadrature part of \(x(t)\) or \(x[n]\)\\
     \(\delta(t)\) & Delta function\\
     \(\delta[n], \delta_{i,j}\) & Kronecker function (\(n = i-j\))\\
     \(h(t), h[n]\) & Impulse response (continuous and discrete time)\\
@@ -420,13 +418,15 @@
 
 \section{Communication systems}
 \begin{xltabular}{\textwidth}{XX}
-    \(s\) & Trasmitted signal\\
+    \(x_i\) & Real or in-phase part of \(x\)\\
+    \(x_q\) & Imaginary or quadrature part of \(x\)\\
+    \(s\) & Transmitted signal\\
     \(\phi\) & Signal phase\\
     \(s_l\) & Low-pass equivalent signal or envelope complex of \(s\)\\
     \(\eta, w\) & Gaussian noise\\
     \(r\) & Received signal\\
-    \(\tau\) & Timming delay \\
-    \(\Delta\tau\) & Timming error (delay - estimated) \\
+    \(\tau\) & Timing delay \\
+    \(\Delta\tau\) & Timing error (delay - estimated) \\
     \(\varphi\) & Phase offset \\
     \(\Delta\varphi\) & Phase error (offset - estimated) \\
     \(f_d\) & Doppler frequency\\
