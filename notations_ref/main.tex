@@ -418,20 +418,30 @@
 
 \section{Communication systems}
 \begin{xltabular}{\textwidth}{XX}
+    \(B\) & One-sided bandwidth of the transmitted signal, in Hz\\
+    \(W\) & One-sided bandwidth of the transmitted signal, in rad/s\\
     \(x_i\) & Real or in-phase part of \(x\)\\
     \(x_q\) & Imaginary or quadrature part of \(x\)\\
-    \(s\) & Transmitted signal\\
+    \(s_{RF}\) & Transmitted signal in RF\\
+    \(s_{FI}\) & Transmitted signal in FI\\
+    \(s, s_l\) & Low-pass equivalent signal or envelope complex of transmitted signal\\
+    \(r_{RF}\) & Received signal in RF\\
+    \(r_{FI}\) & Received signal in FI\\
+    \(r, r_l\) & Low-pass equivalent signal or envelope complex of received signal\\
     \(\phi\) & Signal phase\\
-    \(s_l\) & Low-pass equivalent signal or envelope complex of \(s\)\\
-    \(\eta, w\) & Gaussian noise\\
-    \(r\) & Received signal\\
+    \(\eta_{RF}, w_{RF}\) & Noise in RF\\
+    \(\eta_{FI}, w_{FI}\) & Noise in FI\\
+    \(\eta, w\) & Noise in baseband\\
     \(\tau\) & Timing delay \\
     \(\Delta\tau\) & Timing error (delay - estimated) \\
     \(\varphi\) & Phase offset \\
     \(\Delta\varphi\) & Phase error (offset - estimated) \\
-    \(f_d\) & Doppler frequency\\
-    \(A\) & Received signal amplitude\\
-    \(\gamma\) & Combined effect of the path loss and antenna gain
+    \(f_d\) & Linear Doppler frequency\\
+    \(\Delta f_d\) & Frequency error (Doppler frequency - estimated)\\
+    \(\nu\) & Angular Doppler frequency\\
+    \(\Delta \nu\) & Frequency error (Doppler frequency - estimated)\\
+    \(\gamma\) & Transmitted signal amplitude\\
+    \(\gamma_0\) & Combined effect of the path loss and antenna gain
 \end{xltabular}
 
 
