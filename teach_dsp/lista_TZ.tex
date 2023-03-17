@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
+\usepackage{float}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -34,130 +35,83 @@
     \thisone Na solução, o aluno deve apresentar o desenvolvimento matemático em detalhes para todas soluções.
    % \option Talvez
 \end{subitemize}
-\problem Um sistema LIT causal tem a seguinte função de sistema:
+\problem Considere um sistema linear e invariante no tempo cuja resposta impulsiva é dada por
 \begin{equation}
-    H(Z) = \dfrac{4 + 0,25z^{-1} - 0,5z^{-2}}{\left(1 - 0,25z^{-1} \right)\left(1 + 0,5z^{-1} \right)}
+    h\left[ n \right] = a^{-n} u[-n].
 \end{equation}
-\subproblem Qual é a RDC para $H(Z)$?
-\subproblem Determine se o sistema é estável ou não.
-\subproblem Determine a equação de diferenças que é satisfeita
-pela entrada $x[n]$ e pela saída $y[n]$.
-\subproblem Use a expansão em frações parciais para determinar
-a resposta ao impulso $h[n]$.
-\subproblem Encontre $Y(Z)$, a transformada $Z$ da saída, quando
-a entrada é $x[n]~ = u[-n-1]$. Especificar a RDC
-para $Y(z)$.
-\subproblem Encontre a sequência de saída $y[n]$ quando a entrada
-é $x[n] = u[-n-1]$.
+Obtenha a expressão analítica desse sistema quando sua entrada é \(x\left[ n \right] = u\left[ n \right]\).
 
 \answer 
 
-\problem Determine a resposta ao degrau unitário do sistema causal
-para o qual a transformada $Z$ da resposta ao impulso é
+\problem Considere um sistema LTI e causal descrito pela  seguinte equações de diferenças
 \begin{equation}
-    H(Z) = \dfrac{1 - z^3}{1 - z^4}
+    y[n] - 5y[n-1] + 6y[n-2] = 2x[n-1]
 \end{equation}
-	
-\answer
 
-\problem Se a entrada $x[n]$ de um sistema LIT for $x[n] = u[n]$, a saída é
-\begin{equation}
-    y[n] = \left( \dfrac{1}{2} \right)^{n-1}u[n + 1]
-\end{equation}
-\subproblem Determine $H(z)$, a transformada $z$ da resposta ao impulso
-do sistema, e esboce seu diagrama de polos e zeros.
-\subproblem Encontre a resposta ao impulso $h[n]$.
-\subproblem O sistema é estável?
-\subproblem O sistema é causal?
+Determine
+
+\subproblem A resposta homogênea do sistema. Considere que \(x[n] = 0\)
+\subproblem A resposta impulsiva.
+\subproblem A resposta ao degrau unitário
 
 \answer
 
-\problem Considere uma sequência $x[n]$ para a qual a transformada
-$z$ é
-\begin{equation}
-    X(Z) = \dfrac{\dfrac{1}{3}}{1 - \dfrac{1}{2}z^{-1}} + \dfrac{\dfrac{1}{4}}{1 - 2z^{-1}}
-\end{equation}
-e para a qual a RDC inclui a circunferência unitária. Determine
-$x[0]$ usando o teorema do valor inicial.
+\problem Encontre a resposta em frequência do sistema da equação anterior
 
-\answer
-
-\problem Usando uma expansão em série de potência determine a sequência $x[n]$ cuja transformada $Z$ é
-\begin{equation}
-X(Z) = e^{z}    
-\end{equation}
-
-\answer
-
-\problem Considere um sistema LIT que seja estável e para o
-qual $H(Z)$, a transformada $Z$ da resposta ao impulso,
-seja dada por
-\begin{equation}
-    H(Z) = \dfrac{3}{1 - \dfrac{1}{3}z^{-1}}
-\end{equation}
-Suponha que $x[n]$, a entrada do sistema, seja uma sequência
-degrau unitário.
-\subproblem Determine a saída $y[n]$ calculando a convolução
-discreta de $x[n]$ e $h[n]$.
-\subproblem Determine a saída $y[n]$ calculando a transformada
-$Z$ inversa de $Y(Z)$.
-
-\answer
-
-\problem Seja x[n] a sequência com o diagrama de polos e zeros
-mostrado na Figura \ref{fig7}. Esboce o diagrama de polos e zeros para:
+\problem Considere um sistema LTI com uma resposta em frequência dada por
 
 \begin{equation}
-    y[n] = \left(\dfrac{1}{2}\right)^n x[n]
+    H(e^{j\omega}) = \frac{1 - e^{-j2\omega}}{1 + \frac{1}{2}e^{-j4\omega}}
 \end{equation}
-\begin{figure}[h!]
+Determine a saída \(y [n]\) quando a entrada do sistema é \(x[n] = \sin{\left( \frac{\pi n}{4} \right)}\).
+
+
+\problem Considere a seguinte relação de entrada-saída para um dado sistema \(S\).
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{Fig/fig7.png}
-    \caption{Figura para solução do problema 7}
-    \label{fig7}
+    \includegraphics[scale=0.12]{Fig/q5.png}
+\end{figure}
+\subproblem \(S\) pode ser invariante no tempo? Explique.
+\subproblem \(S\) pode ser linear? Explique.
+\subproblem Se os pares de entrada-saída \((2)\) e \((3)\) fossem de um sistema LTI \(S_2\), qual seria a sua resposta impulsiva?
+\subproblem Se os pares de entrada-saída \((1)\) for de um sistema LTI \(S_3\), qual seria a sua saída se o sinal de entrada fosse
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{Fig/q5_d.png}
 \end{figure}
 
-\answer
+\problem Considere um sistema LTI de tempo discreto cuja resposta em frequência é dada por
 
-\problem O diagrama de polos e zeros na Figura \ref{fig8} corresponde
-à transformada $Z$ $X(Z)$ de uma sequência causal $x[n]$. Esboce
-o diagrama de polos e zeros de $Y(Z)$, em que $y[n] = x[-n + 3]$. Além disso, especifique a RDC para $Y(Z)$.
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.6]{Fig/feg8.png}
-    \caption{Figura para solução do problema 8}
-    \label{fig8}
-\end{figure}
+\begin{equation}
+H\left( e^{j\omega} \right) = \frac{\left( 1 - j e^{-j\omega} \right) \left( 1 + j e^{-j\omega} \right)}{1 - 0,8 e^{-j\omega}}
+\end{equation}
 
-\answer
+Realize a expansão por frações parciais e obtenha \(h [n]\).
 
-\problem Considere a transformada $Z$ $X(Z)$, cujo diagrama de polos
-e zeros é como mostrado na Figura \ref{fig9}. 
-\subproblem Determine a RDC de $X(Z)$ se sabemos que a transformada
-de Fourier existe. Para esse caso, determine se a sequência $x[n]$ correspondente é lateral direita, lateral esquerda ou bilateral.
-\subproblem Quantas possíveis sequências bilaterais tem o diagrama de polos e zeros mostrado na Figura \ref{fig9}?
-\subproblem É possível que o diagrama de polos e zeros na Figura \ref{fig9} seja associado com uma sequência que é tanto estável quanto causal? Nesse caso, dê a RDC apropriada.
+\problem Encontre a equação de diferenças para a resposta em frequência da questão anterior.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.6]{Fig/fig9.png}
-    \caption{Figura para solução do problema 9}
-    \label{fig9}
-\end{figure}
+\problem Considere a resposta em frequência da questão 6, qual valor de \(\omega_0\) que o sinal de entrada, \(x [n] = 4 + 2 \cos{(\omega_0 n)}\), deve ter para que a saída do sistema seja uma constante? Qual é o valor dessa constante?
 
-\problem Para o par de transformadas $Z$ da
-entrada e da saída $X(Z)$ e $Y(Z)$, determine a RDC para a função de sistema $H(Z)$:
- \begin{equation*}
-\begin{split}
-    &X(Z) = \dfrac{1}{1 - \dfrac{3}{4}z^{-1}}\; , |z| > \dfrac{3}{4}\\
-    &Y(Z) = \dfrac{1}{1 + \dfrac{2}{3}z^{-1}}\; , |z| > \dfrac{2}{3}
-\end{split}
-\end{equation*}
+\problem Considere a equação
 
-%\begin{subitemize}
- %   \option Não
-  %  \thisone Sim
-   % \option Talvez
-%\end{subitemize}
+\begin{equation}
+    x[n] = w[n] \cos{(\omega_0 n)},
+\end{equation}
+Em que \(w [n] = 1\) para \(|n| \leq L\).
+
+\subproblem Calcule \(W\left( e^{j\omega} \right)\),  isto é, a DTFT de \(w [n]\).
+\subproblem Calcule \(X\left( e^{j\omega} \right)\) em termos que \(W\left( e^{j\omega} \right)\)
+\subproblem Esboçe o gráfico de \(X\left( e^{j\omega} \right)\)
+\subproblem Explique a relação de \(L\) com a protuberância dos picos de \(X\left( e^{j\omega} \right)\)
+
+\problem Considere um sistema que satisfaça a seguinte equações de diferenças
+\begin{equation}
+    x[n] = x[n] + 2x\left[ n-1 \right] + x\left[ n-1 \right]
+\end{equation}
+
+\subproblem Determine \(H\left( e^{j\omega} \right)\)
+\subproblem Calcule \(h[n]\)
+\subproblem O sistema é estável? Dica: Utilize as propriedades de estabilidade para justificar a sua resposta.
+\subproblem Esboçe o gráfico de fase e magnitude de \(H\left( e^{j\omega} \right)\)
 
 \end{document}
