@@ -487,10 +487,12 @@
     \(\textnormal{Re}\left\{ x \right\}\) & Real part of \(x\)\\
     \(\textnormal{Im}\left\{ x \right\}\) & Imaginary part of \(x\)\\
     \(\angle\cdot\) & phase (complex argument)\\
-    \(x\;\mathrm{mod}\;y\) & Remainder, i.e., \(x-y\floor{x/y}\)\\
+    \(x\;\mathrm{mod}\;y\) & Remainder, i.e., \(x-y\floor{x/y}\), for \(y \neq 0\)\\
     \(\mathrm{frac}\left(x\right)\) & Fractional part, i.e., \(x\;\mathrm{mod}\;1\) \\
     \(a \wedge b\) & Logical AND of \(a\) and \(b\)\\
     \(a \vee b\) & Logical OR of \(a\) and \(b\)\\
+    \(a \backslash b\) & \(b\) is a positive integer multiple of \(a\), i.e., \( \exists\; n \in \mathbb{Z}_{++} \mid b = n a \) \\
+    \(a \centernot\backslash b\) & \(b\) is not a positive integer multiple of \(a\), i.e., \( \nexists\; n \in \mathbb{Z}_{++} \mid b = n a \) \\
     \(\lnot a\) & Logical negation of \(a\) \\
     \(\ceil{\cdot}\) & Ceiling operation\\
     \(\floor{\cdot}\) & Floor operation
