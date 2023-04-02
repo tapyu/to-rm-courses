@@ -142,6 +142,10 @@
     \(f^{\left( n \right)},  x^{(n)}(t)\) & \(n\)th derivative of the function \(f\) or \(x(t)\)\\
     \(f', f^{\left( 1 \right)}, x'(t)\) & \(1\)th derivative of the function \(f\) or \(x(t)\)\\
     \(f'', f^{\left( 2 \right)}, x''(t)\) & \(2\)th derivative of the function \(f\) or \(x(t)\)\\
+    \(\argmax[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
+    \( \argmin[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
+    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum, i.e., \(f(\mathbf{x}) = \min{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the greatest lower bound of this set\\
+    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum, i.e., \(f(\mathbf{x}) = \max{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the least upper bound of this set\\
     \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
     \(*\) & Convolution (discrete or continuous)\\
     \(\circledast, \circconv{N}\) & Circular convolution\\
@@ -379,43 +383,6 @@
     \(\mathbf{A} \prec \mathbf{B}\) & Strict generalized inequality meaning that \(\mathbf{B}-\mathbf{A}\) belongs to the positive orthant conic subset, \(\mathbb{S}_{++}^{n}\), in the space \(\mathbb{S}^{n}\)
 \end{xltabular}
 
-\section{Sets}
-\begin{xltabular}{\textwidth}{XX}
-    \(A + B\) & Set addition (Minkowski sum)\\
-    \(A - B\) &  Minkowski difference\\
-    \(A \setminus B, A-B\) & Set difference or set subtraction, i.e., the set containing the elements of \(A\) that are not in \(B\)\\
-    \(A \cup B\) & Set of union\\
-    \(A \cap B\) & Set of intersection\\
-    \(A \times B\) & Cartesian product\\
-    \(A^n\) & \(\underbrace{A \times A \times \dots \times A}_{n \text{ times}}\)\\
-    \(A^{\perp}\) & Orthogonal complement of \(A\), e.g., \(\nullspace{\mathbf{A}} = \range{\mathbf{A}^{\top}}^{\perp}\)\\
-    \(A \oplus B\) & Direct sum, e.g., \(\range{\mathbf{A}^{\top}} \oplus \range{\mathbf{A}^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
-    \(A^{c}, \bar{A}\) & Complement set (given $U$)\\
-    \(\#A, \abs{A}\) & Cardinality\\
-    \(a \in A\)& \(a\) is element of \(A\) \\
-    \(a \notin A\)& \(a\) is not element of \(A\) \\
-    \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
-    \(U\) & Universe\\
-    \(2^A\) & Power set of \(A\)\\
-    \(\mathbb{R}\) & Set of real numbers\\
-    \(\mathbb{C}\)& Set of complex numbers\\
-    \(\mathbb{Z}\) & Set of integer number\\
-    \(\mathbb{B} = \left\{ 0, 1 \right\}\) & Boolean set\\ % Circuit Complexity and Neural Networks - Ian Parberry; Further Improvements in the Boolean Domain
-    \(\emptyset\) & Empty set\\
-    \(\mathbb{N}\) & Set of natural numbers\\
-    \(\mathbb{K} \in \left\{ \mathbb{R}, \mathbb{C} \right\}\) & Real or complex space (field)\\
-    \(\mathbb{K}^{I_1\times I_2 \times \dots \times I_N}\) & \(I_1\times I_2 \times \dots \times I_N\)-dimensional real (or complex) space\\
-    \(\mathbb{K}_{+}\) & Nonnegative real (or complex) space\\
-    \(\mathbb{K}_{++}\) & Positive real (or complex) space, i.e., \(\mathbb{K}_{++} = \mathbb{K}_{+}\setminus\left\{ \mathbf{0} \right\}\)\\
-    \(\mathbb{S}^{n}, \mathcal{S}^{n}\) & Conic set of the symmetric matrices in \(\mathbb{R}^{n\times n}\)\\
-    \(\mathbb{S}_{+}^{n}, \mathcal{S}_{+}^{n}\) & Conic set of the symmetric positive semidefinite matrices in \(\mathbb{R}^{n\times n}\)\\
-    \(\mathbb{S}_{++}^{n}, \mathcal{S}_{++}^{n}\) & Conic set of the symmetric positive definite matrices in \(\mathbb{R}^{n\times n}\), i.e., \(\mathbb{S}_{++}^{n} = \mathbb{S}_{+}^{n}\setminus \left\{ \mathbf{0} \right\}\)\\
-    \(\mathbb{H}^{n}\) & Set of all hermitian matrices in \(\mathbb{C}^{n\times n}\)\\
-    \([a, b]\) & Closed interval of a real set from \(a\) to \(b\)\\
-    \((a, b)\) & Opened interval of a real set from \(a\) to \(b\)\\
-    \([a, b), (a, b]\) & Half-opened intervals of a real set from \(a\) to \(b\)\\
-\end{xltabular}
-
 \section{Communication systems}
 \begin{xltabular}{\textwidth}{XX}
     \(B\) & One-sided bandwidth of the transmitted signal, in Hz\\
@@ -454,21 +421,73 @@
     \(\gamma_0, A_0\) & Combined effect of the path loss and antenna gain
 \end{xltabular}
 
-
-\section{Other notations}
-\subsection{Mathematical symbols}
+\section{Discrete mathematics}
+\subsection{Set theory}
 \begin{xltabular}{\textwidth}{XX}
-    \(\exists\) & There exists\\
+    \(A + B\) & Set addition (Minkowski sum)\\
+    \(A - B\) &  Minkowski difference\\
+    \(A \setminus B, A-B\) & Set difference or set subtraction, i.e., \(A \setminus B = \left\{ x \vert x \in A \wedge x \not\in B \right\}\) the set containing the elements of \(A\) that are not in \(B\)\\
+    \(A \cup B\) & Set of union\\
+    \(A \cap B\) & Set of intersection\\
+    \(A \times B\) & Cartesian product\\
+    \(A^n\) & \(\underbrace{A \times A \times \dots \times A}_{n \text{ times}}\)\\
+    \(A^{\perp}\) & Orthogonal complement of \(A\), e.g., \(\nullspace{\mathbf{A}} = \range{\mathbf{A}^{\top}}^{\perp}\)\\
+    \(A \oplus B\) & Direct sum, e.g., \(\range{\mathbf{A}^{\top}} \oplus \range{\mathbf{A}^{\top}}^{\perp} = \mathbb{R}^{n}\)\\
+    \(\bar{A}, A^{c}\) & Complement set (given $U$)\\
+    \(\#A, \abs{A}\) & Cardinality\\
+    \(a \in A\)& \(a\) is element of \(A\) \\
+    \(a \notin A\)& \(a\) is not element of \(A\) \\
+    \(\left\{ 1,2, \dots, n \right\}\) & Discrete set containing the integer elements \(1,2, \dots, n\)\\
+    \(U\) & Universe\\
+    \(2^A\) & Power set of \(A\)\\
+    \(\mathbb{R}\) & Set of real numbers\\
+    \(\mathbb{C}\)& Set of complex numbers\\
+    \(\mathbb{Z}\) & Set of integer number\\
+    \(\mathbb{B} = \left\{ 0, 1 \right\}\) & Boolean set\\ % Circuit Complexity and Neural Networks - Ian Parberry; Further Improvements in the Boolean Domain
+    \(\emptyset\) & Empty set\\
+    \(\mathbb{N}\) & Set of natural numbers\\
+    \(\mathbb{K} \in \left\{ \mathbb{R}, \mathbb{C} \right\}\) & Real or complex space (field)\\
+    \(\mathbb{K}^{I_1\times I_2 \times \dots \times I_N}\) & \(I_1\times I_2 \times \dots \times I_N\)-dimensional real (or complex) space\\
+    \(\mathbb{K}_{+}\) & Nonnegative real (or complex) space\\
+    \(\mathbb{K}_{++}\) & Positive real (or complex) space, i.e., \(\mathbb{K}_{++} = \mathbb{K}_{+}\setminus\left\{ \mathbf{0} \right\}\)\\
+    \(\mathbb{S}^{n}, \mathcal{S}^{n}\) & Conic set of the symmetric matrices in \(\mathbb{R}^{n\times n}\)\\
+    \(\mathbb{S}_{+}^{n}, \mathcal{S}_{+}^{n}\) & Conic set of the symmetric positive semidefinite matrices in \(\mathbb{R}^{n\times n}\)\\
+    \(\mathbb{S}_{++}^{n}, \mathcal{S}_{++}^{n}\) & Conic set of the symmetric positive definite matrices in \(\mathbb{R}^{n\times n}\), i.e., \(\mathbb{S}_{++}^{n} = \mathbb{S}_{+}^{n}\setminus \left\{ \mathbf{0} \right\}\)\\
+    \(\mathbb{H}^{n}\) & Set of all hermitian matrices in \(\mathbb{C}^{n\times n}\)\\
+    \([a, b]\) & Closed interval of a real set from \(a\) to \(b\)\\
+    \((a, b)\) & Opened interval of a real set from \(a\) to \(b\)\\
+    \([a, b), (a, b]\) & Half-opened intervals of a real set from \(a\) to \(b\)\\
+\end{xltabular}
+
+\subsection{Quantifiers, inferences}
+\begin{xltabular}{\textwidth}{XX}
+    \(\forall\) & For all (universal quantifier)\\
+    \(\exists\) & There exists (existential quantifier)\\
     \(\nexists\) & There does not exist\\
     \(\exists!\) & There exist an unique\\
     \(\in\) & Belongs to\\
     \(\not\in\) & Does not belong to\\
-    \(\blacksquare\) & Q.E.D. \\
-    \(\therefore\) & Therefore\\
     \(\because\) & Because\\
-    \(\forall\) & For all\\
-    \(\mid, :\) & Such that\\
-    \(\iff\) & Logical equivalence\\
+    \(\mid, :\) & Such that, sometimes that parantheses is used\\
+    \(, , \left( \cdot \right)\) & Used to separate the quantifier with restricted domain from the propositional function, e.g., \(\forall \; x < 0 \left( x^{2} > 0 \right)\) or \(\forall \; x < 0, x^{2} > 0\)\\
+    \(\therefore\) & Therefore\\
+\end{xltabular}
+
+\subsection{Propositional Logic}
+\begin{xltabular}{\textwidth}{XX}
+    \(\lnot a\) & Logical negation of \(a\) \\
+    \(a \wedge b\) & Conjunction (logical AND) operator between \(a\) and \(b\)\\
+    \(a \vee b\) & Disjunction (logical OR) operator between \(a\) and \(b\)\\
+    \(a \oplus b\) & Exclusive OR (logical XOR) operator between \(a\) and \(b\)\\
+    \(a \rightarrow b\) & Implication (or conditional) statement\\
+    \(a \leftrightarrow b\) & Bi-implication (or biconditional) statement, i.e., \(\left( a \rightarrow b \right) \wedge (b \rightarrow a )\) \\
+    \(a \equiv b, a \iff b, a \Leftrightarrow b \) & Logical equivalence, i.e., \(a \leftrightarrow b\) is a tautology
+\end{xltabular}
+
+\section{Number theory, algorithm theory, and other notations}
+\subsection{Mathematical symbols}
+\begin{xltabular}{\textwidth}{XX}
+    \(\blacksquare\) & Q.E.D. \\
     \(\triangleq, :=\) & Equal by definition\\
     \(\neq\) & Not equal\\
     \(\infty\) & Infinity\\
@@ -477,10 +496,6 @@
 \end{xltabular}
 \subsection{Operations}
 \begin{xltabular}{\textwidth}{XX}
-    \(\argmax[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
-    \( \argmin[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
-    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum\\
-    \(\underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum\\
     \(\abs{a}\) & Absolute value of \(a\)\\
     \(\log\) & Base-10 logarithm or decimal logarithm\\
     \(\ln\) & Natual logarithm\\
@@ -489,11 +504,8 @@
     \(\angle\cdot\) & phase (complex argument)\\
     \(x\;\mathrm{mod}\;y\) & Remainder, i.e., \(x-y\floor{x/y}\), for \(y \neq 0\)\\
     \(\mathrm{frac}\left(x\right)\) & Fractional part, i.e., \(x\;\mathrm{mod}\;1\) \\
-    \(a \wedge b\) & Logical AND of \(a\) and \(b\)\\
-    \(a \vee b\) & Logical OR of \(a\) and \(b\)\\
     \(a \backslash b\) & \(b\) is a positive integer multiple of \(a\), i.e., \( \exists\; n \in \mathbb{Z}_{++} \mid b = n a \) \\
     \(a \centernot\backslash b\) & \(b\) is not a positive integer multiple of \(a\), i.e., \( \nexists\; n \in \mathbb{Z}_{++} \mid b = n a \) \\
-    \(\lnot a\) & Logical negation of \(a\) \\
     \(\ceil{\cdot}\) & Ceiling operation\\
     \(\floor{\cdot}\) & Floor operation
 \end{xltabular}

@@ -562,19 +562,19 @@ The set \(S \in \mathbb{R}^{n}\) is convex iff it contains all convex combinatio
     \hline
     Pointwise infimum:
     \begin{itemize}[leftmargin=*]
-        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\).
+        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y}) = \min{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\)
     \end{itemize} & \(f\) is concave if \(g\) is concave for each \(\mathbf{y}\in \mathcal{A}\). &
     \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-        \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the greatest value in the codomain of \(f\) that is less than or equal this set.
+        \item For each \(\mathbf{x}\), \(f(\mathbf{x})\) is the greatest lower bound of \(g(\mathbf{x}, \mathbf{y})\), where \(\mathbf{y} \in \mathcal{A}\), for \((\mathbf{x}, \mathbf{y}) \in \dom{g}\)
         \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ inf }}g(x,y)> -\infty \right\}\).
     \end{itemize} \\
     \hline
     Pointwise supremum:
     \begin{itemize}[leftmargin=*]
-        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\).
+        \item \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y}) = \max{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\)
     \end{itemize} & \(f\) is convex if \(g\) is convex for each \(\mathbf{y}\in \mathcal{A}\). &
     \vspace{-3.5ex} \begin{itemize}[leftmargin=*]
-        \item For each value of \(x\), we have an infinite set of points \(\eval{g(x,y)}{y\in \mathcal{A}}\). The value \(f(x)\) will be the least value in the codomain of \(f\) that is greater than or equal this set.
+        \item For each \(\mathbf{x}\), \(f(\mathbf{x})\) is the least upper bound of \(g(\mathbf{x}, \mathbf{y})\), where \(\mathbf{y} \in \mathcal{A}\), for \((\mathbf{x}, \mathbf{y}) \in \dom{g}\)
         \item \(\dom{f} = \left\{ x \mid (x,y) \in \dom{g} \;\forall\; y \in \mathcal{A}, \underset{y \in \mathcal{A}}{\textnormal{ sup }}g(x,y)<\infty \right\}\).
         \item In terms of epigraphs, the pointwise supremum of the infinite set of functions \(\eval{g(x,y)}{y\in \mathcal{A}}\) corresponds to the intersection of the following epigraphs: \(\textnormal{epi } f = \intersection_{y \in \mathcal{A}} \textnormal{epi } g(\cdot, y)\)
     \end{itemize} \\
