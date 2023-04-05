@@ -132,7 +132,7 @@
 \begin{xltabular}{\textwidth}{p{5.7cm}X}
     \(x(t)\) & Continuous-time \(t\)\\
     \(x[n], x[k], x[m], x[i], \dots\) \(x_n, x_k, x_m, x_i, \dots\) \(x(n), x(k), x(m), x(i), \dots\) & Discrete-time \(n, k, m, i, \dots\) (parenthesis should be adopted only if there are no continuous-time signals in the context to avoid ambiguity) \\
-    \(x\left[ \left( \left( n - m \right) \right)_N \right], x \left( \left( n - m \right) \right)_N\) & Circular shift in \(m\) samples within a \(N\)-samples window
+    \(x\left[ \left( \left( n - m \right) \right)_N \right], x \left( \left( n - m \right) \right)_N\) & Circular shift in \(m\) samples within a \(N\)-samples window \cite{ingleDigitalSignalProcessing2000,oppenheimDiscreteTimeSignalProcessing2009}
 \end{xltabular}
 \subsection{Common functions}
 \begin{xltabular}{\textwidth}{XX}
@@ -152,11 +152,11 @@
     \(f'', f^{\left( 2 \right)}, x''(t)\) & \(2\)th derivative of the function \(f\) or \(x(t)\)\\
     \(\argmax[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
     \( \argmin[x \in \mathcal{A}]{f(x)} \) & Value of \(x\) that minimizes \(x\)\\
-    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum, i.e., \(f(\mathbf{x}) = \min{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the greatest lower bound of this set\\
-    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum, i.e., \(f(\mathbf{x}) = \max{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the least upper bound of this set\\
+    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{inf }} g(\mathbf{x},\mathbf{y})\) & Infimum, i.e., \(f(\mathbf{x}) = \min{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the greatest lower bound of this set \cite{boydConvexOptimization2004}\\
+    \(f(\mathbf{x}) = \underset{\mathbf{y} \in \mathcal{A}}{\textnormal{sup }} g(\mathbf{x},\mathbf{y})\) & Supremum, i.e., \(f(\mathbf{x}) = \max{\left\{ g(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{A} \wedge \left( \mathbf{x}, \mathbf{y} \right) \in \dom{g} \right\}}\), which is the least upper bound of this set \cite{boydConvexOptimization2004}\\
     \(f \circ g\) & Composition of the functions \(f\) and \(g\)\\
     \(*\) & Convolution (discrete or continuous)\\
-    \(\circledast, \circconv{N}\) & Circular convolution \cite{oppenheimDiscreteTimeSignalProcessing2009}\\
+    \(\circledast, \circconv{N}\) & Circular convolution \cite{oppenheimDiscreteTimeSignalProcessing2009,dinizDigitalSignalProcessing2010}\\
 \end{xltabular}
 \subsection{Transformations}
 \begin{xltabular}{\textwidth}{XX}
@@ -480,7 +480,7 @@
     \(\not\in\) & Does not belong to \cite{grahamConcreteMathematicsFoundation1989}\\
     \(\because\) & Because \cite{grahamConcreteMathematicsFoundation1989}\\
     \(\mid, :\) & Such that, sometimes that parantheses is used \cite{grahamConcreteMathematicsFoundation1989}\\
-    \(, , \left( \cdot \right)\) & Used to separate the quantifier with restricted domain from the propositional function, e.g., \(\forall \; x < 0 \left( x^{2} > 0 \right)\) or \(\forall \; x < 0, x^{2} > 0\) \cite{grahamConcreteMathematicsFoundation1989}\\
+    \(, , \left( \cdot \right)\) & Used to separate the quantifier with restricted domain from the its scope, e.g., \(\forall \; x < 0 \left( x^{2} > 0 \right)\) or \(\forall \; x < 0, x^{2} > 0\) \cite{grahamConcreteMathematicsFoundation1989}\\
     \(\therefore\) & Therefore \cite{grahamConcreteMathematicsFoundation1989}\\
 \end{xltabular}
 
@@ -499,7 +499,8 @@
 \subsection{Mathematical symbols}
 \begin{xltabular}{\textwidth}{XX}
     \(\blacksquare\) & Q.E.D. \\
-    \(\triangleq, :=\) & Equal by definition\\
+    \(\triangleq\) & Equal by definition\\
+    \(:=, \leftarrow\) & Assignment \cite{rosenDiscreteMathematicsIts2011}\\
     \(\neq\) & Not equal\\
     \(\infty\) & Infinity\\
     \(j\) & \(\sqrt{-1}\)\\
