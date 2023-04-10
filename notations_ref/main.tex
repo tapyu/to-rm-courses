@@ -406,13 +406,13 @@
     \(R\) & Bit rate\\
     \(T\) & Bit interval/duration/period\\
     \(T_c\) & Chip interval/duration/period\\
-    \(T_{sy}, T_{sym}\) & Symbol interval/duration/period\\
+    \(T_{sy}, T_{sym}\) & Symbol/signaling\cite{proakisDigitalCommunications2007} interval/duration/period\\
     \(s_{RF}\) & Transmitted signal in RF\\
     \(s_{FI}\) & Transmitted signal in FI\\
-    \(s, s_l\) & Low-pass equivalent signal or envelope complex of transmitted signal\\
+    \(s, s_l\) & Lowpass (or baseband) equivalent signal or envelope complex of transmitted signal\\
     \(r_{RF}\) & Received signal in RF\\
     \(r_{FI}\) & Received signal in FI\\
-    \(r, r_l\) & Low-pass equivalent signal or envelope complex of received signal\\
+    \(r, r_l\) & Lowpass (or baseband) equivalent signal or envelope complex of received signal\\
     \(\phi\) & Signal phase\\
     \(\phi_0\) & Initial phase\\
     \(\eta_{RF}, w_{RF}\) & Noise in RF\\
@@ -514,9 +514,11 @@
     \(\textnormal{Im}\left\{ x \right\}\) & Imaginary part of \(x\)\\
     \(\angle\cdot\) & phase (complex argument)\\
     \(x\;\mathrm{mod}\;y\) & Remainder, i.e., \(x-y\floor{x/y}\), for \(y \neq 0\)\\
+    \(x\;\mathrm{div}\;y\) & Quotient \cite{rosenDiscreteMathematicsIts2011}\\
+    \(x \equiv y\;(\mathrm{mod}\;m)\) & Congruent, i.e.,  \(m \backslash (x-y)\) \cite{rosenDiscreteMathematicsIts2011}\\
     \(\mathrm{frac}\left(x\right)\) & Fractional part, i.e., \(x\;\mathrm{mod}\;1\) \cite{grahamConcreteMathematicsFoundation1989} \\
-    \(a \backslash b\) & \(b\) is a positive integer multiple of \(a\), i.e., \( \exists\; n \in \mathbb{Z}_{++} \mid b = n a \) \cite{grahamConcreteMathematicsFoundation1989} \\
-    \(a \centernot\backslash b\) & \(b\) is not a positive integer multiple of \(a\), i.e., \( \nexists\; n \in \mathbb{Z}_{++} \mid b = n a \) \cite{grahamConcreteMathematicsFoundation1989} \\
+    \(a \backslash b\), \(a \mid b\) & \(b\) is a positive integer multiple of \(a\), i.e., \( \exists\; n \in \mathbb{Z}_{++} \mid b = n a \) \cite{grahamConcreteMathematicsFoundation1989,rosenDiscreteMathematicsIts2011} \\
+    \(a \centernot\backslash b\), \(a \centernot\mid b\) & \(b\) is not a positive integer multiple of \(a\), i.e., \( \nexists\; n \in \mathbb{Z}_{++} \mid b = n a \) \cite{grahamConcreteMathematicsFoundation1989,rosenDiscreteMathematicsIts2011} \\
     \(\ceil{\cdot}\) & Ceiling operation \cite{grahamConcreteMathematicsFoundation1989}\\
     \(\floor{\cdot}\) & Floor operation \cite{grahamConcreteMathematicsFoundation1989}
 \end{xltabular}
@@ -524,6 +526,7 @@
 \begin{xltabular}{\textwidth}{XX}
     \(\mathcal{O}(\cdot), O(\cdot)\) & Big-O notation\\
     \(\Gamma(\cdot)\) & Gamma function\\
+    \(Q(\cdot)\) & Quantization function
 \end{xltabular}
 
 \section{Abbreviations}
