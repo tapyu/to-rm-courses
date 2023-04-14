@@ -37,6 +37,7 @@
 
 % math
 \usepackage{amsmath}
+\usepackage{euscript}
 \usepackage{mathtools} % is an extension package to amsmath
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -45,6 +46,7 @@
 \usepackage{bm} % for writing tensor, e.g., $\bm{\mathcal{A}}$
 \usepackage{IEEEtrantools}
 \usepackage{siunitx} % typesetting units and unitless numbers SI (Système International d’Unités) units
+\sisetup{per-mode=symbol}
 \usepackage{authblk}
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n} % correct the big-O notation
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
@@ -55,6 +57,8 @@
 \NewDocumentCommand{\argmin}{ O{} m }{\underset{#1}{\operatorname{arg\,min}}\;#2}
 \NewDocumentCommand{\argmax}{ O{} m }{\underset{#1}{\operatorname{arg\,max}}\;#2}
 \NewDocumentCommand{\E}{O{} m}{\ensuremath{\operatorname{\bf E}_{#1}\left[#2\right]}} % statistical expectation operator
+\NewDocumentCommand{\cov}{O{} m}{\ensuremath{\operatorname{cov}_{#1}\left[#2\right]}}
+\let\var\undefined\NewDocumentCommand{\var}{O{} m}{\ensuremath{\operatorname{var}_{#1}\left[#2\right]}}
 
 \newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
 \newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
@@ -104,7 +108,6 @@
 \newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}} % Used to seize the height of equation
 \newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
 
-
 % ref
 \usepackage{hyperref}
 \usepackage[style=numeric-comp,backend=biber]{biblatex} % tells LaTeX to use the biber tool instead of the traditional bibtex tool for sorting and formatting your bibliography. Biber is a more advanced and powerful tool than bibtex and it provides more features, such as advanced sorting, Unicode support and support for various data sources.
@@ -146,6 +149,7 @@
 \subsection{Operations and symbols}
 \begin{xltabular}{\textwidth}{XX}
     \(f: A \rightarrow B\)& A function \(f\) whose domain is \(A\) and codomain is \(B\)\\
+    \(\mathbf{f}: A \rightarrow \mathbb{R}^n\)& A vector-valued function \(\mathbf{f}\), i.e., \(n \geq 2\)\\
     \(f^{n}, x^{n}(t), x^{n}[k]\) & \(n\)th power of the function \(f\), \(x[n]\) or \(x(t)\)\\
     \(f^{\left( n \right)},  x^{(n)}(t)\) & \(n\)th derivative of the function \(f\) or \(x(t)\)\\
     \(f', f^{\left( 1 \right)}, x'(t)\) & \(1\)th derivative of the function \(f\) or \(x(t)\)\\
@@ -177,10 +181,12 @@
 \section{Probability, statistics, and stochastic processes}
 \subsection{Operators and symbols}
 \begin{xltabular}{\textwidth}{XX}
-    \(\E{\cdot}, E\left[ \cdot \right], \mathbb{E}\left[ \cdot \right]\) & Statistical expectation operator \cite{nossekAdaptiveArraySignal2015,dinizAdaptiveFiltering1997}\\
+    \(\E{\cdot}, E\left[ \cdot \right], \mathbb{E}\left[ \cdot \right]\) & Statistical expectation operator \cite{nossekAdaptiveArraySignal2015,dinizAdaptiveFilteringAlgorithms2002}\\
     \(\E[u]{\cdot} , E_u\left[ \cdot \right], \mathbb{E}_u\left[ \cdot \right]\) & Statistical expectation operator with respect to \(u\)\\
-    \(\textnormal{var}\left[ \cdot \right], \textnormal{VAR}[\cdot]\) & Variance operator \cite{haykinAdaptiveFilterTheory2002,leon-garciaProbabilityStatisticsRandom2007,proakisDigitalCommunications2007,bishopPatternRecognitionMachine2006}\\
-    \(\textnormal{var}_u \left[ \cdot \right], \textnormal{VAR}_u[\cdot]\) & Variance operator with respect to \(u\)\\
+    \(\var{\cdot}, \textnormal{VAR}[\cdot]\) & Variance operator \cite{haykinAdaptiveFilterTheory2002,leon-garciaProbabilityStatisticsRandom2007,proakisDigitalCommunications2007,bishopPatternRecognitionMachine2006}\\
+    \(\var[u]{\cdot} \left[ \cdot \right], \textnormal{VAR}_u[\cdot]\) & Variance operator with respect to \(u\)\\
+    \(\cov{\cdot}, \textnormal{COV}[\cdot]\) & Covariance operator \cite{bishopPatternRecognitionMachine2006}\\
+    \(\cov[u]{\cdot}, \textnormal{COV}_u[\cdot]\) & Covariance operator with respect to \(u\)\\
     \(\mu_x\) & Mean of the random variable \(x\) \\
     \(\boldsymbol{\muup}_\mathbf{x}, \mathbf{m}_\mathbf{x}\) & Mean vector of the random variable \(\mathbf{x}\) \cite{brownIntroductionRandomSignals1997} \\
     \(\mu_n\) & \(n\)th-order moment of a random variable \\
@@ -495,6 +501,19 @@
     \(a \equiv b, a \iff b, a \Leftrightarrow b \) & Logical equivalence, i.e., \(a \leftrightarrow b\) is a tautology\cite{rosenDiscreteMathematicsIts2011}\\
 \end{xltabular}
 
+\section{Physics}
+\begin{xltabular}{\textwidth}{XX}
+    \(\mathbf{E}\) & Electric feild vector (in \(\si{\volt\per\meter}\))\\
+    \(\mathbf{\Phi}\) & Electric flux (scalar) (in \(\si{\volt\meter}\))\\
+    \(\mathbf{D}\) & Electric flux density, electric displacement, or electric induction vector (in \(\si{\coulomb\per\square\meter}\))\\
+    \(\mathbf{J}\) & Electric current density vector (in \(\si{\ampere\per\square\meter}\))\\
+    \(\mathbf{H}\) & Magnetic feild vector (in \(\si{\ampere\per\meter}\))\\
+    \(\mathbf{B}\) & Magnetic flux density vector (in \(\si{\weber\per\meter\squared} = \si{\tesla}\))\\
+    \(\epsilon\) & Electric permittivity \\
+    \(\mu\) & Magnetic permeability \\
+    \(\mu_0\) & Magnetic permeability in vacuum \\
+\end{xltabular}
+
 \section{Number theory, algorithm theory, and other notations}
 \subsection{Mathematical symbols}
 \begin{xltabular}{\textwidth}{XX}
@@ -504,6 +523,12 @@
     \(\neq\) & Not equal\\
     \(\infty\) & Infinity\\
     \(j\) & \(\sqrt{-1}\)\\
+\end{xltabular}
+\subsection{Calculus}
+\begin{xltabular}{\textwidth}{XX}
+    \(\nabla\) & Nabla operator (vector differential operator) \\
+    \(\oint_C\) & Closed line integral around the contour \(C\) \\
+    \(\iint_S\)& Sufarce integral over \(S\) enclosed by \(C\)
 \end{xltabular}
 \subsection{Operations}
 \begin{xltabular}{\textwidth}{XX}
