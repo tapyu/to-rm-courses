@@ -21,97 +21,10 @@
   \end{center}%
   \par
   \vskip 1.5em}
-  \makeatother % changes the catcode of @ back to 12
-
-
-%%%%%
-% commands
-\usepackage{xparse} % make command behave differently depending on the number of arguments (see \diff command)
-
-% items, tables and figs
-\usepackage{enumitem}
-\usepackage{xltabular}
-\usepackage{tikz}
-\usepackage{float}
-\usepackage{standalone} % place tikz environments or other material in own source files
-
-% math
-\usepackage{amsmath}
-\usepackage{euscript}
-\usepackage{mathtools} % is an extension package to amsmath
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{newtxmath} % for Greek variants (bold, nonitalic, etc...)
-\usepackage{stmaryrd} % provides new symbols, such as \llbracket \rrbracket
-\usepackage{bm} % for writing tensor, e.g., $\bm{\mathcal{A}}$
-\usepackage{IEEEtrantools}
-\usepackage{siunitx} % typesetting units and unitless numbers SI (Système International d’Unités) units
-\sisetup{per-mode=symbol}
-\usepackage{authblk}
-\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n} % correct the big-O notation
-\SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
-
-% newcommands - operators
-\let\oldemptyset\emptyset
-\let\emptyset\varnothing
-\NewDocumentCommand{\argmin}{ O{} m }{\underset{#1}{\operatorname{arg\,min}}\;#2}
-\NewDocumentCommand{\argmax}{ O{} m }{\underset{#1}{\operatorname{arg\,max}}\;#2}
-\NewDocumentCommand{\E}{O{} m}{\ensuremath{\operatorname{\bf E}_{#1}\left[#2\right]}} % statistical expectation operator
-\NewDocumentCommand{\cov}{O{} m}{\ensuremath{\operatorname{cov}_{#1}\left[#2\right]}}
-\let\var\undefined\NewDocumentCommand{\var}{O{} m}{\ensuremath{\operatorname{var}_{#1}\left[#2\right]}}
-
-\newcommand{\tr}[1]{\ensuremath{\textnormal{tr}\left(#1\right)}} % trace
-\newcommand{\adj}[1]{\ensuremath{\textnormal{adj}\left(#1\right)}} % adjugate matrix
-\newcommand{\cof}[1]{\ensuremath{\textnormal{cof}\left(#1\right)}} % cofactor matrix
-\newcommand{\eig}[1]{\ensuremath{\textnormal{eig}\left(#1\right)}} % eigenvalues
-\renewcommand{\dim}[1]{\ensuremath{\textnormal{dim}\left(#1\right)}} % dimension of a set
-\newcommand{\nullspace}[1]{\ensuremath{\textnormal{N}\left(#1\right)}} % nullspace or kernel of the matrix
-\newcommand{\nullity}[1]{\ensuremath{\textnormal{nullity}\left(#1\right)}} % nullity=dim(N(A))
-\renewcommand{\span}[1]{\ensuremath{\textnormal{span}\left(#1\right)}} % span of a set of vectors
-\newcommand{\range}[1]{\ensuremath{\textnormal{C}\left(#1\right)}} % range or column space of a matrix=span(a1,a2, ..., an), where ai is the ith column vector of the matrix A
-\newcommand{\rank}[1]{\ensuremath{\textnormal{rank}\left(#1\right)}} % rank = dim(C(A))
-\newcommand{\diag}[1]{\ensuremath{\textnormal{diag}\left(#1\right)}} % diagonal operator
-\DeclareDocumentCommand{\vec}{om}{\ensuremath{\textnormal{vec}\IfValueT{#1}{_{\textnormal{#1}}}\left(#2\right)}} % vectorize operator, e.g., \vec[]{\mathbf{A}}
-\newcommand{\unvec}[1]{\ensuremath{\textnormal{unvec}\left(#1\right)}} % unvectorize operator
-\newcommand{\inner}[2]{\ensuremath{\langle#1,#2\rangle}} % inner product
-\makeatletter % changes the catcode of @ to 11
-% circular convolution a lá Oppenheim (if possible, prefer \circledast)
-\newcommand*\circconv[1]{%
-\tikz[baseline=(C.base)]\node[draw,circle,inner sep=0.5pt](C) {#1};\!
-}
-
-\DeclarePairedDelimiter\abs{\lvert}{\rvert} % |x| -> absolute value or determinant
-\let\oldabs\abs
-\def\abs{\@ifstar{\oldabs}{\oldabs*}} % swap the asterist and the nonasterisk behaviors
-
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil} % ⌈x⌉
-\let\oldceil\ceil
-\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
-
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor} % ⌊x⌋
-\let\oldfloor\floor
-\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
-
-\DeclarePairedDelimiter\norm{\lVert}{\rVert} % ||x|| -> l2-norm, 2-norm, Euclidean norm
-\let\oldnorm\norm
-\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
-
 \makeatother % changes the catcode of @ back to 12
-\newcommand{\frob}[1]{\ensuremath{\norm{#1}_\textrm{F}}} % Frobenius norm
-\newcommand{\eval}[2]{\left.#1\right|_{#2}} % x|_x=a -> evaluation bar
-\newcommand{\dom}[1]{\ensuremath{\textnormal{dom}\left(#1\right)}} % domain of the function
-\newcommand{\intersection}{\bigcap\limits} % intersection operator
-\DeclareDocumentCommand{\diff}{o}{\mathop{}\!\mathrm{d}\IfValueT{#1}{^{#1}}} % derivative(for high-order, use the optional argument)
 
-% newcommands - comments or corrections
-\newcommand{\obs}[1]{\textcolor{red}{(#1)}} % comment
-\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}} % Used to seize the height of equation
-\newcommand{\ensureoperation}{\negmedspace {}} % To ensure that a new line symbol is an operation instead of a sign
-
-% ref
-\usepackage{hyperref}
-\usepackage[style=numeric-comp,backend=biber]{biblatex} % tells LaTeX to use the biber tool instead of the traditional bibtex tool for sorting and formatting your bibliography. Biber is a more advanced and powerful tool than bibtex and it provides more features, such as advanced sorting, Unicode support and support for various data sources.
-\addbibresource{/home/tapyu/.cache/zotero/refs.bib} % add reference file, in the document, add \printbibliography to print bibliography
+\usepackage{authblk}
+\input{default_preamble.tex}
 
 \begin{document}
 \title{\textbf{Notation}  \vspace{-.3cm}}
@@ -128,7 +41,6 @@
   $\bm{\mathcal{A}}, \bm{\mathcal{B}}, \bm{\mathcal{C}}, \dots$ & Tensors \\
   $A, B, C, \dots, \mathcal{A}, \mathcal{B}, \mathcal{C}, \dots, \mathbb{A}, \mathbb{B}, \mathbb{C}, \dots$ &  Sets\\
 \end{xltabular}
-
 
 \section{Signals and functions}
 \subsection{Time indexing}
@@ -183,6 +95,7 @@
 \begin{xltabular}{\textwidth}{XX}
     \(\E{\cdot}, E\left[ \cdot \right], \mathbb{E}\left[ \cdot \right]\) & Statistical expectation operator \cite{nossekAdaptiveArraySignal2015,dinizAdaptiveFilteringAlgorithms2002}\\
     \(\E[u]{\cdot} , E_u\left[ \cdot \right], \mathbb{E}_u\left[ \cdot \right]\) & Statistical expectation operator with respect to \(u\)\\
+    \(\expval{\cdot}\) & Ensamble average\\
     \(\var{\cdot}, \textnormal{VAR}[\cdot]\) & Variance operator \cite{haykinAdaptiveFilterTheory2002,leon-garciaProbabilityStatisticsRandom2007,proakisDigitalCommunications2007,bishopPatternRecognitionMachine2006}\\
     \(\var[u]{\cdot} \left[ \cdot \right], \textnormal{VAR}_u[\cdot]\) & Variance operator with respect to \(u\)\\
     \(\cov{\cdot}, \textnormal{COV}[\cdot]\) & Covariance operator \cite{bishopPatternRecognitionMachine2006}\\
@@ -313,7 +226,7 @@
 
 \subsection{General operations}
 \begin{xltabular}{\textwidth}{XX}
-    \(\inner{\cdot}{\cdot}\) & Inner product, e.g., \(\inner{\mathbf{a}}{\mathbf{b}} = \mathbf{a}^\top\mathbf{b}\)\\
+    \(\expval{\cdot, \cdot}\) & Inner product, e.g., \(\expval{\mathbf{a}, \mathbf{b}} = \mathbf{a}^\top\mathbf{b}\)\\
     \(\circ\) & Outer product, e.g., \(\mathbf{a} \circ \mathbf{b} = \mathbf{a}\mathbf{b}^\top\)\\
     \(\otimes\) & Kronecker product\\
     \(\odot\) & Hadamard (or Schur) (elementwise) product\\
@@ -375,12 +288,12 @@
 \end{xltabular}
 \subsection{Spaces}
 \begin{xltabular}{\textwidth}{XX}
-    \(\span{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Vector space spanned by the argument vectors \cite{golubMatrixComputations2013}\\
-    \(\range{\mathbf{A}}\), \(\mathrm{columnspace}(\mathbf{A})\), \(\mathrm{range}(\mathbf{A})\), \(\span{\mathbf{A}}\), \(\mathrm{image}(\mathbf{A})\) & Columnspace, range or image, i.e., the space \(\span{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\) \cite{strangIntroductionLinearAlgebra1993, nossekAdaptiveArraySignal2015}\\
+    \(\spn{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n}\) & Vector space spanned by the argument vectors \cite{golubMatrixComputations2013}\\
+    \(\range{\mathbf{A}}\), \(\mathrm{columnspace}(\mathbf{A})\), \(\mathrm{range}(\mathbf{A})\), \(\spn{\mathbf{A}}\), \(\mathrm{image}(\mathbf{A})\) & Columnspace, range or image, i.e., the space \(\spn{\mathbf{a}_1,\mathbf{a}_2, \dots, \mathbf{a}_n}\), where \(\mathbf{a}_i\) is the ith column vector of the matrix \(\mathbf{A}\) \cite{strangIntroductionLinearAlgebra1993, nossekAdaptiveArraySignal2015}\\
     \(\range{\mathbf{A}^\mathsf{H}}\) & Row space (also called left columnspace) \cite{strangIntroductionLinearAlgebra1993, nossekAdaptiveArraySignal2015}\\
     \(\nullspace{\mathbf{A}}, \mathrm{nullspace}(\mathbf{A}), \mathrm{kernel}(\mathbf{A})\) & Nullspace (or kernel space) \cite{strangIntroductionLinearAlgebra1993, nossekAdaptiveArraySignal2015}\\
     \(\nullspace{\mathbf{A^\mathsf{H}}}\) & Left nullspace\\
-    \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\span{\mathbf{A}}} = \dim{\range{\mathbf{A}}}\) \cite{nossekAdaptiveArraySignal2015} \\
+    \(\rank{\mathbf{A}}\) & Rank, that is, \(\dim{\spn{\mathbf{A}}} = \dim{\range{\mathbf{A}}}\) \cite{nossekAdaptiveArraySignal2015} \\
     \(\nullity{\mathbf{A}}\) & Nullity of \(\mathbf{A}\), i.e., \(\dim{\nullspace{\mathbf{A}}}\)\\
     \(\mathbf{a} \perp \mathbf{b}\) & \(\mathbf{a}\) is orthogonal to \(\mathbf{b}\)\\
     \(\mathbf{a} \not\perp \mathbf{b}\) & \(\mathbf{a}\) is not orthogonal to \(\mathbf{b}\)\\
@@ -565,4 +478,5 @@
 \end{xltabular}
 
 \printbibliography
+
 \end{document}
