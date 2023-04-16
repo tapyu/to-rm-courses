@@ -25,6 +25,7 @@
 
 \usepackage{authblk}
 \input{default_preamble.tex}
+\NewDocumentCommand{\nossekE}{O{} m}{\ensuremath{\operatorname{\bf E}_{#1}\left[#2\right]}} % statistical expectation operator, e.g., \E[u]{x} or \E{x}
 
 \begin{document}
 \title{\textbf{Notation}  \vspace{-.3cm}}
@@ -93,8 +94,8 @@
 \section{Probability, statistics, and stochastic processes}
 \subsection{Operators and symbols}
 \begin{xltabular}{\textwidth}{XX}
-    \(\E{\cdot}, E\left[ \cdot \right], \mathbb{E}\left[ \cdot \right]\) & Statistical expectation operator \cite{nossekAdaptiveArraySignal2015,dinizAdaptiveFilteringAlgorithms2002}\\
-    \(\E[u]{\cdot} , E_u\left[ \cdot \right], \mathbb{E}_u\left[ \cdot \right]\) & Statistical expectation operator with respect to \(u\)\\
+    \(\E{\cdot}, \nossekE{\cdot}, E\left[ \cdot \right], \mathbb{E}\left[ \cdot \right]\) & Statistical expectation operator \cite{nossekAdaptiveArraySignal2015,dinizAdaptiveFilteringAlgorithms2002}\\
+    \(\E[u]{\cdot}, \nossekE[u]{\cdot},  E_u\left[ \cdot \right], \mathbb{E}_u\left[ \cdot \right]\) & Statistical expectation operator with respect to \(u\)\\
     \(\expval{\cdot}\) & Ensamble average\\
     \(\var{\cdot}, \textnormal{VAR}[\cdot]\) & Variance operator \cite{haykinAdaptiveFilterTheory2002,leon-garciaProbabilityStatisticsRandom2007,proakisDigitalCommunications2007,bishopPatternRecognitionMachine2006}\\
     \(\var[u]{\cdot} \left[ \cdot \right], \textnormal{VAR}_u[\cdot]\) & Variance operator with respect to \(u\)\\
