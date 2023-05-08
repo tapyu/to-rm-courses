@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.31)  9 AUG 2022 18:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.31)  8 MAY 2023 06:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,9 +6,9 @@ entering extended mode
 **"/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex"
 (/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-10> (/usr/share/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texmf-dist/tex/latex/base/size12.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
@@ -22,21 +22,21 @@ File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
- (/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen139
-)) (/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
-) (/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
 \inf@bad=\count193
@@ -76,62 +76,62 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
-) (/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-) (/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (/usr/share/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup6
-) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
-) (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
- (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen148
 \Gin@req@width=\dimen149
-) (/usr/share/texmf-dist/tex/latex/newtx/newtxmath.sty
-Package: newtxmath 2022/01/16 v1.71
- `newtxmath' v1.71, 2022/01/16 Math macros based originally on txfonts (msharpe) (/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/newtx/newtxmath.sty
+Package: newtxmath 2021/12/18 v1.7
+ `newtxmath' v1.7, 2021/12/18 Math macros based originally on txfonts (msharpe) (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
-) (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count271
-) (/usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
- (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
-)) (/usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-) (/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
- (/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks22
 \XKV@tempa@toks=\toks23
 )
 \XKV@depth=\count272
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-)) (/usr/share/texmf-dist/tex/latex/oberdiek/centernot.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
 \tx@cntz=\count273
- (/usr/share/texmf-dist/tex/generic/kastrup/binhex.tex)
+ (/usr/share/texlive/texmf-dist/tex/generic/kastrup/binhex.tex)
 \tx@Isdigit=\count274
 \tx@IsAlNum=\count275
 \tx@tA=\toks24
@@ -139,123 +139,123 @@ Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 \tx@su=\read2
 
 amsthm NOT loaded
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 376.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 373.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/m/n on input line 376.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/m/n on input line 373.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmr/m/n on input line 376.
+(Font)                  OT1/cmr/bx/n --> OT1/cmr/m/n on input line 373.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/b/n on input line 377.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 383.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/b/n on input line 374.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 380.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 383.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 380.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 383.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 384.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 380.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 381.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmr/m/it on input line 384.
+(Font)                  OT1/cmr/m/it --> OT1/cmr/m/it on input line 381.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmr/m/it on input line 384.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 385.
+(Font)                  OT1/cmr/bx/it --> OT1/cmr/m/it on input line 381.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 382.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 385.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 382.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 385.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 387.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 382.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 384.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmr/b/n on input line 387.
+(Font)                  OT1/cmr/bx/n --> OT1/cmr/b/n on input line 384.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmr/b/n on input line 387.
+(Font)                  OT1/cmr/bx/n --> OT1/cmr/b/n on input line 384.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/m/it --> OT1/cmr/b/it on input line 388.
+(Font)                  OT1/cmr/m/it --> OT1/cmr/b/it on input line 385.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 389.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 386.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 390.
-LaTeX Font Info:    Redeclaring symbol font `letters' on input line 491.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 387.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 488.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/ntxmi/m/it on input line 491.
+(Font)                  OML/cmm/m/it --> OML/ntxmi/m/it on input line 488.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 491.
+(Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 488.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 492.
+(Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 489.
 \symlettersA=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
-(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 547.
-LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 549.
+(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 544.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 546.
 Now handling font encoding LMS ...
 ... no UTF-8 mapping file for font encoding LMS
-LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 568.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 565.
 LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 568.
+(Font)              `symbols' in the math version `normal' on input line 565.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> LMS/ntxsy/m/n on input line 568.
+(Font)                  OMS/cmsy/m/n --> LMS/ntxsy/m/n on input line 565.
 LaTeX Font Info:    Encoding `OMS' has changed to `LMS' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 568.
+(Font)              `symbols' in the math version `bold' on input line 565.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> LMS/ntxsy/m/n on input line 568.
+(Font)                  OMS/cmsy/b/n --> LMS/ntxsy/m/n on input line 565.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  LMS/ntxsy/m/n --> LMS/ntxsy/b/n on input line 569.
+(Font)                  LMS/ntxsy/m/n --> LMS/ntxsy/b/n on input line 566.
 \symAMSm=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
-(Font)                  U/ntxsym/m/n --> U/ntxsym/b/n on input line 594.
+(Font)                  U/ntxsym/m/n --> U/ntxsym/b/n on input line 591.
 \symsymbolsC=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
-(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 615.
+(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 612.
 Now handling font encoding LMX ...
 ... no UTF-8 mapping file for font encoding LMX
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 628.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 625.
 LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 628.
+(Font)              `largesymbols' in the math version `normal' on input line 625.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 628.
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 625.
 LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 628.
+(Font)              `largesymbols' in the math version `bold' on input line 625.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 628.
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 625.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 629.
+(Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 626.
 \symlargesymbolsTXA=\mathgroup10
 LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
-(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 643.
+(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 640.
 \tx@sbptoks=\toks26
-LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 866.
-LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 867.
-LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 868.
-LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 869.
-LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 870.
-LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 871.
-LaTeX Font Info:    Redeclaring math delimiter \langle on input line 872.
-LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 874.
-LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 878.
-LaTeX Font Info:    Redeclaring math delimiter \vert on input line 879.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 950.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 951.
-LaTeX Font Info:    Redeclaring math accent \vec on input line 2020.
-LaTeX Info: Redefining \Bbbk on input line 2810.
-LaTeX Info: Redefining \not on input line 2959.
-) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 863.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 864.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 865.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 866.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 867.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 868.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 869.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 871.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 875.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 876.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 947.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 948.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 2017.
+LaTeX Info: Redefining \Bbbk on input line 2807.
+LaTeX Info: Redefining \not on input line 2956.
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks27
 \inpenc@posthook=\toks28
-) (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (./cabecalho.sty) (/usr/share/texmf-dist/tex/latex/float/float.sty
+) (./cabecalho.sty) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count276
 \float@exts=\toks29
 \float@box=\box52
 \@float@everytoks=\toks30
 \@floatcapt=\box53
-) (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip52
 \multirow@cntb=\count277
 \multirow@dima=\skip53
 \bigstrutjot=\dimen150
-) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count278
@@ -270,22 +270,21 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen157
 \Gm@layoutvoffset=\dimen158
 \Gm@dimlist=\toks31
-) (/usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
- (/usr/share/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2022/03/01 v3.6b Customizing captions (AR)
- (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
-\caption@tempdima=\dimen159
-\captionmargin=\dimen160
-\caption@leftmargin=\dimen161
-\caption@rightmargin=\dimen162
-\caption@width=\dimen163
-\caption@indent=\dimen164
-\caption@parindent=\dimen165
-\caption@hangindent=\dimen166
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen159
+\captionmargin@=\dimen160
+\captionwidth=\dimen161
+\caption@tempdima=\dimen162
+\caption@indent=\dimen163
+\caption@parindent=\dimen164
+\caption@hangindent=\dimen165
 Package caption Info: Standard document class detected.
 )
 \c@caption@flags=\count281
@@ -294,39 +293,39 @@ Package caption Info: float package is loaded.
 )
 \c@subfigure=\count283
 \c@subtable=\count284
-) (/usr/share/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/ieeetran/IEEEtrantools.sty
 Package: IEEEtrantools 2015/08/26 V1.5 by Michael Shell
 
 -- See the "IEEEtrantools_doc.txt" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/tools/
-\@IEEEtrantmpdimenA=\dimen167
-\@IEEEtrantmpdimenB=\dimen168
-\@IEEEtrantmpdimenC=\dimen169
+\@IEEEtrantmpdimenA=\dimen166
+\@IEEEtrantmpdimenB=\dimen167
+\@IEEEtrantmpdimenC=\dimen168
 \@IEEEtrantmpcountA=\count285
 \@IEEEtrantmpcountB=\count286
 \@IEEEtrantmpcountC=\count287
 \@IEEEtrantmptoksA=\toks32
-\IEEEnormaljot=\dimen170
-\IEEEquantizedlength=\dimen171
-\IEEEquantizedlengthdiff=\dimen172
-\IEEEquantizedtextheightdiff=\dimen173
-\IEEEilabelindentA=\dimen174
-\IEEEilabelindentB=\dimen175
-\IEEEilabelindent=\dimen176
-\IEEEelabelindent=\dimen177
-\IEEEdlabelindent=\dimen178
-\IEEElabelindent=\dimen179
-\IEEEiednormlabelsep=\dimen180
-\IEEEiedmathlabelsep=\dimen181
+\IEEEnormaljot=\dimen169
+\IEEEquantizedlength=\dimen170
+\IEEEquantizedlengthdiff=\dimen171
+\IEEEquantizedtextheightdiff=\dimen172
+\IEEEilabelindentA=\dimen173
+\IEEEilabelindentB=\dimen174
+\IEEEilabelindent=\dimen175
+\IEEEelabelindent=\dimen176
+\IEEEdlabelindent=\dimen177
+\IEEElabelindent=\dimen178
+\IEEEiednormlabelsep=\dimen179
+\IEEEiedmathlabelsep=\dimen180
 \IEEEiedtopsep=\skip54
 \c@IEEEsubequation=\count288
 \@IEEEeqnnumcols=\count289
 \@IEEEeqncolcnt=\count290
 \@IEEEsubeqnnumrollback=\count291
-\IEEEPARstartletwidth=\dimen182
-) (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+\IEEEPARstartletwidth=\dimen181
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
- (/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
@@ -339,16 +338,16 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
-) (/usr/share/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
 \c@AlgoLine=\count292
 \algocf@hangindent=\skip55
- (/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count293
-) (/usr/share/texmf-dist/tex/latex/tools/xspace.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-) (/usr/share/texmf-dist/tex/latex/relsize/relsize.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
 \skiptotal=\skip56
@@ -359,12 +358,12 @@ Package: relsize 2013/03/29 ver 4.1
 \skiplength=\skip61
 \algomargin=\skip62
 \skipalgocfslide=\skip63
-\algowidth=\dimen183
-\inoutsize=\dimen184
-\inoutindent=\dimen185
-\interspacetitleruled=\dimen186
-\interspacealgoruled=\dimen187
-\interspacetitleboxruled=\dimen188
+\algowidth=\dimen182
+\inoutsize=\dimen183
+\inoutindent=\dimen184
+\interspacetitleruled=\dimen185
+\interspacealgoruled=\dimen186
+\interspacetitleboxruled=\dimen187
 \algocf@ruledwidth=\skip64
 \algocf@inoutbox=\box54
 \algocf@inputbox=\box55
@@ -386,8 +385,8 @@ Package: relsize 2013/03/29 ver 4.1
 \c@algocf=\count296
 \algocf@algoframe=\box60
 \algocf@algobox=\box61
-) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count297
 \l__pdf_internal_box=\box62
 ) (./main.aux
@@ -399,7 +398,7 @@ LaTeX Warning: Label `fig:sine-regression' multiply defined.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 44.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 44.
- (/usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 44.
@@ -415,39 +414,39 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 44.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 44.
- (/usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 44.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 44.
- (/usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 44.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 44.
- (/usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
 LaTeX Font Info:    ... okay on input line 44.
- (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count298
-\scratchdimen=\dimen189
+\scratchdimen=\dimen188
 \scratchbox=\box63
 \nofMPsegments=\count299
 \nofMParguments=\count300
 \everyMPshowfont=\toks33
 \MPscratchCnt=\count301
-\MPscratchDim=\dimen190
+\MPscratchDim=\dimen189
 \MPnumerator=\count302
 \makeMPintoPDFobject=\count303
 \everyMPtoPDFconversion=\toks34
-) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 *geometry* driver: auto-detecting
@@ -487,27 +486,27 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 45.
- (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 45.
- (/usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 45.
- (/usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 45.
- (/usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 <figs/logo_cabecalho.png, id=1, 235.1184pt x 302.5704pt>
@@ -535,180 +534,186 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figs/logo_cabecalho.png>]
+
+LaTeX Warning: Reference `eq:g_n' on page 2 undefined on input line 76.
+
+
+LaTeX Warning: Reference `eq:w_n_plus1' on page 2 undefined on input line 76.
+
 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png, id=23, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png  used on input line 135.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png  used on input line 123.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [2]
-<../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png, id=28, 602.25pt x 401.5pt>
+[2]
+<../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png, id=30, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png  used on input line 164.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png  used on input line 152.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [3 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png>]
-<../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png, id=35, 602.25pt x 401.5pt>
+<../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png, id=31, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 173.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png  used on input line 161.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
-<../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png, id=36, 602.25pt x 401.5pt>
+ [3 <../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png> <../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png>]
+<../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png, id=35, 602.25pt x 401.5pt>
 File: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png Graphic file (type png)
 <use ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>
-Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 182.
+Package pdftex.def Info: ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png  used on input line 170.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
- [4 <../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png> <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png> <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>]
-<../trab2 (ADALINE)/figs/predict-f1.png, id=40, 602.25pt x 401.5pt>
+ [4 <../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png> <../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png>]
+<../trab2 (ADALINE)/figs/predict-f1.png, id=39, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f1.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f1.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 233.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f1.png  used on input line 221.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
-<../trab2 (ADALINE)/figs/predict-f2.png, id=42, 602.25pt x 401.5pt>
+<../trab2 (ADALINE)/figs/predict-f2.png, id=41, 602.25pt x 401.5pt>
 File: ../trab2 (ADALINE)/figs/predict-f2.png Graphic file (type png)
 <use ../trab2 (ADALINE)/figs/predict-f2.png>
-Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 238.
+Package pdftex.def Info: ../trab2 (ADALINE)/figs/predict-f2.png  used on input line 226.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
  [5] [6 <../trab2 (ADALINE)/figs/predict-f1.png> <../trab2 (ADALINE)/figs/predict-f2.png>] [7] [8]
 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png, id=63, 602.25pt x 401.5pt>
 File: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 399.
+Package pdftex.def Info: ../trab3 (single layer perceptron)/figs/dummy data - heatmap.png  used on input line 387.
 (pdftex.def)             Requested size: 301.12425pt x 200.7495pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png, id=64, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 409.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png  used on input line 397.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [9 <../trab3 (single layer perceptron)/figs/dummy data - heatmap.png>]
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png, id=68, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 420.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png  used on input line 408.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png, id=69, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 428.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png  used on input line 416.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png, id=70, 602.25pt x 401.5pt>
 File: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png Graphic file (type png)
 <use ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>
-Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 436.
+Package pdftex.def Info: ../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png  used on input line 424.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [10 <../trab4 (single layer perceptron with sigmoidal functions)/figs/dummy data - heatmap.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-setosa.png> <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-virginica.png>] [11 <../trab4 (single layer perceptron with sigmoidal functions)/figs/decision-surface-for-versicolor.png>] [12] [13]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 597.
+(Font)              size <10.95> substituted on input line 585.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 597.
+(Font)              size <10.95> substituted on input line 585.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 597.
+(Font)              size <10.95> substituted on input line 585.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 597.
+(Font)              size <10.95> substituted on input line 585.
 
 [14] [15]
 <../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png, id=91, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png  used on input line 664.
+Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png  used on input line 652.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
 <../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png, id=92, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png  used on input line 673.
+Package pdftex.def Info: ../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png  used on input line 661.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
  [16 <../trab5 (MLP)/figs/XOR problem - heatmap - nr11.png>]
 <../trab5 (MLP)/figs/xor-confusion-matrix.png, id=96, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/xor-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/xor-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/xor-confusion-matrix.png  used on input line 681.
+Package pdftex.def Info: ../trab5 (MLP)/figs/xor-confusion-matrix.png  used on input line 669.
 (pdftex.def)             Requested size: 210.79065pt x 140.5271pt.
 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png, id=97, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png  used on input line 697.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png  used on input line 685.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png, id=99, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png  used on input line 701.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png  used on input line 689.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png, id=101, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png  used on input line 705.
+Package pdftex.def Info: ../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png  used on input line 693.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [17 <../trab5 (MLP)/figs/XOR problem - heatmap - nr1.png> <../trab5 (MLP)/figs/xor-confusion-matrix.png>]
 <../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png, id=106, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png  used on input line 721.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png  used on input line 709.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/column-Normal-confusion-matrix.png, id=108, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png  used on input line 725.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Normal-confusion-matrix.png  used on input line 713.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png, id=110, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png  used on input line 729.
+Package pdftex.def Info: ../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png  used on input line 717.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [18 <../trab5 (MLP)/figs/iris-setosa-confusion-matrix.png> <../trab5 (MLP)/figs/iris-virginica-confusion-matrix.png> <../trab5 (MLP)/figs/iris-versicolor-confusion-matrix.png>]
 <../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png, id=118, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png  used on input line 741.
+Package pdftex.def Info: ../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png  used on input line 729.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [19 <../trab5 (MLP)/figs/column-Disk Hernia-confusion-matrix.png> <../trab5 (MLP)/figs/column-Normal-confusion-matrix.png> <../trab5 (MLP)/figs/column-Spondylolisthesis-confusion-matrix.png>]
 <../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png, id=127, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png  used on input line 752.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png  used on input line 740.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png, id=128, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png  used on input line 760.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png  used on input line 748.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png, id=129, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png  used on input line 769.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png  used on input line 757.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png, id=130, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png  used on input line 777.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png  used on input line 765.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [20 <../trab5 (MLP)/figs/mama-cancer-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-cronic dermatitis-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-lichen planus-confusion-matrix.png>]
 <../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png, id=135, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png  used on input line 785.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png  used on input line 773.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
 <../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png, id=136, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png  used on input line 793.
+Package pdftex.def Info: ../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png  used on input line 781.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [21 <../trab5 (MLP)/figs/dermatology-pityriasis rosea-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-pityriasis rubra pilaris-confusion-matrix.png> <../trab5 (MLP)/figs/dermatology-psoriasis-confusion-matrix.png>]
 <../trab5 (MLP)/figs/sine_regression.png, id=140, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/sine_regression.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/sine_regression.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/sine_regression.png  used on input line 818.
+Package pdftex.def Info: ../trab5 (MLP)/figs/sine_regression.png  used on input line 806.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [22 <../trab5 (MLP)/figs/dermatology-seboreic dermatitis-confusion-matrix.png>]
 <../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png, id=144, 602.25pt x 401.5pt>
 File: ../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png Graphic file (type png)
 <use ../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png>
-Package pdftex.def Info: ../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png  used on input line 853.
+Package pdftex.def Info: ../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png  used on input line 841.
 (pdftex.def)             Requested size: 240.89572pt x 160.59715pt.
  [23 <../trab5 (MLP)/figs/sine_regression.png> <../trab5 (MLP)/figs/electric-motor-temp - Stator winding regression.png>] (./main.aux)
 
@@ -716,19 +721,22 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9855 strings out of 478238
- 159752 string characters out of 5850456
- 448164 words of memory out of 5000000
- 27869 multiletter control sequences out of 15000+600000
+ 9738 strings out of 478287
+ 158667 string characters out of 5849289
+ 446247 words of memory out of 5000000
+ 27710 multiletter control sequences out of 15000+600000
  545399 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,24n,131p,1125b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (23 pages, 1315542 bytes).
+ 83i,25n,131p,1111b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXBMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/stxscr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txbmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (23 pages, 1314695 bytes).
 PDF statistics:
  245 PDF objects out of 1000 (max. 8388607)
  132 compressed objects within 2 object streams

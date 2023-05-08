@@ -46,9 +46,9 @@
 
 \section{Work 02 - Rosenblatt's perceptron}
 
-This work considers a classification problem for a multivariate dataset. The Rosenblatt's perceptron is utilized to classify the iris flower dataset. The problem consists in classifying one among three classes (Setosa, Virginica, and Versicolor).
+This work considers a binary classification problem of the iris flower dataset by using Rosenblatt's perceptron. The problem consists in classifying Setosa specie from the dataset.
 
-The Rosenblatt's perceptron comprises a neuron mathematical model, introduced by McCulloch and Pitts in 1943, and a learning algorithm that adjusts the synaptic weights in a supervised fashion. The McCulloch and Pitts' activation function is a step function that triggers the output from 0 to 1 when the induced local field overpasses the threshold. This method is effective for binary classification of linearly separable problems, where one can sketch a straight line that divides the classes without overlapping.
+Rosenblatt's perceptron comprises a neuron mathematical model, introduced by McCulloch and Pitts in 1943, and a learning algorithm that adjusts the synaptic weights in a supervised fashion. The McCulloch and Pitts' activation function is a step function that triggers the output from 0 to 1 when the induced local field overpasses the threshold. This method is effective for binary classifications of linearly separable problems, where one can sketch a straight line that divides the classes without overlapping.
 
 At the instant \(n\), the induced local field is given by
 \begin{align}
@@ -69,28 +69,16 @@ and
 \end{align}
 are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and \(x_0(n) \triangleq +1\)\footnote{Depending on the author, it can the defined as \(-1\).} are, respectively, the bias and its input.
 
-The machine learning algorithms settle on the well-established theory of adaptive filters and optimization. Particularly for the Rosenblatt's perceptron, it is utilized the Least-Mean-Square (LMS) algorithm, which aims to make an instantaneous approximation of the gradient vector. The optimization algorithm is given by
-\begin{align}
-    \mathbf{w}(n+1) = \mathbf{w}(n) - \eta \hat{\mathbf{g}}(n),
-    \label{eq:w_n_plus1}
-\end{align}
-where \(\eta\) is the step-learning hyperparameter and \(\hat{\mathbf{g}}(n) \triangleq \nabla \mathscr{E} (\mathbf{w})\) is the stochastic approximation of the gradient vector, being \(\mathscr{E} (\mathbf{w})\) the cost function and \(\nabla\) the vector differential operator. The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \), and produces the error signal, \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not.
+REFACTOR: Use the batch processing as starting point and derive sequential processing as a special case of it.
 
-The LMS algorithm uses the instantaneous value of the MSE (Mean-Squared Error) cost function, that is,
-\begin{align}
-    \mathscr{E} (\mathbf{w}) = \frac{1}{2}e^2(n).
-\end{align}
-Differentiating this equation with respect to the synaptic weights, we get
-\begin{align}
-    \hat{\mathbf{g}}(n) = \frac{\partial\mathscr{E} (\mathbf{w})}{\partial \mathbf{w}(n)} = - \mathbf{x}(n) e(n).
-    \label{eq:g_n}
-\end{align}
+The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \), and produces the error signal, \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not.
+
 Substituting \eqref{eq:g_n} into \eqref{eq:w_n_plus1}, it yields the learning equation, given by
 \begin{align}
     \mathbf{w}(n+1) = \mathbf{w}(n) + \eta \mathbf{x}(n) e(n).
 \end{align}
 
-The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron. It includes data preparation techniques, such as hand-out, data shuffling, and data standardization. The method utilizes \(N_r=20\) independent realizations, and passes through the training set by \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions.} reached by the test dataset, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=3\) classes (Setosa, Versicolour, and Virginica). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio are maintained throughout this homework.}.
+The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron. It includes data preparation techniques, such as hand-out, data shuffling, and data standardization. The method utilizes \(N_r=20\) independent realizations, and passes through the training set by \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions.} reached by the test dataset, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=2\) classes (Setosa and nonSetosa). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio are maintained throughout this homework.}.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
@@ -249,7 +237,7 @@ Although Rosenblatt's perceptron and ADALINE model can solve linear problems, it
 The matrix of all coefficients is given by
 \begin{align}
     \mathbf{W}(n) = \begin{bmatrix}
-        \mathbf{w}_1 (n)^\trans & \mathbf{w}_2 (n)^\trans & \cdots & \mathbf{w}_J (n)^\trans
+        \mathbf{w}_1 (n) & \mathbf{w}_2 (n) & \cdots & \mathbf{w}_J (n)
     \end{bmatrix}^\trans \in \Real^{J \times \left(N_a+1\right)},
 \end{align}
 where \(J\) is the number of classes (one neuron for each class), \(N_a\) is the number of attributes, and
@@ -262,7 +250,7 @@ is the synaptic weight vector of the \(j\)th neuron, being \(w_{jk} (n)\) its \(
 
 The learning algorithm is given by
 \begin{align}
-    \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans,
+    \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n),
 \end{align}
 where
 \begin{align}
@@ -342,12 +330,12 @@ Substituting the Equation \eqref{eq:cost-function} into \eqref{eq:Delta_w_ji}, w
 \end{align}
 or in matricial notation
 \begin{align}
-    \Delta \mathbf{W}(n) = \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans.
+    \Delta \mathbf{W}(n) = \eta\boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n).
 \end{align}
 Finally, the update equation is given by
 \begin{align}
     \mathbf{W}(n+1) & = \mathbf{W}(n) + \Delta \mathbf{W}(n) \nonumber \\
-    & = \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans.
+    & = \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n).
 \end{align}
 
 The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the SLP algorithm.
@@ -377,7 +365,7 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
             
                 \(\boldsymbol{\deltaup}(n) \leftarrow \mathbf{e}(n) \odot \boldsymbol{\varphi}'(\mathbf{v}(n))\)
 
-                \(\mathbf{W}(n+1) \leftarrow \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}(n)^\trans\)
+                \(\mathbf{W}(n+1) \leftarrow \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n)\)
             }
             \(\mathbf{X}_{trn}, \mathbf{D}_{trn} \leftarrow \text{shuffle}\)
         }
@@ -506,7 +494,7 @@ where the second equation follows that \(\delta_k^{(L)} = e_k(n) \varphi'(v_k^{(
 \end{align}
 or in matricial notation
 \begin{align}
-    \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \tilde{\mathbf{W}}^{(L)}(n)^\trans \boldsymbol{\deltaup}^{(L)} (n),
+    \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \left( \tilde{\mathbf{W}}^{(L)\trans}(n) \boldsymbol{\deltaup}^{(L)} (n) \right),
     \label{eq:uptade-layer-L-1}
 \end{align}
 where
@@ -522,13 +510,13 @@ is the synaptic weight matrix for the layer \(L\), but without the weights of th
 
 The Equation \eqref{eq:uptade-layer-L-1} can be generalized to the \(l\)th layer:
 \begin{align}
-    \boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \tilde{\mathbf{W}}^{(l+1)}(n)^\trans \boldsymbol{\deltaup}^{(l+1)} (n)\text{ for } 1\leq l < L.
+    \boldsymbol{\deltaup}^{(l)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \left( \tilde{\mathbf{W}}^{(l+1)\trans}(n) \boldsymbol{\deltaup}^{(l+1)} (n) \right)\text{ for } 1\leq l < L.
     \label{eq:uptade-layer-l}
 \end{align}
 
 Following the same procedure for the SLP, we can derive the synaptic weights update, which is given by
 \begin{align}
-    \Delta \mathbf{W}^{(l)}(n) = \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans \in \Real^{m_l \times (m_{l-1}+1)},
+    \Delta \mathbf{W}^{(l)}(n) = \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)\trans}(n) \in \Real^{m_l \times (m_{l-1}+1)},
 \end{align}
 where
 \begin{align}
@@ -539,7 +527,7 @@ where
 \(m_0\) is the length of the input vector without bias, and \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
 \begin{align}
     \mathbf{W}^{(l)}(n+1) & = \mathbf{W}^{(l)}(n) + \Delta \mathbf{W}^{(l)}(n) \nonumber \\
-    & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans \in \Real^{m_l \times (m_{l-1}+1)}.
+    & = \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)\trans}(n) \in \Real^{m_l \times (m_{l-1}+1)}.
 \end{align}
 
 
@@ -575,12 +563,12 @@ The Algorithm \ref{alg:multilayer-perceptron} shows how the MLP uses the backpro
             
                 \(\boldsymbol{\deltaup}^{(L)}(n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(L)}(n)) \odot \mathbf{e}(n)\)
 
-                \(\mathbf{W}^{(L)}(n+1) \leftarrow \mathbf{W}^{(L)}(n) + \eta\boldsymbol{\deltaup}^{(L)}(n) \mathbf{y}^{(L-1)}(n)^\trans\)
+                \(\mathbf{W}^{(L)}(n+1) \leftarrow \mathbf{W}^{(L)}(n) + \eta\boldsymbol{\deltaup}^{(L)}(n) \mathbf{y}^{(L-1)\trans}(n)\)
 
                 \For(\tcp*[f]{hidden layers}){\(l \in \left\{ L-1, L-2, ..., 1 \right\}\)}{
-                    \(\boldsymbol{\deltaup}^{(l)} (n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \tilde{\mathbf{W}}^{(l+1)}(n)^\trans \boldsymbol{\deltaup}^{(l+1)} (n)\)
+                    \(\boldsymbol{\deltaup}^{(l)} (n) \leftarrow \boldsymbol{\varphi}'(\mathbf{v}^{(l)}(n)) \odot \left( \tilde{\mathbf{W}}^{(l+1)\trans}(n) \boldsymbol{\deltaup}^{(l+1)} (n) \right)\)
 
-                    \(\mathbf{W}^{(l)}(n+1) \leftarrow \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)}(n)^\trans.\)
+                    \(\mathbf{W}^{(l)}(n+1) \leftarrow \mathbf{W}^{(l)}(n) + \eta\boldsymbol{\deltaup}^{(l)}(n) \mathbf{y}^{(l-1)\trans}(n).\)
                 }
             }
             \(\mathbf{X}_{trn}, \mathbf{D}_{trn} \leftarrow \text{shuffle}\)
