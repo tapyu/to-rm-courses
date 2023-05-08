@@ -642,22 +642,25 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
 INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
 INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
@@ -720,9 +723,6 @@ INPUT ../trab2 (ADALINE)/figs/predict-f2.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1683536747 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1683536748
+["pdflatex"] 1683586872 "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" "main.pdf" "main" 1683586874
   "../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png" 1662263220 19327 c0170d57932d33cc0b9178673bb9edb4 ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png" 1662263220 58837 296aa05df53e0681d21204d5a9ac0a0d ""
   "../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png" 1662263220 83192 25a0417ca5be09b78dcd419b1ed1853d ""
@@ -30,7 +30,7 @@
   "../trab5 (MLP)/figs/sine_regression.png" 1662263220 28784 8e3aa9457f4828fead1c51c8ee8cb246 ""
   "../trab5 (MLP)/figs/xor-confusion-matrix.png" 1662263220 16530 0dc91929b49346c9cbd8d055cbbb1aac ""
   "/etc/texmf/web2c/texmf.cnf" 1661925923 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1683536747 43740 1cb4e490c831d35d9ce4e4804ec37804 ""
+  "/home/tapyu/git/courses/phd_ica/Exercises/TC2 - Neural networks/latex/main.tex" 1683586872 45137 cea8560bde4fa7a63f817c36196d034c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -187,8 +187,8 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1661925974 2800201 d2ee8eb498efc9efdca590069d401e6c ""
   "cabecalho.sty" 1662263220 508 c3f49f95f55eb95acf52853931e91918 ""
   "figs/logo_cabecalho.png" 1662263220 213280 87c4b5e45e8800dd08c28d374a9695b6 ""
-  "main.aux" 1683536748 7157 2e0dedd93c7bf9462aa56a9273466bc7 "pdflatex"
-  "main.tex" 1683536747 43740 1cb4e490c831d35d9ce4e4804ec37804 ""
+  "main.aux" 1683586874 7192 e712b7df4353b5ac39cb22ca31f91813 "pdflatex"
+  "main.tex" 1683586872 45137 cea8560bde4fa7a63f817c36196d034c ""
   (generated)
   "main.aux"
   "main.log"

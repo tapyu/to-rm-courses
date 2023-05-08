@@ -67,18 +67,32 @@ and
         x_0(n) & x_1(n) & \cdots & x_{N_a}(n)
     \end{bmatrix}^\trans
 \end{align}
-are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and \(x_0(n) \triangleq +1\)\footnote{Depending on the author, it can the defined as \(-1\).} are, respectively, the bias and its input.
+are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and\footnote{Depending on the author, it can the defined as \(-1\).} \(x_0(n) \triangleq +1\) are, respectively, the bias and its dummy input.
 
-REFACTOR: Use the batch processing as starting point and derive sequential processing as a special case of it.
-
-The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ 0,1 \right\}\). This signal is compared to the desired value, \(d\left( n \right) \in \left\{ 0,1 \right\} \), and produces the error signal, \(e\left( n \right) = d\left( n \right) - y\left( n \right) \in \left\{ -1, 0, 1 \right\}\), which indicates whether the perceptron misclassified or not.
-
-Substituting \eqref{eq:g_n} into \eqref{eq:w_n_plus1}, it yields the learning equation, given by
+Let us first derive the update equation for Rosenblatt's perceptron in batch processing and then we take the sequential processing as a special case of it. We can define the perceptron cost function as
 \begin{align}
-    \mathbf{w}(n+1) = \mathbf{w}(n) + \eta \mathbf{x}(n) e(n).
+    \mathscr{E}\left( \mathbf{w} \left( n \right) \right) = - \sum_{\mathbf{x}(n) \in \mathscr{X}} \mathbf{w}^\top(n) \mathbf{x}(n) d(n)
 \end{align}
 
-The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for the Rosenblatt's perceptron. It includes data preparation techniques, such as hand-out, data shuffling, and data standardization. The method utilizes \(N_r=20\) independent realizations, and passes through the training set by \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions.} reached by the test dataset, and the accuracy of all realizations are investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=2\) classes (Setosa and nonSetosa). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio are maintained throughout this homework.}.
+Where \(\mathscr{X}\) is the set of all input signal \(\mathbf{x}(n)\) of the batch dataset that was misclassified by using \(\mathbf{w}(n)\), and \(d(n) \in \left\{ -1, 1 \right\}\) is the desired signal with antipodal encoding. Since \(\mathscr{E}\left( \mathbf{w} \left( n \right) \right)\) is differentiable, we can take this derivative with respect to \(\mathbf{w}(n)\), yielding the gradient vector, that is,
+\begin{align}
+    \mathbf{g} = \frac{\partial\mathscr{E} \left( \mathbf{w}(n) \right)}{\partial \mathbf{w}(n)} = - \sum_{\mathbf{x}(n) \in \mathscr{X}} \mathbf{x}(n) d(n)
+\end{align}
+
+The gradient (or steepest) descent method used the opposite direction of the gradient vector as the learning equation, i.e.,
+\begin{align}
+    \label{eq:update-batch}
+    \mathbf{w}(n+1) & = \mathbf{w}(n) - \eta \mathbf{g} \\
+                    & = \mathbf{w}(n) + \eta \sum_{\mathbf{x}(n) \in \mathscr{X}} \mathbf{x}(n) d(n)
+\end{align}
+where \(\eta\) is the learning rate hyperparameter. For the particular case of sequential processing, the set \(\mathscr{X}\) becomes the \(\mathbf{x}(n)\) only in case of error. Otherwise, \(\mathscr{X}\) is an empty set. Therefore, we can rewrite\footnote{Ignoring the double factor inserted by \(e(n) \in \left\{ -2,0,2 \right\}\)} \eqref{eq:update-batch} as
+\begin{align}
+    \mathbf{w}(n+1) = \mathbf{w}(n) + \eta e(n) \mathbf{x}(n),
+\end{align}
+where \(e(n) = d(n) - y(n) \in \left\{ -2, 0, 2 \right\}\) is the error signal.
+The Equation \eqref{eq:induced-local-field} passes through the step function, \(\varphi \left( \cdot \right)\), generating the perceptron output, \(y\left( n \right) = \varphi(v\left( n \right)) \in \left\{ -1,1 \right\}\). This signal is compared to the desired value and produces the error signal, which indicates whether the perceptron is misclassified or not.
+
+The Algorithm \ref{alg:rosenblatt-perceptron} summarizes the procedure utilized for Rosenblatt's perceptron. It includes data preparation techniques, such as hand-out, data shuffling, and data standardization. The method utilizes \(N_r=20\) independent realizations and passes through the training set by \(N_e=100\) epochs. At the end of each realization, it is stored the accuracy\footnote{Accuracy is defined as the ratio of the number of correct predictions by the total number of predictions.} reached by the test dataset, and the accuracy of all realizations is investigated in terms of mean and standard deviation. The iris dataset contains \(N=150\) instances with \(N_a=4\) attributes (petal length, petal width, sepal length, and sepal width) and \(K=2\) classes (Setosa and nonSetosa). It was chosen a ratio of \(80\%-20\%\) for the training and test datasets, respectively \footnote{The values of \(N_e\), \(N_r\), and the train-test ratio are maintained throughout this homework.}.
 
 \begin{algorithm}[!ht]
     \DontPrintSemicolon
