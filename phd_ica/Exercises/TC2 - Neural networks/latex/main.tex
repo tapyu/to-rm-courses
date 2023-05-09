@@ -246,7 +246,7 @@ Naturally, both curves could be properly estimated since they are linear functio
 
 \section{Single Layer Perceptron}
 
-Although Rosenblatt's perceptron and ADALINE model can solve linear problems, it has only one output variable. A more sensible model for a multivariate class problem is a single-layer perceptron (SLP) consisting of \(J\) neurons, where each neuron receives the same input signal, \(\mathbf{x}(n)\).
+Although Rosenblatt's perceptron and ADALINE model can solve linear problems, it has only one output variable. A more sensible model for multiclass problems is a single-layer perceptron (SLP) consisting of \(J\) neurons, where each neuron receives the same input signal.
 
 The matrix of all coefficients is given by
 \begin{align}
@@ -260,32 +260,33 @@ where \(J\) is the number of classes (one neuron for each class), \(N_a\) is the
         w_{j0} (n) & w_{j1} (n) & \cdots & w_{j N_a} (n)
     \end{bmatrix}^\trans \in \Real^{N_a+1}
 \end{align}
-is the synaptic weight vector of the \(j\)th neuron, being \(w_{jk} (n)\) its \(k\)th weight.
-
-The learning algorithm is given by
+is the synaptic weight vector of the \(j\)th neuron, being \(w_{jk} (n)\) its \(k\)th weight. The induced local field for the \(j\)th neuron is given by
 \begin{align}
-    \mathbf{W}(n+1) = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n),
+    v_j(n) = \sum_{i=0}^{N_a} w_{ji}(n) x_i (i) = \mathbf{w}_j^\top (n) \mathbf{x}(n),
 \end{align}
 where
 \begin{align}
     \mathbf{x}(n) = \begin{bmatrix}
-        -1 & x_1(n) & x_2(n) & x_{N_a}(n)
-    \end{bmatrix}^\trans \in \Real^{N_a+1}
+        x_0 (n) & x_1 (n) & \cdots & x_{N_a} (n)
+    \end{bmatrix} \in \mathbb{R}^{N_a+1},
 \end{align}
-is the input vector (including the bias), and
-\begin{align}
-    \boldsymbol{\deltaup}(n) = \begin{bmatrix}
-        \delta_1(n) & \delta_2(n) & \delta_J(n)
-    \end{bmatrix}^\trans \in \Real^{J}
-\end{align}
-is the vector of the local gradients, being \(\delta_j(n)\) the local gradient of the \(j\)th perceptron. Let us define the vector of all induced local fields at the instant \(n\) as
+is the input signal, being \(x_{0} (n) = +1\) the dummy input. Note that, if we define the vector of all induced local fields of the SLP as
 \begin{align}
     \mathbf{v}(n) = \begin{bmatrix}
-        v_1(n) & v_2(n) & v_J(n)
-    \end{bmatrix}^\trans = \mathbf{W}(n) \mathbf{x}(n).
+        v_1(n) & v_2(n) & \cdots & v_J(n)
+    \end{bmatrix}^\trans \in \mathbb{R}^{J} ,
 \end{align}
+then it follows that \(\mathbf{v}(n) = \mathbf{W}(n) \mathbf{x}(n)\).
 
-Notice that
+\subsection{Learning algorithm}
+By using the stochastic approximation of the MSE (mean-squared error) as the cost function for the SLP, we have that
+\begin{align}
+    \label{eq:stochastic-cost-func}
+    \mathscr{E}(\mathbf{w}_j(n)) = \frac{1}{2} e^2_j(n),
+\end{align}
+where \(e_j(n) = d_j(n) - y_j(n)\) is the error signal of the \(j\)th neuron, being \(y_j(n)\) and \(d_j(n)\) its output and desired signal, respectively. The output signal \(y_j(n)\) is obtained after passing \(v_j(n)\) through a differentiable function \(\varphi(\cdot)\) called activation function, that is, \(y_j(n) = \varphi(v_j(n))\).
+
+The partial derivative of \(\mathscr{E}(\cdot)\) with respect to \(w_{ji}(n)\) reads
 \begin{align}
     \frac{\partial \mathscr{E}(n)}{\partial w_{ji}(n)} & = \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)} \frac{\partial v_j(n)}{\partial w_{ji}(n)} \nonumber \\
     & = - \delta_j (n) x_i(n),
@@ -293,68 +294,106 @@ Notice that
 \end{align}
 where
 \begin{align}
-    \frac{\partial v_j(n)}{\partial w_{ji}(n)} = x_i(n)
+    \delta_j (n) \triangleq - \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)}
+\end{align}
+is called the local gradient of the \(j\)th neuron, and
+\begin{align}
+    \frac{\partial v_j(n)}{\partial w_{ji}(n)} = x_i(n).
     \label{eq:chain4}
 \end{align}
-is the \(i\)th input at the instant \(n\), and
+
+By using the chain rule, the local gradient can be rewritten as follows
 \begin{align}
-    \delta_j (n) = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)} = - \frac{\partial \mathscr{E}(n)}{\partial e_{j}(n)} \frac{\partial e_j(n)}{\partial x_i(n)} \frac{\partial x_i(n)}{\partial v_{j}(n)}
+    \delta_j (n) = - \frac{\partial \mathscr{E}(n)}{\partial v_{j}(n)} = - \frac{\partial \mathscr{E}(n)}{\partial e_{j}(n)} \frac{\partial e_j(n)}{\partial y_j(n)} \frac{\partial y_j(n)}{\partial v_{j}(n)}.
     \label{eq:local-gradient}
 \end{align}
-is the local gradient of the \(j\)th neuron, where \(e_{j}(n)\) error signal of the \(j\)th neuron at the instant \(n\).
 
-Note also that
+Note that
 \begin{align}
     \frac{\partial \mathscr{E}(n)}{\partial e_{j}(n)} = e_{j}(n),
     \label{eq:chain1}
 \end{align}
-
 \begin{align}
-    \frac{\partial e_j(n)}{\partial x_i(n)} = -1,
+    \frac{\partial e_j(n)}{\partial y_j(n)} = -1,
     \label{eq:chain2}
 \end{align}
 and
 \begin{align}
-    \frac{\partial x_i(n)}{\partial v_{j}(n)} \triangleq \varphi'(v_{j}(n)).
+    \frac{\partial y_j(n)}{\partial v_{j}(n)} \triangleq \varphi'(v_{j}(n)).
     \label{eq:chain3}
 \end{align}
+
 By substituting the equations \eqref{eq:chain1}, \eqref{eq:chain2}, and \eqref{eq:chain3} into \eqref{eq:local-gradient}, we get
 \begin{align}
     \delta_j (n) = e_{j}(n) \varphi'(v_{j}(n)),
 \end{align}
-or in matricial notation,
+or in matrix notation,
 \begin{align}
     \boldsymbol{\deltaup}(n) = \mathbf{e}(n) \odot \boldsymbol{\varphi}'(\mathbf{v}(n)),
 \end{align}
-where \(\odot\) is the Hadamard product and
+where
+\begin{align}
+    \mathbf{e}(n) = \begin{bmatrix}
+        e_1 (n) & e_2 (n) & \cdots & e_J (n)
+    \end{bmatrix}^\top \in \mathbb{R}^{J},
+\end{align}
+\begin{align}
+    \boldsymbol{\deltaup}(n) = \begin{bmatrix}
+        \delta_1 (n) & \delta_2 (n) & \cdots & \delta_J (n)
+    \end{bmatrix}^\top \in \mathbb{R}^{J},
+\end{align}
 \begin{align}
     \boldsymbol{\varphi}'(\mathbf{v}(n)) = \begin{bmatrix}
         \varphi'(v_1(n)) & \varphi'(v_2(n)) & \cdots & \varphi'(v_J(n))
-    \end{bmatrix}^\trans \in \Real^{J}.
+    \end{bmatrix}^\trans \in \Real^{J},
 \end{align}
+and \(\odot\) denotes the Hadamard product.
 
-The synaptic weights update is given by
+The algorithms that minimize \eqref{eq:stochastic-cost-func} are collectively called the family of Stochastic Descent Gradient (SGD) algorithms. The simplest algorithm is the LMS algorithm, which uses the opposite direction of the instantaneous approximation of the gradient vector to update the coefficient values. By using such a method, the synaptic weights update is given by
 \begin{align}
-    \Delta w_{ji}(n) = - \eta \frac{\partial \mathscr{E}(n)}{\partial w_{ji}(n)}.
+    \Delta w_{ji}(n) = - \eta \frac{\partial \mathscr{E}(n)}{\partial w_{ji}(n)},
     \label{eq:Delta_w_ji}
 \end{align}
-Substituting the Equation \eqref{eq:cost-function} into \eqref{eq:Delta_w_ji}, we have that
+where \(\eta\) is the learning rate hyperparameter. Substituting the Equation \eqref{eq:cost-function} into \eqref{eq:Delta_w_ji} yields
 \begin{align}
     \Delta w_{ji}(n) = \eta \delta_j (n) x_i(n),
 \end{align}
-or in matricial notation
+or in matrix notation
 \begin{align}
     \Delta \mathbf{W}(n) = \eta\boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n).
 \end{align}
-Finally, the update equation is given by
+By using matrix notation, the update function can be rewritten as
 \begin{align}
-    \mathbf{W}(n+1) & = \mathbf{W}(n) + \Delta \mathbf{W}(n) \nonumber \\
-    & = \mathbf{W}(n) + \eta\boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n).
+    \mathbf{W}(n+1) & = \mathbf{W}(n) + \Delta \mathbf{W}(n) \\
+                    & = \mathbf{W}(n) + \eta \boldsymbol{\deltaup}(n) \mathbf{x}^\trans(n).
 \end{align}
+The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the SLP algorithm. In this pseudocode, the vectors
+\begin{align}
+    \mathbf{d}(n) = \begin{bmatrix}
+        d_1(n) & d_2 & \cdots & d_J(n)
+    \end{bmatrix}
+\end{align}
+and
+\begin{align}
+    \mathbf{y}(n) = \begin{bmatrix}
+        y_1(n) & y_2 & \cdots & y_J(n)
+    \end{bmatrix}
+\end{align}
+are the desired and output signals, respectively, and
+\begin{align}
+    \mathbf{X} = \begin{bmatrix}
+        \mathbf{x}(1) & \mathbf{x}(2) & \cdots & \mathbf{x}(N)
+    \end{bmatrix} \in \mathbf{R}^{(N_a+1) \times N}
+\end{align}
+and
+\begin{align}
+    \mathbf{D} = \begin{bmatrix}
+        \mathbf{d}(1) & \mathbf{d}(2) & \cdots & \mathbf{d}(N)
+    \end{bmatrix} \in \mathbf{R}^{(N_a+1) \times N}
+\end{align}
+denote the entire dataset of input and desired signals used to train, test, and validate the model.
 
-The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the SLP algorithm.
-
-\begin{algorithm}[!ht]
+\begin{algorithm}[H]
     \DontPrintSemicolon
       
       \KwInput{\(\mathbf{X}, \mathbf{D}\) \tcp*{attributes and labels dataset}}
@@ -370,7 +409,7 @@ The Algorithm \ref{alg:single-layer-perceptron} summarizes the procedure of the 
         \( \left( \mathbf{X}_{trn}, \mathbf{D}_{trn} \right), \left( \mathbf{X}_{tst}, \mathbf{D}_{tst} \right)  \leftarrow \text{hold-out}\) \tcp*{training and test dataset}
 
         \ForAll{\(\left\{ 1, 2, \cdots, N_e \right\}\)}{
-            \ForAll{Instancies in the training dataset}{
+            \ForAll{\(\mathbf{x}(n) \in \mathscr{T}\)}{
                 \(\mathbf{v}(n) \leftarrow \mathbf{W}(n) \mathbf{x}(n)\)
 
                 \(\mathbf{y}(n) \leftarrow \boldsymbol{\varphi}(\mathbf{v}(n))\)
@@ -445,9 +484,9 @@ For the iris dataset, the SLP with logistic function reached a mean and a standa
 
 \section{Multilayer Perceptron}
 
-Rosenblatt's perceptron and the single-layer perceptron use the LMS algorithm in the learning phase and are capable of estimating the gradient vector, which yields reasonable results for many problems. However, both architectures are restricted to the classification of linearly separable patterns.
+The single-layer perceptron uses the LMS algorithm in the learning phase and yields reasonable results for many problems. However, this architecture is restricted to the classification of linearly separable patterns.
 
-To overcome the limitations of the aforementioned solutions, we introduce another neural network architecture, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear\footnote{If activation function were linear, the final result would be equal to the SLP output since \(\mathbf{y}(n)\) would simply be in a linear combination of \(\mathbf{x}(n)\).} activation function that is differentiable, and the final output is able to solve nonlinear problems.
+To overcome this limitation, we introduce another neural network architecture, which employs \(L\) layers. This model is usually called Multilayer Perceptron (MLP). Each neuron uses a nonlinear\footnote{If activation function were linear, the final result would be equal to the SLP output since \(\mathbf{y}(n)\) would simply be in a linear combination of \(\mathbf{x}(n)\).} activation function that is differentiable, and the final output is able to solve nonlinear problems.
 
 The presence of hidden layers makes the learning phase more complicated to devise since one must decide how the signal error at the output layer should propagate toward the input layer. A popular learning method used for MLP is the backpropagation algorithm, which in turn, is rooted in the LMS algorithm.
 
@@ -506,7 +545,7 @@ where the second equation follows that \(\delta_k^{(L)} = e_k(n) \varphi'(v_k^{(
 \begin{align}
     \delta_j^{(L-1)} (n) = \varphi'(v_j^{(L-1)}(n)) \sum_{k=1}^{m_L} \delta_k^{(L)} (n) w_{kj}^{(L)}(n),
 \end{align}
-or in matricial notation
+or in matrix notation
 \begin{align}
     \boldsymbol{\deltaup}^{(L-1)} (n) = \boldsymbol{\varphi}'(\mathbf{v}^{(L-1)}(n)) \odot \left( \tilde{\mathbf{W}}^{(L)\trans}(n) \boldsymbol{\deltaup}^{(L)} (n) \right),
     \label{eq:uptade-layer-L-1}
@@ -535,7 +574,7 @@ Following the same procedure for the SLP, we can derive the synaptic weights upd
 where
 \begin{align}
     \mathbf{y}^{(l)}(n) = \begin{bmatrix}
-        -1 & y_1^{(l)}(n) & y_2^{(l)}(n) & \cdots & y_{m_{l}}^{(l)}(n)
+        +1 & y_1^{(l)}(n) & y_2^{(l)}(n) & \cdots & y_{m_{l}}^{(l)}(n)
     \end{bmatrix}^\trans \in \Real^{m_{l}+1},
 \end{align}
 \(m_0\) is the length of the input vector without bias, and \(\mathbf{y}^{(0)}(n) \triangleq \mathbf{x}(n)\). Therefore, the learning equation of the hidden layer is given by
