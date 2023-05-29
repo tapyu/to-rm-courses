@@ -4,7 +4,7 @@ All the computation homework's enunciates are in the Jupyter notebooks (`Otimiza
 
 ### Important links
 
-1. Optimization cheatsheet
+1. [Optimization cheatsheet][17]
 
 1. Solvers (used by the CVX packages)
     1. [GLPK (GNU Linear Programming Kit)][1]
@@ -46,3 +46,4 @@ All the computation homework's enunciates are in the Jupyter notebooks (`Otimiza
 [14]: https://jump.dev/Convex.jl/stable/#Extended-formulations-and-the-DCP-ruleset
 [15]: https://dcp.stanford.edu/analyzer
 [16]: https://neos-guide.org/guide/types/
+[17]: https://tapyu.github.io/notes/posts/opt_cheatsheet/index.html
