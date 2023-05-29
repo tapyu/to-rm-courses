@@ -7,22 +7,22 @@ All the computation homework's enunciates are in the Jupyter notebooks (`Otimiza
 1. Optimization cheatsheet
 
 1. Solvers (used by the CVX packages)
-1.1 [GLPK (GNU Linear Programming Kit)][1]
-1.1 [ADMM - Alternating Direction Method of Multipliers][2]
-1.1 [MOSEK (commercial solver)][3]
-1.1 [ECOS - Embedded Conic Solver][4]
-1.1 [SCS - Splitting Conic Solver][5]
-1.1 [Gurobi (commercial solver)][6]
-1.1 [Mosek ApS (proprietary)][7]
+    1. [GLPK (GNU Linear Programming Kit)][1]
+    1. [ADMM - Alternating Direction Method of Multipliers][2]
+    1. [MOSEK (commercial solver)][3]
+    1. [ECOS - Embedded Conic Solver][4]
+    1. [SCS - Splitting Conic Solver][5]
+    1. [Gurobi (commercial solver)][6]
+    1. [Mosek ApS (proprietary)][7]
 
 1. CVX-derived packages (a CVX package uses many solvers)
-1.1 [CVX (Matlab, the main)][8]
-1.1.1 [CVX Users’ Guide][12]
-1.1 [CVXR (R)][9]
-1.1 [CVXPY (Python)][10]
-1.1 [Convex.jl (Julia)][11]
+    1. [CVX (Matlab, the main)][8]
+        1. [CVX Users’ Guide][12]
+    1. [CVXR (R)][9]
+    1. [CVXPY (Python)][10]
+    1. [Convex.jl (Julia)][11]
 
-1. [Optimization Problem Types][https://neos-guide.org/guide/types/]
+1. [Optimization Problem Types][16]
 
 1. [What is DCP(disciplined convex programming)][13]
 
@@ -45,3 +45,4 @@ All the computation homework's enunciates are in the Jupyter notebooks (`Otimiza
 [13]: http://cvxr.com/cvx/doc/intro.html#what-is-disciplined-convex-programming
 [14]: https://jump.dev/Convex.jl/stable/#Extended-formulations-and-the-DCP-ruleset
 [15]: https://dcp.stanford.edu/analyzer
+[16]: https://neos-guide.org/guide/types/
