@@ -14,7 +14,9 @@
 - Prática 5: Controle de Farol
 
 PS1: All homework descriptions can be found in their respective directories, in the `README.md` file.
+
 PS2: The format model of the homework can be found in `Modelo relatório para as práticas.pdf`.
+
 PS3: For the homework, it is used the Intel® Quartus® Prime Design Software for the FPGA simulations. Proteus and Multisim can be used as support software as well.
 
 ---
