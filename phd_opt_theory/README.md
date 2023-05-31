@@ -1,6 +1,8 @@
 ## Optimization theory
 
-All the computation homework's enunciates are in the Jupyter notebooks (`OtimizacaoRelaxacaoQuadratica.ipynb` and `lamps.ipynb`)
+Professor: Yuri Carvalho Barbosa Silva and Tarcisio Ferreira Maciel
+
+- All the computation homework descriptions are in the Jupyter Notebooks files (`OtimizacaoRelaxacaoQuadratica.ipynb` and `lamps.ipynb`).
 
 ### Important links
 

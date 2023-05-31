@@ -1,4 +1,6 @@
-# Undergraduate discipline "Sistemas Digitais Avançados"
+# Course "Sistemas Digitais Avançados" at Unifor
+
+Professor: Átila Girão
 
 ## Bibliography
 - Theoretical fundamentals: *Digital Design with RTL Design, VHDL, and Verilog*, 2nd edition, by Frank Vahid
