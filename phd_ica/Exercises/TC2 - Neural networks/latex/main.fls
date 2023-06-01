@@ -648,29 +648,29 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
-INPUT ../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (single perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (single perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (single perceptron)/figs/setosa-confusion-matrix.png
+INPUT ../trab1 (single perceptron)/figs/setosa-confusion-matrix.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
-INPUT ../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png
+INPUT ../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png
 INPUT ../trab2 (ADALINE)/figs/predict-f1.png

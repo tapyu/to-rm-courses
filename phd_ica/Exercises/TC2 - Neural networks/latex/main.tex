@@ -69,7 +69,7 @@ and
 \end{align}
 are the synaptic weights of the perceptron and the input signal, respectively, and \(N_a\) indicates the number of attributes. The elements \(w_0(n)\) and\footnote{Depending on the author, it can the defined as \(-1\).} \(x_0(n) \triangleq +1\) are, respectively, the bias and its dummy input.
 
-Let us first derive the update equation for Rosenblatt's perceptron in batch processing and then we take the sequential processing as a special case of it. We can define the perceptron cost function as
+Let us first derive the update equation for Rosenblatt's perceptron in batch processing and then we take the online processing as a special case of it. We can define the perceptron cost function as
 \begin{align}
     \mathscr{E}\left( \mathbf{w} \left( n \right) \right) = - \sum_{\mathbf{x}(n) \in \mathscr{X}} \mathbf{w}^\top(n) \mathbf{x}(n) d(n)
 \end{align}
@@ -85,7 +85,7 @@ The gradient (or steepest) descent method used the opposite direction of the gra
     \mathbf{w}(n+1) & = \mathbf{w}(n) - \eta \mathbf{g} \\
                     & = \mathbf{w}(n) + \eta \sum_{\mathbf{x}(n) \in \mathscr{X}} \mathbf{x}(n) d(n)
 \end{align}
-where \(\eta\) is the learning rate hyperparameter. For the particular case of sequential processing, the set \(\mathscr{X}\) becomes the \(\mathbf{x}(n)\) only in case of error. Otherwise, \(\mathscr{X}\) is an empty set. Therefore, we can rewrite\footnote{Ignoring the double factor inserted by \(e(n) \in \left\{ -2,0,2 \right\}\)} \eqref{eq:update-batch} as
+where \(\eta\) is the learning rate hyperparameter. For the particular case of online processing, the set \(\mathscr{X}\) becomes the \(\mathbf{x}(n)\) only in case of error. Otherwise, \(\mathscr{X}\) is an empty set. Therefore, we can rewrite\footnote{Ignoring the double factor inserted by \(e(n) \in \left\{ -2,0,2 \right\}\)} \eqref{eq:update-batch} as
 \begin{align}
     \mathbf{w}(n+1) = \mathbf{w}(n) + \eta e(n) \mathbf{x}(n),
 \end{align}
@@ -134,7 +134,7 @@ The process described in Algorithm \ref{alg:rosenblatt-perceptron} was repeated 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../trab1 (simple perceptron)/figs/decision-surface-for-setosa.png}
+    \includegraphics[scale=0.35]{../trab1 (single perceptron)/figs/decision-surface-for-setosa.png}
     \caption{Decision surface of setosa class.}
     \label{fig:rosenblatt-decision-surface}
 \end{figure}
@@ -163,7 +163,7 @@ The confusion matrix of the setosa class is shown in Figure \ref{fig:confusion-m
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../trab1 (simple perceptron)/figs/setosa-confusion-matrix.png}
+    \includegraphics[scale=0.35]{../trab1 (single perceptron)/figs/setosa-confusion-matrix.png}
     \caption{confusion matrix for setosa class.}
     \label{fig:confusion-matrix-setosa}
 \end{figure}
@@ -172,7 +172,7 @@ The Figure \ref{fig:setosa-training-evolution} shows the evolution of the traini
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../trab1 (simple perceptron)/figs/accuracy-by-epochs-for-setosa.png}
+    \includegraphics[scale=0.35]{../trab1 (single perceptron)/figs/accuracy-by-epochs-for-setosa.png}
     \caption{Training dataset evolution for the setosa classification.}
     \label{fig:setosa-training-evolution}
 \end{figure}
@@ -181,7 +181,7 @@ For a dummy dataset with \(K=4\) classes, the Rosenblatt's perceptron achieved a
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{../trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png}
+    \includegraphics[scale=0.35]{../trab1 (single perceptron)/figs/decision-surface-for-dummy-data.png}
     \caption{Decision surface for the desired class.}
     \label{fig:decision-surface-dummy-data}
 \end{figure}

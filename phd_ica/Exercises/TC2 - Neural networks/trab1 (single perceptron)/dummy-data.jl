@@ -45,7 +45,7 @@ function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
     Nₑ = 0
     for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
         μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
-        y₍ₙ₎ = φ(μ₍ₙ₎) # for the simple Perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the single-unit perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
         𝐲[n] = y₍ₙ₎
 
         Nₑ = y₍ₙ₎==d₍ₙ₎ ? Nₑ : Nₑ+1
@@ -99,7 +99,7 @@ for nᵣ ∈ 1:Nᵣ
     push!(figs_training_accuracy, [fig])
 
     # decision surface
-    φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the simple Perceptron
+    φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the single-unit perceptron
     x₁_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
     x₂_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
     y(x₁, x₂) = φ(dot([-1, x₁, x₂], 𝐰))
@@ -140,7 +140,7 @@ end
 
 # plot the training set accuracy by epoch for the realization whose test dataset accuracy is closest to the mean accuracy
 display(figs_training_accuracy[i][1])
-savefig(figs_training_accuracy[i][1], "trab1 (simple perceptron)/figs/training dataset accuracy for realization $(i) (closest to the mean acc).png")
+savefig(figs_training_accuracy[i][1], "trab1 (single-unit perceptron)/figs/training dataset accuracy for realization $(i) (closest to the mean acc).png")
 # plot surface decision for  the realization whose test dataset accuracy is closest to the mean accuracy
 display(figs_surface[i][1])
-savefig(figs_surface[i][1], "trab1 (simple perceptron)/figs/decision-surface-for-dummy-data.png")
+savefig(figs_surface[i][1], "trab1 (single-unit perceptron)/figs/decision-surface-for-dummy-data.png")

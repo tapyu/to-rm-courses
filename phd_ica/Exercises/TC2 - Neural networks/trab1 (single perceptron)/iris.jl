@@ -41,7 +41,7 @@ function test(𝐗, 𝐝, 𝐰, is_confusion_matrix=false)
     Nₑ = 0
     for (n, (𝐱₍ₙ₎, d₍ₙ₎)) ∈ enumerate(zip(eachcol(𝐗), 𝐝))
         μ₍ₙ₎ = 𝐱₍ₙ₎⋅𝐰 # inner product
-        y₍ₙ₎ = φ(μ₍ₙ₎) # for the simple Perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
+        y₍ₙ₎ = φ(μ₍ₙ₎) # for the single-unit perceptron, y₍ₙ₎ ∈ {0,1}. Therefore, it is not necessary to pass y₍ₙ₎ to a harder decisor since φ(⋅) already does this job
         𝐲[n] = y₍ₙ₎
 
         Nₑ = y₍ₙ₎==d₍ₙ₎ ? Nₑ : Nₑ+1
@@ -97,7 +97,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
             if length(𝐰) != 3
                 local p = plot(accₜᵣₙ, label="", xlabel=L"Epochs", ylabel="Accuracy", linewidth=2, title="Training accuracy for $(desired_label) class by epochs")
                 display(p)
-                savefig(p, "trab1 (simple perceptron)/figs/accuracy-by-epochs-for-$(desired_label).png")
+                savefig(p, "trab1 (single-unit perceptron)/figs/accuracy-by-epochs-for-$(desired_label).png")
                 # for the setosa class, compute the confusion matrix
                 if desired_label == "setosa"
                     𝐂 = zeros(2,2) # confusion matrix
@@ -107,13 +107,13 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                         𝐂[𝐲ₜₛₜ[n]+1, 𝐝ₜₛₜ[n]+1] += 1
                     end
                     h = heatmap(𝐂, xlabel="Predicted labels", ylabel="True labels", xticks=(1:2, ("setosa", "not setosa")), yticks=(1:2, ("setosa", "not setosa")), title="Confusion matrix for the setosa class")
-                    savefig(h, "trab1 (simple perceptron)/figs/setosa-confusion-matrix.png")
+                    savefig(h, "trab1 (single-unit perceptron)/figs/setosa-confusion-matrix.png")
                     display(h) # TODO: put the number onto each confusion square
                 end
             end
             # decision surface
             if length(𝐰) == 3 # plot the surface only if the learning procedure was taken with only two attributes, the petal length and petal width (equals to 3 because the bias)
-                φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the simple Perceptron
+                φ = u₍ₙ₎ -> u₍ₙ₎≥0 ? 1 : 0 # activation function of the single-unit perceptron
                 x₃_range = floor(minimum(𝐗[2,:])):.1:ceil(maximum(𝐗[2,:]))
                 x₄_range = floor(minimum(𝐗[3,:])):.1:ceil(maximum(𝐗[3,:]))
                 y(x₃, x₄) = φ(dot([-1, x₃, x₄], 𝐰))
@@ -178,7 +178,7 @@ for (i, desired_label) ∈ enumerate(("setosa", "virginica", "versicolor"))
                 
                 title!("Decision surface for the class $(desired_label)")
                 display(p)
-                savefig(p,"trab1 (simple perceptron)/figs/decision-surface-for-$(desired_label).png")
+                savefig(p,"trab1 (single-unit perceptron)/figs/decision-surface-for-$(desired_label).png")
             end
         end
     end
