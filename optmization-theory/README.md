@@ -4,6 +4,7 @@ This directory contains:
 - The homework from my PhD. course "Otimização não-linear de sistemas", taught by Yuri Carvalho Barbosa Silva and Tarcisio Ferreira Maciel at UFC.
 - All the computation homework descriptions are in the Jupyter Notebooks files (`OtimizacaoRelaxacaoQuadratica.ipynb` and `lamps.ipynb`).
 - The computational homework is basically to solve optimization problems by using optimization packages.
+- The slides is the same as the Stephen Boyd slides, which can be found in Google Drive in the path `Mathematics - Optmization theory/Stephen Boyd - slides`
 
 ### Important links
 

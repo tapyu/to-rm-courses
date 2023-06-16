@@ -10,6 +10,7 @@ This directory contains:
     - Principal Component Analysis [3]
     - Clustering methods -> K-means [5]
 - The compressed `.zip` file contains the code from colleges for the same course.
+- The slides can be found in the Google drive in the path `Signal Processing and Machine Learning/Machine Learning/Guilerme's slides/Pattern recognition`
 
 ---
 ## Bibliography

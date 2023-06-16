@@ -17,6 +17,8 @@ This directory contains:
         - Regularized Loss Minimization (RLM) [8]
         - Empirical Risk Minimization (ERM) [8]
 - The codes were written in `Python`
+- The slides can be in the Google drive in the path `Signal Processing and Machine Learning/System Identification/Guilherme's slides`
+- I am not sure whether `datasetTC3.dat` belongs to the third computational homework or something else (I am not sure).
 
 
 ---
@@ -32,5 +34,11 @@ This directory contains:
 1. [Derivation of Least Squares Regressor and Classifier](https://towardsdatascience.com/derivation-of-least-squares-regressor-and-classifier-708be1358fe9?gi=e125c07c46de)
 1. [Least squares for classification](https://notesonai.com/Least+squares+for+classification)
 
-
-- I am not sure whether `datasetTC3.dat` belongs to the third computational homework or something else (I am not sure).
+---
+## Further information
+- Lennart Ljung is the main author in this field and his book is a must-read for this field.
+- [Matlab identification system toolbox](https://www.mathworks.com/videos/lennart-ljung-on-system-identification-toolbox-advice-for-beginners-96988.html) (developed by Lennart Ljung)
+- Another System identification [course](http://mocha-java.uccs.edu/ECE5560/index.html), from Colorado University and taught by Gregory Plett. It seems a much more organized course than Guilherme's course.
+    - It uses [1] extensively
+    - The `Matlab` toolbox is also extensively used in this course.
+    - His slides can be found in `Signal Processing and Machine Learning/System Identification/Colorado's slides`

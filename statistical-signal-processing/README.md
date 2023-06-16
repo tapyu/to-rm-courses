@@ -19,3 +19,4 @@ This directory contains:
     - Linear fitting
     - Parameter estimation
 - The compressed `.zip` file contains the code from colleges for the same course.
+- The slides can be found in Google Drive in the path `Signal Processing and Machine Learning/Estimation and detection theory/Charles's slides`

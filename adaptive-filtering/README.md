@@ -8,6 +8,7 @@ This directory contains:
     - Adaptive noise canceling
 - The codes were written in `Julia`
 - The `.zip` files are the codes from other colleges that took the same course (in different semesters).
+- The slides can be found in `Signal Processing and Machine Learning/Adaptative Filtering/Charles's slides/`
 
 ---
 ## Other info

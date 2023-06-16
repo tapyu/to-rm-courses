@@ -7,7 +7,8 @@ This directory contains:
     - Metaheuristics
     - Fuzzy logic
 - All homeworks are in `./exercises/`
-- PS: The compressed `.zip` file contains the code from colleges for the same course.
+- The slides can be found in the Google drive in the path `/Signal Processing and Machine Learning/Machine Learning/{Fuzzy logic,Metaeuhistic,Neural Networks}`
+- The compressed `.zip` file contains the code from colleges for the same course.
 
 
 ---
