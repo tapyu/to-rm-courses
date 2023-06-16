@@ -1,7 +1,0 @@
-# Applied Computational Intelligence course at UFC
-
-Professor: Guilherme de Alencar Barreto
-
-All homeworks are in `./exercises/`
-
-PS: The compressed `.zip` file contains the code from colleges for the same course.
