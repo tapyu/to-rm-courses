@@ -5,6 +5,7 @@ This directory contains:
 - All the computation homework descriptions are in the Jupyter Notebooks files (`OtimizacaoRelaxacaoQuadratica.ipynb` and `lamps.ipynb`).
 - The computational homework is basically to solve optimization problems by using optimization packages.
 - The slides is the same as the Stephen Boyd slides, which can be found in Google Drive in the path `Mathematics - Optmization theory/Stephen Boyd - slides`
+- `additional-exercises/` is a git submodule for the a [repository][20] from Stanford University containing a huge set of exercises. Some of them have computational part, and the repo contain the code solution (in `matlab`, `R`, `julia`, and `python`).
 
 ## Important links
 
@@ -57,3 +58,4 @@ This directory contains:
 [17]: https://tapyu.github.io/notes/posts/opt_cheatsheet/index.html
 [18]: https://github.com/cvxgrp/ncvx
 [19]: https://github.com/cvxgrp/cvx_short_course/
+[20]: https://github.com/cvxgrp/cvxbook_additional_exercises/
