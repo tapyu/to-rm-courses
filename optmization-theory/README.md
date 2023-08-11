@@ -6,7 +6,7 @@ This directory contains:
 - The computational homework is basically to solve optimization problems by using optimization packages.
 - The slides is the same as the Stephen Boyd slides, which can be found in Google Drive in the path `Mathematics - Optmization theory/Stephen Boyd - slides`
 
-### Important links
+## Important links
 
 1. [Optimization cheatsheet][17]
 
@@ -25,6 +25,8 @@ This directory contains:
     1. [CVXR (R)][9]
     1. [CVXPY (Python)][10]
     1. [Convex.jl (Julia)][11]
+  
+1. [`ncvx`][18]: A `python` package for modeling and solving problems with convex objectives and decision variables from a nonconvex set.
 
 1. [Optimization Problem Types][16]
 
@@ -33,6 +35,8 @@ This directory contains:
 1. [Auxiliary variables and extended formulation][14]
 
 1. [DCP Analyzer][15]
+
+1. A short [`cvxpy` course][19] from the Stanford University Convex Optimization Group (cvxgrp). It contains a lot of computational exercises
 
 [1]: https://www.gnu.org/software/glpk/
 [2]: https://stanford.edu/~boyd/admm.html
@@ -51,3 +55,5 @@ This directory contains:
 [15]: https://dcp.stanford.edu/analyzer
 [16]: https://neos-guide.org/guide/types/
 [17]: https://tapyu.github.io/notes/posts/opt_cheatsheet/index.html
+[18]: https://github.com/cvxgrp/ncvx
+[19]: https://github.com/cvxgrp/cvx_short_course/
