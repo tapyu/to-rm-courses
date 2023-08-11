@@ -26,7 +26,7 @@ This directory contains:
     1. [CVXPY (Python)][10]
     1. [Convex.jl (Julia)][11]
   
-1. [`ncvx`][18]: A `python` package for modeling and solving problems with convex objectives and decision variables from a nonconvex set.
+1. [`ncvx`][18]: A `python` package for modeling and solving problems with convex objectives and decision variables from a nonconvex set (from the Stanford University Convex Optimization Group, cvxgrp).
 
 1. [Optimization Problem Types][16]
 
