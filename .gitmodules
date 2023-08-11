@@ -2,3 +2,6 @@
 	path = phd_opt_theory/Homeworks - Computational/ref
 	url = https://github.com/tapyu/courses_codes_private
 	branch = opt
+[submodule "optmization-theory/additional-exercises"]
+	path = optmization-theory/additional-exercises
+	url = https://github.com/cvxgrp/cvxbook_additional_exercises/
