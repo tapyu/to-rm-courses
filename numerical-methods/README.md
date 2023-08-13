@@ -41,7 +41,7 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [1]: https://docs.sciml.ai/DiffEqDocs/latest/
 [2]: https://iterativesolvers.julialinearalgebra.org/dev/
 [3]: https://github.com/dextorious/NumericalIntegration.jl
-[4]: https://docs.sciml.ai/Overview/stable/
+[4]: https://docs.sciml.ai/Integrals/stable/
 [5]: https://github.com/JuliaMath/HCubature.jl
 [6]: https://github.com/stevengj/cubature
 [7]: https://juliamath.github.io/Roots.jl/stable/
