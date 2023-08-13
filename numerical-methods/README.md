@@ -34,13 +34,15 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
     - A nice and quick [JuliaDiff tutorial] I saw on internet 
-- [**Automatic differentiation (auto-differentiation, autodiff, or AD)**][13] (it is not on Chapra)
+- [**Automatic differentiation (auto-differentiation, autodiff, or AD)**][13] (it is not on Chapra, but it is more powerful than finite differences)
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
 - **Root-finding functions**
   - [`Roots.jl`][7]:
     - Bisection-like algorithms
+      - See this [tutorial][16]
     - Newton's method
+      - See this [tutorial][15]
     - Chebyshev (it does not have on Chapra)
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
@@ -59,3 +61,5 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [12]: https://juliadiff.org/
 [13]: https://en.wikipedia.org/wiki/Automatic_differentiation#Difference_from_other_differentiation_methods
 [14]: https://juliadiff.org/ForwardDiff.jl/stable/
+[15]: https://www.matecdev.com/posts/julia-newton-raphson.html
+[16]: https://www.matecdev.com/posts/julia-bisection.html
