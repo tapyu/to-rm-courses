@@ -4,14 +4,18 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 
 ## Useful resouces
 - Packages:
-  - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`
+- **ODE-based problems** 
+  - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
     - Runge-Kutta Methods
     - Midpoint
     - Heun
-    - Runge-Kutta Methods
+    - Forward Euler method
+    - Multistep Methods
+- **Linear system problems**
   - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Examples:
     - Gauss-Seidel method
     - Jacobi iteration method
+- **Numerical integration**
   - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
     - Trapezoidal (default)
     - TrapezoidalEven
@@ -24,8 +28,10 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
     - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see Chapra)
     - H-Adaptive Integration (Adaptive quadrature? If so, it is on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
     - Monte Carlo integration (apparently it doesn't have on Chapra)
+    - Gauss-Legendre quadrature (it has on Chapra)
     - `integral()` in matlab uses adaptive quadrature (see Chapra)
-  - [`Roots.jl`][7]: Root finding functions for Julia
+- **Root-finding functions**
+  - [`Roots.jl`][7]:
     - Bisection-like algorithms
     - Newton's method
     - Chebyshev (it does not have on Chapra)
@@ -39,3 +45,5 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [5]: https://github.com/JuliaMath/HCubature.jl
 [6]: https://github.com/stevengj/cubature
 [7]: https://juliamath.github.io/Roots.jl/stable/
+[8]: https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/
+[9]: https://docs.sciml.ai/DiffEqDocs/stable/#Solver-Algorithms
