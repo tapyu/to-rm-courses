@@ -66,6 +66,6 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [14]: https://juliadiff.org/ForwardDiff.jl/stable/
 [15]: https://www.matecdev.com/posts/julia-newton-raphson.html
 [16]: https://www.matecdev.com/posts/julia-bisection.html
-[17] :https://en.wikipedia.org/wiki/Explicit_and_implicit_methods
+[17]:https://en.wikipedia.org/wiki/Explicit_and_implicit_methods
 [18]: https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations
 [19]: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
