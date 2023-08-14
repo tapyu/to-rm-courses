@@ -33,7 +33,10 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 - **Numerical differentiation (finite differences)** (see part V on Chapra)
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
-    - A nice and quick [JuliaDiff tutorial] I saw on internet 
+    - A nice and quick [JuliaDiff tutorial][14] I saw on internet
+  - [Wiki: Explicit vs. implicit methods][17]
+  - [Wiki: Numerical methods for ordinary differential equations][18]
+  - [Wiki: Runge–Kutta methods][19]
 - [**Automatic differentiation (auto-differentiation, autodiff, or AD)**][13] (it is not on Chapra, but it is more powerful than finite differences)
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
@@ -63,3 +66,6 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [14]: https://juliadiff.org/ForwardDiff.jl/stable/
 [15]: https://www.matecdev.com/posts/julia-newton-raphson.html
 [16]: https://www.matecdev.com/posts/julia-bisection.html
+[17] :https://en.wikipedia.org/wiki/Explicit_and_implicit_methods
+[18]: https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations
+[19]: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
