@@ -1,6 +1,8 @@
 # Numerical methods
 
-Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill.
+Bibliography:
+- Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill.
+- Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press. Only the part about automatic differentiation (sec 6.5.9)
 
 ## Useful resouces
 - Packages:
@@ -37,7 +39,7 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
     - A nice and quick [JuliaDiff tutorial][14] I saw on internet
-- [**Automatic differentiation (auto-differentiation, autodiff, or AD)**][13] (it is not on Chapra, but it is more powerful than finite differences)
+- **Automatic differentiation (auto-differentiation, autodiff, or AD)** (it is not on Chapra, but it is more powerful than finite differences)
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
   - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
@@ -56,6 +58,8 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 ## Other resources:
 - [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
 ![image](./assets/direct-vs-iterative.png)
+- [wiki: Automatic differentiation][13]
+- A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 
     
 [1]: https://docs.sciml.ai/DiffEqDocs/latest/
@@ -80,3 +84,5 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [20]: https://www.linkedin.com/advice/0/how-do-you-compare-combine-direct-iterative
 [21]: http://www.decom.ufop.br/moreira/site_media/uploads/arquivos/01_selas_new.pdf
 [22]: https://github.com/JuliaDiff/ReverseDiff.jl
+[23]: https://mostafa-samir.github.io/auto-diff-pt1/
+[24]: https://mostafa-samir.github.io/auto-diff-pt2/
