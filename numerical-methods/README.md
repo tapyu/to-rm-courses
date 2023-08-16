@@ -54,7 +54,7 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 
 ## Other resources:
 - [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
-![image](https://github.com/tapyu/courses/assets/22801918/42828b3d-9052-4a6f-ac8f-577919288ae9)
+![image](./assets/direct-vs-iterative.png)
 
     
 [1]: https://docs.sciml.ai/DiffEqDocs/latest/
