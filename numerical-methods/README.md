@@ -13,9 +13,6 @@ Bibliography:
     - Heun
     - Forward Euler method
     - Multistep Methods
-  - [Wiki: Explicit vs. implicit methods][17]
-  - [Wiki: Numerical methods for ordinary differential equations][18]
-  - [Wiki: Runge–Kutta methods][19]
 - **Linear system problems** (see Part III on Chapra)
   - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Iterative mathods constranst with the direct methods (e.g., Gauss elimination), which requires a finite number of steps to solve a linear system. Examples:
     - Gauss-Seidel method
@@ -59,6 +56,9 @@ Bibliography:
 - [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
 ![image](./assets/direct-vs-iterative.png)
 - [wiki: Automatic differentiation][13]
+- [Wiki: Explicit vs. implicit methods][17]
+- [Wiki: Numerical methods for ordinary differential equations][18]
+- [Wiki: Runge–Kutta methods][19]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 
     
