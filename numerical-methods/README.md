@@ -40,6 +40,7 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 - [**Automatic differentiation (auto-differentiation, autodiff, or AD)**][13] (it is not on Chapra, but it is more powerful than finite differences)
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
+  - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
 - **Root-finding functions**
   - [`Roots.jl`][7]:
     - Bisection-like algorithms
@@ -78,3 +79,4 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [19]: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
 [20]: https://www.linkedin.com/advice/0/how-do-you-compare-combine-direct-iterative
 [21]: http://www.decom.ufop.br/moreira/site_media/uploads/arquivos/01_selas_new.pdf
+[22]: https://github.com/JuliaDiff/ReverseDiff.jl
