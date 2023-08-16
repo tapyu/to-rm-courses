@@ -49,6 +49,13 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
     - Chebyshev (it does not have on Chapra)
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
+
+---
+
+## Other resources:
+- [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
+![image](https://github.com/tapyu/courses/assets/22801918/42828b3d-9052-4a6f-ac8f-577919288ae9)
+
     
 [1]: https://docs.sciml.ai/DiffEqDocs/latest/
 [2]: https://iterativesolvers.julialinearalgebra.org/dev/
@@ -69,3 +76,5 @@ Bibliography: Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engine
 [17]: https://en.wikipedia.org/wiki/Explicit_and_implicit_methods
 [18]: https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations
 [19]: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
+[20]: https://www.linkedin.com/advice/0/how-do-you-compare-combine-direct-iterative
+[21]: http://www.decom.ufop.br/moreira/site_media/uploads/arquivos/01_selas_new.pdf
