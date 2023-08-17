@@ -60,7 +60,7 @@ Bibliography:
 - [Wiki: Numerical methods for ordinary differential equations][18]
 - [Wiki: Runge–Kutta methods][19]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
-- `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which as found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful).
+- `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which as found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful). See his video tutorial on [Youtube][26]
 
     
 [1]: https://docs.sciml.ai/DiffEqDocs/latest/
@@ -88,4 +88,4 @@ Bibliography:
 [23]: https://mostafa-samir.github.io/auto-diff-pt1/
 [24]: https://mostafa-samir.github.io/auto-diff-pt2/
 [25]: https://github.com/SciML/SciMLTutorials.jl
-[2
+[26]: https://www.youtube.com/watch?v=KPEqYtEd-zY&ab_channel=TheJuliaProgrammingLanguage
