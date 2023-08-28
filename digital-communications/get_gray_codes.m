@@ -1,4 +1,4 @@
-function gray = gray_code(N)
+function gray = get_gray_codes(N)
 % Input: N -> Number of bits
 % Output: gray -> sequence of bits [N x 2^N] in Gray code
 original = zeros(N, 2^N);
@@ -7,13 +7,13 @@ for i = 1:length(original)
     aux = double(aux) - 48;
     original(:,i) = flip(aux);
 end
-gray = get_gray_code(original);
+gray = gray_codes(original);
 end
 
-function gray = get_gray_code(numbers)
+function gray = gray_codes(numbers)
 N = size(numbers,1);
 if N > 1
-    reduced= get_gray_code(numbers(1:end-1,1:end/2));
+    reduced= gray_codes(numbers(1:end-1,1:end/2));
     flipped = reduced(:,end:-1:1);
     gray = [ [reduced; zeros(1, size(reduced ,2))] [flipped; ones(1, size(flipped ,2))] ];
 else
