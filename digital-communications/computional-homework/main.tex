@@ -121,11 +121,34 @@ The pre-envelope has important properties concerning the spectrum of the transmi
 \subproblem Use a block called ``Complex to real-imag'' to obtain the real part of the analytic signal and repeat the item (a) for the transmitted signal.
 \subproblem Based on \cite[Equation (3.2-42)]{proakisDigitalCommunications2007}, the average energy of the transmitted signal (i.e., the equation \eqref{eq:s_m(t)}) is\footnote{Proakis does not normalize the carrier energy by the \(\sqrt{2}\) factor. Therefore, the average energy in his book is half of what we are using here.}
 \begin{align}
+    \label{eq:E_s}
     E_s = \frac{2\left( M-1 \right)}{3}E_g
 \end{align}
 For \(M = 256\) and \(E_g = 5\), we have that \(E_s = 850\).
 
+In reality, the transmitted signal is a stochastic process and therefore is seen as a power signal since its energy would be infinity. However, the energy expressed in \eqref{eq:E_s} does not refer to the energy in its original sense, i.e.,
+\begin{align}
+    E_s = \lim_{T \rightarrow \infty} \int_{-\frac{T}{2}}^{\frac{T}{2}} \abs{s_m \left( t \right)}^{2} \dd{t}.
+\end{align}
 
+Rather, the average energy refers to the ratio between the average power,
+\begin{align}
+    \label{eq:P_s}
+    P_s = \lim_{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \abs{s_m \left( t \right)}^{2} \dd{t},
+\end{align}
+and the symbol interval, \(T\). Therefore,
+\begin{align}
+    E_s = \frac{P_s}{T}.
+\end{align}
+The equation \eqref{eq:P_s} converges and can be estimated in Simulink by using the block called:
+\begin{enumerate}
+    \item ``Square'' to take the square value of the transmitted signal.
+    \item ``Discrete-time integrator'' to numerically integrate \(\abs{s_m \left( t \right)}^{2}\).
+    \item ``Clock'' to obtain a source of the running simulation time.
+    \item ``Divide'' to divide the integration by the running simulation time.
+\end{enumerate}
+
+Finally, use the block named ``gain'' to multiply the resulting signal to \(T\) and show that the average energy of the transmitted signal is approximately \(850\).
 
 %============================================
 \printbibliography
