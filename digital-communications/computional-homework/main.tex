@@ -63,35 +63,34 @@ Generate a bit stream with the following parameters:
 \end{itemize}
 
 \problem \label{probthree}
-Use a block called ``Matlab function'' to create a function that maps a stream of \(N_b = \log_2\left( M \right)\) bits to a complex symbol from a constellation of \(M=256\) symbols. The real and imaginary part of each constellation point, must be spaced as Proakis suggests, i.e., \(\left\{ \pm1, \pm3, \dots, \pm\sqrt{M} \right\}\). Moreover, the mapping of the real/imaginary part to the complex symbol must be in the Gray encoding sequence (see \cite{proakisDigitalCommunications2007} for more info).
+Use a block called ``Matlab function'' to create a function that maps a stream of \(N_b = \log_2\left( M \right)\) bits to a complex symbol from an alphabet of \(M=256\) symbols. The real and imaginary part of each constellation point must be spaced as Proakis suggests, i.e., \(\left\{ \pm1, \pm3, \dots, \pm\sqrt{M} \right\}\). Moreover, the mapping of the real/imaginary part of the complex symbol must be in the Gray encoding sequence (see \cite{proakisDigitalCommunications2007} for more info).
 
 \subproblem What is the new operating rate of the system?
 \subproblem Use a block called ``Gain'' to apply a gain of \(\sqrt{E_g}\) to the complex symbol outputs, where \(E_g = 9\).
 \subproblem By using a block called ``Constellation Diagram'', show that each point in the constellation is now in the form \(\sqrt{E_g} A_m\), where \(A_m = A_{mi}+j A_{mq}\) is the constellation for the \(m\)th symbol and that \(A_{mi}, A_{mq} \in \left\{ \pm1, \pm3, \dots, \pm\sqrt{M} \right\}\). Note that the \(k\)th transmitted symbol can be represented by the vector
 \begin{align}
     \mathbf{s}_m\left[ k \right] = \begin{bmatrix}
-        A_{mi} & A_{mq}
+        \sqrt{E_g}A_{mi} & \sqrt{E_g}A_{mq}
     \end{bmatrix}^\top \in \mathbb{R}^{2}
 \end{align}
 
 Tips:
 \begin{enumerate}
     \item Use the ``Buffer'' block to vectorize the bit stream to \(N_b\) symbols and use it as input of the ``Matlab function''.
-    \item You can pass a matrix of the sequence of bits with Gray encoding to the ``Matlab function'' block. You can use your function developed in Problem \ref{probone} to generate this matrix.
+    \item You can pass a matrix of the sequence of bits with Gray encoding to the ``Matlab function'' block. You can use your function developed in Problem 1 to generate this matrix.
 \end{enumerate}
 
-\problem Pass your symbol stream through the ``Raised Cosine Filter block'' with the following parameters
+\problem Pass your symbol stream through the ``Raised Cosine Filter'' block with the following parameters
 \begin{itemize}
     \item Roll-off factor: \(0.2\).
     \item Filter span (in symbols): \(4\).
     \item Number of samples per symbol: \(N=100\) samples.
 \end{itemize}
-The filter gain must be adjusted so that the energy of the discrete-time impulse response is \(1\).
+The filter gain must be adjusted so that the energy of the impulse response is \(1\). In the ``Raised Cosine Filter'' block, you can obtain the impulse response by exporting the filter coefficients to the workspace. You can use the \mintinline{matlab}{stem()} function to plot the impulse response samples. Use the function \mintinline{matlab}{trapz()} to perform a numerical integration via the \(1\)th-order Newton-Cotes formula (i.e., the trapezoidal method). By integrating the square of the impulse response, you obtain its energy. If the result is \(I\), you can normalize it by adjusting the filter gain to \(1/\sqrt{I}\).
 
 Tips:
 \begin{enumerate}
-    \item You can obtain the impulse response of the Raised Cosine Filter and compute numerically its energy (it is an \gls{fir} filter as the impulse response is truncated).
-    \item Use the ``square'' and the ``mean'' block to check if the input and output energy remain unchanged after the filtering.
+    \item In fact, the energy of the \gls{bb} pulse shaping was already included previously and separately with the ``Gain'' block \(\sqrt{E_g}\).
 \end{enumerate}
 \subproblem What is the new operating rate of the system? Why has the operating rate changed to this value?
 \subproblem Check if the raised cosine filter obeys the Nyquist criterion for non-\gls{isi}. Use the ``scope'' block to prove your answer graphically.
@@ -101,20 +100,32 @@ Tips:
 \problem Use a block called ``sine wave'' (from the DSP system toolbox) with the following parameters
 \begin{itemize}
     \item Amplitude: \(\sqrt{2}\);
-    \item Frequency: \(f_c = \qty{100}{\mega\hertz}\);
+    \item Frequency: \(f_c = \frac{1}{4T_{s}}\), where \(T_{s}\) is the sampling interval of the baseband signal;
     \item Sample mode: Discrete;
     \item Output complexity: Complex;
 \end{itemize}
 
-The sampling rate must be consistent with the sampling rate of your system. Let us denote the \gls{bb} pulse shaping (i.e., the raised cosine filter) of your system as \(g\left( t \right) \in \mathbb{R}\), whose energy is denoted as \(E_g\). Then the pre-envelope (or analytic signal) of the \(m\)th symbol is
+The sampling rate must be consistent with the sampling rate of your system. Let us denote the \gls{bb} pulse shaping (i.e., the raised cosine filter impulse response) of your system as \(g\left( t \right) \in \mathbb{R}\), whose energy is denoted as \(E_g\). Then the pre-envelope (or analytic signal) of the \(m\)th symbol is
 \begin{align}
     s_{m+}\left( t \right) = s_{ml}\left( t \right) e^{j 2\pi f_c t} \in \mathbb{C},
 \end{align}
 where \(s_{ml}\left( t \right) = A_m g\left( t \right) \in \mathbb{C}\) is the complex envelope (or lowpass equivalent) of the real-valued transmitted signal for the \(m\)th symbol,
 \begin{align}
+    \label{eq:s_m(t)}
     s_{m}\left( t \right) = \sqrt{2} \Re{s_{ml}\left( t \right) e^{j 2\pi f_c t}}.
 \end{align}
-The pre-envelope has important properties concerning the spectrum of the transmitted signal. The output of the block named ``sine wave'' should exactly be the pre-envelope discussed in the literature. By using the ``Spectrum Analyzer'' block, make a mathematical analysis of this signal, and compare its theoretical spectrum with the spectrum obtained in Simulink. Good references can be found in \cite{mengaliSynchronizationTechniquesDigital1997,meyrDigitalCommunicationReceivers1998,proakisDigitalCommunications2007}
+The pre-envelope has important properties concerning the spectrum of the transmitted signal. The output of the block named ``sine wave'' should exactly be the discrete-time version of the pre-envelope discussed in the literature.
+
+\subproblem Make a mathematical analysis of this signal and use the ``Spectrum Analyzer'' block to compare the spectrum obtained in Simulink with the theoretical spectrum. Good references can be found in \cite{mengaliSynchronizationTechniquesDigital1997,meyrDigitalCommunicationReceivers1998,proakisDigitalCommunications2007}
+\subproblem Repeat the item (a) for the spectrum of the complex envelope.
+\subproblem Use a block called ``Complex to real-imag'' to obtain the real part of the analytic signal and repeat the item (a) for the transmitted signal.
+\subproblem Based on \cite[Equation (3.2-42)]{proakisDigitalCommunications2007}, the average energy of the transmitted signal (i.e., the equation \eqref{eq:s_m(t)}) is\footnote{Proakis does not normalize the carrier energy by the \(\sqrt{2}\) factor. Therefore, the average energy in his book is half of what we are using here.}
+\begin{align}
+    E_s = \frac{2\left( M-1 \right)}{3}E_g
+\end{align}
+For \(M = 256\) and \(E_g = 5\), we have that \(E_s = 850\).
+
+
 
 %============================================
 \printbibliography
