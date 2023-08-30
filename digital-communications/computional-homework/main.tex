@@ -88,10 +88,7 @@ Tips:
 \end{itemize}
 The filter gain must be adjusted so that the energy of the impulse response is one. In the ``Raised Cosine Filter'' block, you can obtain the impulse response by exporting the filter coefficients to the workspace. You can use the \mintinline{matlab}{stem()} function to plot the impulse response samples. Use the function \mintinline{matlab}{trapz()} to perform a numerical integration via the \(1\)th-order Newton-Cotes formula (i.e., the trapezoidal method). By integrating the square of the impulse response, you obtain its energy. If the result is \(I\), you can normalize it by adjusting the filter gain to \(1/\sqrt{I}\).
 
-Tips:
-\begin{enumerate}
-    \item In fact, the \gls{bb} pulse formation energy has already been included separately in the ``Gain'' block.
-\end{enumerate}
+Note: In fact, the energy of the \gls{bb} pulse shaping has already been included separately in the ``Gain'' block (its energy is \(E_g\)).
 \subproblem What is the new operating rate of the system? Why has the operating rate changed to this value?
 \subproblem Check if the raised cosine filter obeys the Nyquist criterion for non-\gls{isi}. Use the ``scope'' block to prove your answer graphically.
 
