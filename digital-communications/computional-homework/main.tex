@@ -65,8 +65,8 @@ Generate a bit stream with the following parameters:
 \problem \label{probthree}
 Use a block called ``Matlab function'' to create a function that maps a stream of \(N_b = \log_2\left( M \right)\) bits to a complex symbol from an alphabet of \(M=256\) symbols. The real and imaginary part of each constellation point must be spaced as Proakis suggests, i.e., \(\left\{ \pm1, \pm3, \dots, \pm\sqrt{M} \right\}\). Moreover, the mapping of the real/imaginary part of the complex symbol must be in the Gray encoding sequence (see \cite{proakisDigitalCommunications2007} for more info).
 
-\subproblem What is the new operating rate of the system?
-\subproblem Use a block called ``Gain'' to apply a gain of \(\sqrt{E_g}\) to the complex symbol outputs, where \(E_g = 9\).
+\subproblem What is the operating rate at the output of ``Matlab function''? What is its relationship with \(N_b\) and \(R_b\)?
+\subproblem Use a block called ``Gain'' to apply a gain of \(\sqrt{E_g}\) to the complex symbol outputs, where \(E_g = 5\).
 \subproblem By using a block called ``Constellation Diagram'', show that each point in the constellation is now in the form \(\sqrt{E_g} A_m\), where \(A_m = A_{mi}+j A_{mq}\) is the constellation for the \(m\)th symbol and that \(A_{mi}, A_{mq} \in \left\{ \pm1, \pm3, \dots, \pm\sqrt{M} \right\}\). Note that the \(k\)th transmitted symbol can be represented by the vector
 \begin{align}
     \mathbf{s}_m\left[ k \right] = \begin{bmatrix}
@@ -76,8 +76,8 @@ Use a block called ``Matlab function'' to create a function that maps a stream o
 
 Tips:
 \begin{enumerate}
-    \item Use the ``Buffer'' block to vectorize the bit stream to \(N_b\) symbols and use it as input of the ``Matlab function''.
-    \item You can pass a matrix of the sequence of bits with Gray encoding to the ``Matlab function'' block. You can use your function developed in Problem 1 to generate this matrix.
+    \item Use the ``Buffer'' block to vectorize the bit stream into an \(N_b\)-bits frame and use it as input of the ``Matlab function''.
+    \item You can pass a Gray-encoded bit sequence to the ``Matlab function'' block. You can use your function developed in Problem 1 to generate this bit sequence.
 \end{enumerate}
 
 \problem Pass your symbol stream through the ``Raised Cosine Filter'' block with the following parameters
@@ -86,11 +86,11 @@ Tips:
     \item Filter span (in symbols): \(4\).
     \item Number of samples per symbol: \(N=100\) samples.
 \end{itemize}
-The filter gain must be adjusted so that the energy of the impulse response is \(1\). In the ``Raised Cosine Filter'' block, you can obtain the impulse response by exporting the filter coefficients to the workspace. You can use the \mintinline{matlab}{stem()} function to plot the impulse response samples. Use the function \mintinline{matlab}{trapz()} to perform a numerical integration via the \(1\)th-order Newton-Cotes formula (i.e., the trapezoidal method). By integrating the square of the impulse response, you obtain its energy. If the result is \(I\), you can normalize it by adjusting the filter gain to \(1/\sqrt{I}\).
+The filter gain must be adjusted so that the energy of the impulse response is one. In the ``Raised Cosine Filter'' block, you can obtain the impulse response by exporting the filter coefficients to the workspace. You can use the \mintinline{matlab}{stem()} function to plot the impulse response samples. Use the function \mintinline{matlab}{trapz()} to perform a numerical integration via the \(1\)th-order Newton-Cotes formula (i.e., the trapezoidal method). By integrating the square of the impulse response, you obtain its energy. If the result is \(I\), you can normalize it by adjusting the filter gain to \(1/\sqrt{I}\).
 
 Tips:
 \begin{enumerate}
-    \item In fact, the energy of the \gls{bb} pulse shaping was already included previously and separately with the ``Gain'' block \(\sqrt{E_g}\).
+    \item In fact, the \gls{bb} pulse formation energy has already been included separately in the ``Gain'' block.
 \end{enumerate}
 \subproblem What is the new operating rate of the system? Why has the operating rate changed to this value?
 \subproblem Check if the raised cosine filter obeys the Nyquist criterion for non-\gls{isi}. Use the ``scope'' block to prove your answer graphically.
@@ -100,7 +100,7 @@ Tips:
 \problem Use a block called ``sine wave'' (from the DSP system toolbox) with the following parameters
 \begin{itemize}
     \item Amplitude: \(\sqrt{2}\);
-    \item Frequency: \(f_c = \frac{1}{4T_{s}}\), where \(T_{s}\) is the sampling interval of the baseband signal;
+    \item Frequency: \(f_c = \frac{1}{4T_{samp}}\), where \(T_{samp}\) is the sampling interval of the baseband signal;
     \item Sample mode: Discrete;
     \item Output complexity: Complex;
 \end{itemize}
@@ -119,36 +119,36 @@ The pre-envelope has important properties concerning the spectrum of the transmi
 \subproblem Make a mathematical analysis of this signal and use the ``Spectrum Analyzer'' block to compare the spectrum obtained in Simulink with the theoretical spectrum. Good references can be found in \cite{mengaliSynchronizationTechniquesDigital1997,meyrDigitalCommunicationReceivers1998,proakisDigitalCommunications2007}
 \subproblem Repeat the item (a) for the spectrum of the complex envelope.
 \subproblem Use a block called ``Complex to real-imag'' to obtain the real part of the analytic signal and repeat the item (a) for the transmitted signal.
-\subproblem Based on \cite[Equation (3.2-42)]{proakisDigitalCommunications2007}, the average energy of the transmitted signal (i.e., the equation \eqref{eq:s_m(t)}) is\footnote{Proakis does not normalize the carrier energy by the \(\sqrt{2}\) factor. Therefore, the average energy in his book is half of what we are using here.}
+\subproblem Based on \cite[Equation (3.2-42)]{proakisDigitalCommunications2007}, the average energy of the transmitted signal is\footnote{Proakis does not normalize the carrier energy by the \(\sqrt{2}\) factor. Therefore, the average energy in his book is half of what we are using here.}
 \begin{align}
     \label{eq:E_s}
     E_s = \frac{2\left( M-1 \right)}{3}E_g
 \end{align}
 For \(M = 256\) and \(E_g = 5\), we have that \(E_s = 850\).
 
-In reality, the transmitted signal is a stochastic process and therefore is seen as a power signal since its energy would be infinity. However, the energy expressed in \eqref{eq:E_s} does not refer to the energy in its original sense, i.e.,
+In reality, the transmitted signal is a stochastic process and therefore it is seen as a power signal since its energy is infinity. However, the concept of ``average energy'' expressed in \eqref{eq:E_s} does not refer to the energy in its original sense, i.e.,
 \begin{align}
-    E_s = \lim_{T \rightarrow \infty} \int_{-\frac{T}{2}}^{\frac{T}{2}} \abs{s_m \left( t \right)}^{2} \dd{t}.
+    \lim_{T \rightarrow \infty} \int_{-\frac{T}{2}}^{\frac{T}{2}} \abs{s_m \left( t \right)}^{2} \dd{t}.
 \end{align}
 
-Rather, the average energy refers to the ratio between the average power,
+Rather, the average energy is obtained from the ratio between the average power,
 \begin{align}
     \label{eq:P_s}
     P_s = \lim_{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \abs{s_m \left( t \right)}^{2} \dd{t},
 \end{align}
-and the symbol interval, \(T\). Therefore,
+and the symbol interval, \(T_s\). Therefore,
 \begin{align}
-    E_s = \frac{P_s}{T}.
+    P_s = \frac{E_s}{T_s}.
 \end{align}
-The equation \eqref{eq:P_s} converges and can be estimated in Simulink by using the block called:
+The equation \eqref{eq:P_s} converges and can be estimated in Simulink by using the blocks:
 \begin{enumerate}
     \item ``Square'' to take the square value of the transmitted signal.
     \item ``Discrete-time integrator'' to numerically integrate \(\abs{s_m \left( t \right)}^{2}\).
-    \item ``Clock'' to obtain a source of the running simulation time.
-    \item ``Divide'' to divide the integration by the running simulation time.
+    \item ``Clock'' to obtain an input of the running simulation time.
+    \item ``Divide'' to divide the integration result by the running simulation time.
 \end{enumerate}
 
-Finally, use the block named ``gain'' to multiply the resulting signal to \(T\) and show that the average energy of the transmitted signal is approximately \(850\).
+Finally, use the block named ``gain'' to multiply the average power to \(T_s\) and show that, indeed, the average energy of the transmitted signal is approximately \(850\).
 
 %============================================
 \printbibliography
