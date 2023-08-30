@@ -5,3 +5,7 @@
 [submodule "optmization-theory/additional-exercises"]
 	path = optmization-theory/additional-exercises
 	url = https://github.com/cvxgrp/cvxbook_additional_exercises/
+[submodule "digital-communications/homework-solution"]
+	path = digital-communications/homework-solution
+	url = https://github.com/tapyu/courses_codes_private
+	branch = dig-comm
