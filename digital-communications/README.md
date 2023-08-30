@@ -1,9 +1,10 @@
-# Digital Communication Systems
+# Digital Communication
 
 This directory contains:
   - The homework from my course "Sistemas de Comunicação Digitais", which was taught at UFC.
-  - The homework is essentially the development of a digital modem under the presence of noise and phase impairment.
+  - The homework is essentially the development of a digital modem under the presence of noise.
   - The digital model is implemented in Simulink.
+  - The reference modem is in the private repo.
 
 ## Further resources
 
