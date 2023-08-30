@@ -139,7 +139,7 @@ and the symbol interval, \(T_s\). Therefore,
 \end{align}
 The equation \eqref{eq:P_s} converges and can be estimated in Simulink by using the blocks:
 \begin{enumerate}
-    \item ``Square'' to take the square value of the transmitted signal.
+    \item ``Square'' to take the square absolute value of the transmitted signal.
     \item ``Discrete-time integrator'' to numerically integrate \(\abs{s_m \left( t \right)}^{2}\).
     \item ``Clock'' to obtain an input of the running simulation time.
     \item ``Divide'' to divide the integration result by the running simulation time.
