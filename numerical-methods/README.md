@@ -14,7 +14,7 @@ Bibliography:
     - Forward Euler method
     - Multistep Methods
 - **Linear system problems** (see Part III on Chapra)
-  - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Iterative mathods constranst with the direct methods (e.g., Gauss elimination), which requires a finite number of steps to solve a linear system. Examples:
+  - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Iterative methods constranst with the direct methods (e.g., Gauss elimination), which requires a finite number of steps to solve a linear system. Examples:
     - Gauss-Seidel method
     - Jacobi iteration method
 - **Numerical integration** (see part V on Chapra) 
