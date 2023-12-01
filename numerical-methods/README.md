@@ -5,6 +5,7 @@ Bibliography:
 - Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press. Only the part about automatic differentiation (sec 6.5.9)
 
 ## Useful resouces
+- [Awesome STEM academy].
 - Packages:
 - **ODE-based problems** (see Part II on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
@@ -89,3 +90,4 @@ Bibliography:
 [24]: https://mostafa-samir.github.io/auto-diff-pt2/
 [25]: https://github.com/SciML/SciMLTutorials.jl
 [26]: https://www.youtube.com/watch?v=KPEqYtEd-zY&ab_channel=TheJuliaProgrammingLanguage
+[Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
