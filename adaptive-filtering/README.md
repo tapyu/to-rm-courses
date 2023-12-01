@@ -10,8 +10,8 @@ This directory contains:
 - The `.zip` files are the codes from other colleges that took the same course (in different semesters).
 - The slides can be found in `Signal Processing and Machine Learning/Adaptative Filtering/Charles's slides/`
 - References
+    - (main) Adaptive Filtering: Algorithms and Practical Implementation. Paulo S. R. Diniz.
     - Adaptive filter theory, Simon S. Haykin.
-    - Adaptive Filtering: Algorithms and Practical Implementation. Paulo S. R. Diniz.
 
 ---
 ## other resource
