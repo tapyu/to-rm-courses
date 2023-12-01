@@ -21,7 +21,9 @@ This directory contains:
 - The compressed `.zip` file contains the code from colleges for the same course.
 - The slides can be found in Google Drive in the path `Signal Processing and Machine Learning/Estimation and detection theory/Charles's slides`
 
-## other resources
+## Other resources
+- [Awesome STEM academy].
 - [This repository][1] has many `matlab` implementations of some important algorithms: Extended Kalman Filters, LMS/RLS, Wiener, robust regression, MMSE estimators, ML estimators, Hi-Frequency estimators (Pisarenko, MUSIC, ESPRIT).
 
 [1]: https://github.com/robical/StatisticalSignalProcessing
+[Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#adaptive-filtering
