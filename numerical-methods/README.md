@@ -50,6 +50,13 @@ Bibliography:
     - Chebyshev (it does not have on Chapra)
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
+- **Interpolation and curve fitting**
+  - [`DataInterpolations.jl`](https://github.com/SciML/DataInterpolations.jl)
+    - Linear interpolation
+    - Quadratic interpolation
+    - Lagrange interpolation
+    - Quadratic spline
+    - Cubic spline
 
 ---
 
