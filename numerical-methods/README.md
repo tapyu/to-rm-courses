@@ -51,6 +51,7 @@ Bibliography:
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
 - **Interpolation and curve fitting**
+  - [`Interpolations.jl`](https://github.com/JuliaMath/Interpolations.jl)
   - [`DataInterpolations.jl`](https://github.com/SciML/DataInterpolations.jl)
     - Linear interpolation
     - Quadratic interpolation
