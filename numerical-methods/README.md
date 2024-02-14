@@ -36,8 +36,7 @@ Bibliography:
 - **Numerical differentiation (finite differences)** (see part V on Chapra)
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21).
-    - A nice and quick [JuliaDiff tutorial][14] I saw on internet
-- **Automatic differentiation (auto-differentiation, autodiff, or AD)** (it is not on Chapra, but it is more powerful than finite differences)
+- **Automatic differentiation (auto-differentiation, autodiff, or AD)** (see [wiki][13])
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
   - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
@@ -64,7 +63,6 @@ Bibliography:
 ## Other resources:
 - [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
 ![image](./assets/direct-vs-iterative.png)
-- [wiki: Automatic differentiation][13]
 - [Wiki: Explicit vs. implicit methods][17]
 - [Wiki: Numerical methods for ordinary differential equations][18]
 - [Wiki: Runge–Kutta methods][19]
