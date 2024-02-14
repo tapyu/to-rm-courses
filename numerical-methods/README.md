@@ -9,11 +9,11 @@ Bibliography:
 - Packages:
 - **ODE-based problems** (see Part VI on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
-    - Runge-Kutta Methods
-    - Midpoint
-    - Heun
-    - Forward Euler method
-    - Multistep Methods
+    - Runge-Kutta Methods (see 22.4 on Chapra)
+    - Midpoint (see 22.3.2 section on Chapra)
+    - Heun (see 22.3.1 section on Chapra)
+    - Forward Euler method (see 22.2 section on Chapra)
+    - Multistep Methods (see 23.2 section on Chapra)
 - **Linear system problems** (see Part III on Chapra)
   - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Iterative methods constranst with the direct methods (e.g., Gauss elimination), which requires a finite number of steps to solve a linear system. Examples:
     - Gauss-Seidel method
