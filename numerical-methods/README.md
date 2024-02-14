@@ -15,8 +15,10 @@ Other sources:
   - **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
   The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using numerical methods.**
 - [Linear systems problems][32]: Direct and iterative methods to solve linear systems. This topic overlaps with the Linear Algebra contents. See the Linear Algebra directory for more info.
-  ![](./assets/direct-vs-iterative.png)
-- Curve fitting:
+
+![image](./assets/direct-vs-iterative.png)
+
+- Curve fitting
 
 ## Packages
 - **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
@@ -77,7 +79,6 @@ Other sources:
 - [Direct vs. iterative methods][20] for solution of linear systems:
   - [advantages and disavantages][21]
   - [wiki: a nice example][28]
-  - ![image](./assets/direct-vs-iterative.png)
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: key performance indicators in numerical analysis][18]
 - [Wiki: Automatic vs. numerical vs. symbolic differentiation][29]
