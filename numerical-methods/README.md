@@ -35,7 +35,7 @@ Bibliography:
     - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
 - **Numerical differentiation (finite differences)** (see part V on Chapra)
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
-    - Backward, forward, and central numerical differentiations.
+    - Backward, forward, and central numerical differentiations (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21).
     - A nice and quick [JuliaDiff tutorial][14] I saw on internet
 - **Automatic differentiation (auto-differentiation, autodiff, or AD)** (it is not on Chapra, but it is more powerful than finite differences)
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
