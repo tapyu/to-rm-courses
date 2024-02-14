@@ -7,7 +7,7 @@ Bibliography:
 ## Useful resouces
 - [Awesome STEM academy].
 - Packages:
-- **ODE-based problems** (see Part II on Chapra)
+- **ODE-based problems** (see Part VI on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
     - Runge-Kutta Methods
     - Midpoint
