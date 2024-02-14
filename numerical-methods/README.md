@@ -20,16 +20,16 @@ Bibliography:
     - Jacobi iteration method (see section 12.1 on Chapra)
 - **Numerical integration** (see part V on Chapra) 
   - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
-    - Trapezoidal (default)
+    - Trapezoidal (default) (See section 19.3 on Chapra)
     - TrapezoidalEven
     - TrapezoidalFast
     - TrapezoidalEvenFast
-    - SimpsonEven
+    - SimpsonEven (See section 19.4 on Chapra)
     - SimpsonEvenFast
     - RombergEven (see 20.2 on Chapra)
   - [`Integrals.jl`][4]: A more reliable numerical integration methods (maybe not all methods are exposed in Chapra)
-    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see Chapra)
-    - H-Adaptive Integration (Adaptive quadrature? If so, it is on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
+    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see [wikipedia][27])
+    - H-Adaptive Integration (Adaptive quadrature? If so, see section 20.4 on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
     - Monte Carlo integration (apparently it doesn't have on Chapra)
     - Gauss-Legendre quadrature (see section 20.3 on Chapra)
     - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
@@ -98,4 +98,5 @@ Bibliography:
 [24]: https://mostafa-samir.github.io/auto-diff-pt2/
 [25]: https://github.com/SciML/SciMLTutorials.jl
 [26]: https://www.youtube.com/watch?v=KPEqYtEd-zY&ab_channel=TheJuliaProgrammingLanguage
+[27]: https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
