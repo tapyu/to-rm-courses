@@ -28,7 +28,7 @@ Bibliography:
     - SimpsonEvenFast
     - RombergEven (see 20.2 on Chapra)
   - [`Integrals.jl`][4]: A more reliable numerical integration methods (maybe not all methods are exposed in Chapra)
-    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see [wikipedia][27])
+    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see [wiki][27])
     - H-Adaptive Integration (Adaptive quadrature? If so, see section 20.4 on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
     - Monte Carlo integration (apparently it doesn't have on Chapra)
     - Gauss-Legendre quadrature (see section 20.3 on Chapra)
@@ -67,6 +67,7 @@ Bibliography:
   - ![image](./assets/direct-vs-iterative.png)
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: key performance indicators in numerical analysis][18]
+- [Wiki: Automatic vs. numerical vs. symbolic differentiation][29]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 - `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which was found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful). See his video tutorial on [Youtube][26]
 
@@ -83,7 +84,7 @@ Bibliography:
 [10]: https://github.com/JuliaDiff/FiniteDifferences.jl
 [11]: https://github.com/JuliaDiff/FiniteDiff.jl
 [12]: https://juliadiff.org/
-[13]: https://en.wikipedia.org/wiki/Automatic_differentiation#Difference_from_other_differentiation_methods
+[13]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [14]: https://juliadiff.org/ForwardDiff.jl/stable/
 [15]: https://www.matecdev.com/posts/julia-newton-raphson.html
 [16]: https://www.matecdev.com/posts/julia-bisection.html
@@ -99,4 +100,5 @@ Bibliography:
 [26]: https://www.youtube.com/watch?v=KPEqYtEd-zY&ab_channel=TheJuliaProgrammingLanguage
 [27]: https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula
 [28]: https://en.wikipedia.org/wiki/Numerical_analysis#Direct_and_iterative_methods
+[29]: https://en.wikipedia.org/wiki/Automatic_differentiation#Difference_from_other_differentiation_methods
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
