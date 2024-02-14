@@ -4,12 +4,29 @@ Main bibliography:
 - Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill.
 
 Other sources:
-- Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics: ODEs (Part A, chap 1-6) and PDE (chapter 12)
-- Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press: Only the part about automatic differentiation (sec 6.5.9)
+- Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics: For analytical solution of ODEs (Part A, chap 1-6) and PDE (chapter 12).
+- Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press: Only the part about automatic differentiation (sec 6.5.9).
 
-## Useful resouces
-- [Awesome STEM academy].
-- Packages:
+## Numerical methods summary
+
+- [Root-finding problems][30]: How to find the roots of a function?
+- [ODE- and PDE-based problems][31]: Given a ODE/PDE, how to solve it. The solutions to ordinary differential equations (ODEs) can be broadly categorized into two main types: analytical solutions and numerical solutions.
+  - **Analytical/closed-form solution**: Exact mathematical expressions that represent the solution to the differential equation. Examples include $x(t) = \cos(t)$ for $x + x' = 0$. Analytical solutions often involve systematic methods and techniques such as separation of variables, integrating factors, variation of parameters, Laplace transforms, and others. For a more in-depth solution review, see Erwin Kreyszig, part A and C.
+  - **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
+  The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using numerical methods.**
+- Linear systems problems: Direct and iterative methods to solve linear systems.
+- Curve fitting:
+
+## Packages
+- **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
+  - [`Roots.jl`][7]:
+    - Bisection-like algorithms (the most classic bracket method, see section 5.4)
+      - See this [tutorial][16]
+    - Newton's method
+      - See this [tutorial][15]
+    - Chebyshev (it does not have on Chapra)
+    - Schroder (it does not have on Chapra)
+    - QuadraticInverse (it does not have on Chapra)
 - **ODE-based problems** (see Part VI on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
     - Runge-Kutta Methods (see 22.4 on Chapra and [wiki][19])
@@ -43,16 +60,7 @@ Other sources:
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
   - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
-- **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
-  - [`Roots.jl`][7]:
-    - Bisection-like algorithms (the most classic bracket method, see section 5.4)
-      - See this [tutorial][16]
-    - Newton's method
-      - See this [tutorial][15]
-    - Chebyshev (it does not have on Chapra)
-    - Schroder (it does not have on Chapra)
-    - QuadraticInverse (it does not have on Chapra)
-- **Interpolation and curve fitting**
+- **Curve fitting**
   - [`Interpolations.jl`](https://github.com/JuliaMath/Interpolations.jl)
   - [`DataInterpolations.jl`](https://github.com/SciML/DataInterpolations.jl)
     - Linear interpolation
@@ -64,6 +72,7 @@ Other sources:
 ---
 
 ## Other resources:
+- [Awesome STEM academy]
 - [Direct vs. iterative methods][20] for solution of linear systems:
   - [advantages and disavantages][21]
   - [wiki: a nice example][28]
@@ -104,4 +113,6 @@ Other sources:
 [27]: https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula
 [28]: https://en.wikipedia.org/wiki/Numerical_analysis#Direct_and_iterative_methods
 [29]: https://en.wikipedia.org/wiki/Automatic_differentiation#Difference_from_other_differentiation_methods
+[30]: https://en.wikipedia.org/wiki/Root-finding_algorithms
+[31]: https://en.wikipedia.org/wiki/Differential_equation#:~:text=An%20ordinary%20differential%20equation%20(ODE,%2C%20therefore%2C%20depends%20on%20x.
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
