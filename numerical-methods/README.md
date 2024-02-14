@@ -26,7 +26,7 @@ Bibliography:
     - TrapezoidalEvenFast
     - SimpsonEven
     - SimpsonEvenFast
-    - RombergEven
+    - RombergEven (see 20.2 on Chapra)
   - [`Integrals.jl`][4]: A more reliable numerical integration methods (maybe not all methods are exposed in Chapra)
     - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see Chapra)
     - H-Adaptive Integration (Adaptive quadrature? If so, it is on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
@@ -41,9 +41,9 @@ Bibliography:
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
   - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
-- **Root-finding functions**
+- **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
   - [`Roots.jl`][7]:
-    - Bisection-like algorithms
+    - Bisection-like algorithms (the most classic bracket method, see section 5.4)
       - See this [tutorial][16]
     - Newton's method
       - See this [tutorial][15]
