@@ -2,6 +2,7 @@
 
 Main bibliography:
 - Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill.
+
 Other sources:
 - Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics: ODEs (Part A, chap 1-6) and PDE (chapter 12)
 - Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press: Only the part about automatic differentiation (sec 6.5.9)
