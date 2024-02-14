@@ -9,7 +9,7 @@ Bibliography:
 - Packages:
 - **ODE-based problems** (see Part VI on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
-    - Runge-Kutta Methods (see 22.4 on Chapra)
+    - Runge-Kutta Methods (see 22.4 on Chapra and [wiki][19])
     - Midpoint (see section 22.3.2 on Chapra)
     - Heun (see section 22.3.1 on Chapra)
     - Forward Euler method (see section 22.2 on Chapra)
@@ -65,7 +65,6 @@ Bibliography:
 ![image](./assets/direct-vs-iterative.png)
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: Numerical methods for ordinary differential equations][18]
-- [Wiki: Runge–Kutta methods][19]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 - `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which was found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful). See his video tutorial on [Youtube][26]
 
