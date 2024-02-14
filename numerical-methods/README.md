@@ -61,8 +61,10 @@ Bibliography:
 ---
 
 ## Other resources:
-- [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
-![image](./assets/direct-vs-iterative.png)
+- [Direct vs. iterative methods][20] for solution of linear systems:
+  - [advantages and disavantages][21]
+  - [wiki: a nice example][28]
+  - ![image](./assets/direct-vs-iterative.png)
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: Numerical methods for ordinary differential equations][18]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
@@ -96,4 +98,5 @@ Bibliography:
 [25]: https://github.com/SciML/SciMLTutorials.jl
 [26]: https://www.youtube.com/watch?v=KPEqYtEd-zY&ab_channel=TheJuliaProgrammingLanguage
 [27]: https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula
+[28]: https://en.wikipedia.org/wiki/Numerical_analysis#Direct_and_iterative_methods
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
