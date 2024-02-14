@@ -66,7 +66,7 @@ Bibliography:
   - [wiki: a nice example][28]
   - ![image](./assets/direct-vs-iterative.png)
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
-- [Wiki: Numerical methods for ordinary differential equations][18]
+- [Wiki: key concepst in numerical analysis][18]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 - `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which was found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful). See his video tutorial on [Youtube][26]
 
@@ -88,7 +88,7 @@ Bibliography:
 [15]: https://www.matecdev.com/posts/julia-newton-raphson.html
 [16]: https://www.matecdev.com/posts/julia-bisection.html
 [17]: https://en.wikipedia.org/wiki/Explicit_and_implicit_methods
-[18]: https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations
+[18]: https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Analysis
 [19]: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
 [20]: https://www.linkedin.com/advice/0/how-do-you-compare-combine-direct-iterative
 [21]: http://www.decom.ufop.br/moreira/site_media/uploads/arquivos/01_selas_new.pdf
