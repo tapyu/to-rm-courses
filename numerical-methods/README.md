@@ -4,6 +4,7 @@ Main bibliography:
 - Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill.
 
 Other sources:
+- Dahlquist, G. and Björck, Å., 2003. Numerical methods. Courier Corporation.: A alternative material for Chapra. Basically, it seems to the same contents as Chapra (and in the same depth level).
 - Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics: For analytical solution of ODEs (Part A, chap 1-6) and PDE (chapter 12).
 - Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press: Only the part about automatic differentiation (sec 6.5.9).
 
@@ -15,8 +16,18 @@ Other sources:
   - **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
   The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using numerical methods.**
 - [Linear systems problems][32]: Direct and iterative methods to solve linear systems. This topic overlaps with the Linear Algebra contents, but focuses more on the numerical approach to solve Linear system of equations, rather than the theoterical aspects of Linear Algebra. See the [Linear Algebra][33] directory for more info.
+  - Direct methods (see section 5.3 on Dahlquist):
+    - LU decomposition;
+    - Gaussian Elimination;
+    - Inverse matrices;
+    - Cholesky Decomposition
+  - Iterative methods (see section 5.6 on Dahlquist):
+    - Gauss-Seidel method;
+    - Jacobi method;
+    - Successive overrelaxation (SOR) method.
 
 ![image](./assets/direct-vs-iterative.png)
+
 
 - Curve fitting
 
