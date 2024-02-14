@@ -10,14 +10,14 @@ Bibliography:
 - **ODE-based problems** (see Part VI on Chapra)
   - [`DifferentialEquations.jl`][1]: Numerically solving differential equations written in `julia`. See [all ODE solvers][8]; [recommendation for each situation][9]
     - Runge-Kutta Methods (see 22.4 on Chapra)
-    - Midpoint (see 22.3.2 section on Chapra)
-    - Heun (see 22.3.1 section on Chapra)
-    - Forward Euler method (see 22.2 section on Chapra)
-    - Multistep Methods (see 23.2 section on Chapra)
+    - Midpoint (see section 22.3.2 on Chapra)
+    - Heun (see section 22.3.1 on Chapra)
+    - Forward Euler method (see section 22.2 on Chapra)
+    - Multistep Methods (see section 23.2 on Chapra)
 - **Linear system problems** (see Part III on Chapra)
   - [`IterativeSolvers.jl`][2]: Iterative algorithms for solving linear systems, eigensystems, and singular value problems. Iterative methods constranst with the direct methods (e.g., Gauss elimination), which requires a finite number of steps to solve a linear system. Examples:
-    - Gauss-Seidel method
-    - Jacobi iteration method
+    - Gauss-Seidel method (an interative method for solving linear systems, see chapter 12 on Chapra)
+    - Jacobi iteration method (see section 12.1 on Chapra)
 - **Numerical integration** (see part V on Chapra) 
   - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
     - Trapezoidal (default)
@@ -31,8 +31,8 @@ Bibliography:
     - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see Chapra)
     - H-Adaptive Integration (Adaptive quadrature? If so, it is on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
     - Monte Carlo integration (apparently it doesn't have on Chapra)
-    - Gauss-Legendre quadrature (it has on Chapra)
-    - `integral()` in matlab uses adaptive quadrature (see Chapra)
+    - Gauss-Legendre quadrature (see section 20.3 on Chapra)
+    - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
 - **Numerical differentiation (finite differences)** (see part V on Chapra)
   - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
