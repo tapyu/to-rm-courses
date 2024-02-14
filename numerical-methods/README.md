@@ -63,7 +63,7 @@ Bibliography:
 ## Other resources:
 - [Direct vs. iterative methods][20] for solution of linear systems, [advantages and disavantages][21]:
 ![image](./assets/direct-vs-iterative.png)
-- [Wiki: Explicit vs. implicit methods][17]
+- [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: Numerical methods for ordinary differential equations][18]
 - [Wiki: Runge–Kutta methods][19]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
