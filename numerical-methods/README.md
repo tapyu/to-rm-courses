@@ -41,9 +41,12 @@ Direct and iterative methods to solve linear systems. This topic overlaps with t
 ![image](./assets/direct-vs-iterative.png)
 
 
-- [**Curve-fitting problems**]: Interpolation and regression/smoothing
+- [**Curve-fitting problems**][34]: Interpolation, regression, approximation, smoothing.
 
-  Curve fitting is the process of constructing a curve, or mathematical function, that has the best fit to a series of data points, possibly subject to constraints. Curve fitting can involve either interpolation, where an exact fit to the data is required, or smoothing, in which a "smooth" function is constructed that approximately fits the data. A related topic is regression analysis, which focuses more on questions of statistical inference such as how much uncertainty is present in a curve that is fitted to data observed with random errors.
+  "Curve fitting" is an umbrella term that encompasses various techniques, including "regression," "smoothing," and "interpolation:
+  - **[Interpolation][35]**: Interpolation is a mathematical problem that involves estimating unknown values that fall between known values. In other words, it is the process of constructing a function or curve that passes through a given set of data points (see chapter 17 and 18 on Chapra). Common types of interpolations are linear, polynomial, spline, and piecewise constant interpolators.
+  - [**Regression**][36]: statistical technique to model the relationships between a dependent variable (often called the 'outcome' or 'response' variable, or a 'label' in machine learning parlance) and one or more independent variables (often called 'predictors', 'covariates', 'explanatory variables' or 'features'). The most common form of regression analysis is linear regression, in which one finds the line (or a more complex linear combination) that most closely fits the data according to a specific mathematical criterion.
+  - [**Smoothing**][38]: a technique used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal filtering techniques, as it employs such algorithms to smooth the signals. Hence, it is not exposed here (see digital signal processing or statistical signal processing for a better understanding of these techniques. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
 
 ## Packages
 - **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
@@ -145,4 +148,8 @@ Direct and iterative methods to solve linear systems. This topic overlaps with t
 [32]: https://en.wikipedia.org/wiki/Numerical_linear_algebra
 [33]: https://github.com/tapyu/courses/tree/main/linear-algebra
 [34]: https://en.wikipedia.org/wiki/Curve_fitting
+[35]: https://en.wikipedia.org/wiki/Interpolation
+[36]: https://en.wikipedia.org/wiki/Regression_analysis
+[37]: https://en.wikipedia.org/wiki/Smoothing
+[38]: https://en.wikipedia.org/wiki/Smoothing#Algorithms
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
