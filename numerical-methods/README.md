@@ -47,6 +47,8 @@ Other sources:
     - First, for known target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
     - Second, the target function, call it g, may be unknown; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
 
+    Approximation functions are not exposed here. See Dahlquist, chapter 4, for more information.
+
 ## Packages
 - **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
   - [`Roots.jl`][7]:
