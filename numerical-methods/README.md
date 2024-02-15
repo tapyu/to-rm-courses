@@ -11,43 +11,45 @@ Other sources:
 
 ## Numerical methods summary
 
-- [**Root-finding problems**][30]:
+### [**Root-finding problems**][30]:
 
   Determines the values of the independent variable (or variables) at which a given function equals zero. Mathematically, these problems can be stated as finding the roots or solutions $x$ such that $f ( x ) = 0$, where $f(x)$ is a given function. As, generally, the zeros of a function cannot be computed exactly nor expressed in closed form (i.e., analytically), root-finding algorithms provide approximations to zeros, expressed either as floating-point numbers or as small isolating intervals, or disks for complex roots.
-- [**ODE- and PDE-based problems**][31]:
 
-  Given a ODE/PDE, how to solve it. The solutions to ordinary differential equations (ODEs) can be broadly categorized into two main types: analytical solutions and numerical solutions.
-  - **Analytical/closed-form solution**: Exact mathematical expressions that represent the solution to the differential equation. Examples include $x(t) = \cos(t)$ for $x + x' = 0$. Analytical solutions often involve systematic methods and techniques such as separation of variables, integrating factors, variation of parameters, Laplace transforms, and others. For a more in-depth solution review, see Erwin Kreyszig, part A and C.
-  - **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
+### [**ODE- and PDE-based problems**][31]:
+
+Given a ODE/PDE, how to solve it. The solutions to ordinary differential equations (ODEs) can be broadly categorized into two main types: analytical solutions and numerical solutions.
+- **Analytical/closed-form solution**: Exact mathematical expressions that represent the solution to the differential equation. Examples include $x(t) = \cos(t)$ for $x + x' = 0$. Analytical solutions often involve systematic methods and techniques such as separation of variables, integrating factors, variation of parameters, Laplace transforms, and others. For a more in-depth solution review, see Erwin Kreyszig, part A and C.
+- **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
   
   The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using numerical methods.**
-- [**Linear systems problems**][32]:
 
-  Direct and iterative methods to solve linear systems. This topic overlaps with the Linear Algebra contents, but focuses more on the numerical approach to solve Linear system of equations, rather than the theoterical aspects of Linear Algebra. See the [Linear Algebra][33] directory for more info.
-  - Direct methods (see section 5.3 on Dahlquist or 1.3 on Hoffman):
-    - LU decomposition;
-    - Gauss Elimination;
-    - Gauss-Jordan Elimination;
-    - Inverse matrices;
-    - Cholesky Decomposition
-  - Iterative methods (see section 5.6 on Dahlquist or 1.6 on Hoffman):
-    - Gauss-Seidel method;
-    - Jacobi method;
-    - Successive overrelaxation (SOR) method.
+### [**Linear systems problems**][32]:
+
+Direct and iterative methods to solve linear systems. This topic overlaps with the Linear Algebra contents, but focuses more on the numerical approach to solve Linear system of equations, rather than the theoterical aspects of Linear Algebra. See the [Linear Algebra][33] directory for more info.
+- Direct methods (see section 5.3 on Dahlquist or 1.3 on Hoffman):
+  - LU decomposition;
+  - Gauss Elimination;
+  - Gauss-Jordan Elimination;
+  - Inverse matrices;
+  - Cholesky Decomposition
+- Iterative methods (see section 5.6 on Dahlquist or 1.6 on Hoffman):
+  - Gauss-Seidel method;
+  - Jacobi method;
+  - Successive overrelaxation (SOR) method.
 
 ![image](./assets/direct-vs-iterative.png)
 
-- [**Curve-fitting problems**][34]: Interpolation, regression, approximation, smoothing.
+### [**Curve-fitting problems**][34]: Interpolation, regression, approximation, smoothing.
 
-  "Curve fitting" is an umbrella term that encompasses various techniques, including "regression," "smoothing," and "interpolation:
-  - **[Interpolation][35]**: Interpolation is a mathematical problem that involves estimating unknown values that fall between known values. In other words, it is the process of constructing a function or curve that passes through a given set of data points (see chapter 17 and 18 on Chapra). Common types of interpolations are linear, polynomial, spline, and piecewise constant interpolators.
-  - [**Regression**][36]: statistical technique to model the relationships between a dependent variable (often called the 'outcome' or 'response' variable, or a 'label' in machine learning parlance) and one or more independent variables (often called 'predictors', 'covariates', 'explanatory variables' or 'features'). The most common form of regression analysis is linear regression, in which one finds the line (or a more complex linear combination) that most closely fits the data according to a specific mathematical criterion.
-  - [**Smoothing**][38]: a technique used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal filtering techniques, as it employs such algorithms to smooth the signals. Hence, it is not exposed here (see digital signal processing or statistical signal processing for a better understanding of these techniques. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
-  - [**Approximation**][39]: [Approximation][35] of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process. One can distinguish two major classes of function approximation problems:
-    - First, for known target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
-    - Second, the target function, call it g, may be unknown; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
+"Curve fitting" is an umbrella term that encompasses various techniques, including "regression," "smoothing," and "interpolation:
+- **[Interpolation][35]**: Interpolation is a mathematical problem that involves estimating unknown values that fall between known values. In other words, it is the process of constructing a function or curve that passes through a given set of data points (see chapter 17 and 18 on Chapra). Common types of interpolations are linear, polynomial, spline, and piecewise constant interpolators.
+- [**Regression**][36]: statistical technique to model the relationships between a dependent variable (often called the 'outcome' or 'response' variable, or a 'label' in machine learning parlance) and one or more independent variables (often called 'predictors', 'covariates', 'explanatory variables' or 'features'). The most common form of regression analysis is linear regression, in which one finds the line (or a more complex linear combination) that most closely fits the data according to a specific mathematical criterion.
+- [**Smoothing**][38]: a technique used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal filtering techniques, as it employs such algorithms to smooth the signals. Hence, it is not exposed here (see digital signal processing or statistical signal processing for a better understanding of these techniques. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
+- [**Approximation**][39]: [Approximation][35] of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process. One can distinguish two major classes of function approximation problems:
+  - First, for known target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
+  - Second, the target function, call it g, may be unknown; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
 
-    Approximation functions are not exposed here. See Dahlquist, chapter 4, for more information.
+Approximation functions are not exposed here. See Dahlquist, chapter 4, for more information.
 
 ## Packages
 - **Root-finding functions** (see Part II on Chapra, chapter 6 and 7)
