@@ -174,7 +174,7 @@ Automatic differentiation is a computational technique that automatically evalua
 
 Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
 
-### Optimization problems (chap. 7 on Chapra)
+### [Optimization][47] problems (chap. 7 on Chapra)
 
 The problem of finding the best possible solution to a problem from a set of feasible alternatives. The goal is to identify the optimal solution that either maximizes or minimizes an objective function, subject to a set of constraints.
 
@@ -241,4 +241,5 @@ Optimization algorithms are not exposed here.
 [44]: https://en.wikipedia.org/wiki/Extrapolation
 [45]: https://en.wikipedia.org/wiki/Computer_algebra
 [46]: https://en.wikipedia.org/wiki/Numerical_integration
+[47]: https://en.wikipedia.org/wiki/Mathematical_optimization
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
