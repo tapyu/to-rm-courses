@@ -9,7 +9,7 @@ Other sources:
 - Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press: It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
 - Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press: Only the part about automatic differentiation (sec 6.5.9).
 
-## Numerical methods summary
+## Methods
 
 ### [**Root-finding problems**][30]:
 
