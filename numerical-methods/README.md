@@ -70,7 +70,7 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
     <img src="./assets/direct-vs-iterative.png" width="800">
 </p>
 
-### [Curve-fitting problems][34]: Interpolation, extrapolation, regression, approximation.
+### [Curve-fitting problems][34]: Interpolation, regression, approximation.
 
 "Curve fitting" is an umbrella term that encompasses the following techniques: "regression," "smoothing," and "interpolation".
 
@@ -94,8 +94,6 @@ Interpolation is a mathematical problem that involves estimating unknown values 
   - Quadratic spline
   - Cubic spline
 
-#### [Extrapolation][44]
-
 It is a type of estimation, beyond the original observation range, of the value of a variable on the basis of its relationship with another variable.
 
 #### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing, chapter 14 on Chapra, or other on books)
@@ -116,7 +114,9 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation functions are not exposed here.
 
-### Integration (chapter 19 and 20 on Chapra)
+### Numerical integration (chapter 19 and 20 on Chapra)
+
+ Numerical integration used to approximate the definite integral of a function when an analytical solution is either impractical or impossible to obtain. We can numerically integrate either a set of samples or an mathematical function (whose closed-form integral is too complicated to calculate analytically).
 
 #### Packages
 - **Numerical integration**
