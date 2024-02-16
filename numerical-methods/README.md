@@ -111,12 +111,6 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation functions are not exposed here.
 
-#### [Smoothing][38] (see [digital signal processing](../digital-signal-processing) or [statistical signal processing](../statistical-signal-processing)
-
-A set of techniques used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal processing as it employs such algorithms to filter the signals.. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
-
-Smoothing is not exposed here.
-
 ### Integration (see chapter 19 and 20 on Chapra)
 
 #### Packages
