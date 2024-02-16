@@ -76,7 +76,9 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
 
 Interpolation is a mathematical problem that involves estimating unknown values that fall between known values. In other words, it is the process of constructing a function or curve that passes through a given set of data points. Common types of interpolations are linear, polynomial, spline, and piecewise constant interpolators.
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png)
+<center>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png" width="300">
+</center>
 
 ##### Packages
 
