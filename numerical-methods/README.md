@@ -12,9 +12,9 @@ Other sources:
 
 ## Methods
 
-### [Root-finding problems][30] (see Part II on Chapra, chapter 6 and 7):
+### [Root-finding problems][30] (Part II on Chapra, chapter 6 and 7; Chapter 6 Dahlquist; chapter 3 on Hoffman):
 
-Determines the values of the independent variable (or variables) at which a given function equals zero. Mathematically, these problems can be stated as finding the roots or solutions $x$ such that $f ( x ) = 0$, where $f(x)$ is a given function. As, generally, the zeros of a function cannot be computed exactly nor expressed in closed form (i.e., analytically), root-finding algorithms provide approximations to zeros, expressed either as floating-point numbers or as small isolating intervals, or disks for complex roots.
+Determines the values of $x$ at which the nonlinear function $f(x)$ is zero. Mathematically, these problems can be stated as finding the roots or solutions $x$ such that $f ( x ) = 0$, where $f(x)$ is a given function. As, generally, the zeros of a function cannot be computed exactly nor expressed in closed form (i.e., analytically), root-finding algorithms provide approximations to zeros, expressed either as floating-point numbers or as small isolating intervals, or disks for complex roots.
 
 #### Packages
 
@@ -27,7 +27,7 @@ Determines the values of the independent variable (or variables) at which a give
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
 
-### [ODE- and PDE-based problems][31] (see Part VI on Chapra):
+### [ODE- and PDE-based problems][31] (part VI on Chapra):
 
 Given a ODE/PDE, how to solve it. The solutions to ordinary differential equations (ODEs) can be broadly categorized into two main types: analytical solutions and numerical solutions.
 - **Analytical/closed-form solution**: Exact mathematical expressions that represent the solution to the differential equation. Examples include $x(t) = \cos(t)$ for $x + x' = 0$. Analytical solutions often involve systematic methods and techniques such as separation of variables, integrating factors, variation of parameters, Laplace transforms, and others. For a more in-depth solution review, see Erwin Kreyszig, part A and C.
@@ -45,7 +45,7 @@ The key factor that determines which solution one should follow is the problem c
     - Multistep Methods (see section 23.2 on Chapra)
   
 
-### [Linear systems problems][32] (see Part III on Chapra):
+### [Linear systems problems][32] (Part III on Chapra):
 
 Direct and iterative methods to solve linear systems. This topic overlaps with the Linear Algebra contents, but focuses more on the numerical approach to solve Linear system of equations, rather than the theoterical aspects of Linear Algebra. See the [Linear Algebra][33] directory for more info.
 - Direct methods (see section 5.3 on Dahlquist or 1.3 on Hoffman):
@@ -75,7 +75,7 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
 
 "Curve fitting" is an umbrella term that encompasses the following techniques: "regression," "smoothing," and "interpolation".
 
-#### [Interpolation][35] (see chapter 17 and 18 on Chapra)
+#### [Interpolation][35] (chapter 17 and 18 on Chapra)
 
 Interpolation is a mathematical problem that involves estimating unknown values that fall between known values. In other words, it is the process of constructing a function or curve that passes through a given set of data points. Common types of interpolations are linear, polynomial, spline, and piecewise constant interpolators.
 
@@ -109,7 +109,7 @@ Statistical technique to model the relationships between a dependent variable (o
 
 Regression is a transversal topic, used in several areas, from Statistics to Signal Procesisng, and therefore it is not exposed here.
 
-#### [Approximation][39] (see Dahlquist, chapter 4)
+#### [Approximation][39] (Dahlquist, chapter 4)
 
 [Approximation][35] of a complicated function by a simple function. A function approximation problem asks us to select a function among a well-defined class that closely matches ("approximates") a target function. One can distinguish two major classes of function approximation problems:
 - First, for **known** target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
@@ -117,7 +117,7 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation functions are not exposed here.
 
-### Integration (see chapter 19 and 20 on Chapra)
+### Integration (chapter 19 and 20 on Chapra)
 
 #### Packages
 - **Numerical integration**
@@ -136,7 +136,7 @@ Approximation functions are not exposed here.
     - Gauss-Legendre quadrature (see section 20.3 on Chapra)
     - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
 
-### [Numerical differentiation][41] (see part V on Chapra)
+### [Numerical differentiation][41] (part V on Chapra)
 
 Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following techniques fall under this umbrella:
 
@@ -147,8 +147,6 @@ Finite difference methods approximate derivatives using the differences between 
 ##### Packages (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21)
 - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
-
-
 
 
 - **Numerical differentiation (finite differences)**
