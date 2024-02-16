@@ -137,7 +137,7 @@ Approximation functions are not exposed here.
 
 ### [Numerical differentiation][41] (part V on Chapra)
 
-Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following techniques fall under this umbrella:
+Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following [techniques][29] fall under this umbrella:
 
 #### [Finite Difference Methods][42]
 
@@ -156,6 +156,10 @@ Automatic differentiation is a computational technique that automatically evalua
 - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
 - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
 
+#### [Symbolic Differentiation][45]
+
+ Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
+
 ---
 
 ## Other resources:
@@ -165,7 +169,6 @@ Automatic differentiation is a computational technique that automatically evalua
   - [wiki: a nice example][28]
 - [Wiki: Ordinary and partial differential equations: Explicit vs. implicit methods][17]
 - [Wiki: key performance indicators in numerical analysis][18]
-- [Wiki: Automatic vs. numerical vs. symbolic differentiation][29]
 - A Hands-on Introduction to Automatic Differentiation towards deep learning - Part [1][23] and Part [2][24]
 - `./nootebook/` contains a series of `.ipynb` with tutorials for the `DifferentialEquations.jl` package, which was found in [SciMLTutorials.jl][25] (this repo is deprecated, but the notebooks still useful). See his video tutorial on [Youtube][26]
 
@@ -214,4 +217,5 @@ Automatic differentiation is a computational technique that automatically evalua
 [42]: https://en.wikipedia.org/wiki/Finite_difference
 [43]: https://en.wikipedia.org/wiki/Interpolation#In_digital_signal_processing
 [44]: https://en.wikipedia.org/wiki/Extrapolation
+[45]: https://en.wikipedia.org/wiki/Computer_algebra
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
