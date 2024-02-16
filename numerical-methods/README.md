@@ -25,6 +25,8 @@ Other sources:
 
 ## Methods
 
+---
+
 ### [Root-finding problems][30] (part II on Chapra, chapter 6 and 7; chapter 6 Dahlquist; chapter 3 on Hoffman):
 
 Determines the values of $x$ at which the nonlinear function $f(x)$ is zero, that is, the roots or zeros of $f(x)$. The roots of a nonlinear equation $f(x) = 0$ cannot in general be expressed in closed form (i.e., analytically). Even when this is possible, the expression is often so complicated that it is not practical to use it. Thus in order to solve nonlinear equations, we are obliged to use root-finding algorithms, which provide an approximated solutions, expressed either as floating-point numbers or as small isolating intervals.
@@ -39,6 +41,8 @@ Determines the values of $x$ at which the nonlinear function $f(x)$ is zero, tha
     - Chebyshev (it does not have on Chapra)
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
+
+---
 
 ### [ODE- and PDE-based problems][31] (part VI on Chapra):
 
@@ -56,7 +60,8 @@ The key factor that determines which solution one should follow is the problem c
     - Heun (see section 22.3.1 on Chapra)
     - Forward Euler method (see section 22.2 on Chapra)
     - Multistep Methods (see section 23.2 on Chapra)
-  
+
+---
 
 ### [Linear systems problems][32] (Part III on Chapra):
 
@@ -83,6 +88,8 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
 <p align="center">
     <img src="./assets/direct-vs-iterative.png" width="800">
 </p>
+
+---
 
 ### [Curve-fitting problems][34]: Interpolation, regression, approximation.
 
@@ -128,6 +135,8 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation methods are not exposed here.
 
+---
+
 ### [Numerical differentiation][41] (part V on Chapra)
 
 Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following [techniques][29] fall under this umbrella:
@@ -153,6 +162,8 @@ Automatic differentiation is a computational technique that automatically evalua
 
 Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
 
+---
+
 ### [Numerical integration][46] (chapter 19 and 20 on Chapra)
 
  Numerical integration used to approximate the definite integral of a function when an analytical solution is either impractical or impossible to obtain. We can numerically integrate either a set of samples or an mathematical function (whose closed-form integral is too complicated to calculate analytically).
@@ -174,6 +185,7 @@ Symbolic differentiation involves to manipulation of mathematical expressions to
     - Gauss-Legendre quadrature (see section 20.3 on Chapra)
     - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
 
+---
 
 ### [Optimization problems][47] (chap. 7 on Chapra)
 
