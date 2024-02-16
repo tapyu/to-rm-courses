@@ -8,7 +8,6 @@ Other sources:
 - **Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics** - For analytical solutions of ODEs (Part A, chap 1-6) and PDE (chapter 12).
 - **Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press** - It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
 - **Press, W.H., 2007. Numerical recipes 3rd edition: The art of scientific computing. Cambridge university press** - A good reference for implementation of numerical methods in C. It is also a good reference for the theoretical aspects.
-- **Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press** - Only the part about automatic differentiation (sec 6.5.9).
 
 ## Methods
 
@@ -142,19 +141,20 @@ Numerical differentiation is a broad term encompassing various methods for appro
 
 #### [Finite Difference Methods][42]
 
-Finite difference methods approximate derivatives using the differences between function values at nearby points. Three basic types are commonly considered: forward, backward, and central finite differences.
+Finite difference methods approximate derivatives using the differences between function values at nearby points. Three basic types are commonly considered: forward, backward, central, and higher-order finite differences.
 
 ##### Packages (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21)
 - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
     - Backward, forward, and central numerical differentiations.
 
+#### [Automatic differentiation][13] (auto-differentiation, autodiff, or AD) (6.5.9 on Goodfellow, Deep learning)
 
-- **Numerical differentiation (finite differences)**
-- **Automatic differentiation (auto-differentiation, autodiff, or AD)** (see [wiki][13])
-  - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
-  - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
-  - [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
-- **Curve fitting**
+Automatic differentiation is a computational technique that automatically evaluates derivatives of a function, combining aspects of symbolic and numerical differentiation.
+
+##### packages
+
+- [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
+- [ReverseDiff.jl][22]: A similar package to `ForwardDiff.jl` (see the differences in the `README.md`).
 
 ---
 
