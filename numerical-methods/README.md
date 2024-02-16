@@ -94,15 +94,20 @@ Statistical technique to model the relationships between a dependent variable (o
 
 #### [Smoothing][38]
 
-A set of techniques used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal processing as it employs such algorithms to filter the signals. Hence, it is not exposed here (see digital signal processing or statistical signal processing for a better understanding of these techniques. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
-- [**Approximation**][39]: [Approximation][35] of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process. One can distinguish two major classes of function approximation problems:
-  - First, for known target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
-  - Second, the target function, call it g, may be unknown; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
+A set of techniques used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal processing as it employs such algorithms to filter the signals. Hence, it is not exposed here (see [digital signal processing](../digital-signal-processing) or [statistical signal processing](../statistical-signal-processing) courses for a better understanding. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
 
-Approximation functions are not exposed here. See Dahlquist, chapter 4, for more information.
+#### [Approximation][39] (see Dahlquist, chapter 4)
 
-## Packages
-- **Numerical integration** (see part V on Chapra) 
+[Approximation][35] of a complicated function by a simple function. Suppose the formula for some given function is known, but too complicated to evaluate efficiently. A few data points from the original function can be interpolated to produce a simpler function which is still fairly close to the original. The resulting gain in simplicity may outweigh the loss from interpolation error and give better performance in calculation process. One can distinguish two major classes of function approximation problems:
+- First, for known target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
+- Second, the target function, call it g, may be unknown; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
+
+Approximation functions are not exposed here.
+
+### Integration (see chapter 19 and 20 on Chapra)
+
+#### Packages
+- **Numerical integration**
   - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
     - Trapezoidal (default) (See section 19.3 on Chapra)
     - TrapezoidalEven
@@ -117,9 +122,23 @@ Approximation functions are not exposed here. See Dahlquist, chapter 4, for more
     - Monte Carlo integration (apparently it doesn't have on Chapra)
     - Gauss-Legendre quadrature (see section 20.3 on Chapra)
     - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
-- **Numerical differentiation (finite differences)** (see part V on Chapra)
-  - [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
-    - Backward, forward, and central numerical differentiations (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21).
+
+### [Numerical differentiation][41] (see part V on Chapra)
+
+Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following techniques fall under this umbrella:
+
+#### [Finite Difference Methods][42]
+
+Finite difference methods approximate derivatives using the differences between function values at nearby points. Three basic types are commonly considered: forward, backward, and central finite differences.
+
+##### Packages (see section 4.3 on Chapra, for high-order numerical differentiation, see chap 21)
+- [FiniteDifferences.jl][10] and [FiniteDiff.jl][11] are similar libraries: both calculate approximate derivatives numerically.
+    - Backward, forward, and central numerical differentiations.
+
+
+
+
+- **Numerical differentiation (finite differences)**
 - **Automatic differentiation (auto-differentiation, autodiff, or AD)** (see [wiki][13])
   - Automatic Differentiation is a more advanced technique that computes derivatives of a function accurately and efficiently by breaking down the function's operations into elementary operations and applying the chain rule of calculus.
   - [ForwardDiff.jl][14]: implements methods to take derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable object, really) using forward mode automatic differentiation (AD).
@@ -180,4 +199,6 @@ Approximation functions are not exposed here. See Dahlquist, chapter 4, for more
 [38]: https://en.wikipedia.org/wiki/Smoothing#Algorithms
 [39]: https://en.wikipedia.org/wiki/Function_approximation
 [40]: https://en.wikipedia.org/wiki/Approximation_theory
+[41]: https://en.wikipedia.org/wiki/Numerical_differentiation
+[42]: https://en.wikipedia.org/wiki/Finite_difference
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
