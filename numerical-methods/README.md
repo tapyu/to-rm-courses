@@ -114,7 +114,7 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation functions are not exposed here.
 
-### Numerical integration (chapter 19 and 20 on Chapra)
+### [Numerical integration][46] (chapter 19 and 20 on Chapra)
 
  Numerical integration used to approximate the definite integral of a function when an analytical solution is either impractical or impossible to obtain. We can numerically integrate either a set of samples or an mathematical function (whose closed-form integral is too complicated to calculate analytically).
 
@@ -218,4 +218,5 @@ Automatic differentiation is a computational technique that automatically evalua
 [43]: https://en.wikipedia.org/wiki/Interpolation#In_digital_signal_processing
 [44]: https://en.wikipedia.org/wiki/Extrapolation
 [45]: https://en.wikipedia.org/wiki/Computer_algebra
+[46]: https://en.wikipedia.org/wiki/Numerical_integration
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
