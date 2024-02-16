@@ -149,7 +149,7 @@ Finite difference methods approximate derivatives using the differences between 
 
 #### [Automatic differentiation][13] (auto-differentiation, autodiff, or AD) (6.5.9 on Goodfellow, Deep learning)
 
-Automatic differentiation is a computational technique that automatically evaluates derivatives of a function, combining aspects of symbolic and numerical differentiation.
+Automatic differentiation is a computational technique that automatically evaluates derivatives of a function, combining aspects of symbolic and numerical differentiation. AD is more efficient and accurate than traditional numerical differentiation for functions represented as computer programs.
 
 ##### packages
 
