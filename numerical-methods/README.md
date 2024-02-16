@@ -38,7 +38,7 @@ Determines the values of $x$ at which the nonlinear function $f(x)$ is zero, tha
       - See this [tutorial][16]
     - Newton's method
       - See this [tutorial][15]
-    - Chebyshev (it does not have on Chapra)
+    - Chebyshev (it does not have on Chapra. See [here][48])
     - Schroder (it does not have on Chapra)
     - QuadraticInverse (it does not have on Chapra)
 
@@ -255,4 +255,5 @@ Optimization algorithms are not exposed here.
 [45]: https://en.wikipedia.org/wiki/Computer_algebra
 [46]: https://en.wikipedia.org/wiki/Numerical_integration
 [47]: https://en.wikipedia.org/wiki/Mathematical_optimization
+[48]: https://encyclopediaofmath.org/wiki/Chebyshev_method
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
