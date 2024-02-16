@@ -7,6 +7,7 @@ Other sources:
 - **Dahlquist, G. and Björck, Å., 2003. Numerical methods. Courier Corporation**: A alternative material for Chapra. Basically, it seems to the same contents as Chapra (and in the same depth level).
 - **Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics**: For analytical solutions of ODEs (Part A, chap 1-6) and PDE (chapter 12).
 - **Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press**: It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
+- **Press, W.H., 2007. Numerical recipes 3rd edition: The art of scientific computing. Cambridge university press** - A good reference for implementation of numerical methods in C. It is also a good reference for the theoretical aspects.
 - **Goodfellow, I., Bengio, Y. and Courville, A., 2016. Deep learning. MIT press**: Only the part about automatic differentiation (sec 6.5.9).
 
 ## Methods
@@ -82,7 +83,7 @@ Interpolation is a mathematical problem that involves estimating unknown values 
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png" width="300">
 </p>
 
-[**Disambiguation**][43]: In the domain of digital signal processing (DSP), the term interpolation can refer to either obtain a continuous-time signal from a digital signal or upsample the digital signal to a higher rate (see Oppenheim, chapter 4). In the former case, it matches with the definition of numerical methods. In the second, however, it doesn't.
+[**Disambiguation**][43]: In the domain of digital signal processing (DSP), the term interpolation can refer to either obtain a continuous-time signal from a digital signal or upsample the digital signal to a higher rate (see Oppenheim, chapter 4). In the former case, it matches with the definition of numerical methods, but it uses other techniques, such as filtering. In the second case, however, it has a different meaning.
 
 ##### Packages
 
@@ -94,6 +95,9 @@ Interpolation is a mathematical problem that involves estimating unknown values 
   - Quadratic spline
   - Cubic spline
 
+#### [Extrapolation][44]
+
+It is a type of estimation, beyond the original observation range, of the value of a variable on the basis of its relationship with another variable.
 
 #### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing, chapter 14 on Chapra, or other on books)
 
@@ -109,7 +113,7 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 [Approximation][35] of a complicated function by a simple function. A function approximation problem asks us to select a function among a well-defined class that closely matches ("approximates") a target function. One can distinguish two major classes of function approximation problems:
 - First, for **known** target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
-- Second, the target function, call it g, may be **unknown**; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
+- Second, the target function, call it g, may be **unknown**; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating $g$ may be applicable.
 
 Approximation functions are not exposed here.
 
@@ -211,4 +215,5 @@ Finite difference methods approximate derivatives using the differences between 
 [41]: https://en.wikipedia.org/wiki/Numerical_differentiation
 [42]: https://en.wikipedia.org/wiki/Finite_difference
 [43]: https://en.wikipedia.org/wiki/Interpolation#In_digital_signal_processing
+[44]: https://en.wikipedia.org/wiki/Extrapolation
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
