@@ -66,7 +66,9 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
   - Gauss-Seidel method (an interative method for solving linear systems, see chapter 12 on Chapra)
   - Jacobi iteration method (see section 12.1 on Chapra)
 
-![image](./assets/direct-vs-iterative.png)
+<p align="center">
+    <img src="./assets/direct-vs-iterative.png" width="800">
+</p>
 
 ### [**Curve-fitting problems**][34]: Interpolation, regression, approximation, smoothing.
 
