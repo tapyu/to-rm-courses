@@ -112,7 +112,7 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 - First, for **known** target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
 - Second, the target function, call it g, may be **unknown**; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating $g$ may be applicable.
 
-Approximation functions are not exposed here.
+Approximation methods are not exposed here.
 
 ### [Numerical integration][46] (chapter 19 and 20 on Chapra)
 
@@ -159,6 +159,14 @@ Automatic differentiation is a computational technique that automatically evalua
 #### [Symbolic Differentiation][45]
 
  Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
+
+ ### Optimization problems (chap. 7 on Chapra)
+
+The problem of finding the best possible solution to a problem from a set of feasible alternatives. The goal is to identify the optimal solution that either maximizes or minimizes an objective function, subject to a set of constraints.
+
+Although optimization is a numerical methods, it is a more advanced and in-depth method. Therefore, you can even find a brief introduction of Optmization theory books of numerical methods. However, for this topic, I would suggest going to the [optmization theory course](../optmization-theory).
+
+Optimization algorithms are not exposed here.
 
 ---
 
