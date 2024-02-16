@@ -12,7 +12,7 @@ Other sources:
 
 ## Methods
 
-### [Root-finding problems][30] (Part II on Chapra, chapter 6 and 7; Chapter 6 Dahlquist; chapter 3 on Hoffman):
+### [Root-finding problems][30] (part II on Chapra, chapter 6 and 7; chapter 6 Dahlquist; chapter 3 on Hoffman):
 
 Determines the values of $x$ at which the nonlinear function $f(x)$ is zero. Mathematically, these problems can be stated as finding the roots or solutions $x$ such that $f ( x ) = 0$, where $f(x)$ is a given function. As, generally, the zeros of a function cannot be computed exactly nor expressed in closed form (i.e., analytically), root-finding algorithms provide approximations to zeros, expressed either as floating-point numbers or as small isolating intervals, or disks for complex roots.
 
