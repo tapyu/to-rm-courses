@@ -17,8 +17,8 @@ Other sources:
 - [ODE- and PDE-based problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#linear-systems-problems-part-iii-on-chapra)
 - [Linear-systems-problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#linear-systems-problems-part-iii-on-chapra)
 - [Curve-fitting-problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#curve-fitting-problems-interpolation-regression-approximation)
-- [Numerical integration](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#numerical-integration-chapter-19-and-20-on-chapra)
 - [Numerical differentiation](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#numerical-differentiation-part-v-on-chapra)
+- [Numerical integration](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#numerical-integration-chapter-19-and-20-on-chapra)
 - [Optimization problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#optimization-problems-chap-7-on-chapra)
 
 ---
@@ -128,27 +128,6 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 Approximation methods are not exposed here.
 
-### [Numerical integration][46] (chapter 19 and 20 on Chapra)
-
- Numerical integration used to approximate the definite integral of a function when an analytical solution is either impractical or impossible to obtain. We can numerically integrate either a set of samples or an mathematical function (whose closed-form integral is too complicated to calculate analytically).
-
-#### Packages
-- **Numerical integration**
-  - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
-    - Trapezoidal (default) (See section 19.3 on Chapra)
-    - TrapezoidalEven
-    - TrapezoidalFast
-    - TrapezoidalEvenFast
-    - SimpsonEven (See section 19.4 on Chapra)
-    - SimpsonEvenFast
-    - RombergEven (see 20.2 on Chapra)
-  - [`Integrals.jl`][4]: A more reliable numerical integration methods (maybe not all methods are exposed in Chapra)
-    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see [wiki][27])
-    - H-Adaptive Integration (Adaptive quadrature? If so, see section 20.4 on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
-    - Monte Carlo integration (apparently it doesn't have on Chapra)
-    - Gauss-Legendre quadrature (see section 20.3 on Chapra)
-    - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
-
 ### [Numerical differentiation][41] (part V on Chapra)
 
 Numerical differentiation is a broad term encompassing various methods for approximating derivatives. The following [techniques][29] fall under this umbrella:
@@ -173,6 +152,28 @@ Automatic differentiation is a computational technique that automatically evalua
 #### [Symbolic Differentiation][45]
 
 Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
+
+### [Numerical integration][46] (chapter 19 and 20 on Chapra)
+
+ Numerical integration used to approximate the definite integral of a function when an analytical solution is either impractical or impossible to obtain. We can numerically integrate either a set of samples or an mathematical function (whose closed-form integral is too complicated to calculate analytically).
+
+#### Packages
+- **Numerical integration**
+  - [`NumericalIntegration.jl`][3]: Simple (maybe not so reliable) numerical integration methods
+    - Trapezoidal (default) (See section 19.3 on Chapra)
+    - TrapezoidalEven
+    - TrapezoidalFast
+    - TrapezoidalEvenFast
+    - SimpsonEven (See section 19.4 on Chapra)
+    - SimpsonEvenFast
+    - RombergEven (see 20.2 on Chapra)
+  - [`Integrals.jl`][4]: A more reliable numerical integration methods (maybe not all methods are exposed in Chapra)
+    - Gauss–Kronrod quadrature formula (a variant of Gaussian quadrature, see [wiki][27])
+    - H-Adaptive Integration (Adaptive quadrature? If so, see section 20.4 on Chapra). It uses [`HCubature.jl`][5], which is a `julia` code for the [adaptive multidimensional integration][6]
+    - Monte Carlo integration (apparently it doesn't have on Chapra)
+    - Gauss-Legendre quadrature (see section 20.3 on Chapra)
+    - `integral()` in matlab uses adaptive quadrature (see section 20.4 on Chapra)
+
 
 ### [Optimization problems][47] (chap. 7 on Chapra)
 
