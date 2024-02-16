@@ -82,7 +82,7 @@ Interpolation is a mathematical problem that involves estimating unknown values 
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png" width="300">
 </p>
 
-[**Disambiguation**][43]: In the domain of digital signal processing (DSP), the term interpolation can refer to either obtain a continuous-time signal from a digital signal or upsample the digital signal to a higher rate (see Oppenheim, chapter 4). In the former cases, it matches with the definition of numerical methods, in the second, however, it doesn't.
+[**Disambiguation**][43]: In the domain of digital signal processing (DSP), the term interpolation can refer to either obtain a continuous-time signal from a digital signal or upsample the digital signal to a higher rate (see Oppenheim, chapter 4). In the former case, it matches with the definition of numerical methods. In the second, however, it doesn't.
 
 ##### Packages
 
