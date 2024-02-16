@@ -70,7 +70,7 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
     <img src="./assets/direct-vs-iterative.png" width="800">
 </p>
 
-### [**Curve-fitting problems**][34]: Interpolation, regression, approximation, smoothing.
+### [Curve-fitting problems][34]: Interpolation, extrapolation, regression, approximation.
 
 "Curve fitting" is an umbrella term that encompasses the following techniques: "regression," "smoothing," and "interpolation".
 
@@ -81,6 +81,8 @@ Interpolation is a mathematical problem that involves estimating unknown values 
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png" width="300">
 </p>
+
+[**Disambiguation**][43]: In the domain of digital signal processing (DSP), the term interpolation refers to the process of converting a sampled digital signal (such as a sampled audio signal) to that of a higher sampling rate (Upsampling) using various digital filtering techniques (for example, convolution with a frequency-limited impulse signal).
 
 ##### Packages
 
@@ -93,15 +95,15 @@ Interpolation is a mathematical problem that involves estimating unknown values 
   - Cubic spline
 
 
-#### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing or other books)
+#### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing, chapter 14 on Chapra, or other on books)
 
 Statistical technique to model the relationships between a dependent variable (often called the 'outcome' or 'response' variable, or a 'label' in machine learning parlance) and one or more independent variables (often called 'predictors', 'covariates', 'explanatory variables' or 'features'). The most common form of regression analysis is linear regression, in which one finds the line (or a more complex linear combination) that most closely fits the data according to a specific mathematical criterion.
-
-Regression is a transversal topic, used in several areas, from Statistics to Signal Procesisng, and therefore it is not exposed here.
 
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Normdist_regression.png" width="400">
 </p>
+
+Regression is a transversal topic, used in several areas, from Statistics to Signal Procesisng, and therefore it is not exposed here.
 
 #### [Approximation][39] (see Dahlquist, chapter 4)
 
@@ -208,4 +210,5 @@ Finite difference methods approximate derivatives using the differences between 
 [40]: https://en.wikipedia.org/wiki/Approximation_theory
 [41]: https://en.wikipedia.org/wiki/Numerical_differentiation
 [42]: https://en.wikipedia.org/wiki/Finite_difference
+[43]: https://en.wikipedia.org/wiki/Interpolation#In_digital_signal_processing
 [Awesome STEM academy]: https://github.com/tapyu/awesome-stem-academy/tree/main#numerical-methods
