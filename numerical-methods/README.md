@@ -14,7 +14,7 @@ Other sources:
 ## Summary
 
 - [Root-finding problems](https://github.com/tapyu/courses/tree/main/numerical-methods#root-finding-problems-part-ii-on-chapra-chapter-6-and-7-chapter-6-dahlquist-chapter-3-on-hoffman)
-- [ODE- and PDE-based problems](#ODE--and-PDE-based-problems)
+- [ODE- and PDE-based problems]([#ODE--and-PDE-based-problems](https://github.com/tapyu/courses/tree/main/numerical-methods#ode--and-pde-based-problems-part-vi-on-chapra))
 - [Linear-systems-problems](#Linear-systems-problems)
 - [Curve-fitting-problems](#Curve-fitting-problems)
 - [Numerical integration](#Numerical-integration)
