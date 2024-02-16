@@ -101,10 +101,6 @@ Statistical technique to model the relationships between a dependent variable (o
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Normdist_regression.png" width="400">
 </p>
 
-#### [Smoothing][38]
-
-A set of techniques used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal processing as it employs such algorithms to filter the signals. Hence, it is not exposed here (see [digital signal processing](../digital-signal-processing) or [statistical signal processing](../statistical-signal-processing) courses for a better understanding. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
-
 #### [Approximation][39] (see Dahlquist, chapter 4)
 
 [Approximation][35] of a complicated function by a simple function. A function approximation problem asks us to select a function among a well-defined class that closely matches ("approximates") a target function. One can distinguish two major classes of function approximation problems:
@@ -112,6 +108,12 @@ A set of techniques used in curve fitting to reduce noise or fluctuations in a d
 - Second, the target function, call it g, may be **unknown**; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating g may be applicable. For example, if $g$ is an operation on the real numbers, techniques of interpolation, extrapolation, regression analysis, and curve fitting can be used. If the codomain (range or target set) of g is a finite set, one is dealing with a classification problem instead.
 
 Approximation functions are not exposed here.
+
+#### [Smoothing][38] (see [digital signal processing](../digital-signal-processing) or [statistical signal processing](../statistical-signal-processing)
+
+A set of techniques used in curve fitting to reduce noise or fluctuations in a dataset, revealing the underlying trend. It is closely related to digital signal processing as it employs such algorithms to filter the signals.. [Here][38] you can can a quick guide of algorithms that are used to function smoothering.
+
+Smoothing is not exposed here.
 
 ### Integration (see chapter 19 and 20 on Chapra)
 
