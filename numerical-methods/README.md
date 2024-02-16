@@ -9,6 +9,20 @@ Other sources:
 - **Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press** - It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
 - **Press, W.H., 2007. Numerical recipes 3rd edition: The art of scientific computing. Cambridge university press** - A good reference for implementation of numerical methods in C. It is also a good reference for the theoretical aspects.
 
+---
+
+## Summary
+
+- [Root-finding problems](#Root-finding-problems)
+- [ODE- and PDE-based problems](#ODE--and-PDE-based-problems)
+- [Linear-systems-problems](#Linear-systems-problems)
+- [Curve-fitting-problems](#Curve-fitting-problems)
+- [Numerical integration](#Numerical-integration)
+- [Numerical differentiation](#Numerical-differentiation)
+- [Optimization problems](#Optimization-problems)
+
+---
+
 ## Methods
 
 ### [Root-finding problems][30] (part II on Chapra, chapter 6 and 7; chapter 6 Dahlquist; chapter 3 on Hoffman):
@@ -158,9 +172,9 @@ Automatic differentiation is a computational technique that automatically evalua
 
 #### [Symbolic Differentiation][45]
 
- Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
+Symbolic differentiation involves to manipulation of mathematical expressions to derive symbolic expressions for derivatives.
 
- ### Optimization problems (chap. 7 on Chapra)
+### Optimization problems (chap. 7 on Chapra)
 
 The problem of finding the best possible solution to a problem from a set of feasible alternatives. The goal is to identify the optimal solution that either maximizes or minimizes an objective function, subject to a set of constraints.
 
