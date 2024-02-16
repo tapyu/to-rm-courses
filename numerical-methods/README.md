@@ -17,7 +17,7 @@ Other sources:
 - [ODE- and PDE-based problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#linear-systems-problems-part-iii-on-chapra)
 - [Linear-systems-problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#linear-systems-problems-part-iii-on-chapra)
 - [Curve-fitting-problems](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#curve-fitting-problems-interpolation-regression-approximation)
-- [Numerical integration](#Numerical-integration)
+- [Numerical integration](https://github.com/tapyu/courses/blob/main/numerical-methods/README.md#numerical-integration-chapter-19-and-20-on-chapra)
 - [Numerical differentiation](#Numerical-differentiation)
 - [Optimization problems](#Optimization-problems)
 
