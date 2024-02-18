@@ -1,10 +1,9 @@
 # GNSS Data Processing
 
-Algorithms from the "GNSS Data Processing" course, taught at Universitat Politècnica de Catalunya, Barcelona, Spain, during 2024.1.
-
-Professors:
-- Prof. Dr. [Guillermo Gonzalez Casado].
-- Prof. Dr. [Jaume Sanz Subirana].
+This directory contains algorithms for GNSS data processing. They were developed in two events:
+1. Galileo Masterclass Brazil (GMB), taught in Fortaleza, Brazil, by [Professors from group of Astronomy and GEomatics (gAGE)][1], from Universitat Politècnica de Catalunya, UPC.
+2. "GNSS Data Processing" course, taught in Barcelona, Spain, by Prof. Dr. [Jaume Sanz Subirana][2] and [Guillermo Gonzalez Casado][3] in 2024.1.
 
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
+[1]: https://gage.upc.edu/en/personnel/permanent-staff
