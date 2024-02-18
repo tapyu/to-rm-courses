@@ -33,5 +33,10 @@ NOTE:
 - The Macilio's presentattion took place during the visit to INPE, and is the presentation code `E07`.
 
 Presentations
-- E01. Luis Cuervo - Galileo Information Center Brazil
+- [E01. Luis Cuervo - Galileo Information Center Brazil](https://www.youtube.com/watch?v=T219oKb-cQE)
+- [E02. Matteo Paoni - Galileo Open Service](https://www.youtube.com/watch?v=lw_yj98kp40)
+- [E03. Eric Bouton SAR Galileo a Contribution to CS MEOSAR](https://www.youtube.com/watch?v=PLf_iOxKINk)
+- [E04. Werner Enderle Galileo Orbits and Clocks](https://www.youtube.com/watch?v=QPskRHeOOj4)
+- [E05. Javier de Andrés Díaz EGNOS Overview](https://www.youtube.com/watch?v=lPNJy_uzU_M)
+- [E06. Ignacio Fernández Galileo High Accuracy Service](https://www.youtube.com/watch?v=Q6RFvlMzZJM)
 
