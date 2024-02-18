@@ -1,6 +1,6 @@
 # Global Navigation Satellite System (GNSS)
 
-This directory is a compendium algorithms on Global Navigation Satellite System (GNSS). The algorithms implemented here focus on the following topics:
+This directory contains a compendium of algorithms for Global Navigation Satellite System (GNSS). Such algorithms focus on the following topics:
 - GNSS Signal Processing.
 - [GNSS Data Processing](gnn-data-processing).
 - Ionospheric Scintillation modeling.
