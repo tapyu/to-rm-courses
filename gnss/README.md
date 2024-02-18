@@ -35,11 +35,33 @@ NOTE:
 - `En` - `n`th external presentation.
 - The Macilio's presentattion took place during the visit to INPE, and is the presentation code `E07`.
 
-Presentations
-- [E01. Luis Cuervo - Galileo Information Center Brazil](https://www.youtube.com/watch?v=T219oKb-cQE)
-- [E02. Matteo Paoni - Galileo Open Service](https://www.youtube.com/watch?v=lw_yj98kp40)
-- [E03. Eric Bouton SAR Galileo a Contribution to CS MEOSAR](https://www.youtube.com/watch?v=PLf_iOxKINk)
-- [E04. Werner Enderle Galileo Orbits and Clocks](https://www.youtube.com/watch?v=QPskRHeOOj4)
-- [E05. Javier de Andrés Díaz EGNOS Overview](https://www.youtube.com/watch?v=lPNJy_uzU_M)
-- [E06. Ignacio Fernández Galileo High Accuracy Service](https://www.youtube.com/watch?v=Q6RFvlMzZJM)
+Presentations:
+- Monday (29/08/2022):
+  - [L01. Multiple Access for GNSS](https://www.youtube.com/watch?v=0ZIiCHdp_TM)
+  - [E01. Luis Cuervo - Galileo Information Center Brazil](https://www.youtube.com/watch?v=T219oKb-cQE)
+  - [L02. Spread Spectrum Ranging](https://www.youtube.com/watch?v=8sHFMIfiLn8)
+- Tuesday (30/08/2022):
+  - [L03. Chip pulse shapes and multiplexing](https://www.youtube.com/watch?v=nwR4UFRsr6o)
+  - [E02. Matteo Paoni - Galileo Open Service](https://www.youtube.com/watch?v=lw_yj98kp40)
+  - [L04. Signal Acquisition](https://www.youtube.com/watch?v=EbbIAJiTG7o)
+- Wednesday (31/08/2022):
+  - [L05. Propagation Aspects](https://www.youtube.com/watch?v=cjethAsFjgU)
+  - [E03. Eric Bouton SAR Galileo a Contribution to CS MEOSAR](https://www.youtube.com/watch?v=PLf_iOxKINk)
+  - [L06. Parameter Tracking](https://www.youtube.com/watch?v=VzqzUR2ehSQ)
+- Thursday (01/09/2022)
+  - [L07. Use of Remote Sensing in Water Resources Management](https://www.youtube.com/watch?v=LWxYjfW971o)
+  - [L08. Synergy between GNSS and Remote Sensing Products](https://www.youtube.com/watch?v=ui4-17cNIDw)
+  - [E07. Antonio Macilio - Ionosferic Scintillation Effect on GNSS](https://www.youtube.com/watch?v=NZngqyOBPUQ)
+- Friday (02/09/2022)
+  - [L09. Introduction to GNSS Positioning Techniques](https://www.youtube.com/watch?v=_v1SruojROk)
+  - [E04. Werner Enderle Galileo Orbits and Clocks](https://www.youtube.com/watch?v=QPskRHeOOj4)
+  - [L10. Satellite Orbits and Clocks](https://www.youtube.com/watch?v=T0Is6bkwGSk)
+- Monday (05/09/2022)
+  - [L11. Code pseudorange modelling](https://www.youtube.com/watch?v=VG4EgPYViB0)
+  - [E05. Javier de Andrés Díaz EGNOS Overview](https://www.youtube.com/watch?v=lPNJy_uzU_M)
+  - [L12. Augmentation Systems](https://www.youtube.com/watch?v=pYFFfbxO5ko)
+- Tuesday (06/09/2022):
+  - [L13. Solving Navigation Equations](https://www.youtube.com/watch?v=Nh2gSxoWLLE)
+  - [E06. Ignacio Fernández Galileo High Accuracy Service](https://www.youtube.com/watch?v=Q6RFvlMzZJM)
+  - [L14. Precise Point Positioning](https://www.youtube.com/watch?v=BF1VBCxtfVw)
 
