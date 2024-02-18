@@ -1,6 +1,8 @@
 # Numerical methods
 
-Main bibliography:
+## Bibliography
+
+Main:
 - **Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill**.
 
 Others:
