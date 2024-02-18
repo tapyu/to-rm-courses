@@ -1,8 +1,12 @@
 # GNSS Signal Processing
 
-This directory contains algorithm solutions for computational exercises on GNSS Signal Processing, taught by Prof. Dr. Felix Antreich at the Institute of Aeronautical Technology. The same algorithms are also presented during GMB 2022, taught at the Federal University of Ceará. this material can be found [here].
+This directory contains algorithm solutions for computational exercises on GNSS Signal Processing. These algorithms were developed during two events:
+- Galileo Masterclass Brazil (GMB) 2022.
+- The course "GNSS Signal Processing", taught by Prof. Dr. [Felix Antreich], at Aeronautics Institute of Technology, ITA, Brazil.
 
-The computational exercises cover the following topics:
+The algorithms can be found [here].
+
+The algorithms cover the following topics:
 - Code and correlation.
 - Signal Acquisition.
 - Parameter tracking.
@@ -12,4 +16,4 @@ The computational exercises cover the following topics:
 - Felix's course slides on "GNSS Signal Processing"
 - GMB 2022 slides.
 
-[here]: https://server.gage.upc.edu/TEACHING_MATERIAL/GMB2022/SOFTWARE/
+[Felix Antreich]: https://ieeexplore.ieee.org/author/37394570200
