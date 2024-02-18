@@ -12,7 +12,7 @@ Resouces:
 Bibliography:
 
 Main:
-- **Strang, G., 2022. Introduction to linear algebra. Wellesley-Cambridge Press** - The way-to-go for the very basic but very well explained fundamentals.
+- **Strang, G., 2022. Introduction to linear algebra. Wellesley-Cambridge Press** - The way-to-go for the very basic (but well explained) fundamentals.
 
 Others:
 - **Golub, G.H. and Van Loan, C.F., 2013. Matrix computations. JHU press** - A more advanced book which focus more on the computational aspects of the algorithms.
