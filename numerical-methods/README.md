@@ -133,7 +133,7 @@ Regression is a transversal topic, used in several areas, from Statistics to Sig
 
 [Approximation][35] of a complicated function by a simple function. A function approximation problem asks us to select a function among a well-defined class that closely matches ("approximates") a target function. One can distinguish two major classes of function approximation problems:
 - First, for **known** target functions [approximation theory][40] is the branch of numerical analysis that investigates how certain known functions (for example, special functions) can be approximated by a specific class of functions (for example, polynomials or rational functions) that often have desirable properties (inexpensive computation, continuity, integral and limit values, etc.).
-- Second, the target function, call it $g$, may be **unknown**; instead of an explicit formula, only a set of points of the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating $g$ may be applicable.
+- Second, the target function, call it $g$, may be **unknown**; instead of an explicit formula, only a set of points in the form $(x, g(x))$ is provided. Depending on the structure of the domain and codomain of $g$, several techniques for approximating $g$ may be applicable.
 
 Approximation methods are not exposed here.
 
