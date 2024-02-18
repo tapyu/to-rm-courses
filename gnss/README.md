@@ -9,7 +9,7 @@ This directory contains a compendium of algorithms for Global Navigation Satelli
   - Model Component Analysis.
   - Navigation equation solution.
 
-- These algorithms implemented here come from different places, specially:
+- These algorithms implemented here come from two sources:
    1. [Galileo Masterclass Brazil (GMB) 2022: ​​​​​​From Fundamentals to Signal and Data Processing][2] - taught at Federal University of Ceará, Brazil, by [Professors from group of Astronomy and GEomatics (gAGE)][1], from Universitat Politècnica de Catalunya, UPC. This 7-days course was started by the Galileo Information Centre ([GIC]) in Brazil.
   2. Lectures on "GNSS Data Processing", taught in Barcelona, Spain, by Professors Prof. Dr. [Jaume Sanz Subirana] and [Guillermo Gonzalez Casado] in 2024.1.
 
