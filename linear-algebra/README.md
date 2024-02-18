@@ -1,7 +1,7 @@
 # Linear Algebra
 
 - This directory contains homeworks of a Linear Algebra course (unknown professor) in which I wasn't a student. Therefore, the algorithms found here were implemented by other colleges that took this course.
-- These Linear Algebra homeworks is basically a collection of matrix decompositions, implemented in `MATLAB`.
+- These Linear Algebra homeworks are basically a collection of matrix decompositions, implemented in `MATLAB`.
 
 Resouces:
 - [18.06 course at MIT: Linear Algebra (by Gilbert Strang)][1] and [its codes (in Julia <3)][2]
