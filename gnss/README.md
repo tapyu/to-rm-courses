@@ -26,7 +26,7 @@ This directory contains a compendium of algorithms for Global Navigation Satelli
 ### GMB 2022
 
 <p align="center">
-  <img src="https://github.com/tapyu/courses/assets/22801918/51d0cfdb-badd-4d25-bca3-b41f9ff8216b" height="500pt" />
+  <img src="https://github.com/tapyu/courses/assets/22801918/51d0cfdb-badd-4d25-bca3-b41f9ff8216b" height="700pt" />
 </p>
 
 
