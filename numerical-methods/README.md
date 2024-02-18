@@ -123,7 +123,9 @@ It is a type of estimation, beyond the original observation range, of the value 
 
 Extrapolation is another noteworthy technique, which is similar to interpolation but involves estimating values outside the the range of the observed data. It is subject to greater uncertainty and a higher risk of producing meaningless results.
 
-I am not sure how well mature the numerical methods for extrapolation are (AFAIK, that is not the shiniest part of numercal methods). For time series-based problems, forecasting with statistica signal processing or machine learning techniques might preferable.
+I am not sure how well mature the numerical methods for extrapolation are. It doesn't seem the shiniest part of numercal methods. For time series-based problems, forecasting with statistica signal processing or machine learning techniques might preferable.
+
+Extrapolation techniques are not exposed here.
 
 #### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing, chapter 14 on Chapra, or other on books)
 
