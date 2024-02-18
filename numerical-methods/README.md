@@ -95,7 +95,7 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
 
 ### [Curve-fitting problems][34]: Interpolation, regression, approximation.
 
-"Curve fitting" is an umbrella term that encompasses the following techniques: "regression," "smoothing," and "interpolation".
+"Curve fitting" is an umbrella term that encompasses the following techniques: "interpolation", "regression", "approximation".
 
 #### [Interpolation][35] (chapter 17 and 18 on Chapra)
 
