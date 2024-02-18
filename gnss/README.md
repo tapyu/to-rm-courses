@@ -1,11 +1,11 @@
 # Global Navigation Satellite System (GNSS)
 
 This directory contains a compendium of algorithms for Global Navigation Satellite System (GNSS). Such algorithms focus on the following topics:
-- In [GNSS Signal Processing](gnsss-signal-processing).
+- In [GNSS Signal Processing](gnss-signal-processing).
   - Code and correlation.
   - Signal Acquisition.
   - Parameter tracking.
-- In [GNSS Data Processing](gnn-data-processing):
+- In [GNSS Data Processing](gnss-data-processing):
   - Model Component Analysis.
   - Navigation equation solution.
 
