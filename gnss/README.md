@@ -18,3 +18,16 @@ This directory contains a compendium of algorithms for Global Navigation Satelli
 [GIC]: https://gage.upc.edu/en/projects/gage-upc/gic-brazil
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
+
+---
+
+## Resources
+
+### GMB 2022
+
+![220825 GMB 2022 Programme](https://github.com/tapyu/courses/assets/22801918/51d0cfdb-badd-4d25-bca3-b41f9ff8216b)
+
+NOTE:
+- `Ln` - `n`th lecture presentation.
+- `En` - `n`th external presentation.
+
