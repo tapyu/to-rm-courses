@@ -30,4 +30,8 @@ This directory contains a compendium of algorithms for Global Navigation Satelli
 NOTE:
 - `Ln` - `n`th lecture presentation.
 - `En` - `n`th external presentation.
+- The Macilio's presentattion took place during the visit to INPE, and is the presentation code `E07`.
+
+Presentations
+- E01. Luis Cuervo - Galileo Information Center Brazil
 
