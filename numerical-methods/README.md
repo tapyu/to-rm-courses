@@ -93,9 +93,9 @@ Direct methods, such as LU and Cholesky decomposition, are usually performed via
 
 ---
 
-### [Curve-fitting problems][34]: Interpolation, regression, approximation.
+### [Curve-fitting problems][34]: Interpolation, extrapolation, regression, approximation.
 
-"Curve fitting" is an umbrella term that encompasses the following techniques: "interpolation", "regression", "approximation".
+"Curve fitting" is an umbrella term that encompasses the following techniques: "interpolation", "extrapolation", "regression", "approximation".
 
 #### [Interpolation][35] (chapter 17 and 18 on Chapra)
 
@@ -118,6 +118,12 @@ Interpolation is a mathematical problem that involves estimating unknown values 
   - Cubic spline
 
 It is a type of estimation, beyond the original observation range, of the value of a variable on the basis of its relationship with another variable.
+
+#### [Extrapolation][44] (see sec. 7.8 on Hoffman)
+
+Extrapolation is another noteworthy technique, which is similar to interpolation but involves estimating values outside the the range of the observed data. It is subject to greater uncertainty and a higher risk of producing meaningless results.
+
+I am not sure how well mature the numerical methods for extrapolation are (AFAIK, that is not the shiniest part of numercal methods). For time series-based problems, forecasting with statistica signal processing or machine learning techniques might preferable.
 
 #### [Regression][36] (see Steven Kay, Fundamentals of Statistica Signal Processing, chapter 14 on Chapra, or other on books)
 
