@@ -1,9 +1,18 @@
-# GNSS Data Processing
+# Global Navigation Satellite System (GNSS)
 
-This directory contains algorithms for GNSS data processing. They were developed in two events:
-1. Galileo Masterclass Brazil (GMB), taught in Fortaleza, Brazil, by [Professors from group of Astronomy and GEomatics (gAGE)][1], from Universitat Politècnica de Catalunya, UPC.
-2. "GNSS Data Processing" course, taught in Barcelona, Spain, by Prof. Dr. [Jaume Sanz Subirana] and [Guillermo Gonzalez Casado] in 2024.1.
+This directory contains a compendium of algorithms for Global Navigation Satellite System (GNSS). Such algorithms focus on the following topics:
+- In GNSS Signal Processing.
+  - Code and correlation.
+  - Signal Acquisition.
+  - Parameter tracking.
+- In [GNSS Data Processing](gnn-data-processing):
+  - Model Component Analysis.
+  - Navigation equation solution.
 
-[Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
-[Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
+- These algorithms implemented here come from different places, specially:
+  1. Galileo Masterclass Brazil (GMB), taught in Fortaleza, Brazil, by [Professors from group of Astronomy and GEomatics (gAGE)][1], from Universitat Politècnica de Catalunya, UPC.
+  2. Lectures on "GNSS Data Processing", taught in Barcelona, Spain, by Professors [Prof. Dr. Jaume Sanz Subirana][2] and [Guillermo Gonzalez Casado][3] in 2024.1.
+
 [1]: https://gage.upc.edu/en/personnel/permanent-staff
+[2]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
+[3]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
