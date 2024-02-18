@@ -9,7 +9,7 @@ Others:
 - **Dahlquist, G. and Björck, Å., 2003. Numerical methods. Courier Corporation** - A alternative material for Chapra. Basically, it seems to the same contents as Chapra (and in the same depth level).
 - **Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics** - For analytical solutions of ODEs (Part A, chap 1-6) and PDE (chapter 12).
 - **Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press** - It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
-- **Press, W.H., 2007. Numerical recipes 3rd edition: The art of scientific computing. Cambridge university press** - A good reference for implementation of numerical methods in C. It is also a good reference for the theoretical aspects.
+- **Press, W.H., 2007. Numerical recipes 3rd edition: The art of scientific computing. Cambridge university press** - A good reference for implementation of Numerical Methods in C. It is also a good reference for the theoretical aspects.
 
 ---
 
@@ -52,7 +52,7 @@ Given a ODE/PDE, how to solve it. The solutions to ordinary differential equatio
 - **Analytical/closed-form solution**: Exact mathematical expressions that represent the solution to the differential equation. Examples include $x(t) = \cos(t)$ for $x + x' = 0$. Analytical solutions often involve systematic methods and techniques such as separation of variables, integrating factors, variation of parameters, Laplace transforms, and others. For a more in-depth solution review, see Erwin Kreyszig, part A and C.
 - **Numerical solution**: Provide an approximation to the solution by discretizing the domain and using iterative methods. Examples include Euler's method, Runge-Kutta methods, and finite difference methods. The algorithms shown here falls in this approach.
 
-The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using numerical methods.**
+The key factor that determines which solution one should follow is the problem complexity. If the problem is simple and fall into certain class of ODE problems (e.g., separable ODEs, exact ODEs, linear ODEs, homogeneous and inhomogeneous ODEs, etc), we may solve it analytically. However, **differential equations such as those used to solve real-life problems may not necessarily be directly solvable, i.e. do not have closed form solutions. Instead, solutions can be approximated using Numerical Methods.**
 
 #### Packages
 
@@ -105,7 +105,7 @@ Interpolation is a mathematical problem that involves estimating unknown values 
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Interpolation_example_linear.svg/2560px-Interpolation_example_linear.svg.png" width="300">
 </p>
 
-[Disambiguation][43]: In the domain of digital signal processing (DSP), the term interpolation may refer to obtaining a continuous-time signal from a digital signal or to increasing the sampling rate of a digital signal to a higher rate (see Oppenheim, chapter 4 ). In the first case, it corresponds to the definition of numerical methods, but uses other methods, such as filtering techniques. In the second case, however, it has a different meaning, as we obtain a new set of samples instead of a continuous function.
+[Disambiguation][43]: In the domain of digital signal processing (DSP), the term interpolation may refer to obtaining a continuous-time signal from a digital signal or to increasing the sampling rate of a digital signal to a higher rate (see Oppenheim, chapter 4 ). In the first case, it corresponds to the definition of Numerical Methods, but uses other methods, such as filtering techniques. In the second case, however, it has a different meaning, as we obtain a new set of samples instead of a continuous function.
 
 ##### Packages
 
@@ -123,7 +123,7 @@ It is a type of estimation, beyond the original observation range, of the value 
 
 Extrapolation is another noteworthy technique, which is similar to interpolation but involves estimating values outside the range of the observed data. It is subject to greater uncertainty and a higher risk of producing meaningless results.
 
-I am not sure how well mature the numerical methods for extrapolation are. It doesn't seem the shiniest part of numercal methods. For time series-based problems, forecasting with statistica signal processing or machine learning techniques might preferable.
+I am not sure how well mature the Numerical Methods for extrapolation are. It doesn't seem the shiniest part of numercal methods. For time series-based problems, forecasting with statistica signal processing or machine learning techniques might preferable.
 
 Extrapolation techniques are not exposed here.
 
@@ -201,7 +201,7 @@ Symbolic differentiation involves to manipulation of mathematical expressions to
 
 The problem of finding the best possible solution to a problem from a set of feasible alternatives. The goal is to identify the optimal solution that either maximizes or minimizes an objective function, subject to a set of constraints.
 
-Although optimization is a numerical methods, it is a more advanced and in-depth method. Therefore, you can even find a brief introduction of Optmization theory books of numerical methods. However, for this topic, I would suggest going to the [optmization theory course](../optmization-theory).
+Although optimization is a numerical methods, it is a more complex technique. Therefore, you can even find a brief introduction of Optmization Theory in Numerical Methods books, but, for this topic, I would suggest going to the [optmization theory course](../optmization-theory).
 
 Optimization algorithms are not exposed here.
 
