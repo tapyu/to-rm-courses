@@ -3,7 +3,7 @@
 Main bibliography:
 - **Chapra, S., 2011. Applied Numerical Methods with MATLAB for Engineers and Scientists. McGraw Hill**.
 
-Other sources:
+Others:
 - **Dahlquist, G. and Björck, Å., 2003. Numerical methods. Courier Corporation** - A alternative material for Chapra. Basically, it seems to the same contents as Chapra (and in the same depth level).
 - **Kreyszig, E., Stroud, K. and Stephenson, G., 2008. Advanced engineering mathematics** - For analytical solutions of ODEs (Part A, chap 1-6) and PDE (chapter 12).
 - **Hoffman, J.D. and Frankel, S., 2018. Numerical methods for engineers and scientists. CRC press** - It seems to be a more advanced book, with a special focus on algorithms for ODEs and PDEs problems. More advanced algorithms that aren't found on Chapra might be found here.
