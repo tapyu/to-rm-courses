@@ -6,6 +6,10 @@ This directory contains algorithm solutions for computational exercises on GNSS 
 
 The algorithms can be found [here].
 
+The algorithms cover the following topics:
+- Model Component Analysis.
+- Navigation equation solution.
+
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
 [here]: https://server.gage.upc.edu/TEACHING_MATERIAL/GMB2022/SOFTWARE/
