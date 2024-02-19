@@ -14,6 +14,7 @@ The algorithms cover the following topics:
 Main:
 - GNSS DATA PROCESSING Volume I: Fundamentals and Algorithms. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency
 - GNSS DATA PROCESSING Volume II: Laboratory Exercises. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency.
+
 Others:
 - Jaume's course slides on "GNSS Data Processing"
 - GMB 2022 slides.
