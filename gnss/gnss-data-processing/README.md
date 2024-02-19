@@ -5,7 +5,7 @@ This directory contains algorithm solutions for computational exercises on GNSS 
 - These algorithms were developed during two events:
   - Galileo Masterclass Brazil (GMB) 2022.
   - The course "GNSS Data Processing", taught by Prof. Dr. [Jaume Sanz Subirana] and Prof. Dr. [Guillermo Gonzalez Casado], at Universitat Politècnica de Catalunya, UPC, Spain.
-- The gLAB software is used during this course for the laboratory exercises.
+- The [gLAB] software is used during this course for the laboratory exercises.
 - The [algorithms] cover the following topics:
   - Model Component Analysis.
   - Navigation equation solution.
@@ -24,8 +24,7 @@ Others:
 
 - [GNSS Format Descriptions]: RINEX, ANTEX, IONEX, etc.
 - [GNSS Format Descriptions (gFD) Quiz prepared by gAGE.][5]
-
-### [gLAB][6]
+- [gLAB]
 
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
@@ -36,4 +35,4 @@ Others:
 [4]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gnss-data-processing-book
 [GNSS Format Descriptions]: https://gage.upc.edu/en/learning-materials/library/gnss-format-descriptions
 [5]: https://server.gage.upc.edu/gLAB/HTML/GNSS_standard_format_files.pdf
-[6]: https://gage.upc.edu/en/learning-materials/software-tools/glab-tool-suite
+[gLAB]: https://gage.upc.edu/en/learning-materials/software-tools/glab-tool-suite
