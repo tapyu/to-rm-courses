@@ -22,6 +22,9 @@ Others:
 
 ## Other resources
 
+- [GNSS Format Descriptions]: RINEX, ANTEX, IONEX, etc.
+- [GNSS Format Descriptions (gFD) Quiz prepared by gAGE.][5]
+
 ### GLab
 
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
@@ -31,3 +34,5 @@ Others:
 [2]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gps-data-processing-code-and-phase-algorithms-techniques-and-recipes
 [3]: https://gage.upc.edu/en/learning-materials/library/gnss-webinars/gic-masterclass-brazil-2022
 [4]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gnss-data-processing-book
+[GNSS Format Descriptions]: https://gage.upc.edu/en/learning-materials/library/gnss-format-descriptions
+[5]: https://server.gage.upc.edu/gLAB/HTML/GNSS_standard_format_files.pdf
