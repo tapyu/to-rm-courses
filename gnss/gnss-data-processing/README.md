@@ -17,7 +17,6 @@ Main:
 
 Others:
 - [Jaume's course slides on "GNSS Data Processing"][1].
-- [GPS data processing: code and phase Algorithms, Techniques and Recipes][2]
 - [GMB 2022 slides][3].
 
 ## Other resources
@@ -30,7 +29,6 @@ Others:
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
 [algorithms]: https://server.gage.upc.edu/TEACHING_MATERIAL/GMB2022/SOFTWARE/
 [1]: https://gage.upc.edu/486/gage/en/en/learning-materials/software-tools/glab-tool-suite-links/glab-tutorials/gnss-tutorials
-[2]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gps-data-processing-code-and-phase-algorithms-techniques-and-recipes
 [3]: https://gage.upc.edu/en/learning-materials/library/gnss-webinars/gic-masterclass-brazil-2022
 [4]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gnss-data-processing-book
 [GNSS Format Descriptions]: https://gage.upc.edu/en/learning-materials/library/gnss-format-descriptions
