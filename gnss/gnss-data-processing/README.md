@@ -16,12 +16,10 @@ Main:
 - GNSS DATA PROCESSING Volume II: Laboratory Exercises. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency.
 
 Others:
-- Jaume's course slides on "GNSS Data Processing"
+- [Jaume's course slides on "GNSS Data Processing"][1].
 - GMB 2022 slides.
 
 ## Other resources
-
-- [GNSS Data Processing: Theory and Laboratory Slides][1]
 
 ### GLab
 
