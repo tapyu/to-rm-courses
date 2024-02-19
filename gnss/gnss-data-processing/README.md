@@ -21,8 +21,11 @@ Others:
 
 ## Other resources
 
+- [GNSS Data Processing: Theory and Laboratory Slides][1]
+
 ### GLab
 
 [Jaume Sanz Subirana]: https://gage.upc.edu/en/personnel/permanent-staff/jaume.sanz
 [Guillermo Gonzalez Casado]: https://gage.upc.edu/en/personnel/permanent-staff/dr-guillermo-gonzalez-casado
 [here]: https://server.gage.upc.edu/TEACHING_MATERIAL/GMB2022/SOFTWARE/
+[1]: https://gage.upc.edu/486/gage/en/en/learning-materials/software-tools/glab-tool-suite-links/glab-tutorials/gnss-tutorials
