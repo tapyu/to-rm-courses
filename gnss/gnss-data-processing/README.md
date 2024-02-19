@@ -10,6 +10,10 @@ The algorithms cover the following topics:
 - Model Component Analysis.
 - Navigation equation solution.
 
+References
+- Jaume's course slides on "GNSS Data Processing"
+- GMB 2022 slides.
+
 ## Other resouces
 
 ### GLab
