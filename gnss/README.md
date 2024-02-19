@@ -2,12 +2,7 @@
 
 This directory contains a compendium of algorithms for Global Navigation Satellite System (GNSS). Such algorithms focus on the following topics:
 - [GNSS Signal Processing](gnss-signal-processing)
-  - Code and correlation.
-  - Signal Acquisition.
-  - Parameter tracking.
 - [GNSS Data Processing](gnss-data-processing)
-  - Model Component Analysis.
-  - Navigation equation solution.
 
 - These algorithms implemented here come from three sources:
    1. [Galileo Masterclass Brazil (GMB) 2022: ​​​​​​From Fundamentals to Signal and Data Processing][2] - taught at Federal University of Ceará, Brazil, by [Professors from group of Astronomy and GEomatics (gAGE)][1], from Universitat Politècnica de Catalunya, UPC; Prof. Dr. Felix Antreich, from Aeronautics Institute of Technology, ITA, Brazil; and Prof. Dr. Antônio Macilio Pereira de Lucena, from National Institute for Space Research, INPE, Brazil. This 7-days course was promoted by the Galileo Information Centre ([GIC]) in Brazil.
