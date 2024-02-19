@@ -12,8 +12,8 @@ The algorithms cover the following topics:
 
 ## References
 Main:
-- GNSS DATA PROCESSING Volume I: Fundamentals and Algorithms. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency
-- GNSS DATA PROCESSING Volume II: Laboratory Exercises. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency.
+- [GNSS DATA PROCESSING Volume I: Fundamentals and Algorithms][4]. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency
+- [GNSS DATA PROCESSING Volume II: Laboratory Exercises][4]. J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares. European Space Agency.
 
 Others:
 - [Jaume's course slides on "GNSS Data Processing"][1].
@@ -30,3 +30,4 @@ Others:
 [1]: https://gage.upc.edu/486/gage/en/en/learning-materials/software-tools/glab-tool-suite-links/glab-tutorials/gnss-tutorials
 [2]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gps-data-processing-code-and-phase-algorithms-techniques-and-recipes
 [3]: https://gage.upc.edu/en/learning-materials/library/gnss-webinars/gic-masterclass-brazil-2022
+[4]: https://gage.upc.edu/en/learning-materials/library/gnss-books/gnss-data-processing-book
